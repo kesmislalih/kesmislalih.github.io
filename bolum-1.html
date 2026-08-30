@@ -80,7 +80,7 @@ header {
 
     margin: auto;
 
-    padding: 90px 0 130px;
+    padding: 75px 0 110px;
 }
 
 
@@ -97,7 +97,7 @@ header {
 
     font-size: 27px;
 
-    margin-bottom: 55px;
+    margin-bottom: 45px;
 }
 
 
@@ -116,7 +116,7 @@ header {
 
     letter-spacing: 2px;
 
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .chapter-line {
@@ -125,7 +125,28 @@ header {
 
     background: #b9a7d8;
 
-    margin: 0 auto 70px;
+    margin: 0 auto 35px;
+}
+
+
+/* =========================
+   BÖLÜM OKUNMA SAYISI
+========================= */
+
+.chapter-views {
+    text-align: center;
+
+    color: #756d76;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 55px;
+
+    text-transform: uppercase;
 }
 
 
@@ -136,7 +157,7 @@ header {
 .story {
     font-size: 20px;
 
-    line-height: 2;
+    line-height: 1.85;
 
     color: #c9c2b9;
 
@@ -145,11 +166,11 @@ header {
 
 
 /* =========================
-   PARAGRAF
+   PARAGRAF BLOĞU
 ========================= */
 
 .story-block {
-    margin-bottom: 42px;
+    margin-bottom: 22px;
 }
 
 
@@ -164,11 +185,11 @@ header {
 
     font-size: 20px;
 
-    line-height: 1.9;
+    line-height: 1.7;
 
     font-style: italic;
 
-    margin-bottom: 15px;
+    margin: 0;
 }
 
 
@@ -183,16 +204,16 @@ header {
 
     font-size: 21px;
 
-    line-height: 2.2;
+    line-height: 1.65;
 
     font-style: italic;
 
-    margin-bottom: 15px;
+    margin: 0;
 }
 
 
 /* =========================
-   SEMBOL
+   SEMBOLLER
 ========================= */
 
 .symbol {
@@ -200,9 +221,9 @@ header {
 
     color: #b9a7d8;
 
-    font-size: 25px;
+    font-size: 23px;
 
-    margin: 30px 0;
+    margin: 20px 0;
 }
 
 
@@ -217,13 +238,13 @@ header {
 
     font-size: 22px;
 
-    line-height: 1.8;
+    line-height: 1.65;
 
     font-style: italic;
 
     font-weight: 700;
 
-    margin-bottom: 15px;
+    margin: 0;
 }
 
 
@@ -234,7 +255,7 @@ header {
 .comment-toggle {
     display: block;
 
-    margin: 12px 0 0 auto;
+    margin: 7px 0 0 auto;
 
     border: none;
 
@@ -259,15 +280,15 @@ header {
 
 
 /* =========================
-   YORUM ALANI
+   YORUM KUTUSU
 ========================= */
 
 .comment-box {
     display: none;
 
-    margin-top: 14px;
+    margin-top: 10px;
 
-    padding: 18px;
+    padding: 15px;
 
     background: #111015;
 
@@ -281,7 +302,7 @@ header {
 .comment-box textarea {
     width: 100%;
 
-    min-height: 85px;
+    min-height: 75px;
 
     resize: vertical;
 
@@ -293,7 +314,7 @@ header {
 
     color: #ddd6ce;
 
-    padding: 12px;
+    padding: 11px;
 
     font-family: "Cormorant Garamond", serif;
 
@@ -311,7 +332,7 @@ header {
 
     gap: 10px;
 
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
 .comment-actions button {
@@ -321,7 +342,7 @@ header {
 
     color: #aaa39a;
 
-    padding: 8px 13px;
+    padding: 7px 12px;
 
     font-family: Arial, sans-serif;
 
@@ -346,13 +367,13 @@ header {
 ========================= */
 
 .saved-comments {
-    margin-top: 14px;
+    margin-top: 10px;
 }
 
 .comment {
-    padding: 13px 15px;
+    padding: 11px 13px;
 
-    margin-top: 8px;
+    margin-top: 7px;
 
     background: #100e12;
 
@@ -364,7 +385,7 @@ header {
 
     font-size: 10px;
 
-    line-height: 1.7;
+    line-height: 1.6;
 }
 
 
@@ -373,9 +394,9 @@ header {
 ========================= */
 
 .navigation {
-    margin-top: 110px;
+    margin-top: 75px;
 
-    padding-top: 25px;
+    padding-top: 22px;
 
     border-top: 1px solid #28252b;
 
@@ -447,13 +468,13 @@ footer p {
     .reader {
         width: 87%;
 
-        padding-top: 70px;
+        padding-top: 60px;
     }
 
     .book-name {
         font-size: 24px;
 
-        margin-bottom: 45px;
+        margin-bottom: 35px;
     }
 
     .chapter-title {
@@ -461,11 +482,17 @@ footer p {
     }
 
     .chapter-line {
-        margin-bottom: 55px;
+        margin-bottom: 25px;
+    }
+
+    .chapter-views {
+        margin-bottom: 40px;
     }
 
     .story {
         font-size: 18px;
+
+        line-height: 1.8;
     }
 
     .opening {
@@ -474,6 +501,8 @@ footer p {
 
     .poem {
         font-size: 19px;
+
+        line-height: 1.55;
     }
 
     .final-quote {
@@ -520,6 +549,13 @@ footer p {
     <div class="chapter-line"></div>
 
 
+    <!-- BÖLÜM OKUNMA SAYISI -->
+
+    <div class="chapter-views">
+        <span id="chapterViews">0</span> okunma
+    </div>
+
+
 
     <article class="story">
 
@@ -529,10 +565,8 @@ footer p {
         <div class="story-block">
 
             <p class="opening">
-
                 Küçükken gözlerini kapayınca
                 oyuncaklarının uyanacağını sananlara...
-
             </p>
 
 
@@ -545,31 +579,21 @@ footer p {
             </button>
 
 
-            <div
-                class="comment-box"
-                id="comment1">
+            <div class="comment-box" id="comment1">
 
                 <textarea
                     id="text1"
-                    placeholder="Bu kısım hakkında ne düşünüyorsun?">
-                </textarea>
+                    placeholder="Bu kısım hakkında ne düşünüyorsun?"></textarea>
 
 
                 <div class="comment-actions">
 
-                    <button
-                        onclick="closeComment('comment1')">
-
+                    <button onclick="closeComment('comment1')">
                         VAZGEÇ
-
                     </button>
 
-
-                    <button
-                        onclick="saveComment('comment1','text1','comments1')">
-
+                    <button onclick="saveComment('comment1','text1','comments1')">
                         GÖNDER
-
                     </button>
 
                 </div>
@@ -599,9 +623,7 @@ footer p {
         <div class="story-block">
 
             <p class="poem">
-
                 Uyu küçük çocuk,
-
             </p>
 
 
@@ -614,31 +636,21 @@ footer p {
             </button>
 
 
-            <div
-                class="comment-box"
-                id="comment2">
+            <div class="comment-box" id="comment2">
 
                 <textarea
                     id="text2"
-                    placeholder="Bu kısım hakkında ne düşünüyorsun?">
-                </textarea>
+                    placeholder="Bu kısım hakkında ne düşünüyorsun?"></textarea>
 
 
                 <div class="comment-actions">
 
-                    <button
-                        onclick="closeComment('comment2')">
-
+                    <button onclick="closeComment('comment2')">
                         VAZGEÇ
-
                     </button>
 
-
-                    <button
-                        onclick="saveComment('comment2','text2','comments2')">
-
+                    <button onclick="saveComment('comment2','text2','comments2')">
                         GÖNDER
-
                     </button>
 
                 </div>
@@ -660,9 +672,7 @@ footer p {
         <div class="story-block">
 
             <p class="poem">
-
                 Uyu ki uyansın oyuncakların.
-
             </p>
 
 
@@ -675,31 +685,21 @@ footer p {
             </button>
 
 
-            <div
-                class="comment-box"
-                id="comment3">
+            <div class="comment-box" id="comment3">
 
                 <textarea
                     id="text3"
-                    placeholder="Bu kısım hakkında ne düşünüyorsun?">
-                </textarea>
+                    placeholder="Bu kısım hakkında ne düşünüyorsun?"></textarea>
 
 
                 <div class="comment-actions">
 
-                    <button
-                        onclick="closeComment('comment3')">
-
+                    <button onclick="closeComment('comment3')">
                         VAZGEÇ
-
                     </button>
 
-
-                    <button
-                        onclick="saveComment('comment3','text3','comments3')">
-
+                    <button onclick="saveComment('comment3','text3','comments3')">
                         GÖNDER
-
                     </button>
 
                 </div>
@@ -721,9 +721,7 @@ footer p {
         <div class="story-block">
 
             <p class="poem">
-
                 Bir kurşunla kararan dünyanı
-
             </p>
 
 
@@ -736,31 +734,21 @@ footer p {
             </button>
 
 
-            <div
-                class="comment-box"
-                id="comment4">
+            <div class="comment-box" id="comment4">
 
                 <textarea
                     id="text4"
-                    placeholder="Bu kısım hakkında ne düşünüyorsun?">
-                </textarea>
+                    placeholder="Bu kısım hakkında ne düşünüyorsun?"></textarea>
 
 
                 <div class="comment-actions">
 
-                    <button
-                        onclick="closeComment('comment4')">
-
+                    <button onclick="closeComment('comment4')">
                         VAZGEÇ
-
                     </button>
 
-
-                    <button
-                        onclick="saveComment('comment4','text4','comments4')">
-
+                    <button onclick="saveComment('comment4','text4','comments4')">
                         GÖNDER
-
                     </button>
 
                 </div>
@@ -782,9 +770,7 @@ footer p {
         <div class="story-block">
 
             <p class="poem">
-
                 Aydınlatsın sihirli peri tozu.
-
             </p>
 
 
@@ -797,31 +783,21 @@ footer p {
             </button>
 
 
-            <div
-                class="comment-box"
-                id="comment5">
+            <div class="comment-box" id="comment5">
 
                 <textarea
                     id="text5"
-                    placeholder="Bu kısım hakkında ne düşünüyorsun?">
-                </textarea>
+                    placeholder="Bu kısım hakkında ne düşünüyorsun?"></textarea>
 
 
                 <div class="comment-actions">
 
-                    <button
-                        onclick="closeComment('comment5')">
-
+                    <button onclick="closeComment('comment5')">
                         VAZGEÇ
-
                     </button>
 
-
-                    <button
-                        onclick="saveComment('comment5','text5','comments5')">
-
+                    <button onclick="saveComment('comment5','text5','comments5')">
                         GÖNDER
-
                     </button>
 
                 </div>
@@ -851,10 +827,8 @@ footer p {
         <div class="story-block">
 
             <p class="final-quote">
-
                 ❝Düşlediklerinin ötesi neresi beyaz kuğu?
                 Nereye kadar dönüp duracaksın etrafında?❞
-
             </p>
 
 
@@ -867,31 +841,21 @@ footer p {
             </button>
 
 
-            <div
-                class="comment-box"
-                id="comment6">
+            <div class="comment-box" id="comment6">
 
                 <textarea
                     id="text6"
-                    placeholder="Bu kısım hakkında ne düşünüyorsun?">
-                </textarea>
+                    placeholder="Bu kısım hakkında ne düşünüyorsun?"></textarea>
 
 
                 <div class="comment-actions">
 
-                    <button
-                        onclick="closeComment('comment6')">
-
+                    <button onclick="closeComment('comment6')">
                         VAZGEÇ
-
                     </button>
 
-
-                    <button
-                        onclick="saveComment('comment6','text6','comments6')">
-
+                    <button onclick="saveComment('comment6','text6','comments6')">
                         GÖNDER
-
                     </button>
 
                 </div>
@@ -907,12 +871,11 @@ footer p {
         </div>
 
 
-
     </article>
 
 
 
-    <!-- ALT MENÜ -->
+    <!-- NAVİGASYON -->
 
     <div class="navigation">
 
@@ -948,12 +911,31 @@ footer p {
 <script>
 
 /* =========================
+   BÖLÜM OKUNMA SAYACI
+========================= */
+
+let chapterViews =
+    Number(localStorage.getItem("ringtekiSonDansBolum1Views") || 0);
+
+chapterViews++;
+
+localStorage.setItem(
+    "ringtekiSonDansBolum1Views",
+    chapterViews
+);
+
+document.getElementById("chapterViews").textContent =
+    chapterViews;
+
+
+/* =========================
    YORUM KUTUSUNU AÇ / KAPAT
 ========================= */
 
 function toggleComment(id) {
 
-    const box = document.getElementById(id);
+    const box =
+        document.getElementById(id);
 
     box.classList.toggle("open");
 
@@ -966,7 +948,8 @@ function toggleComment(id) {
 
 function closeComment(id) {
 
-    const box = document.getElementById(id);
+    const box =
+        document.getElementById(id);
 
     box.classList.remove("open");
 
@@ -1062,19 +1045,22 @@ function displayComments(commentsId) {
    SAYFA AÇILINCA YORUMLARI GETİR
 ========================= */
 
-window.addEventListener("DOMContentLoaded", function() {
+window.addEventListener(
+    "DOMContentLoaded",
+    function() {
 
-    displayComments("comments1");
-    displayComments("comments2");
-    displayComments("comments3");
-    displayComments("comments4");
-    displayComments("comments5");
-    displayComments("comments6");
+        displayComments("comments1");
+        displayComments("comments2");
+        displayComments("comments3");
+        displayComments("comments4");
+        displayComments("comments5");
+        displayComments("comments6");
 
-});
+    }
+);
 
 </script>
 
 
 </body>
-</html>
+    </html>
