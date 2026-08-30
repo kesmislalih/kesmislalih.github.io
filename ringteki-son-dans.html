@@ -46,11 +46,10 @@ header {
     text-decoration: none;
 
     font-family: "Great Vibes", cursive;
-    font-size: 31px;
+    font-size: 30px;
 
     text-shadow:
-        0 0 6px rgba(220,195,255,.45),
-        0 0 16px rgba(185,167,216,.25);
+        0 0 7px rgba(220,195,255,.4);
 }
 
 .back {
@@ -58,7 +57,7 @@ header {
     text-decoration: none;
 
     font-family: Arial, sans-serif;
-    font-size: 9px;
+    font-size: 8px;
 
     letter-spacing: 2px;
 
@@ -79,7 +78,7 @@ header {
 
     margin: auto;
 
-    padding: 55px 0 120px;
+    padding: 55px 0 110px;
 
     text-align: center;
 }
@@ -101,7 +100,7 @@ header {
 
 .author {
     margin-top: 5px;
-    margin-bottom: 45px;
+    margin-bottom: 35px;
 
     font-family: "Great Vibes", cursive;
 
@@ -111,6 +110,25 @@ header {
 
     text-shadow:
         0 0 8px rgba(205,185,235,.4);
+}
+
+
+/* =========================
+   OKUNMA SAYISI
+========================= */
+
+.read-count {
+    margin-bottom: 40px;
+
+    color: #756d76;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
 }
 
 
@@ -145,7 +163,7 @@ header {
 .intro {
     max-width: 680px;
 
-    margin: 75px auto 0;
+    margin: 60px auto 0;
 
     text-align: left;
 }
@@ -155,11 +173,11 @@ header {
 
     font-size: 24px;
 
-    line-height: 1.7;
+    line-height: 1.6;
 
     font-style: italic;
 
-    margin-bottom: 35px;
+    margin-bottom: 25px;
 }
 
 .description {
@@ -167,7 +185,7 @@ header {
 
     font-size: 19px;
 
-    line-height: 1.9;
+    line-height: 1.75;
 }
 
 
@@ -182,7 +200,7 @@ header {
 
     background: #b9a7d8;
 
-    margin: 75px auto;
+    margin: 55px auto;
 }
 
 
@@ -201,11 +219,11 @@ header {
 
     font-family: Arial, sans-serif;
 
-    font-size: 10px;
+    font-size: 9px;
 
     letter-spacing: 4px;
 
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .about-text {
@@ -215,7 +233,7 @@ header {
 
     font-size: 11px;
 
-    line-height: 2;
+    line-height: 1.9;
 }
 
 
@@ -226,7 +244,7 @@ header {
 .chapters {
     max-width: 720px;
 
-    margin: 85px auto 0;
+    margin: 65px auto 0;
 
     text-align: left;
 }
@@ -238,11 +256,11 @@ header {
 
     font-family: Arial, sans-serif;
 
-    font-size: 10px;
+    font-size: 9px;
 
     letter-spacing: 4px;
 
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .chapter {
@@ -252,7 +270,7 @@ header {
 
     align-items: center;
 
-    padding: 25px 5px;
+    padding: 20px 5px;
 
     border-top: 1px solid #28252b;
 
@@ -293,7 +311,7 @@ header {
 ========================= */
 
 footer {
-    padding: 60px 20px;
+    padding: 55px 20px;
 
     border-top: 1px solid #252328;
 
@@ -303,19 +321,19 @@ footer {
 .footer-logo {
     font-family: "Great Vibes", cursive;
 
-    font-size: 33px;
+    font-size: 31px;
 
     color: #f8f3ff;
 }
 
 footer p {
-    margin-top: 12px;
+    margin-top: 10px;
 
     color: #66615d;
 
     font-family: Arial, sans-serif;
 
-    font-size: 8px;
+    font-size: 7px;
 
     letter-spacing: 2px;
 }
@@ -371,10 +389,6 @@ footer p {
 <body>
 
 
-<!-- =========================
-     ÜST KISIM
-========================= -->
-
 <header>
 
     <a href="index.html" class="logo">
@@ -389,14 +403,8 @@ footer p {
 
 
 
-<!-- =========================
-     KİTAP SAYFASI
-========================= -->
-
 <main class="book-page">
 
-
-    <!-- KİTAP ADI -->
 
     <h1 class="book-title">
         Ringteki Son Dans
@@ -408,8 +416,15 @@ footer p {
     </div>
 
 
+    <!-- KİTAP OKUNMA SAYISI -->
 
-    <!-- MEVCUT KAPAK -->
+    <div class="read-count">
+        <span id="bookViews">0</span> okunma
+    </div>
+
+
+
+    <!-- KAPAK -->
 
     <div class="cover">
 
@@ -421,7 +436,7 @@ footer p {
 
 
 
-    <!-- KİTAP AÇIKLAMASI -->
+    <!-- AÇIKLAMA -->
 
     <section class="intro">
 
@@ -493,12 +508,9 @@ footer p {
 
 
 
-    <!-- =========================
-         BÖLÜMLER
-    ========================= -->
+    <!-- BÖLÜMLER -->
 
     <section class="chapters">
-
 
         <div class="chapters-title">
             BÖLÜMLER
@@ -555,17 +567,12 @@ footer p {
 
         </a>
 
-
     </section>
 
 
 </main>
 
 
-
-<!-- =========================
-     FOOTER
-========================= -->
 
 <footer>
 
@@ -578,6 +585,27 @@ footer p {
     </p>
 
 </footer>
+
+
+
+<script>
+
+/* KİTAP OKUNMA SAYACI */
+
+let bookViews =
+    Number(localStorage.getItem("ringtekiSonDansViews") || 0);
+
+bookViews++;
+
+localStorage.setItem(
+    "ringtekiSonDansViews",
+    bookViews
+);
+
+document.getElementById("bookViews").textContent =
+    bookViews;
+
+</script>
 
 
 </body>
