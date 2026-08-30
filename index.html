@@ -1,655 +1,1245 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>kesmislalih</title>
+<title>kesmislalih</title>
 
-  <!-- Zarif serif + imza fontları -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
 
-  <link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Ballet:opsz@16..72&display=swap');
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+html {
+    scroll-behavior: smooth;
+}
 
-    body {
-      background: #ffffff;
-      color: #111111;
-      font-family: "DM Sans", sans-serif;
-      transition: 0.4s ease;
-    }
+body {
+    background: #09090b;
+    color: #f3efe8;
+    font-family: "Cormorant Garamond", serif;
+}
 
-    /* ---------------- NAVBAR ---------------- */
+/* =========================
+   HEADER
+========================= */
 
-    nav {
-      width: 100%;
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 7%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 10;
+header {
+    width: 100%;
+    padding: 25px 6%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    z-index: 100;
+}
+
+.logo {
+    color: #f8f3ff;
+    text-decoration: none;
+
+    font-family: "Great Vibes", cursive;
+    font-size: 32px;
+
+    text-shadow:
+        0 0 6px rgba(220,195,255,.45),
+        0 0 16px rgba(185,167,216,.25);
+}
+
+/* =========================
+   ÜÇ ÇİZGİLİ MENÜ
+========================= */
+
+.menu-button {
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid #38323f;
+    background: rgba(9,9,11,.75);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 5px;
+
+    cursor: pointer;
+
+    z-index: 102;
+}
+
+.menu-line {
+    width: 18px;
+    height: 1px;
+
+    background: #eee8e1;
+
+    transition: .3s;
+}
+
+.menu-button.active .menu-line:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.menu-button.active .menu-line:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-button.active .menu-line:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+/* =========================
+   MENÜ PANELİ
+========================= */
+
+.menu-panel {
+    position: fixed;
+
+    top: 0;
+    right: -330px;
+
+    width: 310px;
+    height: 100vh;
+
+    background: #111015;
+
+    border-left: 1px solid #302a38;
+
+    padding: 120px 40px 40px;
+
+    z-index: 101;
+
+    transition: right .45s ease;
+}
+
+.menu-panel.open {
+    right: 0;
+}
+
+.menu-small-title {
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+    letter-spacing: 4px;
+
+    color: #756d79;
+
+    margin-bottom: 30px;
+}
+
+.menu-panel a {
+    display: block;
+
+    padding: 18px 0;
+
+    border-bottom: 1px solid #29252d;
+
+    color: #e8e2da;
+
+    text-decoration: none;
+
+    font-size: 22px;
+
+    transition: .3s;
+}
+
+.menu-panel a:hover {
+    color: #cdb9eb;
+    padding-left: 8px;
+}
+
+.menu-footer {
+    position: absolute;
+
+    bottom: 35px;
+    left: 40px;
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: 26px;
+
+    color: #8f819e;
+}
+
+/* MENÜ ARKA PLAN */
+
+.menu-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.45);
+
+    backdrop-filter: blur(2px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: .3s;
+
+    z-index: 100;
+}
+
+.menu-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* =========================
+   ANA SAYFA
+========================= */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 100px 25px 80px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 520px;
+    height: 520px;
+
+    background: #5d4d73;
+
+    opacity: .12;
+
+    filter: blur(140px);
+
+    border-radius: 50%;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================
+   YENİ İMZA FONTU
+========================= */
+
+.hero h1 {
+    font-family: "Ballet", "Great Vibes", cursive;
+
+    font-size: clamp(95px, 20vw, 180px);
+
+    font-weight: 400;
+
+    line-height: .75;
+
+    letter-spacing: -4px;
+
+    color: #f8f3ff;
+
+    transform: rotate(-3deg);
+
+    text-shadow:
+        0 0 8px rgba(220,195,255,.4),
+        0 0 25px rgba(185,167,216,.25);
+
+    white-space: nowrap;
+}
+
+/* İmzanın altındaki ince çizgi */
+
+.line {
+    width: 110px;
+    height: 1px;
+
+    background: #b9a7d8;
+
+    margin: 38px auto 30px;
+}
+
+/* YENİ METİN */
+
+.hero p {
+    max-width: 550px;
+
+    margin: auto;
+
+    color: #aaa39a;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    line-height: 1.8;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+.button {
+    display: inline-block;
+
+    margin-top: 45px;
+
+    padding: 14px 27px;
+
+    border: 1px solid #6e6384;
+
+    color: #f4f0ea;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    transition: .3s;
+}
+
+.button:hover {
+    background: #b9a7d8;
+    color: #09090b;
+}
+
+/* =========================
+   BÖLÜMLER
+========================= */
+
+.section {
+    padding: 120px 7%;
+}
+
+.section-title {
+    font-size: 44px;
+
+    font-weight: 400;
+
+    margin-bottom: 4px;
+}
+
+.section-subtitle {
+    font-family: "Great Vibes", cursive;
+
+    font-size: 31px;
+
+    color: #d8c8f0;
+
+    text-shadow:
+        0 0 5px rgba(216,200,240,.5),
+        0 0 16px rgba(185,167,216,.3);
+
+    margin-bottom: 55px;
+}
+
+/* =========================
+   KİTAPLIK
+========================= */
+
+.library {
+    padding: 45px 35px 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #121014,
+            #0c0b0e
+        );
+
+    border: 1px solid #28242c;
+}
+
+.shelf {
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 32px;
+
+    min-height: 340px;
+
+    padding: 0 15px;
+
+    overflow-x: auto;
+}
+
+.book {
+    flex: 0 0 auto;
+
+    width: 145px;
+
+    cursor: pointer;
+
+    transition: .4s;
+
+    text-decoration: none;
+}
+
+.book:hover {
+    transform: translateY(-12px);
+}
+
+.book-cover {
+    height: 220px;
+
+    border: 1px solid #39323f;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    background: #151319;
+
+    box-shadow:
+        8px 8px 20px rgba(0,0,0,.45);
+}
+
+.book-cover img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.book-name {
+    margin-top: 14px;
+
+    font-size: 18px;
+
+    text-align: center;
+
+    color: #e8e2d9;
+}
+
+.book-info {
+    text-align: center;
+
+    color: #cdb9eb;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+
+    margin-top: 12px;
+}
+
+.wood {
+    height: 13px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #403448,
+            #211d25
+        );
+
+    border-top: 1px solid #665873;
+}
+
+/* =========================
+   HAKKIMDA
+========================= */
+
+.about {
+    padding: 100px 20px;
+
+    text-align: center;
+}
+
+.about-title {
+    font-size: 13px;
+
+    letter-spacing: 4px;
+
+    color: #aaa39a;
+
+    margin-bottom: 18px;
+}
+
+.about-text {
+    max-width: 520px;
+
+    margin: auto;
+
+    color: #77716b;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    line-height: 1.9;
+}
+
+/* =========================
+   DUYURULAR
+========================= */
+
+.news {
+    max-width: 800px;
+
+    margin: auto;
+}
+
+.news-item {
+    border-top: 1px solid #29272b;
+
+    padding: 22px 0;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.news-date {
+    color: #716b66;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+}
+
+.news-title {
+    font-size: 19px;
+
+    text-align: right;
+
+    color: #d8d2ca;
+}
+
+/* =========================
+   SOSYAL MEDYA
+========================= */
+
+.social {
+    padding: 100px 20px;
+
+    text-align: center;
+
+    border-top: 1px solid #252328;
+}
+
+.social-title {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 14px;
+
+    letter-spacing: 5px;
+
+    color: #aaa39a;
+
+    text-transform: uppercase;
+
+    margin-bottom: 30px;
+}
+
+.social-links {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px 24px;
+}
+
+.social-links a {
+    color: #cdb9eb;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    transition: .3s;
+}
+
+.social-links a:hover {
+    color: #f8f3ff;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 65px 7%;
+
+    border-top: 1px solid #252328;
+
+    text-align: center;
+}
+
+.footer-logo {
+    font-family: "Great Vibes", cursive;
+
+    font-size: 35px;
+
+    color: #f8f3ff;
+}
+
+footer p {
+    margin-top: 15px;
+
+    color: #77716a;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+/* =========================
+   TELEFON
+========================= */
+
+@media (max-width: 700px) {
+
+    header {
+        padding: 20px 5%;
     }
 
     .logo {
-      font-family: "Bodoni Moda", serif;
-      font-size: 18px;
-      letter-spacing: 3px;
-      text-transform: lowercase;
+        font-size: 27px;
     }
 
-    nav ul {
-      display: flex;
-      gap: 35px;
-      list-style: none;
+    .menu-panel {
+        width: 285px;
+        right: -300px;
+
+        padding: 110px 32px 30px;
     }
 
-    nav a {
-      color: #111;
-      text-decoration: none;
-      font-size: 11px;
-      letter-spacing: 2px;
-      transition: 0.3s;
+    .menu-panel a {
+        font-size: 20px;
     }
 
-    nav a:hover {
-      color: #a994c8;
+    .hero h1 {
+        font-size: 82px;
+        letter-spacing: -3px;
     }
 
-    /* ---------------- HERO ---------------- */
+    .hero p {
+        font-size: 8px;
 
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      padding: 100px 20px 60px;
+        letter-spacing: 2px;
     }
 
-    .hero-content {
-      max-width: 1000px;
-      width: 100%;
-    }
-
-    .small-title {
-      font-family: "Bodoni Moda", serif;
-      font-size: 13px;
-      letter-spacing: 7px;
-      text-transform: uppercase;
-      margin-bottom: 25px;
-      color: #555;
-    }
-
-    /*
-      ANA İMZA
-      Buradaki Ballet fontu büyük, akışkan ve imza hissini vermek için kullanılıyor.
-    */
-
-    .signature {
-      font-family: "Ballet", cursive;
-      font-size: clamp(95px, 17vw, 230px);
-      font-weight: 400;
-      line-height: 0.8;
-      color: #111111;
-      transform: rotate(-3deg);
-      margin: 10px 0 35px;
-
-      /* İnce imza görünümü */
-      letter-spacing: -5px;
-
-      user-select: none;
-    }
-
-    .signature-line {
-      width: 55%;
-      height: 1px;
-      background: #111;
-      margin: -5px auto 35px;
-      opacity: 0.8;
-    }
-
-    .hero-text {
-      font-family: "Bodoni Moda", serif;
-      font-size: clamp(20px, 3vw, 32px);
-      font-style: italic;
-      font-weight: 400;
-      max-width: 600px;
-      margin: auto;
-      line-height: 1.5;
-    }
-
-    .hero-button {
-      display: inline-block;
-      margin-top: 45px;
-      padding: 16px 35px;
-      background: #b7a1d4;
-      color: #fff;
-      text-decoration: none;
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      transition: 0.3s ease;
-    }
-
-    .hero-button:hover {
-      background: #8e76ad;
-      transform: translateY(-3px);
-    }
-
-    /* dekoratif çizgi */
-
-    .decor-line {
-      position: absolute;
-      width: 180px;
-      height: 1px;
-      background: #111;
-      opacity: 0.25;
-    }
-
-    .line-one {
-      left: -50px;
-      top: 45%;
-      transform: rotate(-25deg);
-    }
-
-    .line-two {
-      right: -50px;
-      top: 60%;
-      transform: rotate(-25deg);
-    }
-
-    /* ---------------- BOOKS ---------------- */
-
-    .books-section {
-      padding: 120px 7%;
-      background: #fafafa;
+    .section {
+        padding: 90px 6%;
     }
 
     .section-title {
-      text-align: center;
-      margin-bottom: 70px;
+        font-size: 38px;
     }
 
-    .section-title span {
-      display: block;
-      font-family: "DM Sans", sans-serif;
-      font-size: 10px;
-      letter-spacing: 4px;
-      color: #888;
-      margin-bottom: 15px;
-      text-transform: uppercase;
+    .section-subtitle {
+        font-size: 25px;
     }
 
-    .section-title h2 {
-      font-family: "Bodoni Moda", serif;
-      font-size: clamp(40px, 6vw, 70px);
-      font-weight: 400;
-    }
-
-    .books-grid {
-      max-width: 1050px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 55px;
+    .library {
+        padding: 30px 15px 0;
     }
 
     .book {
-      background: white;
-      padding: 20px;
-      transition: 0.4s ease;
-    }
-
-    .book:hover {
-      transform: translateY(-8px);
+        width: 125px;
     }
 
     .book-cover {
-      width: 100%;
-      aspect-ratio: 2 / 3;
-      background: #ded8e5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+        height: 195px;
     }
 
-    .book-cover img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .about {
+        padding: 80px 20px;
     }
 
-    .book-info {
-      padding: 25px 5px 10px;
+    .news-item {
+        display: block;
     }
 
-    .book-info h3 {
-      font-family: "Bodoni Moda", serif;
-      font-size: 27px;
-      font-weight: 400;
+    .news-title {
+        margin-top: 9px;
+
+        text-align: left;
     }
 
-    .book-info p {
-      margin-top: 12px;
-      color: #777;
-      font-size: 13px;
-      line-height: 1.7;
-    }
-
-    .read-button {
-      display: inline-block;
-      margin-top: 20px;
-      border-bottom: 1px solid #111;
-      padding-bottom: 5px;
-      color: #111;
-      text-decoration: none;
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    /* ---------------- QUOTE ---------------- */
-
-    .quote-section {
-      min-height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 100px 10%;
-      text-align: center;
-      background: #111;
-      color: white;
-    }
-
-    .quote {
-      max-width: 850px;
-    }
-
-    .quote p {
-      font-family: "Bodoni Moda", serif;
-      font-size: clamp(30px, 5vw, 65px);
-      line-height: 1.25;
-      font-style: italic;
-    }
-
-    .quote small {
-      display: block;
-      margin-top: 35px;
-      font-size: 10px;
-      letter-spacing: 4px;
-      color: #bbb;
-      text-transform: uppercase;
-    }
-
-    /* ---------------- SOCIAL ---------------- */
-
-    .social-section {
-      padding: 120px 7%;
-      text-align: center;
-    }
-
-    .social-title {
-      font-family: "Bodoni Moda", serif;
-      font-size: clamp(45px, 7vw, 80px);
-      font-weight: 400;
-      margin-bottom: 60px;
+    .social {
+        padding: 80px 20px;
     }
 
     .social-links {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-      max-width: 900px;
-      margin: auto;
+        gap: 16px;
     }
 
-    .social-links a {
-      color: #111;
-      text-decoration: none;
-      border: 1px solid #111;
-      padding: 14px 23px;
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      transition: 0.3s;
-    }
+}
 
-    .social-links a:hover {
-      background: #111;
-      color: white;
-    }
-
-    /* ---------------- FOOTER ---------------- */
-
-    footer {
-      border-top: 1px solid #ddd;
-      padding: 35px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 10px;
-      letter-spacing: 2px;
-      color: #777;
-    }
-
-    footer .footer-logo {
-      font-family: "Ballet", cursive;
-      font-size: 38px;
-      color: #111;
-      letter-spacing: 0;
-    }
-
-    /* ---------------- MOBILE ---------------- */
-
-    @media (max-width: 700px) {
-
-      nav {
-        height: 65px;
-        padding: 0 5%;
-      }
-
-      nav ul {
-        display: none;
-      }
-
-      .signature {
-        font-size: clamp(75px, 24vw, 140px);
-        letter-spacing: -4px;
-      }
-
-      .signature-line {
-        width: 80%;
-      }
-
-      .books-section,
-      .social-section {
-        padding: 90px 6%;
-      }
-
-      .books-grid {
-        grid-template-columns: 1fr;
-        gap: 50px;
-      }
-
-      .quote-section {
-        padding: 90px 8%;
-      }
-
-      .social-links {
-        gap: 10px;
-      }
-
-      .social-links a {
-        padding: 13px 16px;
-      }
-
-      footer {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-      }
-    }
-  </style>
+</style>
 </head>
+
 
 <body>
 
-  <!-- NAVBAR -->
 
-  <nav>
-    <div class="logo">kesmislalih</div>
+<!-- =========================
+     ÜST KISIM
+========================= -->
 
-    <ul>
-      <li><a href="#anasayfa">ANASAYFA</a></li>
-      <li><a href="#kitaplar">KİTAPLAR</a></li>
-      <li><a href="#hakkimda">HAKKIMDA</a></li>
-      <li><a href="#duyurular">DUYURULAR</a></li>
-      <li><a href="#iletisim">İLETİŞİM</a></li>
-    </ul>
-  </nav>
+<header>
+
+    <a href="index.html" class="logo">
+        kesmislalih
+    </a>
 
 
-  <!-- ANA SAYFA -->
+    <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Menüyü aç">
 
-  <section class="hero" id="anasayfa">
+        <span class="menu-line"></span>
+        <span class="menu-line"></span>
+        <span class="menu-line"></span>
 
-    <div class="decor-line line-one"></div>
-    <div class="decor-line line-two"></div>
+    </button>
+
+</header>
+
+
+
+<!-- =========================
+     MENÜ
+========================= -->
+
+<div
+    class="menu-overlay"
+    id="menuOverlay">
+</div>
+
+
+<nav
+    class="menu-panel"
+    id="menuPanel">
+
+    <div class="menu-small-title">
+        KESMISLALIH
+    </div>
+
+
+    <a href="#">
+        Ana Sayfa
+    </a>
+
+
+    <a href="#kitaplar">
+        Kitaplar
+    </a>
+
+
+    <a href="#hakkimda">
+        Hakkımda
+    </a>
+
+
+    <a href="#galeri">
+        Galeri
+    </a>
+
+
+    <a href="#duvar">
+        Duvar
+    </a>
+
+
+    <a href="#duyurular">
+        Duyurular
+    </a>
+
+
+    <a href="#iletisim">
+        İletişim
+    </a>
+
+
+    <div class="menu-footer">
+        kesmislalih
+    </div>
+
+</nav>
+
+
+
+<!-- =========================
+     ANA SAYFA
+========================= -->
+
+<section class="hero">
 
     <div class="hero-content">
 
-      <div class="small-title">
-        hoş geldin
-      </div>
-
-      <div class="signature">
-        kesmislalih
-      </div>
-
-      <div class="signature-line"></div>
-
-      <div class="hero-text">
-        kelimelerin arasında bir yerlerde...
-      </div>
-
-      <a href="#kitaplar" class="hero-button">
-        kitaplarıma göz at
-      </a>
-
-    </div>
-
-  </section>
+        <h1>
+            kesmislalih
+        </h1>
 
 
-  <!-- KİTAPLAR -->
-
-  <section class="books-section" id="kitaplar">
-
-    <div class="section-title">
-      <span>hikâyeler, karakterler, başka dünyalar</span>
-      <h2>Kitaplar</h2>
-    </div>
-
-    <div class="books-grid">
-
-      <!-- KİTAP 1 -->
-
-      <article class="book">
-
-        <div class="book-cover">
-          <!-- BURAYA KİTAP KAPAĞINI KOY -->
-          <img src="kitap1.jpg" alt="Kitap 1 kapağı">
-        </div>
-
-        <div class="book-info">
-          <h3>Ringteki Son Dans</h3>
-
-          <p>
-            Buraya kitabın kısa tanıtım yazısını ekleyebilirsin.
-          </p>
-
-          <a href="#" class="read-button">
-            kitabı incele →
-          </a>
-        </div>
-
-      </article>
+        <div class="line"></div>
 
 
-      <!-- KİTAP 2 -->
+        <p>
+            kelimelerin arasında bir yerlerde...
+        </p>
 
-      <article class="book">
 
-        <div class="book-cover">
-          <!-- BURAYA İKİNCİ KİTAP KAPAĞINI KOY -->
-          <img src="kitap2.jpg" alt="Kitap 2 kapağı">
-        </div>
+        <a
+            href="#kitaplar"
+            class="button">
 
-        <div class="book-info">
-          <h3>Kitap Adı</h3>
+            KİTAPLARIMA GÖZ AT
 
-          <p>
-            Buraya ikinci kitabın kısa tanıtım yazısını ekleyebilirsin.
-          </p>
-
-          <a href="#" class="read-button">
-            kitabı incele →
-          </a>
-        </div>
-
-      </article>
+        </a>
 
     </div>
 
-  </section>
+</section>
 
 
-  <!-- HAKKIMDA / ALINTI -->
 
-  <section class="quote-section" id="hakkimda">
+<!-- =========================
+     KİTAPLAR
+========================= -->
 
-    <div class="quote">
-
-      <p>
-        “Bazı hikâyeler anlatılmak için değil,
-        bulunmak için yazılır.”
-      </p>
-
-      <small>
-        — kesmislalih
-      </small>
-
-    </div>
-
-  </section>
+<section
+    class="section"
+    id="kitaplar">
 
 
-  <!-- SOSYAL MEDYA -->
-
-  <section class="social-section" id="iletisim">
-
-    <h2 class="social-title">
-      Beni takip et
+    <h2 class="section-title">
+        Kitaplarım
     </h2>
 
-    <div class="social-links">
 
-      <!-- GERÇEK LİNKLER -->
+    <p class="section-subtitle">
+        kelimelerden doğan hikâyeler
+    </p>
 
-      <a
-        href="https://www.tiktok.com/@kesmislalih?_r=1&_t=ZS-98gv3YRvFOK"
-        target="_blank">
-        TikTok
-      </a>
 
-      <a
-        href="https://x.com/kesmislalih"
-        target="_blank">
-        X
-      </a>
 
-      <a
-        href="https://www.wattpad.com/user/kesmislalih"
-        target="_blank">
-        Wattpad
-      </a>
+    <div class="library">
 
-      <a
-        href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv"
-        target="_blank">
-        Spotify
-      </a>
 
-      <!-- SENİN LİNKLERİNİ BURAYA KOYACAĞIZ -->
+        <div class="shelf">
 
-      <a
-        href="BURAYA_PINTEREST_LINKI"
-        target="_blank">
-        Pinterest
-      </a>
 
-      <a
-        href="BURAYA_WHATSAPP_LINKI"
-        target="_blank">
-        WhatsApp
-      </a>
+            <!-- RİNGTEKİ SON DANS -->
+
+            <a
+                href="ringteki-son-dans.html"
+                class="book">
+
+
+                <div class="book-cover">
+
+                    <img
+                        src="file_00000000ce4881f4b929fc5dfbb07694.png"
+                        alt="Ringteki Son Dans">
+
+                </div>
+
+
+                <div class="book-name">
+                    Ringteki Son Dans
+                </div>
+
+
+                <div class="book-info">
+                    KİTABI İNCELE →
+                </div>
+
+
+            </a>
+
+
+
+            <!-- İKİNCİ KİTAP -->
+
+            <div class="book">
+
+                <div class="book-cover">
+
+                    <span style="color:#6f6872;">
+                        YENİ<br>HİKÂYE
+                    </span>
+
+                </div>
+
+
+                <div class="book-name">
+                    Yakında...
+                </div>
+
+
+                <div class="book-info">
+                    ÇOK YAKINDA
+                </div>
+
+            </div>
+
+
+
+            <!-- ÜÇÜNCÜ KİTAP -->
+
+            <div class="book">
+
+                <div class="book-cover">
+
+                    <span style="color:#6f6872;">
+                        YENİ<br>HİKÂYE
+                    </span>
+
+                </div>
+
+
+                <div class="book-name">
+                    Yakında...
+                </div>
+
+
+                <div class="book-info">
+                    ÇOK YAKINDA
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="wood"></div>
+
 
     </div>
 
-  </section>
+</section>
 
 
-  <!-- DUYURULAR -->
 
-  <section
-    id="duyurular"
-    style="
-      padding: 100px 7%;
-      text-align: center;
-      background: #f4f0f7;
-    ">
+<!-- =========================
+     HAKKIMDA
+========================= -->
 
-    <div class="section-title">
+<section
+    class="about"
+    id="hakkimda">
 
-      <span>son gelişmeler</span>
 
-      <h2>Duyurular</h2>
-
+    <div class="about-title">
+        HAKKIMDA
     </div>
 
-    <p
-      style="
-        max-width: 600px;
-        margin: auto;
-        line-height: 1.8;
-        color: #666;
-        font-size: 14px;
-      ">
 
-      Yeni kitaplar, güncellemeler ve diğer duyurular
-      burada yer alacak.
+    <p class="about-text">
+
+        Hikâyeler, bazen söyleyemediklerimizin
+        en güzel hâlidir. Ben de kelimelerle
+        kendi dünyalarımı kurmayı seviyorum.
 
     </p>
 
-  </section>
+
+</section>
 
 
-  <!-- FOOTER -->
 
-  <footer>
+<!-- =========================
+     GALERİ
+========================= -->
+
+<section
+    class="section"
+    id="galeri">
+
+    <h2 class="section-title">
+        Galeri
+    </h2>
+
+    <p class="section-subtitle">
+        hikâyelerden kareler
+    </p>
+
+</section>
+
+
+
+<!-- =========================
+     DUVAR
+========================= -->
+
+<section
+    class="section"
+    id="duvar">
+
+    <h2 class="section-title">
+        Duvar
+    </h2>
+
+    <p class="section-subtitle">
+        burası okurlara ait olacak
+    </p>
+
+</section>
+
+
+
+<!-- =========================
+     DUYURULAR
+========================= -->
+
+<section
+    class="section"
+    id="duyurular">
+
+
+    <div class="news">
+
+
+        <h2 class="section-title">
+            Duyurular
+        </h2>
+
+
+        <p class="section-subtitle">
+            yeni hikâyeler, yeni başlangıçlar
+        </p>
+
+
+        <div class="news-item">
+
+            <span class="news-date">
+                31.08.2026
+            </span>
+
+            <span class="news-title">
+                Yeni site yayında.
+            </span>
+
+        </div>
+
+
+        <div class="news-item">
+
+            <span class="news-date">
+                YAKINDA
+            </span>
+
+            <span class="news-title">
+                Yeni hikâyeler burada olacak.
+            </span>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     İLETİŞİM
+========================= -->
+
+<section
+    class="about"
+    id="iletisim">
+
+    <div class="about-title">
+        İLETİŞİM
+    </div>
+
+    <p class="about-text">
+        İletişim bilgileri daha sonra buraya eklenecek.
+    </p>
+
+</section>
+
+
+
+<!-- =========================
+     SOSYAL MEDYA
+========================= -->
+
+<section class="social">
+
+    <div class="social-title">
+        Beni takip et
+    </div>
+
+
+    <div class="social-links">
+
+        <a
+            href="https://www.tiktok.com/@kesmislalih?_r=1&_t=ZS-98gv3YRvFOK"
+            target="_blank">
+            TikTok
+        </a>
+
+
+        <a
+            href="https://x.com/kesmislalih"
+            target="_blank">
+            X
+        </a>
+
+
+        <a
+            href="https://www.wattpad.com/user/kesmislalih"
+            target="_blank">
+            Wattpad
+        </a>
+
+
+        <a
+            href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv"
+            target="_blank">
+            Spotify
+        </a>
+
+
+        <!-- Pinterest linkini buraya ekle -->
+
+        <a
+            href="#"
+            target="_blank">
+            Pinterest
+        </a>
+
+
+        <!-- WhatsApp kanal linkini buraya ekle -->
+
+        <a
+            href="#"
+            target="_blank">
+            WhatsApp
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
 
     <div class="footer-logo">
-      kesmislalih
+        kesmislalih
     </div>
 
-    <div>
-      © 2026 kesmislalih
-    </div>
 
-    <div>
-      kelimelerin arasında bir yerlerde.
-    </div>
+    <p>
+        © 2026 kesmislalih
+    </p>
 
-  </footer>
+</footer>
+
+
+
+<script>
+
+/* MENÜ */
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const menuPanel =
+    document.getElementById("menuPanel");
+
+const menuOverlay =
+    document.getElementById("menuOverlay");
+
+const menuLinks =
+    document.querySelectorAll(".menu-panel a");
+
+
+menuButton.addEventListener("click", function() {
+
+    menuButton.classList.toggle("active");
+
+    menuPanel.classList.toggle("open");
+
+    menuOverlay.classList.toggle("open");
+
+});
+
+
+menuOverlay.addEventListener("click", function() {
+
+    menuButton.classList.remove("active");
+
+    menuPanel.classList.remove("open");
+
+    menuOverlay.classList.remove("open");
+
+});
+
+
+menuLinks.forEach(function(link) {
+
+    link.addEventListener("click", function() {
+
+        menuButton.classList.remove("active");
+
+        menuPanel.classList.remove("open");
+
+        menuOverlay.classList.remove("open");
+
+    });
+
+});
+
+</script>
 
 
 </body>
