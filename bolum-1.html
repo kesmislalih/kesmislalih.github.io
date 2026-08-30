@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ringteki Son Dans | kesmislalih</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #09090b;
+    color: #dcd6ce;
+    font-family: "Cormorant Garamond", serif;
+}
+
+
+/* ÜST KISIM */
+
+header {
+    width: 100%;
+    padding: 25px 6%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #f8f3ff;
+    text-decoration: none;
+
+    font-family: "Great Vibes", cursive;
+    font-size: 30px;
+
+    text-shadow:
+        0 0 7px rgba(220,195,255,.4);
+}
+
+.home {
+    color: #827b83;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    transition: .3s;
+}
+
+.home:hover {
+    color: #cdb9eb;
+}
+
+
+/* OKUMA ALANI */
+
+.reader {
+    width: min(700px, 88%);
+
+    margin: auto;
+
+    padding: 100px 0 130px;
+}
+
+
+/* KİTAP ADI */
+
+.book-name {
+    text-align: center;
+
+    font-family: "Great Vibes", cursive;
+
+    color: #9b8aa9;
+
+    font-size: 27px;
+
+    margin-bottom: 55px;
+}
+
+
+/* BÖLÜM BAŞLIĞI */
+
+.chapter-title {
+    text-align: center;
+
+    color: #eee9e2;
+
+    font-size: clamp(35px, 7vw, 55px);
+
+    font-weight: 400;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 20px;
+}
+
+.chapter-line {
+    width: 45px;
+    height: 1px;
+
+    background: #b9a7d8;
+
+    margin: 0 auto 70px;
+}
+
+
+/* METİN */
+
+.story {
+    font-size: 20px;
+
+    line-height: 2;
+
+    color: #c9c2b9;
+
+    text-align: left;
+}
+
+.story p {
+    margin-bottom: 28px;
+}
+
+.first-letter::first-letter {
+    font-size: 55px;
+
+    float: left;
+
+    line-height: .8;
+
+    padding-right: 7px;
+
+    color: #cdb9eb;
+}
+
+
+/* BÖLÜM NAVİGASYONU */
+
+.navigation {
+    margin-top: 100px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #28252b;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.navigation a {
+    color: #aaa39a;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    transition: .3s;
+}
+
+.navigation a:hover {
+    color: #cdb9eb;
+}
+
+
+/* FOOTER */
+
+footer {
+    padding: 55px 20px;
+
+    border-top: 1px solid #252328;
+
+    text-align: center;
+}
+
+.footer-logo {
+    font-family: "Great Vibes", cursive;
+
+    font-size: 31px;
+
+    color: #f8f3ff;
+}
+
+footer p {
+    margin-top: 10px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    color: #66615d;
+}
+
+
+/* TELEFON */
+
+@media (max-width: 700px) {
+
+    .reader {
+        width: 87%;
+
+        padding-top: 70px;
+    }
+
+    .book-name {
+        font-size: 24px;
+
+        margin-bottom: 45px;
+    }
+
+    .chapter-title {
+        font-size: 38px;
+    }
+
+    .chapter-line {
+        margin-bottom: 55px;
+    }
+
+    .story {
+        font-size: 18px;
+
+        line-height: 1.9;
+    }
+
+    .story p {
+        margin-bottom: 24px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <a href="index.html" class="logo">
+        kesmislalih
+    </a>
+
+    <a href="ringteki-son-dans.html" class="home">
+        ← KİTABA DÖN
+    </a>
+
+</header>
+
+
+
+<main class="reader">
+
+
+    <div class="book-name">
+        Ringteki Son Dans
+    </div>
+
+
+    <h1 class="chapter-title">
+        RİNGTEKİ SON DANS
+    </h1>
+
+
+    <div class="chapter-line"></div>
+
+
+
+    <article class="story">
+
+
+        <p class="first-letter">
+            Bölüm metnin burada başlayacak.
+        </p>
+
+
+        <p>
+            Sen bana bölümün gerçek metnini gönderdiğinde
+            bu alanı tamamen onunla değiştireceğiz.
+        </p>
+
+
+    </article>
+
+
+
+    <div class="navigation">
+
+        <a href="ringteki-son-dans.html">
+            ← KİTABA DÖN
+        </a>
+
+        <a href="#">
+            SONRAKİ BÖLÜM →
+        </a>
+
+    </div>
+
+
+</main>
+
+
+
+<footer>
+
+    <div class="footer-logo">
+        kesmislalih
+    </div>
+
+    <p>
+        © 2026 kesmislalih
+    </p>
+
+</footer>
+
+
+</body>
+</html>
