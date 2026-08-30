@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ringteki Son Dans | kesmislalih</title>
+<title>RİNGTEKİ SON DANS | kesmislalih</title>
 
 <style>
 
@@ -17,6 +17,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: #09090b;
     color: #dcd6ce;
@@ -24,7 +28,9 @@ body {
 }
 
 
-/* ÜST KISIM */
+/* =========================
+   ÜST KISIM
+========================= */
 
 header {
     width: 100%;
@@ -65,18 +71,22 @@ header {
 }
 
 
-/* OKUMA ALANI */
+/* =========================
+   OKUMA ALANI
+========================= */
 
 .reader {
     width: min(700px, 88%);
 
     margin: auto;
 
-    padding: 100px 0 130px;
+    padding: 90px 0 130px;
 }
 
 
-/* KİTAP ADI */
+/* =========================
+   KİTAP ADI
+========================= */
 
 .book-name {
     text-align: center;
@@ -91,7 +101,9 @@ header {
 }
 
 
-/* BÖLÜM BAŞLIĞI */
+/* =========================
+   BÖLÜM BAŞLIĞI
+========================= */
 
 .chapter-title {
     text-align: center;
@@ -117,7 +129,9 @@ header {
 }
 
 
-/* METİN */
+/* =========================
+   HİKÂYE
+========================= */
 
 .story {
     font-size: 20px;
@@ -129,27 +143,237 @@ header {
     text-align: left;
 }
 
-.story p {
-    margin-bottom: 28px;
+
+/* =========================
+   PARAGRAF
+========================= */
+
+.story-block {
+    margin-bottom: 42px;
 }
 
-.first-letter::first-letter {
-    font-size: 55px;
 
-    float: left;
+/* =========================
+   AÇILIŞ
+========================= */
 
-    line-height: .8;
+.opening {
+    text-align: center;
 
-    padding-right: 7px;
+    color: #d9d1c8;
 
+    font-size: 20px;
+
+    line-height: 1.9;
+
+    font-style: italic;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================
+   ŞİİR
+========================= */
+
+.poem {
+    text-align: center;
+
+    color: #d9d1c8;
+
+    font-size: 21px;
+
+    line-height: 2.2;
+
+    font-style: italic;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================
+   SEMBOL
+========================= */
+
+.symbol {
+    text-align: center;
+
+    color: #b9a7d8;
+
+    font-size: 25px;
+
+    margin: 30px 0;
+}
+
+
+/* =========================
+   SON ALINTI
+========================= */
+
+.final-quote {
+    text-align: center;
+
+    color: #eee9e2;
+
+    font-size: 22px;
+
+    line-height: 1.8;
+
+    font-style: italic;
+
+    font-weight: 700;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================
+   YORUM BUTONU
+========================= */
+
+.comment-toggle {
+    display: block;
+
+    margin: 12px 0 0 auto;
+
+    border: none;
+
+    background: transparent;
+
+    color: #756b78;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.comment-toggle:hover {
     color: #cdb9eb;
 }
 
 
-/* BÖLÜM NAVİGASYONU */
+/* =========================
+   YORUM ALANI
+========================= */
+
+.comment-box {
+    display: none;
+
+    margin-top: 14px;
+
+    padding: 18px;
+
+    background: #111015;
+
+    border: 1px solid #29252e;
+}
+
+.comment-box.open {
+    display: block;
+}
+
+.comment-box textarea {
+    width: 100%;
+
+    min-height: 85px;
+
+    resize: vertical;
+
+    border: 1px solid #302b35;
+
+    outline: none;
+
+    background: #0b0a0d;
+
+    color: #ddd6ce;
+
+    padding: 12px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 16px;
+}
+
+.comment-box textarea:focus {
+    border-color: #665675;
+}
+
+.comment-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 10px;
+}
+
+.comment-actions button {
+    border: 1px solid #403747;
+
+    background: transparent;
+
+    color: #aaa39a;
+
+    padding: 8px 13px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.comment-actions button:hover {
+    color: #cdb9eb;
+
+    border-color: #8c769d;
+}
+
+
+/* =========================
+   KAYDEDİLEN YORUMLAR
+========================= */
+
+.saved-comments {
+    margin-top: 14px;
+}
+
+.comment {
+    padding: 13px 15px;
+
+    margin-top: 8px;
+
+    background: #100e12;
+
+    border-left: 1px solid #62536d;
+
+    color: #aaa39a;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   BÖLÜM NAVİGASYONU
+========================= */
 
 .navigation {
-    margin-top: 100px;
+    margin-top: 110px;
 
     padding-top: 25px;
 
@@ -181,7 +405,9 @@ header {
 }
 
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer {
     padding: 55px 20px;
@@ -212,7 +438,9 @@ footer p {
 }
 
 
-/* TELEFON */
+/* =========================
+   TELEFON
+========================= */
 
 @media (max-width: 700px) {
 
@@ -238,12 +466,18 @@ footer p {
 
     .story {
         font-size: 18px;
-
-        line-height: 1.9;
     }
 
-    .story p {
-        margin-bottom: 24px;
+    .opening {
+        font-size: 17px;
+    }
+
+    .poem {
+        font-size: 19px;
+    }
+
+    .final-quote {
+        font-size: 19px;
     }
 
 }
@@ -290,20 +524,395 @@ footer p {
     <article class="story">
 
 
-        <p class="first-letter">
-            Bölüm metnin burada başlayacak.
-        </p>
+        <!-- AÇILIŞ -->
+
+        <div class="story-block">
+
+            <p class="opening">
+
+                Küçükken gözlerini kapayınca
+                oyuncaklarının uyanacağını sananlara...
+
+            </p>
 
 
-        <p>
-            Sen bana bölümün gerçek metnini gönderdiğinde
-            bu alanı tamamen onunla değiştireceğiz.
-        </p>
+            <button
+                class="comment-toggle"
+                onclick="toggleComment('comment1')">
+
+                YORUM BIRAK
+
+            </button>
+
+
+            <div
+                class="comment-box"
+                id="comment1">
+
+                <textarea
+                    id="text1"
+                    placeholder="Bu kısım hakkında ne düşünüyorsun?">
+                </textarea>
+
+
+                <div class="comment-actions">
+
+                    <button
+                        onclick="closeComment('comment1')">
+
+                        VAZGEÇ
+
+                    </button>
+
+
+                    <button
+                        onclick="saveComment('comment1','text1','comments1')">
+
+                        GÖNDER
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="saved-comments"
+                    id="comments1">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SEMBOL -->
+
+        <div class="symbol">
+            𓍯
+        </div>
+
+
+
+        <!-- ŞİİR 1 -->
+
+        <div class="story-block">
+
+            <p class="poem">
+
+                Uyu küçük çocuk,
+
+            </p>
+
+
+            <button
+                class="comment-toggle"
+                onclick="toggleComment('comment2')">
+
+                YORUM BIRAK
+
+            </button>
+
+
+            <div
+                class="comment-box"
+                id="comment2">
+
+                <textarea
+                    id="text2"
+                    placeholder="Bu kısım hakkında ne düşünüyorsun?">
+                </textarea>
+
+
+                <div class="comment-actions">
+
+                    <button
+                        onclick="closeComment('comment2')">
+
+                        VAZGEÇ
+
+                    </button>
+
+
+                    <button
+                        onclick="saveComment('comment2','text2','comments2')">
+
+                        GÖNDER
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="saved-comments"
+                    id="comments2">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ŞİİR 2 -->
+
+        <div class="story-block">
+
+            <p class="poem">
+
+                Uyu ki uyansın oyuncakların.
+
+            </p>
+
+
+            <button
+                class="comment-toggle"
+                onclick="toggleComment('comment3')">
+
+                YORUM BIRAK
+
+            </button>
+
+
+            <div
+                class="comment-box"
+                id="comment3">
+
+                <textarea
+                    id="text3"
+                    placeholder="Bu kısım hakkında ne düşünüyorsun?">
+                </textarea>
+
+
+                <div class="comment-actions">
+
+                    <button
+                        onclick="closeComment('comment3')">
+
+                        VAZGEÇ
+
+                    </button>
+
+
+                    <button
+                        onclick="saveComment('comment3','text3','comments3')">
+
+                        GÖNDER
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="saved-comments"
+                    id="comments3">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ŞİİR 3 -->
+
+        <div class="story-block">
+
+            <p class="poem">
+
+                Bir kurşunla kararan dünyanı
+
+            </p>
+
+
+            <button
+                class="comment-toggle"
+                onclick="toggleComment('comment4')">
+
+                YORUM BIRAK
+
+            </button>
+
+
+            <div
+                class="comment-box"
+                id="comment4">
+
+                <textarea
+                    id="text4"
+                    placeholder="Bu kısım hakkında ne düşünüyorsun?">
+                </textarea>
+
+
+                <div class="comment-actions">
+
+                    <button
+                        onclick="closeComment('comment4')">
+
+                        VAZGEÇ
+
+                    </button>
+
+
+                    <button
+                        onclick="saveComment('comment4','text4','comments4')">
+
+                        GÖNDER
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="saved-comments"
+                    id="comments4">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ŞİİR 4 -->
+
+        <div class="story-block">
+
+            <p class="poem">
+
+                Aydınlatsın sihirli peri tozu.
+
+            </p>
+
+
+            <button
+                class="comment-toggle"
+                onclick="toggleComment('comment5')">
+
+                YORUM BIRAK
+
+            </button>
+
+
+            <div
+                class="comment-box"
+                id="comment5">
+
+                <textarea
+                    id="text5"
+                    placeholder="Bu kısım hakkında ne düşünüyorsun?">
+                </textarea>
+
+
+                <div class="comment-actions">
+
+                    <button
+                        onclick="closeComment('comment5')">
+
+                        VAZGEÇ
+
+                    </button>
+
+
+                    <button
+                        onclick="saveComment('comment5','text5','comments5')">
+
+                        GÖNDER
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="saved-comments"
+                    id="comments5">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SEMBOL -->
+
+        <div class="symbol">
+            𓍼
+        </div>
+
+
+
+        <!-- SON ALINTI -->
+
+        <div class="story-block">
+
+            <p class="final-quote">
+
+                ❝Düşlediklerinin ötesi neresi beyaz kuğu?
+                Nereye kadar dönüp duracaksın etrafında?❞
+
+            </p>
+
+
+            <button
+                class="comment-toggle"
+                onclick="toggleComment('comment6')">
+
+                YORUM BIRAK
+
+            </button>
+
+
+            <div
+                class="comment-box"
+                id="comment6">
+
+                <textarea
+                    id="text6"
+                    placeholder="Bu kısım hakkında ne düşünüyorsun?">
+                </textarea>
+
+
+                <div class="comment-actions">
+
+                    <button
+                        onclick="closeComment('comment6')">
+
+                        VAZGEÇ
+
+                    </button>
+
+
+                    <button
+                        onclick="saveComment('comment6','text6','comments6')">
+
+                        GÖNDER
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="saved-comments"
+                    id="comments6">
+                </div>
+
+            </div>
+
+        </div>
+
 
 
     </article>
 
 
+
+    <!-- ALT MENÜ -->
 
     <div class="navigation">
 
@@ -333,6 +942,138 @@ footer p {
     </p>
 
 </footer>
+
+
+
+<script>
+
+/* =========================
+   YORUM KUTUSUNU AÇ / KAPAT
+========================= */
+
+function toggleComment(id) {
+
+    const box = document.getElementById(id);
+
+    box.classList.toggle("open");
+
+}
+
+
+/* =========================
+   YORUM KUTUSUNU KAPAT
+========================= */
+
+function closeComment(id) {
+
+    const box = document.getElementById(id);
+
+    box.classList.remove("open");
+
+}
+
+
+/* =========================
+   YORUMU KAYDET
+========================= */
+
+function saveComment(boxId, textId, commentsId) {
+
+    const textarea =
+        document.getElementById(textId);
+
+    const text =
+        textarea.value.trim();
+
+
+    if (text === "") {
+
+        alert("Önce bir yorum yazmalısın.");
+
+        return;
+
+    }
+
+
+    const comments =
+        JSON.parse(
+            localStorage.getItem(commentsId) || "[]"
+        );
+
+
+    comments.push(text);
+
+
+    localStorage.setItem(
+        commentsId,
+        JSON.stringify(comments)
+    );
+
+
+    textarea.value = "";
+
+
+    displayComments(commentsId);
+
+
+    document
+        .getElementById(boxId)
+        .classList.remove("open");
+
+}
+
+
+/* =========================
+   YORUMLARI GÖSTER
+========================= */
+
+function displayComments(commentsId) {
+
+    const container =
+        document.getElementById(commentsId);
+
+
+    const comments =
+        JSON.parse(
+            localStorage.getItem(commentsId) || "[]"
+        );
+
+
+    container.innerHTML = "";
+
+
+    comments.forEach(function(comment) {
+
+        const div =
+            document.createElement("div");
+
+        div.className = "comment";
+
+        div.textContent = comment;
+
+        container.appendChild(div);
+
+    });
+
+}
+
+
+/* =========================
+   SAYFA AÇILINCA YORUMLARI GETİR
+========================= */
+
+window.addEventListener("DOMContentLoaded", function() {
+
+    displayComments("comments1");
+    displayComments("comments2");
+    displayComments("comments3");
+    displayComments("comments4");
+    displayComments("comments5");
+    displayComments("comments6");
+
+});
+
+</script>
 
 
 </body>
