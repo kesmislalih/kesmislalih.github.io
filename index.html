@@ -8,7 +8,7 @@
 
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap');
 
 * {
     margin: 0;
@@ -24,10 +24,9 @@ body {
     background: #09090b;
     color: #f4f0ea;
     font-family: "Cormorant Garamond", serif;
-    min-height: 100vh;
 }
 
-/* ÜST MENÜ */
+/* MENÜ */
 
 header {
     position: absolute;
@@ -49,14 +48,14 @@ header {
 
 nav {
     display: flex;
-    gap: 25px;
+    gap: 24px;
 }
 
 nav a {
     color: #d8d2ca;
     text-decoration: none;
     font-family: Arial, sans-serif;
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 2px;
     transition: 0.3s;
 }
@@ -65,7 +64,7 @@ nav a:hover {
     color: #b9a7d8;
 }
 
-/* ANA SAYFA */
+/* HERO */
 
 .hero {
     min-height: 100vh;
@@ -73,12 +72,10 @@ nav a:hover {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 100px 25px 50px;
+    padding: 110px 25px 80px;
     position: relative;
     overflow: hidden;
 }
-
-/* Arka plandaki yumuşak lila ışık */
 
 .hero::before {
     content: "";
@@ -86,8 +83,8 @@ nav a:hover {
     width: 500px;
     height: 500px;
     background: #5d4d73;
-    opacity: 0.10;
-    filter: blur(130px);
+    opacity: 0.12;
+    filter: blur(140px);
     border-radius: 50%;
 }
 
@@ -96,17 +93,12 @@ nav a:hover {
     z-index: 2;
 }
 
-/* KESMISLALIH */
-
 .hero h1 {
     font-family: "Great Vibes", cursive;
-    font-size: clamp(70px, 18vw, 150px);
+    font-size: clamp(75px, 18vw, 155px);
     font-weight: 400;
     line-height: 1;
-    color: #f4f0ea;
 }
-
-/* Ortadaki çizgi */
 
 .line {
     width: 65px;
@@ -115,30 +107,26 @@ nav a:hover {
     margin: 30px auto;
 }
 
-/* İNGİLİZCE SLOGAN */
-
 .hero p {
-    max-width: 500px;
+    max-width: 520px;
     margin: auto;
     color: #aaa39a;
     font-family: Arial, sans-serif;
-    font-size: 11px;
+    font-size: 10px;
     line-height: 1.8;
     letter-spacing: 3px;
     text-transform: uppercase;
 }
 
-/* KİTAPLAR BUTONU */
-
 .button {
     display: inline-block;
     margin-top: 45px;
-    padding: 14px 25px;
+    padding: 14px 27px;
     border: 1px solid #6e6384;
     color: #f4f0ea;
     text-decoration: none;
     font-family: Arial, sans-serif;
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 2px;
     transition: 0.3s;
 }
@@ -146,6 +134,147 @@ nav a:hover {
 .button:hover {
     background: #b9a7d8;
     color: #09090b;
+}
+
+/* GENEL BÖLÜM */
+
+.section {
+    padding: 120px 8%;
+}
+
+.section-title {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 45px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.section-subtitle {
+    color: #8f8981;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+}
+
+/* KİTAPLAR */
+
+.books {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 70px 50px;
+}
+
+.book {
+    position: relative;
+}
+
+.book-cover {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    background: linear-gradient(145deg, #17151b, #0e0e10);
+    border: 1px solid #29252f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+}
+
+.book-cover:hover {
+    transform: translateY(-8px);
+    border-color: #6e6384;
+}
+
+.book-placeholder {
+    color: #5d5862;
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+.book h3 {
+    margin-top: 22px;
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.book p {
+    margin-top: 8px;
+    color: #8f8981;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+.book a {
+    display: inline-block;
+    margin-top: 18px;
+    color: #b9a7d8;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+/* HAKKIMDA */
+
+.about {
+    background: #f0ece5;
+    color: #151419;
+}
+
+.about .section-subtitle {
+    color: #77716a;
+}
+
+.about-text {
+    max-width: 700px;
+    font-size: 25px;
+    line-height: 1.5;
+}
+
+/* DUYURULAR */
+
+.news-item {
+    border-top: 1px solid #29272b;
+    padding: 25px 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.news-date {
+    color: #817a73;
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+.news-title {
+    font-size: 22px;
+    text-align: right;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 60px 8%;
+    border-top: 1px solid #252328;
+    text-align: center;
+}
+
+.footer-logo {
+    font-family: "Great Vibes", cursive;
+    font-size: 35px;
+}
+
+footer p {
+    margin-top: 15px;
+    color: #77716a;
+    font-family: Arial, sans-serif;
+    font-size: 8px;
+    letter-spacing: 2px;
 }
 
 /* TELEFON */
@@ -158,18 +287,18 @@ nav a:hover {
     }
 
     .logo {
-        font-size: 28px;
+        font-size: 27px;
     }
 
     nav {
-        gap: 9px;
+        gap: 8px;
+        max-width: 220px;
         flex-wrap: wrap;
         justify-content: flex-end;
-        max-width: 230px;
     }
 
     nav a {
-        font-size: 8px;
+        font-size: 7px;
         letter-spacing: 1px;
     }
 
@@ -178,11 +307,35 @@ nav a:hover {
     }
 
     .hero p {
-        font-size: 9px;
+        font-size: 8px;
         letter-spacing: 2px;
-        max-width: 330px;
     }
 
+    .section {
+        padding: 90px 7%;
+    }
+
+    .section-title {
+        font-size: 38px;
+    }
+
+    .books {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .about-text {
+        font-size: 21px;
+    }
+
+    .news-item {
+        display: block;
+    }
+
+    .news-title {
+        margin-top: 10px;
+        text-align: left;
+    }
 }
 
 </style>
@@ -196,14 +349,16 @@ nav a:hover {
 
     <nav>
         <a href="#">ANA SAYFA</a>
-        <a href="#">KİTAPLAR</a>
-        <a href="#">HAKKIMDA</a>
-        <a href="#">DUYURULAR</a>
+        <a href="#kitaplar">KİTAPLAR</a>
+        <a href="#hakkimda">HAKKIMDA</a>
+        <a href="#duyurular">DUYURULAR</a>
         <a href="#">İLETİŞİM</a>
     </nav>
 
 </header>
 
+
+<!-- ANA SAYFA -->
 
 <section class="hero">
 
@@ -217,13 +372,143 @@ nav a:hover {
             some stories are not meant to be told, but felt.
         </p>
 
-        <a href="#" class="button">
+        <a href="#kitaplar" class="button">
             KİTAPLARIMI KEŞFET
         </a>
 
     </div>
 
 </section>
+
+
+<!-- KİTAPLAR -->
+
+<section class="section" id="kitaplar">
+
+    <h2 class="section-title">Kitaplarım</h2>
+
+    <p class="section-subtitle">
+        kelimelerden doğan hikâyeler
+    </p>
+
+    <div class="books">
+
+        <article class="book">
+
+            <div class="book-cover">
+                <span class="book-placeholder">
+                    KAPAK GÖRSELİ
+                </span>
+            </div>
+
+            <h3>Ringteki Son Dans</h3>
+
+            <p>
+                Bir balerin. Bir boksör.
+                Ve aynı hikâyede kesişen iki hayat.
+            </p>
+
+            <a href="#">
+                KİTABI KEŞFET →
+            </a>
+
+        </article>
+
+
+        <article class="book">
+
+            <div class="book-cover">
+                <span class="book-placeholder">
+                    KAPAK GÖRSELİ
+                </span>
+            </div>
+
+            <h3>Yakında...</h3>
+
+            <p>
+                Yeni bir hikâye için hazırlıklar sürüyor.
+            </p>
+
+            <a href="#">
+                YAKINDA →
+            </a>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- HAKKIMDA -->
+
+<section class="section about" id="hakkimda">
+
+    <h2 class="section-title">Hakkımda</h2>
+
+    <p class="section-subtitle">
+        hikâyelerin arkasındaki isim
+    </p>
+
+    <p class="about-text">
+        Bazen söyleyemediğimiz şeyleri karakterlerimiz söyler.
+        Bazen de hiç yaşamadığımız hayatları onların gözlerinden
+        yaşamayı seçeriz. Ben de hikâyelerimi tam olarak bunun için yazıyorum.
+    </p>
+
+</section>
+
+
+<!-- DUYURULAR -->
+
+<section class="section" id="duyurular">
+
+    <h2 class="section-title">Duyurular</h2>
+
+    <p class="section-subtitle">
+        yeni hikâyeler, yeni başlangıçlar
+    </p>
+
+    <div class="news-item">
+
+        <span class="news-date">
+            31.08.2026
+        </span>
+
+        <span class="news-title">
+            Yeni site yayında.
+        </span>
+
+    </div>
+
+    <div class="news-item">
+
+        <span class="news-date">
+            YAKINDA
+        </span>
+
+        <span class="news-title">
+            Yeni hikâyeler burada olacak.
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-logo">
+        kesmislalih
+    </div>
+
+    <p>
+        © 2026 kesmislalih · tüm hakları saklıdır.
+    </p>
+
+</footer>
 
 </body>
 </html>
