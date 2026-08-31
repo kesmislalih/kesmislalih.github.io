@@ -218,6 +218,58 @@ nav a:hover::after {
 
 
 /* =========================
+   HESAP BUTONLARI
+========================= */
+
+.account-link {
+
+    color: var(--text);
+
+    border:
+        1px solid var(--accent);
+
+    padding:
+        9px 14px;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    transition:
+        .3s ease;
+}
+
+.account-link:hover {
+
+    background:
+        var(--accent);
+
+    color:
+        var(--bg);
+}
+
+.profile-link {
+
+    display: none;
+}
+
+body.logged-in .profile-link {
+
+    display: inline-block;
+}
+
+body.logged-in .login-link,
+body.logged-in .register-link {
+
+    display: none;
+}
+
+
+/* =========================
    TEMA BUTONU
 ========================= */
 
@@ -978,6 +1030,628 @@ nav a:hover::after {
     line-height:
         1.7;
 }
+      /* =========================
+   HERO
+========================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    padding:
+        130px 6% 90px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    position:
+        relative;
+
+    text-align:
+        center;
+
+    overflow:
+        hidden;
+}
+
+.hero::before {
+
+    content: "";
+
+    position:
+        absolute;
+
+    width:
+        650px;
+
+    height:
+        650px;
+
+    border-radius:
+        50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(173,142,214,.12),
+            transparent 68%
+        );
+
+    top:
+        50%;
+
+    left:
+        50%;
+
+    transform:
+        translate(-50%, -50%);
+}
+
+.hero-content {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    width:
+        100%;
+
+    max-width:
+        850px;
+}
+
+
+/* =========================
+   HERO ÜST YAZI
+========================= */
+
+.hero-small {
+
+    margin-bottom:
+        24px;
+
+    color:
+        var(--muted);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        5px;
+}
+
+
+/* =========================
+   ANA LOGO
+========================= */
+
+.hero-logo {
+
+    display:
+        block;
+
+    width:
+        min(430px, 78vw);
+
+    height:
+        auto;
+
+    margin:
+        0 auto;
+}
+
+
+/* =========================
+   ALT YAZI
+========================= */
+
+.hero-subtitle {
+
+    margin-top:
+        25px;
+
+    color:
+        var(--soft);
+
+    font-size:
+        17px;
+
+    letter-spacing:
+        2px;
+
+    line-height:
+        1.8;
+}
+
+
+/* =========================
+   AÇIKLAMA
+========================= */
+
+.hero-description {
+
+    max-width:
+        560px;
+
+    margin:
+        20px auto 0;
+
+    color:
+        var(--soft);
+
+    font-size:
+        18px;
+
+    line-height:
+        1.75;
+}
+
+
+/* =========================
+   HERO BUTON
+========================= */
+
+.hero-button {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        14px;
+
+    margin-top:
+        30px;
+
+    padding:
+        14px 26px;
+
+    border:
+        1px solid var(--accent);
+
+    color:
+        var(--text);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        3px;
+
+    transition:
+        .3s ease;
+}
+
+.hero-button:hover {
+
+    background:
+        var(--accent);
+
+    color:
+        var(--bg);
+}
+
+
+/* =========================
+   SCROLL
+========================= */
+
+.scroll-indicator {
+
+    position:
+        absolute;
+
+    bottom:
+        28px;
+
+    left:
+        50%;
+
+    transform:
+        translateX(-50%);
+
+    color:
+        var(--muted);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        7px;
+
+    letter-spacing:
+        4px;
+}
+
+
+/* =========================
+   GENEL BÖLÜMLER
+========================= */
+
+.section {
+
+    width:
+        min(1100px, 88%);
+
+    margin:
+        0 auto;
+
+    padding:
+        100px 0;
+}
+
+
+/* =========================
+   AYIRICI
+========================= */
+
+.divider {
+
+    width:
+        45px;
+
+    height:
+        1px;
+
+    margin:
+        0 auto;
+
+    background:
+        var(--accent);
+}
+
+
+/* =========================
+   HAKKIMDA
+========================= */
+
+.about {
+
+    text-align:
+        center;
+}
+
+.about-inner {
+
+    max-width:
+        680px;
+
+    margin:
+        0 auto;
+}
+
+.section-title {
+
+    color:
+        var(--text);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        16px;
+
+    font-weight:
+        400;
+
+    letter-spacing:
+        5px;
+
+    margin-bottom:
+        28px;
+}
+
+.about-text {
+
+    color:
+        var(--soft);
+
+    font-size:
+        20px;
+
+    line-height:
+        1.8;
+}
+
+.signature {
+
+    margin-top:
+        25px;
+
+    color:
+        var(--accent);
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        30px;
+}
+
+
+/* =========================
+   BÖLÜM BAŞLIKLARI
+========================= */
+
+.section-heading {
+
+    text-align:
+        center;
+
+    margin-bottom:
+        55px;
+}
+
+.section-heading h2 {
+
+    color:
+        var(--text);
+
+    font-size:
+        38px;
+
+    font-weight:
+        400;
+
+    letter-spacing:
+        3px;
+}
+
+.section-heading p {
+
+    margin-top:
+        10px;
+
+    color:
+        var(--muted);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        4px;
+
+    text-transform:
+        uppercase;
+}
+
+
+/* =========================
+   KİTAPLAR
+========================= */
+
+.bookshelf {
+
+    width:
+        100%;
+
+    overflow:
+        hidden;
+
+    padding:
+        10px 0 35px;
+
+    position:
+        relative;
+}
+
+.books-grid {
+
+    display:
+        flex;
+
+    align-items:
+        flex-end;
+
+    gap:
+        38px;
+
+    overflow-x:
+        auto;
+
+    overflow-y:
+        hidden;
+
+    padding:
+        15px 20px 25px;
+
+    scroll-snap-type:
+        x mandatory;
+
+    scrollbar-width:
+        thin;
+
+    scrollbar-color:
+        var(--accent)
+        var(--surface);
+}
+
+.books-grid::-webkit-scrollbar {
+
+    height:
+        5px;
+}
+
+.books-grid::-webkit-scrollbar-track {
+
+    background:
+        var(--surface);
+}
+
+.books-grid::-webkit-scrollbar-thumb {
+
+    background:
+        var(--accent);
+}
+
+
+/* =========================
+   KİTAP KARTI
+========================= */
+
+.book-card {
+
+    flex:
+        0 0 235px;
+
+    scroll-snap-align:
+        center;
+
+    position:
+        relative;
+
+    transition:
+        transform .35s ease;
+}
+
+.book-card:hover {
+
+    transform:
+        translateY(-8px);
+}
+
+
+/* =========================
+   KİTAP KAPAĞI
+========================= */
+
+.book-cover {
+
+    width:
+        235px;
+
+    aspect-ratio:
+        2 / 3;
+
+    overflow:
+        hidden;
+
+    background:
+        var(--surface-2);
+
+    border:
+        1px solid var(--border);
+
+    box-shadow:
+        8px 5px 0
+        rgba(0,0,0,.18),
+
+        15px 10px 25px
+        rgba(0,0,0,.30);
+
+    position:
+        relative;
+}
+
+.book-cover img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    display:
+        block;
+
+    transition:
+        transform .45s ease;
+}
+
+.book-card:hover
+.book-cover img {
+
+    transform:
+        scale(1.025);
+}
+
+
+/* =========================
+   KİTAP BİLGİLERİ
+========================= */
+
+.book-info {
+
+    padding:
+        18px 4px 5px;
+
+    text-align:
+        center;
+}
+
+.book-info h3 {
+
+    color:
+        var(--text);
+
+    font-size:
+        26px;
+
+    font-weight:
+        400;
+
+    line-height:
+        1.2;
+}
+
+.book-author {
+
+    margin-top:
+        3px;
+
+    color:
+        var(--accent);
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        23px;
+}
+
+.book-description {
+
+    margin:
+        15px auto 0;
+
+    color:
+        var(--soft);
+
+    font-size:
+        15px;
+
+    line-height:
+        1.7;
+}
 
 
 /* =========================
@@ -1108,92 +1782,122 @@ nav a:hover::after {
     box-shadow:
         0 9px 20px
         rgba(0,0,0,.25);
-}
+      }
+      <!-- =========================
+     KULLANICI HESABI
+========================= -->
+
+<section
+    class="section"
+    id="profil">
 
 
-/* =========================
-   SOSYAL MEDYA
+    <div class="section-heading">
+
+        <h2>
+            Profilim
+        </h2>
+
+        <p>
+            Hikâyelerine ve yorumlarına kendi adınla katıl
+        </p>
+
+    </div>
+
+
+    <div class="profile-box">
+
+
+        <div
+            id="loggedOutProfile">
+
+            <h3>
+                Aramıza katıl
+            </h3>
+
+
+            <p>
+                Yorumlarını kullanıcı adınla paylaşmak
+                ve kendi profilini oluşturmak için
+                giriş yap veya kayıt ol.
+            </p>
+
+
+            <div class="profile-buttons">
+
+                <a
+                    href="giris.html"
+                    class="profile-button">
+
+                    GİRİŞ YAP
+
+                </a>
+
+
+                <a
+                    href="kayit.html"
+                    class="profile-button profile-button-filled">
+
+                    KAYIT OL
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="loggedInProfile"
+            style="display: none;">
+
+            <div class="profile-welcome">
+
+                Hoş geldin,
+                <span id="profileUsername"></span>
+
+            </div>
+
+
+            <p>
+                Profilinden hikâyelere yorum yapabilir,
+                duvardaki mesajlarını görebilir
+                ve kullanıcı adınla kendini gösterebilirsin.
+            </p>
+
+
+            <a
+                href="profil.html"
+                class="profile-button">
+
+                PROFİLİME GİT
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<div class="divider"></div>
+      /* =========================
+   PROFİL / HESAP
 ========================= */
 
-.social-section {
-
-    text-align:
-        center;
-}
-
-.social-grid {
+.profile-box {
 
     width:
-        min(850px, 100%);
-
-    margin:
-        0 auto;
-
-    display:
-        grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap:
-        14px;
-}
-
-.social-link {
-
-    padding:
-        22px 12px;
-
-    border:
-        1px solid var(--border);
-
-    background:
-        var(--surface);
-
-    color:
-        var(--soft);
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size:
-        8px;
-
-    letter-spacing:
-        2px;
-
-    transition:
-        .3s ease;
-}
-
-.social-link:hover {
-
-    color:
-        var(--accent);
-
-    border-color:
-        var(--accent);
-
-    transform:
-        translateY(-4px);
-}
-
-
-/* =========================
-   DUVAR
-========================= */
-
-.wall-box {
-
-    max-width:
-        720px;
+        min(720px, 100%);
 
     margin:
         0 auto;
 
     padding:
-        38px;
+        40px;
 
     background:
         var(--surface);
@@ -1205,37 +1909,59 @@ nav a:hover::after {
         center;
 }
 
-.wall-box h3 {
+
+.profile-box h3 {
 
     color:
         var(--text);
 
     font-size:
-        27px;
+        28px;
 
     font-weight:
         400;
 }
 
-.wall-box p {
 
-    margin-top:
-        14px;
+.profile-box p {
+
+    max-width:
+        560px;
+
+    margin:
+        15px auto 0;
 
     color:
         var(--soft);
 
     font-size:
-        18px;
+        17px;
 
     line-height:
         1.7;
 }
-      /* =========================
-   DUVAR BUTONU
-========================= */
 
-.wall-button {
+
+.profile-buttons {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        12px;
+
+    margin-top:
+        25px;
+
+    flex-wrap:
+        wrap;
+}
+
+
+.profile-button {
 
     display:
         inline-flex;
@@ -1243,14 +1969,14 @@ nav a:hover::after {
     align-items:
         center;
 
-    gap:
-        12px;
+    justify-content:
+        center;
 
-    margin-top:
-        24px;
+    min-width:
+        135px;
 
     padding:
-        12px 24px;
+        13px 22px;
 
     border:
         1px solid var(--accent);
@@ -1272,7 +1998,8 @@ nav a:hover::after {
         .3s ease;
 }
 
-.wall-button:hover {
+
+.profile-button:hover {
 
     background:
         var(--accent);
@@ -1282,1229 +2009,186 @@ nav a:hover::after {
 }
 
 
-/* =========================
-   DUYURULAR
-========================= */
-
-.announcement {
-
-    max-width:
-        720px;
-
-    margin:
-        0 auto;
-
-    padding:
-        35px;
+.profile-button-filled {
 
     background:
-        var(--surface);
+        var(--accent);
 
-    border:
-        1px solid var(--border);
-
-    text-align:
-        center;
+    color:
+        var(--bg);
 }
 
-.announcement h3 {
+
+.profile-button-filled:hover {
+
+    background:
+        transparent;
+
+    color:
+        var(--text);
+}
+
+
+.profile-welcome {
+
+    color:
+        var(--text);
 
     font-size:
         25px;
-
-    font-weight:
-        400;
-
-    color:
-        var(--text);
-}
-
-.announcement p {
-
-    margin-top:
-        12px;
-
-    color:
-        var(--soft);
-
-    font-size:
-        17px;
-
-    line-height:
-        1.7;
 }
 
 
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-
-    padding:
-        55px 20px;
-
-    border-top:
-        1px solid var(--border);
-
-    text-align:
-        center;
-}
-
-.footer-logo {
+#profileUsername {
 
     color:
-        var(--text);
+        var(--accent);
 
     font-family:
         "Great Vibes",
         cursive;
 
     font-size:
-        31px;
+        30px;
 }
-
-footer p {
-
-    margin-top:
-        9px;
-
-    color:
-        var(--muted);
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size:
-        7px;
-
-    letter-spacing:
-        2px;
-}
-
+      <script>
 
 /* =========================
-   MOBİL
+   KULLANICI OTURUMU
 ========================= */
 
-@media (max-width: 700px) {
+const loggedOutProfile =
+    document.getElementById("loggedOutProfile");
 
-    header {
+const loggedInProfile =
+    document.getElementById("loggedInProfile");
 
-        height:
-            72px;
+const profileUsername =
+    document.getElementById("profileUsername");
 
-        padding:
-            0 5%;
-    }
 
-    .logo-image {
+const savedUsername =
+    localStorage.getItem("kesmislalih-username");
 
-        width:
-            115px;
-    }
 
-    .menu-button {
+if (savedUsername) {
 
-        display:
-            flex;
-    }
+    loggedOutProfile.style.display =
+        "none";
 
-    nav {
+    loggedInProfile.style.display =
+        "block";
 
-        position:
-            fixed;
-
-        top:
-            72px;
-
-        right:
-            5%;
-
-        width:
-            225px;
-
-        padding:
-            20px;
-
-        flex-direction:
-            column;
-
-        align-items:
-            stretch;
-
-        gap:
-            0;
-
-        background:
-            var(--surface);
-
-        border:
-            1px solid var(--border);
-
-        box-shadow:
-            0 20px 50px
-            rgba(0,0,0,.35);
-
-        opacity:
-            0;
-
-        visibility:
-            hidden;
-
-        transform:
-            translateY(-10px);
-
-        transition:
-            .3s ease;
-
-        z-index:
-            1100;
-    }
-
-    nav.active {
-
-        opacity:
-            1;
-
-        visibility:
-            visible;
-
-        transform:
-            translateY(0);
-    }
-
-    nav a {
-
-        display:
-            block;
-
-        padding:
-            15px 5px;
-
-        border-bottom:
-            1px solid var(--border);
-    }
-
-    nav a::after {
-
-        display:
-            none;
-    }
-
-    nav .theme-button {
-
-        margin:
-            18px auto 0;
-    }
-
-
-    /* =====================
-       MOBİL HERO
-    ===================== */
-
-    .hero {
-
-        padding:
-            120px 6% 80px;
-    }
-
-    .hero-logo {
-
-        width:
-            min(330px, 82vw);
-    }
-
-    .hero-subtitle {
-
-        font-size:
-            13px;
-
-        letter-spacing:
-            1.5px;
-    }
-
-    .hero-description {
-
-        font-size:
-            17px;
-    }
-
-
-    /* =====================
-       MOBİL BÖLÜMLER
-    ===================== */
-
-    .section {
-
-        width:
-            88%;
-
-        padding:
-            75px 0;
-    }
-
-    .about-text {
-
-        font-size:
-            17px;
-    }
-
-    .section-heading h2 {
-
-        font-size:
-            29px;
-    }
-
-
-    /* =====================
-       MOBİL KİTAPLAR
-    ===================== */
-
-    .books-grid {
-
-        gap:
-            25px;
-
-        padding:
-            10px 15px 25px;
-    }
-
-    .book-card {
-
-        flex:
-            0 0 190px;
-    }
-
-    .book-cover {
-
-        width:
-            190px;
-    }
-
-    .coming-soon {
-
-        width:
-            190px;
-    }
-
-    .book-info h3 {
-
-        font-size:
-            23px;
-    }
-
-    .book-description {
-
-        font-size:
-            14px;
-    }
-
-    .shelf-line {
-
-        width:
-            calc(100% - 30px);
-    }
-
-
-    /* =====================
-       MOBİL SOSYAL
-    ===================== */
-
-    .social-grid {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-        gap:
-            10px;
-    }
-
-    .social-link {
-
-        padding:
-            19px 8px;
-
-        font-size:
-            7px;
-    }
-
-
-    /* =====================
-       MOBİL DUVAR
-    ===================== */
-
-    .wall-box,
-    .announcement {
-
-        padding:
-            28px 20px;
-    }
+    profileUsername.textContent =
+        savedUsername;
 
 }
 
-
-/* =========================
-   SEÇİM RENGİ
-========================= */
-
-::selection {
-
-    background:
-        var(--accent);
-
-    color:
-        var(--bg);
-}
-
-
-</style>
-
-</head>
-
-
-<body>
-
-
-<!-- =========================
-     HEADER
-========================= -->
-
-<header>
-
-
-    <a
-        href="index.html"
-        class="logo">
-
-        <img
-            src="kesmislalih-logo.png"
-            alt="kesmislalih"
-            class="logo-image">
-
-    </a>
-
-
-    <!-- MOBİL MENÜ -->
-
-    <button
-        type="button"
-        class="menu-button"
-        id="menuButton"
-        aria-label="Menüyü aç">
-
-        <span></span>
-        <span></span>
-        <span></span>
-
-    </button>
-
-
-    <!-- ANA MENÜ -->
-
-    <nav id="mainNav">
-
-
-        <a href="index.html">
-            ANASAYFA
-        </a>
-
-
-        <a href="#kitaplar">
-            KİTAPLAR
-        </a>
-
-
-        <a href="galeri.html">
-            GALERİ
-        </a>
-
-
-        <a href="#hakkimda">
-            HAKKIMDA
-        </a>
-
-
-        <a href="#duyurular">
-            DUYURULAR
-        </a>
-
-
-        <a href="iletisim.html">
-            İLETİŞİM
-        </a>
-
-
-        <a href="duvar.html">
-            DUVAR
-        </a>
-
-
-        <button
-            type="button"
-            class="theme-button"
-            id="themeButton"
-            aria-label="Tema değiştir">
-
-            <span id="themeIcon">☾</span>
-
-        </button>
-
-
-    </nav>
-
-</header>
-
-
-
-<!-- =========================
-     ANA İÇERİK
-========================= -->
-
-<main>
-
-
-<!-- =========================
-     HERO
-========================= -->
-
-<section class="hero">
-
-
-    <div class="hero-content">
-
-
-        <div class="hero-small">
-
-            YAZAR • HİKÂYELER • HAYALLER
-
-        </div>
-
-
-        <img
-            src="kesmislalih-logo.png"
-            alt="kesmislalih"
-            class="hero-logo">
-
-
-        <div class="hero-subtitle">
-
-            Some stories are not meant to be
-            read. They are meant to be felt.
-
-        </div>
-
-
-        <p class="hero-description">
-
-            Bazı hikâyeler yalnızca okunmaz.
-            İçinde biraz kaybolmak gerekir.
-
-        </p>
-
-
-        <a
-            href="#kitaplar"
-            class="hero-button">
-
-            HİKÂYELERİ KEŞFET
-
-            <span>→</span>
-
-        </a>
-
-
-    </div>
-
-
-    <div class="scroll-indicator">
-
-        SCROLL
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =========================
-     HAKKIMDA
-========================= -->
-
-<section
-    class="section about"
-    id="hakkimda">
-
-
-    <div class="about-inner">
-
-
-        <h2 class="section-title">
-
-            HAKKIMDA
-
-        </h2>
-
-
-        <p class="about-text">
-
-            Kelimelerin arasında kendi dünyasını
-            kurmayı seven bir yazarım.
-
-            <br><br>
-
-            Bazen bir karakterin gözlerinden,
-            bazen bir şehrin sokaklarından,
-            bazen de küçücük bir ayrıntının
-            içinden hikâyeler anlatıyorum.
-
-            <br><br>
-
-            Burada yazdığım hikâyeleri,
-            karakterleri ve onların dünyalarını
-            sizinle paylaşacağım.
-
-        </p>
-
-
-        <div class="signature">
-
-            kesmislalih
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<div class="divider"></div>
-
-
-
-<!-- =========================
-     KİTAPLAR
-========================= -->
-
-<section
-    class="section"
-    id="kitaplar">
-
-
-    <div class="section-heading">
-
-        <h2>
-            Kitaplar
-        </h2>
-
-        <p>
-            Hikâyelerimin dünyasına hoş geldin
-        </p>
-
-    </div>
-
-
-    <div class="bookshelf">
-
-
-        <div class="books-grid">
-
-
-            <!-- =====================
-                 RİNGTEKİ SON DANS
-            ====================== -->
-
-            <article class="book-card">
-
-
-                <a href="ringteki-son-dans.html">
-
-
-                    <div class="book-cover">
-
-
-                        <img
-                            src="file_00000000ce4881f4b929fc5dfbb07694.png"
-                            alt="Ringteki Son Dans kitap kapağı">
-
-
-                    </div>
-
-
-                </a>
-
-
-                <div class="book-info">
-
-
-                    <h3>
-                        Ringteki Son Dans
-                    </h3>
-
-
-                    <div class="book-author">
-                        kesmislalih
-                    </div>
-
-
-                    <p class="book-description">
-
-                        Bir karanlık, iki kurşun.
-                        Binbir acı, iki yetim.
-
-                        <br><br>
-
-                        Balerin ve boksörün
-                        hikâyesine hoş geldin.
-
-                    </p>
-
-
-                    <a
-                        href="ringteki-son-dans.html"
-                        class="book-button">
-
-                        KİTABI KEŞFET
-
-                        <span>→</span>
-
-                    </a>
-
-
-                </div>
-
-
-            </article>
-
-
-
-            <!-- =====================
-                 İKİNCİ KİTAP
-            ====================== -->
-
-            <article class="book-card">
-
-
-                <div class="coming-soon">
-
-                    YAKINDA
-
-                </div>
-
-
-                <div class="book-info">
-
-
-                    <h3>
-                        Yeni Hikâye
-                    </h3>
-
-
-                    <div class="book-author">
-                        kesmislalih
-                    </div>
-
-
-                    <p class="book-description">
-
-                        Yeni bir hikâye,
-                        yeni karakterler
-                        ve yeni bir dünya...
-
-                    </p>
-
-
-                    <span class="book-button">
-
-                        ÇOK YAKINDA
-
-                    </span>
-
-
-                </div>
-
-
-            </article>
-
-
-        </div>
-
-
-        <div class="shelf-line"></div>
-
-
-    </div>
-
-
-</section>
-
-
-
-<div class="divider"></div>
-
-
-
-<!-- =========================
-     SOSYAL MEDYA
-========================= -->
-
-<section
-    class="section social-section"
-    id="sosyal">
-
-
-    <div class="section-heading">
-
-
-        <h2>
-            Sosyal
-        </h2>
-
-
-        <p>
-            Beni başka yerlerde de bulabilirsin
-        </p>
-
-
-    </div>
-
-
-    <div class="social-grid">
-
-
-        <!-- TIKTOK -->
-
-        <a
-            href="https://www.tiktok.com/@kesmislalih_?_r=1&_t=ZS-98gv3YRvFOK"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link">
-
-            TIKTOK
-
-        </a>
-
-
-        <!-- X -->
-
-        <a
-            href="https://x.com/kesmislalih"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link">
-
-            X
-
-        </a>
-
-
-        <!-- WATTPAD -->
-
-        <a
-            href="https://www.wattpad.com/user/kesmislalih"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link">
-
-            WATTPAD
-
-        </a>
-
-
-        <!-- SPOTIFY -->
-
-        <a
-            href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzvci7khutxy?si=nSiRsHM4Reym3i7IfWZXMg&utm_source=copy-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link">
-
-            SPOTIFY
-
-        </a>
-
-
-        <!-- WHATSAPP -->
-
-        <a
-            href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-            id="whatsappLink">
-
-            WHATSAPP KANALI
-
-        </a>
-
-
-        <!-- PINTEREST -->
-
-        <a
-            href="https://pin.it/6uAtX7ZrC"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-            id="pinterestLink">
-
-            PINTEREST
-
-        </a>
-
-
-    </div>
-
-
-</section>
-
-
-
-<div class="divider"></div>
-<!-- =========================
-     DUVAR
-========================= -->
-
-<section
-    class="section"
-    id="duvar">
-
-
-    <div class="section-heading">
-
-
-        <h2>
-            Duvar
-        </h2>
-
-
-        <p>
-            Okurlardan sana
-        </p>
-
-
-    </div>
-
-
-    <div class="wall-box">
-
-
-        <h3>
-
-            Bir şeyler bırakmak ister misin?
-
-        </h3>
-
-
-        <p>
-
-            Hikâyeler hakkında düşüncelerini,
-            mesajlarını veya sadece küçük bir
-            merhaba bırakabileceğin yer.
-
-        </p>
-
-
-        <a
-            href="duvar.html"
-            class="wall-button">
-
-            DUVARA GİT
-
-            <span>→</span>
-
-        </a>
-
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =========================
-     DUYURULAR
-========================= -->
-
-<section
-    class="section"
-    id="duyurular">
-
-
-    <div class="section-heading">
-
-
-        <h2>
-            Duyurular
-        </h2>
-
-
-        <p>
-            Buradan haberdar ol
-        </p>
-
-
-    </div>
-
-
-    <div class="announcement">
-
-
-        <h3>
-
-            Şimdilik sessiziz.
-
-        </h3>
-
-
-        <p>
-
-            Yeni duyurular ve siteyle ilgili
-            gelişmeler burada paylaşılacak.
-
-        </p>
-
-
-    </div>
-
-
-</section>
-
-
-</main>
-
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-
-    <div class="footer-logo">
-
-        kesmislalih
-
-    </div>
-
-
-    <p>
-
-        © 2026 kesmislalih
-
-    </p>
-
-
-</footer>
-
-
-
-<!-- =========================
-     JAVASCRIPT
+</script>
+      <!-- =========================
+     PROFİL / GİRİŞ SİSTEMİ
 ========================= -->
 
 <script>
 
-
 /* =========================
-   TEMA
+   PROFİL MENÜSÜ
 ========================= */
 
-const themeButton =
-    document.getElementById("themeButton");
+const profileLink =
+    document.getElementById("profileLink");
 
 
-const themeIcon =
-    document.getElementById("themeIcon");
+/* =========================
+   KULLANICI GİRİŞ KONTROLÜ
+========================= */
+
+const loggedUser =
+    localStorage.getItem("kesmislalih-user");
 
 
-const savedTheme =
-    localStorage.getItem("kesmislalih-theme");
+if (profileLink) {
 
+    if (loggedUser) {
 
-if (savedTheme === "light") {
+        profileLink.textContent =
+            "PROFİLİM";
 
-    document.body.classList.add("light");
+        profileLink.href =
+            "profil.html";
 
-    themeIcon.textContent = "☀";
+    } else {
 
-} else {
+        profileLink.textContent =
+            "GİRİŞ YAP";
 
-    themeIcon.textContent = "☾";
+        profileLink.href =
+            "profil.html";
+
+    }
 
 }
 
 
-themeButton.addEventListener(
-    "click",
-    function () {
-
-
-        document.body.classList.toggle("light");
-
-
-        const isLight =
-            document.body.classList.contains("light");
-
-
-        if (isLight) {
-
-            themeIcon.textContent = "☀";
-
-            localStorage.setItem(
-                "kesmislalih-theme",
-                "light"
-            );
-
-        } else {
-
-            themeIcon.textContent = "☾";
-
-            localStorage.setItem(
-                "kesmislalih-theme",
-                "dark"
-            );
-
-        }
-
-    }
-);
-
-
-
 /* =========================
-   MOBİL MENÜ
+   YORUMLARDA KULLANICI ADI
 ========================= */
-
-const menuButton =
-    document.getElementById("menuButton");
-
-
-const mainNav =
-    document.getElementById("mainNav");
-
-
-menuButton.addEventListener(
-    "click",
-    function () {
-
-
-        mainNav.classList.toggle("active");
-
-        menuButton.classList.toggle("active");
-
-
-        if (
-            mainNav.classList.contains("active")
-        ) {
-
-            menuButton.setAttribute(
-                "aria-label",
-                "Menüyü kapat"
-            );
-
-        } else {
-
-            menuButton.setAttribute(
-                "aria-label",
-                "Menüyü aç"
-            );
-
-        }
-
-    }
-);
-
-
-
-/* =========================
-   MENÜDEN LİNKE TIKLAYINCA
-========================= */
-
-const menuLinks =
-    mainNav.querySelectorAll("a");
-
-
-menuLinks.forEach(
-    function(link) {
-
-        link.addEventListener(
-            "click",
-            function() {
-
-                mainNav.classList.remove(
-                    "active"
-                );
-
-                menuButton.classList.remove(
-                    "active"
-                );
-
-            }
-        );
-
-    }
-);
-
-
-
-/* =========================
-   SOSYAL MEDYA
-========================= */
-
-const whatsappLink =
-    document.getElementById("whatsappLink");
-
-
-const pinterestLink =
-    document.getElementById("pinterestLink");
-
 
 /*
-   Linkler artık doğrudan HTML'de
-   tanımlandığı için ekstra işlem
-   gerekmiyor.
+   Kullanıcı giriş yaptıysa,
+   duvar ve hikâye yorumlarında
+   kullanıcı adı kullanılabilecek.
 */
 
+const currentUsername =
+    localStorage.getItem("kesmislalih-user");
 
 
 /* =========================
-   YATAY KİTAP KAYDIRMA
+   SAYFA AÇILINCA
 ========================= */
 
-const booksGrid =
-    document.querySelector(".books-grid");
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const profileLink =
+            document.getElementById("profileLink");
 
 
-booksGrid.addEventListener(
-    "wheel",
-    function(event) {
+        if (!profileLink) {
+            return;
+        }
 
-        if (
-            Math.abs(event.deltaY) >
-            Math.abs(event.deltaX)
-        ) {
 
-            event.preventDefault();
+        const user =
+            localStorage.getItem("kesmislalih-user");
 
-            booksGrid.scrollLeft +=
-                event.deltaY;
+
+        if (user) {
+
+            profileLink.textContent =
+                "PROFİLİM";
+
+            profileLink.href =
+                "profil.html";
+
+        } else {
+
+            profileLink.textContent =
+                "GİRİŞ YAP";
+
+            profileLink.href =
+                "profil.html";
 
         }
 
-    },
-    {
-        passive: false
     }
 );
 
-
 </script>
+
+
 <!-- =========================
      BİTTİ
 ========================= -->
