@@ -7,16 +7,9 @@
 
 <title>kesmislalih</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
-
 <style>
 
-/* =========================
-   TEMEL
-========================= */
+@import url('https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap');
 
 * {
     margin: 0;
@@ -34,79 +27,46 @@ body {
     font-family: "Cormorant Garamond", serif;
 }
 
-
-/* =========================
-   HEADER
-========================= */
-
 header {
     width: 100%;
     padding: 25px 6%;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     position: absolute;
     top: 0;
     left: 0;
-
     z-index: 100;
 }
-
-
-/* GİRİŞTEKİ KESMISLALIH */
 
 .logo {
     color: #f8f3ff;
     text-decoration: none;
-
     font-family: "Great Vibes", cursive;
-    font-size: 30px;
-
-    font-weight: 400;
-
+    font-size: 32px;
     text-shadow:
-        0 0 5px rgba(220,195,255,.35),
-        0 0 14px rgba(185,167,216,.18);
-
-    transition: .3s ease;
+        0 0 6px rgba(220,195,255,.45),
+        0 0 16px rgba(185,167,216,.25);
 }
-
-.logo:hover {
-    color: #d8c8f0;
-}
-
-
-/* =========================
-   MENÜ BUTONU
-========================= */
 
 .menu-button {
     width: 40px;
     height: 40px;
-
     border: 1px solid #38323f;
     background: rgba(9,9,11,.75);
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     gap: 5px;
-
     cursor: pointer;
-
     z-index: 102;
 }
 
 .menu-line {
     width: 18px;
     height: 1px;
-
     background: #eee8e1;
-
     transition: .3s;
 }
 
@@ -122,31 +82,17 @@ header {
     transform: translateY(-6px) rotate(-45deg);
 }
 
-
-/* =========================
-   MENÜ PANELİ
-========================= */
-
 .menu-panel {
     position: fixed;
-
     top: 0;
     right: -330px;
-
     width: 310px;
     height: 100vh;
-
     background: #111015;
-
     border-left: 1px solid #302a38;
-
-    padding: 110px 40px 40px;
-
+    padding: 120px 40px 40px;
     z-index: 101;
-
     transition: right .45s ease;
-
-    overflow-y: auto;
 }
 
 .menu-panel.open {
@@ -155,28 +101,19 @@ header {
 
 .menu-small-title {
     font-family: Arial, sans-serif;
-
     font-size: 8px;
     letter-spacing: 4px;
-
     color: #756d79;
-
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .menu-panel a.menu-link {
     display: block;
-
-    padding: 16px 0;
-
+    padding: 18px 0;
     border-bottom: 1px solid #29252d;
-
     color: #e8e2da;
-
     text-decoration: none;
-
     font-size: 22px;
-
     transition: .3s;
 }
 
@@ -185,142 +122,91 @@ header {
     padding-left: 8px;
 }
 
-
-/* =========================
-   MENÜ SOSYAL MEDYA
-========================= */
-
 .menu-social-title {
     font-family: Arial, sans-serif;
-
     font-size: 7px;
-
     letter-spacing: 3px;
-
     color: #756d79;
-
-    margin-top: 27px;
-    margin-bottom: 13px;
+    margin-top: 28px;
+    margin-bottom: 14px;
 }
 
 .menu-social {
     display: flex;
-
     align-items: center;
-
-    gap: 8px;
-
-    flex-wrap: wrap;
+    gap: 9px;
 }
 
 .menu-social a {
-    width: 36px;
-    height: 36px;
-
+    width: 35px;
+    height: 35px;
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     color: #8b8195;
-
     text-decoration: none;
-
     border: 1px solid #332e38;
-
     transition: .3s ease;
 }
 
 .menu-social a:hover {
     color: #d8c8f0;
-
     border-color: #756586;
-
     transform: translateY(-3px);
-
     background: #17141b;
 }
 
 .icon {
-    width: 18px;
-    height: 18px;
-
+    width: 17px;
+    height: 17px;
     fill: currentColor;
 }
 
 .x-icon {
-    width: 15px;
-    height: 15px;
+    width: 14px;
+    height: 14px;
 }
 
-
-/* =========================
-   MENÜ ALT LOGO
-========================= */
+.wattpad-icon {
+    font-family: Georgia, serif;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
 
 .menu-footer {
-    margin-top: 45px;
-
-    padding-top: 20px;
-
-    border-top: 1px solid #29252d;
-
+    position: absolute;
+    bottom: 35px;
+    left: 40px;
     font-family: "Great Vibes", cursive;
-
     font-size: 26px;
-
     color: #8f819e;
 }
 
-
-/* =========================
-   MENÜ ARKA PLAN
-========================= */
-
 .menu-overlay {
     position: fixed;
-
     inset: 0;
-
     background: rgba(0,0,0,.45);
-
     backdrop-filter: blur(2px);
-
     opacity: 0;
-
     visibility: hidden;
-
     transition: .3s;
-
     z-index: 100;
 }
 
 .menu-overlay.open {
     opacity: 1;
-
     visibility: visible;
 }
 
-
-/* =========================
-   ANA SAYFA
-========================= */
-
 .hero {
     min-height: 100vh;
-
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
     text-align: center;
-
     padding: 100px 25px 80px;
-
     position: relative;
-
     overflow: hidden;
 
     background:
@@ -333,20 +219,13 @@ header {
         );
 }
 
-
-/* SİSLİ MOR IŞIK */
-
 .hero::before {
     content: "";
-
     position: absolute;
-
     width: 650px;
     height: 650px;
-
     left: 50%;
     top: 45%;
-
     transform: translate(-50%, -50%);
 
     background:
@@ -358,56 +237,35 @@ header {
         );
 
     filter: blur(65px);
-
     border-radius: 50%;
-
     pointer-events: none;
 }
 
-
-/* GRAIN */
-
 .hero::after {
     content: "";
-
     position: absolute;
-
     inset: 0;
-
     opacity: .045;
 
     background-image:
         url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.45'/%3E%3C/svg%3E");
 
     pointer-events: none;
-
     mix-blend-mode: screen;
 }
 
 .hero-content {
     position: relative;
-
     z-index: 2;
 }
 
-
-/* =========================
-   ANA İMZA
-========================= */
-
 .hero h1 {
     font-family: "Ballet", "Great Vibes", cursive;
-
     font-size: clamp(95px, 20vw, 180px);
-
     font-weight: 400;
-
     line-height: .75;
-
     letter-spacing: -4px;
-
     color: #f8f3ff;
-
     transform: rotate(-3deg);
 
     text-shadow:
@@ -420,11 +278,8 @@ header {
 
 .line {
     width: 110px;
-
     height: 1px;
-
     background: #b9a7d8;
-
     margin: 38px auto 30px;
 
     box-shadow:
@@ -433,277 +288,334 @@ header {
 
 .hero p {
     max-width: 550px;
-
     margin: auto;
-
     color: #aaa39a;
-
     font-family: Arial, sans-serif;
-
     font-size: 10px;
-
     line-height: 1.8;
-
     letter-spacing: 3px;
-
     text-transform: uppercase;
 }
 
-
-/* =========================
-   BUTON
-========================= */
-
 .button {
     display: inline-block;
-
     margin-top: 45px;
-
     padding: 14px 27px;
-
     border: 1px solid #6e6384;
-
     color: #f4f0ea;
-
     text-decoration: none;
-
     font-family: Arial, sans-serif;
-
     font-size: 9px;
-
     letter-spacing: 2px;
-
     transition: .3s;
 }
 
 .button:hover {
     background: #b9a7d8;
-
     color: #09090b;
 
     box-shadow:
         0 0 20px rgba(185,167,216,.18);
+}.section {
+    padding: 120px 7%;
+}
+
+.section-title {
+    font-size: 44px;
+    font-weight: 400;
+    margin-bottom: 4px;
+}
+
+.section-subtitle {
+    font-family: "Great Vibes", cursive;
+    font-size: 31px;
+    color: #d8c8f0;
+
+    text-shadow:
+        0 0 5px rgba(216,200,240,.5),
+        0 0 16px rgba(185,167,216,.3);
+
+    margin-bottom: 55px;
+}
+
+.library {
+    padding: 45px 35px 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #121014,
+            #0c0b0e
+        );
+
+    border: 1px solid #28242c;
+}
+
+.shelf {
+    display: flex;
+    align-items: flex-end;
+    gap: 32px;
+    min-height: 340px;
+    padding: 0 15px;
+    overflow-x: auto;
+}
+
+.book {
+    flex: 0 0 auto;
+    width: 145px;
+    cursor: pointer;
+    transition: .4s;
+    text-decoration: none;
+}
+
+.book:hover {
+    transform: translateY(-12px);
+}
+
+.book-cover {
+    height: 220px;
+    border: 1px solid #39323f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #151319;
+
+    box-shadow:
+        8px 8px 20px rgba(0,0,0,.45);
+}
+
+.book-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.book-name {
+    margin-top: 14px;
+    font-size: 18px;
+    text-align: center;
+    color: #e8e2d9;
+}
+
+.book-info {
+    text-align: center;
+    color: #cdb9eb;
+    font-family: Arial, sans-serif;
+    font-size: 8px;
+    letter-spacing: 1px;
+    margin-top: 12px;
+}
+
+.wood {
+    height: 13px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #403448,
+            #211d25
+        );
+
+    border-top: 1px solid #665873;
+}
+
+.about {
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.about-title {
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: #aaa39a;
+    margin-bottom: 18px;
+}
+
+.about-text {
+    max-width: 520px;
+    margin: auto;
+    color: #77716b;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    line-height: 1.9;
+}
+
+.news {
+    max-width: 800px;
+    margin: auto;
+}
+
+.news-item {
+    border-top: 1px solid #29272b;
+    padding: 22px 0;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.news-date {
+    color: #716b66;
+    font-family: Arial, sans-serif;
+    font-size: 8px;
+    letter-spacing: 1px;
+}
+
+.news-title {
+    font-size: 19px;
+    text-align: right;
+    color: #d8d2ca;
+}
+
+.social {
+    padding: 100px 20px;
+    text-align: center;
+    border-top: 1px solid #252328;
+}
+
+.social-title {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 14px;
+    letter-spacing: 5px;
+    color: #aaa39a;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+}
+
+.social-links a {
+    color: #cdb9eb;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: .3s;
+}
+
+.social-links a:hover {
+    color: #f8f3ff;
+}
+
+footer {
+    padding: 65px 7%;
+    border-top: 1px solid #252328;
+    text-align: center;
+}
+
+.footer-logo {
+    font-family: "Great Vibes", cursive;
+    font-size: 35px;
+    color: #f8f3ff;
+}
+
+footer p {
+    margin-top: 15px;
+    color: #77716a;
+    font-family: Arial, sans-serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+@media (max-width: 700px) {
+
+    header {
+        padding: 20px 5%;
+    }
+
+    .logo {
+        font-size: 27px;
+    }
+
+    .menu-panel {
+        width: 285px;
+        right: -300px;
+        padding: 110px 32px 30px;
+    }
+
+    .menu-panel a.menu-link {
+        font-size: 20px;
+    }
+
+    .hero h1 {
+        font-size: 82px;
+        letter-spacing: -3px;
+    }
+
+    .hero p {
+        font-size: 8px;
+        letter-spacing: 2px;
+    }
+
+    .section {
+        padding: 90px 6%;
+    }
+
+    .section-title {
+        font-size: 38px;
+    }
+
+    .section-subtitle {
+        font-size: 25px;
+    }
+
+    .library {
+        padding: 30px 15px 0;
+    }
+
+    .book {
+        width: 125px;
+    }
+
+    .book-cover {
+        height: 195px;
+    }
+
+    .about {
+        padding: 80px 20px;
+    }
+
+    .news-item {
+        display: block;
+    }
+
+    .news-title {
+        margin-top: 9px;
+        text-align: left;
+    }
+
+    .social {
+        padding: 80px 20px;
+    }
+
+    .social-links {
+        gap: 16px;
+    }
+
+    .menu-social {
+        gap: 7px;
+    }
+
+    .menu-social a {
+        width: 33px;
+        height: 33px;
+    }
+
 }
 
 </style>
-
 </head>
 
 <body>
-
-
-<!-- =========================
-     HEADER
-========================= -->
-
-<header>
-
-    <a href="#anasayfa" class="logo">
-        kesmislalih
-    </a>
-
-    <button
-        class="menu-button"
-        id="menuButton"
-        aria-label="Menüyü aç">
-
-        <span class="menu-line"></span>
-        <span class="menu-line"></span>
-        <span class="menu-line"></span>
-
-    </button>
-
-</header>
-
-
-<!-- =========================
-     MENÜ ARKA PLAN
-========================= -->
-
-<div
-    class="menu-overlay"
-    id="menuOverlay">
-</div>
-
-
-<!-- =========================
-     ANA MENÜ
-========================= -->
-
-<nav
-    class="menu-panel"
-    id="menuPanel">
-
-    <div class="menu-small-title">
-        KESMISLALIH
-    </div>
-
-    <a href="#anasayfa" class="menu-link">
-        Ana Sayfa
-    </a>
-
-    <a href="#kitaplar" class="menu-link">
-        Kitaplar
-    </a>
-
-    <a href="#hakkimda" class="menu-link">
-        Hakkımda
-    </a>
-
-    <a href="#galeri" class="menu-link">
-        Galeri
-    </a>
-
-    <a href="#duvar" class="menu-link">
-        Duvar
-    </a>
-
-    <a href="#duyurular" class="menu-link">
-        Duyurular
-    </a>
-
-    <a href="#iletisim" class="menu-link">
-        İletişim
-    </a>
-
-
-    <div class="menu-social-title">
-        BENİ TAKİP ET
-    </div>
-
-    <div class="menu-social">
-
-        <!-- TIKTOK -->
-
-        <a
-            href="https://www.tiktok.com/@kesmislalih?_r=1&_t=ZS-98gv3YRvFOK"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="TikTok">
-
-            <svg class="icon" viewBox="0 0 24 24">
-                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.17V2h-3.74v13.75a2.88 2.88 0 1 1-2.88-2.88c.3 0 .59.05.86.13v-3.8a6.66 6.66 0 1 0 5.76 6.55V8.43a8.55 8.55 0 0 0 5.02 1.62V6.32c-.43.39-.88.43-1.25.37z"/>
-            </svg>
-
-        </a>
-
-
-        <!-- X -->
-
-        <a
-            href="https://x.com/kesmislalih"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="X">
-
-            <svg class="icon x-icon" viewBox="0 0 24 24">
-                <path d="M18.244 2h3.252l-7.102 8.118L22.75 22h-6.55l-5.13-6.71L5.2 22H1.946l7.604-8.69L1.5 2h6.72l4.64 6.127L18.244 2zm-1.14 17.79h1.802L7.218 4.1H5.284l11.82 15.69z"/>
-            </svg>
-
-        </a>
-
-
-        <!-- WATTPAD -->
-
-        <a
-            href="https://www.wattpad.com/user/kesmislalih"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Wattpad">
-
-            <svg class="icon" viewBox="0 0 24 24">
-                <path d="M3.5 3h4.2c2.1 0 3.45.83 4.3 2.2C12.85 3.83 14.2 3 16.3 3h4.2v18h-4.2c-2.1 0-3.45-.83-4.3-2.2C11.15 20.17 9.8 21 7.7 21H3.5V3zm3.3 3v12h.9c1.5 0 2.4-.6 3.05-1.9l1.25-2.5 1.25 2.5c.65 1.3 1.55 1.9 3.05 1.9h.9V6h-1.8v7.3l-1.05-2.1c-.45-.9-1.25-1.4-2.35-1.4s-1.9.5-2.35 1.4l-1.05 2.1V6H6.8z"/>
-            </svg>
-
-        </a>
-
-
-        <!-- SPOTIFY -->
-
-        <a
-            href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Spotify">
-
-            <svg class="icon" viewBox="0 0 24 24">
-                <path d="M12 1.9a10.1 10.1 0 1 0 10.1 10.1A10.11 10.11 0 0 0 12 1.9zm4.64 14.58a.76.76 0 0 1-1.05.25c-2.88-1.76-6.51-2.16-10.79-1.18a.76.76 0 1 1-.34-1.48c4.68-1.07 8.69-.61 11.93 1.37a.76.76 0 0 1 .25 1.04zm1.5-3.33a.95.95 0 0 1-1.3.31c-3.29-2.02-8.31-2.61-12.2-1.43a.95.95 0 1 1-.55-1.82c4.45-1.35 10-.69 13.74 1.61a.95.95 0 0 1 .31 1.33zm.13-3.47C14.33 7.3 8.13 7.1 4.54 8.19a1.14 1.14 0 1 1-.66-2.18c4.13-1.25 11-1 15.2 1.5a1.14 1.14 0 0 1-.81 2.17z"/>
-            </svg>
-
-        </a>
-
-
-        <!-- PINTEREST -->
-
-        <a
-            href="https://pin.it/2jHDXi48B"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Pinterest">
-
-            <svg class="icon" viewBox="0 0 24 24">
-                <path d="M12 2a10 10 0 0 0-3.64 19.32c-.09-1.64-.02-3.62.41-5.49l1.11-4.7s-.28-.57-.28-1.41c0-1.32.77-2.31 1.73-2.31.82 0 1.21.62 1.21 1.36 0 .83-.53 2.07-.8 3.22-.23.96.48 1.74 1.43 1.74 1.72 0 3.04-1.82 3.04-4.45 0-2.33-1.67-3.96-4.05-3.96-2.76 0-4.38 2.07-4.38 4.21 0 .83.32 1.72.72 2.2.08.1.09.18.07.29l-.27 1.1c-.04.18-.14.22-.32.13-1.19-.55-1.94-2.28-1.94-3.67 0-2.99 2.17-5.74 6.25-5.74 3.28 0 5.83 2.34 5.83 5.46 0 3.26-2.06 5.88-4.92 5.88-.96 0-1.86-.5-2.17-1.08l-.59 2.25c-.21.82-.78 1.84-1.17 2.46.88.27 1.81.42 2.77.42A10 10 0 0 0 12 2z"/>
-            </svg>
-
-        </a>
-
-
-        <!-- WHATSAPP -->
-
-        <a
-            href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="WhatsApp">
-
-            <svg class="icon" viewBox="0 0 24 24">
-                <path d="M12 2a9.9 9.9 0 0 0-8.55 14.9L2 22l5.27-1.38A9.9 9.9 0 1 0 12 2zm0 18.1a8.15 8.15 0 0 1-4.15-1.13l-.3-.18-3.13.82.84-3.05-.2-.31A8.15 8.15 0 1 1 12 20.1zm4.47-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.18-1.4-1.32-1.64-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.33.98 2.49c.12.16 1.69 2.58 4.09 3.62.57.25 1.01.4 1.35.51.57.18 1.09.15 1.5.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/>
-            </svg>
-
-        </a>
-
-    </div>
-
-
-    <div class="menu-footer">
-        kesmislalih
-    </div>
-
-</nav>
-
-
-<!-- =========================
-     ANA SAYFA
-========================= -->
-
-<section class="hero" id="anasayfa">
-
-    <div class="hero-content">
-
-        <h1>
-            kesmislalih
-        </h1>
-
-        <div class="line"></div>
-
-        <p>
-            kelimelerin arasında bir yerlerde...
-        </p>
-
-        <a
-            href="#kitaplar"
-            class="button">
-
-            KİTAPLARIMA GÖZ AT
-
-        </a>
-
-    </div>
-
-</section>
-<!-- =========================
-     HEADER
-========================= -->
 
 <header>
 
@@ -724,20 +636,10 @@ header {
 
 </header>
 
-
-<!-- =========================
-     MENÜ ARKA PLAN
-========================= -->
-
 <div
     class="menu-overlay"
     id="menuOverlay">
 </div>
-
-
-<!-- =========================
-     ANA MENÜ
-========================= -->
 
 <nav
     class="menu-panel"
@@ -746,7 +648,6 @@ header {
     <div class="menu-small-title">
         KESMISLALIH
     </div>
-
 
     <a href="#" class="menu-link">
         Ana Sayfa
@@ -774,141 +675,91 @@ header {
 
     <a href="#iletisim" class="menu-link">
         İletişim
-    </a>
-
-
-    <!-- =========================
-         SOSYAL MEDYA
-    ========================= -->
-
-    <div class="menu-social-title">
+    </a><div class="menu-social-title">
         BENİ TAKİP ET
     </div>
 
     <div class="menu-social">
-
 
         <!-- TIKTOK -->
 
         <a
             href="https://www.tiktok.com/@kesmislalih?_r=1&_t=ZS-98gv3YRvFOK"
             target="_blank"
-            rel="noopener noreferrer"
             aria-label="TikTok">
 
-            <svg
-                class="icon"
-                viewBox="0 0 24 24"
-                aria-hidden="true">
-
+            <svg class="icon" viewBox="0 0 24 24">
                 <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.17V2h-3.74v13.75a2.88 2.88 0 1 1-2.88-2.88c.3 0 .59.05.86.13v-3.8a6.66 6.66 0 1 0 5.76 6.55V8.43a8.55 8.55 0 0 0 5.02 1.62V6.32c-.43.39-.88.43-1.25.37z"/>
-
             </svg>
 
         </a>
-
 
         <!-- X -->
 
         <a
             href="https://x.com/kesmislalih"
             target="_blank"
-            rel="noopener noreferrer"
             aria-label="X">
 
-            <svg
-                class="icon x-icon"
-                viewBox="0 0 24 24"
-                aria-hidden="true">
-
-                <path d="M18.244 2h3.252l-7.102 8.118L22.75 22h-6.55l-5.13-6.71L5.2 22H1.946l7.604-8.69L1.5 2h6.72l4.64 6.127L18.244 2zm-1.14 17.79h1.802L7.218 4.1H5.284l11.82 15.69z"/>
-
+            <svg class="icon x-icon" viewBox="0 0 24 24">
+                <path d="M18.244 2H21.5l-7.11 8.13L22.75 22h-6.55l-5.13-6.71L5.2 22H1.94l7.61-8.7L1.5 2h6.72l4.64 6.13L18.244 2zm-1.15 17.78h1.8L7.22 4.1H5.29l11.804 15.68z"/>
             </svg>
 
         </a>
-
 
         <!-- WATTPAD -->
 
         <a
             href="https://www.wattpad.com/user/kesmislalih"
             target="_blank"
-            rel="noopener noreferrer"
             aria-label="Wattpad">
 
-            <svg
-                class="icon"
-                viewBox="0 0 24 24"
-                aria-hidden="true">
-
-                <path d="M2.5 4.2h4.1c2.42 0 3.96 1.03 5.39 3.24C13.42 5.23 14.96 4.2 17.38 4.2h4.12v15.6h-4.12c-2.1 0-3.5-.72-5.39-2.77-1.89 2.05-3.29 2.77-5.39 2.77H2.5V4.2zm3.45 3.3v9h.65c1.34 0 2.15-.53 2.78-1.75l1.73-3.35c.2-.39.5-.59.88-.59s.68.2.88.59l1.73 3.35c.63 1.22 1.44 1.75 2.78 1.75h.65v-9h-1.38v5.55l-1.07-2.07c-.77-1.49-1.94-2.23-3.59-2.23s-2.82.74-3.59 2.23l-1.07 2.07V7.5H5.95z"/>
-
-            </svg>
+            <span class="wattpad-icon">
+                W
+            </span>
 
         </a>
-
 
         <!-- SPOTIFY -->
 
         <a
             href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv"
             target="_blank"
-            rel="noopener noreferrer"
             aria-label="Spotify">
 
-            <svg
-                class="icon"
-                viewBox="0 0 24 24"
-                aria-hidden="true">
-
+            <svg class="icon" viewBox="0 0 24 24">
                 <path d="M12 1.9a10.1 10.1 0 1 0 10.1 10.1A10.11 10.11 0 0 0 12 1.9zm4.64 14.58a.76.76 0 0 1-1.05.25c-2.88-1.76-6.51-2.16-10.79-1.18a.76.76 0 1 1-.34-1.48c4.68-1.07 8.69-.61 11.93 1.37a.76.76 0 0 1 .25 1.04zm1.5-3.33a.95.95 0 0 1-1.3.31c-3.29-2.02-8.31-2.61-12.2-1.43a.95.95 0 1 1-.55-1.82c4.45-1.35 10-.69 13.74 1.61a.95.95 0 0 1 .31 1.33zm.13-3.47C14.33 7.3 8.13 7.1 4.54 8.19a1.14 1.14 0 1 1-.66-2.18c4.13-1.25 11-1 15.2 1.5a1.14 1.14 0 0 1-.81 2.17z"/>
-
             </svg>
 
         </a>
-
 
         <!-- PINTEREST -->
 
         <a
             href="https://pin.it/2jHDXi48B"
             target="_blank"
-            rel="noopener noreferrer"
             aria-label="Pinterest">
 
-            <svg
-                class="icon"
-                viewBox="0 0 24 24"
-                aria-hidden="true">
-
-                <path d="M12 2a10 10 0 1 0 3.65 19.31c-.09-1.4-.02-3.07.34-4.67l1.1-4.63s-.28-.57-.28-1.4c0-1.31.76-2.3 1.72-2.3.81 0 1.2.61 1.2 1.35 0 .82-.52 2.05-.79 3.19-.22.95.47 1.72 1.41 1.72 1.7 0 3-1.8 3-4.4 0-2.3-1.65-3.91-4-3.91-2.73 0-4.33 2.05-4.33 4.17 0 .82.31 1.7.71 2.18.08.1.09.18.07.29l-.27 1.09c-.04.18-.14.22-.32.13-1.17-.54-1.92-2.25-1.92-3.63 0-2.95 2.14-5.67 6.17-5.67 3.24 0 5.76 2.31 5.76 5.4 0 3.22-2.03 5.81-4.86 5.81-.95 0-1.84-.49-2.14-1.07l-.58 2.22c-.21.81-.77 1.82-1.16 2.43.87.27 1.79.41 2.74.41A10 10 0 0 0 12 2z"/>
-
+            <svg class="icon" viewBox="0 0 24 24">
+                <path d="M12 2a10 10 0 0 0-3.64 19.32c-.09-1.64-.02-3.62.41-5.49l1.11-4.7s-.28-.57-.28-1.41c0-1.32.77-2.31 1.73-2.31.82 0 1.21.62 1.21 1.36 0 .83-.53 2.07-.8 3.22-.23.96.48 1.74 1.43 1.74 1.72 0 3.04-1.82 3.04-4.45 0-2.33-1.67-3.96-4.05-3.96-2.76 0-4.38 2.07-4.38 4.21 0 .83.32 1.72.72 2.2.08.1.09.18.07.29l-.27 1.1c-.04.18-.14.22-.32.13-1.19-.55-1.94-2.28-1.94-3.67 0-2.99 2.17-5.74 6.25-5.74 3.28 0 5.83 2.34 5.83 5.46 0 3.26-2.06 5.88-4.92 5.88-.96 0-1.86-.5-2.17-1.08l-.59 2.25c-.21.82-.78 1.84-1.17 2.46.88.27 1.81.42 2.77.42A10 10 0 0 0 12 2z"/>
             </svg>
 
         </a>
-
 
         <!-- WHATSAPP -->
 
         <a
             href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
             target="_blank"
-            rel="noopener noreferrer"
             aria-label="WhatsApp">
 
-            <svg
-                class="icon"
-                viewBox="0 0 24 24"
-                aria-hidden="true">
-
+            <svg class="icon" viewBox="0 0 24 24">
                 <path d="M12 2a9.9 9.9 0 0 0-8.55 14.9L2 22l5.27-1.38A9.9 9.9 0 1 0 12 2zm0 18.1a8.15 8.15 0 0 1-4.15-1.13l-.3-.18-3.13.82.84-3.05-.2-.31A8.15 8.15 0 1 1 12 20.1zm4.47-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.18-1.4-1.32-1.64-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.33.98 2.49c.12.16 1.69 2.58 4.09 3.62.57.25 1.01.4 1.35.51.57.18 1.09.15 1.5.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/>
-
             </svg>
 
         </a>
 
     </div>
-
 
     <div class="menu-footer">
         kesmislalih
@@ -964,13 +815,9 @@ header {
         kelimelerden doğan hikâyeler
     </p>
 
-
     <div class="library">
 
         <div class="shelf">
-
-
-            <!-- RİNGTEKİ SON DANS -->
 
             <a
                 href="ringteki-son-dans.html"
@@ -995,8 +842,6 @@ header {
             </a>
 
 
-            <!-- İKİNCİ KİTAP -->
-
             <div class="book">
 
                 <div class="book-cover">
@@ -1017,8 +862,6 @@ header {
 
             </div>
 
-
-            <!-- ÜÇÜNCÜ KİTAP -->
 
             <div class="book">
 
@@ -1077,7 +920,7 @@ header {
 ========================= -->
 
 <section
-    class="section gallery-section"
+    class="section"
     id="galeri">
 
     <h2 class="section-title">
@@ -1099,70 +942,17 @@ header {
     class="section"
     id="duvar">
 
-    <div class="news wall">
+    <h2 class="section-title">
+        Duvar
+    </h2>
 
-        <h2 class="section-title">
-            Duvar
-        </h2>
-
-        <p class="section-subtitle">
-            okurlardan bana
-        </p>
-
-        <p class="wall-intro">
-            Düşüncelerini, yorumlarını ya da bana
-            söylemek istediklerini buraya bırakabilirsin.
-        </p>
-
-
-        <!-- YORUM FORMU -->
-
-        <form
-            class="wall-form"
-            id="wallForm">
-
-            <input
-                type="text"
-                class="wall-input"
-                id="wallName"
-                placeholder="İsminiz"
-                maxlength="40"
-                required>
-
-            <textarea
-                class="wall-textarea"
-                id="wallMessage"
-                placeholder="Yorumunuzu buraya yazın..."
-                maxlength="500"
-                required></textarea>
-
-            <button
-                type="submit"
-                class="wall-submit">
-
-                YORUMU GÖNDER
-
-            </button>
-
-        </form>
-
-
-        <!-- YORUMLAR -->
-
-        <div
-            class="wall-comments"
-            id="wallComments">
-
-            <div class="empty-wall" id="emptyWall">
-                Henüz bir yorum yok.
-                İlk yorumu sen bırak.
-            </div>
-
-        </div>
-
-    </div>
+    <p class="section-subtitle">
+        burası okurlara ait olacak
+    </p>
 
 </section>
+
+
 <!-- =========================
      DUYURULAR
 ========================= -->
@@ -1181,7 +971,6 @@ header {
             yeni hikâyeler, yeni başlangıçlar
         </p>
 
-
         <div class="news-item">
 
             <span class="news-date">
@@ -1193,7 +982,6 @@ header {
             </span>
 
         </div>
-
 
         <div class="news-item">
 
@@ -1217,142 +1005,16 @@ header {
 ========================= -->
 
 <section
-    class="contact"
+    class="about"
     id="iletisim">
 
-    <div class="contact-title">
-        BİZE ULAŞIN
+    <div class="about-title">
+        İLETİŞİM
     </div>
 
-    <p class="contact-subtitle">
-        Bir şey söylemek, sormak ya da sadece merhaba demek istersen...
+    <p class="about-text">
+        İletişim bilgileri daha sonra buraya eklenecek.
     </p>
-
-
-    <form
-        class="contact-form"
-        action="https://formsubmit.co/hillyss333@gmail.com"
-        method="POST">
-
-        <input
-            type="hidden"
-            name="_subject"
-            value="kesmislalih sitesinden yeni iletişim mesajı">
-
-        <input
-            type="hidden"
-            name="_captcha"
-            value="false">
-
-
-        <!-- İSİM -->
-
-        <div class="form-group">
-
-            <label for="contact-name">
-                İsim Soyisim <span>*</span>
-            </label>
-
-            <input
-                type="text"
-                id="contact-name"
-                name="name"
-                placeholder="İsim Soyisim"
-                required>
-
-        </div>
-
-
-        <!-- KONU -->
-
-        <div class="form-group">
-
-            <label for="contact-subject">
-                Konu
-            </label>
-
-            <input
-                type="text"
-                id="contact-subject"
-                name="subject"
-                placeholder="Mesajınızın konusu">
-
-        </div>
-
-
-        <!-- E-POSTA -->
-
-        <div class="form-group">
-
-            <label for="contact-email">
-                E-posta Adresiniz
-            </label>
-
-            <input
-                type="email"
-                id="contact-email"
-                name="email"
-                placeholder="E-posta adresiniz"
-                required>
-
-        </div>
-
-
-        <!-- TELEFON -->
-
-        <div class="form-group">
-
-            <label for="contact-phone">
-                Telefon Numarası
-                <small>(Opsiyonel)</small>
-            </label>
-
-            <input
-                type="tel"
-                id="contact-phone"
-                name="phone"
-                placeholder="Telefon numaranız">
-
-        </div>
-
-
-        <!-- MESAJ -->
-
-        <div class="form-group">
-
-            <label for="contact-message">
-                Mesajınız
-            </label>
-
-            <textarea
-                id="contact-message"
-                name="message"
-                placeholder="Mesajınızı buraya yazın..."
-                required></textarea>
-
-        </div>
-
-
-        <button
-            type="submit"
-            class="contact-submit">
-
-            MESAJI GÖNDER
-
-        </button>
-
-    </form>
-
-
-    <div class="contact-direct">
-
-        ya da doğrudan
-
-        <a href="mailto:hillyss333@gmail.com">
-            hillyss333@gmail.com
-        </a>
-
-    </div>
 
 </section>
 
@@ -1364,69 +1026,45 @@ header {
 <section class="social">
 
     <div class="social-title">
-        BENİ TAKİP ET
+        Beni takip et
     </div>
-
 
     <div class="social-links">
 
         <a
             href="https://www.tiktok.com/@kesmislalih?_r=1&_t=ZS-98gv3YRvFOK"
-            target="_blank"
-            rel="noopener noreferrer">
-
+            target="_blank">
             TikTok
-
         </a>
-
 
         <a
             href="https://x.com/kesmislalih"
-            target="_blank"
-            rel="noopener noreferrer">
-
+            target="_blank">
             X
-
         </a>
-
 
         <a
             href="https://www.wattpad.com/user/kesmislalih"
-            target="_blank"
-            rel="noopener noreferrer">
-
+            target="_blank">
             Wattpad
-
         </a>
-
 
         <a
             href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv"
-            target="_blank"
-            rel="noopener noreferrer">
-
+            target="_blank">
             Spotify
-
         </a>
-
 
         <a
             href="https://pin.it/2jHDXi48B"
-            target="_blank"
-            rel="noopener noreferrer">
-
+            target="_blank">
             Pinterest
-
         </a>
-
 
         <a
             href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
-            target="_blank"
-            rel="noopener noreferrer">
-
+            target="_blank">
             WhatsApp
-
         </a>
 
     </div>
@@ -1449,454 +1087,64 @@ header {
     </p>
 
 </footer>
-/* =========================
-   DUVAR FORMU
-========================= */
-
-.wall {
-    max-width: 850px;
-    margin: auto;
-    padding: 45px;
-    background: linear-gradient(145deg, #121014, #0d0c10);
-    border: 1px solid #29252d;
-    box-shadow: 0 15px 45px rgba(0,0,0,.25);
-}
-
-.wall-intro {
-    text-align: center;
-    color: #858078;
-    font-family: Arial, sans-serif;
-    font-size: 9px;
-    letter-spacing: 2px;
-    line-height: 1.8;
-    margin-bottom: 35px;
-}
-
-.wall-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.wall-input,
-.wall-textarea {
-    width: 100%;
-    background: #0a090c;
-    border: 1px solid #302b34;
-    color: #e8e2da;
-    font-family: "Cormorant Garamond", serif;
-    outline: none;
-    transition: .3s;
-}
-
-.wall-input {
-    height: 45px;
-    padding: 0 15px;
-    font-size: 15px;
-}
-
-.wall-textarea {
-    min-height: 120px;
-    padding: 14px 15px;
-    font-size: 15px;
-    resize: vertical;
-}
-
-.wall-input:focus,
-.wall-textarea:focus {
-    border-color: #76658a;
-    box-shadow: 0 0 15px rgba(185,167,216,.08);
-}
-
-.wall-submit {
-    align-self: flex-end;
-    padding: 12px 22px;
-    border: 1px solid #6e6384;
-    background: transparent;
-    color: #d8c8f0;
-    font-family: Arial, sans-serif;
-    font-size: 8px;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: .3s;
-}
-
-.wall-submit:hover {
-    background: #b9a7d8;
-    color: #09090b;
-}
-
-
-/* =========================
-   DUVAR YORUMLARI
-========================= */
-
-.wall-comments {
-    margin-top: 45px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.comment-card {
-    padding: 22px 24px;
-    background: #0b0a0e;
-    border: 1px solid #29252f;
-    position: relative;
-    transition: .3s ease;
-}
-
-.comment-card:hover {
-    border-color: #4c4157;
-    transform: translateY(-2px);
-}
-
-.comment-card::before {
-    content: "“";
-    position: absolute;
-    top: 8px;
-    left: 15px;
-    font-family: Georgia, serif;
-    font-size: 42px;
-    color: #554765;
-    opacity: .55;
-}
-
-.comment-name {
-    color: #d8c8f0;
-    font-family: "Cormorant Garamond", serif;
-    font-size: 17px;
-    font-weight: 600;
-    margin-bottom: 9px;
-    padding-left: 22px;
-}
-
-.comment-text {
-    color: #918b86;
-    font-family: "Cormorant Garamond", serif;
-    font-size: 14px;
-    line-height: 1.7;
-    padding-left: 22px;
-}
-
-
-/* =========================
-   İLETİŞİM FORMU
-========================= */
-
-.contact {
-    padding: 110px 20px;
-    text-align: center;
-    border-top: 1px solid #252328;
-}
-
-.contact-box {
-    max-width: 650px;
-    margin: 40px auto 0;
-    padding: 40px;
-    background: #111015;
-    border: 1px solid #29252d;
-    text-align: left;
-}
-
-.contact-title {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 24px;
-    font-weight: 500;
-    letter-spacing: 5px;
-    color: #cfc6d7;
-    margin-bottom: 18px;
-    text-transform: uppercase;
-}
-
-.contact-subtitle {
-    color: #77716b;
-    font-family: Arial, sans-serif;
-    font-size: 9px;
-    letter-spacing: 2px;
-    line-height: 1.8;
-    margin-bottom: 28px;
-}
-
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.contact-label {
-    color: #aaa39a;
-    font-family: Arial, sans-serif;
-    font-size: 8px;
-    letter-spacing: 2px;
-    margin-bottom: -8px;
-    text-transform: uppercase;
-}
-
-.contact-input,
-.contact-textarea {
-    width: 100%;
-    background: #0a090c;
-    border: 1px solid #302b34;
-    color: #eee8e1;
-    font-family: "Cormorant Garamond", serif;
-    font-size: 15px;
-    padding: 13px 15px;
-    outline: none;
-    transition: .3s;
-}
-
-.contact-input {
-    height: 46px;
-}
-
-.contact-textarea {
-    min-height: 140px;
-    resize: vertical;
-}
-
-.contact-input:focus,
-.contact-textarea:focus {
-    border-color: #76658a;
-    box-shadow: 0 0 15px rgba(185,167,216,.08);
-}
-
-.contact-submit {
-    align-self: flex-start;
-    margin-top: 8px;
-    padding: 13px 25px;
-    border: 1px solid #6e6384;
-    background: transparent;
-    color: #d8c8f0;
-    font-family: Arial, sans-serif;
-    font-size: 8px;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: .3s;
-}
-
-.contact-submit:hover {
-    background: #b9a7d8;
-    color: #09090b;
-}
-
-
-/* =========================
-   ALT SOSYAL MEDYA
-========================= */
-
-.social {
-    padding: 95px 20px;
-    text-align: center;
-    border-top: 1px solid #252328;
-}
-
-.social-title {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 14px;
-    letter-spacing: 5px;
-    color: #aaa39a;
-    text-transform: uppercase;
-    margin-bottom: 30px;
-}
-
-.social-links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px 25px;
-}
-
-.social-links a {
-    color: #9d91ab;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    transition: .3s;
-}
-
-.social-links a:hover {
-    color: #f8f3ff;
-    transform: translateY(-2px);
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    padding: 65px 7%;
-    border-top: 1px solid #252328;
-    text-align: center;
-}
-
-.footer-logo {
-    font-family: "Great Vibes", cursive;
-    font-size: 35px;
-    color: #f8f3ff;
-    text-shadow: 0 0 7px rgba(220,195,255,.3);
-}
-
-footer p {
-    margin-top: 15px;
-    color: #77716a;
-    font-family: Arial, sans-serif;
-    font-size: 8px;
-    letter-spacing: 2px;
-}
-
-
-/* =========================
-   MOBİL
-========================= */
-
-@media (max-width: 700px) {
-
-    .menu-panel {
-        width: 285px;
-    }
-
-    .hero h1 {
-        font-size: 82px;
-    }
-
-    .section {
-        padding: 90px 6%;
-    }
-
-    .section-title {
-        font-size: 38px;
-    }
-
-    .section-subtitle {
-        font-size: 25px;
-    }
-
-    .library {
-        padding: 30px 15px 0;
-    }
-
-    .shelf {
-        gap: 22px;
-        padding: 0 8px;
-    }
-
-    .book {
-        width: 125px;
-    }
-
-    .book-cover {
-        height: 195px;
-    }
-
-    .about {
-        padding: 85px 20px;
-    }
-
-    .about-title {
-        font-size: 20px;
-        letter-spacing: 5px;
-    }
-
-    .about-text {
-        font-size: 15px;
-    }
-
-    .wall {
-        padding: 28px 18px;
-    }
-
-    .wall-submit {
-        align-self: stretch;
-    }
-
-    .contact {
-        padding: 85px 20px;
-    }
-
-    .contact-box {
-        padding: 25px 18px;
-    }
-
-    .contact-title {
-        font-size: 21px;
-    }
-
-    .contact-submit {
-        width: 100%;
-    }
-
-    .social {
-        padding: 80px 20px;
-    }
-
-    .social-links {
-        gap: 16px;
-    }
-}
-
-
-/* =========================
-   KÜÇÜK TELEFONLAR
-========================= */
-
-@media (max-width: 380px) {
-
-    .hero h1 {
-        font-size: 68px;
-    }
-
-    .menu-panel {
-        width: 270px;
-    }
-
-    .book {
-        width: 115px;
-    }
-
-    .book-cover {
-        height: 180px;
-    }
-
-}
-
-
-/* =========================
-   SEÇİM RENGİ
-========================= */
-
-::selection {
-    background: #b9a7d8;
-    color: #09090b;
-}
-
-
-/* =========================
-   SCROLLBAR
-========================= */
-
-::-webkit-scrollbar {
-    width: 7px;
-}
-
-::-webkit-scrollbar-track {
-    background: #09090b;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #302a38;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #554765;
-}
-
-</style>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const menuPanel =
+    document.getElementById("menuPanel");
+
+const menuOverlay =
+    document.getElementById("menuOverlay");
+
+const menuLinks =
+    document.querySelectorAll(".menu-panel .menu-link");
+
+
+menuButton.addEventListener("click", function() {
+
+    menuButton.classList.toggle("active");
+
+    menuPanel.classList.toggle("open");
+
+    menuOverlay.classList.toggle("open");
+
+});
+
+
+menuOverlay.addEventListener("click", function() {
+
+    menuButton.classList.remove("active");
+
+    menuPanel.classList.remove("open");
+
+    menuOverlay.classList.remove("open");
+
+});
+
+
+menuLinks.forEach(function(link) {
+
+    link.addEventListener("click", function() {
+
+        menuButton.classList.remove("active");
+
+        menuPanel.classList.remove("open");
+
+        menuOverlay.classList.remove("open");
+
+    });
+
+});
+
+</script>
 
 </body>
-</html>
+                   </html>
