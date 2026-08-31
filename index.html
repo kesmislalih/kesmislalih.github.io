@@ -887,6 +887,74 @@ header {
     color: #918b86;
 
     font-family: "Cormorant Garamond", serif;
+ 
+/* =========================
+   DUVAR YORUMLARI
+========================= */
+
+.wall-comments {
+    margin-top: 45px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.comment-card {
+    padding: 22px 24px;
+
+    background: #0b0a0e;
+
+    border: 1px solid #29252f;
+
+    position: relative;
+
+    transition: .3s ease;
+}
+
+.comment-card:hover {
+    border-color: #4c4157;
+
+    transform: translateY(-2px);
+}
+
+.comment-card::before {
+    content: "“";
+
+    position: absolute;
+
+    top: 8px;
+    left: 15px;
+
+    font-family: Georgia, serif;
+
+    font-size: 42px;
+
+    color: #554765;
+
+    opacity: .55;
+}
+
+.comment-name {
+    color: #d8c8f0;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    margin-bottom: 9px;
+
+    padding-left: 22px;
+}
+
+.comment-text {
+    color: #918b86;
+
+    font-family: "Cormorant Garamond", serif;
 
     font-size: 14px;
 
@@ -916,6 +984,467 @@ header {
     text-transform: uppercase;
 }
 
+
+/* =========================
+   DUYURULAR
+========================= */
+
+.news {
+    max-width: 800px;
+
+    margin: auto;
+}
+
+.news-item {
+    border-top: 1px solid #29272b;
+
+    padding: 22px 0;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 30px;
+}
+
+.news-date {
+    color: #716b66;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+}
+
+.news-title {
+    font-size: 19px;
+
+    text-align: right;
+
+    color: #d8d2ca;
+}
+
+
+/* =========================
+   İLETİŞİM
+========================= */
+
+.contact {
+    padding: 110px 20px;
+
+    text-align: center;
+
+    border-top: 1px solid #252328;
+}
+
+.contact-title {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 19px;
+
+    font-weight: 500;
+
+    letter-spacing: 6px;
+
+    color: #cfc6d7;
+
+    margin-bottom: 18px;
+}
+
+.contact-subtitle {
+    color: #77716b;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    line-height: 1.8;
+
+    margin-bottom: 28px;
+}
+
+.contact-mail {
+    display: inline-block;
+
+    color: #d8c8f0;
+
+    text-decoration: none;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 18px;
+
+    letter-spacing: .5px;
+
+    border-bottom: 1px solid #4c4255;
+
+    padding-bottom: 5px;
+
+    transition: .3s;
+}
+
+.contact-mail:hover {
+    color: #f8f3ff;
+
+    border-color: #b9a7d8;
+}
+
+
+/* =========================
+   ALT SOSYAL MEDYA
+========================= */
+
+.social {
+    padding: 95px 20px;
+
+    text-align: center;
+
+    border-top: 1px solid #252328;
+}
+
+.social-title {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 14px;
+
+    letter-spacing: 5px;
+
+    color: #aaa39a;
+
+    text-transform: uppercase;
+
+    margin-bottom: 30px;
+}
+
+.social-links {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px 25px;
+}
+
+.social-links a {
+    color: #9d91ab;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    transition: .3s;
+}
+
+.social-links a:hover {
+    color: #f8f3ff;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 65px 7%;
+
+    border-top: 1px solid #252328;
+
+    text-align: center;
+}
+
+.footer-logo {
+    font-family: "Great Vibes", cursive;
+
+    font-size: 35px;
+
+    color: #f8f3ff;
+
+    text-shadow:
+        0 0 7px rgba(220,195,255,.3);
+}
+
+footer p {
+    margin-top: 15px;
+
+    color: #77716a;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================
+   SAYFA GEÇİŞLERİ
+========================= */
+
+.section,
+.about,
+.contact,
+.social {
+    position: relative;
+}
+
+.section::after,
+.about::after,
+.contact::after,
+.social::after {
+    content: "";
+
+    display: block;
+
+    width: 45px;
+
+    height: 1px;
+
+    margin: 70px auto 0;
+
+    background: #39313f;
+
+    opacity: .7;
+}
+
+
+/* =========================
+   SEÇİM RENGİ
+========================= */
+
+::selection {
+    background: #b9a7d8;
+
+    color: #09090b;
+}
+
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #09090b;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #302a38;
+
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #554765;
+}
+
+
+/* =========================
+   TELEFON
+========================= */
+
+@media (max-width: 700px) {
+
+    header {
+        padding: 20px 5%;
+    }
+
+    .logo {
+        font-size: 27px;
+    }
+
+    .menu-panel {
+        width: 285px;
+
+        right: -300px;
+
+        padding: 105px 32px 30px;
+    }
+
+    .menu-panel a.menu-link {
+        font-size: 20px;
+
+        padding: 14px 0;
+    }
+
+    .menu-social {
+        gap: 7px;
+    }
+
+    .menu-social a {
+        width: 33px;
+
+        height: 33px;
+    }
+
+    .hero {
+        padding-left: 15px;
+
+        padding-right: 15px;
+    }
+
+    .hero h1 {
+        font-size: 82px;
+
+        letter-spacing: -3px;
+    }
+
+    .hero p {
+        font-size: 8px;
+
+        letter-spacing: 2px;
+    }
+
+    .button {
+        margin-top: 38px;
+
+        padding: 13px 21px;
+    }
+
+    .section {
+        padding: 90px 6%;
+    }
+
+    .section-title {
+        font-size: 38px;
+    }
+
+    .section-subtitle {
+        font-size: 25px;
+    }
+
+    .library {
+        padding: 30px 15px 0;
+    }
+
+    .shelf {
+        gap: 22px;
+
+        padding: 0 8px;
+    }
+
+    .book {
+        width: 125px;
+    }
+
+    .book-cover {
+        height: 195px;
+    }
+
+    .about {
+        padding: 85px 20px;
+    }
+
+    .about-title {
+        font-size: 17px;
+
+        letter-spacing: 5px;
+    }
+
+    .about-text {
+        font-size: 15px;
+    }
+
+    .wall {
+        padding: 28px 18px;
+    }
+
+    .wall-submit {
+        align-self: stretch;
+    }
+
+    .comment-card {
+        padding: 20px 17px;
+    }
+
+    .comment-name {
+        padding-left: 19px;
+    }
+
+    .comment-text {
+        padding-left: 19px;
+    }
+
+    .news-item {
+        display: block;
+    }
+
+    .news-title {
+        margin-top: 9px;
+
+        text-align: left;
+    }
+
+    .contact {
+        padding: 85px 20px;
+    }
+
+    .contact-mail {
+        font-size: 16px;
+    }
+
+    .social {
+        padding: 80px 20px;
+    }
+
+    .social-links {
+        gap: 16px;
+    }
+
+}
+
+
+/* =========================
+   KÜÇÜK TELEFONLAR
+========================= */
+
+@media (max-width: 380px) {
+
+    .hero h1 {
+        font-size: 68px;
+    }
+
+    .menu-panel {
+        width: 270px;
+
+        right: -285px;
+    }
+
+    .menu-social a {
+        width: 31px;
+
+        height: 31px;
+    }
+
+    .book {
+        width: 115px;
+    }
+
+    .book-cover {
+        height: 180px;
+    }
+
+}
 
 /* =========================
    DUYURULAR
