@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>Galeri | kesmislalih</title>
+
+
+<style>
+
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap');
+
+
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    background: #09090b;
+    color: #f3efe8;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    min-height: 100vh;
+
+}
+
+
+
+/* =========================
+   ÜST KISIM
+========================= */
+
+.gallery-header {
+
+    width: 100%;
+
+    padding:
+        25px 6%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    border-bottom:
+        1px solid #28242c;
+
+}
+
+
+.gallery-logo {
+
+    color: #f8f3ff;
+
+    text-decoration:
+        none;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        32px;
+
+}
+
+
+.back-button {
+
+    color: #aaa39a;
+
+    text-decoration:
+        none;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        2px;
+
+    transition:
+        .3s;
+
+}
+
+
+.back-button:hover {
+
+    color:
+        #cdb9eb;
+
+}
+
+
+
+/* =========================
+   GALERİ BAŞLIK
+========================= */
+
+.gallery-intro {
+
+    text-align:
+        center;
+
+    padding:
+        110px 25px 70px;
+
+}
+
+
+.gallery-label {
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        5px;
+
+    color:
+        #756d79;
+
+    margin-bottom:
+        20px;
+
+}
+
+
+.gallery-intro h1 {
+
+    font-size:
+        clamp(
+            55px,
+            9vw,
+            90px
+        );
+
+    font-weight:
+        400;
+
+    line-height:
+        1;
+
+}
+
+
+.gallery-subtitle {
+
+    margin-top:
+        18px;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        30px;
+
+    color:
+        #cdb9eb;
+
+}
+
+
+
+/* =========================
+   GALERİ
+========================= */
+
+.gallery {
+
+    width:
+        min(
+            1100px,
+            86%
+        );
+
+    margin:
+        0 auto 120px;
+
+}
+
+
+.gallery-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
+    gap:
+        18px;
+
+}
+
+
+.gallery-item {
+
+    position:
+        relative;
+
+    aspect-ratio:
+        4 / 5;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid #29252d;
+
+    background:
+        #111015;
+
+}
+
+
+.gallery-item img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    display:
+        block;
+
+    transition:
+        .5s ease;
+
+}
+
+
+.gallery-item:hover img {
+
+    transform:
+        scale(1.04);
+
+}
+
+
+
+/* =========================
+   IMG YERİ
+========================= */
+
+.image-placeholder {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    text-align:
+        center;
+
+    padding:
+        20px;
+
+    color:
+        #5f5964;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        2px;
+
+    line-height:
+        1.8;
+
+}
+
+
+
+/* =========================
+   ALT KISIM
+========================= */
+
+.gallery-footer {
+
+    padding:
+        50px 25px;
+
+    border-top:
+        1px solid #252328;
+
+    text-align:
+        center;
+
+}
+
+
+.gallery-footer-logo {
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        35px;
+
+    color:
+        #f8f3ff;
+
+}
+
+
+.gallery-footer p {
+
+    margin-top:
+        12px;
+
+    color:
+        #77716a;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        7px;
+
+    letter-spacing:
+        2px;
+
+}
+
+
+
+/* =========================
+   TELEFON
+========================= */
+
+@media (max-width: 700px) {
+
+
+    .gallery-header {
+
+        padding:
+            20px 5%;
+
+    }
+
+
+    .gallery-logo {
+
+        font-size:
+            27px;
+
+    }
+
+
+    .gallery-intro {
+
+        padding:
+            85px 20px 50px;
+
+    }
+
+
+    .gallery-subtitle {
+
+        font-size:
+            25px;
+
+    }
+
+
+    .gallery {
+
+        width:
+            92%;
+
+    }
+
+
+    .gallery-grid {
+
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+
+        gap:
+            10px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="gallery-header">
+
+
+    <a
+        href="index.html"
+        class="gallery-logo">
+
+        kesmislalih
+
+    </a>
+
+
+    <a
+        href="index.html"
+        class="back-button">
+
+        ← ANA SAYFA
+
+    </a>
+
+
+</header>
+
+
+
+<!-- =========================
+     BAŞLIK
+========================= -->
+
+<section class="gallery-intro">
+
+
+    <div class="gallery-label">
+        KESMISLALIH
+    </div>
+
+
+    <h1>
+        Galeri
+    </h1>
+
+
+    <p class="gallery-subtitle">
+        hikâyelerden kareler
+    </p>
+
+
+</section>
+
+
+
+<!-- =========================
+     FOTOĞRAFLAR
+========================= -->
+
+<main class="gallery">
+
+
+    <div class="gallery-grid">
+
+
+
+        <!-- =====================
+             FOTOĞRAF 1
+        ====================== -->
+
+        <div class="gallery-item">
+
+            <!-- IMG BURAYA -->
+
+            <div class="image-placeholder">
+
+                FOTOĞRAF 1
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================
+             FOTOĞRAF 2
+        ====================== -->
+
+        <div class="gallery-item">
+
+            <!-- IMG BURAYA -->
+
+            <div class="image-placeholder">
+
+                FOTOĞRAF 2
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================
+             FOTOĞRAF 3
+        ====================== -->
+
+        <div class="gallery-item">
+
+            <!-- IMG BURAYA -->
+
+            <div class="image-placeholder">
+
+                FOTOĞRAF 3
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================
+             FOTOĞRAF 4
+        ====================== -->
+
+        <div class="gallery-item">
+
+            <!-- IMG BURAYA -->
+
+            <div class="image-placeholder">
+
+                FOTOĞRAF 4
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================
+             FOTOĞRAF 5
+        ====================== -->
+
+        <div class="gallery-item">
+
+            <!-- IMG BURAYA -->
+
+            <div class="image-placeholder">
+
+                FOTOĞRAF 5
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================
+             FOTOĞRAF 6
+        ====================== -->
+
+        <div class="gallery-item">
+
+            <!-- IMG BURAYA -->
+
+            <div class="image-placeholder">
+
+                FOTOĞRAF 6
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</main>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="gallery-footer">
+
+
+    <div class="gallery-footer-logo">
+        kesmislalih
+    </div>
+
+
+    <p>
+        © 2026 kesmislalih
+    </p>
+
+
+</footer>
+
+
+</body>
+
+</html>
