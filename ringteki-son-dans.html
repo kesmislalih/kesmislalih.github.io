@@ -11,21 +11,176 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap');
 
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
 html {
     scroll-behavior: smooth;
 }
 
+
 body {
+
     background: #09090b;
+
     color: #eee9e2;
+
     font-family: "Cormorant Garamond", serif;
+
+    transition:
+        background .35s ease,
+        color .35s ease;
+
 }
+
+
+
+/* =========================
+   AYDINLIK MOD
+========================= */
+
+body.light-mode {
+
+    background: #f4f0e9;
+
+    color: #242127;
+
+}
+
+
+body.light-mode .logo {
+
+    color: #29232d;
+
+    text-shadow: none;
+
+}
+
+
+body.light-mode .back {
+
+    color: #756d72;
+
+}
+
+
+body.light-mode .back:hover {
+
+    color: #80669d;
+
+}
+
+
+body.light-mode .book-title {
+
+    color: #29232d;
+
+}
+
+
+body.light-mode .author {
+
+    color: #80669d;
+
+    text-shadow: none;
+
+}
+
+
+body.light-mode .read-count {
+
+    color: #827b76;
+
+}
+
+
+body.light-mode .cover img {
+
+    border-color: #d5cec4;
+
+    box-shadow:
+        0 25px 60px rgba(40,35,45,.18);
+
+}
+
+
+body.light-mode .quote {
+
+    color: #403a3f;
+
+}
+
+
+body.light-mode .description {
+
+    color: #625c59;
+
+}
+
+
+body.light-mode .about-title,
+body.light-mode .chapters-title {
+
+    color: #77716e;
+
+}
+
+
+body.light-mode .about-text {
+
+    color: #716b68;
+
+}
+
+
+body.light-mode .chapter {
+
+    color: #454044;
+
+    border-color: #d9d2ca;
+
+}
+
+
+body.light-mode .chapter:hover {
+
+    color: #80669d;
+
+}
+
+
+body.light-mode .chapter-arrow {
+
+    color: #80669d;
+
+}
+
+
+body.light-mode footer {
+
+    border-color: #d9d2ca;
+
+}
+
+
+body.light-mode .footer-logo {
+
+    color: #29232d;
+
+}
+
+
+body.light-mode footer p {
+
+    color: #827b76;
+
+}
+
 
 
 /* =========================
@@ -33,40 +188,125 @@ body {
 ========================= */
 
 header {
+
     width: 100%;
+
     padding: 25px 6%;
 
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
 }
 
+
 .logo {
+
     color: #f8f3ff;
+
     text-decoration: none;
 
-    font-family: "Great Vibes", cursive;
+    font-family:
+        "Great Vibes",
+        cursive;
+
     font-size: 30px;
 
     text-shadow:
         0 0 7px rgba(220,195,255,.4);
+
 }
 
+
 .back {
+
     color: #aaa39a;
+
     text-decoration: none;
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        sans-serif;
+
     font-size: 8px;
 
     letter-spacing: 2px;
 
     transition: .3s;
+
 }
 
+
 .back:hover {
+
     color: #cdb9eb;
+
 }
+
+
+
+/* =========================
+   MOD BUTONU
+========================= */
+
+.theme-button {
+
+    position: fixed;
+
+    right: 25px;
+
+    bottom: 25px;
+
+    width: 46px;
+
+    height: 46px;
+
+    border:
+        1px solid #38323f;
+
+    background:
+        rgba(17,16,21,.92);
+
+    color: #eee9e2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    z-index: 50;
+
+    transition: .3s;
+
+}
+
+
+.theme-button:hover {
+
+    border-color: #b9a7d8;
+
+    transform: translateY(-3px);
+
+}
+
+
+body.light-mode .theme-button {
+
+    background: #fffdf8;
+
+    border-color: #cfc7bd;
+
+    color: #403944;
+
+}
+
 
 
 /* =========================
@@ -74,14 +314,19 @@ header {
 ========================= */
 
 .book-page {
-    width: min(900px, 90%);
+
+    width:
+        min(900px, 90%);
 
     margin: auto;
 
-    padding: 55px 0 110px;
+    padding:
+        55px 0 110px;
 
     text-align: center;
+
 }
+
 
 
 /* =========================
@@ -89,20 +334,28 @@ header {
 ========================= */
 
 .book-title {
-    font-size: clamp(44px, 8vw, 72px);
+
+    font-size:
+        clamp(44px, 8vw, 72px);
 
     font-weight: 400;
 
     letter-spacing: 2px;
 
     color: #eee9e2;
+
 }
 
+
 .author {
+
     margin-top: 5px;
+
     margin-bottom: 35px;
 
-    font-family: "Great Vibes", cursive;
+    font-family:
+        "Great Vibes",
+        cursive;
 
     font-size: 29px;
 
@@ -110,7 +363,9 @@ header {
 
     text-shadow:
         0 0 8px rgba(205,185,235,.4);
+
 }
+
 
 
 /* =========================
@@ -118,18 +373,23 @@ header {
 ========================= */
 
 .read-count {
+
     margin-bottom: 40px;
 
     color: #756d76;
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        sans-serif;
 
     font-size: 8px;
 
     letter-spacing: 2px;
 
     text-transform: uppercase;
+
 }
+
 
 
 /* =========================
@@ -137,23 +397,31 @@ header {
 ========================= */
 
 .cover {
-    width: min(315px, 76vw);
+
+    width:
+        min(315px, 76vw);
 
     margin: auto;
+
 }
 
+
 .cover img {
+
     width: 100%;
 
     height: auto;
 
     display: block;
 
-    border: 1px solid #39323f;
+    border:
+        1px solid #39323f;
 
     box-shadow:
         0 25px 60px rgba(0,0,0,.55);
+
 }
+
 
 
 /* =========================
@@ -161,14 +429,18 @@ header {
 ========================= */
 
 .intro {
+
     max-width: 680px;
 
     margin: 60px auto 0;
 
     text-align: left;
+
 }
 
+
 .quote {
+
     color: #ddd5cc;
 
     font-size: 24px;
@@ -178,15 +450,20 @@ header {
     font-style: italic;
 
     margin-bottom: 25px;
+
 }
 
+
 .description {
+
     color: #aaa39a;
 
     font-size: 19px;
 
     line-height: 1.75;
+
 }
+
 
 
 /* =========================
@@ -194,6 +471,7 @@ header {
 ========================= */
 
 .divider {
+
     width: 55px;
 
     height: 1px;
@@ -201,7 +479,9 @@ header {
     background: #b9a7d8;
 
     margin: 55px auto;
+
 }
+
 
 
 /* =========================
@@ -209,32 +489,45 @@ header {
 ========================= */
 
 .about {
+
     max-width: 590px;
 
     margin: auto;
+
 }
 
+
 .about-title {
+
     color: #aaa39a;
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        sans-serif;
 
     font-size: 9px;
 
     letter-spacing: 4px;
 
     margin-bottom: 16px;
+
 }
 
+
 .about-text {
+
     color: #77716b;
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        sans-serif;
 
     font-size: 11px;
 
     line-height: 1.9;
+
 }
+
 
 
 /* =========================
@@ -242,28 +535,37 @@ header {
 ========================= */
 
 .chapters {
+
     max-width: 720px;
 
     margin: 65px auto 0;
 
     text-align: left;
+
 }
 
+
 .chapters-title {
+
     text-align: center;
 
     color: #aaa39a;
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        sans-serif;
 
     font-size: 9px;
 
     letter-spacing: 4px;
 
     margin-bottom: 20px;
+
 }
 
+
 .chapter {
+
     display: flex;
 
     justify-content: space-between;
@@ -272,38 +574,56 @@ header {
 
     padding: 20px 5px;
 
-    border-top: 1px solid #28252b;
+    border-top:
+        1px solid #28252b;
 
     color: #ddd6ce;
 
     text-decoration: none;
 
     transition: .3s;
+
 }
+
 
 .chapter:last-child {
-    border-bottom: 1px solid #28252b;
+
+    border-bottom:
+        1px solid #28252b;
+
 }
 
+
 .chapter:hover {
+
     color: #cdb9eb;
 
     padding-left: 15px;
 
     padding-right: 15px;
+
 }
+
 
 .chapter-name {
+
     font-size: 21px;
+
 }
+
 
 .chapter-arrow {
+
     color: #81758f;
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        sans-serif;
 
     font-size: 13px;
+
 }
+
 
 
 /* =========================
@@ -311,32 +631,47 @@ header {
 ========================= */
 
 footer {
-    padding: 55px 20px;
 
-    border-top: 1px solid #252328;
+    padding:
+        55px 20px;
+
+    border-top:
+        1px solid #252328;
 
     text-align: center;
+
 }
 
+
 .footer-logo {
-    font-family: "Great Vibes", cursive;
+
+    font-family:
+        "Great Vibes",
+        cursive;
 
     font-size: 31px;
 
     color: #f8f3ff;
+
 }
 
+
 footer p {
+
     margin-top: 10px;
 
     color: #66615d;
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        sans-serif;
 
     font-size: 7px;
 
     letter-spacing: 2px;
+
 }
+
 
 
 /* =========================
@@ -346,37 +681,74 @@ footer p {
 @media (max-width: 700px) {
 
     header {
-        padding: 20px 5%;
+
+        padding:
+            20px 5%;
+
     }
+
 
     .logo {
+
         font-size: 27px;
+
     }
 
+
     .book-page {
+
         width: 88%;
 
         padding-top: 45px;
+
     }
+
 
     .book-title {
+
         font-size: 43px;
+
     }
+
 
     .author {
+
         font-size: 25px;
+
     }
+
 
     .quote {
+
         font-size: 21px;
+
     }
+
 
     .description {
+
         font-size: 17px;
+
     }
 
+
     .chapter-name {
+
         font-size: 17px;
+
+    }
+
+
+    .theme-button {
+
+        right: 18px;
+
+        bottom: 18px;
+
+        width: 42px;
+
+        height: 42px;
+
     }
 
 }
@@ -389,17 +761,44 @@ footer p {
 <body>
 
 
+
 <header>
 
-    <a href="index.html" class="logo">
+
+    <a
+        href="index.html"
+        class="logo">
+
         kesmislalih
+
     </a>
 
-    <a href="index.html" class="back">
+
+    <a
+        href="index.html"
+        class="back">
+
         ← ANA SAYFA
+
     </a>
+
 
 </header>
+
+
+
+<!-- =========================
+     AYDINLIK / KARANLIK
+========================= -->
+
+<button
+    class="theme-button"
+    id="themeButton"
+    aria-label="Aydınlık ve karanlık modu değiştir">
+
+    ☾
+
+</button>
 
 
 
@@ -407,19 +806,24 @@ footer p {
 
 
     <h1 class="book-title">
+
         Ringteki Son Dans
+
     </h1>
 
 
     <div class="author">
+
         kesmislalih
+
     </div>
 
 
-    <!-- KİTAP OKUNMA SAYISI -->
-
     <div class="read-count">
-        <span id="bookViews">0</span> okunma
+
+        <span id="bookViews">0</span>
+        okunma
+
     </div>
 
 
@@ -439,6 +843,7 @@ footer p {
     <!-- AÇIKLAMA -->
 
     <section class="intro">
+
 
         <div class="quote">
 
@@ -476,6 +881,7 @@ footer p {
 
         </div>
 
+
     </section>
 
 
@@ -488,8 +894,11 @@ footer p {
 
     <section class="about">
 
+
         <div class="about-title">
+
             KİTAP HAKKINDA
+
         </div>
 
 
@@ -504,6 +913,7 @@ footer p {
 
         </p>
 
+
     </section>
 
 
@@ -512,9 +922,13 @@ footer p {
 
     <section class="chapters">
 
+
         <div class="chapters-title">
+
             BÖLÜMLER
+
         </div>
+
 
 
         <!-- BÖLÜM 1 -->
@@ -524,14 +938,19 @@ footer p {
             class="chapter">
 
             <span class="chapter-name">
+
                 RİNGTEKİ SON DANS
+
             </span>
 
             <span class="chapter-arrow">
+
                 →
+
             </span>
 
         </a>
+
 
 
         <!-- BÖLÜM 2 -->
@@ -541,14 +960,19 @@ footer p {
             class="chapter">
 
             <span class="chapter-name">
+
                 LACİVERT KAPAKLI MASAL KİTABI
+
             </span>
 
             <span class="chapter-arrow">
+
                 →
+
             </span>
 
         </a>
+
 
 
         <!-- BÖLÜM 3 -->
@@ -558,14 +982,19 @@ footer p {
             class="chapter">
 
             <span class="chapter-name">
+
                 KREM RENKLİ SALON
+
             </span>
 
             <span class="chapter-arrow">
+
                 →
+
             </span>
 
         </a>
+
 
     </section>
 
@@ -576,13 +1005,20 @@ footer p {
 
 <footer>
 
+
     <div class="footer-logo">
+
         kesmislalih
+
     </div>
 
+
     <p>
+
         © 2026 kesmislalih
+
     </p>
+
 
 </footer>
 
@@ -590,20 +1026,96 @@ footer p {
 
 <script>
 
-/* KİTAP OKUNMA SAYACI */
+
+/* =========================
+   KİTAP OKUNMA SAYACI
+========================= */
 
 let bookViews =
-    Number(localStorage.getItem("ringtekiSonDansViews") || 0);
+    Number(
+        localStorage.getItem(
+            "ringtekiSonDansViews"
+        ) || 0
+    );
+
 
 bookViews++;
+
 
 localStorage.setItem(
     "ringtekiSonDansViews",
     bookViews
 );
 
-document.getElementById("bookViews").textContent =
-    bookViews;
+
+document.getElementById(
+    "bookViews"
+).textContent = bookViews;
+
+
+
+/* =========================
+   AYDINLIK / KARANLIK MOD
+========================= */
+
+const themeButton =
+    document.getElementById(
+        "themeButton"
+    );
+
+
+const savedTheme =
+    localStorage.getItem(
+        "siteTheme"
+    );
+
+
+if (savedTheme === "light") {
+
+    document.body.classList.add(
+        "light-mode"
+    );
+
+    themeButton.textContent = "☀";
+
+}
+
+
+themeButton.addEventListener(
+    "click",
+    function() {
+
+        document.body.classList.toggle(
+            "light-mode"
+        );
+
+
+        if (
+            document.body.classList.contains(
+                "light-mode"
+            )
+        ) {
+
+            localStorage.setItem(
+                "siteTheme",
+                "light"
+            );
+
+            themeButton.textContent = "☀";
+
+        } else {
+
+            localStorage.setItem(
+                "siteTheme",
+                "dark"
+            );
+
+            themeButton.textContent = "☾";
+
+        }
+
+    }
+);
 
 </script>
 
