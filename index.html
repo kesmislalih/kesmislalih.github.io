@@ -1,638 +1,1001 @@
-<!DOCTYPE html>
-<html lang="tr">
-
-<head>
-
-<meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0">
-
-<title>kesmislalih</title>
-
-
-<style>
-
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap');
-
-
-/* =========================
-   GENEL
-========================= */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-
-html {
-    scroll-behavior: smooth;
-}
-
-
-body {
-    background: #09090b;
-    color: #f3efe8;
-    font-family: "Cormorant Garamond", serif;
-}
-
-
-/* =========================
-   HEADER
-========================= */
-
-header {
-
-    width: 100%;
-
-    padding: 25px 6%;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    z-index: 100;
-
-}
-
-
-.logo {
-
-    color: #f8f3ff;
-
-    text-decoration: none;
-
-    font-family: "Great Vibes", cursive;
-
-    font-size: 32px;
-
-    text-shadow:
-        0 0 6px rgba(220,195,255,.45),
-        0 0 16px rgba(185,167,216,.25);
-
-}
-
-
-/* =========================
-   MENÜ BUTONU
-========================= */
-
-.menu-button {
-
-    width: 40px;
-    height: 40px;
-
-    border: 1px solid #38323f;
-
-    background: rgba(9,9,11,.75);
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 5px;
-
-    cursor: pointer;
-
-    z-index: 102;
-
-}
-
-
-.menu-line {
-
-    width: 18px;
-    height: 1px;
-
-    background: #eee8e1;
-
-    transition: .3s;
-
-}
-
-
-.menu-button.active
-.menu-line:nth-child(1) {
-
-    transform:
-        translateY(6px)
-        rotate(45deg);
-
-}
-
-
-.menu-button.active
-.menu-line:nth-child(2) {
-
-    opacity: 0;
-
-}
-
-
-.menu-button.active
-.menu-line:nth-child(3) {
-
-    transform:
-        translateY(-6px)
-        rotate(-45deg);
-
-}
-
-
-/* =========================
-   MENÜ PANELİ
-========================= */
-
-.menu-panel {
-
-    position: fixed;
-
-    top: 0;
-
-    right: -330px;
-
-    width: 310px;
-
-    height: 100vh;
-
-    background: #111015;
-
-    border-left: 1px solid #302a38;
-
-    padding: 120px 40px 40px;
-
-    z-index: 101;
-
-    transition: right .45s ease;
-
-    overflow-y: auto;
-
-}
-
-
-.menu-panel.open {
-
-    right: 0;
-
-}
-
-
-.menu-small-title {
-
-    font-family: Arial, sans-serif;
-
-    font-size: 8px;
-
-    letter-spacing: 4px;
-
-    color: #756d79;
-
-    margin-bottom: 30px;
-
-}
-
-
-.menu-panel a {
-
-    display: block;
-
-    padding: 18px 0;
-
-    border-bottom: 1px solid #29252d;
-
-    color: #e8e2da;
-
-    text-decoration: none;
-
-    font-size: 22px;
-
-    transition: .3s;
-
-}
-
-
-.menu-panel a:hover {
-
-    color: #cdb9eb;
-
-    padding-left: 8px;
-
-}
-
-
-.menu-footer {
-
-    margin-top: 45px;
-
-    font-family: "Great Vibes", cursive;
-
-    font-size: 26px;
-
-    color: #8f819e;
-
-}
-
-
-/* =========================
-   MENÜ ARKA PLAN
-========================= */
-
-.menu-overlay {
-
-    position: fixed;
-
-    inset: 0;
-
-    background: rgba(0,0,0,.45);
-
-    backdrop-filter: blur(2px);
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    transition: .3s;
-
-    z-index: 100;
-
-}
-
-
-.menu-overlay.open {
-
-    opacity: 1;
-
-    visibility: visible;
-
-}
-
-
-/* =========================
-   SOSYAL MEDYA
-========================= */
-
-.menu-social-title {
-
-    margin-top: 45px;
-
-    margin-bottom: 18px;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 8px;
-
-    letter-spacing: 3px;
-
-    color: #756d79;
-
-}
-
-
-.menu-social {
-
-    display: flex;
-
-    gap: 15px;
-
-    align-items: center;
-
-}
-
-
-.menu-social a {
-
-    border: none;
-
-    padding: 0;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-}
-
-
-.menu-social a:hover {
-
-    padding-left: 0;
-
-}
-
-
-.icon {
-
-    width: 20px;
-
-    height: 20px;
-
-    fill: #aaa39a;
-
-    transition: .3s;
-
-}
-
-
-.menu-social a:hover .icon {
-
-    fill: #cdb9eb;
-
-}
-
-
-.wattpad-icon {
-
-    font-family: Arial, sans-serif;
-
-    font-weight: bold;
-
-    font-size: 20px;
-
-    color: #aaa39a;
-
-}
-
-
-.menu-social a:hover
-.wattpad-icon {
-
-    color: #cdb9eb;
-
-}
-
-
-/* =========================
-   BURAYA DEVAM EDECEĞİZ
-========================= */
-
-</style>
-
-</head>
-
-
-<body>
-
-
-<!-- =========================
-     ÜST KISIM
-========================= -->
-
-<header>
-
-
-    <a
-        href="index.html"
-        class="logo">
-
-        kesmislalih
-
-    </a>
-
-
-    <button
-        class="menu-button"
-        id="menuButton"
-        aria-label="Menüyü aç">
-
-        <span class="menu-line"></span>
-
-        <span class="menu-line"></span>
-
-        <span class="menu-line"></span>
-
-    </button>
-
-
-</header>
-
-
-
-<!-- =========================
-     MENÜ ARKA PLANI
-========================= -->
-
-<div
-    class="menu-overlay"
-    id="menuOverlay">
+ <!DOCTYPE html>  <html lang="tr">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>kesmislalih</title>  <style>  
+  
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap');  
+  
+* {  
+    margin: 0;  
+    padding: 0;  
+    box-sizing: border-box;  
+}  
+  
+html {  
+    scroll-behavior: smooth;  
+}  
+  
+body {  
+    background: #09090b;  
+    color: #f3efe8;  
+    font-family: "Cormorant Garamond", serif;  
+}  
+  
+/* =========================  
+   HEADER  
+========================= */  
+  
+header {  
+    width: 100%;  
+    padding: 25px 6%;  
+  
+    display: flex;  
+    justify-content: space-between;  
+    align-items: center;  
+  
+    position: absolute;  
+    top: 0;  
+    left: 0;  
+  
+    z-index: 100;  
+}  
+  
+.logo {  
+    color: #f8f3ff;  
+    text-decoration: none;  
+  
+    font-family: "Great Vibes", cursive;  
+    font-size: 32px;  
+  
+    text-shadow:  
+        0 0 6px rgba(220,195,255,.45),  
+        0 0 16px rgba(185,167,216,.25);  
+}  
+  
+/* =========================  
+   ÜÇ ÇİZGİLİ MENÜ  
+========================= */  
+  
+.menu-button {  
+    width: 40px;  
+    height: 40px;  
+  
+    border: 1px solid #38323f;  
+    background: rgba(9,9,11,.75);  
+  
+    display: flex;  
+    flex-direction: column;  
+    justify-content: center;  
+    align-items: center;  
+  
+    gap: 5px;  
+  
+    cursor: pointer;  
+  
+    z-index: 102;  
+}  
+  
+.menu-line {  
+    width: 18px;  
+    height: 1px;  
+  
+    background: #eee8e1;  
+  
+    transition: .3s;  
+}  
+  
+.menu-button.active .menu-line:nth-child(1) {  
+    transform: translateY(6px) rotate(45deg);  
+}  
+  
+.menu-button.active .menu-line:nth-child(2) {  
+    opacity: 0;  
+}  
+  
+.menu-button.active .menu-line:nth-child(3) {  
+    transform: translateY(-6px) rotate(-45deg);  
+}  
+  
+/* =========================  
+   MENÜ PANELİ  
+========================= */  
+  
+.menu-panel {  
+    position: fixed;  
+  
+    top: 0;  
+    right: -330px;  
+  
+    width: 310px;  
+    height: 100vh;  
+  
+    background: #111015;  
+  
+    border-left: 1px solid #302a38;  
+  
+    padding: 120px 40px 40px;  
+  
+    z-index: 101;  
+  
+    transition: right .45s ease;  
+}  
+  
+.menu-panel.open {  
+    right: 0;  
+}  
+  
+.menu-small-title {  
+    font-family: Arial, sans-serif;  
+  
+    font-size: 8px;  
+    letter-spacing: 4px;  
+  
+    color: #756d79;  
+  
+    margin-bottom: 30px;  
+}  
+  
+.menu-panel a {  
+    display: block;  
+  
+    padding: 18px 0;  
+  
+    border-bottom: 1px solid #29252d;  
+  
+    color: #e8e2da;  
+  
+    text-decoration: none;  
+  
+    font-size: 22px;  
+  
+    transition: .3s;  
+}  
+  
+.menu-panel a:hover {  
+    color: #cdb9eb;  
+    padding-left: 8px;  
+}  
+  
+.menu-footer {  
+    position: absolute;  
+  
+    bottom: 35px;  
+    left: 40px;  
+  
+    font-family: "Great Vibes", cursive;  
+  
+    font-size: 26px;  
+  
+    color: #8f819e;  
+}  
+  
+/* MENÜ ARKA PLAN */  
+  
+.menu-overlay {  
+    position: fixed;  
+  
+    inset: 0;  
+  
+    background: rgba(0,0,0,.45);  
+  
+    backdrop-filter: blur(2px);  
+  
+    opacity: 0;  
+    visibility: hidden;  
+  
+    transition: .3s;  
+  
+    z-index: 100;  
+}  
+  
+.menu-overlay.open {  
+    opacity: 1;  
+    visibility: visible;  
+}  
+  
+/* =========================  
+   ANA SAYFA  
+========================= */  
+  
+.hero {  
+    min-height: 100vh;  
+  
+    display: flex;  
+    justify-content: center;  
+    align-items: center;  
+  
+    text-align: center;  
+  
+    padding: 100px 25px 80px;  
+  
+    position: relative;  
+  
+    overflow: hidden;  
+}  
+  
+.hero::before {  
+    content: "";  
+  
+    position: absolute;  
+  
+    width: 520px;  
+    height: 520px;  
+  
+    background: #5d4d73;  
+  
+    opacity: .12;  
+  
+    filter: blur(140px);  
+  
+    border-radius: 50%;  
+}  
+  
+.hero-content {  
+    position: relative;  
+    z-index: 2;  
+}  
+  
+.hero h1 {  
+    font-family: "Great Vibes", cursive;  
+  
+    font-size: clamp(75px, 18vw, 155px);  
+  
+    font-weight: 400;  
+  
+    line-height: 1;  
+  
+    color: #f8f3ff;  
+  
+    text-shadow:  
+        0 0 8px rgba(220,195,255,.4),  
+        0 0 25px rgba(185,167,216,.25);  
+}  
+  
+.line {  
+    width: 65px;  
+    height: 1px;  
+  
+    background: #b9a7d8;  
+  
+    margin: 30px auto;  
+}  
+  
+.hero p {  
+    max-width: 550px;  
+  
+    margin: auto;  
+  
+    color: #aaa39a;  
+  
+    font-family: Arial, sans-serif;  
+  
+    font-size: 10px;  
+  
+    line-height: 1.8;  
+  
+    letter-spacing: 3px;  
+  
+    text-transform: uppercase;  
+}  
+  
+.button {  
+    display: inline-block;  
+  
+    margin-top: 45px;  
+  
+    padding: 14px 27px;  
+  
+    border: 1px solid #6e6384;  
+  
+    color: #f4f0ea;  
+  
+    text-decoration: none;  
+  
+    font-family: Arial, sans-serif;  
+  
+    font-size: 9px;  
+  
+    letter-spacing: 2px;  
+  
+    transition: .3s;  
+}  
+  
+.button:hover {  
+    background: #b9a7d8;  
+    color: #09090b;  
+}  
+  
+/* =========================  
+   BÖLÜMLER  
+========================= */  
+  
+.section {  
+    padding: 120px 7%;  
+}  
+  
+.section-title {  
+    font-size: 44px;  
+  
+    font-weight: 400;  
+  
+    margin-bottom: 4px;  
+}  
+  
+.section-subtitle {  
+    font-family: "Great Vibes", cursive;  
+  
+    font-size: 31px;  
+  
+    color: #d8c8f0;  
+  
+    text-shadow:  
+        0 0 5px rgba(216,200,240,.5),  
+        0 0 16px rgba(185,167,216,.3);  
+  
+    margin-bottom: 55px;  
+}  
+  
+/* =========================  
+   KİTAPLIK  
+========================= */  
+  
+.library {  
+    padding: 45px 35px 0;  
+  
+    background:  
+        linear-gradient(  
+            to bottom,  
+            #121014,  
+            #0c0b0e  
+        );  
+  
+    border: 1px solid #28242c;  
+}  
+  
+.shelf {  
+    display: flex;  
+  
+    align-items: flex-end;  
+  
+    gap: 32px;  
+  
+    min-height: 340px;  
+  
+    padding: 0 15px;  
+  
+    overflow-x: auto;  
+}  
+  
+.book {  
+    flex: 0 0 auto;  
+  
+    width: 145px;  
+  
+    cursor: pointer;  
+  
+    transition: .4s;  
+  
+    text-decoration: none;  
+}  
+  
+.book:hover {  
+    transform: translateY(-12px);  
+}  
+  
+.book-cover {  
+    height: 220px;  
+  
+    border: 1px solid #39323f;  
+  
+    display: flex;  
+  
+    justify-content: center;  
+    align-items: center;  
+  
+    overflow: hidden;  
+  
+    background: #151319;  
+  
+    box-shadow:  
+        8px 8px 20px rgba(0,0,0,.45);  
+}  
+  
+.book-cover img {  
+    width: 100%;  
+    height: 100%;  
+  
+    object-fit: cover;  
+  
+    display: block;  
+}  
+  
+.book-name {  
+    margin-top: 14px;  
+  
+    font-size: 18px;  
+  
+    text-align: center;  
+  
+    color: #e8e2d9;  
+}  
+  
+.book-info {  
+    text-align: center;  
+  
+    color: #cdb9eb;  
+  
+    font-family: Arial, sans-serif;  
+  
+    font-size: 8px;  
+  
+    letter-spacing: 1px;  
+  
+    margin-top: 12px;  
+}  
+  
+.wood {  
+    height: 13px;  
+  
+    background:  
+        linear-gradient(  
+            to bottom,  
+            #403448,  
+            #211d25  
+        );  
+  
+    border-top: 1px solid #665873;  
+}  
+  
+/* =========================  
+   HAKKIMDA  
+========================= */  
+  
+.about {  
+    padding: 100px 20px;  
+  
+    text-align: center;  
+}  
+  
+.about-title {  
+    font-size: 13px;  
+  
+    letter-spacing: 4px;  
+  
+    color: #aaa39a;  
+  
+    margin-bottom: 18px;  
+}  
+  
+.about-text {  
+    max-width: 520px;  
+  
+    margin: auto;  
+  
+    color: #77716b;  
+  
+    font-family: Arial, sans-serif;  
+  
+    font-size: 11px;  
+  
+    line-height: 1.9;  
+}  
+  
+/* =========================  
+   DUYURULAR  
+========================= */  
+  
+.news {  
+    max-width: 800px;  
+  
+    margin: auto;  
+}  
+  
+.news-item {  
+    border-top: 1px solid #29272b;  
+  
+    padding: 22px 0;  
+  
+    display: flex;  
+  
+    justify-content: space-between;  
+  
+    gap: 30px;  
+}  
+  
+.news-date {  
+    color: #716b66;  
+  
+    font-family: Arial, sans-serif;  
+  
+    font-size: 8px;  
+  
+    letter-spacing: 1px;  
+}  
+  
+.news-title {  
+    font-size: 19px;  
+  
+    text-align: right;  
+  
+    color: #d8d2ca;  
+}  
+  
+/* =========================  
+   FOOTER  
+========================= */  
+  
+footer {  
+    padding: 65px 7%;  
+  
+    border-top: 1px solid #252328;  
+  
+    text-align: center;  
+}  
+  
+.footer-logo {  
+    font-family: "Great Vibes", cursive;  
+  
+    font-size: 35px;  
+  
+    color: #f8f3ff;  
+}  
+  
+footer p {  
+    margin-top: 15px;  
+  
+    color: #77716a;  
+  
+    font-family: Arial, sans-serif;  
+  
+    font-size: 8px;  
+  
+    letter-spacing: 2px;  
+}  
+  
+/* =========================  
+   TELEFON  
+========================= */  
+  
+@media (max-width: 700px) {  
+  
+    header {  
+        padding: 20px 5%;  
+    }  
+  
+    .logo {  
+        font-size: 27px;  
+    }  
+  
+    .menu-panel {  
+        width: 285px;  
+        right: -300px;  
+  
+        padding: 110px 32px 30px;  
+    }  
+  
+    .menu-panel a {  
+        font-size: 20px;  
+    }  
+  
+    .hero h1 {  
+        font-size: 82px;  
+    }  
+  
+    .hero p {  
+        font-size: 8px;  
+  
+        letter-spacing: 2px;  
+    }  
+  
+    .section {  
+        padding: 90px 6%;  
+    }  
+  
+    .section-title {  
+        font-size: 38px;  
+    }  
+  
+    .section-subtitle {  
+        font-size: 25px;  
+    }  
+  
+    .library {  
+        padding: 30px 15px 0;  
+    }  
+  
+    .book {  
+        width: 125px;  
+    }  
+  
+    .book-cover {  
+        height: 195px;  
+    }  
+  
+    .about {  
+        padding: 80px 20px;  
+    }  
+  
+    .news-item {  
+        display: block;  
+    }  
+  
+    .news-title {  
+        margin-top: 9px;  
+  
+        text-align: left;  
+    }  
+  
+}  
+  
+</style>  </head>  <body>  <!-- =========================  
+     ÜST KISIM  
+========================= -->  <header>  <a href="index.html" class="logo">  
+    kesmislalih  
+</a>  
+
+
+<button  
+    class="menu-button"  
+    id="menuButton"  
+    aria-label="Menüyü aç">  
+
+    <span class="menu-line"></span>  
+    <span class="menu-line"></span>  
+    <span class="menu-line"></span>  
+
+</button>
+
+</header>  <!-- =========================  
+     MENÜ  
+========================= -->  <div  
+    class="menu-overlay"  
+    id="menuOverlay">  
+</div>  <nav  
+    class="menu-panel"  
+    id="menuPanel">  <div class="menu-small-title">  
+    KESMISLALIH  
+</div>  
+
+
+<a href="#">  
+    Ana Sayfa  
+</a>  
+
+
+<a href="#kitaplar">  
+    Kitaplar  
+</a>  
+
+
+<a href="#hakkimda">  
+    Hakkımda  
+</a>  
+
+
+<a href="#galeri">  
+    Galeri  
+</a>  
+
+
+<a href="#duvar">  
+    Duvar  
+</a>  
+
+
+<a href="#duyurular">  
+    Duyurular  
+</a>  
+
+
+<a href="#iletisim">  
+    İletişim  
+</a>  
+
+
+<div class="menu-footer">  
+    kesmislalih  
 </div>
 
+</nav>  <!-- =========================  
+     ANA SAYFA  
+========================= -->  <section class="hero">  <div class="hero-content">  
 
+    <h1>  
+        kesmislalih  
+    </h1>  
 
-<!-- =========================
-     ANA MENÜ
-========================= -->
 
-<nav
-    class="menu-panel"
-    id="menuPanel">
+    <div class="line"></div>  
 
 
-    <div class="menu-small-title">
+    <p>  
+        some stories are not meant to be told, but felt.  
+    </p>  
 
-        KESMISLALIH
 
-    </div>
+    <a  
+        href="#kitaplar"  
+        class="button">  
 
+        KİTAPLARIMI KEŞFET  
 
-    <a href="#">
+    </a>  
 
-        Ana Sayfa
+</div>
 
-    </a>
+</section>  <!-- =========================  
+     KİTAPLAR  
+========================= -->  <section  
+    class="section"  
+    id="kitaplar">  <h2 class="section-title">  
+    Kitaplarım  
+</h2>  
 
 
-    <a href="#kitaplar">
+<p class="section-subtitle">  
+    kelimelerden doğan hikâyeler  
+</p>  
 
-        Kitaplar
 
-    </a>
 
+<div class="library">  
 
-    <a href="#hakkimda">
 
-        Hakkımda
+    <div class="shelf">  
 
-    </a>
 
+        <!-- RİNGTEKİ SON DANS -->  
 
-    <a href="galeri.html">
+        <a  
+            href="ringteki-son-dans.html"  
+            class="book">  
 
-        Galeri
 
-    </a>
+            <div class="book-cover">  
 
+                <img  
+                    src="file_00000000ce4881f4b929fc5dfbb07694.png"  
+                    alt="Ringteki Son Dans">  
 
-    <a href="#duvar">
+            </div>  
 
-        Duvar
 
-    </a>
+            <div class="book-name">  
+                Ringteki Son Dans  
+            </div>  
 
 
-    <a href="#duyurular">
+            <div class="book-info">  
+                KİTABI İNCELE →  
+            </div>  
 
-        Duyurular
 
-    </a>
+        </a>  
 
 
-    <a href="#iletisim">
 
-        İletişim
+        <!-- İKİNCİ KİTAP -->  
 
-    </a>
+        <div class="book">  
 
+            <div class="book-cover">  
 
+                <span style="color:#6f6872;">  
+                    YENİ<br>HİKÂYE  
+                </span>  
 
-    <!-- =========================
-         SOSYAL MEDYA
-    ========================= -->
+            </div>  
 
-    <div class="menu-social-title">
 
-        BENİ TAKİP ET
+            <div class="book-name">  
+                Yakında...  
+            </div>  
 
-    </div>
 
+            <div class="book-info">  
+                ÇOK YAKINDA  
+            </div>  
 
-    <div class="menu-social">
+        </div>  
 
 
-        <!-- TIKTOK -->
 
-        <a
-            href="https://www.tiktok.com/@kesmislalih?_r=1&_t=ZS-98gv3YRvFOK"
-            target="_blank"
-            aria-label="TikTok">
+        <!-- ÜÇÜNCÜ KİTAP -->  
 
-            <svg
-                class="icon"
-                viewBox="0 0 24 24">
+        <div class="book">  
 
-                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.17V2h-3.74v13.75a2.88 2.88 0 1 1-2.88-2.88c.3 0 .59.05.86.13v-3.8a6.66 6.66 0 1 0 5.76 6.55V8.43a8.55 8.55 0 0 0 5.02 1.62V6.32c-.43.39-.88.43-1.25.37z"/>
+            <div class="book-cover">  
 
-            </svg>
+                <span style="color:#6f6872;">  
+                    YENİ<br>HİKÂYE  
+                </span>  
 
-        </a>
+            </div>  
 
 
+            <div class="book-name">  
+                Yakında...  
+            </div>  
 
-        <!-- X -->
 
-        <a
-            href="https://x.com/kesmislalih"
-            target="_blank"
-            aria-label="X">
+            <div class="book-info">  
+                ÇOK YAKINDA  
+            </div>  
 
-            <svg
-                class="icon"
-                viewBox="0 0 24 24">
+        </div>  
 
-                <path d="M18.244 2H21.5l-7.11 8.13L22.75 22h-6.55l-5.13-6.71L5.2 22H1.94l7.61-8.7L1.5 2h6.72l4.64 6.13L18.244 2zm-1.15 17.78h1.8L7.22 4.1H5.29l11.804 15.68z"/>
 
-            </svg>
+    </div>  
 
-        </a>
 
+    <div class="wood"></div>  
 
 
-        <!-- WATTPAD -->
+</div>
 
-        <a
-            href="https://www.wattpad.com/user/kesmislalih"
-            target="_blank"
-            aria-label="Wattpad">
+</section>  <!-- =========================  
+     HAKKIMDA  
+========================= -->  <section  
+    class="about"  
+    id="hakkimda">  <div class="about-title">  
+    HAKKIMDA  
+</div>  
 
-            <span class="wattpad-icon">
 
-                W
+<p class="about-text">  
 
-            </span>
+    Hikâyeler, bazen söyleyemediklerimizin  
+    en güzel hâlidir. Ben de kelimelerle  
+    kendi dünyalarımı kurmayı seviyorum.  
 
-        </a>
+</p>
 
+</section>  <!-- =========================  
+     GALERİ  
+     ŞİMDİLİK YER TUTUCU  
+========================= -->  <section  
+    class="section"  
+    id="galeri">  <h2 class="section-title">  
+    Galeri  
+</h2>  
 
+<p class="section-subtitle">  
+    hikâyelerden kareler  
+</p>
 
-        <!-- SPOTIFY -->
+</section>  <!-- =========================  
+     DUVAR  
+     ŞİMDİLİK YER TUTUCU  
+========================= -->  <section  
+    class="section"  
+    id="duvar">  <h2 class="section-title">  
+    Duvar  
+</h2>  
 
-        <a
-            href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv"
-            target="_blank"
-            aria-label="Spotify">
+<p class="section-subtitle">  
+    burası okurlara ait olacak  
+</p>
 
-            <svg
-                class="icon"
-                viewBox="0 0 24 24">
+</section>  <!-- =========================  
+     DUYURULAR  
+========================= -->  <section  
+    class="section"  
+    id="duyurular">  <div class="news">  
 
-                <path d="M12 1.9a10.1 10.1 0 1 0 10.1 10.1A10.11 10.11 0 0 0 12 1.9zm4.64 14.58a.76.76 0 0 1-1.05.25c-2.88-1.76-6.51-2.16-10.79-1.18a.76.76 0 1 1-.34-1.48c4.68-1.07 8.69-.61 11.93 1.37a.76.76 0 0 1 .25 1.04zm1.5-3.33a.95.95 0 0 1-1.3.31c-3.29-2.02-8.31-2.61-12.2-1.43a.95.95 0 1 1-.55-1.82c4.45-1.35 10-.69 13.74 1.61a.95.95 0 0 1 .31 1.33zm.13-3.47C14.33 7.3 8.13 7.1 4.54 8.19a1.14 1.14 0 1 1-.66-2.18c4.13-1.25 11-1 15.2 1.5a1.14 1.14 0 0 1-.81 2.17z"/>
 
-            </svg>
+    <h2 class="section-title">  
+        Duyurular  
+    </h2>  
 
-        </a>
 
+    <p class="section-subtitle">  
+        yeni hikâyeler, yeni başlangıçlar  
+    </p>  
 
 
-        <!-- PINTEREST -->
+    <div class="news-item">  
 
-        <a
-            href="https://pin.it/2jHDXi48B"
-            target="_blank"
-            aria-label="Pinterest">
-
-            <svg
-                class="icon"
-                viewBox="0 0 24 24">
-
-                <path d="M12 2a10 10 0 0 0-3.64 19.32c-.09-1.64-.02-3.62.41-5.49l1.11-4.7s-.28-.57-.28-1.41c0-1.32.77-2.31 1.73-2.31.82 0 1.21.62 1.21 1.36 0 .83-.53 2.07-.8 3.22-.23.96.48 1.74 1.43 1.74 1.72 0 3.04-1.82 3.04-4.45 0-2.33-1.67-3.96-4.05-3.96-2.76 0-4.38 2.07-4.38 4.21 0 .83.32 1.72.72 2.2.08.1.09.18.07.29l-.27 1.1c-.04.18-.14.22-.32.13-1.19-.55-1.94-2.28-1.94-3.67 0-2.99 2.17-5.74 6.25-5.74 3.28 0 5.83 2.34 5.83 5.46 0 3.26-2.06 5.88-4.92 5.88-.96 0-1.86-.5-2.17-1.08l-.59 2.25c-.21.82-.78 1.84-1.17 2.46.88.27 1.81.42 2.77.42A10 10 0 0 0 12 2z"/>
-
-            </svg>
-
-        </a>
-
-
-
-        <!-- WHATSAPP -->
-
-        <a
-            href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
-            target="_blank"
-            aria-label="WhatsApp">
-
-            <svg
-                class="icon"
-                viewBox="0 0 24 24">
-
-                <path d="M12 2a9.9 9.9 0 0 0-8.55 14.9L2 22l5.27-1.38A9.9 9.9 0 1 0 12 2zm0 18.1a8.15 8.15 0 0 1-4.15-1.13l-.3-.18-3.13.82.84-3.05-.2-.31A8.15 8.15 0 1 1 12 20.1zm4.47-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.18-1.4-1.32-1.64-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.16.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.33.98 2.49c.12.16 1.69 2.58 4.09 3.62.57.25 1.01.4 1.35.51.57.18 1.09.15 1.5.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/>
-
-            </svg>
-
-        </a>
-
-
-    </div>
-
-
-    <div class="menu-footer">
-
-        kesmislalih
-
-    </div>
-
-
-    </nav>
-    
+        <span class="news-date">  
+            31.08.2026  
+        </span>  
+
+        <span class="news-title">  
+            Yeni site yayında.  
+        </span>  
+
+    </div>  
+
+
+    <div class="news-item">  
+
+        <span class="news-date">  
+            YAKINDA  
+        </span>  
+
+        <span class="news-title">  
+            Yeni hikâyeler burada olacak.  
+        </span>  
+
+    </div>  
+
+
+</div>
+
+</section>  <!-- =========================  
+     İLETİŞİM  
+========================= -->  <section  
+    class="about"  
+    id="iletisim">  <div class="about-title">  
+    İLETİŞİM  
+</div>  
+
+<p class="about-text">  
+    İletişim bilgileri daha sonra buraya eklenecek.  
+</p>
+
+</section>  <!-- =========================  
+     FOOTER  
+========================= -->  <footer>  <div class="footer-logo">  
+    kesmislalih  
+</div>  
+
+
+<p>  
+    © 2026 kesmislalih  
+</p>
+
+</footer>  <script>  
+  
+/* MENÜ */  
+  
+const menuButton =  
+    document.getElementById("menuButton");  
+  
+const menuPanel =  
+    document.getElementById("menuPanel");  
+  
+const menuOverlay =  
+    document.getElementById("menuOverlay");  
+  
+const menuLinks =  
+    document.querySelectorAll(".menu-panel a");  
+  
+  
+menuButton.addEventListener("click", function() {  
+  
+    menuButton.classList.toggle("active");  
+  
+    menuPanel.classList.toggle("open");  
+  
+    menuOverlay.classList.toggle("open");  
+  
+});  
+  
+  
+menuOverlay.addEventListener("click", function() {  
+  
+    menuButton.classList.remove("active");  
+  
+    menuPanel.classList.remove("open");  
+  
+    menuOverlay.classList.remove("open");  
+  
+});  
+  
+  
+menuLinks.forEach(function(link) {  
+  
+    link.addEventListener("click", function() {  
+  
+        menuButton.classList.remove("active");  
+  
+        menuPanel.classList.remove("open");  
+  
+        menuOverlay.classList.remove("open");  
+  
+    });  
+  
+});  
+  
+</script>  </body>  
+</html>  Şunun gibi yaz.
