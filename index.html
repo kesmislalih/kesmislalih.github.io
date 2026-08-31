@@ -11,7 +11,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap');
 
-
 * {
     margin: 0;
     padding: 0;
@@ -163,7 +162,6 @@ header {
 
 .menu-panel a.menu-link:hover {
     color: #cdb9eb;
-
     padding-left: 8px;
 }
 
@@ -237,9 +235,6 @@ header {
         );
 }
 
-
-/* ORTADAKİ SİSLİ IŞIK */
-
 .hero::before {
     content: "";
 
@@ -268,9 +263,6 @@ header {
     pointer-events: none;
 }
 
-
-/* GRAIN */
-
 .hero::after {
     content: "";
 
@@ -290,7 +282,6 @@ header {
 
 .hero-content {
     position: relative;
-
     z-index: 2;
 }
 
@@ -324,7 +315,7 @@ header {
 
 
 /* =========================
-   ANA SAYFA SOSYAL MEDYA
+   GİRİŞ SOSYAL MEDYA
 ========================= */
 
 .hero-social {
@@ -718,6 +709,31 @@ header {
     line-height: 1.9;
 }
 
+.contact-mail {
+    display: inline-block;
+
+    margin-top: 20px;
+
+    color: #cdb9eb;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    transition: .3s;
+}
+
+.contact-mail:hover {
+    color: #f8f3ff;
+
+    text-shadow:
+        0 0 12px rgba(185,167,216,.35);
+}
+
 
 /* =========================
    FOOTER
@@ -851,7 +867,7 @@ footer p {
 
 <body>
     <!-- =========================
-     ÜST KISIM
+     HEADER
 ========================= -->
 
 <header>
@@ -926,12 +942,135 @@ footer p {
     </a>
 
 
+    <!-- =========================
+         SOSYAL MEDYA
+    ========================= -->
+
+    <div class="menu-social-title">
+        BENİ TAKİP ET
+    </div>
+
+
+    <div class="menu-social">
+
+
+        <!-- TIKTOK -->
+
+        <a
+            href="https://www.tiktok.com/@kesmislalih?_r=1&_t=ZS-98gv3YRvFOK"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="TikTok">
+
+            <svg
+                class="icon"
+                viewBox="0 0 24 24">
+
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.17V2h-3.74v13.75a2.88 2.88 0 1 1-2.88-2.88c.3 0 .59.05.86.13v-3.8a6.66 6.66 0 1 0 5.76 6.55V8.43a8.55 8.55 0 0 0 5.02 1.62V6.32c-.43.39-.88.43-1.25.37z"/>
+
+            </svg>
+
+        </a>
+
+
+        <!-- X -->
+
+        <a
+            href="https://x.com/kesmislalih"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X">
+
+            <svg
+                class="icon x-icon"
+                viewBox="0 0 24 24">
+
+                <path d="M18.244 2H21.5l-7.11 8.13L22.75 22h-6.55l-5.13-6.71L5.2 22H1.94l7.61-8.7L1.5 2h6.72l4.64 6.13L18.244 2zm-1.15 17.78h1.8L7.22 4.1H5.29l11.804 15.68z"/>
+
+            </svg>
+
+        </a>
+
+
+        <!-- WATTPAD -->
+
+        <a
+            href="https://www.wattpad.com/user/kesmislalih"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Wattpad">
+
+            <span class="wattpad-icon">
+                W
+            </span>
+
+        </a>
+
+
+        <!-- SPOTIFY -->
+
+        <a
+            href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Spotify">
+
+            <svg
+                class="icon"
+                viewBox="0 0 24 24">
+
+                <path d="M12 1.9a10.1 10.1 0 1 0 10.1 10.1A10.11 10.11 0 0 0 12 1.9zm4.64 14.58a.76.76 0 0 1-1.05.25c-2.88-1.76-6.51-2.16-10.79-1.18a.76.76 0 1 1-.34-1.48c4.68-1.07 8.69-.61 11.93 1.37a.76.76 0 0 1 .25 1.04zm1.5-3.33a.95.95 0 0 1-1.3.31c-3.29-2.02-8.31-2.61-12.2-1.43a.95.95 0 1 1-.55-1.82c4.45-1.35 10-.69 13.74 1.61a.95.95 0 0 1 .31 1.33zm.13-3.47C14.33 7.3 8.13 7.1 4.54 8.19a1.14 1.14 0 1 1-.66-2.18c4.13-1.25 11-1 15.2 1.5a1.14 1.14 0 0 1-.81 2.17z"/>
+
+            </svg>
+
+        </a>
+
+
+        <!-- PINTEREST -->
+
+        <a
+            href="https://pin.it/2jHDXi48B"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Pinterest">
+
+            <svg
+                class="icon"
+                viewBox="0 0 24 24">
+
+                <path d="M12 2a10 10 0 0 0-3.64 19.32c-.09-1.64-.02-3.62.41-5.49l1.11-4.7s-.28-.57-.28-1.41c0-1.32.77-2.31 1.73-2.31.82 0 1.21.62 1.21 1.36 0 .83-.53 2.07-.8 3.22-.23.96.48 1.74 1.43 1.74 1.72 0 3.04-1.82 3.04-4.45 0-2.33-1.67-3.96-4.05-3.96-2.76 0-4.38 2.07-4.38 4.21 0 .83.32 1.72.72 2.2.08.1.09.18.07.29l-.27 1.1c-.04.18-.14.22-.32.13-1.19-.55-1.94-2.28-1.94-3.67 0-2.99 2.17-5.74 6.25-5.74 3.28 0 5.83 2.34 5.83 5.46 0 3.26-2.06 5.88-4.92 5.88-.96 0-1.86-.5-2.17-1.08l-.59 2.25c-.21.82-.78 1.84-1.17 2.46.88.27 1.81.42 2.77.42A10 10 0 0 0 12 2z"/>
+
+            </svg>
+
+        </a>
+
+
+        <!-- WHATSAPP -->
+
+        <a
+            href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp">
+
+            <svg
+                class="icon"
+                viewBox="0 0 24 24">
+
+                <path d="M12 2a9.9 9.9 0 0 0-8.55 14.9L2 22l5.27-1.38A9.9 9.9 0 1 0 12 2zm0 18.1a8.15 8.15 0 0 1-4.15-1.13l-.3-.18-3.13.82.84-3.05-.2-.31A8.15 8.15 0 1 1 12 20.1zm4.47-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.18-1.4-1.32-1.64-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.33.98 2.49c.12.16 1.69 2.58 4.09 3.62.57.25 1.01.4 1.35.51.57.18 1.09.15 1.5.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/>
+
+            </svg>
+
+        </a>
+
+    </div>
+
+
     <div class="menu-footer">
         kesmislalih
     </div>
 
 </nav>
-
 
 
 <!-- =========================
@@ -947,12 +1086,12 @@ footer p {
         </h1>
 
 
-        <!-- SOSYAL MEDYA -->
+        <!-- GİRİŞ SOSYAL İKONLARI -->
 
         <div class="hero-social">
 
 
-            <!-- TIKTOK -->
+            <!-- TikTok -->
 
             <a
                 href="https://www.tiktok.com/@kesmislalih?_r=1&_t=ZS-98gv3YRvFOK"
@@ -990,7 +1129,7 @@ footer p {
             </a>
 
 
-            <!-- WATTPAD -->
+            <!-- Wattpad -->
 
             <a
                 href="https://www.wattpad.com/user/kesmislalih"
@@ -1005,7 +1144,7 @@ footer p {
             </a>
 
 
-            <!-- SPOTIFY -->
+            <!-- Spotify -->
 
             <a
                 href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv"
@@ -1024,7 +1163,7 @@ footer p {
             </a>
 
 
-            <!-- PINTEREST -->
+            <!-- Pinterest -->
 
             <a
                 href="https://pin.it/2jHDXi48B"
@@ -1036,14 +1175,14 @@ footer p {
                     class="icon"
                     viewBox="0 0 24 24">
 
-                    <path d="M12 2a10 10 0 0 0-3.64 19.32c-.09-1.64-.02-3.62.41-5.49l1.11-4.7s-.28-.57-.28-1.41c0-1.32.77-2.31 1.73-2.31.82 0 1.21.62 1.21 1.36 0 .83-.53 2.07-.8 3.22-.23.96.48 1.74 1.43 1.74 1.72 0 3.04-1.82 3.04-4.45 0-2.33-1.67-3.96-4.05-3.96-2.76 0-4.38 2.07-4.38 4.21 0 .83.32 1.72.72 2.2.08.1.09.18.07.29l-.27 1.1c-.04.18-.14.22-.32.13-1.19-.55-1.94-2.28-1.94-3.67 0-2.99 2.17-5.74 6.25-5.74 3.28 0 5.83 2.34 5.83 5.46 0 3.26-2.06 5.88-4.92 5.88-.96 0-1.86-.5-2.17-1.08l-.59 2.25c-.21.82-.78 1.84-1.17 2.46.88.27 1.81.42 2.77.42A10 10 0 0 0 12 2z"/>
+                    <path d="M12 2a10 10 0 0 0-3.64 19.32c-.09-1.64-.02-3.62.41-5.49l1.11-4.7s-.28-.57-.28-1.41c0-1.32.77-2.31 1.73-2.31.82 0 1.21.62 1.21 1.36 0 .83-.53 2.07-.8 3.22-.23.96.48 2.07-.8 3.22-.23.96.48 1.74 1.43 1.74 1.72 0 3.04-1.82 3.04-4.45 0-2.33-1.67-3.96-4.05-3.96-2.76 0-4.38 2.07-4.38 4.21 0 .83.32 1.72.72 2.2.08.1.09.18.07.29l-.27 1.1c-.04.18-.14.22-.32.13-1.19-.55-1.94-2.28-1.94-3.67 0-2.99 2.17-5.74 6.25-5.74 3.28 0 5.83 2.34 5.83 5.46 0 3.26-2.06 5.88-4.92 5.88-.96 0-1.86-.5-2.17-1.08l-.59 2.25c-.21.82-.78 1.84-1.17 2.46.88.27 1.81.42 2.77.42A10 10 0 0 0 12 2z"/>
 
                 </svg>
 
             </a>
 
 
-            <!-- WHATSAPP -->
+            <!-- WhatsApp -->
 
             <a
                 href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
@@ -1083,7 +1222,6 @@ footer p {
     </div>
 
 </section>
-
 
 
 <!-- =========================
@@ -1180,12 +1318,12 @@ footer p {
 
         </div>
 
+
         <div class="wood"></div>
 
     </div>
 
 </section>
-
 
 
 <!-- =========================
@@ -1211,7 +1349,6 @@ footer p {
 </section>
 
 
-
 <!-- =========================
      GALERİ
 ========================= -->
@@ -1231,7 +1368,6 @@ footer p {
 </section>
 
 
-
 <!-- =========================
      DUVAR
 ========================= -->
@@ -1249,9 +1385,6 @@ footer p {
     </p>
 
 </section>
-
-
-
 <!-- =========================
      DUYURULAR
 ========================= -->
@@ -1318,16 +1451,19 @@ footer p {
     <div class="contact-box">
 
         <p>
-            Benimle iletişime geçmek, bir şeyler
-            paylaşmak ya da hikâyeler hakkında
-            konuşmak istersen bana ulaşabilirsin.
+            Hikâyeler, projeler veya herhangi bir konuda
+            benimle iletişime geçmek istersen
+            bana ulaşabilirsin.
         </p>
 
-        <br>
 
-        <p>
-            İletişim bilgileri yakında burada olacak.
-        </p>
+        <a
+            href="mailto:hillyss333@gmail.com"
+            class="contact-mail">
+
+            hillyss333@gmail.com
+
+        </a>
 
     </div>
 
@@ -1345,6 +1481,7 @@ footer p {
         kesmislalih
     </div>
 
+
     <p>
         © 2026 kesmislalih
     </p>
@@ -1359,6 +1496,10 @@ footer p {
 
 <script>
 
+/* =========================
+   MENÜ ELEMENTLERİ
+========================= */
+
 const menuButton =
     document.getElementById("menuButton");
 
@@ -1372,7 +1513,9 @@ const menuLinks =
     document.querySelectorAll(".menu-panel a.menu-link");
 
 
-/* MENÜYÜ AÇ / KAPAT */
+/* =========================
+   MENÜYÜ AÇ / KAPAT
+========================= */
 
 menuButton.addEventListener("click", function() {
 
@@ -1385,7 +1528,9 @@ menuButton.addEventListener("click", function() {
 });
 
 
-/* DIŞARI TIKLAYINCA KAPAT */
+/* =========================
+   DIŞARI TIKLAYINCA KAPAT
+========================= */
 
 menuOverlay.addEventListener("click", function() {
 
@@ -1398,7 +1543,9 @@ menuOverlay.addEventListener("click", function() {
 });
 
 
-/* MENÜ LİNKLERİNE TIKLAYINCA KAPAT */
+/* =========================
+   MENÜ LİNKLERİNE TIKLAYINCA KAPAT
+========================= */
 
 menuLinks.forEach(function(link) {
 
@@ -1411,6 +1558,25 @@ menuLinks.forEach(function(link) {
         menuOverlay.classList.remove("open");
 
     });
+
+});
+
+
+/* =========================
+   ESC İLE MENÜYÜ KAPAT
+========================= */
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+
+        menuButton.classList.remove("active");
+
+        menuPanel.classList.remove("open");
+
+        menuOverlay.classList.remove("open");
+
+    }
 
 });
 
