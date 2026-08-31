@@ -62,23 +62,17 @@ body {
 
 body.light {
 
-    --bg: #f5f1eb;
+    --bg: #f7f3ed;
+    --surface: #eee8df;
+    --surface-2: #e5ded5;
 
-    --surface: #ebe5dd;
+    --text: #1d1a1e;
+    --soft: #484248;
+    --muted: #625b62;
 
-    --surface-2: #e3dcd3;
+    --border: #c9c0b6;
 
-    /* Daha koyu ve okunaklı yazılar */
-
-    --text: #17151a;
-
-    --soft: #3f3a40;
-
-    --muted: #5d565d;
-
-    --border: #c9c0b7;
-
-    --accent: #72558f;
+    --accent: #74598f;
 }
 
 
@@ -89,6 +83,10 @@ body.light {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+button {
+    font-family: inherit;
 }
 
 
@@ -117,24 +115,19 @@ header {
     z-index: 1000;
 
     background:
-        rgba(9, 9, 11, .88);
+        rgba(9, 9, 11, .90);
 
     backdrop-filter:
         blur(15px);
 
     border-bottom:
         1px solid var(--border);
-
-    transition:
-        background .35s ease,
-        border .35s ease;
 }
-
 
 body.light header {
 
     background:
-        rgba(245, 241, 235, .94);
+        rgba(247, 243, 237, .94);
 }
 
 
@@ -160,7 +153,7 @@ body.light header {
 
 
 /* =========================
-   NAV
+   MENÜ
 ========================= */
 
 nav {
@@ -169,7 +162,7 @@ nav {
 
     align-items: center;
 
-    gap: 26px;
+    gap: 24px;
 }
 
 nav a {
@@ -186,7 +179,8 @@ nav a {
 
     letter-spacing: 2px;
 
-    transition: .3s ease;
+    transition:
+        color .3s ease;
 }
 
 nav a:hover {
@@ -208,7 +202,8 @@ nav a::after {
 
     background: var(--accent);
 
-    transition: .3s ease;
+    transition:
+        width .3s ease;
 }
 
 nav a:hover::after {
@@ -333,7 +328,7 @@ nav a:hover::after {
 
 
 /* =========================
-   HERO
+   HERO / GİRİŞ
 ========================= */
 
 .hero {
@@ -412,7 +407,7 @@ nav a:hover::after {
 
 
 /* =========================
-   HERO ÜST YAZI
+   GİRİŞ ÜST YAZISI
 ========================= */
 
 .hero-small {
@@ -452,12 +447,6 @@ nav a:hover::after {
 
     margin:
         0 auto;
-
-    filter:
-        drop-shadow(
-            0 10px 25px
-            rgba(0,0,0,.18)
-        );
 }
 
 
@@ -485,7 +474,7 @@ nav a:hover::after {
 
 
 /* =========================
-   HERO AÇIKLAMA
+   AÇIKLAMA
 ========================= */
 
 .hero-description {
@@ -508,7 +497,7 @@ nav a:hover::after {
 
 
 /* =========================
-   HERO BUTON
+   HERO BUTONU
 ========================= */
 
 .hero-button {
@@ -657,16 +646,16 @@ nav a:hover::after {
         sans-serif;
 
     font-size:
-        18px;
+        20px;
 
     font-weight:
-        400;
+        500;
 
     letter-spacing:
         5px;
 
     margin-bottom:
-        28px;
+        30px;
 }
 
 .about-text {
@@ -690,12 +679,11 @@ nav a:hover::after {
         var(--accent);
 
     font-family:
-        "Great Vibes",
         cursive;
 
     font-size:
         30px;
-   }
+}
 
 
 /* =========================
@@ -750,7 +738,7 @@ nav a:hover::after {
 
 
 /* =========================
-   MODERN KİTAP ALANI
+   KİTAPLIK
 ========================= */
 
 .bookshelf {
@@ -767,7 +755,7 @@ nav a:hover::after {
 
 
 /* =========================
-   KİTAPLAR GRID
+   KİTAPLAR
 ========================= */
 
 .books-grid {
@@ -873,8 +861,7 @@ nav a:hover::after {
     transform:
         scale(1.025);
 }
-
-
+       
 /* =========================
    KİTAP BİLGİLERİ
 ========================= */
@@ -882,7 +869,7 @@ nav a:hover::after {
 .book-info {
 
     padding:
-        22px 4px 4px;
+        20px 5px 5px;
 
     text-align:
         center;
@@ -900,7 +887,7 @@ nav a:hover::after {
         400;
 
     line-height:
-        1.2;
+        1.3;
 }
 
 .book-author {
@@ -912,17 +899,19 @@ nav a:hover::after {
         var(--accent);
 
     font-family:
-        "Great Vibes",
         cursive;
 
     font-size:
-        24px;
+        23px;
 }
 
 .book-description {
 
     margin:
-        16px auto 0;
+        15px auto 0;
+
+    max-width:
+        380px;
 
     color:
         var(--soft);
@@ -932,9 +921,6 @@ nav a:hover::after {
 
     line-height:
         1.7;
-
-    max-width:
-        340px;
 }
 
 
@@ -993,7 +979,85 @@ nav a:hover::after {
 
 
 /* =========================
-   YAKINDA KİTABI
+   MODERN RAF
+========================= */
+
+.bookshelf {
+
+    position:
+        relative;
+
+    max-width:
+        1050px;
+
+    margin:
+        0 auto;
+
+    padding:
+        35px 30px 55px;
+}
+
+
+/*
+   Kitapların altında modern,
+   ince ve temiz bir raf
+*/
+
+.bookshelf::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    right:
+        0;
+
+    bottom:
+        0;
+
+    height:
+        14px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            var(--surface-2),
+            var(--border)
+        );
+
+    border:
+        1px solid var(--border);
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,.22);
+
+    z-index:
+        1;
+}
+
+
+/* =========================
+   KİTAPLAR RAFIN ÜZERİNDE
+========================= */
+
+.books-grid {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+}
+
+
+/* =========================
+   İKİNCİ KİTAP
 ========================= */
 
 .coming-soon {
@@ -1027,7 +1091,7 @@ nav a:hover::after {
         sans-serif;
 
     font-size:
-        9px;
+        8px;
 
     letter-spacing:
         4px;
@@ -1054,187 +1118,25 @@ nav a:hover::after {
         50%;
 
     transform:
-        translate(-50%, -50%)
-        translateY(-28px);
-
-    color:
-        var(--accent);
+        translate(-50%, -55%);
 
     font-family:
         Georgia,
         serif;
 
     font-size:
-        28px;
-
-    opacity:
-        .75;
-}
-
-
-/* =========================
-   GALERİ
-========================= */
-
-.gallery {
-
-    width:
-        100%;
-
-    max-width:
-        1000px;
-
-    margin:
-        0 auto;
-}
-
-.gallery-grid {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    grid-auto-rows:
-        250px;
-
-    gap:
-        14px;
-}
-
-
-/* =========================
-   GALERİ GÖRSELLERİ
-========================= */
-
-.gallery-item {
-
-    position:
-        relative;
-
-    overflow:
-        hidden;
-
-    background:
-        var(--surface);
-
-    border:
-        1px solid var(--border);
-
-    cursor:
-        pointer;
-}
-
-.gallery-item img {
-
-    width:
-        100%;
-
-    height:
-        100%;
-
-    display:
-        block;
-
-    object-fit:
-        cover;
-
-    transition:
-        transform .55s ease,
-        filter .55s ease;
-}
-
-.gallery-item:hover img {
-
-    transform:
-        scale(1.06);
-
-    filter:
-        brightness(.78);
-}
-
-
-/* =========================
-   GALERİ ÜZERİ YAZI
-========================= */
-
-.gallery-overlay {
-
-    position:
-        absolute;
-
-    inset:
-        0;
-
-    display:
-        flex;
-
-    align-items:
-        flex-end;
-
-    justify-content:
-        center;
-
-    padding:
-        20px;
-
-    background:
-        linear-gradient(
-            transparent,
-            rgba(0,0,0,.58)
-        );
+        45px;
 
     color:
-        #fff;
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size:
-        8px;
-
-    letter-spacing:
-        3px;
+        var(--accent);
 
     opacity:
-        0;
-
-    transition:
-        opacity .35s ease;
-}
-
-.gallery-item:hover
-.gallery-overlay {
-
-    opacity:
-        1;
+        .35;
 }
 
 
 /* =========================
-   GALERİ BÜYÜK GÖRSELLER
-========================= */
-
-.gallery-item:nth-child(1) {
-
-    grid-column:
-        span 2;
-
-    grid-row:
-        span 2;
-}
-
-.gallery-item:nth-child(4) {
-
-    grid-column:
-        span 2;
-}
-
-
-/* =========================
-   DUVAR
+   DUVAR ÖNİZLEME
 ========================= */
 
 .wall-box {
@@ -1256,6 +1158,15 @@ nav a:hover::after {
 
     text-align:
         center;
+
+    transition:
+        border-color .3s ease;
+}
+
+.wall-box:hover {
+
+    border-color:
+        var(--accent);
 }
 
 .wall-box h3 {
@@ -1285,12 +1196,20 @@ nav a:hover::after {
         1.7;
 }
 
+
+/* =========================
+   DUVAR BUTONU
+========================= */
+
 .wall-button {
 
     display:
         inline-flex;
 
     align-items:
+        center;
+
+    justify-content:
         center;
 
     gap:
@@ -1407,7 +1326,6 @@ footer {
         var(--text);
 
     font-family:
-        "Great Vibes",
         cursive;
 
     font-size:
@@ -1449,17 +1367,22 @@ footer p {
             0 5%;
     }
 
+
     .logo-image {
 
         width:
             115px;
     }
 
+
+    /* 3 ÇİZGİLİ MENÜ */
+
     .menu-button {
 
         display:
             flex;
     }
+
 
     nav {
 
@@ -1473,7 +1396,7 @@ footer p {
             5%;
 
         width:
-            220px;
+            225px;
 
         padding:
             20px;
@@ -1513,6 +1436,7 @@ footer p {
             1100;
     }
 
+
     nav.active {
 
         opacity:
@@ -1524,6 +1448,7 @@ footer p {
         transform:
             translateY(0);
     }
+
 
     nav a {
 
@@ -1537,11 +1462,13 @@ footer p {
             1px solid var(--border);
     }
 
+
     nav a::after {
 
         display:
             none;
     }
+
 
     nav .theme-button {
 
@@ -1550,58 +1477,7 @@ footer p {
     }
 
 
-    /* MOBİL KİTAPLAR */
-
-    .books-grid {
-
-        grid-template-columns:
-            1fr;
-
-        gap:
-            45px;
-    }
-
-    .book-card {
-
-        width:
-            min(360px, 100%);
-
-        margin:
-            0 auto;
-    }
-
-
-    /* MOBİL GALERİ */
-
-    .gallery-grid {
-
-        grid-template-columns:
-            1fr 1fr;
-
-        grid-auto-rows:
-            190px;
-
-        gap:
-            10px;
-    }
-
-    .gallery-item:nth-child(1) {
-
-        grid-column:
-            span 2;
-
-        grid-row:
-            span 1;
-    }
-
-    .gallery-item:nth-child(4) {
-
-        grid-column:
-            span 1;
-    }
-
-
-    /* HERO */
+    /* MOBİL HERO */
 
     .hero {
 
@@ -1609,11 +1485,13 @@ footer p {
             120px 6% 80px;
     }
 
+
     .hero-logo {
 
         width:
             min(330px, 82vw);
     }
+
 
     .hero-subtitle {
 
@@ -1624,6 +1502,7 @@ footer p {
             1.5px;
     }
 
+
     .hero-description {
 
         font-size:
@@ -1631,7 +1510,7 @@ footer p {
     }
 
 
-    /* BÖLÜMLER */
+    /* MOBİL BÖLÜMLER */
 
     .section {
 
@@ -1642,17 +1521,56 @@ footer p {
             75px 0;
     }
 
+
     .about-text {
 
         font-size:
             17px;
     }
 
+
+    .section-title {
+
+        font-size:
+            18px;
+    }
+
+
     .section-heading h2 {
 
         font-size:
             29px;
     }
+
+
+    /* MOBİL KİTAPLAR */
+
+    .bookshelf {
+
+        padding:
+            20px 15px 45px;
+    }
+
+
+    .books-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            55px;
+    }
+
+
+    .book-card {
+
+        width:
+            min(310px, 100%);
+
+        margin:
+            0 auto;
+    }
+
 
     .wall-box,
     .announcement {
@@ -1662,33 +1580,7 @@ footer p {
     }
 
 }
-
-
-/* =========================
-   DAHA KÜÇÜK TELEFONLAR
-========================= */
-
-@media (max-width: 420px) {
-
-    .gallery-grid {
-
-        grid-template-columns:
-            1fr;
-
-        grid-auto-rows:
-            230px;
-    }
-
-    .gallery-item:nth-child(1),
-    .gallery-item:nth-child(4) {
-
-        grid-column:
-            span 1;
-    }
-
-}
-
-</style>
+   </style>
 
 </head>
 
@@ -1750,7 +1642,7 @@ footer p {
         </a>
 
 
-        <a href="#galeri">
+        <a href="galeri.html">
             GALERİ
         </a>
 
@@ -1770,13 +1662,13 @@ footer p {
         </a>
 
 
-        <!-- TEMA -->
+        <!-- TEMA SİMGESİ -->
 
         <button
             type="button"
             class="theme-button"
             id="themeButton"
-            aria-label="Tema değiştir">
+            aria-label="Aydınlık ve karanlık modu değiştir">
 
             <span id="themeIcon">☾</span>
 
@@ -1796,6 +1688,7 @@ footer p {
 <main>
 
 
+
 <!-- =========================
      GİRİŞ
 ========================= -->
@@ -1813,11 +1706,15 @@ footer p {
         </div>
 
 
+        <!-- ANA LOGO -->
+
         <img
             src="kesmislalih-logo.png"
             alt="kesmislalih"
             class="hero-logo">
 
+
+        <!-- İNGİLİZCE YAZI -->
 
         <div class="hero-subtitle">
 
@@ -1928,16 +1825,22 @@ footer p {
 
     <div class="section-heading">
 
+
         <h2>
             Kitaplar
         </h2>
+
 
         <p>
             Hikâyelerimin dünyasına hoş geldin
         </p>
 
+
     </div>
 
+
+
+    <!-- MODERN KİTAP RAFI -->
 
     <div class="bookshelf">
 
@@ -1945,7 +1848,9 @@ footer p {
         <div class="books-grid">
 
 
-            <!-- RİNGTEKİ SON DANS -->
+            <!-- =====================
+                 RİNGTEKİ SON DANS
+            ====================== -->
 
             <article class="book-card">
 
@@ -1956,24 +1861,32 @@ footer p {
 
                     <div class="book-cover">
 
+
                         <img
                             src="file_00000000ce4881f4b929fc5dfbb07694.png"
-                            alt="Ringteki Son Dans">
+                            alt="Ringteki Son Dans kitabı">
+
 
                     </div>
+
 
                 </a>
 
 
                 <div class="book-info">
 
+
                     <h3>
+
                         Ringteki Son Dans
+
                     </h3>
 
 
                     <div class="book-author">
+
                         kesmislalih
+
                     </div>
 
 
@@ -2000,13 +1913,17 @@ footer p {
 
                     </a>
 
+
                 </div>
 
 
             </article>
 
 
-            <!-- YENİ HİKÂYE -->
+
+            <!-- =====================
+                 YAKINDAKİ KİTAP
+            ====================== -->
 
             <article class="book-card">
 
@@ -2020,13 +1937,18 @@ footer p {
 
                 <div class="book-info">
 
+
                     <h3>
+
                         Yeni Hikâye
+
                     </h3>
 
 
                     <div class="book-author">
+
                         kesmislalih
+
                     </div>
 
 
@@ -2045,6 +1967,7 @@ footer p {
 
                     </span>
 
+
                 </div>
 
 
@@ -2053,118 +1976,9 @@ footer p {
 
         </div>
 
-    </div>
-
-</section>
-
-
-
-<div class="divider"></div>
-<!-- =========================
-     GALERİ
-========================= -->
-
-<section
-    class="section"
-    id="galeri">
-
-
-    <div class="section-heading">
-
-        <h2>
-            Galeri
-        </h2>
-
-        <p>
-            Hikâyelerden kareler
-        </p>
 
     </div>
 
-
-    <div class="gallery">
-
-        <div class="gallery-grid">
-
-
-            <!-- GÖRSEL 1 -->
-
-            <div class="gallery-item">
-
-                <img
-                    src="772b5be803dcc10b56a2cae0088acf3e.jpg"
-                    alt="Galeri görseli 1">
-
-                <div class="gallery-overlay">
-                    KESMİŞLALİH
-                </div>
-
-            </div>
-
-
-            <!-- GÖRSEL 2 -->
-
-            <div class="gallery-item">
-
-                <img
-                    src="ad301506aa5527e2b6d349fcbf02e9a8 (1).jpg"
-                    alt="Galeri görseli 2">
-
-                <div class="gallery-overlay">
-                    KESMİŞLALİH
-                </div>
-
-            </div>
-
-
-            <!-- GÖRSEL 3 -->
-
-            <div class="gallery-item">
-
-                <img
-                    src="0f8b7991dde0f22ff23fb81e0fc16649.jpg"
-                    alt="Galeri görseli 3">
-
-                <div class="gallery-overlay">
-                    KESMİŞLALİH
-                </div>
-
-            </div>
-
-
-            <!-- GÖRSEL 4 -->
-
-            <div class="gallery-item">
-
-                <img
-                    src="bd00784591329cdde6e7804525bb3951.jpg"
-                    alt="Galeri görseli 4">
-
-                <div class="gallery-overlay">
-                    KESMİŞLALİH
-                </div>
-
-            </div>
-
-
-            <!-- GÖRSEL 5 -->
-
-            <div class="gallery-item">
-
-                <img
-                    src="9be113dce8dd12d87ae4f2bf8cf5293e (1).jpg"
-                    alt="Galeri görseli 5">
-
-                <div class="gallery-overlay">
-                    KESMİŞLALİH
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </div>
 
 </section>
 
@@ -2175,7 +1989,7 @@ footer p {
 
 
 <!-- =========================
-     DUVAR
+     DUVAR ÖNİZLEME
 ========================= -->
 
 <section
@@ -2185,13 +1999,16 @@ footer p {
 
     <div class="section-heading">
 
+
         <h2>
             Duvar
         </h2>
 
+
         <p>
             Okurlardan sana
         </p>
+
 
     </div>
 
@@ -2200,7 +2017,9 @@ footer p {
 
 
         <h3>
+
             Bir şeyler bırakmak ister misin?
+
         </h3>
 
 
@@ -2226,14 +2045,8 @@ footer p {
 
     </div>
 
+
 </section>
-
-
-
-<div class="divider"></div>
-
-
-
 <!-- =========================
      DUYURULAR
 ========================= -->
@@ -2258,7 +2071,6 @@ footer p {
 
     <div class="announcement">
 
-
         <h3>
             Şimdilik sessiziz.
         </h3>
@@ -2271,7 +2083,6 @@ footer p {
 
         </p>
 
-
     </div>
 
 
@@ -2279,19 +2090,29 @@ footer p {
 
 
 </main>
+
+
+
 <!-- =========================
      FOOTER
 ========================= -->
 
 <footer>
 
+
     <div class="footer-logo">
+
         kesmislalih
+
     </div>
 
+
     <p>
+
         © 2026 kesmislalih
+
     </p>
+
 
 </footer>
 
@@ -2417,106 +2238,6 @@ menuLinks.forEach(
                 );
 
             }
-        );
-
-    }
-);
-
-
-
-/* =========================
-   GALERİ GÖRSELLERİ
-   TIKLANINCA BÜYÜT
-========================= */
-
-const galleryImages =
-    document.querySelectorAll(".gallery-item img");
-
-
-galleryImages.forEach(
-    function(image) {
-
-        image.addEventListener(
-            "click",
-            function() {
-
-                const viewer =
-                    document.createElement("div");
-
-
-                viewer.style.position =
-                    "fixed";
-
-                viewer.style.inset =
-                    "0";
-
-                viewer.style.background =
-                    "rgba(0,0,0,.88)";
-
-                viewer.style.display =
-                    "flex";
-
-                viewer.style.alignItems =
-                    "center";
-
-                viewer.style.justifyContent =
-                    "center";
-
-                viewer.style.padding =
-                    "30px";
-
-                viewer.style.zIndex =
-                    "5000";
-
-                viewer.style.cursor =
-                    "pointer";
-
-
-                const bigImage =
-                    document.createElement("img");
-
-
-                bigImage.src =
-                    image.src;
-
-                bigImage.alt =
-                    image.alt;
-
-
-                bigImage.style.maxWidth =
-                    "95%";
-
-                bigImage.style.maxHeight =
-                    "90vh";
-
-                bigImage.style.objectFit =
-                    "contain";
-
-                bigImage.style.boxShadow =
-                    "0 20px 60px rgba(0,0,0,.5)";
-
-
-                viewer.appendChild(
-                    bigImage
-                );
-
-
-                document.body.appendChild(
-                    viewer
-                );
-
-
-                viewer.addEventListener(
-                    "click",
-                    function() {
-
-                        viewer.remove();
-
-                    }
-                );
-
-            }
-
         );
 
     }
