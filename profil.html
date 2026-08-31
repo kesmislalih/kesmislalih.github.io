@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Profil | kesmislalih</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&display=swap');
+
+
+/* =========================
+   TEMEL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    --background: #09090b;
+    --surface: #111015;
+    --surface-two: #17141a;
+
+    --text: #eee9e2;
+    --text-soft: #aaa39a;
+    --text-muted: #756d76;
+
+    --border: #29252d;
+
+    --accent: #cdb9eb;
+    --accent-dark: #8f819e;
+
+    min-height: 100vh;
+
+    background: var(--background);
+
+    color: var(--text);
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    transition:
+        background .4s ease,
+        color .4s ease;
+}
+
+
+/* =========================
+   AYDINLIK MOD
+========================= */
+
+body.light {
+
+    --background: #f5f1eb;
+    --surface: #ebe5dd;
+    --surface-two: #e3dcd3;
+
+    --text: #242126;
+    --text-soft: #5e5752;
+    --text-muted: #817873;
+
+    --border: #d3cbc1;
+
+    --accent: #806a9c;
+    --accent-dark: #665477;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+
+    width: 100%;
+
+    height: 82px;
+
+    padding: 0 6%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-bottom:
+        1px solid var(--border);
+
+    background:
+        rgba(9,9,11,.85);
+
+    backdrop-filter:
+        blur(15px);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+}
+
+
+body.light header {
+
+    background:
+        rgba(245,241,235,.9);
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo-image {
+
+    width: 145px;
+
+    height: auto;
+
+    display: block;
+}
+
+
+/* =========================
+   HEADER SAĞ
+========================= */
+
+.header-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+/* =========================
+   ANA SAYFA
+========================= */
+
+.back-button {
+
+    color:
+        var(--text-soft);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        2px;
+
+    transition:
+        .3s ease;
+}
+
+.back-button:hover {
+
+    color:
+        var(--accent);
+}
+
+
+/* =========================
+   TEMA
+========================= */
+
+.theme-button {
+
+    width: 38px;
+
+    height: 38px;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        var(--surface);
+
+    color:
+        var(--text);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    cursor:
+        pointer;
+
+    font-size:
+        17px;
+
+    transition:
+        .3s ease;
+}
+
+.theme-button:hover {
+
+    color:
+        var(--accent);
+
+    transform:
+        rotate(12deg);
+}
+
+
+/* =========================
+   ANA ALAN
+========================= */
+
+.profile-page {
+
+    width:
+        min(700px, 90%);
+
+    margin:
+        0 auto;
+
+    padding:
+        90px 0 110px;
+}
+
+
+/* =========================
+   BAŞLIK
+========================= */
+
+.profile-heading {
+
+    text-align:
+        center;
+
+    margin-bottom:
+        55px;
+}
+
+.profile-heading h1 {
+
+    color:
+        var(--text);
+
+    font-size:
+        clamp(45px, 8vw, 70px);
+
+    font-weight:
+        400;
+
+    letter-spacing:
+        3px;
+}
+
+.profile-heading p {
+
+    margin-top:
+        12px;
+
+    color:
+        var(--text-muted);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        4px;
+
+    text-transform:
+        uppercase;
+}
+
+
+/* =========================
+   PROFİL KARTI
+========================= */
+
+.profile-card {
+
+    padding:
+        40px;
+
+    background:
+        var(--surface);
+
+    border:
+        1px solid var(--border);
+
+    text-align:
+        center;
+
+    box-shadow:
+        0 20px 50px
+        rgba(0,0,0,.15);
+}
+
+
+/* =========================
+   PROFİL İKONU
+========================= */
+
+.profile-icon {
+
+    width:
+        85px;
+
+    height:
+        85px;
+
+    margin:
+        0 auto 22px;
+
+    border:
+        1px solid var(--accent);
+
+    background:
+        var(--surface-two);
+
+    color:
+        var(--accent);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        35px;
+
+    border-radius:
+        50%;
+}
+
+
+/* =========================
+   KULLANICI ADI
+========================= */
+
+.profile-username {
+
+    font-size:
+        31px;
+
+    font-weight:
+        400;
+
+    color:
+        var(--text);
+}
+
+
+/* =========================
+   AÇIKLAMA
+========================= */
+
+.profile-description {
+
+    margin-top:
+        10px;
+
+    color:
+        var(--text-muted);
+
+    font-size:
+        16px;
+}
+
+
+/* =========================
+   BUTONLAR
+========================= */
+
+.profile-buttons {
+
+    margin-top:
+        30px;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        12px;
+
+    flex-wrap:
+        wrap;
+}
+
+
+.profile-button {
+
+    padding:
+        13px 24px;
+
+    border:
+        1px solid var(--accent);
+
+    background:
+        transparent;
+
+    color:
+        var(--text);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        3px;
+
+    cursor:
+        pointer;
+
+    transition:
+        .3s ease;
+}
+
+
+.profile-button:hover {
+
+    background:
+        var(--accent);
+
+    color:
+        var(--background);
+}
+
+
+/* =========================
+   HESAP BİLGİLERİ
+========================= */
+
+.account-info {
+
+    margin-top:
+        35px;
+
+    padding-top:
+        25px;
+
+    border-top:
+        1px solid var(--border);
+
+    text-align:
+        left;
+}
+
+.account-info-title {
+
+    color:
+        var(--text-muted);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        3px;
+
+    margin-bottom:
+        18px;
+}
+
+.info-row {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    padding:
+        13px 0;
+
+    border-bottom:
+        1px solid var(--border);
+
+    color:
+        var(--text-soft);
+
+    font-size:
+        17px;
+}
+
+.info-row strong {
+
+    color:
+        var(--text);
+}
+
+
+/* =========================
+   GİRİŞ KARTI
+========================= */
+
+.login-card {
+
+    display:
+        none;
+
+    padding:
+        40px;
+
+    background:
+        var(--surface);
+
+    border:
+        1px solid var(--border);
+}
+
+
+/* =========================
+   GİRİŞ BAŞLIK
+========================= */
+
+.login-title {
+
+    text-align:
+        center;
+
+    font-size:
+        32px;
+
+    font-weight:
+        400;
+
+    margin-bottom:
+        8px;
+}
+
+.login-subtitle {
+
+    text-align:
+        center;
+
+    color:
+        var(--text-muted);
+
+    font-size:
+        16px;
+
+    margin-bottom:
+        30px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+
+    margin-bottom:
+        18px;
+}
+
+.form-group label {
+
+    display:
+        block;
+
+    margin-bottom:
+        8px;
+
+    color:
+        var(--text-soft);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        2px;
+}
+
+.form-input {
+
+    width:
+        100%;
+
+    padding:
+        14px 15px;
+
+    border:
+        1px solid var(--border);
+
+    outline:
+        none;
+
+    background:
+        var(--surface-two);
+
+    color:
+        var(--text);
+
+    font-size:
+        17px;
+}
+
+.form-input:focus {
+
+    border-color:
+        var(--accent);
+}
+
+
+/* =========================
+   GİRİŞ BUTONU
+========================= */
+
+.login-button {
+
+    width:
+        100%;
+
+    padding:
+        14px;
+
+    margin-top:
+        8px;
+
+    border:
+        1px solid var(--accent);
+
+    background:
+        transparent;
+
+    color:
+        var(--text);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        3px;
+
+    cursor:
+        pointer;
+
+    transition:
+        .3s ease;
+}
+
+.login-button:hover {
+
+    background:
+        var(--accent);
+
+    color:
+        var(--background);
+}
+
+
+/* =========================
+   KAYIT
+========================= */
+
+.register-text {
+
+    margin-top:
+        22px;
+
+    text-align:
+        center;
+
+    color:
+        var(--text-muted);
+
+    font-size:
+        15px;
+}
+
+.register-link {
+
+    color:
+        var(--accent);
+
+    cursor:
+        pointer;
+}
+
+
+/* =========================
+   MESAJ
+========================= */
+
+.form-message {
+
+    margin-top:
+        15px;
+
+    text-align:
+        center;
+
+    color:
+        var(--accent);
+
+    font-size:
+        15px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    padding:
+        55px 20px;
+
+    border-top:
+        1px solid var(--border);
+
+    text-align:
+        center;
+}
+
+.footer-logo {
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        31px;
+
+    color:
+        var(--text);
+}
+
+footer p {
+
+    margin-top:
+        10px;
+
+    color:
+        var(--text-muted);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        7px;
+
+    letter-spacing:
+        2px;
+}
+
+
+/* =========================
+   TELEFON
+========================= */
+
+@media (max-width: 700px) {
+
+    header {
+
+        height:
+            72px;
+
+        padding:
+            0 5%;
+    }
+
+    .logo-image {
+
+        width:
+            115px;
+    }
+
+    .profile-page {
+
+        width:
+            88%;
+
+        padding:
+            65px 0 80px;
+    }
+
+    .profile-card,
+    .login-card {
+
+        padding:
+            28px 20px;
+    }
+
+    .profile-heading {
+
+        margin-bottom:
+            40px;
+    }
+
+    .profile-heading h1 {
+
+        font-size:
+            45px;
+    }
+
+    .profile-buttons {
+
+        flex-direction:
+            column;
+    }
+
+    .profile-button {
+
+        width:
+            100%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+
+    <a href="index.html">
+
+        <img
+            src="kesmislalih-logo.png"
+            alt="kesmislalih"
+            class="logo-image">
+
+    </a>
+
+
+    <div class="header-right">
+
+
+        <a
+            href="index.html"
+            class="back-button">
+
+            ← ANA SAYFA
+
+        </a>
+
+
+        <button
+            type="button"
+            class="theme-button"
+            id="themeButton">
+
+            <span id="themeIcon">
+                ☾
+            </span>
+
+        </button>
+
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================
+     ANA ALAN
+========================= -->
+
+<main class="profile-page">
+
+
+    <section class="profile-heading">
+
+        <h1>
+            Profilim
+        </h1>
+
+        <p>
+            Hesabını yönet
+        </p>
+
+    </section>
+
+
+
+    <!-- =========================
+         GİRİŞ ALANI
+    ========================= -->
+
+    <section
+        class="login-card"
+        id="loginCard">
+
+
+        <h2 class="login-title">
+            Giriş Yap
+        </h2>
+
+
+        <p class="login-subtitle">
+
+            Hesabına giriş yap ve
+            hikâyelere yorum bırak.
+
+        </p>
+
+
+        <div class="form-group">
+
+            <label>
+                KULLANICI ADI
+            </label>
+
+            <input
+                type="text"
+                id="loginUsername"
+                class="form-input"
+                placeholder="Kullanıcı adın">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                ŞİFRE
+            </label>
+
+            <input
+                type="password"
+                id="loginPassword"
+                class="form-input"
+                placeholder="Şifren">
+
+        </div>
+
+
+        <button
+            type="button"
+            class="login-button"
+            id="loginButton">
+
+            GİRİŞ YAP
+
+        </button>
+
+
+        <div
+            class="form-message"
+            id="loginMessage">
+        </div>
+
+
+        <div class="register-text">
+
+            Hesabın yok mu?
+
+            <span
+                class="register-link"
+                id="registerLink">
+
+                Kayıt Ol
+
+            </span>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         PROFİL
+    ========================= -->
+
+    <section
+        class="profile-card"
+        id="profileCard">
+
+
+        <div class="profile-icon">
+
+            ♡
+
+        </div>
+
+
+        <h2
+            class="profile-username"
+            id="profileUsername">
+
+            Misafir
+
+        </h2>
+
+
+        <p class="profile-description">
+
+            Henüz giriş yapmadın.
+
+        </p>
+
+
+        <div class="profile-buttons">
+
+
+            <button
+                type="button"
+                class="profile-button"
+                id="loginOpenButton">
+
+                GİRİŞ YAP
+
+            </button>
+
+
+            <button
+                type="button"
+                class="profile-button"
+                id="registerOpenButton">
+
+                KAYIT OL
+
+            </button>
+
+
+        </div>
+
+
+        <div
+            class="account-info"
+            id="accountInfo"
+            style="display:none;">
+
+
+            <div class="account-info-title">
+
+                HESAP BİLGİLERİ
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span>
+                    Kullanıcı adı
+                </span>
+
+                <strong id="infoUsername">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span>
+                    Yorumlar
+                </span>
+
+                <strong>
+                    0
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-logo">
+
+        kesmislalih
+
+    </div>
+
+    <p>
+
+        © 2026 kesmislalih
+
+    </p>
+
+</footer>
+
+
+
+<script>
+
+
+/* =========================
+   TEMA
+========================= */
+
+const themeButton =
+    document.getElementById("themeButton");
+
+const themeIcon =
+    document.getElementById("themeIcon");
+
+
+const savedTheme =
+    localStorage.getItem("siteTheme");
+
+
+if (savedTheme === "light") {
+
+    document.body.classList.add("light");
+
+    themeIcon.textContent = "☀";
+
+} else {
+
+    themeIcon.textContent = "☾";
+
+}
+
+
+themeButton.addEventListener(
+    "click",
+    function() {
+
+        document.body.classList.toggle("light");
+
+        const isLight =
+            document.body.classList.contains("light");
+
+
+        if (isLight) {
+
+            themeIcon.textContent = "☀";
+
+            localStorage.setItem(
+                "siteTheme",
+                "light"
+            );
+
+        } else {
+
+            themeIcon.textContent = "☾";
+
+            localStorage.setItem(
+                "siteTheme",
+                "dark"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================
+   ELEMANLAR
+========================= */
+
+const profileCard =
+    document.getElementById("profileCard");
+
+const loginCard =
+    document.getElementById("loginCard");
+
+const loginOpenButton =
+    document.getElementById("loginOpenButton");
+
+const registerOpenButton =
+    document.getElementById("registerOpenButton");
+
+const registerLink =
+    document.getElementById("registerLink");
+
+const loginButton =
+    document.getElementById("loginButton");
+
+const loginUsername =
+    document.getElementById("loginUsername");
+
+const loginPassword =
+    document.getElementById("loginPassword");
+
+const loginMessage =
+    document.getElementById("loginMessage");
+
+const profileUsername =
+    document.getElementById("profileUsername");
+
+const infoUsername =
+    document.getElementById("infoUsername");
+
+const accountInfo =
+    document.getElementById("accountInfo");
+
+
+/* =========================
+   GİRİŞ ALANINI AÇ
+========================= */
+
+function openLogin() {
+
+    profileCard.style.display =
+        "none";
+
+    loginCard.style.display =
+        "block";
+
+    loginMessage.textContent =
+        "";
+
+}
+
+
+/* =========================
+   PROFİLİ GÖSTER
+========================= */
+
+function showProfile(username) {
+
+    loginCard.style.display =
+        "none";
+
+    profileCard.style.display =
+        "block";
+
+    profileUsername.textContent =
+        username;
+
+    infoUsername.textContent =
+        username;
+
+    accountInfo.style.display =
+        "block";
+
+}
+
+
+/* =========================
+   GİRİŞ BUTONU
+========================= */
+
+loginOpenButton.addEventListener(
+    "click",
+    openLogin
+);
+
+
+/* =========================
+   KAYIT BUTONU
+========================= */
+
+registerOpenButton.addEventListener(
+    "click",
+    function() {
+
+        alert(
+            "Kayıt sistemi bir sonraki adımda bağlanacak."
+        );
+
+    }
+);
+
+
+/* =========================
+   KAYIT OL YAZISI
+========================= */
+
+registerLink.addEventListener(
+    "click",
+    function() {
+
+        alert(
+            "Kayıt sistemi bir sonraki adımda bağlanacak."
+        );
+
+    }
+);
+
+
+/* =========================
+   ŞİMDİLİK GİRİŞ
+========================= */
+
+loginButton.addEventListener(
+    "click",
+    function() {
+
+        const username =
+            loginUsername.value.trim();
+
+        const password =
+            loginPassword.value.trim();
+
+
+        if (!username || !password) {
+
+            loginMessage.textContent =
+                "Kullanıcı adı ve şifre gerekli.";
+
+            return;
+        }
+
+
+        /*
+         * ŞİMDİLİK TEST AMAÇLI.
+         *
+         * Gerçek kullanıcı sistemi
+         * veritabanı bağlandığında
+         * burada değişecek.
+         */
+
+
+        localStorage.setItem(
+            "loggedInUser",
+            username
+        );
+
+
+        showProfile(username);
+
+    }
+);
+
+
+/* =========================
+   DAHA ÖNCE GİRİŞ YAPILMIŞ MI?
+========================= */
+
+const loggedInUser =
+    localStorage.getItem("loggedInUser");
+
+
+if (loggedInUser) {
+
+    showProfile(loggedInUser);
+
+}
+
+
+</script>
+
+
+</body>
+
+  </html>
+  
