@@ -19,24 +19,21 @@
 
 
 * {
-
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
 
 
 html {
-
     scroll-behavior: smooth;
-
 }
 
 
 body {
 
     background: #09090b;
+
     color: #f3efe8;
 
     font-family:
@@ -57,17 +54,13 @@ body {
 
     width: 100%;
 
-    padding:
-        25px 6%;
+    padding: 25px 6%;
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    justify-content:
-        space-between;
+    justify-content: space-between;
 
     border-bottom:
         1px solid #28242c;
@@ -79,15 +72,13 @@ body {
 
     color: #f8f3ff;
 
-    text-decoration:
-        none;
+    text-decoration: none;
 
     font-family:
         "Great Vibes",
         cursive;
 
-    font-size:
-        32px;
+    font-size: 32px;
 
 }
 
@@ -96,45 +87,39 @@ body {
 
     color: #aaa39a;
 
-    text-decoration:
-        none;
+    text-decoration: none;
 
     font-family:
         Arial,
         sans-serif;
 
-    font-size:
-        9px;
+    font-size: 9px;
 
-    letter-spacing:
-        2px;
+    letter-spacing: 2px;
 
-    transition:
-        .3s;
+    transition: .3s;
 
 }
 
 
 .back-button:hover {
 
-    color:
-        #cdb9eb;
+    color: #cdb9eb;
 
 }
 
 
 
 /* =========================
-   GALERİ BAŞLIK
+   BAŞLIK
 ========================= */
 
 .gallery-intro {
 
-    text-align:
-        center;
+    text-align: center;
 
     padding:
-        110px 25px 70px;
+        105px 25px 70px;
 
 }
 
@@ -145,17 +130,13 @@ body {
         Arial,
         sans-serif;
 
-    font-size:
-        8px;
+    font-size: 8px;
 
-    letter-spacing:
-        5px;
+    letter-spacing: 5px;
 
-    color:
-        #756d79;
+    color: #756d79;
 
-    margin-bottom:
-        20px;
+    margin-bottom: 20px;
 
 }
 
@@ -163,35 +144,26 @@ body {
 .gallery-intro h1 {
 
     font-size:
-        clamp(
-            55px,
-            9vw,
-            90px
-        );
+        clamp(55px, 9vw, 90px);
 
-    font-weight:
-        400;
+    font-weight: 400;
 
-    line-height:
-        1;
+    line-height: 1;
 
 }
 
 
 .gallery-subtitle {
 
-    margin-top:
-        18px;
+    margin-top: 18px;
 
     font-family:
         "Great Vibes",
         cursive;
 
-    font-size:
-        30px;
+    font-size: 30px;
 
-    color:
-        #cdb9eb;
+    color: #cdb9eb;
 
 }
 
@@ -204,10 +176,7 @@ body {
 .gallery {
 
     width:
-        min(
-            1100px,
-            86%
-        );
+        min(1100px, 88%);
 
     margin:
         0 auto 120px;
@@ -217,131 +186,185 @@ body {
 
 .gallery-grid {
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
-        repeat(
-            3,
-            1fr
-        );
+        repeat(3, 1fr);
 
-    gap:
-        18px;
+    gap: 20px;
 
 }
 
 
 .gallery-item {
 
-    position:
-        relative;
+    position: relative;
 
-    aspect-ratio:
-        4 / 5;
+    aspect-ratio: 4 / 5;
 
-    overflow:
-        hidden;
+    overflow: hidden;
 
     border:
         1px solid #29252d;
 
-    background:
-        #111015;
+    background: #111015;
+
+    cursor: pointer;
 
 }
 
 
 .gallery-item img {
 
-    width:
-        100%;
+    width: 100%;
 
-    height:
-        100%;
+    height: 100%;
 
-    object-fit:
-        cover;
+    object-fit: cover;
 
-    display:
-        block;
+    display: block;
 
     transition:
-        .5s ease;
+        transform .6s ease,
+        opacity .4s ease;
 
 }
 
 
 .gallery-item:hover img {
 
-    transform:
-        scale(1.04);
+    transform: scale(1.05);
+
+    opacity: .82;
 
 }
 
 
-
 /* =========================
-   IMG YERİ
+   FOTOĞRAF NUMARASI
 ========================= */
 
-.image-placeholder {
+.gallery-number {
 
-    width:
-        100%;
+    position: absolute;
 
-    height:
-        100%;
+    left: 15px;
 
-    display:
-        flex;
+    bottom: 12px;
 
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    text-align:
-        center;
-
-    padding:
-        20px;
-
-    color:
-        #5f5964;
+    z-index: 2;
 
     font-family:
         Arial,
         sans-serif;
 
-    font-size:
-        8px;
+    font-size: 7px;
 
-    letter-spacing:
-        2px;
+    letter-spacing: 2px;
 
-    line-height:
-        1.8;
+    color: #f3efe8;
+
+    opacity: .75;
 
 }
 
 
 
 /* =========================
-   ALT KISIM
+   BÜYÜTME PENCERESİ
+========================= */
+
+.lightbox {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(5, 5, 7, .94);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 30px;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: .3s;
+
+    z-index: 999;
+
+}
+
+
+.lightbox.open {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+
+.lightbox img {
+
+    max-width: 90vw;
+
+    max-height: 88vh;
+
+    object-fit: contain;
+
+    border:
+        1px solid #39323f;
+
+    box-shadow:
+        0 20px 70px rgba(0,0,0,.6);
+
+}
+
+
+.lightbox-close {
+
+    position: absolute;
+
+    top: 25px;
+
+    right: 35px;
+
+    background: none;
+
+    border: none;
+
+    color: #eee8e1;
+
+    font-size: 30px;
+
+    font-weight: 200;
+
+    cursor: pointer;
+
+}
+
+
+
+/* =========================
+   FOOTER
 ========================= */
 
 .gallery-footer {
 
     padding:
-        50px 25px;
+        55px 25px;
 
     border-top:
         1px solid #252328;
 
-    text-align:
-        center;
+    text-align: center;
 
 }
 
@@ -352,32 +375,26 @@ body {
         "Great Vibes",
         cursive;
 
-    font-size:
-        35px;
+    font-size: 35px;
 
-    color:
-        #f8f3ff;
+    color: #f8f3ff;
 
 }
 
 
 .gallery-footer p {
 
-    margin-top:
-        12px;
+    margin-top: 12px;
 
-    color:
-        #77716a;
+    color: #77716a;
 
     font-family:
         Arial,
         sans-serif;
 
-    font-size:
-        7px;
+    font-size: 7px;
 
-    letter-spacing:
-        2px;
+    letter-spacing: 2px;
 
 }
 
@@ -400,8 +417,7 @@ body {
 
     .gallery-logo {
 
-        font-size:
-            27px;
+        font-size: 27px;
 
     }
 
@@ -409,23 +425,21 @@ body {
     .gallery-intro {
 
         padding:
-            85px 20px 50px;
+            80px 20px 50px;
 
     }
 
 
     .gallery-subtitle {
 
-        font-size:
-            25px;
+        font-size: 25px;
 
     }
 
 
     .gallery {
 
-        width:
-            92%;
+        width: 92%;
 
     }
 
@@ -433,13 +447,34 @@ body {
     .gallery-grid {
 
         grid-template-columns:
-            repeat(
-                2,
-                1fr
-            );
+            repeat(2, 1fr);
 
-        gap:
-            10px;
+        gap: 10px;
+
+    }
+
+
+    .lightbox {
+
+        padding: 15px;
+
+    }
+
+
+    .lightbox img {
+
+        max-width: 95vw;
+
+        max-height: 82vh;
+
+    }
+
+
+    .lightbox-close {
+
+        top: 15px;
+
+        right: 20px;
 
     }
 
@@ -520,117 +555,146 @@ body {
 
 
 
-        <!-- =====================
-             FOTOĞRAF 1
-        ====================== -->
+        <!-- FOTOĞRAF 1 -->
 
-        <div class="gallery-item">
+        <div
+            class="gallery-item"
+            onclick="openLightbox(this)">
 
-            <!-- IMG BURAYA -->
+            <img
+                src="772b5be803dcc10b56a2cae0088acf3e.jpg"
+                alt="Galeri fotoğrafı 1">
 
-            <div class="image-placeholder">
-
-                FOTOĞRAF 1
-
-            </div>
-
-        </div>
-
-
-
-        <!-- =====================
-             FOTOĞRAF 2
-        ====================== -->
-
-        <div class="gallery-item">
-
-            <!-- IMG BURAYA -->
-
-            <div class="image-placeholder">
-
-                FOTOĞRAF 2
-
-            </div>
+            <span class="gallery-number">
+                01
+            </span>
 
         </div>
 
 
 
-        <!-- =====================
-             FOTOĞRAF 3
-        ====================== -->
+        <!-- FOTOĞRAF 2 -->
 
-        <div class="gallery-item">
+        <div
+            class="gallery-item"
+            onclick="openLightbox(this)">
 
-            <!-- IMG BURAYA -->
+            <img
+                src="ad301506aa5527e2b6d349fcbf02e9a8 (1).jpg"
+                alt="Galeri fotoğrafı 2">
 
-            <div class="image-placeholder">
-
-                FOTOĞRAF 3
-
-            </div>
-
-        </div>
-
-
-
-        <!-- =====================
-             FOTOĞRAF 4
-        ====================== -->
-
-        <div class="gallery-item">
-
-            <!-- IMG BURAYA -->
-
-            <div class="image-placeholder">
-
-                FOTOĞRAF 4
-
-            </div>
+            <span class="gallery-number">
+                02
+            </span>
 
         </div>
 
 
 
-        <!-- =====================
-             FOTOĞRAF 5
-        ====================== -->
+        <!-- FOTOĞRAF 3 -->
 
-        <div class="gallery-item">
+        <div
+            class="gallery-item"
+            onclick="openLightbox(this)">
 
-            <!-- IMG BURAYA -->
+            <img
+                src="0f8b7991dde0f22ff23fb81e0fc16649.jpg"
+                alt="Galeri fotoğrafı 3">
 
-            <div class="image-placeholder">
+            <span class="gallery-number">
+                03
+            </span>
 
-                FOTOĞRAF 5
+        </div>
 
-            </div>
+
+
+        <!-- FOTOĞRAF 4 -->
+
+        <div
+            class="gallery-item"
+            onclick="openLightbox(this)">
+
+            <img
+                src="bd00784591329cdde6e7804525bb3951.jpg"
+                alt="Galeri fotoğrafı 4">
+
+            <span class="gallery-number">
+                04
+            </span>
 
         </div>
 
 
 
-        <!-- =====================
-             FOTOĞRAF 6
-        ====================== -->
+        <!-- FOTOĞRAF 5 -->
 
-        <div class="gallery-item">
+        <div
+            class="gallery-item"
+            onclick="openLightbox(this)">
 
-            <!-- IMG BURAYA -->
+            <img
+                src="9be113dce8dd12d87ae4f2bf8cf5293e (1).jpg"
+                alt="Galeri fotoğrafı 5">
 
-            <div class="image-placeholder">
-
-                FOTOĞRAF 6
-
-            </div>
+            <span class="gallery-number">
+                05
+            </span>
 
         </div>
 
+
+
+        <!-- FOTOĞRAF 6 -->
+
+        <div
+            class="gallery-item"
+            onclick="openLightbox(this)">
+
+            <img
+                src="6b0bac9092b0bc230917f062c52e84ad.jpg"
+                alt="Galeri fotoğrafı 6">
+
+            <span class="gallery-number">
+                06
+            </span>
+
+        </div>
 
 
     </div>
 
 </main>
+
+
+
+<!-- =========================
+     FOTOĞRAF BÜYÜTME
+========================= -->
+
+<div
+    class="lightbox"
+    id="lightbox"
+    onclick="closeLightbox()">
+
+
+    <button
+        class="lightbox-close"
+        onclick="closeLightbox()">
+
+        ×
+
+    </button>
+
+
+    <img
+        id="lightboxImage"
+        src=""
+        alt="Büyük galeri görseli"
+        onclick="event.stopPropagation()">
+
+
+</div>
 
 
 
@@ -652,6 +716,66 @@ body {
 
 
 </footer>
+
+
+
+<script>
+
+
+function openLightbox(item) {
+
+    const image =
+        item.querySelector("img");
+
+    const lightbox =
+        document.getElementById("lightbox");
+
+    const lightboxImage =
+        document.getElementById("lightboxImage");
+
+
+    lightboxImage.src =
+        image.src;
+
+
+    lightbox.classList.add("open");
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+
+function closeLightbox() {
+
+    const lightbox =
+        document.getElementById("lightbox");
+
+
+    lightbox.classList.remove("open");
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            closeLightbox();
+
+        }
+
+    }
+);
+
+</script>
 
 
 </body>
