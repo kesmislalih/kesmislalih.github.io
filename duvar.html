@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Duvar | kesmislalih</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&display=swap');
+
+
+/* =========================
+   TEMEL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    --background: #09090b;
+    --surface: #111015;
+    --surface-two: #17141a;
+
+    --text: #eee9e2;
+    --text-soft: #aaa39a;
+    --text-muted: #756d76;
+
+    --border: #29252d;
+
+    --accent: #cdb9eb;
+    --accent-dark: #8f819e;
+
+    min-height: 100vh;
+
+    background:
+        var(--background);
+
+    color:
+        var(--text);
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    transition:
+        background .4s ease,
+        color .4s ease;
+}
+
+
+/* =========================
+   AYDINLIK MOD
+========================= */
+
+body.light {
+
+    --background: #f5f1eb;
+    --surface: #ebe5dd;
+    --surface-two: #e3dcd3;
+
+    --text: #242126;
+    --text-soft: #5e5752;
+    --text-muted: #817873;
+
+    --border: #d3cbc1;
+
+    --accent: #806a9c;
+    --accent-dark: #665477;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+
+    width: 100%;
+
+    height: 82px;
+
+    padding:
+        0 6%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-bottom:
+        1px solid var(--border);
+
+    background:
+        rgba(9,9,11,.78);
+
+    backdrop-filter:
+        blur(15px);
+
+    position:
+        sticky;
+
+    top: 0;
+
+    z-index: 1000;
+}
+
+
+body.light header {
+
+    background:
+        rgba(245,241,235,.85);
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo-image {
+
+    width:
+        145px;
+
+    height:
+        auto;
+
+    display:
+        block;
+}
+
+
+/* =========================
+   SAĞ TARAF
+========================= */
+
+.header-right {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        15px;
+}
+
+
+/* =========================
+   ANA SAYFA
+========================= */
+
+.back-button {
+
+    color:
+        var(--text-soft);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        2px;
+
+    transition:
+        .3s ease;
+}
+
+
+.back-button:hover {
+
+    color:
+        var(--accent);
+}
+
+
+/* =========================
+   TEMA BUTONU
+========================= */
+
+.theme-button {
+
+    width:
+        38px;
+
+    height:
+        38px;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        var(--surface);
+
+    color:
+        var(--text);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    cursor:
+        pointer;
+
+    font-size:
+        17px;
+
+    transition:
+        .3s ease;
+}
+
+
+.theme-button:hover {
+
+    color:
+        var(--accent);
+
+    transform:
+        rotate(12deg);
+}
+
+
+/* =========================
+   ANA ALAN
+========================= */
+
+.wall-page {
+
+    width:
+        min(850px, 90%);
+
+    margin:
+        0 auto;
+
+    padding:
+        90px 0 110px;
+}
+
+
+/* =========================
+   BAŞLIK
+========================= */
+
+.wall-heading {
+
+    text-align:
+        center;
+
+    margin-bottom:
+        60px;
+}
+
+
+.wall-heading h1 {
+
+    color:
+        var(--text);
+
+    font-size:
+        clamp(45px, 8vw, 70px);
+
+    font-weight:
+        400;
+
+    letter-spacing:
+        3px;
+}
+
+
+.wall-heading p {
+
+    margin-top:
+        12px;
+
+    color:
+        var(--text-muted);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        4px;
+
+    text-transform:
+        uppercase;
+}
+
+
+/* =========================
+   MESAJ YAZMA ALANI
+========================= */
+
+.write-box {
+
+    padding:
+        35px;
+
+    background:
+        var(--surface);
+
+    border:
+        1px solid var(--border);
+
+    margin-bottom:
+        55px;
+}
+
+
+.write-title {
+
+    color:
+        var(--text);
+
+    font-size:
+        25px;
+
+    margin-bottom:
+        20px;
+}
+
+
+.name-input,
+.message-input {
+
+    width:
+        100%;
+
+    border:
+        1px solid var(--border);
+
+    outline:
+        none;
+
+    background:
+        var(--surface-two);
+
+    color:
+        var(--text);
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    transition:
+        border-color .3s ease;
+}
+
+
+.name-input {
+
+    padding:
+        13px 15px;
+
+    font-size:
+        17px;
+
+    margin-bottom:
+        13px;
+}
+
+
+.message-input {
+
+    min-height:
+        130px;
+
+    resize:
+        vertical;
+
+    padding:
+        15px;
+
+    font-size:
+        18px;
+
+    line-height:
+        1.6;
+}
+
+
+.name-input:focus,
+.message-input:focus {
+
+    border-color:
+        var(--accent-dark);
+}
+
+
+.message-input::placeholder,
+.name-input::placeholder {
+
+    color:
+        var(--text-muted);
+}
+
+
+/* =========================
+   GÖNDER BUTONU
+========================= */
+
+.send-button {
+
+    margin-top:
+        18px;
+
+    padding:
+        13px 25px;
+
+    border:
+        1px solid var(--accent-dark);
+
+    background:
+        transparent;
+
+    color:
+        var(--text);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        3px;
+
+    cursor:
+        pointer;
+
+    transition:
+        .3s ease;
+}
+
+
+.send-button:hover {
+
+    background:
+        var(--accent);
+
+    color:
+        var(--background);
+}
+
+
+/* =========================
+   YORUMLAR
+========================= */
+
+.comments-title {
+
+    text-align:
+        center;
+
+    color:
+        var(--text-soft);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        4px;
+
+    margin-bottom:
+        25px;
+}
+
+
+.comments {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        15px;
+}
+
+
+/* =========================
+   YORUM KARTI
+========================= */
+
+.comment {
+
+    padding:
+        24px 25px;
+
+    background:
+        var(--surface);
+
+    border:
+        1px solid var(--border);
+}
+
+
+.comment-name {
+
+    color:
+        var(--accent);
+
+    font-size:
+        21px;
+
+    margin-bottom:
+        8px;
+}
+
+
+.comment-text {
+
+    color:
+        var(--text-soft);
+
+    font-size:
+        18px;
+
+    line-height:
+        1.65;
+
+    white-space:
+        pre-wrap;
+}
+
+
+.comment-date {
+
+    margin-top:
+        12px;
+
+    color:
+        var(--text-muted);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        7px;
+
+    letter-spacing:
+        2px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    padding:
+        55px 20px;
+
+    border-top:
+        1px solid var(--border);
+
+    text-align:
+        center;
+}
+
+
+.footer-logo {
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        31px;
+
+    color:
+        var(--text);
+}
+
+
+footer p {
+
+    margin-top:
+        10px;
+
+    color:
+        var(--text-muted);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        7px;
+
+    letter-spacing:
+        2px;
+}
+
+
+/* =========================
+   TELEFON
+========================= */
+
+@media (max-width: 700px) {
+
+    header {
+
+        height:
+            72px;
+
+        padding:
+            0 5%;
+    }
+
+
+    .logo-image {
+
+        width:
+            115px;
+    }
+
+
+    .wall-page {
+
+        width:
+            88%;
+
+        padding:
+            65px 0 80px;
+    }
+
+
+    .write-box {
+
+        padding:
+            25px 20px;
+    }
+
+
+    .wall-heading {
+
+        margin-bottom:
+            40px;
+    }
+
+
+    .wall-heading h1 {
+
+        font-size:
+            45px;
+    }
+
+
+    .comment {
+
+        padding:
+            20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+
+    <a
+        href="index.html">
+
+        <img
+            src="kesmislalih-logo.png"
+            alt="kesmislalih"
+            class="logo-image">
+
+    </a>
+
+
+    <div class="header-right">
+
+
+        <a
+            href="index.html"
+            class="back-button">
+
+            ← ANA SAYFA
+
+        </a>
+
+
+        <button
+            type="button"
+            class="theme-button"
+            id="themeButton"
+            aria-label="Tema değiştir">
+
+            <span id="themeIcon">
+                ☾
+            </span>
+
+        </button>
+
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================
+     DUVAR
+========================= -->
+
+<main class="wall-page">
+
+
+    <section class="wall-heading">
+
+        <h1>
+            Duvar
+        </h1>
+
+        <p>
+            Okurlardan sana
+        </p>
+
+    </section>
+
+
+
+    <!-- =========================
+         YORUM YAZ
+    ========================= -->
+
+    <section class="write-box">
+
+
+        <div class="write-title">
+
+            Duvara bir şey bırak.
+
+        </div>
+
+
+        <input
+            type="text"
+            id="nameInput"
+            class="name-input"
+            maxlength="30"
+            placeholder="Adın veya kullanıcı adın">
+
+
+        <textarea
+            id="messageInput"
+            class="message-input"
+            maxlength="500"
+            placeholder="Bir şeyler yaz..."></textarea>
+
+
+        <button
+            type="button"
+            id="sendButton"
+            class="send-button">
+
+            DUVARA BIRAK
+
+        </button>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         YORUMLAR
+    ========================= -->
+
+    <section>
+
+
+        <div class="comments-title">
+
+            DUVARDAKİ MESAJLAR
+
+        </div>
+
+
+        <div
+            class="comments"
+            id="comments">
+
+
+            <!-- ÖRNEK YORUM -->
+
+            <article class="comment">
+
+                <div class="comment-name">
+
+                    Bir okur
+
+                </div>
+
+                <div class="comment-text">
+
+                    Buraya okurların yazdığı
+                    mesajlar gelecek.
+
+                </div>
+
+                <div class="comment-date">
+
+                    YENİ
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-logo">
+
+        kesmislalih
+
+    </div>
+
+    <p>
+
+        © 2026 kesmislalih
+
+    </p>
+
+</footer>
+
+
+
+<script>
+
+
+/* =========================
+   TEMA
+========================= */
+
+const themeButton =
+    document.getElementById("themeButton");
+
+const themeIcon =
+    document.getElementById("themeIcon");
+
+
+const savedTheme =
+    localStorage.getItem("siteTheme");
+
+
+if (savedTheme === "light") {
+
+    document.body.classList.add("light");
+
+    themeIcon.textContent = "☀";
+
+} else {
+
+    themeIcon.textContent = "☾";
+
+}
+
+
+themeButton.addEventListener(
+    "click",
+    function() {
+
+        document.body.classList.toggle("light");
+
+
+        const isLight =
+            document.body.classList.contains("light");
+
+
+        if (isLight) {
+
+            themeIcon.textContent = "☀";
+
+            localStorage.setItem(
+                "siteTheme",
+                "light"
+            );
+
+        } else {
+
+            themeIcon.textContent = "☾";
+
+            localStorage.setItem(
+                "siteTheme",
+                "dark"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================
+   GEÇİCİ YORUM SİSTEMİ
+========================= */
+
+const nameInput =
+    document.getElementById("nameInput");
+
+const messageInput =
+    document.getElementById("messageInput");
+
+const sendButton =
+    document.getElementById("sendButton");
+
+const comments =
+    document.getElementById("comments");
+
+
+sendButton.addEventListener(
+    "click",
+    function() {
+
+
+        const name =
+            nameInput.value.trim();
+
+        const message =
+            messageInput.value.trim();
+
+
+        if (!name || !message) {
+
+            alert(
+                "Lütfen adını ve mesajını yaz."
+            );
+
+            return;
+        }
+
+
+        const comment =
+            document.createElement("article");
+
+        comment.className =
+            "comment";
+
+
+        comment.innerHTML = `
+
+            <div class="comment-name">
+
+                ${escapeHTML(name)}
+
+            </div>
+
+            <div class="comment-text">
+
+                ${escapeHTML(message)}
+
+            </div>
+
+            <div class="comment-date">
+
+                AZ ÖNCE
+
+            </div>
+
+        `;
+
+
+        comments.prepend(comment);
+
+
+        nameInput.value = "";
+
+        messageInput.value = "";
+
+    }
+);
+
+
+/* =========================
+   GÜVENLİ METİN
+========================= */
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        text;
+
+    return div.innerHTML;
+}
+
+
+</script>
+
+
+</body>
+
+  </html>
