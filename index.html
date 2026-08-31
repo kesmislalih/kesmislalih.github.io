@@ -12,6 +12,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap');
 
 
+/* =========================
+   GENEL
+========================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -48,16 +52,32 @@ header {
     z-index: 100;
 }
 
+
+/* DAHA YUMUŞAK LOGO */
+
 .logo {
-    color: #f8f3ff;
+    color: #f4eff9;
     text-decoration: none;
 
     font-family: "Great Vibes", cursive;
-    font-size: 32px;
+    font-size: 31px;
+    font-weight: 400;
+
+    opacity: .94;
 
     text-shadow:
-        0 0 6px rgba(220,195,255,.45),
-        0 0 16px rgba(185,167,216,.25);
+        0 0 5px rgba(220,195,255,.30),
+        0 0 14px rgba(185,167,216,.16);
+
+    transition: .3s ease;
+}
+
+.logo:hover {
+    color: #d9c9eb;
+
+    text-shadow:
+        0 0 7px rgba(220,195,255,.42),
+        0 0 18px rgba(185,167,216,.22);
 }
 
 
@@ -165,6 +185,7 @@ header {
 
 .menu-panel a.menu-link:hover {
     color: #cdb9eb;
+
     padding-left: 8px;
 }
 
@@ -183,7 +204,6 @@ header {
     color: #756d79;
 
     margin-top: 27px;
-
     margin-bottom: 13px;
 }
 
@@ -240,29 +260,23 @@ header {
 
 /* =========================
    WATTPAD
-   DAHA TEMİZ W AMBLEMİ
+   GERÇEKÇİ W AMBLEMİ
 ========================= */
 
-.wattpad-icon {
-    position: relative;
-
+.wattpad-svg {
     width: 20px;
     height: 20px;
+}
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
-    font-family: Arial, sans-serif;
+/* =========================
+   PINTEREST
+   ORİJİNAL P AMBLEMİ
+========================= */
 
-    font-size: 17px;
-    font-weight: 900;
-
-    letter-spacing: -3px;
-
-    line-height: 1;
-
-    transform: scaleX(1.05);
+.pinterest-svg {
+    width: 19px;
+    height: 19px;
 }
 
 
@@ -346,7 +360,9 @@ header {
 }
 
 
-/* SİSLİ MOR IŞIK */
+/* =========================
+   SİSLİ MOR IŞIK
+========================= */
 
 .hero::before {
     content: "";
@@ -377,7 +393,9 @@ header {
 }
 
 
-/* GRAIN */
+/* =========================
+   GRAIN
+========================= */
 
 .hero::after {
     content: "";
@@ -416,16 +434,16 @@ header {
 
     line-height: .75;
 
-    letter-spacing: -4px;
+    letter-spacing: -3px;
 
-    color: #f8f3ff;
+    color: #f7f2fb;
 
-    transform: rotate(-3deg);
+    transform: rotate(-2deg);
 
     text-shadow:
-        0 0 8px rgba(220,195,255,.45),
-        0 0 25px rgba(185,167,216,.30),
-        0 0 55px rgba(185,167,216,.12);
+        0 0 7px rgba(220,195,255,.30),
+        0 0 20px rgba(185,167,216,.18),
+        0 0 42px rgba(185,167,216,.08);
 
     white-space: nowrap;
 }
@@ -640,1629 +658,7 @@ header {
 
     border-top: 1px solid #665873;
 }
-
-
-/* =========================
-   HAKKIMDA
-========================= */
-
-.about {
-    padding: 115px 20px;
-
-    text-align: center;
-}
-
-.about-title {
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 19px;
-
-    font-weight: 500;
-
-    letter-spacing: 6px;
-
-    color: #cfc6d7;
-
-    margin-bottom: 25px;
-
-    text-transform: uppercase;
-}
-
-.about-text {
-    max-width: 560px;
-
-    margin: auto;
-
-    color: #89827e;
-
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 16px;
-
-    line-height: 1.9;
-
-    letter-spacing: .5px;
-}
-
-
-/* =========================
-   GALERİ
-========================= */
-
-.gallery-section {
-    padding-top: 100px;
-
-    padding-bottom: 100px;
-}
-
-
-/* =========================
-   DUVAR
-========================= */
-
-.wall {
-    max-width: 850px;
-
-    margin: auto;
-
-    padding: 45px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #121014,
-            #0d0c10
-        );
-
-    border: 1px solid #29252d;
-
-    box-shadow:
-        0 15px 45px rgba(0,0,0,.25);
-}
-
-.wall-intro {
-    text-align: center;
-
-    color: #858078;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 9px;
-
-    letter-spacing: 2px;
-
-    line-height: 1.8;
-
-    margin-bottom: 35px;
-}
-
-
-/* =========================
-   YORUM FORMU
-========================= */
-
-.wall-form {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 12px;
-}
-
-.wall-input,
-.wall-textarea {
-    width: 100%;
-
-    background: #0a090c;
-
-    border: 1px solid #302b34;
-
-    color: #e8e2da;
-
-    font-family: "Cormorant Garamond", serif;
-
-    outline: none;
-
-    transition: .3s;
-}
-
-.wall-input {
-    height: 45px;
-
-    padding: 0 15px;
-
-    font-size: 15px;
-}
-
-.wall-textarea {
-    min-height: 120px;
-
-    padding: 14px 15px;
-
-    font-size: 15px;
-
-    resize: vertical;
-}
-
-.wall-input:focus,
-.wall-textarea:focus {
-    border-color: #76658a;
-
-    box-shadow:
-        0 0 15px rgba(185,167,216,.08);
-}
-
-.wall-submit {
-    align-self: flex-end;
-
-    padding: 12px 22px;
-
-    border: 1px solid #6e6384;
-
-    background: transparent;
-
-    color: #d8c8f0;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 8px;
-
-    letter-spacing: 2px;
-
-    cursor: pointer;
-
-    transition: .3s;
-}
-
-.wall-submit:hover {
-    background: #b9a7d8;
-
-    color: #09090b;
-}
-     
-/* =========================
-   DUVAR YORUMLARI
-========================= */
-
-.wall-comments {
-    margin-top: 45px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 18px;
-}
-
-.comment-card {
-    padding: 22px 24px;
-
-    background: #0b0a0e;
-
-    border: 1px solid #29252f;
-
-    position: relative;
-
-    transition: .3s ease;
-}
-
-.comment-card:hover {
-    border-color: #4c4157;
-
-    transform: translateY(-2px);
-}
-
-.comment-card::before {
-    content: "“";
-
-    position: absolute;
-
-    top: 8px;
-    left: 15px;
-
-    font-family: Georgia, serif;
-
-    font-size: 42px;
-
-    color: #554765;
-
-    opacity: .55;
-}
-
-.comment-name {
-    color: #d8c8f0;
-
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 17px;
-
-    font-weight: 600;
-
-    margin-bottom: 9px;
-
-    padding-left: 22px;
-}
-
-.comment-text {
-    color: #918b86;
-
-    font-family: "Cormorant Garamond", serif;
- 
-/* =========================
-   DUVAR YORUMLARI
-========================= */
-
-.wall-comments {
-    margin-top: 45px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 18px;
-}
-
-.comment-card {
-    padding: 22px 24px;
-
-    background: #0b0a0e;
-
-    border: 1px solid #29252f;
-
-    position: relative;
-
-    transition: .3s ease;
-}
-
-.comment-card:hover {
-    border-color: #4c4157;
-
-    transform: translateY(-2px);
-}
-
-.comment-card::before {
-    content: "“";
-
-    position: absolute;
-
-    top: 8px;
-    left: 15px;
-
-    font-family: Georgia, serif;
-
-    font-size: 42px;
-
-    color: #554765;
-
-    opacity: .55;
-}
-
-.comment-name {
-    color: #d8c8f0;
-
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 17px;
-
-    font-weight: 600;
-
-    margin-bottom: 9px;
-
-    padding-left: 22px;
-}
-
-.comment-text {
-    color: #918b86;
-
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 14px;
-
-    line-height: 1.7;
-
-    padding-left: 22px;
-}
-
-
-/* =========================
-   DUVAR BOŞ DURUM
-========================= */
-
-.empty-wall {
-    text-align: center;
-
-    padding: 30px 10px;
-
-    color: #625d61;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 8px;
-
-    letter-spacing: 2px;
-
-    text-transform: uppercase;
-}
-
-
-/* =========================
-   DUYURULAR
-========================= */
-
-.news {
-    max-width: 800px;
-
-    margin: auto;
-}
-
-.news-item {
-    border-top: 1px solid #29272b;
-
-    padding: 22px 0;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    gap: 30px;
-}
-
-.news-date {
-    color: #716b66;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 8px;
-
-    letter-spacing: 1px;
-
-    white-space: nowrap;
-}
-
-.news-title {
-    font-size: 19px;
-
-    text-align: right;
-
-    color: #d8d2ca;
-}
-
-
-/* =========================
-   İLETİŞİM
-========================= */
-
-.contact {
-    padding: 110px 20px;
-
-    text-align: center;
-
-    border-top: 1px solid #252328;
-}
-
-.contact-title {
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 19px;
-
-    font-weight: 500;
-
-    letter-spacing: 6px;
-
-    color: #cfc6d7;
-
-    margin-bottom: 18px;
-}
-
-.contact-subtitle {
-    color: #77716b;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 9px;
-
-    letter-spacing: 2px;
-
-    line-height: 1.8;
-
-    margin-bottom: 28px;
-}
-
-.contact-mail {
-    display: inline-block;
-
-    color: #d8c8f0;
-
-    text-decoration: none;
-
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 18px;
-
-    letter-spacing: .5px;
-
-    border-bottom: 1px solid #4c4255;
-
-    padding-bottom: 5px;
-
-    transition: .3s;
-}
-
-.contact-mail:hover {
-    color: #f8f3ff;
-
-    border-color: #b9a7d8;
-}
-
-
-/* =========================
-   ALT SOSYAL MEDYA
-========================= */
-
-.social {
-    padding: 95px 20px;
-
-    text-align: center;
-
-    border-top: 1px solid #252328;
-}
-
-.social-title {
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 14px;
-
-    letter-spacing: 5px;
-
-    color: #aaa39a;
-
-    text-transform: uppercase;
-
-    margin-bottom: 30px;
-}
-
-.social-links {
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    flex-wrap: wrap;
-
-    gap: 10px 25px;
-}
-
-.social-links a {
-    color: #9d91ab;
-
-    text-decoration: none;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 9px;
-
-    letter-spacing: 2px;
-
-    text-transform: uppercase;
-
-    transition: .3s;
-}
-
-.social-links a:hover {
-    color: #f8f3ff;
-
-    transform: translateY(-2px);
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    padding: 65px 7%;
-
-    border-top: 1px solid #252328;
-
-    text-align: center;
-}
-
-.footer-logo {
-    font-family: "Great Vibes", cursive;
-
-    font-size: 35px;
-
-    color: #f8f3ff;
-
-    text-shadow:
-        0 0 7px rgba(220,195,255,.3);
-}
-
-footer p {
-    margin-top: 15px;
-
-    color: #77716a;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 8px;
-
-    letter-spacing: 2px;
-}
-
-
-/* =========================
-   SAYFA GEÇİŞLERİ
-========================= */
-
-.section,
-.about,
-.contact,
-.social {
-    position: relative;
-}
-
-.section::after,
-.about::after,
-.contact::after,
-.social::after {
-    content: "";
-
-    display: block;
-
-    width: 45px;
-
-    height: 1px;
-
-    margin: 70px auto 0;
-
-    background: #39313f;
-
-    opacity: .7;
-}
-
-
-/* =========================
-   SEÇİM RENGİ
-========================= */
-
-::selection {
-    background: #b9a7d8;
-
-    color: #09090b;
-}
-
-
-/* =========================
-   SCROLLBAR
-========================= */
-
-::-webkit-scrollbar {
-    width: 7px;
-}
-
-::-webkit-scrollbar-track {
-    background: #09090b;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #302a38;
-
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #554765;
-}
-
-
-/* =========================
-   TELEFON
-========================= */
-
-@media (max-width: 700px) {
-
-    header {
-        padding: 20px 5%;
-    }
-
-    .logo {
-        font-size: 27px;
-    }
-
-    .menu-panel {
-        width: 285px;
-
-        right: -300px;
-
-        padding: 105px 32px 30px;
-    }
-
-    .menu-panel a.menu-link {
-        font-size: 20px;
-
-        padding: 14px 0;
-    }
-
-    .menu-social {
-        gap: 7px;
-    }
-
-    .menu-social a {
-        width: 33px;
-
-        height: 33px;
-    }
-
-    .hero {
-        padding-left: 15px;
-
-        padding-right: 15px;
-    }
-
-    .hero h1 {
-        font-size: 82px;
-
-        letter-spacing: -3px;
-    }
-
-    .hero p {
-        font-size: 8px;
-
-        letter-spacing: 2px;
-    }
-
-    .button {
-        margin-top: 38px;
-
-        padding: 13px 21px;
-    }
-
-    .section {
-        padding: 90px 6%;
-    }
-
-    .section-title {
-        font-size: 38px;
-    }
-
-    .section-subtitle {
-        font-size: 25px;
-    }
-
-    .library {
-        padding: 30px 15px 0;
-    }
-
-    .shelf {
-        gap: 22px;
-
-        padding: 0 8px;
-    }
-
-    .book {
-        width: 125px;
-    }
-
-    .book-cover {
-        height: 195px;
-    }
-
-    .about {
-        padding: 85px 20px;
-    }
-
-    .about-title {
-        font-size: 17px;
-
-        letter-spacing: 5px;
-    }
-
-    .about-text {
-        font-size: 15px;
-    }
-
-    .wall {
-        padding: 28px 18px;
-    }
-
-    .wall-submit {
-        align-self: stretch;
-    }
-
-    .comment-card {
-        padding: 20px 17px;
-    }
-
-    .comment-name {
-        padding-left: 19px;
-    }
-
-    .comment-text {
-        padding-left: 19px;
-    }
-
-    .news-item {
-        display: block;
-    }
-
-    .news-title {
-        margin-top: 9px;
-
-        text-align: left;
-    }
-
-    .contact {
-        padding: 85px 20px;
-    }
-
-    .contact-mail {
-        font-size: 16px;
-    }
-
-    .social {
-        padding: 80px 20px;
-    }
-
-    .social-links {
-        gap: 16px;
-    }
-
-}
-
-
-/* =========================
-   KÜÇÜK TELEFONLAR
-========================= */
-
-@media (max-width: 380px) {
-
-    .hero h1 {
-        font-size: 68px;
-    }
-
-    .menu-panel {
-        width: 270px;
-
-        right: -285px;
-    }
-
-    .menu-social a {
-        width: 31px;
-
-        height: 31px;
-    }
-
-    .book {
-        width: 115px;
-    }
-
-    .book-cover {
-        height: 180px;
-    }
-
-}
-
-/* =========================
-   DUYURULAR
-========================= */
-
-.news {
-    max-width: 800px;
-
-    margin: auto;
-}
-
-.news-item {
-    border-top: 1px solid #29272b;
-
-    padding: 22px 0;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    gap: 30px;
-}
-
-.news-date {
-    color: #716b66;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 8px;
-
-    letter-spacing: 1px;
-
-    white-space: nowrap;
-}
-
-.news-title {
-    font-size: 19px;
-
-    text-align: right;
-
-    color: #d8d2ca;
-}
-
-
-/* =========================
-   İLETİŞİM
-========================= */
-
-.contact {
-    padding: 110px 20px;
-
-    text-align: center;
-
-    border-top: 1px solid #252328;
-}
-
-.contact-title {
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 19px;
-
-    font-weight: 500;
-
-    letter-spacing: 6px;
-
-    color: #cfc6d7;
-
-    margin-bottom: 18px;
-}
-
-.contact-subtitle {
-    color: #77716b;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 9px;
-
-    letter-spacing: 2px;
-
-    line-height: 1.8;
-
-    margin-bottom: 28px;
-}
-
-.contact-mail {
-    display: inline-block;
-
-    color: #d8c8f0;
-
-    text-decoration: none;
-
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 18px;
-
-    letter-spacing: .5px;
-
-    border-bottom: 1px solid #4c4255;
-
-    padding-bottom: 5px;
-
-    transition: .3s;
-}
-
-.contact-mail:hover {
-    color: #f8f3ff;
-
-    border-color: #b9a7d8;
-}
-
-
-/* =========================
-   ALT SOSYAL MEDYA
-========================= */
-
-.social {
-    padding: 95px 20px;
-
-    text-align: center;
-
-    border-top: 1px solid #252328;
-}
-
-.social-title {
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 14px;
-
-    letter-spacing: 5px;
-
-    color: #aaa39a;
-
-    text-transform: uppercase;
-
-    margin-bottom: 30px;
-}
-
-.social-links {
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    flex-wrap: wrap;
-
-    gap: 10px 25px;
-}
-
-.social-links a {
-    color: #9d91ab;
-
-    text-decoration: none;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 9px;
-
-    letter-spacing: 2px;
-
-    text-transform: uppercase;
-
-    transition: .3s;
-}
-
-.social-links a:hover {
-    color: #f8f3ff;
-
-    transform: translateY(-2px);
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    padding: 65px 7%;
-
-    border-top: 1px solid #252328;
-
-    text-align: center;
-}
-
-.footer-logo {
-    font-family: "Great Vibes", cursive;
-
-    font-size: 35px;
-
-    color: #f8f3ff;
-
-    text-shadow:
-        0 0 7px rgba(220,195,255,.3);
-}
-
-footer p {
-    margin-top: 15px;
-
-    color: #77716a;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 8px;
-
-    letter-spacing: 2px;
-}
-
-
-/* =========================
-   SAYFA GEÇİŞLERİ
-========================= */
-
-.section,
-.about,
-.contact,
-.social {
-    position: relative;
-}
-
-.section::after,
-.about::after,
-.contact::after,
-.social::after {
-    content: "";
-
-    display: block;
-
-    width: 45px;
-
-    height: 1px;
-
-    margin: 70px auto 0;
-
-    background: #39313f;
-
-    opacity: .7;
-}
-
-
-/* =========================
-   SEÇİM RENGİ
-========================= */
-
-::selection {
-    background: #b9a7d8;
-
-    color: #09090b;
-}
-
-
-/* =========================
-   SCROLLBAR
-========================= */
-
-::-webkit-scrollbar {
-    width: 7px;
-}
-
-::-webkit-scrollbar-track {
-    background: #09090b;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #302a38;
-
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #554765;
-}
-
-
-/* =========================
-   TELEFON
-========================= */
-
-@media (max-width: 700px) {
-
-    header {
-        padding: 20px 5%;
-    }
-
-    .logo {
-        font-size: 27px;
-    }
-
-    .menu-panel {
-        width: 285px;
-
-        right: -300px;
-
-        padding: 105px 32px 30px;
-    }
-
-    .menu-panel a.menu-link {
-        font-size: 20px;
-
-        padding: 14px 0;
-    }
-
-    .menu-social {
-        gap: 7px;
-    }
-
-    .menu-social a {
-        width: 33px;
-
-        height: 33px;
-    }
-
-    .hero {
-        padding-left: 15px;
-
-        padding-right: 15px;
-    }
-
-    .hero h1 {
-        font-size: 82px;
-
-        letter-spacing: -3px;
-    }
-
-    .hero p {
-        font-size: 8px;
-
-        letter-spacing: 2px;
-    }
-
-    .button {
-        margin-top: 38px;
-
-        padding: 13px 21px;
-    }
-
-    .section {
-        padding: 90px 6%;
-    }
-
-    .section-title {
-        font-size: 38px;
-    }
-
-    .section-subtitle {
-        font-size: 25px;
-    }
-
-    .library {
-        padding: 30px 15px 0;
-    }
-
-    .shelf {
-        gap: 22px;
-
-        padding: 0 8px;
-    }
-
-    .book {
-        width: 125px;
-    }
-
-    .book-cover {
-        height: 195px;
-    }
-
-    .about {
-        padding: 85px 20px;
-    }
-
-    .about-title {
-        font-size: 17px;
-
-        letter-spacing: 5px;
-    }
-
-    .about-text {
-        font-size: 15px;
-    }
-
-    .wall {
-        padding: 28px 18px;
-    }
-
-    .wall-submit {
-        align-self: stretch;
-    }
-
-    .comment-card {
-        padding: 20px 17px;
-    }
-
-    .comment-name {
-        padding-left: 19px;
-    }
-
-    .comment-text {
-        padding-left: 19px;
-    }
-
-    .news-item {
-        display: block;
-    }
-
-    .news-title {
-        margin-top: 9px;
-
-        text-align: left;
-    }
-
-    .contact {
-        padding: 85px 20px;
-    }
-
-    .contact-mail {
-        font-size: 16px;
-    }
-
-    .social {
-        padding: 80px 20px;
-    }
-
-    .social-links {
-        gap: 16px;
-    }
-
-}
-
-
-/* =========================
-   KÜÇÜK TELEFONLAR
-========================= */
-
-@media (max-width: 380px) {
-
-    .hero h1 {
-        font-size: 68px;
-    }
-
-    .menu-panel {
-        width: 270px;
-
-        right: -285px;
-    }
-
-    .menu-social a {
-        width: 31px;
-
-        height: 31px;
-    }
-
-    .book {
-        width: 115px;
-    }
-
-    .book-cover {
-        height: 180px;
-    }
-
-        }
-    </style>
-</head>
-
-<body>
-
-<!-- =========================
-     HEADER
-========================= -->
-
-<header>
-
-    <a href="index.html" class="logo">
-        kesmislalih
-    </a>
-
-    <button
-        class="menu-button"
-        id="menuButton"
-        aria-label="Menüyü aç">
-
-        <span class="menu-line"></span>
-        <span class="menu-line"></span>
-        <span class="menu-line"></span>
-
-    </button>
-
-</header>
-
-
-<!-- =========================
-     MENÜ ARKA PLAN
-========================= -->
-
-<div
-    class="menu-overlay"
-    id="menuOverlay">
-</div>
-
-
-<!-- =========================
-     ANA MENÜ
-========================= -->
-
-<nav
-    class="menu-panel"
-    id="menuPanel">
-
-    <div class="menu-small-title">
-        KESMISLALIH
-    </div>
-
-
-    <a href="#" class="menu-link">
-        Ana Sayfa
-    </a>
-
-    <a href="#kitaplar" class="menu-link">
-        Kitaplar
-    </a>
-
-    <a href="#hakkimda" class="menu-link">
-        Hakkımda
-    </a>
-
-    <a href="#galeri" class="menu-link">
-        Galeri
-    </a>
-
-    <a href="#duvar" class="menu-link">
-        Duvar
-    </a>
-
-    <a href="#duyurular" class="menu-link">
-        Duyurular
-    </a>
-
-    <a href="#iletisim" class="menu-link">
-        İletişim
-    </a>
-
-
     <!-- =========================
-         SOSYAL MEDYA
-    ========================= -->
-
-    <div class="menu-social-title">
-        BENİ TAKİP ET
-    </div>
-
-    <div class="menu-social">
-
-
-        <!-- TIKTOK -->
-
-        <a
-            href="https://www.tiktok.com/@kesmislalih?_r=1&_t=ZS-98gv3YRvFOK"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="TikTok">
-
-            <svg
-                class="icon"
-                viewBox="0 0 24 24"
-                aria-hidden="true">
-
-                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.17V2h-3.74v13.75a2.88 2.88 0 1 1-2.88-2.88c.3 0 .59.05.86.13v-3.8a6.66 6.66 0 1 0 5.76 6.55V8.43a8.55 8.55 0 0 0 5.02 1.62V6.32c-.43.39-.88.43-1.25.37z"/>
-
-            </svg>
-
-        </a>
-
-
-        <!-- X -->
-
-        <a
-            href="https://x.com/kesmislalih"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="X">
-
-            <svg
-                class="icon x-icon"
-                viewBox="0 0 24 24"
-                aria-hidden="true">
-
-                <path d="M18.244 2h3.252l-7.102 8.118L22.75 22h-6.55l-5.13-6.71L5.2 22H1.946l7.604-8.69L1.5 2h6.72l4.64 6.127L18.244 2zm-1.14 17.79h1.802L7.218 4.1H5.284l11.82 15.69z"/>
-
-            </svg>
-
-        </a>
-
-
-        <!-- WATTPAD -->
-
-        <a
-            href="https://www.wattpad.com/user/kesmislalih"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Wattpad">
-
-            <svg
-                class="icon wattpad-svg"
-                viewBox="0 0 24 24"
-                aria-hidden="true">
-
-                <path d="M3 4h4.1c2.25 0 3.77.88 4.82 2.48C12.97 4.88 14.49 4 16.74 4H21v16h-4.26c-2.08 0-3.52-.76-4.82-2.32C10.47 19.24 9.03 20 6.95 20H3V4zm3.6 3.2v9.6h.55c1.42 0 2.22-.58 2.86-1.92l1.91-4.03c.18-.38.46-.57.8-.57.35 0 .63.19.81.57l1.91 4.03c.64 1.34 1.44 1.92 2.86 1.92h.55V7.2h-1.25v6.47l-.93-1.96c-.82-1.72-1.96-2.57-3.95-2.57s-3.13.85-3.95 2.57l-.93 1.96V7.2H6.6z"/>
-
-            </svg>
-
-        </a>
-
-
-        <!-- SPOTIFY -->
-
-        <a
-            href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Spotify">
-
-            <svg
-                class="icon"
-                viewBox="0 0 24 24"
-                aria-hidden="true">
-
-                <path d="M12 1.9a10.1 10.1 0 1 0 10.1 10.1A10.11 10.11 0 0 0 12 1.9zm4.64 14.58a.76.76 0 0 1-1.05.25c-2.88-1.76-6.51-2.16-10.79-1.18a.76.76 0 1 1-.34-1.48c4.68-1.07 8.69-.61 11.93 1.37a.76.76 0 0 1 .25 1.04zm1.5-3.33a.95.95 0 0 1-1.3.31c-3.29-2.02-8.31-2.61-12.2-1.43a.95.95 0 1 1-.55-1.82c4.45-1.35 10-.69 13.74 1.61a.95.95 0 0 1 .31 1.33zm.13-3.47C14.33 7.3 8.13 7.1 4.54 8.19a1.14 1.14 0 1 1-.66-2.18c4.13-1.25 11-1 15.2 1.5a1.14 1.14 0 0 1-.81 2.17z"/>
-
-            </svg>
-
-        </a>
-
-
-        <!-- PINTEREST -->
-
-        <a
-            href="https://pin.it/2jHDXi48B"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Pinterest">
-
-            <svg
-                class="icon pinterest-svg"
-                viewBox="0 0 24 24"
-                aria-hidden="true">
-
-                <path d="M12 2a10 10 0 0 0-3.64 19.32c-.09-1.64-.02-3.62.41-5.49l1.11-4.7s-.28-.57-.28-1.41c0-1.32.77-2.31 1.73-2.31.82 0 1.21.62 1.21 1.36 0 .83-.53 2.07-.8 3.22-.23.96.48 1.74 1.43 1.74 1.72 0 3.04-1.82 3.04-4.45 0-2.33-1.67-3.96-4.05-3.96-2.76 0-4.38 2.07-4.38 4.21 0 .83.32 1.72.72 2.2.08.1.09.18.07.29l-.27 1.1c-.04.18-.14.22-.32.13-1.19-.55-1.94-2.28-1.94-3.67 0-2.99 2.17-5.74 6.25-5.74 3.28 0 5.83 2.34 5.83 5.46 0 3.26-2.06 5.88-4.92 5.88-.96 0-1.86-.5-2.17-1.08l-.59 2.25c-.21.82-.78 1.84-1.17 2.46.88.27 1.81.42 2.77.42A10 10 0 0 0 12 2z"/>
-
-            </svg>
-
-        </a>
-
-
-        <!-- WHATSAPP -->
-
-        <a
-            href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="WhatsApp">
-
-            <svg
-                class="icon"
-                viewBox="0 0 24 24"
-                aria-hidden="true">
-
-                <path d="M12 2a9.9 9.9 0 0 0-8.55 14.9L2 22l5.27-1.38A9.9 9.9 0 1 0 12 2zm0 18.1a8.15 8.15 0 0 1-4.15-1.13l-.3-.18-3.13.82.84-3.05-.2-.31A8.15 8.15 0 1 1 12 20.1zm4.47-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.18-1.4-1.32-1.64-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.33.98 2.49c.12.16 1.69 2.58 4.09 3.62.57.25 1.01.4 1.35.51.57.18 1.09.15 1.5.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/>
-
-            </svg>
-
-        </a>
-
-    </div>
-
-
-    <div class="menu-footer">
-        kesmislalih
-    </div>
-
-</nav>
-
-
-
-<!-- =========================
-     ANA SAYFA
-========================= -->
-
-<section class="hero">
-
-    <div class="hero-content">
-
-        <h1>
-            kesmislalih
-        </h1>
-
-        <div class="line"></div>
-
-        <p>
-            kelimelerin arasında bir yerlerde...
-        </p>
-
-        <a
-            href="#kitaplar"
-            class="button">
-
-            KİTAPLARIMA GÖZ AT
-
-        </a>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================
-     KİTAPLAR
-========================= -->
-
-<section
-    class="section"
-    id="kitaplar">
-
-    <h2 class="section-title">
-        Kitaplarım
-    </h2>
-
-    <p class="section-subtitle">
-        kelimelerden doğan hikâyeler
-    </p>
-
-
-    <div class="library">
-
-        <div class="shelf">
-
-
-            <!-- RİNGTEKİ SON DANS -->
-
-            <a
-                href="ringteki-son-dans.html"
-                class="book">
-
-                <div class="book-cover">
-
-                    <img
-                        src="file_00000000ce4881f4b929fc5dfbb07694.png"
-                        alt="Ringteki Son Dans">
-
-                </div>
-
-                <div class="book-name">
-                    Ringteki Son Dans
-                </div>
-
-                <div class="book-info">
-                    KİTABI İNCELE →
-                </div>
-
-            </a>
-
-
-            <!-- İKİNCİ KİTAP -->
-
-            <div class="book">
-
-                <div class="book-cover">
-
-                    <span style="color:#6f6872;">
-                        YENİ<br>HİKÂYE
-                    </span>
-
-                </div>
-
-                <div class="book-name">
-                    Yakında...
-                </div>
-
-                <div class="book-info">
-                    ÇOK YAKINDA
-                </div>
-
-            </div>
-
-
-            <!-- ÜÇÜNCÜ KİTAP -->
-
-            <div class="book">
-
-                <div class="book-cover">
-
-                    <span style="color:#6f6872;">
-                        YENİ<br>HİKÂYE
-                    </span>
-
-                </div>
-
-                <div class="book-name">
-                    Yakında...
-                </div>
-
-                <div class="book-info">
-                    ÇOK YAKINDA
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="wood"></div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================
      HAKKIMDA
 ========================= -->
 
@@ -2285,13 +681,12 @@ footer p {
 </section>
 
 
-
 <!-- =========================
      GALERİ
 ========================= -->
 
 <section
-    class="section"
+    class="section gallery-section"
     id="galeri">
 
     <h2 class="section-title">
@@ -2303,7 +698,6 @@ footer p {
     </p>
 
 </section>
-
 
 
 <!-- =========================
@@ -2325,29 +719,68 @@ footer p {
         </p>
 
 
-        <div class="wall-comments">
+        <div class="wall">
+
+            <p class="wall-intro">
+                Hikâyelerimi okurken aklından geçenleri,
+                bana söylemek istediklerini ya da
+                sadece küçük bir notunu buraya bırakabilirsin.
+            </p>
 
 
-            <!-- ÖRNEK YORUM -->
+            <!-- =========================
+                 YORUM FORMU
+            ========================= -->
 
-            <div class="comment-card">
+            <form
+                class="wall-form"
+                id="wallForm">
 
-                <div class="comment-name">
-                    Bir Okur
+                <input
+                    type="text"
+                    class="wall-input"
+                    id="wallName"
+                    placeholder="Adın / Kullanıcı adın"
+                    maxlength="40"
+                    required>
+
+                <textarea
+                    class="wall-textarea"
+                    id="wallMessage"
+                    placeholder="Bana bir şeyler bırak..."
+                    maxlength="500"
+                    required></textarea>
+
+                <button
+                    type="submit"
+                    class="wall-submit">
+
+                    YORUMU BIRAK
+
+                </button>
+
+            </form>
+
+
+            <!-- =========================
+                 YORUMLAR
+            ========================= -->
+
+            <div
+                class="wall-comments"
+                id="wallComments">
+
+                <!-- Yorumlar buraya eklenecek -->
+
+                <div
+                    class="empty-wall"
+                    id="emptyWall">
+
+                    Henüz bir yorum yok.
+                    İlk notu sen bırak.
+
                 </div>
 
-                <div class="comment-text">
-                    Buraya okurların senin hakkında
-                    yazdığı yorumlar gelecek.
-                </div>
-
-            </div>
-
-
-            <!-- YORUM YOKSA -->
-
-            <div class="empty-wall">
-                Okurların yorumları burada görünecek.
             </div>
 
         </div>
@@ -2355,7 +788,6 @@ footer p {
     </div>
 
 </section>
-
 
 
 <!-- =========================
@@ -2407,7 +839,6 @@ footer p {
 </section>
 
 
-
 <!-- =========================
      İLETİŞİM
 ========================= -->
@@ -2417,12 +848,118 @@ footer p {
     id="iletisim">
 
     <div class="contact-title">
-        İLETİŞİM
+        BİZE ULAŞIN
     </div>
 
     <p class="contact-subtitle">
         Bir şey söylemek, sormak ya da sadece merhaba demek istersen...
     </p>
+
+
+    <form
+        class="contact-form"
+        id="contactForm">
+
+
+        <!-- İSİM SOYİSİM -->
+
+        <div class="form-group">
+
+            <label for="contactName">
+                İsim Soyisim <span>*</span>
+            </label>
+
+            <input
+                type="text"
+                id="contactName"
+                name="name"
+                placeholder="İsim Soyisim"
+                required>
+
+        </div>
+
+
+        <!-- KONU -->
+
+        <div class="form-group">
+
+            <label for="contactSubject">
+                Konu
+            </label>
+
+            <input
+                type="text"
+                id="contactSubject"
+                name="subject"
+                placeholder="Mesajınızın konusu">
+
+        </div>
+
+
+        <!-- E-POSTA -->
+
+        <div class="form-group">
+
+            <label for="contactEmail">
+                E-posta Adresiniz
+            </label>
+
+            <input
+                type="email"
+                id="contactEmail"
+                name="email"
+                placeholder="ornek@mail.com">
+
+        </div>
+
+
+        <!-- TELEFON -->
+
+        <div class="form-group">
+
+            <label for="contactPhone">
+                Telefon Numarası
+                <small>(Opsiyonel)</small>
+            </label>
+
+            <input
+                type="tel"
+                id="contactPhone"
+                name="phone"
+                placeholder="05XX XXX XX XX">
+
+        </div>
+
+
+        <!-- MESAJ -->
+
+        <div class="form-group">
+
+            <label for="contactMessage">
+                Mesajınız
+            </label>
+
+            <textarea
+                id="contactMessage"
+                name="message"
+                placeholder="Mesajınız..."
+                required></textarea>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="contact-submit">
+
+            GÖNDER
+
+        </button>
+
+    </form>
+
+
+    <!-- E-POSTA -->
 
     <a
         href="mailto:hillyss333@gmail.com"
@@ -2433,7 +970,6 @@ footer p {
     </a>
 
 </section>
-
 
 
 <!-- =========================
@@ -2448,6 +984,7 @@ footer p {
 
 
     <div class="social-links">
+
 
         <a
             href="https://www.tiktok.com/@kesmislalih?_r=1&_t=ZS-98gv3YRvFOK"
@@ -2513,6 +1050,1039 @@ footer p {
 </section>
 
 
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        kesmislalih
+    </div>
+
+    <p>
+        © 2026 kesmislalih
+    </p>
+
+</footer>
+    <!-- =========================
+     DUVAR
+========================= -->
+
+<section class="section" id="duvar">
+
+    <div class="wall">
+
+        <h2 class="section-title">
+            Duvar
+        </h2>
+
+        <p class="section-subtitle">
+            okurlardan bana
+        </p>
+
+        <p class="wall-intro">
+            Burada bana bırakmak istediğin birkaç kelimeyi,
+            düşüncelerini veya kitaplarımla ilgili yorumlarını paylaşabilirsin.
+        </p>
+
+
+        <!-- =========================
+             YORUM YAZMA ALANI
+        ========================= -->
+
+        <form class="wall-form"
+              id="wallForm">
+
+            <input
+                type="text"
+                class="wall-input"
+                id="commentName"
+                placeholder="İsminiz"
+                maxlength="40"
+                required>
+
+
+            <textarea
+                class="wall-textarea"
+                id="commentText"
+                placeholder="Bana bir şeyler bırak..."
+                maxlength="500"
+                required></textarea>
+
+
+            <button
+                type="submit"
+                class="wall-submit">
+
+                YORUMU BIRAK
+
+            </button>
+
+        </form>
+
+
+        <!-- =========================
+             YORUMLAR
+        ========================= -->
+
+        <div
+            class="wall-comments"
+            id="wallComments">
+
+
+            <div class="comment-card">
+
+                <div class="comment-name">
+                    Bir Okur
+                </div>
+
+                <div class="comment-text">
+                    Buraya okurların senin hakkında
+                    yazdığı yorumlar gelecek.
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     DUYURULAR
+========================= -->
+
+<section class="section" id="duyurular">
+
+    <div class="news">
+
+        <h2 class="section-title">
+            Duyurular
+        </h2>
+
+        <p class="section-subtitle">
+            yeni hikâyeler, yeni başlangıçlar
+        </p>
+
+
+        <div class="news-item">
+
+            <span class="news-date">
+                31.08.2026
+            </span>
+
+            <span class="news-title">
+                Yeni site yayında.
+            </span>
+
+        </div>
+
+
+        <div class="news-item">
+
+            <span class="news-date">
+                YAKINDA
+            </span>
+
+            <span class="news-title">
+                Yeni hikâyeler burada olacak.
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     İLETİŞİM
+========================= -->
+
+<section class="contact" id="iletisim">
+
+    <div class="contact-box">
+
+        <div class="contact-title">
+            BİZE ULAŞIN
+        </div>
+
+        <p class="contact-subtitle">
+            Bana ulaşmak, bir şey sormak ya da
+            sadece birkaç kelime bırakmak istersen...
+        </p>
+
+
+        <form
+            class="contact-form"
+            action="mailto:hillyss333@gmail.com"
+            method="post"
+            enctype="text/plain">
+
+
+            <!-- İSİM -->
+
+            <div class="form-group">
+
+                <label for="name">
+                    İsim Soyisim <span>*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="İsim Soyisim"
+                    placeholder="İsim Soyisim"
+                    required>
+
+            </div>
+
+
+            <!-- KONU -->
+
+            <div class="form-group">
+
+                <label for="subject">
+                    Konu
+                </label>
+
+                <input
+                    type="text"
+                    id="subject"
+                    name="Konu"
+                    placeholder="Konu">
+
+            </div>
+
+
+            <!-- E-POSTA -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    E-posta Adresiniz
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="E-posta"
+                    placeholder="E-posta Adresiniz"
+                    required>
+
+            </div>
+
+
+            <!-- TELEFON -->
+
+            <div class="form-group">
+
+                <label for="phone">
+                    Telefon Numarası
+                    <small>(Opsiyonel)</small>
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    name="Telefon"
+                    placeholder="Telefon Numarası">
+
+            </div>
+
+
+            <!-- MESAJ -->
+
+            <div class="form-group">
+
+                <label for="message">
+                    Mesajınız
+                </label>
+
+                <textarea
+                    id="message"
+                    name="Mesaj"
+                    placeholder="Mesajınız..."
+                    required></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="contact-submit">
+
+                GÖNDER
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+    <style>
+
+/* =========================
+   KİTAPLIK
+========================= */
+
+.library{
+    padding:45px 35px 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #121014,
+            #0c0b0e
+        );
+
+    border:1px solid #28242c;
+}
+
+.shelf{
+    display:flex;
+    align-items:flex-end;
+
+    gap:32px;
+
+    min-height:340px;
+
+    padding:0 15px;
+
+    overflow-x:auto;
+}
+
+.book{
+    flex:0 0 auto;
+
+    width:145px;
+
+    cursor:pointer;
+
+    transition:.4s;
+
+    text-decoration:none;
+}
+
+.book:hover{
+    transform:translateY(-12px);
+}
+
+.book-cover{
+    height:220px;
+
+    border:1px solid #39323f;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+
+    background:#151319;
+
+    box-shadow:
+        8px 8px 20px rgba(0,0,0,.45);
+}
+
+.book-cover img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+.book-name{
+    margin-top:14px;
+
+    font-size:18px;
+
+    text-align:center;
+
+    color:#e8e2d9;
+}
+
+.book-info{
+    text-align:center;
+
+    color:#cdb9eb;
+
+    font-family:Arial,sans-serif;
+
+    font-size:8px;
+
+    letter-spacing:1px;
+
+    margin-top:12px;
+}
+
+.wood{
+    height:13px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #403448,
+            #211d25
+        );
+
+    border-top:1px solid #665873;
+}
+
+
+/* =========================
+   HAKKIMDA
+========================= */
+
+.about{
+    padding:115px 20px;
+
+    text-align:center;
+}
+
+.about-title,
+.contact-title{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:19px;
+
+    font-weight:500;
+
+    letter-spacing:6px;
+
+    color:#cfc6d7;
+
+    margin-bottom:25px;
+}
+
+.about-text{
+    max-width:560px;
+
+    margin:auto;
+
+    color:#89827e;
+
+    font-size:17px;
+
+    line-height:1.9;
+
+    letter-spacing:.5px;
+}
+
+
+/* =========================
+   DUVAR
+========================= */
+
+.wall{
+    max-width:850px;
+
+    margin:auto;
+
+    padding:45px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #121014,
+            #0d0c10
+        );
+
+    border:1px solid #29252d;
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.25);
+}
+
+.wall-intro{
+    text-align:center;
+
+    color:#858078;
+
+    font-family:Arial,sans-serif;
+
+    font-size:9px;
+
+    letter-spacing:1.5px;
+
+    line-height:1.8;
+
+    margin-bottom:35px;
+}
+
+.wall-form{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+}
+
+.wall-input,
+.wall-textarea{
+    width:100%;
+
+    background:#0a090c;
+
+    border:1px solid #302b34;
+
+    color:#e8e2da;
+
+    font-family:"Cormorant Garamond",serif;
+
+    outline:none;
+
+    transition:.3s;
+}
+
+.wall-input{
+    height:45px;
+
+    padding:0 15px;
+
+    font-size:15px;
+}
+
+.wall-textarea{
+    min-height:120px;
+
+    padding:14px 15px;
+
+    font-size:15px;
+
+    resize:vertical;
+}
+
+.wall-input:focus,
+.wall-textarea:focus{
+    border-color:#76658a;
+
+    box-shadow:
+        0 0 15px rgba(185,167,216,.08);
+}
+
+.wall-submit{
+    align-self:flex-end;
+
+    padding:12px 22px;
+
+    border:1px solid #6e6384;
+
+    background:transparent;
+
+    color:#d8c8f0;
+
+    font-family:Arial,sans-serif;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.wall-submit:hover{
+    background:#b9a7d8;
+    color:#09090b;
+}
+
+
+/* YORUMLAR */
+
+.wall-comments{
+    margin-top:45px;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:18px;
+}
+
+.comment-card{
+    padding:22px 24px;
+
+    background:#0b0a0e;
+
+    border:1px solid #29252f;
+
+    position:relative;
+
+    transition:.3s;
+}
+
+.comment-card:hover{
+    border-color:#4c4157;
+
+    transform:translateY(-2px);
+}
+
+.comment-card::before{
+    content:"“";
+
+    position:absolute;
+
+    top:8px;
+    left:15px;
+
+    font-family:Georgia,serif;
+
+    font-size:42px;
+
+    color:#554765;
+
+    opacity:.55;
+}
+
+.comment-name{
+    color:#d8c8f0;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    margin-bottom:9px;
+
+    padding-left:22px;
+}
+
+.comment-text{
+    color:#918b86;
+
+    font-size:14px;
+
+    line-height:1.7;
+
+    padding-left:22px;
+}
+
+
+/* =========================
+   DUYURULAR
+========================= */
+
+.news{
+    max-width:800px;
+
+    margin:auto;
+}
+
+.news-item{
+    border-top:1px solid #29272b;
+
+    padding:22px 0;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:30px;
+}
+
+.news-date{
+    color:#716b66;
+
+    font-family:Arial,sans-serif;
+
+    font-size:8px;
+
+    letter-spacing:1px;
+
+    white-space:nowrap;
+}
+
+.news-title{
+    font-size:19px;
+
+    text-align:right;
+
+    color:#d8d2ca;
+}
+
+
+/* =========================
+   İLETİŞİM
+========================= */
+
+.contact{
+    padding:110px 20px;
+
+    border-top:1px solid #252328;
+}
+
+.contact-box{
+    max-width:650px;
+
+    margin:auto;
+}
+
+.contact-title{
+    text-align:center;
+
+    margin-bottom:15px;
+}
+
+.contact-subtitle{
+    text-align:center;
+
+    color:#77716b;
+
+    font-family:Arial,sans-serif;
+
+    font-size:9px;
+
+    letter-spacing:1.5px;
+
+    line-height:1.8;
+
+    margin-bottom:40px;
+}
+
+.contact-form{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+}
+
+.form-group{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+}
+
+.form-group label{
+    color:#aaa39a;
+
+    font-family:Arial,sans-serif;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+}
+
+.form-group label span{
+    color:#cdb9eb;
+}
+
+.form-group label small{
+    color:#666168;
+
+    font-size:7px;
+
+    letter-spacing:1px;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+
+    background:#0d0c10;
+
+    border:1px solid #302b34;
+
+    color:#eee8e1;
+
+    padding:14px 15px;
+
+    outline:none;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:16px;
+
+    transition:.3s;
+}
+
+.form-group input{
+    height:48px;
+}
+
+.form-group textarea{
+    min-height:145px;
+
+    resize:vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    border-color:#76658a;
+
+    box-shadow:
+        0 0 15px rgba(185,167,216,.08);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder{
+    color:#4f4a51;
+}
+
+.contact-submit{
+    align-self:center;
+
+    padding:14px 35px;
+
+    background:transparent;
+
+    border:1px solid #6e6384;
+
+    color:#d8c8f0;
+
+    font-family:Arial,sans-serif;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.contact-submit:hover{
+    background:#b9a7d8;
+
+    color:#09090b;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    padding:65px 7%;
+
+    border-top:1px solid #252328;
+
+    text-align:center;
+}
+
+.footer-logo{
+    font-family:"Great Vibes",cursive;
+
+    font-size:35px;
+
+    color:#f3eef7;
+}
+
+footer p{
+    margin-top:15px;
+
+    color:#77716a;
+
+    font-family:Arial,sans-serif;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+}
+
+
+/* =========================
+   GENEL AYRAÇ
+========================= */
+
+.section,
+.about,
+.contact{
+    position:relative;
+}
+
+.section::after,
+.about::after,
+.contact::after{
+    content:"";
+
+    display:block;
+
+    width:45px;
+    height:1px;
+
+    margin:70px auto 0;
+
+    background:#39313f;
+
+    opacity:.7;
+}
+
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+    width:7px;
+}
+
+::-webkit-scrollbar-track{
+    background:#09090b;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#302a38;
+
+    border-radius:10px;
+}
+
+
+/* =========================
+   TELEFON
+========================= */
+
+@media(max-width:700px){
+
+    header{
+        padding:20px 5%;
+    }
+
+    .logo{
+        font-size:27px;
+    }
+
+    .menu-panel{
+        width:285px;
+
+        right:-300px;
+
+        padding:105px 32px 30px;
+    }
+
+    .menu-panel a.menu-link{
+        font-size:20px;
+
+        padding:14px 0;
+    }
+
+    .hero{
+        padding-left:15px;
+        padding-right:15px;
+    }
+
+    .hero h1{
+        font-size:82px;
+    }
+
+    .hero p{
+        font-size:8px;
+        letter-spacing:2px;
+    }
+
+    .section{
+        padding:90px 6%;
+    }
+
+    .section-title{
+        font-size:38px;
+    }
+
+    .section-subtitle{
+        font-size:25px;
+    }
+
+    .library{
+        padding:30px 15px 0;
+    }
+
+    .shelf{
+        gap:22px;
+        padding:0 8px;
+    }
+
+    .book{
+        width:125px;
+    }
+
+    .book-cover{
+        height:195px;
+    }
+
+    .about{
+        padding:85px 20px;
+    }
+
+    .about-title,
+    .contact-title{
+        font-size:17px;
+        letter-spacing:5px;
+    }
+
+    .about-text{
+        font-size:15px;
+    }
+
+    .wall{
+        padding:28px 18px;
+    }
+
+    .wall-submit{
+        align-self:stretch;
+    }
+
+    .comment-card{
+        padding:20px 17px;
+    }
+
+    .contact{
+        padding:85px 20px;
+    }
+
+    .news-item{
+        display:block;
+    }
+
+    .news-title{
+        margin-top:9px;
+        text-align:left;
+    }
+
+}
+
+
+/* =========================
+   KÜÇÜK TELEFON
+========================= */
+
+@media(max-width:380px){
+
+    .hero h1{
+        font-size:68px;
+    }
+
+    .menu-panel{
+        width:270px;
+        right:-285px;
+    }
+
+    .book{
+        width:115px;
+    }
+
+    .book-cover{
+        height:180px;
+    }
+
+}
+
+</style>
+
 
 <!-- =========================
      FOOTER
@@ -2531,12 +2101,11 @@ footer p {
 </footer>
 
 
-
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
 <script>
+
+/* =========================
+   MENÜ
+========================= */
 
 const menuButton =
     document.getElementById("menuButton");
@@ -2551,9 +2120,18 @@ const menuLinks =
     document.querySelectorAll(".menu-panel a.menu-link");
 
 
-/* MENÜYÜ AÇ / KAPAT */
+function closeMenu(){
 
-menuButton.addEventListener("click", function() {
+    menuButton.classList.remove("active");
+
+    menuPanel.classList.remove("open");
+
+    menuOverlay.classList.remove("open");
+
+}
+
+
+menuButton.addEventListener("click",function(){
 
     menuButton.classList.toggle("active");
 
@@ -2564,54 +2142,99 @@ menuButton.addEventListener("click", function() {
 });
 
 
-/* DIŞARI TIKLANINCA KAPAT */
+menuOverlay.addEventListener("click",closeMenu);
 
-menuOverlay.addEventListener("click", function() {
 
-    menuButton.classList.remove("active");
+menuLinks.forEach(function(link){
 
-    menuPanel.classList.remove("open");
-
-    menuOverlay.classList.remove("open");
+    link.addEventListener("click",closeMenu);
 
 });
 
 
-/* MENÜ LİNKLERİNE TIKLANINCA KAPAT */
+document.addEventListener("keydown",function(event){
 
-menuLinks.forEach(function(link) {
-
-    link.addEventListener("click", function() {
-
-        menuButton.classList.remove("active");
-
-        menuPanel.classList.remove("open");
-
-        menuOverlay.classList.remove("open");
-
-    });
-
-});
-
-
-/* ESC İLE MENÜYÜ KAPAT */
-
-document.addEventListener("keydown", function(event) {
-
-    if (event.key === "Escape") {
-
-        menuButton.classList.remove("active");
-
-        menuPanel.classList.remove("open");
-
-        menuOverlay.classList.remove("open");
-
+    if(event.key==="Escape"){
+        closeMenu();
     }
 
 });
 
-</script>
 
+
+/* =========================
+   DUVAR YORUMLARI
+========================= */
+
+const wallForm =
+    document.getElementById("wallForm");
+
+const wallComments =
+    document.getElementById("wallComments");
+
+const commentName =
+    document.getElementById("commentName");
+
+const commentText =
+    document.getElementById("commentText");
+
+
+wallForm.addEventListener("submit",function(event){
+
+    event.preventDefault();
+
+
+    const name =
+        commentName.value.trim();
+
+    const text =
+        commentText.value.trim();
+
+
+    if(!name || !text){
+        return;
+    }
+
+
+    const card =
+        document.createElement("div");
+
+    card.className="comment-card";
+
+
+    const nameElement =
+        document.createElement("div");
+
+    nameElement.className="comment-name";
+
+    nameElement.textContent=name;
+
+
+    const textElement =
+        document.createElement("div");
+
+    textElement.className="comment-text";
+
+    textElement.textContent=text;
+
+
+    card.appendChild(nameElement);
+
+    card.appendChild(textElement);
+
+
+    wallComments.prepend(card);
+
+
+    commentName.value="";
+
+    commentText.value="";
+
+});
+
+
+</script>
 
 </body>
 </html>
+    
