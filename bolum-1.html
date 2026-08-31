@@ -1314,130 +1314,280 @@ function loadComments(number) {
         text.textContent =
             comment.text;
 
+<!-- =========================
+     BÖLÜM İÇERİĞİ
+========================= -->
 
-        const date =
-            document.createElement("div");
+<main class="chapter-page">
 
-        date.className =
-            "comment-date";
+    <!-- BÖLÜM BAŞLIĞI -->
 
-        date.textContent =
-            comment.date;
+    <div class="chapter-header">
 
+        <div class="chapter-number">
+            BÖLÜM 1
+        </div>
 
-        item.appendChild(name);
+        <h1>
+            RİNGTEKİ SON DANS
+        </h1>
 
-        item.appendChild(text);
+        <div class="chapter-author">
+            kesmislalih
+        </div>
 
-        item.appendChild(date);
-
-
-        list.appendChild(item);
-
-    });
-
-}
-
-
-
-/* =========================
-   YORUM EKLE
-========================= */
-
-function addComment(event, number) {
-
-    event.preventDefault();
+    </div>
 
 
-    const nameInput =
-        document.getElementById(
-            "name" + number
-        );
+    <!-- =========================
+         PARAGRAF 1
+    ========================= -->
 
+    <section class="reading-paragraph">
 
-    const commentInput =
-        document.getElementById(
-            "comment" + number
-        );
+        <p class="special-quote">
 
+            ❝Gök gürleyecek kalbini incitecekti.
+            Paramparça olan kalbinin düzelmesi
+            bir çocuğun tatlı kıkırtısında yeniden
+            hayat bulacaktı.❞
 
-    const name =
-        nameInput.value.trim();
+        </p>
 
+        <button class="comment-toggle">
+            Yorumlar
+        </button>
 
-    const text =
-        commentInput.value.trim();
+        <div class="comments">
+            <div class="comment-list"></div>
 
+            <textarea
+                placeholder="Bu paragraf hakkında ne düşünüyorsun?"
+                class="comment-input">
+            </textarea>
 
-    if (!name || !text) {
+            <button class="comment-send">
+                Yorum Yap
+            </button>
+        </div>
 
-        return;
-
-    }
-
-
-    const comments =
-        getComments(number);
-
-
-    const newComment = {
-
-        name: name,
-
-        text: text,
-
-        date: new Date().toLocaleDateString(
-            "tr-TR"
-        )
-
-    };
-
-
-    comments.push(newComment);
-
-
-    saveComments(
-        number,
-        comments
-    );
-
-
-    nameInput.value = "";
-
-    commentInput.value = "";
-
-
-    loadComments(number);
-
-}
+    </section>
 
 
 
-/* =========================
-   SAYFA AÇILINCA YORUM SAYILARINI GÜNCELLE
-========================= */
+    <!-- =========================
+         PARAGRAF 2
+    ========================= -->
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
+    <section class="reading-paragraph">
 
-        for (
-            let i = 1;
-            i <= 5;
-            i++
-        ) {
+        <p>
+            Bir karanlık, iki kurşun.
+            <br>
+            Binbir acı, iki yetim.
+        </p>
 
-            loadComments(i);
+        <button class="comment-toggle">
+            Yorumlar
+        </button>
 
-        }
+        <div class="comments">
 
-    }
-);
+            <div class="comment-list"></div>
 
-</script>
+            <textarea
+                placeholder="Bu paragraf hakkında ne düşünüyorsun?"
+                class="comment-input">
+            </textarea>
+
+            <button class="comment-send">
+                Yorum Yap
+            </button>
+
+        </div>
+
+    </section>
 
 
 
-</body>
+    <!-- =========================
+         PARAGRAF 3
+    ========================= -->
 
+    <section class="reading-paragraph">
+
+        <p>
+            Sihirli değneğin ucu müzik kutusunda
+            usul usul dönen balerinin üzerinde durdu.
+            <br><br>
+            Ardından boksör bebeğin omzuna dokundu.
+        </p>
+
+        <button class="comment-toggle">
+            Yorumlar
+        </button>
+
+        <div class="comments">
+
+            <div class="comment-list"></div>
+
+            <textarea
+                placeholder="Bu paragraf hakkında ne düşünüyorsun?"
+                class="comment-input">
+            </textarea>
+
+            <button class="comment-send">
+                Yorum Yap
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         PARAGRAF 4
+    ========================= -->
+
+    <section class="reading-paragraph">
+
+        <p>
+            Gözleri acıtan bir ışık ardından soluk
+            renklerin yerine gelmesi bir mucizeydi.
+        </p>
+
+        <button class="comment-toggle">
+            Yorumlar
+        </button>
+
+        <div class="comments">
+
+            <div class="comment-list"></div>
+
+            <textarea
+                placeholder="Bu paragraf hakkında ne düşünüyorsun?"
+                class="comment-input">
+            </textarea>
+
+            <button class="comment-send">
+                Yorum Yap
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         PARAGRAF 5
+    ========================= -->
+
+    <section class="reading-paragraph">
+
+        <p class="ending-italic">
+
+            Belki de kabul edilen büyü...
+
+        </p>
+
+        <button class="comment-toggle">
+            Yorumlar
+        </button>
+
+        <div class="comments">
+
+            <div class="comment-list"></div>
+
+            <textarea
+                placeholder="Bu paragraf hakkında ne düşünüyorsun?"
+                class="comment-input">
+            </textarea>
+
+            <button class="comment-send">
+                Yorum Yap
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         BÖLÜM SONU
+    ========================= -->
+
+    <div class="chapter-end">
+
+        <div class="chapter-symbol">
+            𓍯
+        </div>
+
+        <p class="italic-text">
+            Küçükken gözlerini kapayınca
+            oyuncaklarının uyanacağını sananlara...
+        </p>
+
+
+        <div class="chapter-symbol">
+            𓍯
+        </div>
+
+
+        <p class="italic-text">
+            Uyu küçük çocuk,
+            <br>
+            Uyu ki uyansın oyuncakların.
+            <br>
+            Bir kurşunla kararan dünyanı
+            <br>
+            Aydınlatsın sihirli peri tozu.
+        </p>
+
+
+        <div class="chapter-symbol">
+            𓍼
+        </div>
+
+
+        <p class="special-quote">
+
+            ❝Düşlediklerinin ötesi neresi beyaz kuğu?
+            Nereye kadar dönüp duracaksın etrafında?❞
+
+        </p>
+
+    </div>
+
+
+
+    <!-- =========================
+         BÖLÜM NAVİGASYONU
+    ========================= -->
+
+    <div class="chapter-navigation">
+
+        <a
+            href="ringteki-son-dans.html"
+            class="chapter-nav-button">
+
+            ← BÖLÜM LİSTESİ
+
+        </a>
+
+
+        <a
+            href="bolum-2.html"
+            class="chapter-nav-button next">
+
+            SONRAKİ BÖLÜM →
+
+        </a>
+
+    </div>
+
+</main>
+   </body>
 </html>
