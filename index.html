@@ -5,11 +5,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>kesmislalih</title>
+<title>Galeri — kesmislalih</title>
 
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap');
 
 * {
     margin: 0;
@@ -21,509 +21,224 @@ html {
     scroll-behavior: smooth;
 }
 
+:root {
+    --bg: #09090b;
+    --bg-soft: #111015;
+    --text: #f3efe8;
+    --soft: #aaa39a;
+    --border: #302a38;
+    --lilac: #cdb9eb;
+}
+
+body.light {
+    --bg: #f5f1eb;
+    --bg-soft: #ebe5dd;
+    --text: #211d22;
+    --soft: #716a70;
+    --border: #d4ccd8;
+    --lilac: #806a9c;
+}
+
 body {
-    background: #09090b;
-    color: #f3efe8;
+    background: var(--bg);
+    color: var(--text);
+
     font-family: "Cormorant Garamond", serif;
+
+    transition: .4s;
 }
 
 header {
-    width: 100%;
-    padding: 25px 6%;
+    padding: 25px 7%;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 100;
+
+    border-bottom: 1px solid var(--border);
 }
 
 .logo {
-    color: #f8f3ff;
+    color: var(--text);
+
     text-decoration: none;
+
     font-family: "Great Vibes", cursive;
+
     font-size: 32px;
-    text-shadow:
-        0 0 6px rgba(220,195,255,.45),
-        0 0 16px rgba(185,167,216,.25);
 }
 
-.menu-button {
-    width: 40px;
-    height: 40px;
-    border: 1px solid #38323f;
-    background: rgba(9,9,11,.75);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
-    z-index: 102;
-}
+.back {
+    color: var(--soft);
 
-.menu-line {
-    width: 18px;
-    height: 1px;
-    background: #eee8e1;
-    transition: .3s;
-}
-
-.menu-button.active .menu-line:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
-}
-
-.menu-button.active .menu-line:nth-child(2) {
-    opacity: 0;
-}
-
-.menu-button.active .menu-line:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
-}
-
-.menu-panel {
-    position: fixed;
-    top: 0;
-    right: -330px;
-    width: 310px;
-    height: 100vh;
-    background: #111015;
-    border-left: 1px solid #302a38;
-    padding: 120px 40px 40px;
-    z-index: 101;
-    transition: right .45s ease;
-}
-
-.menu-panel.open {
-    right: 0;
-}
-
-.menu-small-title {
-    font-family: Arial, sans-serif;
-    font-size: 8px;
-    letter-spacing: 4px;
-    color: #756d79;
-    margin-bottom: 30px;
-}
-
-.menu-panel a.menu-link {
-    display: block;
-    padding: 18px 0;
-    border-bottom: 1px solid #29252d;
-    color: #e8e2da;
     text-decoration: none;
-    font-size: 22px;
-    transition: .3s;
-}
 
-.menu-panel a.menu-link:hover {
-    color: #cdb9eb;
-    padding-left: 8px;
-}
-
-.menu-social-title {
     font-family: Arial, sans-serif;
-    font-size: 7px;
-    letter-spacing: 3px;
-    color: #756d79;
-    margin-top: 28px;
-    margin-bottom: 14px;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
 }
 
-.menu-social {
-    display: flex;
-    align-items: center;
-    gap: 9px;
+.back:hover {
+    color: var(--lilac);
 }
 
-.menu-social a {
-    width: 35px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #8b8195;
-    text-decoration: none;
-    border: 1px solid #332e38;
-    transition: .3s ease;
+.gallery-header {
+    text-align: center;
+
+    padding: 110px 20px 80px;
 }
 
-.menu-social a:hover {
-    color: #d8c8f0;
-    border-color: #756586;
-    transform: translateY(-3px);
-    background: #17141b;
-}
-
-.icon {
-    width: 17px;
-    height: 17px;
-    fill: currentColor;
-}
-
-.x-icon {
-    width: 14px;
-    height: 14px;
-}
-
-.wattpad-icon {
-    font-family: Georgia, serif;
-    font-size: 15px;
-    font-weight: bold;
-    letter-spacing: -1px;
-}
-
-.menu-footer {
-    position: absolute;
-    bottom: 35px;
-    left: 40px;
+.gallery-header h1 {
     font-family: "Great Vibes", cursive;
-    font-size: 26px;
-    color: #8f819e;
+
+    font-size: 70px;
+
+    font-weight: 400;
+
+    color: var(--text);
 }
 
-.menu-overlay {
+.gallery-header p {
+    margin-top: 20px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    color: var(--soft);
+}
+
+.book-gallery {
+    padding: 70px 7%;
+
+    border-top: 1px solid var(--border);
+}
+
+.book-gallery-title {
+    text-align: center;
+
+    font-size: 38px;
+
+    font-weight: 400;
+
+    margin-bottom: 8px;
+}
+
+.book-gallery-subtitle {
+    text-align: center;
+
+    font-family: "Great Vibes", cursive;
+
+    color: var(--lilac);
+
+    font-size: 28px;
+
+    margin-bottom: 45px;
+}
+
+.gallery-grid {
+    max-width: 1000px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 16px;
+}
+
+.gallery-item {
+    width: 100%;
+
+    aspect-ratio: 1 / 1.15;
+
+    overflow: hidden;
+
+    border: 1px solid var(--border);
+
+    cursor: pointer;
+
+    background: var(--bg-soft);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: .5s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.04);
+}
+
+/* =========================
+   BÜYÜK GÖRSEL
+========================= */
+
+.lightbox {
     position: fixed;
+
     inset: 0;
-    background: rgba(0,0,0,.45);
-    backdrop-filter: blur(2px);
+
+    background: rgba(0,0,0,.88);
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px;
+
     opacity: 0;
+
     visibility: hidden;
+
     transition: .3s;
-    z-index: 100;
+
+    z-index: 999;
 }
 
-.menu-overlay.open {
+.lightbox.open {
     opacity: 1;
+
     visibility: visible;
 }
 
-.hero {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 100px 25px 80px;
-    position: relative;
-    overflow: hidden;
+.lightbox img {
+    max-width: 90%;
+    max-height: 88vh;
 
-    background:
-        radial-gradient(
-            circle at 50% 43%,
-            rgba(116,88,145,.22) 0%,
-            rgba(83,63,105,.15) 23%,
-            rgba(28,24,33,.45) 48%,
-            #09090b 82%
-        );
+    object-fit: contain;
+
+    border: 1px solid #4b4255;
 }
 
-.hero::before {
-    content: "";
+.close {
     position: absolute;
-    width: 650px;
-    height: 650px;
-    left: 50%;
-    top: 45%;
-    transform: translate(-50%, -50%);
 
-    background:
-        radial-gradient(
-            circle,
-            rgba(191,162,226,.23) 0%,
-            rgba(124,94,157,.13) 32%,
-            transparent 72%
-        );
+    top: 25px;
+    right: 30px;
 
-    filter: blur(65px);
-    border-radius: 50%;
-    pointer-events: none;
-}
+    color: white;
 
-.hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    opacity: .045;
-
-    background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.45'/%3E%3C/svg%3E");
-
-    pointer-events: none;
-    mix-blend-mode: screen;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-}
-
-.hero h1 {
-    font-family: "Ballet", "Great Vibes", cursive;
-    font-size: clamp(95px, 20vw, 180px);
-    font-weight: 400;
-    line-height: .75;
-    letter-spacing: -4px;
-    color: #f8f3ff;
-    transform: rotate(-3deg);
-
-    text-shadow:
-        0 0 8px rgba(220,195,255,.45),
-        0 0 25px rgba(185,167,216,.30),
-        0 0 55px rgba(185,167,216,.12);
-
-    white-space: nowrap;
-}
-
-.line {
-    width: 110px;
-    height: 1px;
-    background: #b9a7d8;
-    margin: 38px auto 30px;
-
-    box-shadow:
-        0 0 10px rgba(185,167,216,.35);
-}
-
-.hero p {
-    max-width: 550px;
-    margin: auto;
-    color: #aaa39a;
     font-family: Arial, sans-serif;
-    font-size: 10px;
-    line-height: 1.8;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-}
 
-.button {
-    display: inline-block;
-    margin-top: 45px;
-    padding: 14px 27px;
-    border: 1px solid #6e6384;
-    color: #f4f0ea;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-    font-size: 9px;
-    letter-spacing: 2px;
-    transition: .3s;
-}
+    font-size: 25px;
 
-.button:hover {
-    background: #b9a7d8;
-    color: #09090b;
-
-    box-shadow:
-        0 0 20px rgba(185,167,216,.18);
-}.section {
-    padding: 120px 7%;
-}
-
-.section-title {
-    font-size: 44px;
-    font-weight: 400;
-    margin-bottom: 4px;
-}
-
-.section-subtitle {
-    font-family: "Great Vibes", cursive;
-    font-size: 31px;
-    color: #d8c8f0;
-
-    text-shadow:
-        0 0 5px rgba(216,200,240,.5),
-        0 0 16px rgba(185,167,216,.3);
-
-    margin-bottom: 55px;
-}
-
-.library {
-    padding: 45px 35px 0;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #121014,
-            #0c0b0e
-        );
-
-    border: 1px solid #28242c;
-}
-
-.shelf {
-    display: flex;
-    align-items: flex-end;
-    gap: 32px;
-    min-height: 340px;
-    padding: 0 15px;
-    overflow-x: auto;
-}
-
-.book {
-    flex: 0 0 auto;
-    width: 145px;
     cursor: pointer;
-    transition: .4s;
-    text-decoration: none;
-}
-
-.book:hover {
-    transform: translateY(-12px);
-}
-
-.book-cover {
-    height: 220px;
-    border: 1px solid #39323f;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    background: #151319;
-
-    box-shadow:
-        8px 8px 20px rgba(0,0,0,.45);
-}
-
-.book-cover img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.book-name {
-    margin-top: 14px;
-    font-size: 18px;
-    text-align: center;
-    color: #e8e2d9;
-}
-
-.book-info {
-    text-align: center;
-    color: #cdb9eb;
-    font-family: Arial, sans-serif;
-    font-size: 8px;
-    letter-spacing: 1px;
-    margin-top: 12px;
-}
-
-.wood {
-    height: 13px;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #403448,
-            #211d25
-        );
-
-    border-top: 1px solid #665873;
-}
-
-.about {
-    padding: 100px 20px;
-    text-align: center;
-}
-
-.about-title {
-    font-size: 13px;
-    letter-spacing: 4px;
-    color: #aaa39a;
-    margin-bottom: 18px;
-}
-
-.about-text {
-    max-width: 520px;
-    margin: auto;
-    color: #77716b;
-    font-family: Arial, sans-serif;
-    font-size: 11px;
-    line-height: 1.9;
-}
-
-.news {
-    max-width: 800px;
-    margin: auto;
-}
-
-.news-item {
-    border-top: 1px solid #29272b;
-    padding: 22px 0;
-
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
-}
-
-.news-date {
-    color: #716b66;
-    font-family: Arial, sans-serif;
-    font-size: 8px;
-    letter-spacing: 1px;
-}
-
-.news-title {
-    font-size: 19px;
-    text-align: right;
-    color: #d8d2ca;
-}
-
-.social {
-    padding: 100px 20px;
-    text-align: center;
-    border-top: 1px solid #252328;
-}
-
-.social-title {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 14px;
-    letter-spacing: 5px;
-    color: #aaa39a;
-    text-transform: uppercase;
-    margin-bottom: 30px;
-}
-
-.social-links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px 24px;
-}
-
-.social-links a {
-    color: #cdb9eb;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    transition: .3s;
-}
-
-.social-links a:hover {
-    color: #f8f3ff;
-}
-
-footer {
-    padding: 65px 7%;
-    border-top: 1px solid #252328;
-    text-align: center;
-}
-
-.footer-logo {
-    font-family: "Great Vibes", cursive;
-    font-size: 35px;
-    color: #f8f3ff;
-}
-
-footer p {
-    margin-top: 15px;
-    color: #77716a;
-    font-family: Arial, sans-serif;
-    font-size: 8px;
-    letter-spacing: 2px;
 }
 
 @media (max-width: 700px) {
@@ -536,19 +251,464 @@ footer p {
         font-size: 27px;
     }
 
+    .gallery-header {
+        padding: 80px 20px 60px;
+    }
+
+    .gallery-header h1 {
+        font-size: 58px;
+    }
+
+    .book-gallery {
+        padding: 70px 5%;
+    }
+
+    .book-gallery-title {
+        font-size: 32px;
+    }
+
+    .gallery-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 10px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <a href="index.html" class="logo">
+        kesmislalih
+    </a>
+
+    <a
+        href="index.html"
+        class="back">
+
+        ← ANA SAYFA
+
+    </a>
+
+</header>
+
+
+<section class="gallery-header">
+
+    <h1>
+        Galeri
+    </h1>
+
+    <p>
+        hikâyelerden kareler
+    </p>
+
+</section>
+
+
+<!-- =========================
+     RİNGTEKİ SON DANS
+========================= -->
+
+<section class="book-gallery">
+
+    <h2 class="book-gallery-title">
+        Ringteki Son Dans
+    </h2>
+
+    <p class="book-gallery-subtitle">
+        bir hikâyeden kareler
+    </p>
+
+    <div class="gallery-grid">
+
+        <!-- Görselleri buraya ekleyeceğiz -->
+
+        <div class="gallery-item">
+            <img
+                src="ringteki-son-dans-1.jpg"
+                alt="Ringteki Son Dans">
+        </div>
+
+        <div class="gallery-item">
+            <img
+                src="ringteki-son-dans-2.jpg"
+                alt="Ringteki Son Dans">
+        </div>
+
+        <div class="gallery-item">
+            <img
+                src="ringteki-son-dans-3.jpg"
+                alt="Ringteki Son Dans">
+        </div>
+
+        <div class="gallery-item">
+            <img
+                src="ringteki-son-dans-4.jpg"
+                alt="Ringteki Son Dans">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     İKİNCİ KİTAP
+========================= -->
+
+<section class="book-gallery">
+
+    <h2 class="book-gallery-title">
+        Diğer Kitabım
+    </h2>
+
+    <p class="book-gallery-subtitle">
+        çok yakında...
+    </p>
+
+    <div class="gallery-grid">
+
+        <div class="gallery-item">
+            <img
+                src="diger-kitap-1.jpg"
+                alt="Diğer kitap">
+        </div>
+
+        <div class="gallery-item">
+            <img
+                src="diger-kitap-2.jpg"
+                alt="Diğer kitap">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     LIGHTBOX
+========================= -->
+
+<div
+    class="lightbox"
+    id="lightbox">
+
+    <span
+        class="close"
+        id="close">
+        ×
+    </span>
+
+    <img
+        id="lightboxImage"
+        src=""
+        alt="Büyütülmüş görsel">
+
+</div>
+
+
+<script>
+
+const galleryImages =
+    document.querySelectorAll(".gallery-item img");
+
+const lightbox =
+    document.getElementById("lightbox");
+
+const lightboxImage =
+    document.getElementById("lightboxImage");
+
+const close =
+    document.getElementById("close");
+
+
+galleryImages.forEach(function(image) {
+
+    image.addEventListener("click", function() {
+
+        lightboxImage.src = image.src;
+
+        lightbox.classList.add("open");
+
+    });
+
+});
+
+
+close.addEventListener("click", function() {
+
+    lightbox.classList.remove("open");
+
+});
+
+
+lightbox.addEventListener("click", function(event) {
+
+    if (event.target === lightbox) {
+
+        lightbox.classList.remove("open");
+
+    }
+
+});
+
+</script>
+/* =========================
+   HAKKIMDA
+========================= */
+
+.about {
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.about-title {
+    font-size: 13px;
+
+    letter-spacing: 4px;
+
+    color: var(--text-soft);
+
+    margin-bottom: 18px;
+}
+
+.about-text {
+    max-width: 520px;
+
+    margin: auto;
+
+    color: var(--text-soft);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    line-height: 1.9;
+}
+
+/* =========================
+   GALERİ ÖNİZLEME
+========================= */
+
+.gallery-preview {
+    text-align: center;
+    padding: 90px 20px;
+}
+
+.gallery-preview-title {
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--text-soft);
+}
+
+.gallery-preview p {
+    margin-top: 18px;
+
+    color: var(--text-soft);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+}
+
+.gallery-button {
+    display: inline-block;
+
+    margin-top: 30px;
+
+    padding: 13px 24px;
+
+    border: 1px solid var(--lilac-soft);
+
+    color: var(--text);
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    transition: .3s;
+}
+
+.gallery-button:hover {
+    background: var(--lilac-soft);
+    color: var(--bg);
+}
+
+/* =========================
+   DUVAR
+========================= */
+
+.news {
+    max-width: 800px;
+    margin: auto;
+}
+
+.news-item {
+    border-top: 1px solid var(--border);
+
+    padding: 22px 0;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.news-date {
+    color: var(--text-soft);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+}
+
+.news-title {
+    font-size: 19px;
+
+    text-align: right;
+
+    color: var(--text);
+}
+
+/* =========================
+   İLETİŞİM
+========================= */
+
+.social {
+    padding: 100px 20px;
+
+    text-align: center;
+
+    border-top: 1px solid var(--border);
+}
+
+.social-title {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 14px;
+
+    letter-spacing: 5px;
+
+    color: var(--text-soft);
+
+    text-transform: uppercase;
+
+    margin-bottom: 30px;
+}
+
+.social-links {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px 24px;
+}
+
+.social-links a {
+    color: var(--lilac);
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    transition: .3s;
+}
+
+.social-links a:hover {
+    color: var(--text);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 65px 7%;
+
+    border-top: 1px solid var(--border);
+
+    text-align: center;
+}
+
+.footer-logo {
+    font-family: "Great Vibes", cursive;
+
+    font-size: 35px;
+
+    color: var(--text);
+}
+
+footer p {
+    margin-top: 15px;
+
+    color: var(--text-soft);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+/* =========================
+   TELEFON
+========================= */
+
+@media (max-width: 700px) {
+
+    header {
+        padding: 20px 5%;
+    }
+
+    .logo {
+        font-size: 27px;
+    }
+
+    .theme-button,
+    .menu-button {
+        width: 37px;
+        height: 37px;
+    }
+
     .menu-panel {
         width: 285px;
+
         right: -300px;
-        padding: 110px 32px 30px;
+
+        padding: 100px 32px 30px;
     }
 
     .menu-panel a.menu-link {
         font-size: 20px;
+        padding: 13px 0;
     }
 
     .hero h1 {
-        font-size: 82px;
-        letter-spacing: -3px;
+        font-size: 80px;
+        letter-spacing: -2px;
     }
 
     .hero p {
@@ -597,17 +757,8 @@ footer p {
         padding: 80px 20px;
     }
 
-    .social-links {
-        gap: 16px;
-    }
-
     .menu-social {
         gap: 7px;
-    }
-
-    .menu-social a {
-        width: 33px;
-        height: 33px;
     }
 
 }
@@ -623,16 +774,33 @@ footer p {
         kesmislalih
     </a>
 
-    <button
-        class="menu-button"
-        id="menuButton"
-        aria-label="Menüyü aç">
+    <div class="header-actions">
 
-        <span class="menu-line"></span>
-        <span class="menu-line"></span>
-        <span class="menu-line"></span>
+        <button
+            class="theme-button"
+            id="themeButton"
+            aria-label="Tema değiştir">
 
-    </button>
+            <span
+                class="theme-icon"
+                id="themeIcon">
+                ☾
+            </span>
+
+        </button>
+
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-label="Menüyü aç">
+
+            <span class="menu-line"></span>
+            <span class="menu-line"></span>
+            <span class="menu-line"></span>
+
+        </button>
+
+    </div>
 
 </header>
 
@@ -649,7 +817,7 @@ footer p {
         KESMISLALIH
     </div>
 
-    <a href="#" class="menu-link">
+    <a href="index.html" class="menu-link">
         Ana Sayfa
     </a>
 
@@ -661,7 +829,7 @@ footer p {
         Hakkımda
     </a>
 
-    <a href="#galeri" class="menu-link">
+    <a href="galeri.html" class="menu-link">
         Galeri
     </a>
 
@@ -675,14 +843,15 @@ footer p {
 
     <a href="#iletisim" class="menu-link">
         İletişim
-    </a><div class="menu-social-title">
+    </a>
+
+    <div class="menu-social-title">
         BENİ TAKİP ET
     </div>
 
     <div class="menu-social">
 
         <!-- TIKTOK -->
-
         <a
             href="https://www.tiktok.com/@kesmislalih?_r=1&_t=ZS-98gv3YRvFOK"
             target="_blank"
@@ -695,7 +864,6 @@ footer p {
         </a>
 
         <!-- X -->
-
         <a
             href="https://x.com/kesmislalih"
             target="_blank"
@@ -708,7 +876,6 @@ footer p {
         </a>
 
         <!-- WATTPAD -->
-
         <a
             href="https://www.wattpad.com/user/kesmislalih"
             target="_blank"
@@ -721,7 +888,6 @@ footer p {
         </a>
 
         <!-- SPOTIFY -->
-
         <a
             href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv"
             target="_blank"
@@ -734,7 +900,6 @@ footer p {
         </a>
 
         <!-- PINTEREST -->
-
         <a
             href="https://pin.it/2jHDXi48B"
             target="_blank"
@@ -747,7 +912,6 @@ footer p {
         </a>
 
         <!-- WHATSAPP -->
-
         <a
             href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
             target="_blank"
@@ -766,13 +930,7 @@ footer p {
     </div>
 
 </nav>
-
-
-<!-- =========================
-     ANA SAYFA
-========================= -->
-
-<section class="hero">
+    <section class="hero">
 
     <div class="hero-content">
 
@@ -798,10 +956,6 @@ footer p {
 
 </section>
 
-
-<!-- =========================
-     KİTAPLAR
-========================= -->
 
 <section
     class="section"
@@ -841,7 +995,6 @@ footer p {
 
             </a>
 
-
             <div class="book">
 
                 <div class="book-cover">
@@ -861,7 +1014,6 @@ footer p {
                 </div>
 
             </div>
-
 
             <div class="book">
 
@@ -892,10 +1044,6 @@ footer p {
 </section>
 
 
-<!-- =========================
-     HAKKIMDA
-========================= -->
-
 <section
     class="about"
     id="hakkimda">
@@ -915,28 +1063,27 @@ footer p {
 </section>
 
 
-<!-- =========================
-     GALERİ
-========================= -->
+<section class="gallery-preview">
 
-<section
-    class="section"
-    id="galeri">
+    <div class="gallery-preview-title">
+        GALERİ
+    </div>
 
-    <h2 class="section-title">
-        Galeri
-    </h2>
-
-    <p class="section-subtitle">
-        hikâyelerden kareler
+    <p>
+        Hikâyelerden kareler, karakterler ve
+        dünyalarıma ait küçük parçalar.
     </p>
+
+    <a
+        href="galeri.html"
+        class="gallery-button">
+
+        GALERİYE GİT →
+
+    </a>
 
 </section>
 
-
-<!-- =========================
-     DUVAR
-========================= -->
 
 <section
     class="section"
@@ -952,10 +1099,6 @@ footer p {
 
 </section>
 
-
-<!-- =========================
-     DUYURULAR
-========================= -->
 
 <section
     class="section"
@@ -1000,10 +1143,6 @@ footer p {
 </section>
 
 
-<!-- =========================
-     İLETİŞİM
-========================= -->
-
 <section
     class="about"
     id="iletisim">
@@ -1019,10 +1158,6 @@ footer p {
 </section>
 
 
-<!-- =========================
-     ALT SOSYAL MEDYA
-========================= -->
-
 <section class="social">
 
     <div class="social-title">
@@ -1031,39 +1166,27 @@ footer p {
 
     <div class="social-links">
 
-        <a
-            href="https://www.tiktok.com/@kesmislalih?_r=1&_t=ZS-98gv3YRvFOK"
-            target="_blank">
+        <a href="https://www.tiktok.com/@kesmislalih?_r=1&_t=ZS-98gv3YRvFOK" target="_blank">
             TikTok
         </a>
 
-        <a
-            href="https://x.com/kesmislalih"
-            target="_blank">
+        <a href="https://x.com/kesmislalih" target="_blank">
             X
         </a>
 
-        <a
-            href="https://www.wattpad.com/user/kesmislalih"
-            target="_blank">
+        <a href="https://www.wattpad.com/user/kesmislalih" target="_blank">
             Wattpad
         </a>
 
-        <a
-            href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv"
-            target="_blank">
+        <a href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv" target="_blank">
             Spotify
         </a>
 
-        <a
-            href="https://pin.it/2jHDXi48B"
-            target="_blank">
+        <a href="https://pin.it/2jHDXi48B" target="_blank">
             Pinterest
         </a>
 
-        <a
-            href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
-            target="_blank">
+        <a href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" target="_blank">
             WhatsApp
         </a>
 
@@ -1071,10 +1194,6 @@ footer p {
 
 </section>
 
-
-<!-- =========================
-     FOOTER
-========================= -->
 
 <footer>
 
@@ -1089,11 +1208,11 @@ footer p {
 </footer>
 
 
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
 <script>
+
+/* =========================
+   MENÜ
+========================= */
 
 const menuButton =
     document.getElementById("menuButton");
@@ -1144,7 +1263,459 @@ menuLinks.forEach(function(link) {
 
 });
 
+
+/* =========================
+   AYDINLIK / KARANLIK MOD
+========================= */
+
+const themeButton =
+    document.getElementById("themeButton");
+
+const themeIcon =
+    document.getElementById("themeIcon");
+
+
+function updateThemeIcon() {
+
+    if (document.body.classList.contains("light")) {
+
+        themeIcon.textContent = "☀";
+
+    } else {
+
+        themeIcon.textContent = "☾";
+
+    }
+
+}
+
+
+const savedTheme =
+    localStorage.getItem("kesmislalih-theme");
+
+
+if (savedTheme === "light") {
+
+    document.body.classList.add("light");
+
+}
+
+
+updateThemeIcon();
+
+
+themeButton.addEventListener("click", function() {
+
+    document.body.classList.toggle("light");
+
+    const currentTheme =
+        document.body.classList.contains("light")
+        ? "light"
+        : "dark";
+
+    localStorage.setItem(
+        "kesmislalih-theme",
+        currentTheme
+    );
+
+    updateThemeIcon();
+
+});
+
+</script>
+    <section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            kesmislalih
+        </h1>
+
+        <div class="line"></div>
+
+        <p>
+            kelimelerin arasında bir yerlerde...
+        </p>
+
+        <a
+            href="#kitaplar"
+            class="button">
+
+            KİTAPLARIMA GÖZ AT
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<section
+    class="section"
+    id="kitaplar">
+
+    <h2 class="section-title">
+        Kitaplarım
+    </h2>
+
+    <p class="section-subtitle">
+        kelimelerden doğan hikâyeler
+    </p>
+
+    <div class="library">
+
+        <div class="shelf">
+
+            <a
+                href="ringteki-son-dans.html"
+                class="book">
+
+                <div class="book-cover">
+
+                    <img
+                        src="file_00000000ce4881f4b929fc5dfbb07694.png"
+                        alt="Ringteki Son Dans">
+
+                </div>
+
+                <div class="book-name">
+                    Ringteki Son Dans
+                </div>
+
+                <div class="book-info">
+                    KİTABI İNCELE →
+                </div>
+
+            </a>
+
+            <div class="book">
+
+                <div class="book-cover">
+
+                    <span style="color:#6f6872;">
+                        YENİ<br>HİKÂYE
+                    </span>
+
+                </div>
+
+                <div class="book-name">
+                    Yakında...
+                </div>
+
+                <div class="book-info">
+                    ÇOK YAKINDA
+                </div>
+
+            </div>
+
+            <div class="book">
+
+                <div class="book-cover">
+
+                    <span style="color:#6f6872;">
+                        YENİ<br>HİKÂYE
+                    </span>
+
+                </div>
+
+                <div class="book-name">
+                    Yakında...
+                </div>
+
+                <div class="book-info">
+                    ÇOK YAKINDA
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="wood"></div>
+
+    </div>
+
+</section>
+
+
+<section
+    class="about"
+    id="hakkimda">
+
+    <div class="about-title">
+        HAKKIMDA
+    </div>
+
+    <p class="about-text">
+
+        Hikâyeler, bazen söyleyemediklerimizin
+        en güzel hâlidir. Ben de kelimelerle
+        kendi dünyalarımı kurmayı seviyorum.
+
+    </p>
+
+</section>
+
+
+<section class="gallery-preview">
+
+    <div class="gallery-preview-title">
+        GALERİ
+    </div>
+
+    <p>
+        Hikâyelerden kareler, karakterler ve
+        dünyalarıma ait küçük parçalar.
+    </p>
+
+    <a
+        href="galeri.html"
+        class="gallery-button">
+
+        GALERİYE GİT →
+
+    </a>
+
+</section>
+
+
+<section
+    class="section"
+    id="duvar">
+
+    <h2 class="section-title">
+        Duvar
+    </h2>
+
+    <p class="section-subtitle">
+        burası okurlara ait olacak
+    </p>
+
+</section>
+
+
+<section
+    class="section"
+    id="duyurular">
+
+    <div class="news">
+
+        <h2 class="section-title">
+            Duyurular
+        </h2>
+
+        <p class="section-subtitle">
+            yeni hikâyeler, yeni başlangıçlar
+        </p>
+
+        <div class="news-item">
+
+            <span class="news-date">
+                31.08.2026
+            </span>
+
+            <span class="news-title">
+                Yeni site yayında.
+            </span>
+
+        </div>
+
+        <div class="news-item">
+
+            <span class="news-date">
+                YAKINDA
+            </span>
+
+            <span class="news-title">
+                Yeni hikâyeler burada olacak.
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section
+    class="about"
+    id="iletisim">
+
+    <div class="about-title">
+        İLETİŞİM
+    </div>
+
+    <p class="about-text">
+        İletişim bilgileri daha sonra buraya eklenecek.
+    </p>
+
+</section>
+
+
+<section class="social">
+
+    <div class="social-title">
+        Beni takip et
+    </div>
+
+    <div class="social-links">
+
+        <a href="https://www.tiktok.com/@kesmislalih?_r=1&_t=ZS-98gv3YRvFOK" target="_blank">
+            TikTok
+        </a>
+
+        <a href="https://x.com/kesmislalih" target="_blank">
+            X
+        </a>
+
+        <a href="https://www.wattpad.com/user/kesmislalih" target="_blank">
+            Wattpad
+        </a>
+
+        <a href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv" target="_blank">
+            Spotify
+        </a>
+
+        <a href="https://pin.it/2jHDXi48B" target="_blank">
+            Pinterest
+        </a>
+
+        <a href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" target="_blank">
+            WhatsApp
+        </a>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <div class="footer-logo">
+        kesmislalih
+    </div>
+
+    <p>
+        © 2026 kesmislalih
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   MENÜ
+========================= */
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const menuPanel =
+    document.getElementById("menuPanel");
+
+const menuOverlay =
+    document.getElementById("menuOverlay");
+
+const menuLinks =
+    document.querySelectorAll(".menu-panel .menu-link");
+
+
+menuButton.addEventListener("click", function() {
+
+    menuButton.classList.toggle("active");
+
+    menuPanel.classList.toggle("open");
+
+    menuOverlay.classList.toggle("open");
+
+});
+
+
+menuOverlay.addEventListener("click", function() {
+
+    menuButton.classList.remove("active");
+
+    menuPanel.classList.remove("open");
+
+    menuOverlay.classList.remove("open");
+
+});
+
+
+menuLinks.forEach(function(link) {
+
+    link.addEventListener("click", function() {
+
+        menuButton.classList.remove("active");
+
+        menuPanel.classList.remove("open");
+
+        menuOverlay.classList.remove("open");
+
+    });
+
+});
+
+
+/* =========================
+   AYDINLIK / KARANLIK MOD
+========================= */
+
+const themeButton =
+    document.getElementById("themeButton");
+
+const themeIcon =
+    document.getElementById("themeIcon");
+
+
+function updateThemeIcon() {
+
+    if (document.body.classList.contains("light")) {
+
+        themeIcon.textContent = "☀";
+
+    } else {
+
+        themeIcon.textContent = "☾";
+
+    }
+
+}
+
+
+const savedTheme =
+    localStorage.getItem("kesmislalih-theme");
+
+
+if (savedTheme === "light") {
+
+    document.body.classList.add("light");
+
+}
+
+
+updateThemeIcon();
+
+
+themeButton.addEventListener("click", function() {
+
+    document.body.classList.toggle("light");
+
+    const currentTheme =
+        document.body.classList.contains("light")
+        ? "light"
+        : "dark";
+
+    localStorage.setItem(
+        "kesmislalih-theme",
+        currentTheme
+    );
+
+    updateThemeIcon();
+
+});
+
 </script>
 
 </body>
-                   </html>
+    </html>
