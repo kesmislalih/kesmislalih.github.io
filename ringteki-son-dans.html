@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
 
 <title>Ringteki Son Dans | kesmislalih</title>
 
@@ -11,200 +15,93 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap');
 
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
 html {
     scroll-behavior: smooth;
 }
 
-
 body {
 
-    background: #09090b;
+    --background: #09090b;
+    --surface: #111015;
+    --surface-two: #151319;
 
-    color: #eee9e2;
+    --text: #eee9e2;
+    --text-soft: #aaa39a;
+    --text-muted: #756d76;
 
-    font-family: "Cormorant Garamond", serif;
+    --border: #29252d;
+
+    --accent: #cdb9eb;
+    --accent-dark: #8f819e;
+
+    background: var(--background);
+    color: var(--text);
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
 
     transition:
         background .35s ease,
         color .35s ease;
-
 }
-
 
 
 /* =========================
    AYDINLIK MOD
 ========================= */
 
-body.light-mode {
+body.light {
 
-    background: #f4f0e9;
+    --background: #f5f1eb;
+    --surface: #ebe5dd;
+    --surface-two: #e3dcd3;
 
-    color: #242127;
+    --text: #242126;
+    --text-soft: #5e5752;
+    --text-muted: #817873;
 
+    --border: #d3cbc1;
+
+    --accent: #806a9c;
+    --accent-dark: #665477;
 }
-
-
-body.light-mode .logo {
-
-    color: #29232d;
-
-    text-shadow: none;
-
-}
-
-
-body.light-mode .back {
-
-    color: #756d72;
-
-}
-
-
-body.light-mode .back:hover {
-
-    color: #80669d;
-
-}
-
-
-body.light-mode .book-title {
-
-    color: #29232d;
-
-}
-
-
-body.light-mode .author {
-
-    color: #80669d;
-
-    text-shadow: none;
-
-}
-
-
-body.light-mode .read-count {
-
-    color: #827b76;
-
-}
-
-
-body.light-mode .cover img {
-
-    border-color: #d5cec4;
-
-    box-shadow:
-        0 25px 60px rgba(40,35,45,.18);
-
-}
-
-
-body.light-mode .quote {
-
-    color: #403a3f;
-
-}
-
-
-body.light-mode .description {
-
-    color: #625c59;
-
-}
-
-
-body.light-mode .about-title,
-body.light-mode .chapters-title {
-
-    color: #77716e;
-
-}
-
-
-body.light-mode .about-text {
-
-    color: #716b68;
-
-}
-
-
-body.light-mode .chapter {
-
-    color: #454044;
-
-    border-color: #d9d2ca;
-
-}
-
-
-body.light-mode .chapter:hover {
-
-    color: #80669d;
-
-}
-
-
-body.light-mode .chapter-arrow {
-
-    color: #80669d;
-
-}
-
-
-body.light-mode footer {
-
-    border-color: #d9d2ca;
-
-}
-
-
-body.light-mode .footer-logo {
-
-    color: #29232d;
-
-}
-
-
-body.light-mode footer p {
-
-    color: #827b76;
-
-}
-
 
 
 /* =========================
-   ÜST KISIM
+   HEADER
 ========================= */
 
 header {
 
     width: 100%;
 
-    padding: 25px 6%;
+    padding:
+        25px 6%;
 
     display: flex;
 
     justify-content: space-between;
-
     align-items: center;
 
+    border-bottom:
+        1px solid var(--border);
 }
 
 
+/* =========================
+   LOGO
+========================= */
+
 .logo {
 
-    color: #f8f3ff;
+    color: var(--text);
 
     text-decoration: none;
 
@@ -215,102 +112,90 @@ header {
     font-size: 30px;
 
     text-shadow:
-        0 0 7px rgba(220,195,255,.4);
-
+        0 0 8px rgba(205,185,235,.35);
 }
 
 
-.back {
+/* =========================
+   HEADER SAĞ
+========================= */
 
-    color: #aaa39a;
+.header-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+/* =========================
+   ANA SAYFA
+========================= */
+
+.back-home {
+
+    color: var(--text-muted);
 
     text-decoration: none;
 
-    font-family:
-        Arial,
-        sans-serif;
+    font-family: Arial, sans-serif;
 
     font-size: 8px;
 
     letter-spacing: 2px;
 
     transition: .3s;
-
 }
 
+.back-home:hover {
 
-.back:hover {
-
-    color: #cdb9eb;
-
+    color: var(--accent);
 }
-
 
 
 /* =========================
-   MOD BUTONU
+   TEMA BUTONU
 ========================= */
 
 .theme-button {
 
-    position: fixed;
-
-    right: 25px;
-
-    bottom: 25px;
-
-    width: 46px;
-
-    height: 46px;
-
-    border:
-        1px solid #38323f;
-
-    background:
-        rgba(17,16,21,.92);
-
-    color: #eee9e2;
+    width: 40px;
+    height: 40px;
 
     display: flex;
 
+    justify-content: center;
     align-items: center;
 
-    justify-content: center;
+    border:
+        1px solid var(--border);
+
+    background:
+        var(--surface);
+
+    color:
+        var(--text);
 
     cursor: pointer;
 
     font-size: 18px;
 
-    z-index: 50;
-
     transition: .3s;
-
 }
-
 
 .theme-button:hover {
 
-    border-color: #b9a7d8;
+    color: var(--accent);
 
-    transform: translateY(-3px);
-
+    transform:
+        rotate(10deg);
 }
-
-
-body.light-mode .theme-button {
-
-    background: #fffdf8;
-
-    border-color: #cfc7bd;
-
-    color: #403944;
-
-}
-
 
 
 /* =========================
-   ANA ALAN
+   ANA SAYFA
 ========================= */
 
 .book-page {
@@ -318,19 +203,19 @@ body.light-mode .theme-button {
     width:
         min(900px, 90%);
 
-    margin: auto;
+    margin:
+        auto;
 
     padding:
-        55px 0 110px;
+        60px 0 110px;
 
-    text-align: center;
-
+    text-align:
+        center;
 }
 
 
-
 /* =========================
-   KİTAP BAŞLIĞI
+   BAŞLIK
 ========================= */
 
 .book-title {
@@ -338,58 +223,61 @@ body.light-mode .theme-button {
     font-size:
         clamp(44px, 8vw, 72px);
 
-    font-weight: 400;
+    font-weight:
+        400;
 
-    letter-spacing: 2px;
+    letter-spacing:
+        2px;
 
-    color: #eee9e2;
-
+    color:
+        var(--text);
 }
 
 
 .author {
 
-    margin-top: 5px;
+    margin-top:
+        5px;
 
-    margin-bottom: 35px;
+    margin-bottom:
+        35px;
 
     font-family:
         "Great Vibes",
         cursive;
 
-    font-size: 29px;
+    font-size:
+        29px;
 
-    color: #cdb9eb;
-
-    text-shadow:
-        0 0 8px rgba(205,185,235,.4);
-
+    color:
+        var(--accent);
 }
 
 
-
 /* =========================
-   OKUNMA SAYISI
+   OKUNMA
 ========================= */
 
 .read-count {
 
-    margin-bottom: 40px;
+    margin-bottom:
+        40px;
 
-    color: #756d76;
+    color:
+        var(--text-muted);
 
     font-family:
-        Arial,
-        sans-serif;
+        Arial, sans-serif;
 
-    font-size: 8px;
+    font-size:
+        8px;
 
-    letter-spacing: 2px;
+    letter-spacing:
+        2px;
 
-    text-transform: uppercase;
-
+    text-transform:
+        uppercase;
 }
-
 
 
 /* =========================
@@ -401,27 +289,28 @@ body.light-mode .theme-button {
     width:
         min(315px, 76vw);
 
-    margin: auto;
-
+    margin:
+        auto;
 }
 
 
 .cover img {
 
-    width: 100%;
+    width:
+        100%;
 
-    height: auto;
+    height:
+        auto;
 
-    display: block;
+    display:
+        block;
 
     border:
-        1px solid #39323f;
+        1px solid var(--border);
 
     box-shadow:
-        0 25px 60px rgba(0,0,0,.55);
-
+        0 25px 60px rgba(0,0,0,.45);
 }
-
 
 
 /* =========================
@@ -430,40 +319,47 @@ body.light-mode .theme-button {
 
 .intro {
 
-    max-width: 680px;
+    max-width:
+        680px;
 
-    margin: 60px auto 0;
+    margin:
+        60px auto 0;
 
-    text-align: left;
-
+    text-align:
+        left;
 }
 
 
 .quote {
 
-    color: #ddd5cc;
+    color:
+        var(--text);
 
-    font-size: 24px;
+    font-size:
+        24px;
 
-    line-height: 1.6;
+    line-height:
+        1.6;
 
-    font-style: italic;
+    font-style:
+        italic;
 
-    margin-bottom: 25px;
-
+    margin-bottom:
+        25px;
 }
 
 
 .description {
 
-    color: #aaa39a;
+    color:
+        var(--text-soft);
 
-    font-size: 19px;
+    font-size:
+        19px;
 
-    line-height: 1.75;
-
+    line-height:
+        1.75;
 }
-
 
 
 /* =========================
@@ -472,16 +368,18 @@ body.light-mode .theme-button {
 
 .divider {
 
-    width: 55px;
+    width:
+        55px;
 
-    height: 1px;
+    height:
+        1px;
 
-    background: #b9a7d8;
+    background:
+        var(--accent);
 
-    margin: 55px auto;
-
+    margin:
+        55px auto;
 }
-
 
 
 /* =========================
@@ -490,44 +388,47 @@ body.light-mode .theme-button {
 
 .about {
 
-    max-width: 590px;
+    max-width:
+        590px;
 
-    margin: auto;
-
+    margin:
+        auto;
 }
 
 
 .about-title {
 
-    color: #aaa39a;
+    color:
+        var(--text-soft);
 
     font-family:
-        Arial,
-        sans-serif;
+        Arial, sans-serif;
 
-    font-size: 9px;
+    font-size:
+        9px;
 
-    letter-spacing: 4px;
+    letter-spacing:
+        4px;
 
-    margin-bottom: 16px;
-
+    margin-bottom:
+        16px;
 }
 
 
 .about-text {
 
-    color: #77716b;
+    color:
+        var(--text-muted);
 
     font-family:
-        Arial,
-        sans-serif;
+        Arial, sans-serif;
 
-    font-size: 11px;
+    font-size:
+        11px;
 
-    line-height: 1.9;
-
+    line-height:
+        1.9;
 }
-
 
 
 /* =========================
@@ -536,94 +437,105 @@ body.light-mode .theme-button {
 
 .chapters {
 
-    max-width: 720px;
+    max-width:
+        720px;
 
-    margin: 65px auto 0;
+    margin:
+        65px auto 0;
 
-    text-align: left;
-
+    text-align:
+        left;
 }
 
 
 .chapters-title {
 
-    text-align: center;
+    text-align:
+        center;
 
-    color: #aaa39a;
+    color:
+        var(--text-soft);
 
     font-family:
-        Arial,
-        sans-serif;
+        Arial, sans-serif;
 
-    font-size: 9px;
+    font-size:
+        9px;
 
-    letter-spacing: 4px;
+    letter-spacing:
+        4px;
 
-    margin-bottom: 20px;
-
+    margin-bottom:
+        20px;
 }
 
 
 .chapter {
 
-    display: flex;
+    display:
+        flex;
 
-    justify-content: space-between;
+    justify-content:
+        space-between;
 
-    align-items: center;
+    align-items:
+        center;
 
-    padding: 20px 5px;
+    padding:
+        20px 5px;
 
     border-top:
-        1px solid #28252b;
+        1px solid var(--border);
 
-    color: #ddd6ce;
+    color:
+        var(--text);
 
-    text-decoration: none;
+    text-decoration:
+        none;
 
-    transition: .3s;
-
+    transition:
+        .3s;
 }
 
 
 .chapter:last-child {
 
     border-bottom:
-        1px solid #28252b;
-
+        1px solid var(--border);
 }
 
 
 .chapter:hover {
 
-    color: #cdb9eb;
+    color:
+        var(--accent);
 
-    padding-left: 15px;
+    padding-left:
+        15px;
 
-    padding-right: 15px;
-
+    padding-right:
+        15px;
 }
 
 
 .chapter-name {
 
-    font-size: 21px;
-
+    font-size:
+        21px;
 }
 
 
 .chapter-arrow {
 
-    color: #81758f;
+    color:
+        var(--accent-dark);
 
     font-family:
-        Arial,
-        sans-serif;
+        Arial, sans-serif;
 
-    font-size: 13px;
-
+    font-size:
+        13px;
 }
-
 
 
 /* =========================
@@ -636,10 +548,10 @@ footer {
         55px 20px;
 
     border-top:
-        1px solid #252328;
+        1px solid var(--border);
 
-    text-align: center;
-
+    text-align:
+        center;
 }
 
 
@@ -649,109 +561,85 @@ footer {
         "Great Vibes",
         cursive;
 
-    font-size: 31px;
+    font-size:
+        31px;
 
-    color: #f8f3ff;
-
+    color:
+        var(--text);
 }
 
 
 footer p {
 
-    margin-top: 10px;
+    margin-top:
+        10px;
 
-    color: #66615d;
+    color:
+        var(--text-muted);
 
     font-family:
-        Arial,
-        sans-serif;
+        Arial, sans-serif;
 
-    font-size: 7px;
+    font-size:
+        7px;
 
-    letter-spacing: 2px;
-
+    letter-spacing:
+        2px;
 }
-
-
-
-/* =========================
-   TELEFON
-========================= */
-
+    
 @media (max-width: 700px) {
 
     header {
-
-        padding:
-            20px 5%;
-
+        padding: 20px 5%;
     }
-
 
     .logo {
-
         font-size: 27px;
-
     }
 
-
-    .book-page {
-
-        width: 88%;
-
-        padding-top: 45px;
-
+    .header-right {
+        gap: 8px;
     }
 
-
-    .book-title {
-
-        font-size: 43px;
-
+    .back-home {
+        font-size: 7px;
+        letter-spacing: 1px;
     }
-
-
-    .author {
-
-        font-size: 25px;
-
-    }
-
-
-    .quote {
-
-        font-size: 21px;
-
-    }
-
-
-    .description {
-
-        font-size: 17px;
-
-    }
-
-
-    .chapter-name {
-
-        font-size: 17px;
-
-    }
-
 
     .theme-button {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
 
-        right: 18px;
+    .book-page {
+        width: 88%;
+        padding-top: 45px;
+    }
 
-        bottom: 18px;
+    .book-title {
+        font-size: 43px;
+        line-height: 1.2;
+    }
 
-        width: 42px;
+    .author {
+        font-size: 25px;
+    }
 
-        height: 42px;
+    .quote {
+        font-size: 21px;
+    }
 
+    .description {
+        font-size: 17px;
+    }
+
+    .chapter-name {
+        font-size: 17px;
     }
 
 }
+
 
 </style>
 
@@ -761,9 +649,11 @@ footer p {
 <body>
 
 
+<!-- =========================
+     HEADER
+========================= -->
 
 <header>
-
 
     <a
         href="index.html"
@@ -774,36 +664,47 @@ footer p {
     </a>
 
 
-    <a
-        href="index.html"
-        class="back">
+    <div class="header-right">
 
-        ← ANA SAYFA
+        <a
+            href="index.html"
+            class="back-home">
 
-    </a>
+            ← ANA SAYFA
 
+        </a>
+
+
+        <!-- TEMA -->
+
+        <button
+            type="button"
+            class="theme-button"
+            id="themeButton"
+            aria-label="Aydınlık / karanlık mod">
+
+            <span id="themeIcon">
+                ☾
+            </span>
+
+        </button>
+
+    </div>
 
 </header>
 
 
 
 <!-- =========================
-     AYDINLIK / KARANLIK
+     ANA İÇERİK
 ========================= -->
-
-<button
-    class="theme-button"
-    id="themeButton"
-    aria-label="Aydınlık ve karanlık modu değiştir">
-
-    ☾
-
-</button>
-
-
 
 <main class="book-page">
 
+
+    <!-- =========================
+         KİTAP BAŞLIĞI
+    ========================= -->
 
     <h1 class="book-title">
 
@@ -819,16 +720,25 @@ footer p {
     </div>
 
 
+    <!-- =========================
+         OKUNMA SAYISI
+    ========================= -->
+
     <div class="read-count">
 
-        <span id="bookViews">0</span>
+        <span id="bookViews">
+            0
+        </span>
+
         okunma
 
     </div>
 
 
 
-    <!-- KAPAK -->
+    <!-- =========================
+         KAPAK
+    ========================= -->
 
     <div class="cover">
 
@@ -840,7 +750,9 @@ footer p {
 
 
 
-    <!-- AÇIKLAMA -->
+    <!-- =========================
+         AÇIKLAMA
+    ========================= -->
 
     <section class="intro">
 
@@ -881,7 +793,6 @@ footer p {
 
         </div>
 
-
     </section>
 
 
@@ -890,7 +801,9 @@ footer p {
 
 
 
-    <!-- KİTAP HAKKINDA -->
+    <!-- =========================
+         KİTAP HAKKINDA
+    ========================= -->
 
     <section class="about">
 
@@ -913,12 +826,13 @@ footer p {
 
         </p>
 
-
     </section>
 
 
 
-    <!-- BÖLÜMLER -->
+    <!-- =========================
+         BÖLÜM LİSTESİ
+    ========================= -->
 
     <section class="chapters">
 
@@ -931,7 +845,9 @@ footer p {
 
 
 
-        <!-- BÖLÜM 1 -->
+        <!-- =========================
+             BÖLÜM 1
+        ========================= -->
 
         <a
             href="bolum-1.html"
@@ -943,6 +859,7 @@ footer p {
 
             </span>
 
+
             <span class="chapter-arrow">
 
                 →
@@ -953,10 +870,12 @@ footer p {
 
 
 
-        <!-- BÖLÜM 2 -->
+        <!-- =========================
+             BÖLÜM 2
+        ========================= -->
 
         <a
-            href="#"
+            href="bolum-2.html"
             class="chapter">
 
             <span class="chapter-name">
@@ -965,6 +884,7 @@ footer p {
 
             </span>
 
+
             <span class="chapter-arrow">
 
                 →
@@ -975,10 +895,12 @@ footer p {
 
 
 
-        <!-- BÖLÜM 3 -->
+        <!-- =========================
+             BÖLÜM 3
+        ========================= -->
 
         <a
-            href="#"
+            href="bolum-3.html"
             class="chapter">
 
             <span class="chapter-name">
@@ -986,6 +908,7 @@ footer p {
                 KREM RENKLİ SALON
 
             </span>
+
 
             <span class="chapter-arrow">
 
@@ -1002,6 +925,10 @@ footer p {
 </main>
 
 
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
@@ -1024,12 +951,16 @@ footer p {
 
 
 
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
 <script>
 
 
-/* =========================
-   KİTAP OKUNMA SAYACI
-========================= */
+/* =================================
+   OKUNMA SAYACI
+================================= */
 
 let bookViews =
     Number(
@@ -1050,13 +981,14 @@ localStorage.setItem(
 
 document.getElementById(
     "bookViews"
-).textContent = bookViews;
+).textContent =
+    bookViews;
 
 
 
-/* =========================
+/* =================================
    AYDINLIK / KARANLIK MOD
-========================= */
+================================= */
 
 const themeButton =
     document.getElementById(
@@ -1064,61 +996,89 @@ const themeButton =
     );
 
 
+const themeIcon =
+    document.getElementById(
+        "themeIcon"
+    );
+
+
+/*
+   Daha önce seçilen temayı al.
+*/
+
 const savedTheme =
     localStorage.getItem(
-        "siteTheme"
+        "kesmislalih-theme"
     );
 
 
 if (savedTheme === "light") {
 
     document.body.classList.add(
-        "light-mode"
+        "light"
     );
 
-    themeButton.textContent = "☀";
+    themeIcon.textContent = "☀";
+
+} else {
+
+    themeIcon.textContent = "☾";
 
 }
 
 
+
+/*
+   Tema değiştirme.
+*/
+
 themeButton.addEventListener(
     "click",
-    function() {
+    function () {
+
 
         document.body.classList.toggle(
-            "light-mode"
+            "light"
         );
 
 
-        if (
+        const isLight =
             document.body.classList.contains(
-                "light-mode"
-            )
-        ) {
-
-            localStorage.setItem(
-                "siteTheme",
                 "light"
             );
 
-            themeButton.textContent = "☀";
+
+        if (isLight) {
+
+            themeIcon.textContent =
+                "☀";
+
+
+            localStorage.setItem(
+                "kesmislalih-theme",
+                "light"
+            );
 
         } else {
 
+            themeIcon.textContent =
+                "☾";
+
+
             localStorage.setItem(
-                "siteTheme",
+                "kesmislalih-theme",
                 "dark"
             );
-
-            themeButton.textContent = "☾";
 
         }
 
     }
 );
 
+
 </script>
 
 
 </body>
+
 </html>
