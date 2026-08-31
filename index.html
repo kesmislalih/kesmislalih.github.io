@@ -3,22 +3,434 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
 
-    <title>kesmislalih</title>
+<title>kesmislalih</title>
 
-    <link
-        rel="stylesheet"
-        href="style.css">
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap');
+
+
+/* =========================
+   GENEL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    background: #09090b;
+    color: #f3efe8;
+    font-family: "Cormorant Garamond", serif;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+
+    width: 100%;
+
+    padding: 25px 6%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    z-index: 100;
+
+}
+
+
+.logo {
+
+    color: #f8f3ff;
+
+    text-decoration: none;
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: 32px;
+
+    text-shadow:
+        0 0 6px rgba(220,195,255,.45),
+        0 0 16px rgba(185,167,216,.25);
+
+}
+
+
+/* =========================
+   MENÜ BUTONU
+========================= */
+
+.menu-button {
+
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid #38323f;
+
+    background: rgba(9,9,11,.75);
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 5px;
+
+    cursor: pointer;
+
+    z-index: 102;
+
+}
+
+
+.menu-line {
+
+    width: 18px;
+    height: 1px;
+
+    background: #eee8e1;
+
+    transition: .3s;
+
+}
+
+
+.menu-button.active
+.menu-line:nth-child(1) {
+
+    transform:
+        translateY(6px)
+        rotate(45deg);
+
+}
+
+
+.menu-button.active
+.menu-line:nth-child(2) {
+
+    opacity: 0;
+
+}
+
+
+.menu-button.active
+.menu-line:nth-child(3) {
+
+    transform:
+        translateY(-6px)
+        rotate(-45deg);
+
+}
+
+
+/* =========================
+   MENÜ PANELİ
+========================= */
+
+.menu-panel {
+
+    position: fixed;
+
+    top: 0;
+
+    right: -330px;
+
+    width: 310px;
+
+    height: 100vh;
+
+    background: #111015;
+
+    border-left: 1px solid #302a38;
+
+    padding: 120px 40px 40px;
+
+    z-index: 101;
+
+    transition: right .45s ease;
+
+    overflow-y: auto;
+
+}
+
+
+.menu-panel.open {
+
+    right: 0;
+
+}
+
+
+.menu-small-title {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+
+    color: #756d79;
+
+    margin-bottom: 30px;
+
+}
+
+
+.menu-panel a {
+
+    display: block;
+
+    padding: 18px 0;
+
+    border-bottom: 1px solid #29252d;
+
+    color: #e8e2da;
+
+    text-decoration: none;
+
+    font-size: 22px;
+
+    transition: .3s;
+
+}
+
+
+.menu-panel a:hover {
+
+    color: #cdb9eb;
+
+    padding-left: 8px;
+
+}
+
+
+.menu-footer {
+
+    margin-top: 45px;
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: 26px;
+
+    color: #8f819e;
+
+}
+
+
+/* =========================
+   MENÜ ARKA PLAN
+========================= */
+
+.menu-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.45);
+
+    backdrop-filter: blur(2px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: .3s;
+
+    z-index: 100;
+
+}
+
+
+.menu-overlay.open {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+
+/* =========================
+   SOSYAL MEDYA
+========================= */
+
+.menu-social-title {
+
+    margin-top: 45px;
+
+    margin-bottom: 18px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color: #756d79;
+
+}
+
+
+.menu-social {
+
+    display: flex;
+
+    gap: 15px;
+
+    align-items: center;
+
+}
+
+
+.menu-social a {
+
+    border: none;
+
+    padding: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.menu-social a:hover {
+
+    padding-left: 0;
+
+}
+
+
+.icon {
+
+    width: 20px;
+
+    height: 20px;
+
+    fill: #aaa39a;
+
+    transition: .3s;
+
+}
+
+
+.menu-social a:hover .icon {
+
+    fill: #cdb9eb;
+
+}
+
+
+.wattpad-icon {
+
+    font-family: Arial, sans-serif;
+
+    font-weight: bold;
+
+    font-size: 20px;
+
+    color: #aaa39a;
+
+}
+
+
+.menu-social a:hover
+.wattpad-icon {
+
+    color: #cdb9eb;
+
+}
+
+
+/* =========================
+   BURAYA DEVAM EDECEĞİZ
+========================= */
+
+</style>
 
 </head>
 
 
 <body>
+
+
+<!-- =========================
+     ÜST KISIM
+========================= -->
+
+<header>
+
+
+    <a
+        href="index.html"
+        class="logo">
+
+        kesmislalih
+
+    </a>
+
+
+    <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Menüyü aç">
+
+        <span class="menu-line"></span>
+
+        <span class="menu-line"></span>
+
+        <span class="menu-line"></span>
+
+    </button>
+
+
+</header>
+
+
+
+<!-- =========================
+     MENÜ ARKA PLANI
+========================= -->
+
+<div
+    class="menu-overlay"
+    id="menuOverlay">
+</div>
+
 
 
 <!-- =========================
@@ -29,84 +441,80 @@
     class="menu-panel"
     id="menuPanel">
 
+
     <div class="menu-small-title">
+
         KESMISLALIH
+
     </div>
 
 
-    <a
-        href="#"
-        class="menu-link">
+    <a href="#">
 
         Ana Sayfa
 
     </a>
 
 
-    <a
-        href="#kitaplar"
-        class="menu-link">
+    <a href="#kitaplar">
 
         Kitaplar
 
     </a>
 
 
-    <a
-        href="#hakkimda"
-        class="menu-link">
+    <a href="#hakkimda">
 
         Hakkımda
 
     </a>
 
 
-    <a
-        href="galeri.html"
-        class="menu-link">
+    <a href="galeri.html">
 
         Galeri
 
     </a>
 
 
-    <a
-        href="#duvar"
-        class="menu-link">
+    <a href="#duvar">
 
         Duvar
 
     </a>
 
 
-    <a
-        href="#duyurular"
-        class="menu-link">
+    <a href="#duyurular">
 
         Duyurular
 
     </a>
 
 
-    <a
-        href="#iletisim"
-        class="menu-link">
+    <a href="#iletisim">
 
         İletişim
 
     </a>
 
 
-    <!-- SOSYAL MEDYA -->
+
+    <!-- =========================
+         SOSYAL MEDYA
+    ========================= -->
 
     <div class="menu-social-title">
+
         BENİ TAKİP ET
+
     </div>
 
 
     <div class="menu-social">
 
+
         <!-- TIKTOK -->
+
         <a
             href="https://www.tiktok.com/@kesmislalih?_r=1&_t=ZS-98gv3YRvFOK"
             target="_blank"
@@ -123,14 +531,16 @@
         </a>
 
 
+
         <!-- X -->
+
         <a
             href="https://x.com/kesmislalih"
             target="_blank"
             aria-label="X">
 
             <svg
-                class="icon x-icon"
+                class="icon"
                 viewBox="0 0 24 24">
 
                 <path d="M18.244 2H21.5l-7.11 8.13L22.75 22h-6.55l-5.13-6.71L5.2 22H1.94l7.61-8.7L1.5 2h6.72l4.64 6.13L18.244 2zm-1.15 17.78h1.8L7.22 4.1H5.29l11.804 15.68z"/>
@@ -140,20 +550,26 @@
         </a>
 
 
+
         <!-- WATTPAD -->
+
         <a
             href="https://www.wattpad.com/user/kesmislalih"
             target="_blank"
             aria-label="Wattpad">
 
             <span class="wattpad-icon">
+
                 W
+
             </span>
 
         </a>
 
 
+
         <!-- SPOTIFY -->
+
         <a
             href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv"
             target="_blank"
@@ -170,7 +586,9 @@
         </a>
 
 
+
         <!-- PINTEREST -->
+
         <a
             href="https://pin.it/2jHDXi48B"
             target="_blank"
@@ -187,7 +605,9 @@
         </a>
 
 
+
         <!-- WHATSAPP -->
+
         <a
             href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
             target="_blank"
@@ -197,769 +617,22 @@
                 class="icon"
                 viewBox="0 0 24 24">
 
-                <path d="M12 2a9.9 9.9 0 0 0-8.55 14.9L2 22l5.27-1.38A9.9 9.9 0 1 0 12 2zm0 18.1a8.15 8.15 0 0 1-4.15-1.13l-.3-.18-3.13.82.84-3.05-.2-.31A8.15 8.15 0 1 1 12 20.1zm4.47-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54-.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.18-1.4-1.32-1.64-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.16.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.33.98 2.49c.12.16 1.69 2.58 4.09 3.62.57.25 1.01.4 1.35.51.57.18 1.09.15 1.5.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/>
+                <path d="M12 2a9.9 9.9 0 0 0-8.55 14.9L2 22l5.27-1.38A9.9 9.9 0 1 0 12 2zm0 18.1a8.15 8.15 0 0 1-4.15-1.13l-.3-.18-3.13.82.84-3.05-.2-.31A8.15 8.15 0 1 1 12 20.1zm4.47-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.18-1.4-1.32-1.64-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.16.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.33.98 2.49c.12.16 1.69 2.58 4.09 3.62.57.25 1.01.4 1.35.51.57.18 1.09.15 1.5.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/>
 
             </svg>
 
         </a>
 
+
     </div>
 
 
     <div class="menu-footer">
+
         kesmislalih
-    </div>
-
-</nav>
-<!-- =========================
-     ANA SAYFA GİRİŞ
-========================= -->
-
-<section
-    class="hero"
-    id="anasayfa">
-
-    <div class="hero-content">
-
-
-        <p class="hero-small-title">
-            KESMISLALIH
-        </p>
-
-
-        <h1>
-            kelimelerin arasında
-            bir yerlerde...
-        </h1>
-
-
-        <div class="line"></div>
-
-
-        <p class="hero-text">
-            Hikâyelerin, karakterlerin ve
-            hayal dünyalarının buluştuğu
-            küçük bir köşe.
-        </p>
-
-
-        <a
-            href="#kitaplar"
-            class="button">
-
-            KİTAPLARIMA GÖZ AT
-
-        </a>
-
-
-    </div>
-
-</section>
-    <!-- =========================
-     KİTAPLAR / KİTAPLIK
-========================= -->
-
-<section
-    class="books-section"
-    id="kitaplar">
-
-
-    <div class="section-title">
-
-        <span>
-            HİKÂYELERİM
-        </span>
-
-        <h2>
-            Kitaplık
-        </h2>
-
-        <div class="section-line"></div>
-
-        <p>
-            Hikâyelerimin bulunduğu küçük kitaplığım.
-        </p>
 
     </div>
 
 
-    <!-- =========================
-         KİTAPLIK
-    ========================= -->
-
-    <div class="bookshelf">
-
-
-        <!-- =========================
-             KİTAP 1
-        ========================= -->
-
-        <div class="bookshelf-row">
-
-            <div class="book-item">
-
-
-                <!-- KİTAP KAPAĞI -->
-
-                <div class="book-cover">
-
-                    <img
-                        src="file_00000000ce4881f4b929fc5dfbb07694.png"
-                        alt="Ringteki Son Dans kitap kapağı">
-
-                </div>
-
-
-                <!-- KİTAP BİLGİLERİ -->
-
-                <div class="book-info">
-
-                    <span class="book-type">
-                        ROMAN
-                    </span>
-
-
-                    <h3>
-                        Ringteki Son Dans
-                    </h3>
-
-
-                    <p>
-                        Bir balerin ve bir boksörün
-                        yollarının kesiştiği,
-                        dansın ve mücadelenin
-                        iç içe geçtiği bir hikâye.
-                    </p>
-
-
-                    <a
-                        href="#"
-                        class="book-button">
-
-                        KİTABI İNCELE
-
-                    </a>
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-
-        <!-- =========================
-             KİTAP 2
-        ========================= -->
-
-        <div class="bookshelf-row">
-
-            <div class="book-item">
-
-
-                <!-- KİTAP KAPAĞI -->
-
-                <div class="book-cover">
-
-                    <img
-                        src=""
-                        alt="Kitap kapağı">
-
-                </div>
-
-
-                <!-- KİTAP BİLGİLERİ -->
-
-                <div class="book-info">
-
-                    <span class="book-type">
-                        YAKINDA
-                    </span>
-
-
-                    <h3>
-                        Yeni Hikâye
-                    </h3>
-
-
-                    <p>
-                        Yeni bir hikâye,
-                        yeni karakterler ve
-                        anlatılmayı bekleyen
-                        başka bir dünya.
-                    </p>
-
-
-                    <a
-                        href="#"
-                        class="book-button">
-
-                        YAKINDA
-
-                    </a>
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-</section>
+    </nav>
     
-<!-- =========================
-     HAKKIMDA
-========================= -->
-
-<section
-    class="about-section"
-    id="hakkimda">
-
-
-    <div class="section-title">
-
-        <span>
-            KESMISLALIH
-        </span>
-
-        <h2>
-            Hakkımda
-        </h2>
-
-        <div class="section-line"></div>
-
-    </div>
-
-
-    <div class="about-content">
-
-
-        <div class="about-image">
-
-            <!-- HAKKIMDA FOTOĞRAFI -->
-            <!-- Fotoğrafı daha sonra buraya bağlayacağız -->
-
-            <img
-                src=""
-                alt="kesmislalih">
-
-        </div>
-
-
-        <div class="about-text">
-
-            <p>
-                Merhaba, ben kesmislalih.
-            </p>
-
-
-            <p>
-                Kelimelerin, karakterlerin ve
-                hikâyelerin arasında kendime
-                küçük bir dünya kurmayı seviyorum.
-            </p>
-
-
-            <p>
-                Burası da yazdığım hikâyeleri,
-                sevdiğim şeyleri ve hayal ettiğim
-                dünyaları bir araya getirdiğim
-                küçük köşem.
-            </p>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================
-     DUVAR
-========================= -->
-
-<section
-    class="wall-section"
-    id="duvar">
-
-
-    <div class="section-title">
-
-        <span>
-            NOTLAR
-        </span>
-
-        <h2>
-            Duvar
-        </h2>
-
-        <div class="section-line"></div>
-
-        <p>
-            Burada küçük notlarımı,
-            düşüncelerimi ve sizinle
-            paylaşmak istediklerimi
-            bulabilirsiniz.
-        </p>
-
-    </div>
-
-
-    <div class="wall-container">
-
-
-        <!-- NOT 1 -->
-
-        <div class="wall-note">
-
-            <span class="note-number">
-                01
-            </span>
-
-            <p>
-                Bazen bir hikâye,
-                sadece yazılmayı bekleyen
-                birkaç kelimeyle başlar.
-            </p>
-
-        </div>
-
-
-        <!-- NOT 2 -->
-
-        <div class="wall-note">
-
-            <span class="note-number">
-                02
-            </span>
-
-            <p>
-                Buraya ileride yeni
-                bir not bırakılacak.
-            </p>
-
-        </div>
-
-
-        <!-- NOT 3 -->
-
-        <div class="wall-note">
-
-            <span class="note-number">
-                03
-            </span>
-
-            <p>
-                Yeni hikâyeler,
-                yeni karakterler...
-                devamı gelecek.
-            </p>
-
-        </div>
-
-
-    </div>
-
-</section>
-<!-- =========================
-     DUYURULAR
-========================= -->
-
-<section
-    class="announcements-section"
-    id="duyurular">
-
-
-    <div class="section-title">
-
-        <span>
-            HABERLER
-        </span>
-
-        <h2>
-            Duyurular
-        </h2>
-
-        <div class="section-line"></div>
-
-        <p>
-            Buradan yeni gelişmeleri
-            ve önemli duyuruları
-            paylaşacağım.
-        </p>
-
-    </div>
-
-
-    <div class="announcement-list">
-
-
-        <!-- DUYURU 1 -->
-
-        <article class="announcement">
-
-            <div class="announcement-date">
-                01
-            </div>
-
-
-            <div class="announcement-content">
-
-                <span>
-                    DUYURU
-                </span>
-
-                <h3>
-                    Hoş geldin
-                </h3>
-
-                <p>
-                    Siteme hoş geldin.
-                    Burada kitaplarımı,
-                    hikâyelerimi ve yeni
-                    gelişmeleri bulabilirsin.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- DUYURU 2 -->
-
-        <article class="announcement">
-
-            <div class="announcement-date">
-                02
-            </div>
-
-
-            <div class="announcement-content">
-
-                <span>
-                    YAKINDA
-                </span>
-
-                <h3>
-                    Yeni duyurular
-                </h3>
-
-                <p>
-                    Yeni projeler ve
-                    hikâyeler hakkında
-                    duyurular burada
-                    paylaşılacak.
-                </p>
-
-            </div>
-
-        </article>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================
-     İLETİŞİM
-========================= -->
-
-<section
-    class="contact-section"
-    id="iletisim">
-
-
-    <div class="section-title">
-
-        <span>
-            BANA ULAŞ
-        </span>
-
-        <h2>
-            İletişim
-        </h2>
-
-        <div class="section-line"></div>
-
-        <p>
-            Benimle iletişime geçmek
-            istersen buradan ulaşabilirsin.
-        </p>
-
-    </div>
-
-
-    <div class="contact-content">
-
-
-        <div class="contact-box">
-
-            <span>
-                SOSYAL MEDYA
-            </span>
-
-            <h3>
-                Beni takip et
-            </h3>
-
-            <p>
-                Güncellemeler ve yeni
-                paylaşımlar için sosyal
-                medya hesaplarımı
-                takip edebilirsin.
-            </p>
-
-
-            <a
-                href="https://www.tiktok.com/@kesmislalih?_r=1&_t=ZS-98gv3YRvFOK"
-                target="_blank"
-                class="contact-link">
-
-                TikTok
-
-            </a>
-
-
-            <a
-                href="https://x.com/kesmislalih"
-                target="_blank"
-                class="contact-link">
-
-                X
-
-            </a>
-
-
-            <a
-                href="https://www.wattpad.com/user/kesmislalih"
-                target="_blank"
-                class="contact-link">
-
-                Wattpad
-
-            </a>
-
-
-        </div>
-
-
-        <div class="contact-box">
-
-            <span>
-                WHATSAPP
-            </span>
-
-            <h3>
-                Kanalıma katıl
-            </h3>
-
-            <p>
-                Duyurular ve yeni gelişmeler
-                için WhatsApp kanalıma
-                göz atabilirsin.
-            </p>
-
-
-            <a
-                href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
-                target="_blank"
-                class="contact-link">
-
-                WhatsApp Kanalı
-
-            </a>
-
-        </div>
-
-
-    </div>
-
-</section>
-<!-- =========================
-     SAYFA SONU
-========================= -->
-
-<footer class="site-footer">
-
-    <div class="footer-line"></div>
-
-    <div class="footer-content">
-
-        <h2>
-            kesmislalih
-        </h2>
-
-        <p>
-            kelimelerin arasında bir yerlerde...
-        </p>
-
-        <div class="footer-social">
-
-            <a
-                href="https://www.tiktok.com/@kesmislalih?_r=1&_t=ZS-98gv3YRvFOK"
-                target="_blank">
-
-                TikTok
-
-            </a>
-
-
-            <a
-                href="https://x.com/kesmislalih"
-                target="_blank">
-
-                X
-
-            </a>
-
-
-            <a
-                href="https://www.wattpad.com/user/kesmislalih"
-                target="_blank">
-
-                Wattpad
-
-            </a>
-
-
-            <a
-                href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv"
-                target="_blank">
-
-                Spotify
-
-            </a>
-
-
-            <a
-                href="https://pin.it/2jHDXi48B"
-                target="_blank">
-
-                Pinterest
-
-            </a>
-
-
-            <a
-                href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
-                target="_blank">
-
-                WhatsApp
-
-            </a>
-
-        </div>
-
-
-        <p class="copyright">
-            © 2026 kesmislalih
-        </p>
-
-    </div>
-
-</footer>
-
-
-
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
-<script>
-
-    /* =========================
-       MENÜ
-    ========================= */
-
-    const menuPanel =
-        document.getElementById("menuPanel");
-
-
-    /* =========================
-       SAYFA LİNKLERİ
-    ========================= */
-
-    const menuLinks =
-        document.querySelectorAll(".menu-link");
-
-
-    menuLinks.forEach(function(link) {
-
-        link.addEventListener("click", function() {
-
-            if (
-                link.getAttribute("href") !==
-                "galeri.html"
-            ) {
-
-                menuPanel.classList.remove("active");
-
-            }
-
-        });
-
-    });
-
-
-    /* =========================
-       YUMUŞAK KAYDIRMA
-    ========================= */
-
-    document.querySelectorAll(
-        'a[href^="#"]'
-    ).forEach(function(link) {
-
-        link.addEventListener(
-            "click",
-            function(event) {
-
-                const targetId =
-                    link.getAttribute("href");
-
-
-                if (
-                    targetId &&
-                    targetId !== "#"
-                ) {
-
-                    const target =
-                        document.querySelector(
-                            targetId
-                        );
-
-
-                    if (target) {
-
-                        event.preventDefault();
-
-
-                        target.scrollIntoView({
-                            behavior: "smooth"
-                        });
-
-                    }
-
-                }
-
-            }
-        );
-
-    });
-
-</script>
-
-
-<!-- =========================
-     HTML BİTİŞ
-========================= -->
-
-</body>
-
-</html>
