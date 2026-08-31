@@ -1231,10 +1231,11 @@ nav a:hover::after {
     line-height:
         1.7;
 }
+      /* =========================
+   DUVAR BUTONU
+========================= */
 
-
-/* DEVAMI PART 2'DE */
-   .wall-button {
+.wall-button {
 
     display:
         inline-flex;
@@ -2047,8 +2048,7 @@ footer p {
 
 
 
-<!-- PART 3 DEVAM EDECEK -->
-   <!-- =========================
+<!-- =========================
      SOSYAL MEDYA
 ========================= -->
 
@@ -2118,7 +2118,7 @@ footer p {
         <!-- SPOTIFY -->
 
         <a
-            href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv"
+            href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzvci7khutxy?si=nSiRsHM4Reym3i7IfWZXMg&utm_source=copy-link"
             target="_blank"
             rel="noopener noreferrer"
             class="social-link">
@@ -2131,7 +2131,9 @@ footer p {
         <!-- WHATSAPP -->
 
         <a
-            href="#"
+            href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
+            target="_blank"
+            rel="noopener noreferrer"
             class="social-link"
             id="whatsappLink">
 
@@ -2143,7 +2145,9 @@ footer p {
         <!-- PINTEREST -->
 
         <a
-            href="#"
+            href="https://pin.it/6uAtX7ZrC"
+            target="_blank"
+            rel="noopener noreferrer"
             class="social-link"
             id="pinterestLink">
 
@@ -2160,9 +2164,6 @@ footer p {
 
 
 <div class="divider"></div>
-
-
-
 <!-- =========================
      DUVAR
 ========================= -->
@@ -2456,12 +2457,6 @@ menuLinks.forEach(
    SOSYAL MEDYA
 ========================= */
 
-/*
-   WhatsApp ve Pinterest linklerini
-   eklediğinde sadece aşağıdaki
-   iki değişkeni değiştireceğiz.
-*/
-
 const whatsappLink =
     document.getElementById("whatsappLink");
 
@@ -2471,28 +2466,10 @@ const pinterestLink =
 
 
 /*
-   Şimdilik link girilmediği için
-   yanlış bir yere gitmesinler.
+   Linkler artık doğrudan HTML'de
+   tanımlandığı için ekstra işlem
+   gerekmiyor.
 */
-
-whatsappLink.addEventListener(
-    "click",
-    function(event) {
-
-        event.preventDefault();
-
-    }
-);
-
-
-pinterestLink.addEventListener(
-    "click",
-    function(event) {
-
-        event.preventDefault();
-
-    }
-);
 
 
 
@@ -2527,8 +2504,8 @@ booksGrid.addEventListener(
 );
 
 
-   </script>
-   <!-- =========================
+</script>
+<!-- =========================
      BİTTİ
 ========================= -->
 
