@@ -5,18 +5,14 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>kesmislalih</title>
 
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&display=swap');
-
-
 /* =========================
-   TEMEL
+   TEMEL AYARLAR
 ========================= */
 
 * {
@@ -31,29 +27,30 @@ html {
 
 body {
 
-    --background: #09090b;
-    --surface: #111015;
-    --surface-two: #17141a;
+    --bg: #09090b;
+    --card: #111015;
+    --card2: #17141a;
 
     --text: #eee9e2;
-    --text-soft: #aaa39a;
-    --text-muted: #756d76;
+    --soft: #aaa39a;
+    --muted: #756d76;
 
     --border: #29252d;
 
     --accent: #cdb9eb;
-    --accent-dark: #8f819e;
 
-    background: var(--background);
+    background: var(--bg);
+
     color: var(--text);
 
     font-family:
         "Cormorant Garamond",
+        Georgia,
         serif;
 
     transition:
-        background .4s ease,
-        color .4s ease;
+        background .35s ease,
+        color .35s ease;
 }
 
 
@@ -63,24 +60,23 @@ body {
 
 body.light {
 
-    --background: #f5f1eb;
-    --surface: #ebe5dd;
-    --surface-two: #e3dcd3;
+    --bg: #f5f1eb;
+    --card: #ebe5dd;
+    --card2: #e3dcd3;
 
     --text: #242126;
-    --text-soft: #5e5752;
-    --text-muted: #817873;
+    --soft: #5e5752;
+    --muted: #817873;
 
     --border: #d3cbc1;
 
     --accent: #806a9c;
-    --accent-dark: #665477;
 }
 
 
 a {
-    color: inherit;
     text-decoration: none;
+    color: inherit;
 }
 
 
@@ -96,7 +92,7 @@ header {
     left: 0;
 
     width: 100%;
-    height: 82px;
+    height: 78px;
 
     padding: 0 6%;
 
@@ -109,28 +105,24 @@ header {
     z-index: 1000;
 
     background:
-        rgba(9, 9, 11, .75);
+        rgba(9, 9, 11, .88);
 
     backdrop-filter:
         blur(15px);
 
     border-bottom:
         1px solid var(--border);
-
-    transition:
-        background .4s ease;
 }
-
 
 body.light header {
 
     background:
-        rgba(245, 241, 235, .82);
+        rgba(245, 241, 235, .92);
 }
 
 
 /* =========================
-   HEADER LOGOSU
+   LOGO
 ========================= */
 
 .logo {
@@ -140,21 +132,18 @@ body.light header {
     align-items: center;
 }
 
-
 .logo-image {
 
-    width: 145px;
+    width: 140px;
 
     height: auto;
 
     display: block;
-
-    object-fit: contain;
 }
 
 
 /* =========================
-   NAV
+   NAVİGASYON
 ========================= */
 
 nav {
@@ -163,15 +152,14 @@ nav {
 
     align-items: center;
 
-    gap: 28px;
+    gap: 26px;
 }
-
 
 nav a {
 
     position: relative;
 
-    color: var(--text-soft);
+    color: var(--soft);
 
     font-family: Arial, sans-serif;
 
@@ -179,9 +167,13 @@ nav a {
 
     letter-spacing: 2px;
 
-    transition: color .3s ease;
+    transition: .3s ease;
 }
 
+nav a:hover {
+
+    color: var(--accent);
+}
 
 nav a::after {
 
@@ -190,24 +182,15 @@ nav a::after {
     position: absolute;
 
     left: 0;
-
     bottom: -7px;
 
     width: 0;
-
     height: 1px;
 
     background: var(--accent);
 
-    transition: width .3s ease;
+    transition: .3s ease;
 }
-
-
-nav a:hover {
-
-    color: var(--accent);
-}
-
 
 nav a:hover::after {
 
@@ -216,7 +199,7 @@ nav a:hover::after {
 
 
 /* =========================
-   AYDINLIK / KARANLIK
+   TEMA BUTONU
 ========================= */
 
 .theme-button {
@@ -224,38 +207,29 @@ nav a:hover::after {
     width: 38px;
     height: 38px;
 
-    margin-left: 4px;
+    border: 1px solid var(--border);
 
-    border:
-        1px solid var(--border);
+    background: var(--card);
 
-    background:
-        var(--surface);
-
-    color:
-        var(--text);
+    color: var(--text);
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     cursor: pointer;
 
     font-size: 17px;
 
-    transition:
-        .3s ease;
+    transition: .3s ease;
 }
-
 
 .theme-button:hover {
 
     color: var(--accent);
 
-    transform:
-        rotate(12deg);
+    transform: rotate(10deg);
 }
 
 
@@ -270,40 +244,29 @@ nav a:hover::after {
     width: 38px;
     height: 38px;
 
-    border:
-        1px solid var(--border);
+    border: 1px solid var(--border);
 
-    background:
-        var(--surface);
+    background: var(--card);
 
     cursor: pointer;
-
-    padding: 9px;
 
     flex-direction: column;
 
     align-items: center;
-
     justify-content: center;
 
     gap: 5px;
 }
 
-
 .menu-button span {
-
-    display: block;
 
     width: 17px;
     height: 1px;
 
-    background:
-        var(--text);
+    background: var(--text);
 
-    transition:
-        .3s ease;
+    transition: .3s ease;
 }
-
 
 .menu-button.active span:nth-child(1) {
 
@@ -312,12 +275,10 @@ nav a:hover::after {
         rotate(45deg);
 }
 
-
 .menu-button.active span:nth-child(2) {
 
     opacity: 0;
 }
-
 
 .menu-button.active span:nth-child(3) {
 
@@ -346,9 +307,10 @@ nav a:hover::after {
 
     position: relative;
 
+    text-align: center;
+
     overflow: hidden;
 }
-
 
 .hero::before {
 
@@ -364,7 +326,7 @@ nav a:hover::after {
     background:
         radial-gradient(
             circle,
-            rgba(173,142,214,.11),
+            rgba(173,142,214,.12),
             transparent 68%
         );
 
@@ -373,10 +335,7 @@ nav a:hover::after {
 
     transform:
         translate(-50%, -50%);
-
-    pointer-events: none;
 }
-
 
 .hero-content {
 
@@ -384,34 +343,27 @@ nav a:hover::after {
 
     z-index: 2;
 
-    text-align: center;
+    width: 100%;
 
     max-width: 850px;
-
-    width: 100%;
 }
 
 
 /* =========================
-   HERO ÜST YAZI
+   ÜST YAZI
 ========================= */
 
 .hero-small {
 
-    color:
-        var(--text-muted);
+    margin-bottom: 24px;
 
-    font-family:
-        Arial, sans-serif;
+    color: var(--muted);
+
+    font-family: Arial, sans-serif;
 
     font-size: 8px;
 
     letter-spacing: 5px;
-
-    margin-bottom: 25px;
-
-    text-transform:
-        uppercase;
 }
 
 
@@ -421,69 +373,46 @@ nav a:hover::after {
 
 .hero-logo {
 
+    display: block;
+
     width:
-        min(420px, 78vw);
+        min(430px, 78vw);
 
     height: auto;
 
-    display: block;
-
-    margin:
-        0 auto;
-
-    object-fit:
-        contain;
-
-    filter:
-        drop-shadow(
-            0 0 25px
-            rgba(205,185,235,.13)
-        );
+    margin: 0 auto;
 }
 
 
 /* =========================
-   LOGONUN ALTINDAKİ
    İNGİLİZCE YAZI
 ========================= */
 
 .hero-subtitle {
 
-    margin-top: 28px;
+    margin-top: 25px;
 
-    color:
-        var(--text-soft);
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
+    color: var(--soft);
 
     font-size: 17px;
 
-    font-weight: 400;
-
     letter-spacing: 4px;
 
-    text-transform:
-        uppercase;
-
-    opacity: .85;
+    text-transform: uppercase;
 }
 
 
 /* =========================
-   HERO AÇIKLAMA
+   AÇIKLAMA
 ========================= */
 
 .hero-description {
 
     max-width: 540px;
 
-    margin:
-        22px auto 0;
+    margin: 22px auto 0;
 
-    color:
-        var(--text-soft);
+    color: var(--soft);
 
     font-size: 19px;
 
@@ -503,421 +432,429 @@ nav a:hover::after {
 
     gap: 14px;
 
-    margin-top: 35px;
+    margin-top: 32px;
 
-    padding:
-        14px 26px;
+    padding: 14px 26px;
 
     border:
-        1px solid var(--accent-dark);
+        1px solid var(--accent);
 
-    color:
-        var(--text);
+    color: var(--text);
 
-    font-family:
-        Arial, sans-serif;
+    font-family: Arial, sans-serif;
 
     font-size: 8px;
 
     letter-spacing: 3px;
 
-    transition:
-        .3s ease;
+    transition: .3s ease;
 }
-
 
 .hero-button:hover {
 
-    background:
-        var(--accent);
+    background: var(--accent);
 
-    color:
-        var(--background);
-
-    border-color:
-        var(--accent);
+    color: var(--bg);
 }
 
+
+/* =========================
+   SCROLL
+========================= */
 
 .scroll-indicator {
 
     position: absolute;
 
-    bottom: 30px;
+    bottom: 28px;
 
     left: 50%;
 
     transform:
         translateX(-50%);
 
-    color:
-        var(--text-muted);
+    color: var(--muted);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 4px;
+}
+      /* =========================
+   GENEL BÖLÜMLER
+========================= */
+
+.section {
+
+    width:
+        min(1100px, 88%);
+
+    margin:
+        0 auto;
+
+    padding:
+        100px 0;
+}
+
+
+/* =========================
+   AYIRICI
+========================= */
+
+.divider {
+
+    width: 45px;
+
+    height: 1px;
+
+    margin: 0 auto;
+
+    background:
+        var(--accent);
+}
+
+
+/* =========================
+   HAKKIMDA
+========================= */
+
+.about {
+
+    text-align: center;
+}
+
+.about-inner {
+
+    max-width: 670px;
+
+    margin: 0 auto;
+}
+
+.section-title {
+
+    color: var(--text);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 400;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 25px;
+}
+
+.about-text {
+
+    color: var(--soft);
+
+    font-size: 20px;
+
+    line-height: 1.8;
+}
+
+.signature {
+
+    margin-top: 25px;
+
+    color: var(--accent);
 
     font-family:
-        Arial, sans-serif;
+        "Great Vibes",
+        cursive;
+
+    font-size: 30px;
+}
+
+
+/* =========================
+   BÖLÜM BAŞLIĞI
+========================= */
+
+.section-heading {
+
+    text-align: center;
+
+    margin-bottom: 50px;
+}
+
+.section-heading h2 {
+
+    color: var(--text);
+
+    font-size: 36px;
+
+    font-weight: 400;
+
+    letter-spacing: 3px;
+}
+
+.section-heading p {
+
+    margin-top: 10px;
+
+    color: var(--muted);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================
+   KİTAPLAR
+========================= */
+
+.books-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 42px;
+
+    max-width: 900px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================
+   KİTAP KARTI
+========================= */
+
+.book-card {
+
+    background: var(--card);
+
+    border:
+        1px solid var(--border);
+
+    padding: 22px;
+
+    transition: .35s ease;
+}
+
+.book-card:hover {
+
+    transform:
+        translateY(-6px);
+
+    border-color:
+        var(--accent);
+}
+
+
+/* =========================
+   KAPAK
+========================= */
+
+.book-cover {
+
+    width: 100%;
+
+    aspect-ratio: 2 / 3;
+
+    overflow: hidden;
+
+    background:
+        var(--card2);
+}
+
+.book-cover img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* =========================
+   KİTAP BİLGİLERİ
+========================= */
+
+.book-info {
+
+    padding:
+        25px 8px 8px;
+
+    text-align: center;
+}
+
+.book-info h3 {
+
+    color: var(--text);
+
+    font-size: 28px;
+
+    font-weight: 400;
+}
+
+.book-author {
+
+    margin-top: 4px;
+
+    color: var(--accent);
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size: 24px;
+}
+
+.book-description {
+
+    margin:
+        17px auto 0;
+
+    color: var(--muted);
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   KİTAP BUTONU
+========================= */
+
+.book-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 22px;
+
+    padding: 12px 23px;
+
+    border:
+        1px solid var(--accent);
+
+    color: var(--text);
+
+    font-family: Arial, sans-serif;
 
     font-size: 8px;
 
     letter-spacing: 3px;
 
-    opacity: .7;
-}
-    /* =========================
-   GENEL BÖLÜM
-========================= */
-
-.section {
-
-    width:
-        min(1100px, 88%);
-
-    margin:
-        0 auto;
-
-    padding:
-        100px 0;
+    transition: .3s ease;
 }
 
-
-/* =========================
-   HAKKIMDA
-========================= */
-
-.about-section {
-
-    text-align:
-        center;
-}
-
-
-.about-content {
-
-    max-width:
-        650px;
-
-    margin:
-        0 auto;
-}
-
-
-.about-title {
-
-    color:
-        var(--text);
-
-    font-family:
-        Arial, sans-serif;
-
-    font-size:
-        14px;
-
-    font-weight:
-        400;
-
-    letter-spacing:
-        5px;
-
-    text-align:
-        center;
-
-    margin-bottom:
-        24px;
-}
-
-
-.about-title::after {
-
-    content: "";
-
-    display:
-        block;
-
-    width:
-        38px;
-
-    height:
-        1px;
+.book-button:hover {
 
     background:
         var(--accent);
 
-    margin:
-        13px auto 0;
-}
-
-
-.about-text {
-
     color:
-        var(--text-soft);
-
-    font-size:
-        20px;
-
-    line-height:
-        1.8;
-
-    text-align:
-        center;
-}
-
-
-.about-signature {
-
-    margin-top:
-        28px;
-
-    color:
-        var(--accent);
-
-    font-family:
-        "Great Vibes",
-        cursive;
-
-    font-size:
-        29px;
+        var(--bg);
 }
 
 
 /* =========================
-   BÖLÜM BAŞLIĞI
+   YAKINDA KARTI
 ========================= */
 
-.section-heading {
+.coming-soon {
 
-    text-align:
-        center;
+    width: 100%;
 
-    margin-bottom:
-        55px;
-}
+    aspect-ratio: 2 / 3;
 
+    display: flex;
 
-.section-heading h2 {
+    align-items: center;
 
-    color:
-        var(--text);
-
-    font-size:
-        35px;
-
-    font-weight:
-        400;
-
-    letter-spacing:
-        3px;
-}
-
-
-.section-heading p {
-
-    margin-top:
-        12px;
-
-    color:
-        var(--text-muted);
-
-    font-family:
-        Arial, sans-serif;
-
-    font-size:
-        8px;
-
-    letter-spacing:
-        4px;
-
-    text-transform:
-        uppercase;
-}
-
-
-/* =========================
-   KİTAPLAR
-========================= */
-
-.books-grid {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-    gap:
-        45px;
-
-    max-width:
-        900px;
-
-    margin:
-        0 auto;
-}
-
-
-/* =========================
-   KİTAP KARTI
-========================= */
-
-.book-card {
+    justify-content: center;
 
     background:
-        var(--surface);
+        var(--card2);
+
+    color:
+        var(--muted);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+}
+
+
+/* =========================
+   DUVAR
+========================= */
+
+.wall-box {
+
+    max-width: 720px;
+
+    margin: 0 auto;
+
+    padding: 38px;
+
+    background:
+        var(--card);
 
     border:
         1px solid var(--border);
 
-    padding:
-        22px;
-
-    transition:
-        transform .35s ease,
-        border-color .35s ease,
-        background .35s ease;
+    text-align: center;
 }
 
-
-.book-card:hover {
-
-    transform:
-        translateY(-7px);
-
-    border-color:
-        var(--accent-dark);
-}
-
-
-/* =========================
-   KAPAK
-========================= */
-
-.book-cover {
-
-    width: 100%;
-
-    aspect-ratio:
-        2 / 3;
-
-    overflow:
-        hidden;
-
-    background:
-        var(--surface-two);
-}
-
-
-.book-cover img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit:
-        cover;
-
-    display:
-        block;
-
-    transition:
-        transform .5s ease;
-}
-
-
-.book-card:hover
-.book-cover img {
-
-    transform:
-        scale(1.025);
-}
-
-
-/* =========================
-   KİTAP BİLGİLERİ
-========================= */
-
-.book-info {
-
-    padding:
-        28px 8px 8px;
-
-    text-align:
-        center;
-}
-
-
-.book-info h3 {
+.wall-box h3 {
 
     color:
         var(--text);
 
     font-size:
-        28px;
+        27px;
 
     font-weight:
         400;
-
-    letter-spacing:
-        1px;
 }
 
-
-.book-author {
+.wall-box p {
 
     margin-top:
-        5px;
+        14px;
 
     color:
-        var(--accent);
-
-    font-family:
-        "Great Vibes",
-        cursive;
+        var(--soft);
 
     font-size:
-        24px;
-}
-
-
-.book-description {
-
-    margin:
-        18px auto 0;
-
-    max-width:
-        420px;
-
-    color:
-        var(--text-muted);
-
-    font-size:
-        16px;
+        18px;
 
     line-height:
         1.7;
 }
 
+.wall-button {
 
-.book-button {
+    display: inline-flex;
 
-    display:
-        inline-flex;
+    margin-top: 24px;
 
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    gap:
-        12px;
-
-    margin-top:
-        23px;
-
-    padding:
-        12px 24px;
+    padding: 12px 24px;
 
     border:
-        1px solid var(--accent-dark);
+        1px solid var(--accent);
 
     color:
         var(--text);
@@ -935,25 +872,21 @@ nav a:hover::after {
         .3s ease;
 }
 
-
-.book-button:hover {
+.wall-button:hover {
 
     background:
         var(--accent);
 
     color:
-        var(--background);
-
-    border-color:
-        var(--accent);
+        var(--bg);
 }
 
 
 /* =========================
-   DUVAR ÖNİZLEME
+   DUYURULAR
 ========================= */
 
-.wall-preview {
+.announcement {
 
     max-width:
         720px;
@@ -964,21 +897,17 @@ nav a:hover::after {
     padding:
         35px;
 
+    background:
+        var(--card);
+
     border:
         1px solid var(--border);
-
-    background:
-        var(--surface);
 
     text-align:
         center;
 }
 
-
-.wall-preview-title {
-
-    color:
-        var(--text);
+.announcement h3 {
 
     font-size:
         25px;
@@ -986,21 +915,17 @@ nav a:hover::after {
     font-weight:
         400;
 
-    letter-spacing:
-        2px;
+    color:
+        var(--text);
 }
 
+.announcement p {
 
-.wall-preview-text {
-
-    max-width:
-        500px;
-
-    margin:
-        15px auto 0;
+    margin-top:
+        12px;
 
     color:
-        var(--text-muted);
+        var(--soft);
 
     font-size:
         17px;
@@ -1010,573 +935,708 @@ nav a:hover::after {
 }
 
 
-.wall-button {
+/* =========================
+   FOOTER
+========================= */
 
-    display:
-        inline-block;
-
-    margin-top:
-        25px;
+footer {
 
     padding:
-        12px 24px;
+        55px 20px;
 
-    border:
-        1px solid var(--accent-dark);
+    border-top:
+        1px solid var(--border);
+
+    text-align:
+        center;
+}
+
+.footer-logo {
 
     color:
         var(--text);
-
-    font-family:
-        Arial, sans-serif;
-
-    font-size:
-        8px;
-
-    letter-spacing:
-        3px;
-
-    transition:
-        .3s ease;
-}
-
-
-.wall-button:hover {
-
-    background:
-        var(--accent);
-
-    color:
-        var(--background);
-}
-
-
-/* =========================
-   AYIRICI
-========================= */
-
-.section-divider {
-
-    width:
-        45px;
-
-    height:
-        1px;
-
-    background:
-        var(--accent);
-
-    margin:
-        0 auto;
-    }
-    /* =========================
-   GENEL BÖLÜM
-========================= */
-
-.section {
-
-    width:
-        min(1100px, 88%);
-
-    margin:
-        0 auto;
-
-    padding:
-        100px 0;
-}
-
-
-/* =========================
-   HAKKIMDA
-========================= */
-
-.about-section {
-
-    text-align:
-        center;
-}
-
-
-.about-content {
-
-    max-width:
-        650px;
-
-    margin:
-        0 auto;
-}
-
-
-.about-title {
-
-    color:
-        var(--text);
-
-    font-family:
-        Arial, sans-serif;
-
-    font-size:
-        14px;
-
-    font-weight:
-        400;
-
-    letter-spacing:
-        5px;
-
-    text-align:
-        center;
-
-    margin-bottom:
-        24px;
-}
-
-
-.about-title::after {
-
-    content: "";
-
-    display:
-        block;
-
-    width:
-        38px;
-
-    height:
-        1px;
-
-    background:
-        var(--accent);
-
-    margin:
-        13px auto 0;
-}
-
-
-.about-text {
-
-    color:
-        var(--text-soft);
-
-    font-size:
-        20px;
-
-    line-height:
-        1.8;
-
-    text-align:
-        center;
-}
-
-
-.about-signature {
-
-    margin-top:
-        28px;
-
-    color:
-        var(--accent);
 
     font-family:
         "Great Vibes",
         cursive;
 
     font-size:
-        29px;
+        31px;
 }
 
-
-/* =========================
-   BÖLÜM BAŞLIĞI
-========================= */
-
-.section-heading {
-
-    text-align:
-        center;
-
-    margin-bottom:
-        55px;
-}
-
-
-.section-heading h2 {
-
-    color:
-        var(--text);
-
-    font-size:
-        35px;
-
-    font-weight:
-        400;
-
-    letter-spacing:
-        3px;
-}
-
-
-.section-heading p {
+footer p {
 
     margin-top:
-        12px;
+        9px;
 
     color:
-        var(--text-muted);
+        var(--muted);
 
     font-family:
         Arial, sans-serif;
 
     font-size:
-        8px;
-
-    letter-spacing:
-        4px;
-
-    text-transform:
-        uppercase;
-}
-
-
-/* =========================
-   KİTAPLAR
-========================= */
-
-.books-grid {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-    gap:
-        45px;
-
-    max-width:
-        900px;
-
-    margin:
-        0 auto;
-}
-
-
-/* =========================
-   KİTAP KARTI
-========================= */
-
-.book-card {
-
-    background:
-        var(--surface);
-
-    border:
-        1px solid var(--border);
-
-    padding:
-        22px;
-
-    transition:
-        transform .35s ease,
-        border-color .35s ease,
-        background .35s ease;
-}
-
-
-.book-card:hover {
-
-    transform:
-        translateY(-7px);
-
-    border-color:
-        var(--accent-dark);
-}
-
-
-/* =========================
-   KAPAK
-========================= */
-
-.book-cover {
-
-    width: 100%;
-
-    aspect-ratio:
-        2 / 3;
-
-    overflow:
-        hidden;
-
-    background:
-        var(--surface-two);
-}
-
-
-.book-cover img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit:
-        cover;
-
-    display:
-        block;
-
-    transition:
-        transform .5s ease;
-}
-
-
-.book-card:hover
-.book-cover img {
-
-    transform:
-        scale(1.025);
-}
-
-
-/* =========================
-   KİTAP BİLGİLERİ
-========================= */
-
-.book-info {
-
-    padding:
-        28px 8px 8px;
-
-    text-align:
-        center;
-}
-
-
-.book-info h3 {
-
-    color:
-        var(--text);
-
-    font-size:
-        28px;
-
-    font-weight:
-        400;
-
-    letter-spacing:
-        1px;
-}
-
-
-.book-author {
-
-    margin-top:
-        5px;
-
-    color:
-        var(--accent);
-
-    font-family:
-        "Great Vibes",
-        cursive;
-
-    font-size:
-        24px;
-}
-
-
-.book-description {
-
-    margin:
-        18px auto 0;
-
-    max-width:
-        420px;
-
-    color:
-        var(--text-muted);
-
-    font-size:
-        16px;
-
-    line-height:
-        1.7;
-}
-
-
-.book-button {
-
-    display:
-        inline-flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    gap:
-        12px;
-
-    margin-top:
-        23px;
-
-    padding:
-        12px 24px;
-
-    border:
-        1px solid var(--accent-dark);
-
-    color:
-        var(--text);
-
-    font-family:
-        Arial, sans-serif;
-
-    font-size:
-        8px;
-
-    letter-spacing:
-        3px;
-
-    transition:
-        .3s ease;
-}
-
-
-.book-button:hover {
-
-    background:
-        var(--accent);
-
-    color:
-        var(--background);
-
-    border-color:
-        var(--accent);
-}
-
-
-/* =========================
-   DUVAR ÖNİZLEME
-========================= */
-
-.wall-preview {
-
-    max-width:
-        720px;
-
-    margin:
-        0 auto;
-
-    padding:
-        35px;
-
-    border:
-        1px solid var(--border);
-
-    background:
-        var(--surface);
-
-    text-align:
-        center;
-}
-
-
-.wall-preview-title {
-
-    color:
-        var(--text);
-
-    font-size:
-        25px;
-
-    font-weight:
-        400;
+        7px;
 
     letter-spacing:
         2px;
 }
 
 
-.wall-preview-text {
-
-    max-width:
-        500px;
-
-    margin:
-        15px auto 0;
-
-    color:
-        var(--text-muted);
-
-    font-size:
-        17px;
-
-    line-height:
-        1.7;
-}
-
-
-.wall-button {
-
-    display:
-        inline-block;
-
-    margin-top:
-        25px;
-
-    padding:
-        12px 24px;
-
-    border:
-        1px solid var(--accent-dark);
-
-    color:
-        var(--text);
-
-    font-family:
-        Arial, sans-serif;
-
-    font-size:
-        8px;
-
-    letter-spacing:
-        3px;
-
-    transition:
-        .3s ease;
-}
-
-
-.wall-button:hover {
-
-    background:
-        var(--accent);
-
-    color:
-        var(--background);
-}
-
-
 /* =========================
-   AYIRICI
+   MOBİL
 ========================= */
 
-.section-divider {
+@media (max-width: 700px) {
 
-    width:
-        45px;
+    header {
 
-    height:
-        1px;
+        height:
+            72px;
 
-    background:
-        var(--accent);
-
-    margin:
-        0 auto;
+        padding:
+            0 5%;
     }
-    <!-- =========================
+
+    .logo-image {
+
+        width:
+            115px;
+    }
+
+    .menu-button {
+
+        display:
+            flex;
+
+        position:
+            relative;
+
+        z-index:
+            1101;
+    }
+
+    nav {
+
+        position:
+            fixed;
+
+        top:
+            72px;
+
+        right:
+            5%;
+
+        width:
+            220px;
+
+        padding:
+            20px;
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+
+        gap:
+            0;
+
+        background:
+            var(--card);
+
+        border:
+            1px solid var(--border);
+
+        box-shadow:
+            0 20px 50px rgba(0,0,0,.35);
+
+        opacity:
+            0;
+
+        visibility:
+            hidden;
+
+        transform:
+            translateY(-10px);
+
+        transition:
+            .3s ease;
+
+        z-index:
+            1100;
+    }
+
+    nav.active {
+
+        opacity:
+            1;
+
+        visibility:
+            visible;
+
+        transform:
+            translateY(0);
+    }
+
+    nav a {
+
+        display:
+            block;
+
+        padding:
+            15px 5px;
+
+        border-bottom:
+            1px solid var(--border);
+    }
+
+    nav a::after {
+
+        display:
+            none;
+    }
+
+    nav .theme-button {
+
+        margin:
+            18px auto 0;
+    }
+
+    .hero {
+
+        padding:
+            120px 6% 80px;
+    }
+
+    .hero-logo {
+
+        width:
+            min(330px, 82vw);
+    }
+
+    .hero-subtitle {
+
+        font-size:
+            12px;
+
+        letter-spacing:
+            3px;
+    }
+
+    .hero-description {
+
+        font-size:
+            17px;
+    }
+
+    .section {
+
+        width:
+            88%;
+
+        padding:
+            75px 0;
+    }
+
+    .about-text {
+
+        font-size:
+            17px;
+    }
+
+    .section-heading h2 {
+
+        font-size:
+            29px;
+    }
+
+    .books-grid {
+
+        grid-template-columns:
+            1fr;
+
+        max-width:
+            430px;
+
+        gap:
+            35px;
+    }
+
+    .wall-box,
+    .announcement {
+
+        padding:
+            28px 20px;
+    }
+
+}
+
+</style>
+
+</head>
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+
+    <a
+        href="index.html"
+        class="logo">
+
+        <img
+            src="kesmislalih-logo.png"
+            alt="kesmislalih"
+            class="logo-image">
+
+    </a>
+
+
+    <!-- 3 ÇİZGİLİ MENÜ -->
+
+    <button
+        type="button"
+        class="menu-button"
+        id="menuButton"
+        aria-label="Menüyü aç">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </button>
+
+
+    <!-- MENÜ -->
+
+    <nav id="mainNav">
+
+        <a href="index.html">
+            ANASAYFA
+        </a>
+
+        <a href="#kitaplar">
+            KİTAPLAR
+        </a>
+
+        <a href="#hakkimda">
+            HAKKIMDA
+        </a>
+
+        <a href="#duyurular">
+            DUYURULAR
+        </a>
+
+        <a href="iletisim.html">
+            İLETİŞİM
+        </a>
+
+        <a href="duvar.html">
+            DUVAR
+        </a>
+
+
+        <button
+            type="button"
+            class="theme-button"
+            id="themeButton"
+            aria-label="Tema değiştir">
+
+            <span id="themeIcon">☾</span>
+
+        </button>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =========================
+     ANA İÇERİK
+========================= -->
+
+<main>
+
+
+<!-- =========================
+     GİRİŞ
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+
+        <div class="hero-small">
+
+            YAZAR • HİKÂYELER • HAYALLER
+
+        </div>
+
+
+        <img
+            src="kesmislalih-logo.png"
+            alt="kesmislalih"
+            class="hero-logo">
+
+
+        <div class="hero-subtitle">
+
+            stories written between the lines
+
+        </div>
+
+
+        <p class="hero-description">
+
+            Bazı hikâyeler yalnızca okunmaz.
+            İçinde biraz kaybolmak gerekir.
+
+        </p>
+
+
+        <a
+            href="#kitaplar"
+            class="hero-button">
+
+            HİKÂYELERİ KEŞFET
+
+            <span>→</span>
+
+        </a>
+
+
+    </div>
+
+
+    <div class="scroll-indicator">
+
+        SCROLL
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     HAKKIMDA
+========================= -->
+
+<section
+    class="section about"
+    id="hakkimda">
+
+
+    <div class="about-inner">
+
+
+        <h2 class="section-title">
+
+            HAKKIMDA
+
+        </h2>
+
+
+        <p class="about-text">
+
+            Kelimelerin arasında kendi dünyasını
+            kurmayı seven bir yazarım.
+
+            <br><br>
+
+            Bazen bir karakterin gözlerinden,
+            bazen bir şehrin sokaklarından,
+            bazen de küçücük bir ayrıntının
+            içinden hikâyeler anlatıyorum.
+
+            <br><br>
+
+            Burada yazdığım hikâyeleri,
+            karakterleri ve onların dünyalarını
+            sizinle paylaşacağım.
+
+        </p>
+
+
+        <div class="signature">
+
+            kesmislalih
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<div class="divider"></div>
+
+
+
+<!-- =========================
+     KİTAPLAR
+========================= -->
+
+<section
+    class="section"
+    id="kitaplar">
+
+
+    <div class="section-heading">
+
+        <h2>
+            Kitaplar
+        </h2>
+
+        <p>
+            Hikâyelerimin dünyasına hoş geldin
+        </p>
+
+    </div>
+
+
+    <div class="books-grid">
+
+
+        <!-- RİNGTEKİ SON DANS -->
+
+        <article class="book-card">
+
+
+            <a href="ringteki-son-dans.html">
+
+                <div class="book-cover">
+
+                    <img
+                        src="Ringteki Dans: Son.png"
+                        alt="Ringteki Son Dans">
+
+                </div>
+
+            </a>
+
+
+            <div class="book-info">
+
+
+                <h3>
+
+                    Ringteki Son Dans
+
+                </h3>
+
+
+                <div class="book-author">
+
+                    kesmislalih
+
+                </div>
+
+
+                <p class="book-description">
+
+                    Bir karanlık, iki kurşun.
+                    Binbir acı, iki yetim.
+
+                    <br><br>
+
+                    Balerin ve boksörün
+                    hikâyesine hoş geldin.
+
+                </p>
+
+
+                <a
+                    href="ringteki-son-dans.html"
+                    class="book-button">
+
+                    KİTABI KEŞFET
+
+                    <span>→</span>
+
+                </a>
+
+
+            </div>
+
+        </article>
+
+
+
+        <!-- YAKINDA -->
+
+        <article class="book-card">
+
+
+            <div class="coming-soon">
+
+                YAKINDA
+
+            </div>
+
+
+            <div class="book-info">
+
+
+                <h3>
+
+                    Yeni Hikâye
+
+                </h3>
+
+
+                <div class="book-author">
+
+                    kesmislalih
+
+                </div>
+
+
+                <p class="book-description">
+
+                    Yeni bir hikâye,
+                    yeni karakterler
+                    ve yeni bir dünya...
+
+                </p>
+
+
+                <span class="book-button">
+
+                    ÇOK YAKINDA
+
+                </span>
+
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+
+<div class="divider"></div>
+
+
+
+<!-- =========================
+     DUVAR
+========================= -->
+
+<section
+    class="section"
+    id="duvar">
+
+
+    <div class="section-heading">
+
+        <h2>
+            Duvar
+        </h2>
+
+        <p>
+            Okurlardan sana
+        </p>
+
+    </div>
+
+
+    <div class="wall-box">
+
+
+        <h3>
+
+            Bir şeyler bırakmak ister misin?
+
+        </h3>
+
+
+        <p>
+
+            Hikâyeler hakkında düşüncelerini,
+            mesajlarını veya sadece küçük bir
+            merhaba bırakabileceğin yer.
+
+        </p>
+
+
+        <a
+            href="duvar.html"
+            class="wall-button">
+
+            DUVARA GİT
+
+            <span>→</span>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     DUYURULAR
+========================= -->
+
+<section
+    class="section"
+    id="duyurular">
+
+
+    <div class="section-heading">
+
+        <h2>
+            Duyurular
+        </h2>
+
+        <p>
+            Buradan haberdar ol
+        </p>
+
+    </div>
+
+
+    <div class="announcement">
+
+
+        <h3>
+
+            Şimdilik sessiziz.
+
+        </h3>
+
+
+        <p>
+
+            Yeni duyurular ve siteyle ilgili
+            gelişmeler burada paylaşılacak.
+
+        </p>
+
+
+    </div>
+
+</section>
+
+
+</main>
+<!-- =========================
      FOOTER
 ========================= -->
 
@@ -1607,7 +1667,7 @@ nav a:hover::after {
 
 
 /* =========================
-   AYDINLIK / KARANLIK MOD
+   TEMA
 ========================= */
 
 const themeButton =
@@ -1634,10 +1694,10 @@ if (savedTheme === "light") {
 }
 
 
-
 themeButton.addEventListener(
     "click",
-    function() {
+    function () {
+
 
         document.body.classList.toggle("light");
 
@@ -1672,7 +1732,7 @@ themeButton.addEventListener(
 
 
 /* =========================
-   MOBİL 3 ÇİZGİLİ MENÜ
+   3 ÇİZGİLİ MENÜ
 ========================= */
 
 const menuButton =
@@ -1684,11 +1744,13 @@ const mainNav =
 
 menuButton.addEventListener(
     "click",
-    function() {
+    function () {
+
 
         mainNav.classList.toggle("active");
 
         menuButton.classList.toggle("active");
+
 
     }
 );
@@ -1696,284 +1758,36 @@ menuButton.addEventListener(
 
 
 /* =========================
-   MENÜDEN SEÇİNCE KAPAT
+   MENÜDEN SEÇİNCE KAPANSIN
 ========================= */
 
-mainNav
-    .querySelectorAll("a")
-    .forEach(
-        function(link) {
+const menuLinks =
+    mainNav.querySelectorAll("a");
 
-            link.addEventListener(
-                "click",
-                function() {
 
-                    mainNav.classList.remove(
-                        "active"
-                    );
+menuLinks.forEach(
+    function(link) {
 
-                    menuButton.classList.remove(
-                        "active"
-                    );
+        link.addEventListener(
+            "click",
+            function() {
 
-                }
-            );
+                mainNav.classList.remove(
+                    "active"
+                );
 
-        }
-    );
+                menuButton.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+    }
+);
 
 
 </script>
-
-
-
-<!-- =========================
-     MOBİL CSS
-========================= -->
-
-<style>
-
-@media (max-width: 700px) {
-
-
-    header {
-
-        height: 72px;
-
-        padding:
-            0 5%;
-    }
-
-
-    .logo-image {
-
-        width:
-            115px;
-    }
-
-
-    /* 3 ÇİZGİ GÖRÜNSÜN */
-
-    .menu-button {
-
-        display: flex;
-
-        position: relative;
-
-        z-index: 1100;
-    }
-
-
-    /* MOBİL MENÜ */
-
-    nav {
-
-        position: fixed;
-
-        top: 72px;
-
-        right: 5%;
-
-        width: 220px;
-
-        padding: 20px;
-
-        display: flex;
-
-        flex-direction: column;
-
-        align-items: stretch;
-
-        gap: 0;
-
-        background:
-            var(--surface);
-
-        border:
-            1px solid var(--border);
-
-        box-shadow:
-            0 20px 50px
-            rgba(0,0,0,.35);
-
-        opacity: 0;
-
-        visibility: hidden;
-
-        transform:
-            translateY(-10px);
-
-        transition:
-            .3s ease;
-
-        z-index: 1050;
-    }
-
-
-    nav.active {
-
-        opacity: 1;
-
-        visibility: visible;
-
-        transform:
-            translateY(0);
-    }
-
-
-    nav a {
-
-        display: block;
-
-        padding: 15px 5px;
-
-        font-size: 8px;
-
-        letter-spacing: 2px;
-
-        border-bottom:
-            1px solid var(--border);
-    }
-
-
-    nav a::after {
-
-        display: none;
-    }
-
-
-    nav .theme-button {
-
-        margin:
-            18px auto 0;
-    }
-
-
-    .hero {
-
-        padding:
-            120px 6% 80px;
-    }
-
-
-    .hero-logo {
-
-        width:
-            min(330px, 82vw);
-    }
-
-
-    .hero-subtitle {
-
-        font-size:
-            13px;
-
-        letter-spacing:
-            3px;
-
-        margin-top:
-            22px;
-    }
-
-
-    .hero-description {
-
-        font-size:
-            17px;
-    }
-
-
-    .hero-button {
-
-        margin-top:
-            30px;
-    }
-
-
-    .section {
-
-        width:
-            88%;
-
-        padding:
-            75px 0;
-    }
-
-
-    .about-title {
-
-        font-size:
-            12px;
-
-        letter-spacing:
-            4px;
-    }
-
-
-    .about-text {
-
-        font-size:
-            17px;
-    }
-
-
-    .section-heading {
-
-        margin-bottom:
-            38px;
-    }
-
-
-    .section-heading h2 {
-
-        font-size:
-            29px;
-    }
-
-
-    .books-grid {
-
-        grid-template-columns:
-            1fr;
-
-        gap:
-            35px;
-
-        max-width:
-            430px;
-    }
-
-
-    .book-info h3 {
-
-        font-size:
-            25px;
-    }
-
-
-    .book-description {
-
-        font-size:
-            15px;
-    }
-
-
-    .wall-preview {
-
-        padding:
-            28px 20px;
-    }
-
-
-    .wall-preview-title {
-
-        font-size:
-            22px;
-    }
-
-}
-
-</style>
 
 
 </body>
