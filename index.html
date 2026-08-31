@@ -12,7 +12,7 @@
 <style>
 
 /* =========================
-   TEMEL AYARLAR
+   TEMEL
 ========================= */
 
 * {
@@ -28,8 +28,8 @@ html {
 body {
 
     --bg: #09090b;
-    --card: #111015;
-    --card2: #17141a;
+    --surface: #111015;
+    --surface-2: #17141a;
 
     --text: #eee9e2;
     --soft: #aaa39a;
@@ -38,6 +38,8 @@ body {
     --border: #29252d;
 
     --accent: #cdb9eb;
+
+    min-height: 100vh;
 
     background: var(--bg);
 
@@ -61,8 +63,8 @@ body {
 body.light {
 
     --bg: #f5f1eb;
-    --card: #ebe5dd;
-    --card2: #e3dcd3;
+    --surface: #ebe5dd;
+    --surface-2: #e3dcd3;
 
     --text: #242126;
     --soft: #5e5752;
@@ -74,9 +76,13 @@ body.light {
 }
 
 
+/* =========================
+   GENEL
+========================= */
+
 a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
 }
 
 
@@ -143,7 +149,7 @@ body.light header {
 
 
 /* =========================
-   NAVİGASYON
+   NAV
 ========================= */
 
 nav {
@@ -161,7 +167,9 @@ nav a {
 
     color: var(--soft);
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        sans-serif;
 
     font-size: 8px;
 
@@ -207,29 +215,41 @@ nav a:hover::after {
     width: 38px;
     height: 38px;
 
-    border: 1px solid var(--border);
+    border:
+        1px solid var(--border);
 
-    background: var(--card);
+    background:
+        var(--surface);
 
-    color: var(--text);
+    color:
+        var(--text);
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
-    justify-content: center;
+    align-items:
+        center;
 
-    cursor: pointer;
+    justify-content:
+        center;
 
-    font-size: 17px;
+    cursor:
+        pointer;
 
-    transition: .3s ease;
+    font-size:
+        17px;
+
+    transition:
+        .3s ease;
 }
 
 .theme-button:hover {
 
-    color: var(--accent);
+    color:
+        var(--accent);
 
-    transform: rotate(10deg);
+    transform:
+        rotate(10deg);
 }
 
 
@@ -244,18 +264,29 @@ nav a:hover::after {
     width: 38px;
     height: 38px;
 
-    border: 1px solid var(--border);
+    border:
+        1px solid var(--border);
 
-    background: var(--card);
+    background:
+        var(--surface);
 
-    cursor: pointer;
+    cursor:
+        pointer;
 
-    flex-direction: column;
+    flex-direction:
+        column;
 
-    align-items: center;
-    justify-content: center;
+    align-items:
+        center;
 
-    gap: 5px;
+    justify-content:
+        center;
+
+    gap:
+        5px;
+
+    z-index:
+        1101;
 }
 
 .menu-button span {
@@ -263,9 +294,11 @@ nav a:hover::after {
     width: 17px;
     height: 1px;
 
-    background: var(--text);
+    background:
+        var(--text);
 
-    transition: .3s ease;
+    transition:
+        .3s ease;
 }
 
 .menu-button.active span:nth-child(1) {
@@ -297,31 +330,42 @@ nav a:hover::after {
     min-height: 100vh;
 
     padding:
-        140px 6% 90px;
+        130px 6% 90px;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    justify-content: center;
+    justify-content:
+        center;
 
-    position: relative;
+    position:
+        relative;
 
-    text-align: center;
+    text-align:
+        center;
 
-    overflow: hidden;
+    overflow:
+        hidden;
 }
 
 .hero::before {
 
     content: "";
 
-    position: absolute;
+    position:
+        absolute;
 
-    width: 650px;
-    height: 650px;
+    width:
+        650px;
 
-    border-radius: 50%;
+    height:
+        650px;
+
+    border-radius:
+        50%;
 
     background:
         radial-gradient(
@@ -330,8 +374,11 @@ nav a:hover::after {
             transparent 68%
         );
 
-    top: 50%;
-    left: 50%;
+    top:
+        50%;
+
+    left:
+        50%;
 
     transform:
         translate(-50%, -50%);
@@ -339,31 +386,41 @@ nav a:hover::after {
 
 .hero-content {
 
-    position: relative;
+    position:
+        relative;
 
-    z-index: 2;
+    z-index:
+        2;
 
-    width: 100%;
+    width:
+        100%;
 
-    max-width: 850px;
+    max-width:
+        850px;
 }
 
 
 /* =========================
-   ÜST YAZI
+   HERO ÜST YAZI
 ========================= */
 
 .hero-small {
 
-    margin-bottom: 24px;
+    margin-bottom:
+        24px;
 
-    color: var(--muted);
+    color:
+        var(--muted);
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        sans-serif;
 
-    font-size: 8px;
+    font-size:
+        8px;
 
-    letter-spacing: 5px;
+    letter-spacing:
+        5px;
 }
 
 
@@ -373,14 +430,17 @@ nav a:hover::after {
 
 .hero-logo {
 
-    display: block;
+    display:
+        block;
 
     width:
         min(430px, 78vw);
 
-    height: auto;
+    height:
+        auto;
 
-    margin: 0 auto;
+    margin:
+        0 auto;
 }
 
 
@@ -390,71 +450,94 @@ nav a:hover::after {
 
 .hero-subtitle {
 
-    margin-top: 25px;
+    margin-top:
+        25px;
 
-    color: var(--soft);
+    color:
+        var(--soft);
 
-    font-size: 17px;
+    font-size:
+        17px;
 
-    letter-spacing: 4px;
+    letter-spacing:
+        2px;
 
-    text-transform: uppercase;
+    line-height:
+        1.8;
 }
 
 
 /* =========================
-   AÇIKLAMA
+   HERO AÇIKLAMA
 ========================= */
 
 .hero-description {
 
-    max-width: 540px;
+    max-width:
+        560px;
 
-    margin: 22px auto 0;
+    margin:
+        20px auto 0;
 
-    color: var(--soft);
+    color:
+        var(--soft);
 
-    font-size: 19px;
+    font-size:
+        18px;
 
-    line-height: 1.75;
+    line-height:
+        1.75;
 }
 
 
 /* =========================
-   BUTON
+   HERO BUTON
 ========================= */
 
 .hero-button {
 
-    display: inline-flex;
+    display:
+        inline-flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    gap: 14px;
+    gap:
+        14px;
 
-    margin-top: 32px;
+    margin-top:
+        30px;
 
-    padding: 14px 26px;
+    padding:
+        14px 26px;
 
     border:
         1px solid var(--accent);
 
-    color: var(--text);
+    color:
+        var(--text);
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        sans-serif;
 
-    font-size: 8px;
+    font-size:
+        8px;
 
-    letter-spacing: 3px;
+    letter-spacing:
+        3px;
 
-    transition: .3s ease;
+    transition:
+        .3s ease;
 }
 
 .hero-button:hover {
 
-    background: var(--accent);
+    background:
+        var(--accent);
 
-    color: var(--bg);
+    color:
+        var(--bg);
 }
 
 
@@ -464,24 +547,32 @@ nav a:hover::after {
 
 .scroll-indicator {
 
-    position: absolute;
+    position:
+        absolute;
 
-    bottom: 28px;
+    bottom:
+        28px;
 
-    left: 50%;
+    left:
+        50%;
 
     transform:
         translateX(-50%);
 
-    color: var(--muted);
+    color:
+        var(--muted);
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        sans-serif;
 
-    font-size: 7px;
+    font-size:
+        7px;
 
-    letter-spacing: 4px;
+    letter-spacing:
+        4px;
 }
-      /* =========================
+   /* =========================
    GENEL BÖLÜMLER
 ========================= */
 
@@ -504,11 +595,14 @@ nav a:hover::after {
 
 .divider {
 
-    width: 45px;
+    width:
+        45px;
 
-    height: 1px;
+    height:
+        1px;
 
-    margin: 0 auto;
+    margin:
+        0 auto;
 
     background:
         var(--accent);
@@ -521,89 +615,138 @@ nav a:hover::after {
 
 .about {
 
-    text-align: center;
+    text-align:
+        center;
 }
 
 .about-inner {
 
-    max-width: 670px;
+    max-width:
+        680px;
 
-    margin: 0 auto;
+    margin:
+        0 auto;
 }
 
 .section-title {
 
-    color: var(--text);
+    color:
+        var(--text);
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        sans-serif;
 
-    font-size: 14px;
+    font-size:
+        16px;
 
-    font-weight: 400;
+    font-weight:
+        400;
 
-    letter-spacing: 5px;
+    letter-spacing:
+        5px;
 
-    margin-bottom: 25px;
+    margin-bottom:
+        28px;
 }
 
 .about-text {
 
-    color: var(--soft);
+    color:
+        var(--soft);
 
-    font-size: 20px;
+    font-size:
+        20px;
 
-    line-height: 1.8;
+    line-height:
+        1.8;
 }
 
 .signature {
 
-    margin-top: 25px;
+    margin-top:
+        25px;
 
-    color: var(--accent);
+    color:
+        var(--accent);
 
     font-family:
         "Great Vibes",
         cursive;
 
-    font-size: 30px;
+    font-size:
+        30px;
 }
 
 
 /* =========================
-   BÖLÜM BAŞLIĞI
+   BÖLÜM BAŞLIKLARI
 ========================= */
 
 .section-heading {
 
-    text-align: center;
+    text-align:
+        center;
 
-    margin-bottom: 50px;
+    margin-bottom:
+        55px;
 }
 
 .section-heading h2 {
 
-    color: var(--text);
+    color:
+        var(--text);
 
-    font-size: 36px;
+    font-size:
+        38px;
 
-    font-weight: 400;
+    font-weight:
+        400;
 
-    letter-spacing: 3px;
+    letter-spacing:
+        3px;
 }
 
 .section-heading p {
 
-    margin-top: 10px;
+    margin-top:
+        10px;
 
-    color: var(--muted);
+    color:
+        var(--muted);
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        sans-serif;
 
-    font-size: 8px;
+    font-size:
+        8px;
 
-    letter-spacing: 4px;
+    letter-spacing:
+        4px;
 
-    text-transform: uppercase;
+    text-transform:
+        uppercase;
+}
+
+
+/* =========================
+   KİTAPLIK
+========================= */
+
+.bookshelf {
+
+    position:
+        relative;
+
+    max-width:
+        930px;
+
+    margin:
+        0 auto;
+
+    padding:
+        0 30px 42px;
 }
 
 
@@ -613,16 +756,66 @@ nav a:hover::after {
 
 .books-grid {
 
-    display: grid;
+    display:
+        flex;
 
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+    align-items:
+        flex-end;
 
-    gap: 42px;
+    justify-content:
+        center;
 
-    max-width: 900px;
+    gap:
+        55px;
 
-    margin: 0 auto;
+    position:
+        relative;
+
+    z-index:
+        2;
+}
+
+
+/* =========================
+   RAF
+========================= */
+
+.bookshelf::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    right:
+        0;
+
+    bottom:
+        0;
+
+    height:
+        18px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            var(--accent),
+            var(--border)
+        );
+
+    border:
+        1px solid var(--border);
+
+    box-shadow:
+        0 9px 20px
+        rgba(0,0,0,.30);
+
+    z-index:
+        1;
 }
 
 
@@ -632,51 +825,87 @@ nav a:hover::after {
 
 .book-card {
 
-    background: var(--card);
+    width:
+        260px;
+
+    background:
+        transparent;
 
     border:
-        1px solid var(--border);
+        none;
 
-    padding: 22px;
+    padding:
+        0;
 
-    transition: .35s ease;
+    position:
+        relative;
+
+    transition:
+        .35s ease;
 }
 
 .book-card:hover {
 
     transform:
-        translateY(-6px);
-
-    border-color:
-        var(--accent);
+        translateY(-9px);
 }
 
 
 /* =========================
-   KAPAK
+   KİTAP KAPAĞI
 ========================= */
 
 .book-cover {
 
-    width: 100%;
+    width:
+        100%;
 
-    aspect-ratio: 2 / 3;
+    aspect-ratio:
+        2 / 3;
 
-    overflow: hidden;
+    overflow:
+        hidden;
 
     background:
-        var(--card2);
+        var(--surface-2);
+
+    border:
+        1px solid var(--border);
+
+    box-shadow:
+        8px 5px 0
+        rgba(0,0,0,.18),
+
+        15px 10px 25px
+        rgba(0,0,0,.30);
+
+    position:
+        relative;
 }
 
 .book-cover img {
 
-    width: 100%;
+    width:
+        100%;
 
-    height: 100%;
+    height:
+        100%;
 
-    object-fit: cover;
+    object-fit:
+        cover;
 
-    display: block;
+    display:
+        block;
+
+    transition:
+        transform .45s ease;
+}
+
+.book-card:hover
+.book-cover img {
+
+    transform:
+        scale(1.025);
 }
 
 
@@ -687,43 +916,53 @@ nav a:hover::after {
 .book-info {
 
     padding:
-        25px 8px 8px;
+        18px 5px 5px;
 
-    text-align: center;
+    text-align:
+        center;
 }
 
 .book-info h3 {
 
-    color: var(--text);
+    color:
+        var(--text);
 
-    font-size: 28px;
+    font-size:
+        28px;
 
-    font-weight: 400;
+    font-weight:
+        400;
 }
 
 .book-author {
 
-    margin-top: 4px;
+    margin-top:
+        3px;
 
-    color: var(--accent);
+    color:
+        var(--accent);
 
     font-family:
         "Great Vibes",
         cursive;
 
-    font-size: 24px;
+    font-size:
+        24px;
 }
 
 .book-description {
 
     margin:
-        17px auto 0;
+        16px auto 0;
 
-    color: var(--muted);
+    color:
+        var(--muted);
 
-    font-size: 16px;
+    font-size:
+        16px;
 
-    line-height: 1.7;
+    line-height:
+        1.7;
 }
 
 
@@ -733,28 +972,39 @@ nav a:hover::after {
 
 .book-button {
 
-    display: inline-flex;
+    display:
+        inline-flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    gap: 12px;
+    gap:
+        12px;
 
-    margin-top: 22px;
+    margin-top:
+        21px;
 
-    padding: 12px 23px;
+    padding:
+        12px 23px;
 
     border:
         1px solid var(--accent);
 
-    color: var(--text);
+    color:
+        var(--text);
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        sans-serif;
 
-    font-size: 8px;
+    font-size:
+        8px;
 
-    letter-spacing: 3px;
+    letter-spacing:
+        3px;
 
-    transition: .3s ease;
+    transition:
+        .3s ease;
 }
 
 .book-button:hover {
@@ -768,32 +1018,51 @@ nav a:hover::after {
 
 
 /* =========================
-   YAKINDA KARTI
+   YAKINDA
 ========================= */
 
 .coming-soon {
 
-    width: 100%;
+    width:
+        100%;
 
-    aspect-ratio: 2 / 3;
+    aspect-ratio:
+        2 / 3;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    justify-content: center;
+    justify-content:
+        center;
 
     background:
-        var(--card2);
+        var(--surface-2);
+
+    border:
+        1px solid var(--border);
 
     color:
         var(--muted);
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        sans-serif;
 
-    font-size: 8px;
+    font-size:
+        8px;
 
-    letter-spacing: 4px;
+    letter-spacing:
+        4px;
+
+    box-shadow:
+        8px 5px 0
+        rgba(0,0,0,.18),
+
+        15px 10px 25px
+        rgba(0,0,0,.25);
 }
 
 
@@ -803,19 +1072,23 @@ nav a:hover::after {
 
 .wall-box {
 
-    max-width: 720px;
+    max-width:
+        720px;
 
-    margin: 0 auto;
+    margin:
+        0 auto;
 
-    padding: 38px;
+    padding:
+        38px;
 
     background:
-        var(--card);
+        var(--surface);
 
     border:
         1px solid var(--border);
 
-    text-align: center;
+    text-align:
+        center;
 }
 
 .wall-box h3 {
@@ -847,11 +1120,20 @@ nav a:hover::after {
 
 .wall-button {
 
-    display: inline-flex;
+    display:
+        inline-flex;
 
-    margin-top: 24px;
+    align-items:
+        center;
 
-    padding: 12px 24px;
+    gap:
+        12px;
+
+    margin-top:
+        24px;
+
+    padding:
+        12px 24px;
 
     border:
         1px solid var(--accent);
@@ -860,7 +1142,8 @@ nav a:hover::after {
         var(--text);
 
     font-family:
-        Arial, sans-serif;
+        Arial,
+        sans-serif;
 
     font-size:
         8px;
@@ -898,7 +1181,7 @@ nav a:hover::after {
         35px;
 
     background:
-        var(--card);
+        var(--surface);
 
     border:
         1px solid var(--border);
@@ -973,7 +1256,8 @@ footer p {
         var(--muted);
 
     font-family:
-        Arial, sans-serif;
+        Arial,
+        sans-serif;
 
     font-size:
         7px;
@@ -1008,12 +1292,6 @@ footer p {
 
         display:
             flex;
-
-        position:
-            relative;
-
-        z-index:
-            1101;
     }
 
     nav {
@@ -1043,13 +1321,14 @@ footer p {
             0;
 
         background:
-            var(--card);
+            var(--surface);
 
         border:
             1px solid var(--border);
 
         box-shadow:
-            0 20px 50px rgba(0,0,0,.35);
+            0 20px 50px
+            rgba(0,0,0,.35);
 
         opacity:
             0;
@@ -1103,6 +1382,34 @@ footer p {
             18px auto 0;
     }
 
+
+    /* MOBİL KİTAPLIK */
+
+    .bookshelf {
+
+        padding:
+            0 20px 35px;
+    }
+
+    .books-grid {
+
+        flex-direction:
+            column;
+
+        align-items:
+            center;
+
+        gap:
+            45px;
+    }
+
+    .book-card {
+
+        width:
+            min(260px, 75vw);
+    }
+
+
     .hero {
 
         padding:
@@ -1118,10 +1425,10 @@ footer p {
     .hero-subtitle {
 
         font-size:
-            12px;
+            13px;
 
         letter-spacing:
-            3px;
+            1.5px;
     }
 
     .hero-description {
@@ -1151,18 +1458,6 @@ footer p {
             29px;
     }
 
-    .books-grid {
-
-        grid-template-columns:
-            1fr;
-
-        max-width:
-            430px;
-
-        gap:
-            35px;
-    }
-
     .wall-box,
     .announcement {
 
@@ -1170,11 +1465,12 @@ footer p {
             28px 20px;
     }
 
-}
-
-</style>
+   }
+   </style>
 
 </head>
+
+
 <body>
 
 
@@ -1216,30 +1512,38 @@ footer p {
 
     <nav id="mainNav">
 
+
         <a href="index.html">
             ANASAYFA
         </a>
+
 
         <a href="#kitaplar">
             KİTAPLAR
         </a>
 
+
         <a href="#hakkimda">
             HAKKIMDA
         </a>
+
 
         <a href="#duyurular">
             DUYURULAR
         </a>
 
+
         <a href="iletisim.html">
             İLETİŞİM
         </a>
+
 
         <a href="duvar.html">
             DUVAR
         </a>
 
+
+        <!-- AYDINLIK / KARANLIK -->
 
         <button
             type="button"
@@ -1250,6 +1554,7 @@ footer p {
             <span id="themeIcon">☾</span>
 
         </button>
+
 
     </nav>
 
@@ -1270,6 +1575,7 @@ footer p {
 
 <section class="hero">
 
+
     <div class="hero-content">
 
 
@@ -1280,15 +1586,20 @@ footer p {
         </div>
 
 
+        <!-- ANA LOGO -->
+
         <img
             src="kesmislalih-logo.png"
             alt="kesmislalih"
             class="hero-logo">
 
 
+        <!-- İNGİLİZCE YAZI -->
+
         <div class="hero-subtitle">
 
-            stories written between the lines
+            Some stories are not meant to be
+            read. They are meant to be felt.
 
         </div>
 
@@ -1320,6 +1631,7 @@ footer p {
         SCROLL
 
     </div>
+
 
 </section>
 
@@ -1393,136 +1705,156 @@ footer p {
 
     <div class="section-heading">
 
+
         <h2>
             Kitaplar
         </h2>
+
 
         <p>
             Hikâyelerimin dünyasına hoş geldin
         </p>
 
+
     </div>
 
 
-    <div class="books-grid">
+
+    <!-- KİTAPLIK -->
+
+    <div class="bookshelf">
 
 
-        <!-- RİNGTEKİ SON DANS -->
-
-        <article class="book-card">
+        <div class="books-grid">
 
 
-            <a href="ringteki-son-dans.html">
+            <!-- RİNGTEKİ SON DANS -->
 
-                <div class="book-cover">
-
-                    <img
-                        src="Ringteki Dans: Son.png"
-                        alt="Ringteki Son Dans">
-
-                </div>
-
-            </a>
-
-
-            <div class="book-info">
-
-
-                <h3>
-
-                    Ringteki Son Dans
-
-                </h3>
-
-
-                <div class="book-author">
-
-                    kesmislalih
-
-                </div>
-
-
-                <p class="book-description">
-
-                    Bir karanlık, iki kurşun.
-                    Binbir acı, iki yetim.
-
-                    <br><br>
-
-                    Balerin ve boksörün
-                    hikâyesine hoş geldin.
-
-                </p>
+            <article class="book-card">
 
 
                 <a
-                    href="ringteki-son-dans.html"
-                    class="book-button">
+                    href="ringteki-son-dans.html">
 
-                    KİTABI KEŞFET
 
-                    <span>→</span>
+                    <div class="book-cover">
+
+
+                        <img
+                            src="file_00000000ce4881f4b929fc5dfbb07694.png"
+                            alt="Ringteki Son Dans">
+
+
+                    </div>
+
 
                 </a>
 
 
-            </div>
-
-        </article>
+                <div class="book-info">
 
 
+                    <h3>
 
-        <!-- YAKINDA -->
+                        Ringteki Son Dans
 
-        <article class="book-card">
-
-
-            <div class="coming-soon">
-
-                YAKINDA
-
-            </div>
+                    </h3>
 
 
-            <div class="book-info">
+                    <div class="book-author">
+
+                        kesmislalih
+
+                    </div>
 
 
-                <h3>
+                    <p class="book-description">
 
-                    Yeni Hikâye
+                        Bir karanlık, iki kurşun.
+                        Binbir acı, iki yetim.
 
-                </h3>
+                        <br><br>
+
+                        Balerin ve boksörün
+                        hikâyesine hoş geldin.
+
+                    </p>
 
 
-                <div class="book-author">
+                    <a
+                        href="ringteki-son-dans.html"
+                        class="book-button">
 
-                    kesmislalih
+                        KİTABI KEŞFET
+
+                        <span>→</span>
+
+                    </a>
+
 
                 </div>
 
 
-                <p class="book-description">
-
-                    Yeni bir hikâye,
-                    yeni karakterler
-                    ve yeni bir dünya...
-
-                </p>
+            </article>
 
 
-                <span class="book-button">
 
-                    ÇOK YAKINDA
+            <!-- İKİNCİ KİTAP -->
 
-                </span>
+            <article class="book-card">
 
 
-            </div>
+                <div class="coming-soon">
 
-        </article>
+                    YAKINDA
+
+                </div>
+
+
+                <div class="book-info">
+
+
+                    <h3>
+
+                        Yeni Hikâye
+
+                    </h3>
+
+
+                    <div class="book-author">
+
+                        kesmislalih
+
+                    </div>
+
+
+                    <p class="book-description">
+
+                        Yeni bir hikâye,
+                        yeni karakterler
+                        ve yeni bir dünya...
+
+                    </p>
+
+
+                    <span class="book-button">
+
+                        ÇOK YAKINDA
+
+                    </span>
+
+
+                </div>
+
+
+            </article>
+
+
+        </div>
 
 
     </div>
+
 
 </section>
 
@@ -1543,13 +1875,20 @@ footer p {
 
     <div class="section-heading">
 
+
         <h2>
+
             Duvar
+
         </h2>
 
+
         <p>
+
             Okurlardan sana
+
         </p>
+
 
     </div>
 
@@ -1586,6 +1925,7 @@ footer p {
 
     </div>
 
+
 </section>
 
 
@@ -1601,13 +1941,20 @@ footer p {
 
     <div class="section-heading">
 
+
         <h2>
+
             Duyurular
+
         </h2>
 
+
         <p>
+
             Buradan haberdar ol
+
         </p>
+
 
     </div>
 
@@ -1632,6 +1979,7 @@ footer p {
 
     </div>
 
+
 </section>
 
 
@@ -1643,20 +1991,14 @@ footer p {
 <footer>
 
     <div class="footer-logo">
-
         kesmislalih
-
     </div>
 
-
     <p>
-
         © 2026 kesmislalih
-
     </p>
 
 </footer>
-
 
 
 <!-- =========================
@@ -1665,9 +2007,8 @@ footer p {
 
 <script>
 
-
 /* =========================
-   TEMA
+   AYDINLIK / KARANLIK MOD
 ========================= */
 
 const themeButton =
@@ -1697,7 +2038,6 @@ if (savedTheme === "light") {
 themeButton.addEventListener(
     "click",
     function () {
-
 
         document.body.classList.toggle("light");
 
@@ -1746,11 +2086,9 @@ menuButton.addEventListener(
     "click",
     function () {
 
-
         mainNav.classList.toggle("active");
 
         menuButton.classList.toggle("active");
-
 
     }
 );
@@ -1758,7 +2096,8 @@ menuButton.addEventListener(
 
 
 /* =========================
-   MENÜDEN SEÇİNCE KAPANSIN
+   MENÜDEN LİNKE TIKLAYINCA
+   MENÜ KAPANSIN
 ========================= */
 
 const menuLinks =
@@ -1785,7 +2124,6 @@ menuLinks.forEach(
 
     }
 );
-
 
 </script>
 
