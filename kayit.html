@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Kayıt Ol | kesmislalih</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    --background: #09090b;
+    --surface: #111015;
+    --surface-two: #17141a;
+
+    --text: #eee9e2;
+    --text-soft: #aaa39a;
+    --text-muted: #756d76;
+
+    --border: #29252d;
+
+    --accent: #cdb9eb;
+    --accent-dark: #8f819e;
+
+    min-height: 100vh;
+
+    background: var(--background);
+
+    color: var(--text);
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    display: flex;
+
+    flex-direction: column;
+
+    transition:
+        background .4s ease,
+        color .4s ease;
+}
+
+
+/* =========================
+   AYDINLIK MOD
+========================= */
+
+body.light {
+
+    --background: #f5f1eb;
+    --surface: #ebe5dd;
+    --surface-two: #e3dcd3;
+
+    --text: #242126;
+    --text-soft: #5e5752;
+    --text-muted: #817873;
+
+    --border: #d3cbc1;
+
+    --accent: #806a9c;
+    --accent-dark: #665477;
+}
+
+
+/* =========================
+   GENEL
+========================= */
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+
+    width: 100%;
+
+    height: 82px;
+
+    padding: 0 6%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-bottom:
+        1px solid var(--border);
+
+    background:
+        rgba(9,9,11,.88);
+
+    backdrop-filter:
+        blur(15px);
+}
+
+
+body.light header {
+
+    background:
+        rgba(245,241,235,.90);
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo-image {
+
+    width: 145px;
+
+    height: auto;
+
+    display: block;
+}
+
+
+/* =========================
+   TEMA
+========================= */
+
+.theme-button {
+
+    width: 38px;
+    height: 38px;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        var(--surface);
+
+    color:
+        var(--text);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    transition: .3s ease;
+}
+
+
+.theme-button:hover {
+
+    color:
+        var(--accent);
+}
+
+
+/* =========================
+   ANA ALAN
+========================= */
+
+.register-page {
+
+    width:
+        min(430px, 90%);
+
+    margin:
+        auto;
+
+    padding:
+        80px 0;
+}
+
+
+/* =========================
+   BAŞLIK
+========================= */
+
+.register-heading {
+
+    text-align:
+        center;
+
+    margin-bottom:
+        40px;
+}
+
+
+.register-heading h1 {
+
+    font-size:
+        clamp(42px, 8vw, 58px);
+
+    font-weight:
+        400;
+
+    letter-spacing:
+        2px;
+}
+
+
+.register-heading p {
+
+    margin-top:
+        10px;
+
+    color:
+        var(--text-muted);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        3px;
+
+    text-transform:
+        uppercase;
+}
+
+
+/* =========================
+   KAYIT KUTUSU
+========================= */
+
+.register-box {
+
+    padding:
+        35px;
+
+    background:
+        var(--surface);
+
+    border:
+        1px solid var(--border);
+
+    box-shadow:
+        0 20px 50px
+        rgba(0,0,0,.18);
+}
+
+
+/* =========================
+   LABEL
+========================= */
+
+.input-group {
+
+    margin-bottom:
+        18px;
+}
+
+
+.input-group label {
+
+    display:
+        block;
+
+    margin-bottom:
+        8px;
+
+    color:
+        var(--text-soft);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        2px;
+
+    text-transform:
+        uppercase;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.input-group input {
+
+    width:
+        100%;
+
+    padding:
+        14px 15px;
+
+    border:
+        1px solid var(--border);
+
+    outline:
+        none;
+
+    background:
+        var(--surface-two);
+
+    color:
+        var(--text);
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        17px;
+
+    transition:
+        border-color .3s ease;
+}
+
+
+.input-group input:focus {
+
+    border-color:
+        var(--accent-dark);
+}
+
+
+.input-group input::placeholder {
+
+    color:
+        var(--text-muted);
+}
+
+
+/* =========================
+   KAYIT BUTONU
+========================= */
+
+.register-button {
+
+    width:
+        100%;
+
+    margin-top:
+        8px;
+
+    padding:
+        14px;
+
+    border:
+        1px solid var(--accent);
+
+    background:
+        transparent;
+
+    color:
+        var(--text);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        3px;
+
+    cursor:
+        pointer;
+
+    transition:
+        .3s ease;
+}
+
+
+.register-button:hover {
+
+    background:
+        var(--accent);
+
+    color:
+        var(--background);
+}
+
+
+/* =========================
+   MESAJ
+========================= */
+
+.form-message {
+
+    min-height:
+        20px;
+
+    margin-top:
+        15px;
+
+    text-align:
+        center;
+
+    color:
+        var(--text-soft);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        9px;
+
+    line-height:
+        1.5;
+}
+
+
+/* =========================
+   GİRİŞ
+========================= */
+
+.login-text {
+
+    margin-top:
+        25px;
+
+    text-align:
+        center;
+
+    color:
+        var(--text-muted);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        1px;
+}
+
+
+.login-text a {
+
+    color:
+        var(--accent);
+
+    transition:
+        .3s ease;
+}
+
+
+.login-text a:hover {
+
+    color:
+        var(--text);
+}
+
+
+/* =========================
+   ANA SAYFAYA DÖN
+========================= */
+
+.back-home {
+
+    display:
+        block;
+
+    width:
+        fit-content;
+
+    margin:
+        30px auto 0;
+
+    color:
+        var(--text-muted);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        2px;
+
+    transition:
+        .3s ease;
+}
+
+
+.back-home:hover {
+
+    color:
+        var(--accent);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    margin-top:
+        auto;
+
+    padding:
+        35px 20px;
+
+    border-top:
+        1px solid var(--border);
+
+    text-align:
+        center;
+}
+
+
+footer p {
+
+    color:
+        var(--text-muted);
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        7px;
+
+    letter-spacing:
+        2px;
+}
+
+
+/* =========================
+   MOBİL
+========================= */
+
+@media (max-width: 700px) {
+
+    header {
+
+        height:
+            72px;
+
+        padding:
+            0 5%;
+    }
+
+
+    .logo-image {
+
+        width:
+            115px;
+    }
+
+
+    .register-page {
+
+        width:
+            88%;
+
+        padding:
+            60px 0;
+    }
+
+
+    .register-box {
+
+        padding:
+            25px 20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+
+    <a
+        href="index.html">
+
+        <img
+            src="kesmislalih-logo.png"
+            alt="kesmislalih"
+            class="logo-image">
+
+    </a>
+
+
+    <button
+        type="button"
+        class="theme-button"
+        id="themeButton"
+        aria-label="Tema değiştir">
+
+        <span id="themeIcon">
+            ☾
+        </span>
+
+    </button>
+
+
+</header>
+
+
+
+<!-- =========================
+     KAYIT SAYFASI
+========================= -->
+
+<main class="register-page">
+
+
+    <section class="register-heading">
+
+        <h1>
+            Kayıt Ol
+        </h1>
+
+        <p>
+            kesmislalih dünyasına katıl
+        </p>
+
+    </section>
+
+
+
+    <section class="register-box">
+
+
+        <!-- KULLANICI ADI -->
+
+        <div class="input-group">
+
+            <label for="username">
+                Kullanıcı Adı
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                maxlength="20"
+                autocomplete="username"
+                placeholder="Kullanıcı adını yaz">
+
+
+        </div>
+
+
+
+        <!-- ŞİFRE -->
+
+        <div class="input-group">
+
+            <label for="password">
+                Şifre
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                maxlength="50"
+                autocomplete="new-password"
+                placeholder="Şifreni oluştur">
+
+
+        </div>
+
+
+
+        <!-- ŞİFRE TEKRAR -->
+
+        <div class="input-group">
+
+            <label for="passwordAgain">
+                Şifre Tekrar
+            </label>
+
+            <input
+                type="password"
+                id="passwordAgain"
+                maxlength="50"
+                autocomplete="new-password"
+                placeholder="Şifreni tekrar yaz">
+
+
+        </div>
+
+
+
+        <!-- KAYIT BUTONU -->
+
+        <button
+            type="button"
+            class="register-button"
+            id="registerButton">
+
+            KAYIT OL
+
+        </button>
+
+
+
+        <!-- MESAJ -->
+
+        <div
+            class="form-message"
+            id="formMessage">
+
+        </div>
+
+
+
+        <!-- GİRİŞ -->
+
+        <div class="login-text">
+
+            Zaten hesabın var mı?
+
+            <a href="giris.html">
+                Giriş Yap
+            </a>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ANA SAYFA -->
+
+    <a
+        href="index.html"
+        class="back-home">
+
+        ← ANA SAYFAYA DÖN
+
+    </a>
+
+
+</main>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+        © 2026 kesmislalih
+    </p>
+
+</footer>
+
+
+
+<script>
+
+
+/* =========================
+   TEMA
+========================= */
+
+const themeButton =
+    document.getElementById("themeButton");
+
+const themeIcon =
+    document.getElementById("themeIcon");
+
+
+const savedTheme =
+    localStorage.getItem("kesmislalih-theme");
+
+
+if (savedTheme === "light") {
+
+    document.body.classList.add("light");
+
+    themeIcon.textContent = "☀";
+
+} else {
+
+    themeIcon.textContent = "☾";
+
+}
+
+
+themeButton.addEventListener(
+    "click",
+    function() {
+
+        document.body.classList.toggle("light");
+
+        const isLight =
+            document.body.classList.contains("light");
+
+
+        if (isLight) {
+
+            themeIcon.textContent = "☀";
+
+            localStorage.setItem(
+                "kesmislalih-theme",
+                "light"
+            );
+
+        } else {
+
+            themeIcon.textContent = "☾";
+
+            localStorage.setItem(
+                "kesmislalih-theme",
+                "dark"
+            );
+
+        }
+
+    }
+);
+
+
+
+/* =========================
+   KAYIT SİSTEMİ
+========================= */
+
+const usernameInput =
+    document.getElementById("username");
+
+const passwordInput =
+    document.getElementById("password");
+
+const passwordAgainInput =
+    document.getElementById("passwordAgain");
+
+const registerButton =
+    document.getElementById("registerButton");
+
+const formMessage =
+    document.getElementById("formMessage");
+
+
+registerButton.addEventListener(
+    "click",
+    function() {
+
+
+        const username =
+            usernameInput.value.trim();
+
+        const password =
+            passwordInput.value;
+
+        const passwordAgain =
+            passwordAgainInput.value;
+
+
+        /* BOŞ ALAN KONTROLÜ */
+
+        if (
+            !username ||
+            !password ||
+            !passwordAgain
+        ) {
+
+            formMessage.textContent =
+                "Lütfen bütün alanları doldur.";
+
+            return;
+        }
+
+
+        /* KULLANICI ADI KONTROLÜ */
+
+        if (username.length < 3) {
+
+            formMessage.textContent =
+                "Kullanıcı adı en az 3 karakter olmalı.";
+
+            return;
+        }
+
+
+        /* ŞİFRE KONTROLÜ */
+
+        if (password.length < 6) {
+
+            formMessage.textContent =
+                "Şifre en az 6 karakter olmalı.";
+
+            return;
+        }
+
+
+        /* ŞİFRELER AYNI MI */
+
+        if (password !== passwordAgain) {
+
+            formMessage.textContent =
+                "Şifreler birbirleriyle aynı değil.";
+
+            return;
+        }
+
+
+        /* ESKİ KULLANICILARI AL */
+
+        const users =
+            JSON.parse(
+                localStorage.getItem(
+                    "kesmislalih-users"
+                )
+            ) || [];
+
+
+        /* KULLANICI ADI DAHA ÖNCE ALINMIŞ MI */
+
+        const existingUser =
+            users.find(
+                function(user) {
+
+                    return user.username.toLowerCase()
+                        === username.toLowerCase();
+
+                }
+            );
+
+
+        if (existingUser) {
+
+            formMessage.textContent =
+                "Bu kullanıcı adı zaten kullanılıyor.";
+
+            return;
+        }
+
+
+        /* YENİ KULLANICI */
+
+        const newUser = {
+
+            username:
+                username,
+
+            password:
+                password
+
+        };
+
+
+        users.push(newUser);
+
+
+        /* KAYDET */
+
+        localStorage.setItem(
+            "kesmislalih-users",
+            JSON.stringify(users)
+        );
+
+
+        /* OTURUMU AÇ */
+
+        localStorage.setItem(
+            "kesmislalih-current-user",
+            username
+        );
+
+
+        /* BAŞARILI MESAJ */
+
+        formMessage.textContent =
+            "Hesabın oluşturuldu. Profiline yönlendiriliyorsun...";
+
+
+        /* PROFİLE GİT */
+
+        setTimeout(
+            function() {
+
+                window.location.href =
+                    "profil.html";
+
+            },
+            1200
+        );
+
+    }
+);
+
+</script>
+
+
+</body>
+
+  </html>
