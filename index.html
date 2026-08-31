@@ -7,9 +7,12 @@
 
 <title>kesmislalih</title>
 
-<style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-@import url('https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap');
+<link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
 
 * {
     margin: 0;
@@ -25,6 +28,10 @@ body {
     background: #09090b;
     color: #f3efe8;
     font-family: "Cormorant Garamond", serif;
+}
+
+a {
+    -webkit-tap-highlight-color: transparent;
 }
 
 
@@ -44,7 +51,7 @@ header {
     top: 0;
     left: 0;
 
-    z-index: 100;
+    z-index: 200;
 }
 
 .logo {
@@ -69,7 +76,7 @@ header {
     height: 40px;
 
     border: 1px solid #38323f;
-    background: rgba(9,9,11,.75);
+    background: rgba(9,9,11,.78);
 
     display: flex;
     flex-direction: column;
@@ -80,7 +87,7 @@ header {
 
     cursor: pointer;
 
-    z-index: 102;
+    z-index: 202;
 }
 
 .menu-line {
@@ -113,20 +120,27 @@ header {
     position: fixed;
 
     top: 0;
-    right: -330px;
+    right: -340px;
 
-    width: 310px;
+    width: 315px;
     height: 100vh;
 
-    background: #111015;
+    background:
+        linear-gradient(
+            145deg,
+            #121015,
+            #0d0c10
+        );
 
     border-left: 1px solid #302a38;
 
-    padding: 120px 40px 40px;
+    padding: 115px 40px 40px;
 
-    z-index: 101;
+    z-index: 201;
 
     transition: right .45s ease;
+
+    overflow-y: auto;
 }
 
 .menu-panel.open {
@@ -141,13 +155,13 @@ header {
 
     color: #756d79;
 
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .menu-panel a.menu-link {
     display: block;
 
-    padding: 18px 0;
+    padding: 16px 0;
 
     border-bottom: 1px solid #29252d;
 
@@ -155,7 +169,7 @@ header {
 
     text-decoration: none;
 
-    font-size: 22px;
+    font-size: 21px;
 
     transition: .3s;
 }
@@ -165,17 +179,90 @@ header {
     padding-left: 8px;
 }
 
+
+/* =========================
+   MENÜ SOSYAL MEDYA
+========================= */
+
+.menu-social-title {
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+    letter-spacing: 3px;
+
+    color: #756d79;
+
+    margin-top: 30px;
+    margin-bottom: 13px;
+}
+
+.menu-social {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.menu-social a {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #93899c;
+
+    text-decoration: none;
+
+    border: 1px solid #332e38;
+
+    transition: .3s ease;
+}
+
+.menu-social a:hover {
+    color: #e3d8f2;
+
+    border-color: #756586;
+
+    transform: translateY(-3px);
+
+    background: #17141b;
+}
+
+.menu-social svg {
+    width: 16px;
+    height: 16px;
+
+    fill: currentColor;
+}
+
+.menu-social .x-icon {
+    width: 14px;
+    height: 14px;
+}
+
+.menu-social .wattpad-svg {
+    width: 19px;
+    height: 19px;
+}
+
+
+/* =========================
+   MENÜ ALT İMZA
+========================= */
+
 .menu-footer {
-    position: absolute;
+    margin-top: 45px;
 
-    bottom: 35px;
-    left: 40px;
+    font-family: "Ballet", cursive;
 
-    font-family: "Great Vibes", cursive;
-
-    font-size: 26px;
+    font-size: 37px;
 
     color: #8f819e;
+
+    transform: rotate(-3deg);
 }
 
 
@@ -188,16 +275,16 @@ header {
 
     inset: 0;
 
-    background: rgba(0,0,0,.45);
+    background: rgba(0,0,0,.52);
 
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);
 
     opacity: 0;
     visibility: hidden;
 
     transition: .3s;
 
-    z-index: 100;
+    z-index: 199;
 }
 
 .menu-overlay.open {
@@ -207,7 +294,7 @@ header {
 
 
 /* =========================
-   ANA SAYFA
+   ANA GİRİŞ
 ========================= */
 
 .hero {
@@ -227,21 +314,24 @@ header {
 
     background:
         radial-gradient(
-            circle at 50% 43%,
-            rgba(116,88,145,.22) 0%,
-            rgba(83,63,105,.15) 23%,
-            rgba(28,24,33,.45) 48%,
-            #09090b 82%
+            ellipse at center 42%,
+            rgba(123,91,155,.25) 0%,
+            rgba(82,61,104,.17) 24%,
+            rgba(30,25,36,.50) 48%,
+            #09090b 80%
         );
 }
+
+
+/* büyük sis */
 
 .hero::before {
     content: "";
 
     position: absolute;
 
-    width: 650px;
-    height: 650px;
+    width: 720px;
+    height: 720px;
 
     left: 50%;
     top: 45%;
@@ -251,38 +341,52 @@ header {
     background:
         radial-gradient(
             circle,
-            rgba(191,162,226,.23) 0%,
-            rgba(124,94,157,.13) 32%,
-            transparent 72%
+            rgba(194,166,229,.22) 0%,
+            rgba(125,94,158,.13) 30%,
+            transparent 70%
         );
 
-    filter: blur(65px);
+    filter: blur(70px);
 
     border-radius: 50%;
 
     pointer-events: none;
 }
 
+
+/* ışık lekeleri */
+
 .hero::after {
     content: "";
 
     position: absolute;
 
+    width: 100%;
+    height: 100%;
+
     inset: 0;
 
-    opacity: .045;
-
-    background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.45'/%3E%3C/svg%3E");
+    background:
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(184,157,220,.05),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(157,125,190,.04),
+            transparent 25%
+        );
 
     pointer-events: none;
-
-    mix-blend-mode: screen;
 }
 
 .hero-content {
     position: relative;
+
     z-index: 2;
+
+    width: 100%;
 }
 
 
@@ -313,94 +417,17 @@ header {
     white-space: nowrap;
 }
 
-
-/* =========================
-   GİRİŞ SOSYAL MEDYA
-========================= */
-
-.hero-social {
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    gap: 13px;
-
-    margin-top: 38px;
-}
-
-.hero-social a {
-    width: 32px;
-    height: 32px;
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    color: #91859e;
-
-    text-decoration: none;
-
-    border: 1px solid rgba(117,109,121,.35);
-
-    transition: .35s ease;
-}
-
-.hero-social a:hover {
-    color: #eee6fa;
-
-    border-color: #9c86b8;
-
-    transform: translateY(-4px);
-
-    box-shadow:
-        0 0 15px rgba(185,167,216,.18);
-}
-
-.hero-social .icon {
-    width: 16px;
-    height: 16px;
-
-    fill: currentColor;
-}
-
-.hero-social .x-icon {
-    width: 13px;
-    height: 13px;
-}
-
-.hero-social .wattpad-icon {
-    font-family: Georgia, serif;
-
-    font-size: 14px;
-
-    font-weight: bold;
-
-    letter-spacing: -1px;
-}
-
-
-/* =========================
-   ÇİZGİ
-========================= */
-
 .line {
     width: 110px;
     height: 1px;
 
     background: #b9a7d8;
 
-    margin: 28px auto 30px;
+    margin: 38px auto 28px;
 
     box-shadow:
         0 0 10px rgba(185,167,216,.35);
 }
-
-
-/* =========================
-   SLOGAN
-========================= */
 
 .hero p {
     max-width: 550px;
@@ -422,13 +449,73 @@ header {
 
 
 /* =========================
+   GİRİŞ SOSYAL İKONLARI
+========================= */
+
+.hero-social {
+    margin-top: 30px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+.hero-social a {
+    width: 31px;
+    height: 31px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    color: #83778d;
+
+    border: 1px solid rgba(117,101,134,.42);
+
+    text-decoration: none;
+
+    transition: .3s;
+}
+
+.hero-social a:hover {
+    color: #e5d9f3;
+
+    border-color: #8d79a5;
+
+    transform: translateY(-3px);
+}
+
+.hero-social svg {
+    width: 14px;
+    height: 14px;
+
+    fill: currentColor;
+}
+
+.hero-social .x-icon {
+    width: 12px;
+    height: 12px;
+}
+
+.hero-social .wattpad-svg {
+    width: 17px;
+    height: 17px;
+}
+
+
+/* =========================
    BUTON
 ========================= */
 
 .button {
     display: inline-block;
 
-    margin-top: 45px;
+    margin-top: 35px;
 
     padding: 14px 27px;
 
@@ -466,11 +553,15 @@ header {
 }
 
 .section-title {
+    font-family: "Cormorant Garamond", serif;
+
     font-size: 44px;
 
     font-weight: 400;
 
     margin-bottom: 4px;
+
+    color: #eee8e1;
 }
 
 .section-subtitle {
@@ -605,35 +696,270 @@ header {
 ========================= */
 
 .about {
-    padding: 100px 20px;
+    padding: 140px 20px;
 
     text-align: center;
+
+    position: relative;
+
+    overflow: hidden;
 }
 
-.about-title {
-    font-size: 13px;
+.about::before {
+    content: "";
 
-    letter-spacing: 4px;
+    position: absolute;
 
-    color: #aaa39a;
+    width: 430px;
+    height: 430px;
 
-    margin-bottom: 18px;
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(150,120,180,.10),
+            transparent 70%
+        );
+
+    filter: blur(55px);
+
+    pointer-events: none;
 }
 
-.about-text {
-    max-width: 520px;
+.about-inner {
+    max-width: 650px;
 
     margin: auto;
 
-    color: #77716b;
+    position: relative;
+
+    z-index: 2;
+}
+
+.about-title-small {
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 5px;
+
+    color: #817986;
+
+    margin-bottom: 22px;
+}
+
+.about-heading {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(44px, 7vw, 64px);
+
+    font-weight: 400;
+
+    line-height: 1.05;
+
+    color: #eee8e1;
+}
+
+.about-heading span {
+    display: block;
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: 1.05em;
+
+    color: #cdb9eb;
+
+    margin-top: 4px;
+
+    text-shadow:
+        0 0 8px rgba(205,185,235,.25);
+}
+
+.about-line {
+    width: 70px;
+
+    height: 1px;
+
+    background: #766587;
+
+    margin: 30px auto;
+}
+
+.about-text {
+    max-width: 510px;
+
+    margin: auto;
+
+    color: #88817c;
 
     font-family: Arial, sans-serif;
 
     font-size: 11px;
 
-    line-height: 1.9;
+    line-height: 2;
 }
 
+.about-signature {
+    margin-top: 38px;
+
+    font-family: "Ballet", cursive;
+
+    font-size: 48px;
+
+    color: #cdb9eb;
+
+    transform: rotate(-3deg);
+}
+
+
+/* =========================
+   DUVAR
+========================= */
+
+.wall {
+    padding: 130px 7% 150px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #0c0b0e,
+            #111015,
+            #0c0b0e
+        );
+
+    border-top: 1px solid #252328;
+
+    border-bottom: 1px solid #252328;
+}
+
+.wall-header {
+    max-width: 800px;
+
+    margin: auto;
+
+    text-align: center;
+
+    margin-bottom: 60px;
+}
+
+.wall-title {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(42px, 7vw, 58px);
+
+    font-weight: 400;
+
+    color: #eee8e1;
+
+    margin-bottom: 10px;
+}
+
+.wall-subtitle {
+    color: #77716b;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+.wall-grid {
+    max-width: 950px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.wall-card {
+    padding: 27px;
+
+    min-height: 190px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #17141b,
+            #100e13
+        );
+
+    border: 1px solid #2d2732;
+
+    transition: .35s;
+}
+
+.wall-card:hover {
+    transform: translateY(-6px);
+
+    border-color: #5f516d;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.25);
+}
+
+.wall-card-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 25px;
+}
+
+.wall-user {
+    color: #cdb9eb;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+}
+
+.wall-date {
+    color: #625c63;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+}
+
+.wall-message {
+    color: #aaa39a;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 18px;
+
+    line-height: 1.5;
+}
+
+.wall-note {
+    text-align: center;
+
+    margin-top: 45px;
+
+    color: #655f66;
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: 25px;
+}
+    <style>
 
 /* =========================
    DUYURULAR
@@ -680,58 +1006,62 @@ header {
    İLETİŞİM
 ========================= */
 
-.contact-box {
-    max-width: 600px;
-
-    margin: 0 auto;
-
-    padding: 45px 30px;
-
-    border: 1px solid #29252d;
+.contact {
+    padding: 140px 20px;
 
     text-align: center;
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(22,19,27,.8),
-            rgba(12,11,14,.8)
-        );
+    border-top: 1px solid #252328;
 }
 
-.contact-box p {
+.contact-title {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(42px, 7vw, 58px);
+
+    font-weight: 400;
+
+    color: #eee8e1;
+
+    margin-bottom: 10px;
+}
+
+.contact-subtitle {
     color: #77716b;
 
     font-family: Arial, sans-serif;
 
-    font-size: 11px;
+    font-size: 9px;
 
-    line-height: 1.9;
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 35px;
 }
 
 .contact-mail {
     display: inline-block;
 
-    margin-top: 20px;
-
     color: #cdb9eb;
 
     text-decoration: none;
 
-    font-family: Arial, sans-serif;
+    font-family: "Cormorant Garamond", serif;
 
-    font-size: 11px;
+    font-size: 22px;
 
-    letter-spacing: 1px;
+    padding-bottom: 7px;
+
+    border-bottom: 1px solid #4f4559;
 
     transition: .3s;
 }
 
 .contact-mail:hover {
-    color: #f8f3ff;
+    color: #f3edf9;
 
-    text-shadow:
-        0 0 12px rgba(185,167,216,.35);
+    border-color: #b9a7d8;
 }
 
 
@@ -748,11 +1078,16 @@ footer {
 }
 
 .footer-logo {
-    font-family: "Great Vibes", cursive;
+    font-family: "Ballet", cursive;
 
-    font-size: 35px;
+    font-size: 52px;
 
     color: #f8f3ff;
+
+    transform: rotate(-3deg);
+
+    text-shadow:
+        0 0 10px rgba(220,195,255,.25);
 }
 
 footer p {
@@ -769,7 +1104,7 @@ footer p {
 
 
 /* =========================
-   TELEFON
+   MOBİL
 ========================= */
 
 @media (max-width: 700px) {
@@ -787,11 +1122,27 @@ footer p {
 
         right: -300px;
 
-        padding: 110px 32px 30px;
+        padding: 105px 32px 30px;
     }
 
     .menu-panel a.menu-link {
         font-size: 20px;
+
+        padding: 14px 0;
+    }
+
+    .menu-social {
+        gap: 6px;
+    }
+
+    .menu-social a {
+        width: 32px;
+        height: 32px;
+    }
+
+    .hero {
+        padding-left: 15px;
+        padding-right: 15px;
     }
 
     .hero h1 {
@@ -800,26 +1151,19 @@ footer p {
         letter-spacing: -3px;
     }
 
+    .hero p {
+        font-size: 8px;
+
+        letter-spacing: 2px;
+    }
+
     .hero-social {
         gap: 8px;
-
-        margin-top: 32px;
     }
 
     .hero-social a {
         width: 29px;
         height: 29px;
-    }
-
-    .hero-social .icon {
-        width: 14px;
-        height: 14px;
-    }
-
-    .hero p {
-        font-size: 8px;
-
-        letter-spacing: 2px;
     }
 
     .section {
@@ -847,7 +1191,31 @@ footer p {
     }
 
     .about {
-        padding: 80px 20px;
+        padding: 100px 25px;
+    }
+
+    .about-heading {
+        font-size: 42px;
+    }
+
+    .about-text {
+        font-size: 10px;
+    }
+
+    .wall {
+        padding: 100px 6%;
+    }
+
+    .wall-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wall-card {
+        min-height: 160px;
+    }
+
+    .wall-message {
+        font-size: 17px;
     }
 
     .news-item {
@@ -860,13 +1228,28 @@ footer p {
         text-align: left;
     }
 
+    .contact {
+        padding: 100px 20px;
+    }
+
+    .contact-mail {
+        font-size: 18px;
+    }
+
+    .footer-logo {
+        font-size: 44px;
+    }
+
 }
 
 </style>
 </head>
 
+
 <body>
-    <!-- =========================
+
+
+<!-- =========================
      HEADER
 ========================= -->
 
@@ -891,7 +1274,7 @@ footer p {
 
 
 <!-- =========================
-     MENÜ ARKA PLAN
+     MENÜ OVERLAY
 ========================= -->
 
 <div
@@ -943,13 +1326,12 @@ footer p {
 
 
     <!-- =========================
-         SOSYAL MEDYA
+         MENÜ SOSYAL
     ========================= -->
 
     <div class="menu-social-title">
         BENİ TAKİP ET
     </div>
-
 
     <div class="menu-social">
 
@@ -959,15 +1341,11 @@ footer p {
         <a
             href="https://www.tiktok.com/@kesmislalih?_r=1&_t=ZS-98gv3YRvFOK"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             aria-label="TikTok">
 
-            <svg
-                class="icon"
-                viewBox="0 0 24 24">
-
+            <svg viewBox="0 0 24 24">
                 <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.17V2h-3.74v13.75a2.88 2.88 0 1 1-2.88-2.88c.3 0 .59.05.86.13v-3.8a6.66 6.66 0 1 0 5.76 6.55V8.43a8.55 8.55 0 0 0 5.02 1.62V6.32c-.43.39-.88.43-1.25.37z"/>
-
             </svg>
 
         </a>
@@ -978,11 +1356,11 @@ footer p {
         <a
             href="https://x.com/kesmislalih"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             aria-label="X">
 
             <svg
-                class="icon x-icon"
+                class="x-icon"
                 viewBox="0 0 24 24">
 
                 <path d="M18.244 2H21.5l-7.11 8.13L22.75 22h-6.55l-5.13-6.71L5.2 22H1.94l7.61-8.7L1.5 2h6.72l4.64 6.13L18.244 2zm-1.15 17.78h1.8L7.22 4.1H5.29l11.804 15.68z"/>
@@ -997,12 +1375,16 @@ footer p {
         <a
             href="https://www.wattpad.com/user/kesmislalih"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             aria-label="Wattpad">
 
-            <span class="wattpad-icon">
-                W
-            </span>
+            <svg
+                class="wattpad-svg"
+                viewBox="0 0 24 24">
+
+                <path d="M3 3h4.3c1.2 0 2.1.7 2.5 1.8l1.8 5.3 1.7-5.3C13.7 3.7 14.6 3 15.8 3H21v18h-4.1v-8.6L14.4 19h-3.1l-2.4-6.6V21H3V3z"/>
+
+            </svg>
 
         </a>
 
@@ -1012,14 +1394,12 @@ footer p {
         <a
             href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             aria-label="Spotify">
 
-            <svg
-                class="icon"
-                viewBox="0 0 24 24">
+            <svg viewBox="0 0 24 24">
 
-                <path d="M12 1.9a10.1 10.1 0 1 0 10.1 10.1A10.11 10.11 0 0 0 12 1.9zm4.64 14.58a.76.76 0 0 1-1.05.25c-2.88-1.76-6.51-2.16-10.79-1.18a.76.76 0 1 1-.34-1.48c4.68-1.07 8.69-.61 11.93 1.37a.76.76 0 0 1 .25 1.04zm1.5-3.33a.95.95 0 0 1-1.3.31c-3.29-2.02-8.31-2.61-12.2-1.43a.95.95 0 1 1-.55-1.82c4.45-1.35 10-.69 13.74 1.61a.95.95 0 0 1 .31 1.33zm.13-3.47C14.33 7.3 8.13 7.1 4.54 8.19a1.14 1.14 0 1 1-.66-2.18c4.13-1.25 11-1 15.2 1.5a1.14 1.14 0 0 1-.81 2.17z"/>
+                <path d="M12 1.9a10.1 10.1 0 1 0 10.1 10.1A10.11 10.11 0 0 0 12 1.9zm4.64 14.58a.76.76 0 0 1-1.05.25c-2.88-1.76-6.51-2.16-10.79-1.18a.76.76 0 1 1-.34-1.48c4.68-1.07 8.69-.61 11.93 1.37a.76.76 0 0 1 .25 1.04zm1.5-3.33a.95.95 0 0 1-1.3.31c-3.29-2.02-8.31-2.61-12.2-1.43a.95.95 0 1 1-.55-1.82c4.45-1.35 10-.69 13.74 1.61a.95.95 0 0 1 .31 1.33zm.13-3.47C14.33 7.3 8.13 7.1 4.54 8.19a1.14 1.14 0 1 1-.66-2.18c4.13-1.25 11-1 15.2 1.5a1.14 1.14 0 0 1 .81 2.17z"/>
 
             </svg>
 
@@ -1031,12 +1411,10 @@ footer p {
         <a
             href="https://pin.it/2jHDXi48B"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             aria-label="Pinterest">
 
-            <svg
-                class="icon"
-                viewBox="0 0 24 24">
+            <svg viewBox="0 0 24 24">
 
                 <path d="M12 2a10 10 0 0 0-3.64 19.32c-.09-1.64-.02-3.62.41-5.49l1.11-4.7s-.28-.57-.28-1.41c0-1.32.77-2.31 1.73-2.31.82 0 1.21.62 1.21 1.36 0 .83-.53 2.07-.8 3.22-.23.96.48 1.74 1.43 1.74 1.72 0 3.04-1.82 3.04-4.45 0-2.33-1.67-3.96-4.05-3.96-2.76 0-4.38 2.07-4.38 4.21 0 .83.32 1.72.72 2.2.08.1.09.18.07.29l-.27 1.1c-.04.18-.14.22-.32.13-1.19-.55-1.94-2.28-1.94-3.67 0-2.99 2.17-5.74 6.25-5.74 3.28 0 5.83 2.34 5.83 5.46 0 3.26-2.06 5.88-4.92 5.88-.96 0-1.86-.5-2.17-1.08l-.59 2.25c-.21.82-.78 1.84-1.17 2.46.88.27 1.81.42 2.77.42A10 10 0 0 0 12 2z"/>
 
@@ -1050,12 +1428,10 @@ footer p {
         <a
             href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             aria-label="WhatsApp">
 
-            <svg
-                class="icon"
-                viewBox="0 0 24 24">
+            <svg viewBox="0 0 24 24">
 
                 <path d="M12 2a9.9 9.9 0 0 0-8.55 14.9L2 22l5.27-1.38A9.9 9.9 0 1 0 12 2zm0 18.1a8.15 8.15 0 0 1-4.15-1.13l-.3-.18-3.13.82.84-3.05-.2-.31A8.15 8.15 0 1 1 12 20.1zm4.47-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.18-1.4-1.32-1.64-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.33.98 2.49c.12.16 1.69 2.58 4.09 3.62.57.25 1.01.4 1.35.51.57.18 1.09.15 1.5.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/>
 
@@ -1085,26 +1461,28 @@ footer p {
             kesmislalih
         </h1>
 
+        <div class="line"></div>
 
-        <!-- GİRİŞ SOSYAL İKONLARI -->
+        <p>
+            kelimelerin arasında bir yerlerde...
+        </p>
+
+
+        <!-- GİRİŞ SOSYAL -->
 
         <div class="hero-social">
 
 
-            <!-- TikTok -->
+            <!-- TIKTOK -->
 
             <a
                 href="https://www.tiktok.com/@kesmislalih?_r=1&_t=ZS-98gv3YRvFOK"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 aria-label="TikTok">
 
-                <svg
-                    class="icon"
-                    viewBox="0 0 24 24">
-
+                <svg viewBox="0 0 24 24">
                     <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.17V2h-3.74v13.75a2.88 2.88 0 1 1-2.88-2.88c.3 0 .59.05.86.13v-3.8a6.66 6.66 0 1 0 5.76 6.55V8.43a8.55 8.55 0 0 0 5.02 1.62V6.32c-.43.39-.88.43-1.25.37z"/>
-
                 </svg>
 
             </a>
@@ -1115,11 +1493,11 @@ footer p {
             <a
                 href="https://x.com/kesmislalih"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 aria-label="X">
 
                 <svg
-                    class="icon x-icon"
+                    class="x-icon"
                     viewBox="0 0 24 24">
 
                     <path d="M18.244 2H21.5l-7.11 8.13L22.75 22h-6.55l-5.13-6.71L5.2 22H1.94l7.61-8.7L1.5 2h6.72l4.64 6.13L18.244 2zm-1.15 17.78h1.8L7.22 4.1H5.29l11.804 15.68z"/>
@@ -1129,86 +1507,70 @@ footer p {
             </a>
 
 
-            <!-- Wattpad -->
+            <!-- WATTPAD -->
 
             <a
                 href="https://www.wattpad.com/user/kesmislalih"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 aria-label="Wattpad">
 
-                <span class="wattpad-icon">
-                    W
-                </span>
+                <svg
+                    class="wattpad-svg"
+                    viewBox="0 0 24 24">
+
+                    <path d="M3 3h4.3c1.2 0 2.1.7 2.5 1.8l1.8 5.3 1.7-5.3C13.7 3.7 14.6 3 15.8 3H21v18h-4.1v-8.6L14.4 19h-3.1l-2.4-6.6V21H3V3z"/>
+
+                </svg>
 
             </a>
 
 
-            <!-- Spotify -->
+            <!-- SPOTIFY -->
 
             <a
                 href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 aria-label="Spotify">
 
-                <svg
-                    class="icon"
-                    viewBox="0 0 24 24">
-
-                    <path d="M12 1.9a10.1 10.1 0 1 0 10.1 10.1A10.11 10.11 0 0 0 12 1.9zm4.64 14.58a.76.76 0 0 1-1.05.25c-2.88-1.76-6.51-2.16-10.79-1.18a.76.76 0 1 1-.34-1.48c4.68-1.07 8.69-.61 11.93 1.37a.76.76 0 0 1 .25 1.04zm1.5-3.33a.95.95 0 0 1-1.3.31c-3.29-2.02-8.31-2.61-12.2-1.43a.95.95 0 1 1-.55-1.82c4.45-1.35 10-.69 13.74 1.61a.95.95 0 0 1 .31 1.33zm.13-3.47C14.33 7.3 8.13 7.1 4.54 8.19a1.14 1.14 0 1 1-.66-2.18c4.13-1.25 11-1 15.2 1.5a1.14 1.14 0 0 1-.81 2.17z"/>
-
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 1.9a10.1 10.1 0 1 0 10.1 10.1A10.11 10.11 0 0 0 12 1.9zm4.64 14.58a.76.76 0 0 1-1.05.25c-2.88-1.76-6.51-2.16-10.79-1.18a.76.76 0 1 1-.34-1.48c4.68-1.07 8.69-.61 11.93 1.37a.76.76 0 0 1 .25 1.04zm1.5-3.33a.95.95 0 0 1-1.3.31c-3.29-2.02-8.31-2.61-12.2-1.43a.95.95 0 1 1-.55-1.82c4.45-1.35 10-.69 13.74 1.61a.95.95 0 0 1 .31 1.33zm.13-3.47C14.33 7.3 8.13 7.1 4.54 8.19a1.14 1.14 0 1 1-.66-2.18c4.13-1.25 11-1 15.2 1.5a1.14 1.14 0 0 1 .81 2.17z"/>
                 </svg>
 
             </a>
 
 
-            <!-- Pinterest -->
+            <!-- PINTEREST -->
 
             <a
                 href="https://pin.it/2jHDXi48B"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 aria-label="Pinterest">
 
-                <svg
-                    class="icon"
-                    viewBox="0 0 24 24">
-
-                    <path d="M12 2a10 10 0 0 0-3.64 19.32c-.09-1.64-.02-3.62.41-5.49l1.11-4.7s-.28-.57-.28-1.41c0-1.32.77-2.31 1.73-2.31.82 0 1.21.62 1.21 1.36 0 .83-.53 2.07-.8 3.22-.23.96.48 2.07-.8 3.22-.23.96.48 1.74 1.43 1.74 1.72 0 3.04-1.82 3.04-4.45 0-2.33-1.67-3.96-4.05-3.96-2.76 0-4.38 2.07-4.38 4.21 0 .83.32 1.72.72 2.2.08.1.09.18.07.29l-.27 1.1c-.04.18-.14.22-.32.13-1.19-.55-1.94-2.28-1.94-3.67 0-2.99 2.17-5.74 6.25-5.74 3.28 0 5.83 2.34 5.83 5.46 0 3.26-2.06 5.88-4.92 5.88-.96 0-1.86-.5-2.17-1.08l-.59 2.25c-.21.82-.78 1.84-1.17 2.46.88.27 1.81.42 2.77.42A10 10 0 0 0 12 2z"/>
-
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2a10 10 0 0 0-3.64 19.32c-.09-1.64-.02-3.62.41-5.49l1.11-4.7s-.28-.57-.28-1.41c0-1.32.77-2.31 1.73-2.31.82 0 1.21.62 1.21 1.36 0 .83-.53 2.07-.8 3.22-.23.96.48 1.74 1.43 1.74 1.72 0 3.04-1.82 3.04-4.45 0-2.33-1.67-3.96-4.05-3.96-2.76 0-4.38 2.07-4.38 4.21 0 .83.32 1.72.72 2.2.08.1.09.18.07.29l-.27 1.1c-.04.18-.14.22-.32.13-1.19-.55-1.94-2.28-1.94-3.67 0-2.99 2.17-5.74 6.25-5.74 3.28 0 5.83 2.34 5.83 5.46 0 3.26-2.06 5.88-4.92 5.88-.96 0-1.86-.5-2.17-1.08l-.59 2.25c-.21.82-.78 1.84-1.17 2.46.88.27 1.81.42 2.77.42A10 10 0 0 0 12 2z"/>
                 </svg>
 
             </a>
 
 
-            <!-- WhatsApp -->
+            <!-- WHATSAPP -->
 
             <a
                 href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 aria-label="WhatsApp">
 
-                <svg
-                    class="icon"
-                    viewBox="0 0 24 24">
-
+                <svg viewBox="0 0 24 24">
                     <path d="M12 2a9.9 9.9 0 0 0-8.55 14.9L2 22l5.27-1.38A9.9 9.9 0 1 0 12 2zm0 18.1a8.15 8.15 0 0 1-4.15-1.13l-.3-.18-3.13.82.84-3.05-.2-.31A8.15 8.15 0 1 1 12 20.1zm4.47-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.18-1.4-1.32-1.64-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.33.98 2.49c.12.16 1.69 2.58 4.09 3.62.57.25 1.01.4 1.35.51.57.18 1.09.15 1.5.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/>
-
                 </svg>
 
             </a>
 
         </div>
-
-
-        <div class="line"></div>
-
-
-        <p>
-            kelimelerin arasında bir yerlerde...
-        </p>
 
 
         <a
@@ -1318,14 +1680,11 @@ footer p {
 
         </div>
 
-
         <div class="wood"></div>
 
     </div>
 
 </section>
-
-
 <!-- =========================
      HAKKIMDA
 ========================= -->
@@ -1334,19 +1693,46 @@ footer p {
     class="about"
     id="hakkimda">
 
-    <div class="about-title">
-        HAKKIMDA
+    <div class="about-inner">
+
+        <div class="about-title-small">
+            HAKKIMDA
+        </div>
+
+        <h2 class="about-heading">
+            kelimelerin arasında
+            <span>bir yerlerde...</span>
+        </h2>
+
+        <div class="about-line"></div>
+
+        <p class="about-text">
+
+            Hikâyeler benim için yalnızca kelimelerden
+            oluşan metinler değil; başka hayatlara açılan
+            küçük kapılar.
+
+            <br><br>
+
+            Bazen bir karakterde kendimizden bir parça,
+            bazen de hiç tanımadığımız bir dünyanın
+            izlerini buluruz.
+
+            <br><br>
+
+            Ben de kendi dünyalarımı kelimelerle kuruyor,
+            onları okurlarımla paylaşmayı seviyorum.
+
+        </p>
+
+        <div class="about-signature">
+            kesmislalih
+        </div>
+
     </div>
 
-    <p class="about-text">
-
-        Hikâyeler, bazen söyleyemediklerimizin
-        en güzel hâlidir. Ben de kelimelerle
-        kendi dünyalarımı kurmayı seviyorum.
-
-    </p>
-
 </section>
+
 
 
 <!-- =========================
@@ -1368,23 +1754,112 @@ footer p {
 </section>
 
 
+
 <!-- =========================
      DUVAR
 ========================= -->
 
 <section
-    class="section"
+    class="wall"
     id="duvar">
 
-    <h2 class="section-title">
-        Duvar
-    </h2>
+    <div class="wall-header">
 
-    <p class="section-subtitle">
-        burası okurlara ait olacak
-    </p>
+        <div class="about-title-small">
+            DUVAR
+        </div>
+
+        <h2 class="wall-title">
+            okurlardan kalanlar
+        </h2>
+
+        <p class="wall-subtitle">
+            burada hikâyeler yalnızca bana ait değil.
+        </p>
+
+    </div>
+
+
+    <div class="wall-grid">
+
+
+        <article class="wall-card">
+
+            <div class="wall-card-top">
+
+                <span class="wall-user">
+                    @okur
+                </span>
+
+                <span class="wall-date">
+                    31.08.2026
+                </span>
+
+            </div>
+
+            <p class="wall-message">
+                “Bazı hikâyeler bittiğinde insan
+                karakterleri gerçekten tanımış gibi
+                hissediyor.”
+            </p>
+
+        </article>
+
+
+        <article class="wall-card">
+
+            <div class="wall-card-top">
+
+                <span class="wall-user">
+                    @okur
+                </span>
+
+                <span class="wall-date">
+                    YAKINDA
+                </span>
+
+            </div>
+
+            <p class="wall-message">
+                Buraya okurlardan gelecek mesajlar
+                ve güzel anılar eklenecek.
+            </p>
+
+        </article>
+
+
+        <article class="wall-card">
+
+            <div class="wall-card-top">
+
+                <span class="wall-user">
+                    @okur
+                </span>
+
+                <span class="wall-date">
+                    YAKINDA
+                </span>
+
+            </div>
+
+            <p class="wall-message">
+                Bir gün burası hikâyelerin bıraktığı
+                küçük izlerle dolacak.
+            </p>
+
+        </article>
+
+    </div>
+
+
+    <div class="wall-note">
+        sizin cümleleriniz, benim duvarım.
+    </div>
 
 </section>
+
+
+
 <!-- =========================
      DUYURULAR
 ========================= -->
@@ -1440,32 +1915,24 @@ footer p {
 ========================= -->
 
 <section
-    class="about"
+    class="contact"
     id="iletisim">
 
-    <div class="about-title">
-        İLETİŞİM
-    </div>
+    <h2 class="contact-title">
+        iletişim
+    </h2>
 
+    <p class="contact-subtitle">
+        benimle iletişime geç
+    </p>
 
-    <div class="contact-box">
+    <a
+        href="mailto:hillyss333@gmail.com"
+        class="contact-mail">
 
-        <p>
-            Hikâyeler, projeler veya herhangi bir konuda
-            benimle iletişime geçmek istersen
-            bana ulaşabilirsin.
-        </p>
+        hillyss333@gmail.com
 
-
-        <a
-            href="mailto:hillyss333@gmail.com"
-            class="contact-mail">
-
-            hillyss333@gmail.com
-
-        </a>
-
-    </div>
+    </a>
 
 </section>
 
@@ -1481,7 +1948,6 @@ footer p {
         kesmislalih
     </div>
 
-
     <p>
         © 2026 kesmislalih
     </p>
@@ -1496,10 +1962,6 @@ footer p {
 
 <script>
 
-/* =========================
-   MENÜ ELEMENTLERİ
-========================= */
-
 const menuButton =
     document.getElementById("menuButton");
 
@@ -1510,29 +1972,23 @@ const menuOverlay =
     document.getElementById("menuOverlay");
 
 const menuLinks =
-    document.querySelectorAll(".menu-panel a.menu-link");
+    document.querySelectorAll(".menu-panel .menu-link");
 
 
-/* =========================
-   MENÜYÜ AÇ / KAPAT
-========================= */
+function openMenu() {
 
-menuButton.addEventListener("click", function() {
+    menuButton.classList.add("active");
 
-    menuButton.classList.toggle("active");
+    menuPanel.classList.add("open");
 
-    menuPanel.classList.toggle("open");
+    menuOverlay.classList.add("open");
 
-    menuOverlay.classList.toggle("open");
+    document.body.style.overflow = "hidden";
 
-});
+}
 
 
-/* =========================
-   DIŞARI TIKLAYINCA KAPAT
-========================= */
-
-menuOverlay.addEventListener("click", function() {
+function closeMenu() {
 
     menuButton.classList.remove("active");
 
@@ -1540,45 +1996,61 @@ menuOverlay.addEventListener("click", function() {
 
     menuOverlay.classList.remove("open");
 
-});
+    document.body.style.overflow = "";
+
+}
 
 
-/* =========================
-   MENÜ LİNKLERİNE TIKLAYINCA KAPAT
-========================= */
+menuButton.addEventListener(
+    "click",
+    function() {
 
-menuLinks.forEach(function(link) {
+        if (
+            menuPanel.classList.contains("open")
+        ) {
 
-    link.addEventListener("click", function() {
+            closeMenu();
 
-        menuButton.classList.remove("active");
+        } else {
 
-        menuPanel.classList.remove("open");
+            openMenu();
 
-        menuOverlay.classList.remove("open");
-
-    });
-
-});
-
-
-/* =========================
-   ESC İLE MENÜYÜ KAPAT
-========================= */
-
-document.addEventListener("keydown", function(event) {
-
-    if (event.key === "Escape") {
-
-        menuButton.classList.remove("active");
-
-        menuPanel.classList.remove("open");
-
-        menuOverlay.classList.remove("open");
+        }
 
     }
+);
 
-});
+
+menuOverlay.addEventListener(
+    "click",
+    closeMenu
+);
+
+
+menuLinks.forEach(
+    function(link) {
+
+        link.addEventListener(
+            "click",
+            closeMenu
+        );
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            closeMenu();
+
+        }
+
+    }
+);
 
 </script>
 
