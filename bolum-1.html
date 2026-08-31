@@ -5,14 +5,21 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
 
-<title>Ringteki Son Dans | Bölüm 1 | kesmislalih</title>
+<title>
+    Ringteki Son Dans | Bölüm 1 | kesmislalih
+</title>
 
 <style>
 
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap');
+
+
 /* =========================
-   TEMEL AYARLAR
+   TEMEL
 ========================= */
 
 * {
@@ -26,9 +33,23 @@ html {
 }
 
 body {
-    background: #09090b;
-    color: #eee9e2;
-    font-family: "Cormorant Garamond", serif;
+
+    --background: #09090b;
+    --surface: #111015;
+    --surface-two: #151319;
+    --text: #eee9e2;
+    --text-soft: #aaa39a;
+    --text-muted: #756d76;
+    --border: #29252d;
+    --accent: #cdb9eb;
+    --accent-dark: #8f819e;
+
+    background: var(--background);
+    color: var(--text);
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
 
     transition:
         background .35s ease,
@@ -40,109 +61,153 @@ body {
    AYDINLIK MOD
 ========================= */
 
-body.light-mode {
-    background: #f4f0ea;
-    color: #29252b;
+body.light {
+
+    --background: #f5f1eb;
+    --surface: #ebe5dd;
+    --surface-two: #e3dcd3;
+    --text: #242126;
+    --text-soft: #5e5752;
+    --text-muted: #817873;
+    --border: #d3cbc1;
+    --accent: #806a9c;
+    --accent-dark: #665477;
 }
 
 
 /* =========================
-   ÜST MENÜ
+   ÜST BAR
 ========================= */
 
 header {
+
     width: 100%;
 
-    padding: 22px 6%;
+    padding:
+        24px 6%;
 
     display: flex;
+
     justify-content: space-between;
     align-items: center;
 
-    border-bottom: 1px solid #252228;
-}
-
-body.light-mode header {
-    border-bottom-color: #d8d0c8;
-}
-
-
-.logo {
-    color: #f8f3ff;
-
-    text-decoration: none;
-
-    font-family: "Great Vibes", cursive;
-
-    font-size: 30px;
-
-    text-shadow:
-        0 0 7px rgba(220,195,255,.4);
-}
-
-body.light-mode .logo {
-    color: #29252b;
-
-    text-shadow: none;
+    border-bottom:
+        1px solid var(--border);
 }
 
 
 /* =========================
-   ÜST BUTONLAR
+   LOGO
 ========================= */
 
-.header-actions {
+.logo {
+
+    color: var(--text);
+
+    text-decoration: none;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size: 31px;
+
+    text-shadow:
+        0 0 8px rgba(205,185,235,.35);
+}
+
+
+/* =========================
+   SAĞ TARAF
+========================= */
+
+.header-right {
+
     display: flex;
 
     align-items: center;
 
-    gap: 10px;
+    gap: 15px;
 }
 
 
-.top-button {
-    border: 1px solid #39323f;
+/* =========================
+   ANA SAYFAYA DÖN
+========================= */
 
-    background: transparent;
+.back-home {
 
-    color: #aaa39a;
+    color: var(--text-muted);
 
-    padding: 10px 13px;
+    text-decoration: none;
 
     font-family: Arial, sans-serif;
 
-    font-size: 8px;
+    font-size: 9px;
 
-    letter-spacing: 1.5px;
-
-    cursor: pointer;
+    letter-spacing: 2px;
 
     transition: .3s;
 }
 
-.top-button:hover {
-    color: #cdb9eb;
+.back-home:hover {
 
-    border-color: #6e6384;
-}
+    color: var(--accent);
 
-body.light-mode .top-button {
-    color: #625b61;
-
-    border-color: #c9c0b8;
 }
 
 
 /* =========================
-   BÖLÜM ANA ALANI
+   TEMA BUTONU
 ========================= */
 
-.reader {
-    width: min(760px, 88%);
+.theme-button {
+
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid var(--border);
+
+    background: var(--surface);
+
+    color: var(--text);
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    transition:
+        background .3s,
+        color .3s,
+        transform .3s;
+}
+
+.theme-button:hover {
+
+    transform: rotate(10deg);
+
+    color: var(--accent);
+
+}
+
+
+/* =========================
+   BÖLÜM SAYFASI
+========================= */
+
+.chapter-page {
+
+    width: min(760px, 90%);
 
     margin: auto;
 
-    padding: 75px 0 120px;
+    padding:
+        75px 0 100px;
 }
 
 
@@ -151,167 +216,153 @@ body.light-mode .top-button {
 ========================= */
 
 .chapter-header {
+
     text-align: center;
 
-    margin-bottom: 70px;
+    margin-bottom: 80px;
 }
 
 
-.book-name {
+.chapter-number {
+
     font-family: Arial, sans-serif;
 
     font-size: 8px;
 
     letter-spacing: 4px;
 
-    color: #756d76;
-
-    text-transform: uppercase;
+    color: var(--text-muted);
 
     margin-bottom: 18px;
 }
 
-body.light-mode .book-name {
-    color: #81777b;
-}
 
+.chapter-header h1 {
 
-.chapter-number {
-    font-size: 13px;
-
-    letter-spacing: 3px;
-
-    color: #8f819e;
-
-    margin-bottom: 10px;
-}
-
-
-.chapter-title {
-    font-size: clamp(42px, 8vw, 68px);
+    font-size:
+        clamp(38px, 7vw, 65px);
 
     font-weight: 400;
 
-    line-height: 1.1;
+    letter-spacing: 2px;
 
-    color: #eee9e2;
-}
-
-body.light-mode .chapter-title {
-    color: #29252b;
-}
-
-
-.chapter-line {
-    width: 55px;
-
-    height: 1px;
-
-    background: #b9a7d8;
-
-    margin: 28px auto;
+    color: var(--text);
 }
 
 
 .chapter-author {
-    font-family: "Great Vibes", cursive;
 
-    font-size: 27px;
+    margin-top: 8px;
 
-    color: #cdb9eb;
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size: 28px;
+
+    color: var(--accent);
 }
 
 
 /* =========================
-   BÖLÜM METNİ
+   OKUMA ALANI
 ========================= */
 
-.chapter-content {
+.reading-area {
+
+    width: 100%;
+}
+
+
+/* =========================
+   PARAGRAF
+========================= */
+
+.reading-paragraph {
+
+    margin-bottom: 48px;
+}
+
+
+.reading-paragraph p {
+
+    color: var(--text);
+
+    font-size:
+        clamp(19px, 2.2vw, 22px);
+
+    line-height: 1.9;
+
     text-align: left;
 }
 
 
-/* Her paragraf ayrı kutu */
+/* =========================
+   ÖZEL ALINTI
+========================= */
 
-.story-paragraph {
-    position: relative;
+.special-quote {
 
-    margin-bottom: 42px;
-}
+    font-size:
+        clamp(22px, 3vw, 27px) !important;
 
+    line-height: 1.75 !important;
 
-.story-text {
-    font-size: 21px;
+    text-align: center !important;
 
-    line-height: 1.95;
-
-    color: #d8d2ca;
-
-    letter-spacing: .15px;
-}
-
-body.light-mode .story-text {
-    color: #403a3d;
-}
-
-
-/* İlk harf */
-
-.story-paragraph:first-child .story-text::first-letter {
-    font-size: 55px;
-
-    float: left;
-
-    line-height: .8;
-
-    padding-right: 7px;
-
-    color: #cdb9eb;
+    padding:
+        15px 10px;
 }
 
 
 /* =========================
-   PARAGRAF YORUM BUTONU
+   İTALİK METİN
 ========================= */
 
-.paragraph-comment-button {
-    display: inline-flex;
+.italic-text {
 
-    align-items: center;
+    font-style: italic;
 
-    gap: 7px;
+}
 
-    margin-top: 13px;
 
-    padding: 7px 10px;
+/* =========================
+   YORUM BUTONU
+========================= */
 
-    border: 1px solid #302b34;
+.comment-toggle {
+
+    margin-top: 18px;
+
+    padding:
+        7px 0;
+
+    border: none;
+
+    border-bottom:
+        1px solid var(--border);
 
     background: transparent;
 
-    color: #77716d;
+    color: var(--text-muted);
 
     font-family: Arial, sans-serif;
 
     font-size: 8px;
 
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 
     cursor: pointer;
 
     transition: .3s;
 }
 
-.paragraph-comment-button:hover {
-    color: #cdb9eb;
+.comment-toggle:hover {
 
-    border-color: #665873;
-}
+    color: var(--accent);
 
-body.light-mode .paragraph-comment-button {
-    color: #777074;
+    border-color: var(--accent);
 
-    border-color: #cec5bd;
 }
 
 
@@ -319,206 +370,337 @@ body.light-mode .paragraph-comment-button {
    YORUM ALANI
 ========================= */
 
-.comment-box {
+.comments {
+
     display: none;
 
-    margin-top: 15px;
+    margin-top: 20px;
 
-    padding: 18px;
+    padding: 20px;
 
-    background: #111015;
+    background: var(--surface);
 
-    border: 1px solid #29252f;
+    border:
+        1px solid var(--border);
 }
 
-.comment-box.open {
+.comments.open {
+
     display: block;
-}
 
-body.light-mode .comment-box {
-    background: #ebe5de;
-
-    border-color: #d1c8c0;
 }
 
 
 /* =========================
-   YORUM LİSTESİ
+   YORUMLAR
 ========================= */
 
-.comments-title {
+.comment-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+    margin-bottom: 20px;
+}
+
+
+.comment {
+
+    padding:
+        13px 14px;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        var(--surface-two);
+}
+
+
+.comment-user {
+
+    color: var(--accent);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 7px;
+}
+
+
+.comment-text {
+
+    color: var(--text-soft);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+
+    word-break: break-word;
+}
+
+
+/* =========================
+   YORUM YAZMA
+========================= */
+
+.comment-form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.comment-name,
+.comment-input {
+
+    width: 100%;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        var(--background);
+
+    color:
+        var(--text);
+
+    outline: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+}
+
+
+.comment-name {
+
+    height: 40px;
+
+    padding:
+        0 12px;
+}
+
+
+.comment-input {
+
+    min-height: 90px;
+
+    padding: 12px;
+
+    resize: vertical;
+}
+
+
+.comment-name:focus,
+.comment-input:focus {
+
+    border-color:
+        var(--accent);
+}
+
+
+.comment-send {
+
+    align-self: flex-end;
+
+    padding:
+        11px 18px;
+
+    border:
+        1px solid var(--accent-dark);
+
+    background:
+        transparent;
+
+    color:
+        var(--text);
+
     font-family: Arial, sans-serif;
 
     font-size: 8px;
 
     letter-spacing: 2px;
 
-    color: #8f819e;
-
-    margin-bottom: 12px;
-}
-
-
-.comments-list {
-    margin-bottom: 15px;
-}
-
-
-.comment {
-    padding: 12px 0;
-
-    border-bottom: 1px solid #29252f;
-}
-
-body.light-mode .comment {
-    border-bottom-color: #d3cbc4;
-}
-
-
-.comment-user {
-    font-family: Arial, sans-serif;
-
-    font-size: 8px;
-
-    letter-spacing: 1px;
-
-    color: #b9a7d8;
-
-    margin-bottom: 5px;
-}
-
-
-.comment-text {
-    font-family: Arial, sans-serif;
-
-    font-size: 11px;
-
-    line-height: 1.6;
-
-    color: #aaa39a;
-}
-
-body.light-mode .comment-text {
-    color: #625b61;
-}
-
-
-/* =========================
-   YORUM FORMU
-========================= */
-
-.comment-form {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 8px;
-}
-
-
-.comment-input {
-    width: 100%;
-
-    min-height: 70px;
-
-    resize: vertical;
-
-    padding: 12px;
-
-    border: 1px solid #39323f;
-
-    background: #09090b;
-
-    color: #eee9e2;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 11px;
-
-    outline: none;
-}
-
-.comment-input:focus {
-    border-color: #8f819e;
-}
-
-body.light-mode .comment-input {
-    background: #f8f5f1;
-
-    color: #29252b;
-
-    border-color: #c9c0b8;
-}
-
-
-.comment-name {
-    width: 100%;
-
-    padding: 11px 12px;
-
-    border: 1px solid #39323f;
-
-    background: #09090b;
-
-    color: #eee9e2;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 10px;
-
-    outline: none;
-}
-
-body.light-mode .comment-name {
-    background: #f8f5f1;
-
-    color: #29252b;
-
-    border-color: #c9c0b8;
-}
-
-
-.comment-submit {
-    align-self: flex-start;
-
-    padding: 10px 16px;
-
-    border: 1px solid #6e6384;
-
-    background: transparent;
-
-    color: #cdb9eb;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 8px;
-
-    letter-spacing: 1.5px;
-
     cursor: pointer;
 
     transition: .3s;
 }
 
-.comment-submit:hover {
-    background: #b9a7d8;
 
-    color: #09090b;
+.comment-send:hover {
+
+    background:
+        var(--accent);
+
+    color:
+        var(--background);
 }
 
 
 /* =========================
-   ALT GEÇİŞ
+   YÜKLENİYOR
 ========================= */
 
-.story-divider {
-    width: 45px;
+.loading-comments {
 
-    height: 1px;
+    color:
+        var(--text-muted);
 
-    background: #51465b;
+    font-family: Arial, sans-serif;
 
-    margin: 70px auto;
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   SÜSLER
+========================= */
+
+.chapter-symbol {
+
+    text-align: center;
+
+    color: var(--accent);
+
+    font-size: 24px;
+
+    margin:
+        55px 0;
+}
+
+
+/* =========================
+   BÖLÜM SONU
+========================= */
+
+.chapter-end {
+
+    margin-top: 75px;
+
+    text-align: center;
+}
+
+
+.chapter-end p {
+
+    color:
+        var(--text-soft);
+
+    font-size: 21px;
+
+    line-height: 1.9;
+
+}
+
+
+/* =========================
+   BÖLÜM GEÇİŞİ
+========================= */
+
+.chapter-navigation {
+
+    margin-top: 90px;
+
+    padding-top: 30px;
+
+    border-top:
+        1px solid var(--border);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+
+.chapter-nav-button {
+
+    padding:
+        13px 18px;
+
+    border:
+        1px solid var(--border);
+
+    color:
+        var(--text-muted);
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    transition: .3s;
+}
+
+
+.chapter-nav-button:hover {
+
+    border-color:
+        var(--accent);
+
+    color:
+        var(--accent);
+}
+       
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    padding:
+        60px 20px;
+
+    border-top:
+        1px solid var(--border);
+
+    text-align: center;
+}
+
+
+.footer-logo {
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size: 32px;
+
+    color:
+        var(--text);
+}
+
+
+footer p {
+
+    margin-top: 12px;
+
+    color:
+        var(--text-muted);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
 }
 
 
@@ -529,45 +711,156 @@ body.light-mode .comment-name {
 @media (max-width: 700px) {
 
     header {
-        padding: 18px 5%;
+
+        padding:
+            18px 5%;
     }
 
+
     .logo {
+
         font-size: 27px;
     }
 
-    .top-button {
-        padding: 8px 9px;
+
+    .header-right {
+
+        gap: 8px;
+    }
+
+
+    .back-home {
 
         font-size: 7px;
+
+        letter-spacing: 1px;
     }
 
-    .reader {
+
+    .theme-button {
+
+        width: 36px;
+        height: 36px;
+
+        font-size: 16px;
+    }
+
+
+    .chapter-page {
+
         width: 88%;
 
-        padding-top: 55px;
+        padding:
+            55px 0 80px;
     }
 
+
     .chapter-header {
+
         margin-bottom: 55px;
     }
 
-    .chapter-title {
-        font-size: 43px;
+
+    .chapter-header h1 {
+
+        font-size: 40px;
+
+        line-height: 1.2;
     }
 
-    .story-text {
+
+    .chapter-author {
+
+        font-size: 25px;
+    }
+
+
+    .reading-paragraph {
+
+        margin-bottom: 38px;
+    }
+
+
+    .reading-paragraph p {
+
         font-size: 18px;
 
         line-height: 1.85;
     }
 
-    .story-paragraph {
-        margin-bottom: 35px;
+
+    .special-quote {
+
+        font-size: 21px !important;
+
+        line-height: 1.7 !important;
+    }
+
+
+    .chapter-end p {
+
+        font-size: 18px;
+
+        line-height: 1.8;
+    }
+
+
+    .chapter-navigation {
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .chapter-nav-button {
+
+        text-align: center;
+
+        width: 100%;
+    }
+
+
+    .chapter-nav-button.next {
+
+        order: -1;
     }
 
 }
-    </style>
+
+
+/* =========================
+   SAYFA ANİMASYONU
+========================= */
+
+.chapter-page {
+
+    animation:
+        pageAppear .8s ease both;
+}
+
+
+@keyframes pageAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+</style>
 
 </head>
 
@@ -576,7 +869,7 @@ body.light-mode .comment-name {
 
 
 <!-- =========================
-     ÜST KISIM
+     ÜST BAR
 ========================= -->
 
 <header>
@@ -590,24 +883,29 @@ body.light-mode .comment-name {
     </a>
 
 
-    <div class="header-actions">
-
-        <button
-            class="top-button"
-            id="themeButton">
-
-            AYDINLIK
-
-        </button>
-
+    <div class="header-right">
 
         <a
             href="ringteki-son-dans.html"
-            class="top-button">
+            class="back-home">
 
-            ← KİTAP
+            ← BÖLÜMLER
 
         </a>
+
+
+        <!-- TEMA SİMGESİ -->
+
+        <button
+            class="theme-button"
+            id="themeButton"
+            aria-label="Tema değiştir">
+
+            <span id="themeIcon">
+                ☾
+            </span>
+
+        </button>
 
     </div>
 
@@ -616,493 +914,672 @@ body.light-mode .comment-name {
 
 
 <!-- =========================
-     OKUMA ALANI
+     BÖLÜM
 ========================= -->
 
-<main class="reader">
+<main class="chapter-page">
 
 
     <!-- BÖLÜM BAŞLIĞI -->
 
-    <section class="chapter-header">
-
-        <div class="book-name">
-
-            RİNGTEKİ SON DANS
-
-        </div>
-
+    <div class="chapter-header">
 
         <div class="chapter-number">
-
             BÖLÜM 1
-
         </div>
 
 
-        <h1 class="chapter-title">
-
-            Ringteki Son Dans
-
+        <h1>
+            RİNGTEKİ SON DANS
         </h1>
 
 
-        <div class="chapter-line"></div>
-
-
         <div class="chapter-author">
-
             kesmislalih
-
         </div>
 
-    </section>
+    </div>
 
 
 
     <!-- =========================
-         HİKÂYE
+         OKUMA ALANI
     ========================= -->
 
-    <section class="chapter-content">
+    <div class="reading-area">
+       
+        <!-- =========================
+             PARAGRAF 1
+        ========================= -->
 
-
-        <!-- PARAGRAF 1 -->
-
-        <article
-            class="story-paragraph"
+        <section
+            class="reading-paragraph"
             data-paragraph="1">
 
-            <p class="story-text">
-
-                Gecenin sessizliği, odanın duvarlarına
-                ağır ağır sinmişti. Dışarıdan gelen
-                rüzgârın sesi, içerideki sessizliği
-                yalnızca birkaç saniyeliğine bozuyordu.
-
+            <p class="special-quote">
+                <strong><em>
+                    ❝Gök gürleyecek kalbini incitecekti.
+                    Paramparça olan kalbinin düzelmesi
+                    bir çocuğun tatlı kıkırtısında yeniden
+                    hayat bulacaktı.❞
+                </em></strong>
             </p>
 
 
             <button
-                class="paragraph-comment-button"
-                onclick="toggleComments(1)">
+                class="comment-toggle"
+                type="button">
 
                 YORUMLAR
-                <span id="commentCount1">0</span>
-
             </button>
 
 
-            <div
-                class="comment-box"
-                id="comments1">
+            <div class="comments">
 
-                <div class="comments-title">
+                <div class="comment-list">
 
-                    BU PARAGRAFA YAPILAN YORUMLAR
-
-                </div>
-
-
-                <div
-                    class="comments-list"
-                    id="commentList1">
-
-                    <!-- Yorumlar JavaScript ile gelecek -->
+                    <div class="loading-comments">
+                        Yorumlar yükleniyor...
+                    </div>
 
                 </div>
 
 
-                <form
-                    class="comment-form"
-                    onsubmit="addComment(event, 1)">
+                <div class="comment-form">
 
                     <input
                         type="text"
                         class="comment-name"
-                        id="name1"
                         placeholder="Adın"
                         maxlength="30"
-                        required>
+                    >
 
 
                     <textarea
                         class="comment-input"
-                        id="comment1"
                         placeholder="Bu paragraf hakkında ne düşünüyorsun?"
-                        maxlength="500"
-                        required>
+                        maxlength="500">
                     </textarea>
 
 
                     <button
-                        type="submit"
-                        class="comment-submit">
+                        type="button"
+                        class="comment-send">
 
                         YORUM YAP
 
                     </button>
 
-                </form>
+                </div>
 
             </div>
 
-        </article>
+        </section>
 
 
 
-        <!-- PARAGRAF 2 -->
+        <!-- =========================
+             PARAGRAF 2
+        ========================= -->
 
-        <article
-            class="story-paragraph"
+        <section
+            class="reading-paragraph"
             data-paragraph="2">
 
-            <p class="story-text">
+            <p>
 
-                Masanın üzerinde duran eski müzik kutusu
-                kendi kendine çalışmaya başladı. İçindeki
-                küçük balerin, ağır ve zarif hareketlerle
-                dönüyordu.
+                Bir karanlık, iki kurşun.
+                <br>
+                Binbir acı, iki yetim.
 
             </p>
 
 
             <button
-                class="paragraph-comment-button"
-                onclick="toggleComments(2)">
+                class="comment-toggle"
+                type="button">
 
                 YORUMLAR
-                <span id="commentCount2">0</span>
 
             </button>
 
 
-            <div
-                class="comment-box"
-                id="comments2">
+            <div class="comments">
 
-                <div class="comments-title">
+                <div class="comment-list">
 
-                    BU PARAGRAFA YAPILAN YORUMLAR
+                    <div class="loading-comments">
+                        Yorumlar yükleniyor...
+                    </div>
 
                 </div>
 
 
-                <div
-                    class="comments-list"
-                    id="commentList2">
-                </div>
-
-
-                <form
-                    class="comment-form"
-                    onsubmit="addComment(event, 2)">
+                <div class="comment-form">
 
                     <input
                         type="text"
                         class="comment-name"
-                        id="name2"
                         placeholder="Adın"
                         maxlength="30"
-                        required>
+                    >
 
 
                     <textarea
                         class="comment-input"
-                        id="comment2"
                         placeholder="Bu paragraf hakkında ne düşünüyorsun?"
-                        maxlength="500"
-                        required>
+                        maxlength="500">
                     </textarea>
 
 
                     <button
-                        type="submit"
-                        class="comment-submit">
+                        type="button"
+                        class="comment-send">
 
                         YORUM YAP
 
                     </button>
 
-                </form>
+                </div>
 
             </div>
 
-        </article>
+        </section>
 
 
 
-        <!-- PARAGRAF 3 -->
+        <!-- =========================
+             PARAGRAF 3
+        ========================= -->
 
-        <article
-            class="story-paragraph"
+        <section
+            class="reading-paragraph"
             data-paragraph="3">
 
-            <p class="story-text">
+            <p>
 
-                Tam o sırada odanın diğer köşesinden
-                metalik bir ses duyuldu. Boks eldivenleri
-                yere düşmüş, sessizce duran boksör
-                bebeğin yanında kalmıştı.
+                Sihirli değneğin ucu müzik kutusunda
+                usul usul dönen balerinin üzerinde durdu.
+
+                <br><br>
+
+                Ardından boksör bebeğin omzuna dokundu.
 
             </p>
 
 
             <button
-                class="paragraph-comment-button"
-                onclick="toggleComments(3)">
+                class="comment-toggle"
+                type="button">
 
                 YORUMLAR
-                <span id="commentCount3">0</span>
 
             </button>
 
 
-            <div
-                class="comment-box"
-                id="comments3">
+            <div class="comments">
 
-                <div class="comments-title">
+                <div class="comment-list">
 
-                    BU PARAGRAFA YAPILAN YORUMLAR
+                    <div class="loading-comments">
+                        Yorumlar yükleniyor...
+                    </div>
 
                 </div>
 
 
-                <div
-                    class="comments-list"
-                    id="commentList3">
-                </div>
-
-
-                <form
-                    class="comment-form"
-                    onsubmit="addComment(event, 3)">
+                <div class="comment-form">
 
                     <input
                         type="text"
                         class="comment-name"
-                        id="name3"
                         placeholder="Adın"
                         maxlength="30"
-                        required>
+                    >
 
 
                     <textarea
                         class="comment-input"
-                        id="comment3"
                         placeholder="Bu paragraf hakkında ne düşünüyorsun?"
-                        maxlength="500"
-                        required>
+                        maxlength="500">
                     </textarea>
 
 
                     <button
-                        type="submit"
-                        class="comment-submit">
+                        type="button"
+                        class="comment-send">
 
                         YORUM YAP
 
                     </button>
 
-                </form>
+                </div>
 
             </div>
 
-        </article>
+        </section>
 
 
 
-        <!-- PARAGRAF 4 -->
+        <!-- =========================
+             PARAGRAF 4
+        ========================= -->
 
-        <article
-            class="story-paragraph"
+        <section
+            class="reading-paragraph"
             data-paragraph="4">
 
-            <p class="story-text">
+            <p>
 
-                İki oyuncak, iki farklı dünyanın sessiz
-                temsilcisiydi. Biri müziğin ritmiyle
-                hareket ediyor, diğeri ise ringe çıkacak
-                bir dövüşçü gibi dimdik duruyordu.
+                Gözleri acıtan bir ışık ardından soluk
+                renklerin yerine gelmesi bir mucizeydi.
 
             </p>
 
 
             <button
-                class="paragraph-comment-button"
-                onclick="toggleComments(4)">
+                class="comment-toggle"
+                type="button">
 
                 YORUMLAR
-                <span id="commentCount4">0</span>
 
             </button>
 
 
-            <div
-                class="comment-box"
-                id="comments4">
+            <div class="comments">
 
-                <div class="comments-title">
+                <div class="comment-list">
 
-                    BU PARAGRAFA YAPILAN YORUMLAR
+                    <div class="loading-comments">
+                        Yorumlar yükleniyor...
+                    </div>
 
                 </div>
 
 
-                <div
-                    class="comments-list"
-                    id="commentList4">
-                </div>
-
-
-                <form
-                    class="comment-form"
-                    onsubmit="addComment(event, 4)">
+                <div class="comment-form">
 
                     <input
                         type="text"
                         class="comment-name"
-                        id="name4"
                         placeholder="Adın"
                         maxlength="30"
-                        required>
+                    >
 
 
                     <textarea
                         class="comment-input"
-                        id="comment4"
                         placeholder="Bu paragraf hakkında ne düşünüyorsun?"
-                        maxlength="500"
-                        required>
+                        maxlength="500">
                     </textarea>
 
 
                     <button
-                        type="submit"
-                        class="comment-submit">
+                        type="button"
+                        class="comment-send">
 
                         YORUM YAP
 
                     </button>
 
-                </form>
+                </div>
 
             </div>
 
-        </article>
+        </section>
 
 
 
-        <!-- PARAGRAF 5 -->
+        <!-- =========================
+             PARAGRAF 5
+        ========================= -->
 
-        <article
-            class="story-paragraph"
+        <section
+            class="reading-paragraph"
             data-paragraph="5">
 
-            <p class="story-text">
-
-                Bazen hayat, birbirine hiç benzemeyen
-                iki insanı aynı hikâyenin içine bırakır.
-                Onları bir arada tutan şeyin ne olduğunu
-                anlamak ise zaman alır.
-
+            <p>
+                <em>
+                    Belki de kabul edilen büyü...
+                </em>
             </p>
 
 
             <button
-                class="paragraph-comment-button"
-                onclick="toggleComments(5)">
+                class="comment-toggle"
+                type="button">
 
                 YORUMLAR
-                <span id="commentCount5">0</span>
 
             </button>
 
 
-            <div
-                class="comment-box"
-                id="comments5">
+            <div class="comments">
 
-                <div class="comments-title">
+                <div class="comment-list">
 
-                    BU PARAGRAFA YAPILAN YORUMLAR
+                    <div class="loading-comments">
+                        Yorumlar yükleniyor...
+                    </div>
 
                 </div>
 
 
-                <div
-                    class="comments-list"
-                    id="commentList5">
-                </div>
-
-
-                <form
-                    class="comment-form"
-                    onsubmit="addComment(event, 5)">
+                <div class="comment-form">
 
                     <input
                         type="text"
                         class="comment-name"
-                        id="name5"
                         placeholder="Adın"
                         maxlength="30"
-                        required>
+                    >
 
 
                     <textarea
                         class="comment-input"
-                        id="comment5"
                         placeholder="Bu paragraf hakkında ne düşünüyorsun?"
-                        maxlength="500"
-                        required>
+                        maxlength="500">
                     </textarea>
 
 
                     <button
-                        type="submit"
-                        class="comment-submit">
+                        type="button"
+                        class="comment-send">
 
                         YORUM YAP
 
                     </button>
 
-                </form>
+                </div>
 
             </div>
 
-        </article>
+        </section>
 
 
 
-        <div class="story-divider"></div>
+        <!-- =========================
+             İKİNCİ BÖLÜM / DEVAM
+        ========================= -->
+
+        <div class="chapter-symbol">
+            𓍯
+        </div>
 
 
-    </section>
+        <section
+            class="reading-paragraph"
+            data-paragraph="6">
+
+            <p class="italic-text">
+
+                Küçükken gözlerini kapayınca
+                oyuncaklarının uyanacağını sananlara...
+
+            </p>
+
+
+            <button
+                class="comment-toggle"
+                type="button">
+
+                YORUMLAR
+
+            </button>
+
+
+            <div class="comments">
+
+                <div class="comment-list">
+
+                    <div class="loading-comments">
+                        Yorumlar yükleniyor...
+                    </div>
+
+                </div>
+
+
+                <div class="comment-form">
+
+                    <input
+                        type="text"
+                        class="comment-name"
+                        placeholder="Adın"
+                        maxlength="30"
+                    >
+
+
+                    <textarea
+                        class="comment-input"
+                        placeholder="Bu paragraf hakkında ne düşünüyorsun?"
+                        maxlength="500">
+                    </textarea>
+
+
+                    <button
+                        type="button"
+                        class="comment-send">
+
+                        YORUM YAP
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <div class="chapter-symbol">
+            𓍯
+        </div>
+
+
+
+        <section
+            class="reading-paragraph"
+            data-paragraph="7">
+
+            <p class="italic-text">
+
+                Uyu küçük çocuk,
+                <br>
+                Uyu ki uyansın oyuncakların.
+                <br>
+                Bir kurşunla kararan dünyanı
+                <br>
+                Aydınlatsın sihirli peri tozu.
+
+            </p>
+
+
+            <button
+                class="comment-toggle"
+                type="button">
+
+                YORUMLAR
+
+            </button>
+
+
+            <div class="comments">
+
+                <div class="comment-list">
+
+                    <div class="loading-comments">
+                        Yorumlar yükleniyor...
+                    </div>
+
+                </div>
+
+
+                <div class="comment-form">
+
+                    <input
+                        type="text"
+                        class="comment-name"
+                        placeholder="Adın"
+                        maxlength="30"
+                    >
+
+
+                    <textarea
+                        class="comment-input"
+                        placeholder="Bu paragraf hakkında ne düşünüyorsun?"
+                        maxlength="500">
+                    </textarea>
+
+
+                    <button
+                        type="button"
+                        class="comment-send">
+
+                        YORUM YAP
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <div class="chapter-symbol">
+            𓍼
+        </div>
+
+
+
+        <!-- =========================
+             SON ALINTI
+        ========================= -->
+
+        <section
+            class="reading-paragraph"
+            data-paragraph="8">
+
+            <p class="special-quote">
+
+                <strong><em>
+                    ❝Düşlediklerinin ötesi neresi beyaz kuğu?
+                    Nereye kadar dönüp duracaksın etrafında?❞
+                </em></strong>
+
+            </p>
+
+
+            <button
+                class="comment-toggle"
+                type="button">
+
+                YORUMLAR
+
+            </button>
+
+
+            <div class="comments">
+
+                <div class="comment-list">
+
+                    <div class="loading-comments">
+                        Yorumlar yükleniyor...
+                    </div>
+
+                </div>
+
+
+                <div class="comment-form">
+
+                    <input
+                        type="text"
+                        class="comment-name"
+                        placeholder="Adın"
+                        maxlength="30"
+                    >
+
+
+                    <textarea
+                        class="comment-input"
+                        placeholder="Bu paragraf hakkında ne düşünüyorsun?"
+                        maxlength="500">
+                    </textarea>
+
+
+                    <button
+                        type="button"
+                        class="comment-send">
+
+                        YORUM YAP
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+    </div>
+    <!-- reading-area BİTTİ -->
+
+
+    <!-- =========================
+         BÖLÜM SONU
+    ========================= -->
+
+    <div class="chapter-end">
+
+        <div class="chapter-symbol">
+            𓍯
+        </div>
+
+        <p class="italic-text">
+
+            Bir hikâyenin sonu,
+            bazen başka bir hikâyenin başlangıcıdır.
+
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         BÖLÜM NAVİGASYONU
+    ========================= -->
+
+    <div class="chapter-navigation">
+
+
+        <a
+            href="ringteki-son-dans.html"
+            class="chapter-nav-button">
+
+            ← BÖLÜM LİSTESİ
+
+        </a>
+
+
+        <a
+            href="bolum-2.html"
+            class="chapter-nav-button next">
+
+            SONRAKİ BÖLÜM →
+
+        </a>
+
+
+           </div>
+               <!-- =========================
+         ANA ALAN SONU
+    ========================= -->
 
 </main>
-<!-- =========================
-     BÖLÜM SONU
-========================= -->
-
-<section class="chapter-end">
-
-    <div class="chapter-end-line"></div>
-
-    <p>
-        Bölüm sona erdi.
-    </p>
-
-    <a
-        href="ringteki-son-dans.html"
-        class="back-book">
-
-        ← BÖLÜMLERE DÖN
-
-    </a>
-
-</section>
-
 
 
 <!-- =========================
@@ -1122,45 +1599,75 @@ body.light-mode .comment-name {
 </footer>
 
 
+<!-- =========================
+     TEMA + YORUM SİSTEMİ
+========================= -->
 
 <script>
 
-/* =========================
+/* =================================
    AYDINLIK / KARANLIK MOD
-========================= */
+================================= */
 
 const themeButton =
     document.getElementById("themeButton");
 
+const themeIcon =
+    document.getElementById("themeIcon");
+
+
+/*
+   Daha önce seçilmiş tema varsa
+   onu kullan.
+*/
+
 const savedTheme =
-    localStorage.getItem("readerTheme");
+    localStorage.getItem("kesmislalih-theme");
 
 
 if (savedTheme === "light") {
 
-    document.body.classList.add("light-mode");
+    document.body.classList.add("light");
 
-    themeButton.textContent = "KARANLIK";
+    themeIcon.textContent = "☀";
+
+} else {
+
+    themeIcon.textContent = "☾";
 
 }
 
 
+/*
+   Butona basıldığında tema değişir.
+*/
+
 themeButton.addEventListener("click", function () {
 
-    document.body.classList.toggle("light-mode");
+    document.body.classList.toggle("light");
 
 
-    if (document.body.classList.contains("light-mode")) {
+    const isLight =
+        document.body.classList.contains("light");
 
-        localStorage.setItem("readerTheme", "light");
 
-        themeButton.textContent = "KARANLIK";
+    if (isLight) {
+
+        themeIcon.textContent = "☀";
+
+        localStorage.setItem(
+            "kesmislalih-theme",
+            "light"
+        );
 
     } else {
 
-        localStorage.setItem("readerTheme", "dark");
+        themeIcon.textContent = "☾";
 
-        themeButton.textContent = "AYDINLIK";
+        localStorage.setItem(
+            "kesmislalih-theme",
+            "dark"
+        );
 
     }
 
@@ -1168,58 +1675,176 @@ themeButton.addEventListener("click", function () {
 
 
 
-/* =========================
-   PARAGRAF YORUMLARINI AÇ / KAPAT
-========================= */
+/* =================================
+   YORUMLARI AÇ / KAPAT
+================================= */
 
-function toggleComments(number) {
-
-    const box =
-        document.getElementById("comments" + number);
+const commentButtons =
+    document.querySelectorAll(".comment-toggle");
 
 
-    if (box.classList.contains("open")) {
+commentButtons.forEach(function(button) {
 
-        box.classList.remove("open");
+    button.addEventListener("click", function() {
 
-    } else {
-
-        box.classList.add("open");
-
-        loadComments(number);
-
-    }
-
-}
+        const comments =
+            this.nextElementSibling;
 
 
-
-/* =========================
-   YORUMLARI ŞİMDİLİK TARAYICIDA SAKLA
-========================= */
-
-function getComments(number) {
-
-    const saved =
-        localStorage.getItem(
-            "paragraphComments" + number
-        );
+        comments.classList.toggle("open");
 
 
-    if (!saved) {
+        if (comments.classList.contains("open")) {
 
-        return [];
+            this.textContent =
+                "YORUMLARI GİZLE";
 
+        } else {
+
+            this.textContent =
+                "YORUMLAR";
+
+        }
+
+    });
+
+});
+
+
+
+/* =================================
+   SUPABASE AYARLARI
+================================= */
+
+
+/*
+   BURAYA KENDİ SUPABASE BİLGİLERİNİ
+   YAPIŞTIRACAKSIN.
+
+   ÖRNEK:
+
+   const SUPABASE_URL =
+       "https://xxxxxxxx.supabase.co";
+
+   const SUPABASE_ANON_KEY =
+       "eyJhbGciOi...";
+*/
+
+
+const SUPABASE_URL =
+    "BURAYA_SUPABASE_URL";
+
+
+const SUPABASE_ANON_KEY =
+    "BURAYA_SUPABASE_ANON_KEY";
+
+
+
+/* =================================
+   YORUMLARI GETİR
+================================= */
+
+async function loadComments(
+    paragraphNumber,
+    commentList
+) {
+
+    if (
+        SUPABASE_URL ===
+            "BURAYA_SUPABASE_URL"
+        ||
+        SUPABASE_ANON_KEY ===
+            "BURAYA_SUPABASE_ANON_KEY"
+    ) {
+
+        commentList.innerHTML = `
+            <div class="loading-comments">
+                Yorum sistemi henüz bağlanmadı.
+            </div>
+        `;
+
+        return;
     }
 
 
     try {
 
-        return JSON.parse(saved);
+        const response =
+            await fetch(
+                SUPABASE_URL +
+                "/rest/v1/comments" +
+                "?select=*" +
+                "&book=eq.ringteki-son-dans" +
+                "&chapter=eq.1" +
+                "&paragraph=eq." +
+                paragraphNumber +
+                "&order=created_at.asc",
+                {
 
-    } catch {
+                    headers: {
 
-        return [];
+                        "apikey":
+                            SUPABASE_ANON_KEY,
+
+                        "Authorization":
+                            "Bearer " +
+                            SUPABASE_ANON_KEY
+
+                    }
+
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Yorumlar alınamadı."
+            );
+
+        }
+
+
+        const comments =
+            await response.json();
+
+
+        commentList.innerHTML = "";
+
+
+        if (comments.length === 0) {
+
+            commentList.innerHTML = `
+                <div class="loading-comments">
+                    Henüz yorum yok. İlk yorumu sen yap.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        comments.forEach(function(comment) {
+
+            addCommentToPage(
+                commentList,
+                comment.username,
+                comment.content
+            );
+
+        });
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        commentList.innerHTML = `
+            <div class="loading-comments">
+                Yorumlar şu anda yüklenemiyor.
+            </div>
+        `;
 
     }
 
@@ -1227,367 +1852,334 @@ function getComments(number) {
 
 
 
-function saveComments(number, comments) {
+/* =================================
+   YORUMU SAYFAYA EKLE
+================================= */
 
-    localStorage.setItem(
-        "paragraphComments" + number,
-        JSON.stringify(comments)
+function addCommentToPage(
+    commentList,
+    username,
+    content
+) {
+
+    const comment =
+        document.createElement("div");
+
+
+    comment.className =
+        "comment";
+
+
+    const user =
+        document.createElement("div");
+
+
+    user.className =
+        "comment-user";
+
+
+    user.textContent =
+        username;
+
+
+    const text =
+        document.createElement("div");
+
+
+    text.className =
+        "comment-text";
+
+
+    text.textContent =
+        content;
+
+
+    comment.appendChild(user);
+
+    comment.appendChild(text);
+
+    commentList.appendChild(comment);
+
+}
+
+
+
+/* =================================
+   YORUM GÖNDER
+================================= */
+
+const sendButtons =
+    document.querySelectorAll(".comment-send");
+
+
+sendButtons.forEach(function(button) {
+
+    button.addEventListener(
+        "click",
+        async function() {
+
+
+            const commentBox =
+                this.closest(".comments");
+
+
+            const paragraph =
+                this.closest(
+                    ".reading-paragraph"
+                );
+
+
+            const nameInput =
+                commentBox.querySelector(
+                    ".comment-name"
+                );
+
+
+            const textInput =
+                commentBox.querySelector(
+                    ".comment-input"
+                );
+
+
+            const commentList =
+                commentBox.querySelector(
+                    ".comment-list"
+                );
+
+
+            const username =
+                nameInput.value.trim();
+
+
+            const content =
+                textInput.value.trim();
+
+
+            /* BOŞ YORUM KONTROLÜ */
+
+            if (!username) {
+
+                alert(
+                    "Lütfen bir isim yaz."
+                );
+
+                nameInput.focus();
+
+                return;
+
+            }
+
+
+            if (!content) {
+
+                alert(
+                    "Lütfen yorumunu yaz."
+                );
+
+                textInput.focus();
+
+                return;
+
+            }
+
+
+            /* SUPABASE BAĞLANTISI YOKSA */
+
+            if (
+                SUPABASE_URL ===
+                    "BURAYA_SUPABASE_URL"
+                ||
+                SUPABASE_ANON_KEY ===
+                    "BURAYA_SUPABASE_ANON_KEY"
+            ) {
+
+                alert(
+                    "Yorum sistemi henüz bağlanmadı."
+                );
+
+                return;
+
+            }
+
+
+            const paragraphNumber =
+                paragraph.dataset.paragraph;
+
+
+            const originalText =
+                this.textContent;
+
+
+            this.textContent =
+                "GÖNDERİLİYOR...";
+
+
+            this.disabled = true;
+
+
+            try {
+
+
+                const response =
+                    await fetch(
+                        SUPABASE_URL +
+                        "/rest/v1/comments",
+                        {
+
+                            method: "POST",
+
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json",
+
+                                "apikey":
+                                    SUPABASE_ANON_KEY,
+
+                                "Authorization":
+                                    "Bearer " +
+                                    SUPABASE_ANON_KEY,
+
+                                "Prefer":
+                                    "return=representation"
+
+                            },
+
+
+                            body: JSON.stringify({
+
+                                book:
+                                    "ringteki-son-dans",
+
+                                chapter:
+                                    1,
+
+                                paragraph:
+                                    Number(
+                                        paragraphNumber
+                                    ),
+
+                                username:
+                                    username,
+
+                                content:
+                                    content
+
+                            })
+
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    const errorText =
+                        await response.text();
+
+                    console.error(
+                        errorText
+                    );
+
+                    throw new Error(
+                        "Yorum gönderilemedi."
+                    );
+
+                }
+
+
+                const newComment =
+                    await response.json();
+
+
+                /*
+                   Yeni yorumu hemen ekrana göster.
+                */
+
+                if (
+                    commentList.querySelector(
+                        ".loading-comments"
+                    )
+                ) {
+
+                    commentList.innerHTML = "";
+
+                }
+
+
+                addCommentToPage(
+                    commentList,
+                    username,
+                    content
+                );
+
+
+                /*
+                   Alanları temizle.
+                */
+
+                nameInput.value = "";
+
+                textInput.value = "";
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "Yorum gönderilirken bir hata oluştu."
+                );
+
+            }
+
+
+            this.textContent =
+                originalText;
+
+
+            this.disabled = false;
+
+        }
     );
 
-}
+});
 
 
 
-/* =========================
-   YORUMLARI GÖSTER
-========================= */
+/* =================================
+   SAYFA AÇILINCA YORUMLARI GETİR
+================================= */
 
-function loadComments(number) {
+document
+    .querySelectorAll(".reading-paragraph")
+    .forEach(function(paragraph) {
 
-    const list =
-        document.getElementById(
-            "commentList" + number
-        );
 
+        const paragraphNumber =
+            paragraph.dataset.paragraph;
 
-    const count =
-        document.getElementById(
-            "commentCount" + number
-        );
 
+        const commentList =
+            paragraph.querySelector(
+                ".comment-list"
+            );
 
-    const comments =
-        getComments(number);
 
+        if (commentList) {
 
-    list.innerHTML = "";
+            loadComments(
+                paragraphNumber,
+                commentList
+            );
 
+        }
 
-    count.textContent =
-        comments.length;
+    });
 
+</script>
 
-    if (comments.length === 0) {
 
-        const empty =
-            document.createElement("div");
+</body>
 
-        empty.className =
-            "no-comments";
-
-        empty.textContent =
-            "Henüz yorum yapılmamış.";
-
-        list.appendChild(empty);
-
-        return;
-
-    }
-
-
-
-    comments.forEach(function(comment) {
-
-        const item =
-            document.createElement("div");
-
-        item.className =
-            "comment-item";
-
-
-        const name =
-            document.createElement("div");
-
-        name.className =
-            "comment-user";
-
-        name.textContent =
-            comment.name;
-
-
-        const text =
-            document.createElement("div");
-
-        text.className =
-            "comment-text";
-
-        text.textContent =
-            comment.text;
-
-<!-- =========================
-     BÖLÜM İÇERİĞİ
-========================= -->
-
-<main class="chapter-page">
-
-    <!-- BÖLÜM BAŞLIĞI -->
-
-    <div class="chapter-header">
-
-        <div class="chapter-number">
-            BÖLÜM 1
-        </div>
-
-        <h1>
-            RİNGTEKİ SON DANS
-        </h1>
-
-        <div class="chapter-author">
-            kesmislalih
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         PARAGRAF 1
-    ========================= -->
-
-    <section class="reading-paragraph">
-
-        <p class="special-quote">
-
-            ❝Gök gürleyecek kalbini incitecekti.
-            Paramparça olan kalbinin düzelmesi
-            bir çocuğun tatlı kıkırtısında yeniden
-            hayat bulacaktı.❞
-
-        </p>
-
-        <button class="comment-toggle">
-            Yorumlar
-        </button>
-
-        <div class="comments">
-            <div class="comment-list"></div>
-
-            <textarea
-                placeholder="Bu paragraf hakkında ne düşünüyorsun?"
-                class="comment-input">
-            </textarea>
-
-            <button class="comment-send">
-                Yorum Yap
-            </button>
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         PARAGRAF 2
-    ========================= -->
-
-    <section class="reading-paragraph">
-
-        <p>
-            Bir karanlık, iki kurşun.
-            <br>
-            Binbir acı, iki yetim.
-        </p>
-
-        <button class="comment-toggle">
-            Yorumlar
-        </button>
-
-        <div class="comments">
-
-            <div class="comment-list"></div>
-
-            <textarea
-                placeholder="Bu paragraf hakkında ne düşünüyorsun?"
-                class="comment-input">
-            </textarea>
-
-            <button class="comment-send">
-                Yorum Yap
-            </button>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         PARAGRAF 3
-    ========================= -->
-
-    <section class="reading-paragraph">
-
-        <p>
-            Sihirli değneğin ucu müzik kutusunda
-            usul usul dönen balerinin üzerinde durdu.
-            <br><br>
-            Ardından boksör bebeğin omzuna dokundu.
-        </p>
-
-        <button class="comment-toggle">
-            Yorumlar
-        </button>
-
-        <div class="comments">
-
-            <div class="comment-list"></div>
-
-            <textarea
-                placeholder="Bu paragraf hakkında ne düşünüyorsun?"
-                class="comment-input">
-            </textarea>
-
-            <button class="comment-send">
-                Yorum Yap
-            </button>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         PARAGRAF 4
-    ========================= -->
-
-    <section class="reading-paragraph">
-
-        <p>
-            Gözleri acıtan bir ışık ardından soluk
-            renklerin yerine gelmesi bir mucizeydi.
-        </p>
-
-        <button class="comment-toggle">
-            Yorumlar
-        </button>
-
-        <div class="comments">
-
-            <div class="comment-list"></div>
-
-            <textarea
-                placeholder="Bu paragraf hakkında ne düşünüyorsun?"
-                class="comment-input">
-            </textarea>
-
-            <button class="comment-send">
-                Yorum Yap
-            </button>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         PARAGRAF 5
-    ========================= -->
-
-    <section class="reading-paragraph">
-
-        <p class="ending-italic">
-
-            Belki de kabul edilen büyü...
-
-        </p>
-
-        <button class="comment-toggle">
-            Yorumlar
-        </button>
-
-        <div class="comments">
-
-            <div class="comment-list"></div>
-
-            <textarea
-                placeholder="Bu paragraf hakkında ne düşünüyorsun?"
-                class="comment-input">
-            </textarea>
-
-            <button class="comment-send">
-                Yorum Yap
-            </button>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         BÖLÜM SONU
-    ========================= -->
-
-    <div class="chapter-end">
-
-        <div class="chapter-symbol">
-            𓍯
-        </div>
-
-        <p class="italic-text">
-            Küçükken gözlerini kapayınca
-            oyuncaklarının uyanacağını sananlara...
-        </p>
-
-
-        <div class="chapter-symbol">
-            𓍯
-        </div>
-
-
-        <p class="italic-text">
-            Uyu küçük çocuk,
-            <br>
-            Uyu ki uyansın oyuncakların.
-            <br>
-            Bir kurşunla kararan dünyanı
-            <br>
-            Aydınlatsın sihirli peri tozu.
-        </p>
-
-
-        <div class="chapter-symbol">
-            𓍼
-        </div>
-
-
-        <p class="special-quote">
-
-            ❝Düşlediklerinin ötesi neresi beyaz kuğu?
-            Nereye kadar dönüp duracaksın etrafında?❞
-
-        </p>
-
-    </div>
-
-
-
-    <!-- =========================
-         BÖLÜM NAVİGASYONU
-    ========================= -->
-
-    <div class="chapter-navigation">
-
-        <a
-            href="ringteki-son-dans.html"
-            class="chapter-nav-button">
-
-            ← BÖLÜM LİSTESİ
-
-        </a>
-
-
-        <a
-            href="bolum-2.html"
-            class="chapter-nav-button next">
-
-            SONRAKİ BÖLÜM →
-
-        </a>
-
-    </div>
-
-</main>
-   </body>
 </html>
