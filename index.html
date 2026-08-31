@@ -7,29 +7,27 @@
 
 <title>kesmislalih</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap');
-
-
-/* =========================
-   GENEL
-========================= */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    background: #09090b;
-    color: #f3efe8;
-    font-family: "Cormorant Garamond", serif;
+body{
+    background:#09090b;
+    color:#f3efe8;
+    font-family:"Cormorant Garamond",serif;
 }
 
 
@@ -37,47 +35,45 @@ body {
    HEADER
 ========================= */
 
-header {
-    width: 100%;
-    padding: 25px 6%;
+header{
+    width:100%;
+    padding:25px 6%;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 
-    position: absolute;
-    top: 0;
-    left: 0;
+    position:absolute;
+    top:0;
+    left:0;
 
-    z-index: 100;
+    z-index:100;
 }
 
 
 /* DAHA YUMUŞAK LOGO */
 
-.logo {
-    color: #f4eff9;
-    text-decoration: none;
+.logo{
+    color:#eee8f2;
+    text-decoration:none;
 
-    font-family: "Great Vibes", cursive;
-    font-size: 31px;
-    font-weight: 400;
+    font-family:"Great Vibes",cursive;
+    font-size:31px;
 
-    opacity: .94;
+    font-weight:400;
+
+    opacity:.92;
 
     text-shadow:
-        0 0 5px rgba(220,195,255,.30),
-        0 0 14px rgba(185,167,216,.16);
+        0 0 5px rgba(220,195,255,.25),
+        0 0 15px rgba(185,167,216,.12);
 
-    transition: .3s ease;
+    transition:.3s;
 }
 
-.logo:hover {
-    color: #d9c9eb;
-
-    text-shadow:
-        0 0 7px rgba(220,195,255,.42),
-        0 0 18px rgba(185,167,216,.22);
+.logo:hover{
+    color:#f8f3ff;
+    opacity:1;
 }
 
 
@@ -85,44 +81,43 @@ header {
    MENÜ BUTONU
 ========================= */
 
-.menu-button {
-    width: 40px;
-    height: 40px;
+.menu-button{
+    width:40px;
+    height:40px;
 
-    border: 1px solid #38323f;
-    background: rgba(9,9,11,.75);
+    border:1px solid #38323f;
+    background:rgba(9,9,11,.75);
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
 
-    gap: 5px;
+    gap:5px;
 
-    cursor: pointer;
-
-    z-index: 102;
+    cursor:pointer;
+    z-index:102;
 }
 
-.menu-line {
-    width: 18px;
-    height: 1px;
+.menu-line{
+    width:18px;
+    height:1px;
 
-    background: #eee8e1;
+    background:#eee8e1;
 
-    transition: .3s;
+    transition:.3s;
 }
 
-.menu-button.active .menu-line:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
+.menu-button.active .menu-line:nth-child(1){
+    transform:translateY(6px) rotate(45deg);
 }
 
-.menu-button.active .menu-line:nth-child(2) {
-    opacity: 0;
+.menu-button.active .menu-line:nth-child(2){
+    opacity:0;
 }
 
-.menu-button.active .menu-line:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
+.menu-button.active .menu-line:nth-child(3){
+    transform:translateY(-6px) rotate(-45deg);
 }
 
 
@@ -130,153 +125,125 @@ header {
    MENÜ PANELİ
 ========================= */
 
-.menu-panel {
-    position: fixed;
+.menu-panel{
+    position:fixed;
 
-    top: 0;
-    right: -330px;
+    top:0;
+    right:-330px;
 
-    width: 310px;
-    height: 100vh;
+    width:310px;
+    height:100vh;
 
-    background: #111015;
+    background:#111015;
 
-    border-left: 1px solid #302a38;
+    border-left:1px solid #302a38;
 
-    padding: 110px 40px 40px;
+    padding:110px 40px 40px;
 
-    z-index: 101;
+    z-index:101;
 
-    transition: right .45s ease;
+    transition:right .45s ease;
 
-    overflow-y: auto;
+    overflow-y:auto;
 }
 
-.menu-panel.open {
-    right: 0;
+.menu-panel.open{
+    right:0;
 }
 
-.menu-small-title {
-    font-family: Arial, sans-serif;
+.menu-small-title{
+    font-family:Arial,sans-serif;
 
-    font-size: 8px;
-    letter-spacing: 4px;
+    font-size:8px;
+    letter-spacing:4px;
 
-    color: #756d79;
+    color:#756d79;
 
-    margin-bottom: 25px;
+    margin-bottom:25px;
 }
 
-.menu-panel a.menu-link {
-    display: block;
+.menu-panel a.menu-link{
+    display:block;
 
-    padding: 16px 0;
+    padding:16px 0;
 
-    border-bottom: 1px solid #29252d;
+    border-bottom:1px solid #29252d;
 
-    color: #e8e2da;
+    color:#e8e2da;
 
-    text-decoration: none;
+    text-decoration:none;
 
-    font-size: 22px;
+    font-size:22px;
 
-    transition: .3s;
+    transition:.3s;
 }
 
-.menu-panel a.menu-link:hover {
-    color: #cdb9eb;
-
-    padding-left: 8px;
-}
-
-
-/* =========================
-   MENÜ SOSYAL MEDYA
-========================= */
-
-.menu-social-title {
-    font-family: Arial, sans-serif;
-
-    font-size: 7px;
-
-    letter-spacing: 3px;
-
-    color: #756d79;
-
-    margin-top: 27px;
-    margin-bottom: 13px;
-}
-
-.menu-social {
-    display: flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    flex-wrap: wrap;
-}
-
-.menu-social a {
-    width: 36px;
-    height: 36px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    color: #8b8195;
-
-    text-decoration: none;
-
-    border: 1px solid #332e38;
-
-    transition: .3s ease;
-}
-
-.menu-social a:hover {
-    color: #d8c8f0;
-
-    border-color: #756586;
-
-    transform: translateY(-3px);
-
-    background: #17141b;
-}
-
-.icon {
-    width: 18px;
-    height: 18px;
-
-    fill: currentColor;
-}
-
-.x-icon {
-    width: 15px;
-    height: 15px;
+.menu-panel a.menu-link:hover{
+    color:#cdb9eb;
+    padding-left:8px;
 }
 
 
 /* =========================
-   WATTPAD
-   GERÇEKÇİ W AMBLEMİ
+   SOSYAL İKONLAR
 ========================= */
 
-.wattpad-svg {
-    width: 20px;
-    height: 20px;
+.menu-social-title{
+    font-family:Arial,sans-serif;
+
+    font-size:7px;
+    letter-spacing:3px;
+
+    color:#756d79;
+
+    margin-top:27px;
+    margin-bottom:13px;
 }
 
+.menu-social{
+    display:flex;
+    align-items:center;
 
-/* =========================
-   PINTEREST
-   ORİJİNAL P AMBLEMİ
-========================= */
+    gap:8px;
+    flex-wrap:wrap;
+}
 
-.pinterest-svg {
-    width: 19px;
-    height: 19px;
+.menu-social a{
+    width:36px;
+    height:36px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#8b8195;
+
+    text-decoration:none;
+
+    border:1px solid #332e38;
+
+    transition:.3s ease;
+}
+
+.menu-social a:hover{
+    color:#d8c8f0;
+    border-color:#756586;
+
+    transform:translateY(-3px);
+
+    background:#17141b;
+}
+
+.icon{
+    width:18px;
+    height:18px;
+
+    fill:currentColor;
+}
+
+.x-icon{
+    width:15px;
+    height:15px;
 }
 
 
@@ -284,18 +251,18 @@ header {
    MENÜ ALT LOGO
 ========================= */
 
-.menu-footer {
-    margin-top: 45px;
+.menu-footer{
+    margin-top:45px;
 
-    padding-top: 20px;
+    padding-top:20px;
 
-    border-top: 1px solid #29252d;
+    border-top:1px solid #29252d;
 
-    font-family: "Great Vibes", cursive;
+    font-family:"Great Vibes",cursive;
 
-    font-size: 26px;
+    font-size:26px;
 
-    color: #8f819e;
+    color:#8f819e;
 }
 
 
@@ -303,28 +270,26 @@ header {
    MENÜ ARKA PLAN
 ========================= */
 
-.menu-overlay {
-    position: fixed;
+.menu-overlay{
+    position:fixed;
 
-    inset: 0;
+    inset:0;
 
-    background: rgba(0,0,0,.45);
+    background:rgba(0,0,0,.45);
 
-    backdrop-filter: blur(2px);
+    backdrop-filter:blur(2px);
 
-    opacity: 0;
+    opacity:0;
+    visibility:hidden;
 
-    visibility: hidden;
+    transition:.3s;
 
-    transition: .3s;
-
-    z-index: 100;
+    z-index:100;
 }
 
-.menu-overlay.open {
-    opacity: 1;
-
-    visibility: visible;
+.menu-overlay.open{
+    opacity:1;
+    visibility:visible;
 }
 
 
@@ -332,22 +297,19 @@ header {
    ANA SAYFA
 ========================= */
 
-.hero {
-    min-height: 100vh;
+.hero{
+    min-height:100vh;
 
-    display: flex;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-    justify-content: center;
+    text-align:center;
 
-    align-items: center;
+    padding:100px 25px 80px;
 
-    text-align: center;
-
-    padding: 100px 25px 80px;
-
-    position: relative;
-
-    overflow: hidden;
+    position:relative;
+    overflow:hidden;
 
     background:
         radial-gradient(
@@ -359,23 +321,18 @@ header {
         );
 }
 
+.hero::before{
+    content:"";
 
-/* =========================
-   SİSLİ MOR IŞIK
-========================= */
+    position:absolute;
 
-.hero::before {
-    content: "";
+    width:650px;
+    height:650px;
 
-    position: absolute;
+    left:50%;
+    top:45%;
 
-    width: 650px;
-    height: 650px;
-
-    left: 50%;
-    top: 45%;
-
-    transform: translate(-50%, -50%);
+    transform:translate(-50%,-50%);
 
     background:
         radial-gradient(
@@ -385,286 +342,370 @@ header {
             transparent 72%
         );
 
-    filter: blur(65px);
+    filter:blur(65px);
 
-    border-radius: 50%;
+    border-radius:50%;
 
-    pointer-events: none;
+    pointer-events:none;
 }
 
+.hero::after{
+    content:"";
 
-/* =========================
-   GRAIN
-========================= */
+    position:absolute;
+    inset:0;
 
-.hero::after {
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    opacity: .045;
+    opacity:.045;
 
     background-image:
         url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.45'/%3E%3C/svg%3E");
 
-    pointer-events: none;
-
-    mix-blend-mode: screen;
+    pointer-events:none;
 }
 
-.hero-content {
-    position: relative;
-
-    z-index: 2;
+.hero-content{
+    position:relative;
+    z-index:2;
 }
 
 
-/* =========================
-   ANA İMZA
-========================= */
+/* DAHA ZARİF ANA YAZI */
 
-.hero h1 {
-    font-family: "Ballet", "Great Vibes", cursive;
+.hero h1{
+    font-family:"Ballet","Great Vibes",cursive;
 
-    font-size: clamp(95px, 20vw, 180px);
+    font-size:clamp(95px,20vw,180px);
 
-    font-weight: 400;
+    font-weight:400;
 
-    line-height: .75;
+    line-height:.75;
 
-    letter-spacing: -3px;
+    letter-spacing:-3px;
 
-    color: #f7f2fb;
+    color:#f3eef7;
 
-    transform: rotate(-2deg);
+    transform:rotate(-3deg);
 
     text-shadow:
-        0 0 7px rgba(220,195,255,.30),
-        0 0 20px rgba(185,167,216,.18),
-        0 0 42px rgba(185,167,216,.08);
+        0 0 7px rgba(220,195,255,.28),
+        0 0 22px rgba(185,167,216,.16);
 
-    white-space: nowrap;
+    white-space:nowrap;
 }
 
-.line {
-    width: 110px;
+.line{
+    width:110px;
+    height:1px;
 
-    height: 1px;
+    background:#b9a7d8;
 
-    background: #b9a7d8;
-
-    margin: 38px auto 30px;
+    margin:38px auto 30px;
 
     box-shadow:
         0 0 10px rgba(185,167,216,.35);
 }
 
-.hero p {
-    max-width: 550px;
+.hero p{
+    max-width:550px;
 
-    margin: auto;
+    margin:auto;
 
-    color: #aaa39a;
+    color:#aaa39a;
 
-    font-family: Arial, sans-serif;
+    font-family:Arial,sans-serif;
 
-    font-size: 10px;
+    font-size:10px;
 
-    line-height: 1.8;
+    line-height:1.8;
 
-    letter-spacing: 3px;
+    letter-spacing:3px;
 
-    text-transform: uppercase;
+    text-transform:uppercase;
 }
 
+.button{
+    display:inline-block;
 
-/* =========================
-   BUTON
-========================= */
+    margin-top:45px;
 
-.button {
-    display: inline-block;
+    padding:14px 27px;
 
-    margin-top: 45px;
+    border:1px solid #6e6384;
 
-    padding: 14px 27px;
+    color:#f4f0ea;
 
-    border: 1px solid #6e6384;
+    text-decoration:none;
 
-    color: #f4f0ea;
+    font-family:Arial,sans-serif;
 
-    text-decoration: none;
+    font-size:9px;
 
-    font-family: Arial, sans-serif;
+    letter-spacing:2px;
 
-    font-size: 9px;
-
-    letter-spacing: 2px;
-
-    transition: .3s;
+    transition:.3s;
 }
 
-.button:hover {
-    background: #b9a7d8;
+.button:hover{
+    background:#b9a7d8;
 
-    color: #09090b;
+    color:#09090b;
 
     box-shadow:
         0 0 20px rgba(185,167,216,.18);
 }
+<!-- =========================
+     MENÜ
+========================= -->
+
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<nav class="menu-panel" id="menuPanel">
+
+    <div class="menu-small-title">
+        KESMISLALIH
+    </div>
+
+    <a href="#" class="menu-link">Ana Sayfa</a>
+    <a href="#kitaplar" class="menu-link">Kitaplar</a>
+    <a href="#hakkimda" class="menu-link">Hakkımda</a>
+    <a href="#galeri" class="menu-link">Galeri</a>
+    <a href="#duvar" class="menu-link">Duvar</a>
+    <a href="#duyurular" class="menu-link">Duyurular</a>
+    <a href="#iletisim" class="menu-link">İletişim</a>
 
 
-/* =========================
-   BÖLÜMLER
-========================= */
+    <div class="menu-social-title">
+        BENİ TAKİP ET
+    </div>
 
-.section {
-    padding: 120px 7%;
-}
-
-.section-title {
-    font-size: 44px;
-
-    font-weight: 400;
-
-    margin-bottom: 4px;
-}
-
-.section-subtitle {
-    font-family: "Great Vibes", cursive;
-
-    font-size: 31px;
-
-    color: #d8c8f0;
-
-    text-shadow:
-        0 0 5px rgba(216,200,240,.5),
-        0 0 16px rgba(185,167,216,.3);
-
-    margin-bottom: 55px;
-}
+    <div class="menu-social">
 
 
-/* =========================
-   KİTAPLIK
-========================= */
+        <!-- TIKTOK -->
 
-.library {
-    padding: 45px 35px 0;
+        <a href="https://www.tiktok.com/@kesmislalih"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="TikTok">
 
-    background:
-        linear-gradient(
-            to bottom,
-            #121014,
-            #0c0b0e
-        );
+            <svg class="icon"
+                 viewBox="0 0 24 24">
 
-    border: 1px solid #28242c;
-}
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.17V2h-3.74v13.75a2.88 2.88 0 1 1-2.88-2.88c.3 0 .59.05.86.13v-3.8a6.66 6.66 0 1 0 5.76 6.55V8.43a8.55 8.55 0 0 0 5.02 1.62V6.32c-.43.39-.88.43-1.25.37z"/>
 
-.shelf {
-    display: flex;
+            </svg>
 
-    align-items: flex-end;
+        </a>
 
-    gap: 32px;
 
-    min-height: 340px;
+        <!-- X -->
 
-    padding: 0 15px;
+        <a href="https://x.com/kesmislalih"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="X">
 
-    overflow-x: auto;
-}
+            <svg class="icon x-icon"
+                 viewBox="0 0 24 24">
 
-.book {
-    flex: 0 0 auto;
+                <path d="M18.244 2h3.252l-7.102 8.118L22.75 22h-6.55l-5.13-6.71L5.2 22H1.946l7.604-8.69L1.5 2h6.72l4.64 6.127L18.244 2zm-1.14 17.79h1.802L7.218 4.1H5.284l11.82 15.69z"/>
 
-    width: 145px;
+            </svg>
 
-    cursor: pointer;
+        </a>
 
-    transition: .4s;
 
-    text-decoration: none;
-}
+        <!-- WATTPAD -->
 
-.book:hover {
-    transform: translateY(-12px);
-}
+        <a href="https://www.wattpad.com/user/kesmislalih"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Wattpad">
 
-.book-cover {
-    height: 220px;
+            <svg class="icon"
+                 viewBox="0 0 24 24">
 
-    border: 1px solid #39323f;
+                <path d="M3 4h3.5c2.1 0 3.7.8 4.7 2.5C12.2 4.8 13.8 4 15.9 4H21v16h-5.1c-2.1 0-3.6-.8-4.9-2.5C9.7 19.2 8.1 20 6 20H3V4zm3 3v10h.3c1.3 0 2.2-.5 2.8-1.8l2-4.2c.2-.4.5-.6.9-.6s.7.2.9.6l2 4.2c.6 1.3 1.5 1.8 2.8 1.8h.3V7h-1.5v6.2l-1-2.1c-.7-1.5-1.8-2.2-3.5-2.2s-2.8.7-3.5 2.2l-1 2.1V7H6z"/>
 
-    display: flex;
+            </svg>
 
-    justify-content: center;
+        </a>
 
-    align-items: center;
 
-    overflow: hidden;
+        <!-- SPOTIFY -->
 
-    background: #151319;
+        <a href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Spotify">
 
-    box-shadow:
-        8px 8px 20px rgba(0,0,0,.45);
-}
+            <svg class="icon"
+                 viewBox="0 0 24 24">
 
-.book-cover img {
-    width: 100%;
-    height: 100%;
+                <path d="M12 1.9a10.1 10.1 0 1 0 10.1 10.1A10.11 10.11 0 0 0 12 1.9zm4.64 14.58a.76.76 0 0 1-1.05.25c-2.88-1.76-6.51-2.16-10.79-1.18a.76.76 0 1 1-.34-1.48c4.68-1.07 8.69-.61 11.93 1.37a.76.76 0 0 1 .25 1.04zm1.5-3.33a.95.95 0 0 1-1.3.31c-3.29-2.02-8.31-2.61-12.2-1.43a.95.95 0 1 1-.55-1.82c4.45-1.35 10-.69 13.74 1.61a.95.95 0 0 1 .31 1.33zm.13-3.47C14.33 7.3 8.13 7.1 4.54 8.19a1.14 1.14 0 1 1-.66-2.18c4.13-1.25 11-1 15.2 1.5a1.14 1.14 0 0 1-.81 2.17z"/>
 
-    object-fit: cover;
+            </svg>
 
-    display: block;
-}
+        </a>
 
-.book-name {
-    margin-top: 14px;
 
-    font-size: 18px;
+        <!-- PINTEREST -->
 
-    text-align: center;
+        <a href="https://pin.it/2jHDXi48B"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Pinterest">
 
-    color: #e8e2d9;
-}
+            <svg class="icon"
+                 viewBox="0 0 24 24">
 
-.book-info {
-    text-align: center;
+                <path d="M12 2a10 10 0 0 0-3.64 19.32c-.09-1.64-.02-3.62.41-5.49l1.11-4.7s-.28-.57-.28-1.41c0-1.32.77-2.31 1.73-2.31.82 0 1.21.62 1.21 1.36 0 .83-.53 2.07-.8 3.22-.23.96.48 1.74 1.43 1.74 1.72 0 3.04-1.82 3.04-4.45 0-2.33-1.67-3.96-4.05-3.96-2.76 0-4.38 2.07-4.38 4.21 0 .83.32 1.72.72 2.2.08.1.09.18.07.29l-.27 1.1c-.04.18-.14.22-.32.13-1.19-.55-1.94-2.28-1.94-3.67 0-2.99 2.17-5.74 6.25-5.74 3.28 0 5.83 2.34 5.83 5.46 0 3.26-2.06 5.88-4.92 5.88-.96 0-1.86-.5-2.17-1.08l-.59 2.25c-.21.82-.78 1.84-1.17 2.46.88.27 1.81.42 2.77.42A10 10 0 0 0 12 2z"/>
 
-    color: #cdb9eb;
+            </svg>
 
-    font-family: Arial, sans-serif;
+        </a>
 
-    font-size: 8px;
 
-    letter-spacing: 1px;
+        <!-- WHATSAPP -->
 
-    margin-top: 12px;
-}
+        <a href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="WhatsApp">
 
-.wood {
-    height: 13px;
+            <svg class="icon"
+                 viewBox="0 0 24 24">
 
-    background:
-        linear-gradient(
-            to bottom,
-            #403448,
-            #211d25
-        );
+                <path d="M12 2a9.9 9.9 0 0 0-8.55 14.9L2 22l5.27-1.38A9.9 9.9 0 1 0 12 2zm0 18.1a8.15 8.15 0 0 1-4.15-1.13l-.3-.18-3.13.82.84-3.05-.2-.31A8.15 8.15 0 1 1 12 20.1z"/>
 
-    border-top: 1px solid #665873;
-}
-    <!-- =========================
+            </svg>
+
+        </a>
+
+    </div>
+
+    <div class="menu-footer">
+        kesmislalih
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     ANA SAYFA
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>kesmislalih</h1>
+
+        <div class="line"></div>
+
+        <p>
+            kelimelerin arasında bir yerlerde...
+        </p>
+
+        <a href="#kitaplar" class="button">
+            KİTAPLARIMA GÖZ AT
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     KİTAPLAR
+========================= -->
+
+<section class="section" id="kitaplar">
+
+    <h2 class="section-title">
+        Kitaplarım
+    </h2>
+
+    <p class="section-subtitle">
+        kelimelerden doğan hikâyeler
+    </p>
+
+    <div class="library">
+
+        <div class="shelf">
+
+            <a href="ringteki-son-dans.html"
+               class="book">
+
+                <div class="book-cover">
+
+                    <img src="file_00000000ce4881f4b929fc5dfbb07694.png"
+                         alt="Ringteki Son Dans">
+
+                </div>
+
+                <div class="book-name">
+                    Ringteki Son Dans
+                </div>
+
+                <div class="book-info">
+                    KİTABI İNCELE →
+                </div>
+
+            </a>
+
+
+            <div class="book">
+
+                <div class="book-cover">
+                    <span style="color:#6f6872;">
+                        YENİ<br>HİKÂYE
+                    </span>
+                </div>
+
+                <div class="book-name">
+                    Yakında...
+                </div>
+
+                <div class="book-info">
+                    ÇOK YAKINDA
+                </div>
+
+            </div>
+
+
+            <div class="book">
+
+                <div class="book-cover">
+                    <span style="color:#6f6872;">
+                        YENİ<br>HİKÂYE
+                    </span>
+                </div>
+
+                <div class="book-name">
+                    Yakında...
+                </div>
+
+                <div class="book-info">
+                    ÇOK YAKINDA
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="wood"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
      HAKKIMDA
 ========================= -->
 
-<section
-    class="about"
-    id="hakkimda">
+<section class="about" id="hakkimda">
 
     <div class="about-title">
         HAKKIMDA
@@ -685,9 +726,7 @@ header {
      GALERİ
 ========================= -->
 
-<section
-    class="section gallery-section"
-    id="galeri">
+<section class="section" id="galeri">
 
     <h2 class="section-title">
         Galeri
@@ -698,374 +737,7 @@ header {
     </p>
 
 </section>
-
-
 <!-- =========================
-     DUVAR
-========================= -->
-
-<section
-    class="section"
-    id="duvar">
-
-    <div class="news">
-
-        <h2 class="section-title">
-            Duvar
-        </h2>
-
-        <p class="section-subtitle">
-            okurlardan bana
-        </p>
-
-
-        <div class="wall">
-
-            <p class="wall-intro">
-                Hikâyelerimi okurken aklından geçenleri,
-                bana söylemek istediklerini ya da
-                sadece küçük bir notunu buraya bırakabilirsin.
-            </p>
-
-
-            <!-- =========================
-                 YORUM FORMU
-            ========================= -->
-
-            <form
-                class="wall-form"
-                id="wallForm">
-
-                <input
-                    type="text"
-                    class="wall-input"
-                    id="wallName"
-                    placeholder="Adın / Kullanıcı adın"
-                    maxlength="40"
-                    required>
-
-                <textarea
-                    class="wall-textarea"
-                    id="wallMessage"
-                    placeholder="Bana bir şeyler bırak..."
-                    maxlength="500"
-                    required></textarea>
-
-                <button
-                    type="submit"
-                    class="wall-submit">
-
-                    YORUMU BIRAK
-
-                </button>
-
-            </form>
-
-
-            <!-- =========================
-                 YORUMLAR
-            ========================= -->
-
-            <div
-                class="wall-comments"
-                id="wallComments">
-
-                <!-- Yorumlar buraya eklenecek -->
-
-                <div
-                    class="empty-wall"
-                    id="emptyWall">
-
-                    Henüz bir yorum yok.
-                    İlk notu sen bırak.
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     DUYURULAR
-========================= -->
-
-<section
-    class="section"
-    id="duyurular">
-
-    <div class="news">
-
-        <h2 class="section-title">
-            Duyurular
-        </h2>
-
-        <p class="section-subtitle">
-            yeni hikâyeler, yeni başlangıçlar
-        </p>
-
-
-        <div class="news-item">
-
-            <span class="news-date">
-                31.08.2026
-            </span>
-
-            <span class="news-title">
-                Yeni site yayında.
-            </span>
-
-        </div>
-
-
-        <div class="news-item">
-
-            <span class="news-date">
-                YAKINDA
-            </span>
-
-            <span class="news-title">
-                Yeni hikâyeler burada olacak.
-            </span>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     İLETİŞİM
-========================= -->
-
-<section
-    class="contact"
-    id="iletisim">
-
-    <div class="contact-title">
-        BİZE ULAŞIN
-    </div>
-
-    <p class="contact-subtitle">
-        Bir şey söylemek, sormak ya da sadece merhaba demek istersen...
-    </p>
-
-
-    <form
-        class="contact-form"
-        id="contactForm">
-
-
-        <!-- İSİM SOYİSİM -->
-
-        <div class="form-group">
-
-            <label for="contactName">
-                İsim Soyisim <span>*</span>
-            </label>
-
-            <input
-                type="text"
-                id="contactName"
-                name="name"
-                placeholder="İsim Soyisim"
-                required>
-
-        </div>
-
-
-        <!-- KONU -->
-
-        <div class="form-group">
-
-            <label for="contactSubject">
-                Konu
-            </label>
-
-            <input
-                type="text"
-                id="contactSubject"
-                name="subject"
-                placeholder="Mesajınızın konusu">
-
-        </div>
-
-
-        <!-- E-POSTA -->
-
-        <div class="form-group">
-
-            <label for="contactEmail">
-                E-posta Adresiniz
-            </label>
-
-            <input
-                type="email"
-                id="contactEmail"
-                name="email"
-                placeholder="ornek@mail.com">
-
-        </div>
-
-
-        <!-- TELEFON -->
-
-        <div class="form-group">
-
-            <label for="contactPhone">
-                Telefon Numarası
-                <small>(Opsiyonel)</small>
-            </label>
-
-            <input
-                type="tel"
-                id="contactPhone"
-                name="phone"
-                placeholder="05XX XXX XX XX">
-
-        </div>
-
-
-        <!-- MESAJ -->
-
-        <div class="form-group">
-
-            <label for="contactMessage">
-                Mesajınız
-            </label>
-
-            <textarea
-                id="contactMessage"
-                name="message"
-                placeholder="Mesajınız..."
-                required></textarea>
-
-        </div>
-
-
-        <button
-            type="submit"
-            class="contact-submit">
-
-            GÖNDER
-
-        </button>
-
-    </form>
-
-
-    <!-- E-POSTA -->
-
-    <a
-        href="mailto:hillyss333@gmail.com"
-        class="contact-mail">
-
-        hillyss333@gmail.com
-
-    </a>
-
-</section>
-
-
-<!-- =========================
-     ALT SOSYAL MEDYA
-========================= -->
-
-<section class="social">
-
-    <div class="social-title">
-        BENİ TAKİP ET
-    </div>
-
-
-    <div class="social-links">
-
-
-        <a
-            href="https://www.tiktok.com/@kesmislalih?_r=1&_t=ZS-98gv3YRvFOK"
-            target="_blank"
-            rel="noopener noreferrer">
-
-            TikTok
-
-        </a>
-
-
-        <a
-            href="https://x.com/kesmislalih"
-            target="_blank"
-            rel="noopener noreferrer">
-
-            X
-
-        </a>
-
-
-        <a
-            href="https://www.wattpad.com/user/kesmislalih"
-            target="_blank"
-            rel="noopener noreferrer">
-
-            Wattpad
-
-        </a>
-
-
-        <a
-            href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv"
-            target="_blank"
-            rel="noopener noreferrer">
-
-            Spotify
-
-        </a>
-
-
-        <a
-            href="https://pin.it/2jHDXi48B"
-            target="_blank"
-            rel="noopener noreferrer">
-
-            Pinterest
-
-        </a>
-
-
-        <a
-            href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
-            target="_blank"
-            rel="noopener noreferrer">
-
-            WhatsApp
-
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-    <div class="footer-logo">
-        kesmislalih
-    </div>
-
-    <p>
-        © 2026 kesmislalih
-    </p>
-
-</footer>
-    <!-- =========================
      DUVAR
 ========================= -->
 
@@ -1327,7 +999,7 @@ header {
     </div>
 
 </section>
-    <style>
+<style>
 
 /* =========================
    KİTAPLIK
@@ -2237,4 +1909,3 @@ wallForm.addEventListener("submit",function(event){
 
 </body>
 </html>
-    
