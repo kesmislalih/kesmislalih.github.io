@@ -818,7 +818,7 @@ footer p {
 
     <!-- =========================
          YORUMLAR
-    ========================= -->
+========================= -->
 
     <section>
 
@@ -834,32 +834,7 @@ footer p {
             class="comments"
             id="comments">
 
-
-            <!-- ÖRNEK YORUM -->
-
-            <article class="comment">
-
-                <div class="comment-name">
-
-                    Bir okur
-
-                </div>
-
-                <div class="comment-text">
-
-                    Buraya okurların yazdığı
-                    mesajlar gelecek.
-
-                </div>
-
-                <div class="comment-date">
-
-                    YENİ
-
-                </div>
-
-            </article>
-
+            <!-- MESAJLAR BURAYA GELECEK -->
 
         </div>
 
@@ -892,7 +867,37 @@ footer p {
 
 
 
+<!-- =========================
+     SUPABASE
+========================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
 <script>
+
+
+/* =========================
+   SUPABASE AYARLARI
+========================= */
+
+const SUPABASE_URL =
+    "https://edgpwcoypywwodgfkkbi.supabase.co";
+
+
+/* BURASI ÇOK ÖNEMLİ 👇 */
+
+const SUPABASE_PUBLISHABLE_KEY =
+    "BURAYA_SUPABASE_ANAHTARI_GELECEK";
+
+
+/* BURAYA ŞİMDİLİK DOKUNMA */
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
 
 
 /* =========================
@@ -959,7 +964,7 @@ themeButton.addEventListener(
 
 
 /* =========================
-   GEÇİCİ YORUM SİSTEMİ
+   ELEMANLAR
 ========================= */
 
 const nameInput =
@@ -975,9 +980,132 @@ const comments =
     document.getElementById("comments");
 
 
+/* =========================
+   MESAJI EKRANA EKLE
+========================= */
+
+function createComment(data) {
+
+    const comment =
+        document.createElement("article");
+
+    comment.className =
+        "comment";
+
+
+    const name =
+        document.createElement("div");
+
+    name.className =
+        "comment-name";
+
+    name.textContent =
+        data.isim;
+
+
+    const text =
+        document.createElement("div");
+
+    text.className =
+        "comment-text";
+
+    text.textContent =
+        data.mesaj;
+
+
+    const date =
+        document.createElement("div");
+
+    date.className =
+        "comment-date";
+
+    date.textContent =
+        data.created_at
+            ? new Date(data.created_at).toLocaleString("tr-TR")
+            : "AZ ÖNCE";
+
+
+    comment.appendChild(name);
+
+    comment.appendChild(text);
+
+    comment.appendChild(date);
+
+
+    return comment;
+}
+
+
+/* =========================
+   MESAJLARI SUPABASE'DEN AL
+========================= */
+
+async function loadMessages() {
+
+    comments.innerHTML = "";
+
+
+    const result =
+        await supabaseClient
+            .from("duvar_yazilari")
+            .select("id, isim, mesaj, created_at")
+            .order("created_at", {
+                ascending: false
+            })
+            .limit(100);
+
+
+    if (result.error) {
+
+        console.error(
+            result.error
+        );
+
+        comments.innerHTML = `
+            <div class="comment">
+                <div class="comment-text">
+                    Mesajlar yüklenirken bir sorun oluştu.
+                </div>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    if (!result.data || result.data.length === 0) {
+
+        comments.innerHTML = `
+            <div class="comment">
+                <div class="comment-text">
+                    Henüz duvara bırakılmış bir mesaj yok.
+                    İlk mesajı sen bırak. ♡
+                </div>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    result.data.forEach(function(message) {
+
+        comments.appendChild(
+            createComment(message)
+        );
+
+    });
+
+}
+
+
+/* =========================
+   YENİ MESAJ GÖNDER
+========================= */
+
 sendButton.addEventListener(
     "click",
-    function() {
+    async function() {
 
 
         const name =
@@ -997,61 +1125,73 @@ sendButton.addEventListener(
         }
 
 
-        const comment =
-            document.createElement("article");
+        sendButton.disabled = true;
 
-        comment.className =
-            "comment";
-
-
-        comment.innerHTML = `
-
-            <div class="comment-name">
-
-                ${escapeHTML(name)}
-
-            </div>
-
-            <div class="comment-text">
-
-                ${escapeHTML(message)}
-
-            </div>
-
-            <div class="comment-date">
-
-                AZ ÖNCE
-
-            </div>
-
-        `;
+        sendButton.textContent =
+            "GÖNDERİLİYOR...";
 
 
-        comments.prepend(comment);
+        const result =
+            await supabaseClient
+                .from("duvar_yazilari")
+                .insert({
+
+                    isim: name,
+
+                    mesaj: message
+
+                })
+                .select()
+                .single();
+
+
+        if (result.error) {
+
+            console.error(
+                result.error
+            );
+
+            alert(
+                "Mesaj gönderilemedi. Biraz sonra tekrar dene."
+            );
+
+            sendButton.disabled = false;
+
+            sendButton.textContent =
+                "DUVARA BIRAK";
+
+            return;
+        }
+
+
+        const newComment =
+            createComment(result.data);
+
+
+        comments.prepend(
+            newComment
+        );
 
 
         nameInput.value = "";
 
         messageInput.value = "";
 
+
+        sendButton.disabled = false;
+
+        sendButton.textContent =
+            "DUVARA BIRAK";
+
     }
 );
 
 
 /* =========================
-   GÜVENLİ METİN
+   SAYFA AÇILINCA MESAJLARI GETİR
 ========================= */
 
-function escapeHTML(text) {
-
-    const div =
-        document.createElement("div");
-
-    div.textContent =
-        text;
-
-    return div.innerHTML;
-}
+loadMessages();
 
 
 </script>
@@ -1059,4 +1199,4 @@ function escapeHTML(text) {
 
 </body>
 
-  </html>
+      </html>
