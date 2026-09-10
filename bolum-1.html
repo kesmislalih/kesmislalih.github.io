@@ -1261,66 +1261,55 @@ const supabaseClient =
     kesmislalih
 
 </footer>
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
 <script>
 
-
 /* =========================
-   BÖLÜM OKUNMA SAYACI
+   GÖRÜNTÜLENME SAYACI
 ========================= */
 
 async function increaseChapterView() {
 
-    const {
-        data,
-        error
-    } = await supabaseClient.rpc(
-
-        "arttir_goruntulenme",
-
-        {
-            p_kitap:
-                "Ringteki Son Dans",
-
-            p_bolum:
-                1
-        }
-
-    );
-
-
-    if (error) {
-
-        console.error(
-            "Görüntülenme hatası:",
-            error
+    const { data, error } =
+        await supabaseClient.rpc(
+            "arttir_goruntulenme",
+            {
+                p_kitap: "Ringteki Son Dans",
+                p_bolum: 1
+            }
         );
 
+    if (error) {
+        console.error(
+            "Görüntülenme artırma hatası:",
+            error
+        );
         return;
     }
 
+    const { data: viewData, error: viewError } =
+        await supabaseClient
+            .from("goruntulenmeler")
+            .select("goruntulenme")
+            .eq("kitap", "Ringteki Son Dans")
+            .eq("bolum", 1)
+            .single();
 
-    const viewElement =
-        document.getElementById(
-            "chapterViews"
+    if (viewError) {
+        console.error(
+            "Görüntülenme okuma hatası:",
+            viewError
         );
-
-
-    if (viewElement) {
-
-        viewElement.textContent =
-            data ?? 0;
-
+        return;
     }
 
+    const viewElement =
+        document.getElementById("chapterViews");
+
+    if (viewElement) {
+        viewElement.textContent =
+            viewData.goruntulenme;
+    }
 }
-
-
-increaseChapterView();
-
 
 
 /* =========================
@@ -1328,170 +1317,48 @@ increaseChapterView();
 ========================= */
 
 const themeButton =
-    document.getElementById(
-        "themeButton"
-    );
+    document.getElementById("themeButton");
 
+if (themeButton) {
 
-const themeIcon =
-    document.getElementById(
-        "themeIcon"
-    );
+    themeButton.addEventListener(
+        "click",
+        function() {
 
-
-const savedTheme =
-    localStorage.getItem(
-        "kesmislalih-theme"
-    );
-
-
-if (savedTheme === "light") {
-
-    document.body.classList.add(
-        "light"
-    );
-
-    themeIcon.textContent =
-        "☀";
-
-} else {
-
-    themeIcon.textContent =
-        "☾";
-
-}
-
-
-themeButton.addEventListener(
-    "click",
-    function() {
-
-        document.body.classList.toggle(
-            "light"
-        );
-
-
-        const isLight =
-            document.body.classList.contains(
-                "light"
-            );
-
-
-        if (isLight) {
-
-            themeIcon.textContent =
-                "☀";
-
-            localStorage.setItem(
-                "kesmislalih-theme",
-                "light"
-            );
-
-        } else {
-
-            themeIcon.textContent =
-                "☾";
-
-            localStorage.setItem(
-                "kesmislalih-theme",
-                "dark"
+            document.body.classList.toggle(
+                "light-mode"
             );
 
         }
+    );
 
-    }
-);
-
+}
 
 
 /* =========================
    BÖLÜM MENÜSÜ
 ========================= */
 
-const chapterMenuButton =
-    document.getElementById(
-        "chapterMenuButton"
-    );
-
+const chapterButton =
+    document.getElementById("chapterButton");
 
 const chapterMenu =
-    document.getElementById(
-        "chapterMenu"
-    );
+    document.getElementById("chapterMenu");
 
+if (chapterButton && chapterMenu) {
 
-const chapterMenuClose =
-    document.getElementById(
-        "chapterMenuClose"
-    );
+    chapterButton.addEventListener(
+        "click",
+        function() {
 
-
-const chapterMenuOverlay =
-    document.getElementById(
-        "chapterMenuOverlay"
-    );
-
-
-function openChapterMenu() {
-
-    chapterMenu.classList.add(
-        "open"
-    );
-
-    chapterMenuOverlay.classList.add(
-        "open"
-    );
-
-}
-
-
-function closeChapterMenu() {
-
-    chapterMenu.classList.remove(
-        "open"
-    );
-
-    chapterMenuOverlay.classList.remove(
-        "open"
-    );
-
-}
-
-
-chapterMenuButton.addEventListener(
-    "click",
-    openChapterMenu
-);
-
-
-chapterMenuClose.addEventListener(
-    "click",
-    closeChapterMenu
-);
-
-
-chapterMenuOverlay.addEventListener(
-    "click",
-    closeChapterMenu
-);
-
-
-document.addEventListener(
-    "keydown",
-    function(event) {
-
-        if (
-            event.key ===
-            "Escape"
-        ) {
-
-            closeChapterMenu();
+            chapterMenu.classList.toggle(
+                "active"
+            );
 
         }
+    );
 
-    }
-);
-
+}
 
 
 /* =========================
@@ -1500,146 +1367,12 @@ document.addEventListener(
 
 const paragraphs =
     document.querySelectorAll(
-        ".reading-paragraph"
+        ".paragraph"
     );
 
 
-
 /* =========================
-   PARAGRAFIN YORUMLARINI AL
-========================= */
-
-async function getComments(
-    paragraphNumber
-) {
-
-    const {
-        data,
-        error
-    } = await supabaseClient
-
-        .from("yorumlar")
-
-        .select(
-            "id, isim, yorum, paragraf, created_at"
-        )
-
-        .eq(
-            "kitap",
-            "Ringteki Son Dans"
-        )
-
-        .eq(
-            "bolum",
-            1
-        )
-
-        .eq(
-            "paragraf",
-            Number(paragraphNumber)
-        )
-
-        .order(
-            "created_at",
-            {
-                ascending: true
-            }
-        );
-
-
-    if (error) {
-
-        console.error(
-            "Yorumları alma hatası:",
-            error
-        );
-
-        return [];
-
-    }
-
-
-    return data || [];
-
-}
-
-
-
-/* =========================
-   TÜM YORUMLARI AL
-========================= */
-
-async function getAllComments() {
-
-    const {
-        data,
-        error
-    } = await supabaseClient
-
-        .from("yorumlar")
-
-        .select(
-            "id, isim, yorum, paragraf, created_at"
-        )
-
-        .eq(
-            "kitap",
-            "Ringteki Son Dans"
-        )
-
-        .eq(
-            "bolum",
-            1
-        );
-
-
-    if (error) {
-
-        console.error(
-            "Toplam yorum hatası:",
-            error
-        );
-
-        return [];
-
-    }
-
-
-    return data || [];
-
-}
-
-
-
-/* =========================
-   TOPLAM YORUM SAYISI
-========================= */
-
-async function updateTotalComments() {
-
-    const comments =
-        await getAllComments();
-
-
-    const totalElement =
-        document.getElementById(
-            "totalComments"
-        );
-
-
-    if (totalElement) {
-
-        totalElement.textContent =
-            comments.length;
-
-    }
-
-}
-
-
-
-/* =========================
-   YORUMLARI EKRANA YAZ
+   YORUMLARI GÖSTER
 ========================= */
 
 async function renderComments(
@@ -1649,372 +1382,277 @@ async function renderComments(
     const paragraphNumber =
         paragraph.dataset.paragraph;
 
-
-    const comments =
-        await getComments(
-            paragraphNumber
-        );
-
-
-    const list =
+    const commentsContainer =
         paragraph.querySelector(
-            ".comment-list"
+            ".comments"
         );
 
+    if (!commentsContainer) {
+        return;
+    }
 
-    const count =
-        paragraph.querySelector(
-            ".comment-count"
+    const {
+        data,
+        error
+    } = await supabaseClient
+        .from("yorumlar")
+        .select("*")
+        .eq(
+            "kitap",
+            "Ringteki Son Dans"
+        )
+        .eq(
+            "bolum",
+            1
+        )
+        .eq(
+            "paragraf",
+            Number(paragraphNumber)
+        )
+        .order(
+            "created_at",
+            {
+                ascending: true
+            }
         );
 
+    if (error) {
 
-    count.textContent =
-        comments.length;
+        console.error(
+            "Yorumları alma hatası:",
+            error
+        );
 
+        return;
+    }
 
-    list.innerHTML = "";
+    commentsContainer.innerHTML = "";
 
+    data.forEach(function(comment) {
 
-    if (
-        comments.length === 0
-    ) {
-
-        const empty =
+        const commentBox =
             document.createElement(
                 "div"
             );
 
+        commentBox.className =
+            "comment-box";
 
-        empty.className =
-            "no-comments";
+        commentBox.innerHTML = `
 
+            <div class="comment-name">
+                ${escapeHTML(comment.isim)}
+            </div>
 
-        empty.textContent =
-            "Henüz yorum yok. İlk yorumu sen bırak.";
+            <div class="comment-text">
+                ${escapeHTML(comment.yorum)}
+            </div>
 
+        `;
 
-        list.appendChild(
-            empty
+        commentsContainer.appendChild(
+            commentBox
         );
 
-
-        return;
-
-    }
-
-
-
-    comments.forEach(
-        function(comment) {
-
-
-            const commentBox =
-                document.createElement(
-                    "div"
-                );
-
-
-            commentBox.className =
-                "comment";
-
-
-
-            const user =
-                document.createElement(
-                    "div"
-                );
-
-
-            user.className =
-                "comment-user";
-
-
-            user.textContent =
-                comment.isim;
-
-
-
-            const text =
-                document.createElement(
-                    "div"
-                );
-
-
-            text.className =
-                "comment-text";
-
-
-            text.textContent =
-                comment.yorum;
-
-
-
-            commentBox.appendChild(
-                user
-            );
-
-
-            commentBox.appendChild(
-                text
-            );
-
-
-            list.appendChild(
-                commentBox
-            );
-
-        }
-    );
+    });
 
 }
 
 
-
 /* =========================
-   PARAGRAFLARI HAZIRLA
+   GÜVENLİ METİN
 ========================= */
 
-paragraphs.forEach(
-    function(paragraph) {
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
 
 
-        const toggle =
-            paragraph.querySelector(
-                ".comment-toggle"
-            );
+/* =========================
+   TOPLAM YORUM SAYISI
+========================= */
 
+async function updateTotalComments() {
 
-        const commentsBox =
-            paragraph.querySelector(
-                ".comments"
-            );
-
-
-        const sendButton =
-            paragraph.querySelector(
-                ".comment-send"
-            );
-
-
-        const nameInput =
-            paragraph.querySelector(
-                ".comment-name"
-            );
-
-
-        const textInput =
-            paragraph.querySelector(
-                ".comment-input"
-            );
-
-
-
-        /* =========================
-           YORUMLARI AÇ / KAPAT
-        ========================= */
-
-        toggle.addEventListener(
-            "click",
-            async function() {
-
-
-                commentsBox.classList.toggle(
-                    "open"
-                );
-
-
-                if (
-                    commentsBox.classList.contains(
-                        "open"
-                    )
-                ) {
-
-                    await renderComments(
-                        paragraph
-                    );
-
-                }
-
+    const {
+        count,
+        error
+    } = await supabaseClient
+        .from("yorumlar")
+        .select(
+            "*",
+            {
+                count: "exact",
+                head: true
             }
+        )
+        .eq(
+            "kitap",
+            "Ringteki Son Dans"
+        )
+        .eq(
+            "bolum",
+            1
         );
 
-
-
-        /* =========================
-           YORUM GÖNDER
-        ========================= */
-
-        sendButton.addEventListener(
-            "click",
-            async function() {
-
-
-                const name =
-                    nameInput.value.trim();
-
-
-                const text =
-                    textInput.value.trim();
-
-
-
-                if (!name) {
-
-                    alert(
-                        "Lütfen adını yaz."
-                    );
-
-                    nameInput.focus();
-
-                    return;
-
-                }
-
-
-
-                if (!text) {
-
-                    alert(
-                        "Lütfen yorumunu yaz."
-                    );
-
-                    textInput.focus();
-
-                    return;
-
-                }
-
-
-
-                const paragraphNumber =
-                    Number(
-                        paragraph.dataset.paragraph
-                    );
-
-
-
-                sendButton.disabled =
-                    true;
-
-
-                sendButton.textContent =
-                    "GÖNDERİLİYOR...";
-
-
-
-                const {
-                    error
-                } = await supabaseClient
-
-                    .from("yorumlar")
-
-                    .insert({
-
-                        isim:
-                            name,
-
-                        yorum:
-                            text,
-
-                        kitap:
-                            "Ringteki Son Dans",
-
-                        bolum:
-                            1,
-
-                        paragraf:
-                            paragraphNumber
-
-                    });
-
-
-
-                sendButton.disabled =
-                    false;
-
-
-                sendButton.textContent =
-                    "YORUM YAP";
-
-
-
-                if (error) {
-
-                    console.error(
-                        "Yorum gönderme hatası:",
-                        error
-                    );
-
-
-                    alert(
-                        "Yorum gönderilemedi. Lütfen tekrar dene."
-                    );
-
-
-                    return;
-
-                }
-
-
-
-                nameInput.value =
-                    "";
-
-
-                textInput.value =
-                    "";
-
-
-
-                commentsBox.classList.add(
-                    "open"
-                );
-
-
-
-                await renderComments(
-                    paragraph
-                );
-
-
-                await updateTotalComments();
-
-            }
-
+    if (error) {
+
+        console.error(
+            "Toplam yorum hatası:",
+            error
         );
+
+        return;
+    }
+
+    const totalElement =
+        document.getElementById(
+            "totalComments"
+        );
+
+    if (totalElement) {
+
+        totalElement.textContent =
+            count ?? 0;
 
     }
 
-);
+}
 
+
+/* =========================
+   YORUM GÖNDER
+========================= */
+
+paragraphs.forEach(function(paragraph) {
+
+    const sendButton =
+        paragraph.querySelector(
+            ".send-comment"
+        );
+
+    const nameInput =
+        paragraph.querySelector(
+            ".comment-name-input"
+        );
+
+    const textInput =
+        paragraph.querySelector(
+            ".comment-input"
+        );
+
+    if (
+        !sendButton ||
+        !nameInput ||
+        !textInput
+    ) {
+        return;
+    }
+
+    sendButton.addEventListener(
+        "click",
+        async function() {
+
+            const name =
+                nameInput.value.trim();
+
+            const text =
+                textInput.value.trim();
+
+            const paragraphNumber =
+                Number(
+                    paragraph.dataset.paragraph
+                );
+
+            if (!name || !text) {
+
+                alert(
+                    "Lütfen isim ve yorum alanlarını doldur."
+                );
+
+                return;
+            }
+
+            sendButton.disabled = true;
+
+            const {
+                error
+            } = await supabaseClient
+                .from("yorumlar")
+                .insert({
+
+                    isim: name,
+
+                    yorum: text,
+
+                    kitap:
+                        "Ringteki Son Dans",
+
+                    bolum: 1,
+
+                    paragraf:
+                        paragraphNumber
+
+                });
+
+            if (error) {
+
+                console.error(
+                    "Yorum gönderme hatası:",
+                    error
+                );
+
+                alert(
+                    "Yorum gönderilemedi. Tekrar dene."
+                );
+
+                sendButton.disabled = false;
+
+                return;
+            }
+
+            nameInput.value = "";
+
+            textInput.value = "";
+
+            await renderComments(
+                paragraph
+            );
+
+            await updateTotalComments();
+
+            sendButton.disabled = false;
+
+        }
+    );
+
+});
 
 
 /* =========================
    SAYFA AÇILINCA
-   YORUMLARI YÜKLE
 ========================= */
 
-paragraphs.forEach(
-    function(paragraph) {
+paragraphs.forEach(function(paragraph) {
 
-        renderComments(
-            paragraph
-        );
+    renderComments(
+        paragraph
+    );
 
-    }
-);
-
-
-
-/* =========================
-   TOPLAM YORUMU YÜKLE
-========================= */
+});
 
 updateTotalComments();
 
+increaseChapterView();
 
 </script>
 
 </body>
-
 </html>
