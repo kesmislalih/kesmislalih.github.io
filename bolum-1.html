@@ -1858,37 +1858,325 @@ footer p {
 <script>
 
 
+<script>
+
 /* =========================
    BÖLÜM OKUNMA SAYACI
 ========================= */
 
-const chapterViewKey =
-    "ringtekiSonDans-bolum1-views";
+async function increaseChapterView() {
+
+    const { data, error } =
+        await supabaseClient.rpc(
+            "arttir_goruntulenme",
+            {
+                p_kitap: "Ringteki Son Dans",
+                p_bolum: 1
+            }
+        );
+
+    if (error) {
+        console.error("Görüntülenme hatası:", error);
+        return;
+    }
+
+    document.getElementById("chapterViews").textContent =
+        data ?? 0;
+}
+
+increaseChapterView();
 
 
-let chapterViews =
-    Number(
-        localStorage.getItem(
-            chapterViewKey
-        ) || 0
-    );
+/* =========================
+   YORUM SİSTEMİ
+========================= */
+
+const paragraphs =
+    document.querySelectorAll(".reading-paragraph");
 
 
-chapterViews++;
+/* =========================
+   PARAGRAFIN YORUMLARINI AL
+========================= */
+
+async function getComments(paragraphNumber) {
+
+    const { data, error } =
+        await supabaseClient
+            .from("yorumlar")
+            .select("id, isim, yorum, paragraf, created_at")
+            .eq("kitap", "Ringteki Son Dans")
+            .eq("bolum", 1)
+            .eq("paragraf", Number(paragraphNumber))
+            .order("created_at", { ascending: true });
+
+    if (error) {
+        console.error("Yorumları alma hatası:", error);
+        return [];
+    }
+
+    return data || [];
+}
 
 
-localStorage.setItem(
-    chapterViewKey,
-    chapterViews
-);
+/* =========================
+   TÜM YORUMLARI AL
+========================= */
+
+async function getAllComments() {
+
+    const { data, error } =
+        await supabaseClient
+            .from("yorumlar")
+            .select("id, isim, yorum, paragraf, created_at")
+            .eq("kitap", "Ringteki Son Dans")
+            .eq("bolum", 1)
+            .order("created_at", { ascending: true });
+
+    if (error) {
+        console.error("Toplam yorum hatası:", error);
+        return [];
+    }
+
+    return data || [];
+}
 
 
-document.getElementById(
-    "chapterViews"
-).textContent =
-    chapterViews;
+/* =========================
+   TOPLAM YORUM SAYISI
+========================= */
+
+async function updateTotalComments() {
+
+    const comments = await getAllComments();
+
+    document.getElementById("totalComments").textContent =
+        comments.length;
+}
 
 
+/* =========================
+   YORUMLARI EKRANA YAZ
+========================= */
+
+async function renderComments(paragraph) {
+
+    const paragraphNumber =
+        paragraph.dataset.paragraph;
+
+    const comments =
+        await getComments(paragraphNumber);
+
+    const list =
+        paragraph.querySelector(".comment-list");
+
+    const count =
+        paragraph.querySelector(".comment-count");
+
+    count.textContent = comments.length;
+
+    list.innerHTML = "";
+
+
+    if (comments.length === 0) {
+
+        const empty =
+            document.createElement("div");
+
+        empty.className = "no-comments";
+
+        empty.textContent =
+            "Henüz yorum yok. İlk yorumu sen bırak.";
+
+        list.appendChild(empty);
+
+        return;
+    }
+
+
+    comments.forEach(function(comment) {
+
+        const commentBox =
+            document.createElement("div");
+
+        commentBox.className = "comment";
+
+
+        const user =
+            document.createElement("div");
+
+        user.className = "comment-user";
+
+        user.textContent =
+            comment.isim;
+
+
+        const text =
+            document.createElement("div");
+
+        text.className = "comment-text";
+
+        text.textContent =
+            comment.yorum;
+
+
+        commentBox.appendChild(user);
+
+        commentBox.appendChild(text);
+
+        list.appendChild(commentBox);
+
+    });
+
+}
+
+
+/* =========================
+   PARAGRAF YORUM BUTONLARI
+========================= */
+
+paragraphs.forEach(function(paragraph) {
+
+    const toggle =
+        paragraph.querySelector(".comment-toggle");
+
+    const commentsBox =
+        paragraph.querySelector(".comments");
+
+    const sendButton =
+        paragraph.querySelector(".comment-send");
+
+    const nameInput =
+        paragraph.querySelector(".comment-name");
+
+    const textInput =
+        paragraph.querySelector(".comment-input");
+
+
+    /* YORUMLARI AÇ / KAPAT */
+
+    toggle.addEventListener("click", async function() {
+
+        commentsBox.classList.toggle("open");
+
+        if (commentsBox.classList.contains("open")) {
+
+            await renderComments(paragraph);
+
+        }
+
+    });
+
+
+    /* YORUM GÖNDER */
+
+    sendButton.addEventListener("click", async function() {
+
+        const name =
+            nameInput.value.trim();
+
+        const text =
+            textInput.value.trim();
+
+
+        if (!name) {
+
+            alert("Lütfen adını yaz.");
+
+            nameInput.focus();
+
+            return;
+        }
+
+
+        if (!text) {
+
+            alert("Lütfen yorumunu yaz.");
+
+            textInput.focus();
+
+            return;
+        }
+
+
+        const paragraphNumber =
+            Number(paragraph.dataset.paragraph);
+
+
+        sendButton.disabled = true;
+
+        sendButton.textContent =
+            "GÖNDERİLİYOR...";
+
+
+        const { error } =
+            await supabaseClient
+                .from("yorumlar")
+                .insert({
+                    isim: name,
+                    yorum: text,
+                    kitap: "Ringteki Son Dans",
+                    bolum: 1,
+                    paragraf: paragraphNumber
+                });
+
+
+        sendButton.disabled = false;
+
+        sendButton.textContent =
+            "YORUM YAP";
+
+
+        if (error) {
+
+            console.error(
+                "Yorum gönderme hatası:",
+                error
+            );
+
+            alert(
+                "Yorum gönderilemedi. Lütfen tekrar dene."
+            );
+
+            return;
+        }
+
+
+        nameInput.value = "";
+
+        textInput.value = "";
+
+
+        await renderComments(paragraph);
+
+        await updateTotalComments();
+
+
+        commentsBox.classList.add("open");
+
+    });
+
+});
+
+
+/* =========================
+   SAYFA AÇILINCA YORUMLARI YÜKLE
+========================= */
+
+paragraphs.forEach(function(paragraph) {
+
+    renderComments(paragraph);
+
+});
+
+
+/* =========================
+   TOPLAM YORUMU YÜKLE
+========================= */
+
+updateTotalComments();
+
+</script>
 
 /* =========================
    TEMA
