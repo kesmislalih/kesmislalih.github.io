@@ -14,11 +14,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&display=swap');
 
-
-/* =========================
-   TEMEL
-========================= */
-
 * {
     margin: 0;
     padding: 0;
@@ -46,11 +41,9 @@ body {
 
     min-height: 100vh;
 
-    background:
-        var(--background);
+    background: var(--background);
 
-    color:
-        var(--text);
+    color: var(--text);
 
     font-family:
         "Cormorant Garamond",
@@ -61,10 +54,6 @@ body {
         color .4s ease;
 }
 
-
-/* =========================
-   AYDINLIK MOD
-========================= */
 
 body.light {
 
@@ -99,8 +88,7 @@ header {
 
     height: 82px;
 
-    padding:
-        0 6%;
+    padding: 0 6%;
 
     display: flex;
 
@@ -137,7 +125,7 @@ body.light header {
    LOGO
 ========================= */
 
-.logo-image {kesmislalih-logo.png}
+.logo-image {
 
     width:
         145px;
@@ -703,15 +691,9 @@ footer p {
 <body>
 
 
-<!-- =========================
-     HEADER
-========================= -->
-
 <header>
 
-
-    <a
-        href="index.html">
+    <a href="index.html">
 
         <img
             src="kesmislalih-logo.png"
@@ -722,7 +704,6 @@ footer p {
 
 
     <div class="header-right">
-
 
         <a
             href="index.html"
@@ -745,16 +726,11 @@ footer p {
 
         </button>
 
-
     </div>
 
 </header>
 
 
-
-<!-- =========================
-     DUVAR
-========================= -->
 
 <main class="wall-page">
 
@@ -773,12 +749,7 @@ footer p {
 
 
 
-    <!-- =========================
-         YORUM YAZ
-    ========================= -->
-
     <section class="write-box">
-
 
         <div class="write-title">
 
@@ -811,17 +782,11 @@ footer p {
 
         </button>
 
-
     </section>
 
 
 
-    <!-- =========================
-         YORUMLAR
-========================= -->
-
     <section>
-
 
         <div class="comments-title">
 
@@ -834,8 +799,6 @@ footer p {
             class="comments"
             id="comments">
 
-            <!-- MESAJLAR BURAYA GELECEK -->
-
         </div>
 
     </section>
@@ -844,10 +807,6 @@ footer p {
 </main>
 
 
-
-<!-- =========================
-     FOOTER
-========================= -->
 
 <footer>
 
@@ -867,24 +826,22 @@ footer p {
 
 
 
-<!-- =========================
-     SUPABASE
-========================= -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
 <script>
 
 /* =========================
-   SUPABASE AYARLARI
+   SUPABASE
 ========================= */
 
 const SUPABASE_URL =
     "https://fehafqjajlkpwpmsfawz.supabase.co";
 
+
 const SUPABASE_PUBLISHABLE_KEY =
-    "sb_publishable_9eEl_WjKST_TLNRrzN7jmA_5npT6GPc";
+    "sb_publishable_DxPVeds0soH_Pakw58B5Hg_Ru-HQHob";
+
 
 const supabaseClient =
     window.supabase.createClient(
@@ -892,7 +849,7 @@ const supabaseClient =
         SUPABASE_PUBLISHABLE_KEY
     );
 
-      
+
 /* =========================
    TEMA
 ========================= */
@@ -974,10 +931,64 @@ const comments =
 
 
 /* =========================
-   MESAJI EKRANA EKLE
+   MESAJ VERİSİ
+========================= */
+
+function parseMessage(data) {
+
+    try {
+
+        const parsed =
+            JSON.parse(data.content);
+
+
+        if (
+            parsed &&
+            typeof parsed === "object" &&
+            parsed.mesaj
+        ) {
+
+            return {
+
+                isim:
+                    parsed.isim || "Bir okur",
+
+                mesaj:
+                    parsed.mesaj
+
+            };
+
+        }
+
+    } catch (error) {
+
+        // Düz metin kayıtları için.
+
+    }
+
+
+    return {
+
+        isim:
+            "Bir okur",
+
+        mesaj:
+            data.content || ""
+
+    };
+
+}
+
+
+/* =========================
+   MESAJ KARTI
 ========================= */
 
 function createComment(data) {
+
+    const parsed =
+        parseMessage(data);
+
 
     const comment =
         document.createElement("article");
@@ -993,7 +1004,7 @@ function createComment(data) {
         "comment-name";
 
     name.textContent =
-        data.isim;
+        parsed.isim;
 
 
     const text =
@@ -1003,7 +1014,7 @@ function createComment(data) {
         "comment-text";
 
     text.textContent =
-        data.mesaj;
+        parsed.mesaj;
 
 
     const date =
@@ -1014,7 +1025,9 @@ function createComment(data) {
 
     date.textContent =
         data.created_at
-            ? new Date(data.created_at).toLocaleString("tr-TR")
+            ? new Date(
+                data.created_at
+              ).toLocaleString("tr-TR")
             : "AZ ÖNCE";
 
 
@@ -1026,11 +1039,12 @@ function createComment(data) {
 
 
     return comment;
+
 }
 
 
 /* =========================
-   MESAJLARI SUPABASE'DEN AL
+   MESAJLARI GETİR
 ========================= */
 
 async function loadMessages() {
@@ -1040,11 +1054,16 @@ async function loadMessages() {
 
     const result =
         await supabaseClient
-            .from("duvar_yazilari")
-            .select("id, isim, mesaj, created_at")
-            .order("created_at", {
-                ascending: false
-            })
+            .from("wall_posts")
+            .select(
+                "id, content, created_at"
+            )
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            )
             .limit(100);
 
 
@@ -1054,46 +1073,62 @@ async function loadMessages() {
             result.error
         );
 
+
         comments.innerHTML = `
             <div class="comment">
+
                 <div class="comment-text">
+
                     Mesajlar yüklenirken bir sorun oluştu.
+
                 </div>
+
             </div>
         `;
 
         return;
+
     }
 
 
-    if (!result.data || result.data.length === 0) {
+    if (
+        !result.data ||
+        result.data.length === 0
+    ) {
 
         comments.innerHTML = `
             <div class="comment">
+
                 <div class="comment-text">
+
                     Henüz duvara bırakılmış bir mesaj yok.
                     İlk mesajı sen bırak. ♡
+
                 </div>
+
             </div>
         `;
 
         return;
+
     }
 
 
-    result.data.forEach(function(message) {
+    result.data.forEach(
+        function(message) {
 
-        comments.appendChild(
-            createComment(message)
-        );
+            comments.appendChild(
+                createComment(message)
+            );
 
-    });
+        }
+    );
 
 }
 
 
 /* =========================
-   YENİ MESAJ GÖNDER
+   YENİ MESAJ
 ========================= */
 
 sendButton.addEventListener(
@@ -1103,6 +1138,7 @@ sendButton.addEventListener(
 
         const name =
             nameInput.value.trim();
+
 
         const message =
             messageInput.value.trim();
@@ -1115,23 +1151,37 @@ sendButton.addEventListener(
             );
 
             return;
+
         }
 
 
-        sendButton.disabled = true;
+        sendButton.disabled =
+            true;
+
 
         sendButton.textContent =
             "GÖNDERİLİYOR...";
 
 
+        const savedContent =
+            JSON.stringify({
+
+                isim:
+                    name,
+
+                mesaj:
+                    message
+
+            });
+
+
         const result =
             await supabaseClient
-                .from("duvar_yazilari")
+                .from("wall_posts")
                 .insert({
 
-                    isim: name,
-
-                    mesaj: message
+                    content:
+                        savedContent
 
                 })
                 .select()
@@ -1144,34 +1194,42 @@ sendButton.addEventListener(
                 result.error
             );
 
+
             alert(
                 "Mesaj gönderilemedi. Biraz sonra tekrar dene."
             );
 
-            sendButton.disabled = false;
+
+            sendButton.disabled =
+                false;
+
 
             sendButton.textContent =
                 "DUVARA BIRAK";
 
+
             return;
+
         }
 
 
-        const newComment =
-            createComment(result.data);
-
-
         comments.prepend(
-            newComment
+            createComment(
+                result.data
+            )
         );
 
 
-        nameInput.value = "";
+        nameInput.value =
+            "";
 
-        messageInput.value = "";
+        messageInput.value =
+            "";
 
 
-        sendButton.disabled = false;
+        sendButton.disabled =
+            false;
+
 
         sendButton.textContent =
             "DUVARA BIRAK";
@@ -1181,15 +1239,14 @@ sendButton.addEventListener(
 
 
 /* =========================
-   SAYFA AÇILINCA MESAJLARI GETİR
+   BAŞLAT
 ========================= */
 
 loadMessages();
-
 
 </script>
 
 
 </body>
 
-      </html>
+</html>
