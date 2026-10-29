@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -621,7 +622,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   </div>
 </section>
 
-
+<!-- İKİNCİ PARÇAYI BU SATIRDAN SONRA EKLE -->
+  
 <!-- PANO PANELİ -->
 <section class="content-panel" id="panel-pano">
   <h2 class="panel-title">Pano</h2>
@@ -848,6 +850,23 @@ document.querySelectorAll("[data-home-link]").forEach(link => {
       block: "start"
     });
   });
+});
+
+/* KALP BUTONU: ŞİMDİLİK YEREL SAYIM */
+const heartButton = document.getElementById("heartButton");
+const heartSymbol = document.getElementById("heartSymbol");
+const heartCount = document.getElementById("heartCount");
+
+let liked = false;
+let count = 1;
+
+heartButton.addEventListener("click", () => {
+  liked = !liked;
+  count += liked ? 1 : -1;
+
+  heartCount.textContent = count;
+  heartSymbol.textContent = liked ? "♥" : "♡";
+  heartButton.classList.toggle("liked", liked);
 });
 </script>
 
