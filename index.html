@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -845,6 +844,656 @@ button:focus-visible,a:focus-visible{
       <a class="gallery-thumb" href="025e7f39ec9bd3227fa182d2f735d65c.jpg">
         <img src="025e7f39ec9bd3227fa182d2f735d65c.jpg" alt="Galeri fotoğrafı 9" loading="lazy">
       </a>
+      
+<style>
+/* KARAKTER KİTAPLARI VE KARTLARI */
+.character-books{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,230px));
+  justify-content:center;
+  gap:clamp(18px,5vw,45px);
+  width:100%;
+  max-width:600px;
+  margin:0 auto;
+}
+.character-book{
+  display:block;
+  min-width:0;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:inherit;
+  cursor:pointer;
+  text-align:center;
+}
+.character-book .cover-frame{
+  border:1px solid #512733;
+  transition:border-color .2s,transform .2s;
+}
+.character-book:hover .cover-frame{
+  border-color:#cdb9eb;
+  transform:translateY(-3px);
+}
+.character-book-title{
+  margin-top:14px;
+  font-size:clamp(13px,2vw,18px);
+  font-weight:500;
+  letter-spacing:1px;
+}
+.character-results{display:none;width:100%;max-width:1000px;margin:35px auto 0}
+.character-results.open{display:block}
+.character-results-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:25px;
+  padding-bottom:15px;
+  border-bottom:1px solid #512733;
+}
+.character-results-head h3{font-size:clamp(22px,4vw,32px);font-weight:400}
+.character-back{
+  padding:10px 12px;
+  border:1px solid #512733;
+  background:transparent;
+  color:#e8d9f5;
+  font-family:Arial,sans-serif;
+  font-size:9px;
+  letter-spacing:1px;
+  cursor:pointer;
+}
+.character-back:hover{background:#321724}
+.character-cards{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:17px;
+}
+.character-card{
+  display:block;
+  min-width:0;
+  padding:0;
+  overflow:hidden;
+  border:1px solid #512733;
+  background:#0c0b0c;
+  color:inherit;
+  cursor:pointer;
+  text-align:center;
+  transition:transform .2s,border-color .2s;
+}
+.character-card:hover{transform:translateY(-3px);border-color:#a64b63}
+.character-card .character-photo{
+  display:block;
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+}
+.character-card h4{padding:13px 7px 3px;font-size:19px;font-weight:500}
+.character-card p{padding:3px 10px 15px;color:#b7a6bb;font-size:14px}
+
+/* KARAKTER BÜYÜTME PENCERESİ */
+.character-viewer{
+  position:fixed;
+  inset:0;
+  z-index:300;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:25px 18px;
+  background:rgba(5,5,7,.96);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .25s,visibility .25s;
+}
+.character-viewer.open{opacity:1;visibility:visible}
+.character-viewer-content{
+  position:relative;
+  z-index:1;
+  width:min(400px,65vw);
+  text-align:center;
+}
+.character-viewer-content img{
+  display:block;
+  width:100%;
+  max-height:62svh;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  border:1px solid #733143;
+}
+.character-viewer-content h3{
+  margin-top:20px;
+  color:#f6f1f2;
+  font-family:Arial,sans-serif;
+  font-size:clamp(20px,4vw,34px);
+  font-weight:400;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+.character-viewer-content p{
+  margin-top:12px;
+  color:#cdb9eb;
+  font-family:Arial,sans-serif;
+  font-size:10px;
+  letter-spacing:2px;
+}
+.character-arrow{
+  position:absolute;
+  z-index:3;
+  top:50%;
+  transform:translateY(-50%);
+  display:grid;
+  place-items:center;
+  width:50px;
+  height:50px;
+  border:1px solid #7777774d;
+  border-radius:50%;
+  background:#09090b77;
+  color:#fff;
+  font-size:36px;
+  cursor:pointer;
+}
+.character-arrow:hover{background:#512733}
+.character-prev{left:clamp(10px,5vw,65px)}
+.character-next{right:clamp(10px,5vw,65px)}
+.character-viewer-close{
+  position:absolute;
+  z-index:4;
+  top:12px;
+  right:22px;
+  border:0;
+  background:none;
+  color:#fff;
+  font-size:44px;
+  cursor:pointer;
+}
+
+/* KİTAP TANITIM PENCERESİ */
+.book-modal{
+  position:fixed;
+  inset:0;
+  z-index:200;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:22px 18px;
+  overflow-y:auto;
+  background:#080809;
+}
+.book-modal.open{display:flex}
+.modal-shade{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,#080809c4,#080809f2);
+}
+.modal-close{
+  position:fixed;
+  top:12px;
+  right:19px;
+  z-index:3;
+  border:0;
+  background:#08080999;
+  color:#fff;
+  font-size:45px;
+  cursor:pointer;
+}
+.modal-content{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:540px;
+  margin:auto;
+  padding:38px 0 18px;
+  text-align:center;
+}
+.modal-cover{
+  display:block;
+  width:min(48%,245px);
+  max-height:34svh;
+  aspect-ratio:2/3;
+  object-fit:cover;
+  margin:0 auto 17px;
+  border:1px solid #512733;
+}
+.modal-title{
+  margin:10px 0 0;
+  color:#fff;
+  font-size:clamp(27px,5vw,39px);
+  font-weight:600;
+}
+.modal-author{
+  margin:3px 0 17px;
+  color:#d18b9b;
+  font-family:"Great Vibes",cursive;
+  font-size:28px;
+}
+.modal-quote{
+  margin:17px auto 22px;
+  color:#fff;
+  font-size:clamp(19px,3.5vw,26px);
+  font-style:italic;
+  line-height:1.5;
+}
+.read-more{
+  display:block;
+  margin:17px 0 28px;
+  color:#e2a0b0;
+  font-size:11px;
+  letter-spacing:1.5px;
+}
+.swipe-note{margin-top:18px;color:#bfb3b9;font-size:10px;letter-spacing:2px}
+
+/* ALT BİLGİ */
+.footer{
+  padding:35px 15px;
+  border-top:1px solid #38232a;
+  background:#080809;
+  color:#c0b7bb;
+  text-align:center;
+}
+.footer-signature{color:#f6f2f3;font-family:"Great Vibes",cursive;font-size:38px}
+.footer-slogan{margin-top:5px;font-size:15px;color:#c9bec3}
+.footer-links{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:15px 20px;
+  margin:20px 0;
+}
+.footer-links a{font-size:14px}
+.footer-links a:hover{color:#d18b9b}
+.copyright{color:#8e8389;font-family:Arial,sans-serif;font-size:9px;letter-spacing:3px}
+
+@media(max-width:600px){
+  .character-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .character-results-head{align-items:flex-start;flex-direction:column}
+  .character-viewer-content{width:min(390px,65vw)}
+  .character-viewer-content img{max-height:53svh}
+  .character-arrow{width:40px;height:40px;font-size:30px}
+  .character-prev{left:7px}
+  .character-next{right:7px}
+  .character-viewer-content h3{font-size:17px;letter-spacing:2px}
+  .modal-content{padding-top:35px}
+}
+</style>
+
+<!-- KARAKTERLER SEKMESİNİN İÇERİĞİ -->
+<section class="panel" id="panel-karakterler">
+  <h2 class="panel-title">Karakterler</h2>
+  <p class="panel-subtitle">Bir kitabı seç, karakterlerini keşfet.</p>
+
+  <div class="character-books" id="characterBooks">
+    <button class="character-book" type="button" data-character-book="ring">
+      <div class="cover-frame">
+        <img class="cover" src="file_0000000025bc81f4894ba4ef290f1c32.png" alt="Ringteki Son Dans kitabı">
+      </div>
+      <h3 class="character-book-title">RİNGTEKİ SON DANS</h3>
+    </button>
+
+    <button class="character-book" type="button" data-character-book="yeraltı">
+      <div class="cover-frame">
+        <img class="cover" src="ikinci-kitap-kapagi.jpg" alt="Yeraltının Kanunu kitabı">
+      </div>
+      <h3 class="character-book-title">YERALTİNIN KANUNU</h3>
+    </button>
+  </div>
+
+  <div class="character-results" id="characterResults" aria-live="polite">
+    <div class="character-results-head">
+      <h3 id="characterResultsTitle">Karakterler</h3>
+      <button class="character-back" id="characterBack" type="button">← KİTAPLARA DÖN</button>
+    </div>
+    <div class="character-cards" id="characterCards"></div>
+  </div>
+</section>
+
+<!-- KARAKTER FOTOĞRAFI GÖRÜNTÜLEYİCİ -->
+<div class="character-viewer" id="characterViewer" aria-hidden="true" role="dialog" aria-modal="true">
+  <button class="character-viewer-close" id="characterViewerClose" type="button" aria-label="Kapat">×</button>
+  <button class="character-arrow character-prev" id="characterPrev" type="button" aria-label="Önceki karakter">‹</button>
+  <div class="character-viewer-content">
+    <img id="characterViewerImage" src="" alt="">
+    <h3 id="characterViewerName"></h3>
+    <p>KESMİSLALİH KARAKTER ARŞİVİ</p>
+  </div>
+  <button class="character-arrow character-next" id="characterNext" type="button" aria-label="Sonraki karakter">›</button>
+</div>
+
+<!-- KİTAP TANITIM PENCERESİ -->
+<div class="book-modal" id="bookModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-shade"></div>
+  <button class="modal-close" id="closeModal" type="button" aria-label="Kapat">×</button>
+  <div class="modal-content">
+    <img class="modal-cover" src="file_0000000025bc81f4894ba4ef290f1c32.png" alt="Ringteki Son Dans kitap kapağı">
+    <h2 class="modal-title" id="modalTitle">RİNGTEKİ SON DANS</h2>
+    <p class="modal-author">kesmislalih</p>
+    <p class="modal-quote">Bir karanlık, iki kurşun.<br>Binbir acı, iki yetim.</p>
+    <a class="continue-button" href="ringteki-son-dans.html">KİTABI İNCELE →</a>
+    <a class="read-more" href="ringteki-son-dans.html">TANITIMIN TAMAMINI OKU ↓</a>
+    <p class="swipe-note">KESMİSLALİH</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p class="footer-signature">kesmislalih</p>
+  <p class="footer-slogan">some stories are not meant to be told, but felt.</p>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href="https://x.com/kesmislalih" target="_blank" rel="noopener noreferrer">X</a>
+    <a href="https://www.tiktok.com/@kesmislalih_" target="_blank" rel="noopener noreferrer">TikTok</a>
+    <a href="https://www.wattpad.com/user/kesmislalih" target="_blank" rel="noopener noreferrer">Wattpad</a>
+    <a href="https://pin.it/2jHDXi48B" target="_blank" rel="noopener noreferrer">Pinterest</a>
+    <a href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    <a href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer">Spotify</a>
+  </div>
+  <p class="copyright">© 2026 KESMİSLALİH</p>
+</footer>
+      
+<script>
+/* AÇILIŞ EKRANI */
+const intro = document.getElementById("intro");
+const enterButton = document.getElementById("enterButton");
+
+enterButton.addEventListener("click", () => {
+  intro.classList.add("hide");
+  window.setTimeout(() => {
+    intro.style.display = "none";
+  }, 700);
+});
+
+/* SAĞ MENÜ */
+const menuButton = document.getElementById("menuButton");
+const menuPanel = document.getElementById("menuPanel");
+const menuBackdrop = document.getElementById("menuBackdrop");
+
+function openMenu() {
+  menuPanel.classList.add("open");
+  menuBackdrop.classList.add("open");
+  menuButton.setAttribute("aria-expanded", "true");
+  menuPanel.setAttribute("aria-hidden", "false");
+  document.body.classList.add("locked");
+}
+
+function closeMenu() {
+  menuPanel.classList.remove("open");
+  menuBackdrop.classList.remove("open");
+  menuButton.setAttribute("aria-expanded", "false");
+  menuPanel.setAttribute("aria-hidden", "true");
+
+  if (
+    !document.getElementById("characterViewer").classList.contains("open") &&
+    !document.getElementById("bookModal").classList.contains("open")
+  ) {
+    document.body.classList.remove("locked");
+  }
+}
+
+menuButton.addEventListener("click", () => {
+  if (menuButton.getAttribute("aria-expanded") === "true") {
+    closeMenu();
+  } else {
+    openMenu();
+  }
+});
+
+menuBackdrop.addEventListener("click", closeMenu);
+
+/* SEKMELER */
+const tabButtons = [...document.querySelectorAll("[data-tab]")];
+const panels = [...document.querySelectorAll(".panel")];
+
+function showPanel(name) {
+  tabButtons.forEach(button => {
+    button.classList.toggle("active", button.dataset.tab === name);
+  });
+
+  panels.forEach(panel => {
+    panel.classList.toggle("active", panel.id === "panel-" + name);
+  });
+
+  closeMenu();
+
+  if (name === "karakterler") {
+    document.getElementById("characterResults").classList.remove("open");
+    document.getElementById("characterBooks").style.display = "grid";
+  }
+}
+
+tabButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    showPanel(button.dataset.tab);
+  });
+});
+
+document.querySelectorAll("[data-open-panel]").forEach(link => {
+  link.addEventListener("click", event => {
+    event.preventDefault();
+    showPanel(link.dataset.openPanel);
+    document.querySelector(".tabs").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  });
+});
+
+document.querySelectorAll("[data-home]").forEach(link => {
+  link.addEventListener("click", event => {
+    event.preventDefault();
+    closeMenu();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
+
+/* KARAKTER VERİLERİ */
+const characterData = {
+  ring: {
+    title: "Ringteki Son Dans",
+    items: [
+      {
+        name: "Lavinia",
+        image: "a90393fd3d48a69ffbec30ef8ba04749 (1).jpg"
+      },
+      {
+        name: "Arel",
+        image: "41723ea72a5db4f82fe52815d61e341a.jpg"
+      },
+      {
+        name: "Defne Yalçın",
+        image: "066f212a61b08c53d9eb10ef7647a0f3.jpg"
+      },
+      {
+        name: "Efe Yalçın",
+        image: "0b873940e46b8abc779347119a1998e0.jpg"
+      },
+      {
+        name: "Seren Yalçın",
+        image: "5ea49c0b074bc3d33b1516a381a7e689.jpg"
+      },
+      {
+        name: "Cihangir Yalçın",
+        image: "723a5f267d9ced55d8babbb5f9539a07.jpg"
+      }
+    ]
+  },
+
+  "yeraltı": {
+    title: "Yeraltının Kanunu",
+    items: []
+  }
+};
+
+const characterBooks = document.getElementById("characterBooks");
+const characterResults = document.getElementById("characterResults");
+const characterResultsTitle = document.getElementById("characterResultsTitle");
+const characterCards = document.getElementById("characterCards");
+const characterBack = document.getElementById("characterBack");
+
+const characterViewer = document.getElementById("characterViewer");
+const characterViewerImage = document.getElementById("characterViewerImage");
+const characterViewerName = document.getElementById("characterViewerName");
+const characterViewerClose = document.getElementById("characterViewerClose");
+
+let activeCharacters = [];
+let activeCharacterIndex = 0;
+
+/* KİTAP KAPAĞINA BASINCA KARAKTERLERİ GÖSTER */
+document.querySelectorAll("[data-character-book]").forEach(button => {
+  button.addEventListener("click", () => {
+    const selectedBook = characterData[button.dataset.characterBook];
+
+    characterResultsTitle.textContent = selectedBook.title;
+    activeCharacters = selectedBook.items;
+    characterCards.innerHTML = "";
+
+    if (activeCharacters.length === 0) {
+      const message = document.createElement("p");
+      message.className = "muted";
+      message.textContent =
+        "Bu kitaba ait karakterleri daha sonra ekleyeceğiz.";
+      characterCards.appendChild(message);
+    } else {
+      activeCharacters.forEach((character, index) => {
+        const card = document.createElement("button");
+        card.type = "button";
+        card.className = "character-card";
+        card.setAttribute(
+          "aria-label",
+          character.name + " karakterini görüntüle"
+        );
+
+        const image = document.createElement("img");
+        image.className = "character-photo";
+        image.src = character.image;
+        image.alt = character.name;
+        image.loading = "lazy";
+
+        const name = document.createElement("h4");
+        name.textContent = character.name;
+
+        const description = document.createElement("p");
+        description.textContent =
+          "Karakter bilgileri daha sonra eklenecek.";
+
+        card.append(image, name, description);
+
+        card.addEventListener("click", () => {
+          openCharacterViewer(index);
+        });
+
+        characterCards.appendChild(card);
+      });
+    }
+
+    characterBooks.style.display = "none";
+    characterResults.classList.add("open");
+  });
+});
+
+/* KİTAP KAPAKLARINA GERİ DÖN */
+characterBack.addEventListener("click", () => {
+  characterResults.classList.remove("open");
+  characterBooks.style.display = "grid";
+});
+
+/* KARAKTER GÖRÜNTÜLEYİCİ */
+function openCharacterViewer(index) {
+  activeCharacterIndex = index;
+  updateCharacterViewer();
+
+  characterViewer.classList.add("open");
+  characterViewer.setAttribute("aria-hidden", "false");
+  document.body.classList.add("locked");
+}
+
+function updateCharacterViewer() {
+  if (activeCharacters.length === 0) return;
+
+  activeCharacterIndex =
+    (activeCharacterIndex + activeCharacters.length) %
+    activeCharacters.length;
+
+  const character = activeCharacters[activeCharacterIndex];
+
+  characterViewerImage.src = character.image;
+  characterViewerImage.alt = character.name;
+  characterViewerName.textContent = character.name;
+}
+
+function closeCharacterViewer() {
+  characterViewer.classList.remove("open");
+  characterViewer.setAttribute("aria-hidden", "true");
+
+  if (!document.getElementById("bookModal").classList.contains("open")) {
+    document.body.classList.remove("locked");
+  }
+}
+
+document.getElementById("characterPrev").addEventListener("click", () => {
+  activeCharacterIndex--;
+  updateCharacterViewer();
+});
+
+document.getElementById("characterNext").addEventListener("click", () => {
+  activeCharacterIndex++;
+  updateCharacterViewer();
+});
+
+characterViewerClose.addEventListener("click", closeCharacterViewer);
+
+characterViewer.addEventListener("click", event => {
+  if (event.target === characterViewer) {
+    closeCharacterViewer();
+  }
+});
+
+/* RİNGTEKİ SON DANS TANITIMI */
+const modal = document.getElementById("bookModal");
+const ringBook = document.getElementById("ringBook");
+
+function openBook() {
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("locked");
+}
+
+function closeBook() {
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden", "true");
+
+  if (!characterViewer.classList.contains("open")) {
+    document.body.classList.remove("locked");
+  }
+}
+
+ringBook.addEventListener("click", openBook);
+
+ringBook.addEventListener("keydown", event => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    openBook();
+  }
+});
+
+document.getElementById("closeModal").addEventListener("click", closeBook);
+
+modal.addEventListener("click", event => {
+  if (event.target === modal) {
+    closeBook();
+  }
+});
+
+/* ESC TUŞUYLA PENCERELERİ KAPAT */
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    closeMenu();
+    closeBook();
+    closeCharacterViewer();
+  }
+});
+</script>
+
+</body>
+    </html>
+      
       <a class="gallery-thumb" href="520b988f63b52ae66a0127a457e5e7d0.jpg">
         <img src="520b988f63b52ae66a0127a457e5e7d0.jpg" alt="Galeri fotoğrafı 10" loading="lazy">
       </a>
