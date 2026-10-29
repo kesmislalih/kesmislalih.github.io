@@ -1,686 +1,755 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>kesmislalih</title>
-  <meta name="description" content="kesmislalih'in kitapları, karakterleri ve hikâyeleri.">
-  <meta name="theme-color" content="#0b090a">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
-
-  <!-- Favicon simgemizi daha sonra ekleyeceğiz -->
-
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #0b090a;
-      --surface: #151012;
-      --text: #eee6e8;
-      --muted: #b9a6ac;
-      --accent: #a77b88;
-      --silver: #d4cbd0;
-      --border: #38252c;
-    }
-
-    body.light {
-      color-scheme: light;
-      --bg: #f5f1f0;
-      --surface: #fffaf9;
-      --text: #281c20;
-      --muted: #79676d;
-      --accent: #875363;
-      --silver: #74515d;
-      --border: #e1d1d6;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Cormorant Garamond", serif;
-      font-size: 18px;
-      transition: background .3s, color .3s;
-    }
-
-    button, a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font-family: inherit;
-    }
-
-    button:focus-visible, a:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 4px;
-    }
-
-    /* AÇILIŞ VİDEOSU */
-
-    #intro-screen {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      background: #080708;
-      opacity: 1;
-      visibility: visible;
-      transition: opacity .6s ease, visibility .6s ease;
-    }
-
-    #intro-screen.hide {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    #intro-video {
-      display: block;
-      width: min(100%, 1000px);
-      max-height: 82vh;
-      object-fit: contain;
-      background: #080708;
-    }
-
-    #skip-intro {
-      position: absolute;
-      right: 25px;
-      bottom: 25px;
-      padding: 12px 20px;
-      color: #e8dfe3;
-      background: #211319;
-      border: 1px solid #79505e;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    #skip-intro:hover {
-      background: #3a202a;
-    }
-
-    /* ÜST MENÜ */
-
-    .topbar {
-      min-height: 58px;
-      padding: 0 6%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .menu-button {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 6px;
-      border: 0;
-      background: transparent;
-      cursor: pointer;
-    }
-
-    .menu-button span {
-      width: 25px;
-      height: 1px;
-      background: var(--silver);
-      transition: width .2s;
-    }
-
-    .menu-button span:nth-child(2) {
-      width: 18px;
-    }
-
-    .menu-button:hover span:nth-child(2) {
-      width: 25px;
-    }
-
-    /* LOGO VE SLOGAN */
-
-    .brand {
-      min-height: 300px;
-      padding: 45px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .logo {
-      margin: 0;
-      color: var(--silver);
-      font-family: "Great Vibes", cursive;
-      font-size: clamp(65px, 12vw, 112px);
-      font-weight: 400;
-      line-height: 1.25;
-    }
-
-    .brand-name {
-      margin: 8px 0 0;
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(20px, 4vw, 30px);
-      font-weight: 500;
-      letter-spacing: 1px;
-    }
-
-    .tagline {
-      margin: 17px 0 0;
-      color: var(--muted);
-      font-size: clamp(15px, 2.5vw, 19px);
-      font-style: italic;
-      letter-spacing: .5px;
-    }
-
-    /* YATAY MENÜ */
-
-    .main-nav {
-      padding: 0 12px;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .main-nav::-webkit-scrollbar {
-      display: none;
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(22px, 4vw, 55px);
-      width: max-content;
-      min-width: 100%;
-      padding: 19px 10px;
-    }
-
-    .main-nav a {
-      position: relative;
-      white-space: nowrap;
-      font-size: 17px;
-      transition: color .2s;
-    }
-
-    .main-nav a:hover {
-      color: var(--accent);
-    }
-
-    .main-nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -7px;
-      width: 0;
-      height: 1px;
-      background: var(--accent);
-      transition: width .25s;
-    }
-
-    .main-nav a:hover::after {
-      width: 100%;
-    }
-
-    /* ANA SAYFA ALANI */
-
-    .home-space {
-      min-height: 55vh;
-      background:
-        radial-gradient(
-          ellipse at 50% 45%,
-          rgba(101, 43, 61, .13),
-          transparent 70%
-        ),
-        var(--bg);
-    }
-
-    /* ALT BİLGİ */
-
-    footer {
-      padding: 30px 20px;
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-
-    footer .footer-brand {
-      margin: 0 0 8px;
-      color: var(--silver);
-      font-family: "Great Vibes", cursive;
-      font-size: 30px;
-    }
-
-    footer p {
-      margin: 5px 0;
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    /* AÇILIR MENÜ */
-
-    .menu-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 10000;
-      background: rgba(0, 0, 0, .55);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity .25s, visibility .25s;
-    }
-
-    .menu-overlay.open {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .drawer {
-      position: fixed;
-      z-index: 10001;
-      top: 0;
-      right: 0;
-      width: min(360px, 88vw);
-      height: 100%;
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
-      background: var(--surface);
-      border-left: 1px solid var(--border);
-      transform: translateX(100%);
-      transition: transform .3s ease;
-    }
-
-    .drawer.open {
-      transform: translateX(0);
-    }
-
-    .drawer-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .drawer-title {
-      margin: 0;
-      color: var(--silver);
-      font-family: "Great Vibes", cursive;
-      font-size: 35px;
-    }
-
-    .close-button {
-      width: 40px;
-      height: 40px;
-      color: var(--text);
-      background: transparent;
-      border: 0;
-      font-size: 28px;
-      cursor: pointer;
-    }
-
-    .drawer-links {
-      display: flex;
-      flex-direction: column;
-      padding-top: 18px;
-    }
-
-    .drawer-links a {
-      padding: 16px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 21px;
-      transition: color .2s;
-    }
-
-    .drawer-links a:hover {
-      color: var(--accent);
-    }
-
-    .drawer-bottom {
-      margin-top: auto;
-      padding-top: 30px;
-    }
-
-    .theme-label {
-      display: block;
-      margin-bottom: 14px;
-      color: var(--muted);
-      font-size: 14px;
-      letter-spacing: 2px;
-    }
-
-    .theme-controls {
-      display: flex;
-      gap: 10px;
-    }
-
-    .theme-option {
-      flex: 1;
-      padding: 12px 7px;
-      color: var(--text);
-      background: transparent;
-      border: 1px solid var(--border);
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .theme-option.active {
-      color: var(--accent);
-      border-color: var(--accent);
-      background: var(--bg);
-    }
-
-    body.menu-open {
-      overflow: hidden;
-    }
-
-    @media (max-width: 600px) {
-      .topbar {
-        min-height: 52px;
-        padding: 0 18px;
-      }
-
-      .brand {
-        min-height: 250px;
-        padding: 38px 12px;
-      }
-
-      .nav-inner {
-        justify-content: flex-start;
-        gap: 27px;
-        padding: 16px 10px;
-      }
-
-      .main-nav a {
-        font-size: 16px;
-      }
-
-      .home-space {
-        min-height: 45vh;
-      }
-
-      #intro-screen {
-        padding: 14px;
-      }
-
-      #skip-intro {
-        right: 18px;
-        bottom: 18px;
-      }
-
-      .drawer {
-        padding: 23px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        scroll-behavior: auto !important;
-        transition-duration: .01ms !important;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>kesmislalih | Resmî Yazar Sitesi</title>
+<meta name="theme-color" content="#10090d">
+<meta name="description" content="kesmislalih'in kişisel yazar sitesi. Bazı hikâyeler anlatılmak için değil, hissedilmek içindir.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #10090d;
+  --surface: #1a1016;
+  --text: #eee7eb;
+  --muted: #b9aab3;
+  --accent: #9c243f;
+  --silver: #d8d1d7;
+  --border: rgba(216, 209, 215, .19);
+  --shadow: rgba(0, 0, 0, .48);
+}
+
+body.light {
+  color-scheme: light;
+  --bg: #f4eef1;
+  --surface: #fff9fb;
+  --text: #26141d;
+  --muted: #715d67;
+  --accent: #86213c;
+  --silver: #604d57;
+  --border: rgba(65, 32, 47, .2);
+  --shadow: rgba(50, 20, 35, .15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(103, 21, 48, .14), transparent 55%),
+    var(--bg);
+  color: var(--text);
+  font-family: "Cormorant Garamond", serif;
+  transition: background .35s ease, color .35s ease;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* AÇILIŞ VİDEOSU */
+
+#intro-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #090609;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .8s ease, visibility .8s ease;
+}
+
+#intro-screen.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#intro-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.intro-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(8, 4, 7, .46), rgba(8, 4, 7, .14) 45%, rgba(8, 4, 7, .7)),
+    radial-gradient(ellipse at center, transparent 10%, rgba(7, 3, 6, .36) 100%);
+}
+
+.intro-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 20px;
+  text-align: center;
+}
+
+.intro-signature {
+  margin: 0 0 26px;
+  color: #eee6ec;
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(55px, 12vw, 100px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  text-shadow:
+    0 1px 1px #fff,
+    0 0 12px rgba(255, 255, 255, .3),
+    0 5px 24px rgba(0, 0, 0, .8);
+}
+
+.profile-frame {
+  width: clamp(145px, 36vw, 220px);
+  aspect-ratio: 1 / 1;
+  padding: 5px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    #f4edf2 0%,
+    #9b8b95 23%,
+    #4c2737 48%,
+    #d7cbd3 70%,
+    #6f1c35 100%
+  );
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.3),
+    0 0 35px rgba(128, 25, 56, .48),
+    0 15px 50px rgba(0,0,0,.5);
+}
+
+.profile-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  border: 3px solid rgba(12, 7, 10, .9);
+}
+
+.intro-tagline {
+  margin: 28px 0 0;
+  color: #eee5eb;
+  font-size: clamp(15px, 3.5vw, 20px);
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 10px #000;
+}
+
+.skip-intro {
+  position: absolute;
+  z-index: 3;
+  right: max(20px, env(safe-area-inset-right));
+  bottom: max(24px, env(safe-area-inset-bottom));
+  padding: 11px 20px;
+  color: #f5edf2;
+  background: rgba(20, 10, 16, .52);
+  border: 1px solid rgba(235, 222, 231, .65);
+  border-radius: 2px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 17px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background .25s, color .25s;
+}
+
+.skip-intro:hover {
+  background: #e8dce4;
+  color: #1b0d14;
+}
+
+/* ÜST ALAN */
+
+.site-header {
+  position: relative;
+  z-index: 20;
+  padding: 28px 22px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.header-top {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1150px;
+  margin: 0 auto;
+  min-height: 90px;
+}
+
+.brand {
+  text-align: center;
+}
+
+.brand-signature {
+  margin: 0;
+  color: var(--silver);
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(45px, 8vw, 70px);
+  font-weight: 400;
+  line-height: 1.05;
+  text-shadow: 0 0 16px rgba(156, 36, 63, .16);
+}
+
+.brand-name {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 4px;
+}
+
+.tagline {
+  margin: 12px 0 25px;
+  color: var(--muted);
+  font-size: 16px;
+  font-style: italic;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+/* HAMBURGER */
+
+.menu-button {
+  position: absolute;
+  top: 14px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 43px;
+  height: 43px;
+  padding: 9px;
+  background: transparent;
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+
+.menu-button span {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--silver);
+  transition: transform .25s;
+}
+
+.menu-button:hover {
+  border-color: var(--accent);
+}
+
+.main-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(22px, 5vw, 65px);
+  padding: 18px 0 21px;
+}
+
+.main-nav a {
+  position: relative;
+  color: var(--muted);
+  font-size: 19px;
+  letter-spacing: 1px;
+  transition: color .25s;
+}
+
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -7px;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform .25s;
+}
+
+.main-nav a:hover {
+  color: var(--text);
+}
+
+.main-nav a:hover::after {
+  transform: scaleX(1);
+}
+
+/* YAN MENÜ */
+
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, .55);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s, visibility .3s;
+}
+
+.drawer-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.drawer {
+  position: fixed;
+  z-index: 101;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: min(330px, 86vw);
+  padding: 32px 28px;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  box-shadow: -15px 0 45px var(--shadow);
+  transform: translateX(105%);
+  transition: transform .35s ease;
+}
+
+.drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.drawer-title {
+  margin: 0;
+  font-family: "Great Vibes", cursive;
+  color: var(--silver);
+  font-size: 43px;
+  font-weight: 400;
+}
+
+.close-menu {
+  width: 38px;
+  height: 38px;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--border);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-top: 18px;
+}
+
+.drawer-links a {
+  padding: 17px 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 22px;
+  transition: color .2s, padding-left .2s;
+}
+
+.drawer-links a:hover {
+  padding-left: 7px;
+  color: var(--text);
+}
+
+.drawer-bottom {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.theme-label {
+  margin: 0 0 13px;
+  color: var(--muted);
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.theme-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.theme-button {
+  flex: 1;
+  padding: 11px 7px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  font-family: inherit;
+  font-size: 17px;
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+
+.theme-button.active,
+.theme-button:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ANA SAYFA */
+
+.home-space {
+  min-height: 58vh;
+}
+
+.site-footer {
+  padding: 28px 20px 22px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.footer-signature {
+  margin: 0;
+  color: var(--silver);
+  font-family: "Great Vibes", cursive;
+  font-size: 43px;
+  font-weight: 400;
+}
+
+.footer-tagline {
+  margin: 7px 0 15px;
+  color: var(--muted);
+  font-size: 15px;
+  font-style: italic;
+  letter-spacing: .5px;
+}
+
+.copyright {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+/* MOBİL */
+
+@media (max-width: 600px) {
+  .site-header {
+    padding: 20px 16px 0;
+  }
+
+  .header-top {
+    min-height: 82px;
+  }
+
+  .brand-signature {
+    font-size: 53px;
+  }
+
+  .brand-name {
+    font-size: 11px;
+    letter-spacing: 3px;
+  }
+
+  .menu-button {
+    top: 10px;
+    right: 0;
+    width: 38px;
+    height: 38px;
+  }
+
+  .tagline {
+    max-width: 290px;
+    margin: 10px auto 20px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .main-nav {
+    gap: 0;
+    justify-content: space-between;
+    padding: 15px 0 18px;
+  }
+
+  .main-nav a {
+    font-size: 16px;
+    letter-spacing: .3px;
+  }
+
+  .home-space {
+    min-height: 48vh;
+  }
+
+  .intro-signature {
+    margin-bottom: 23px;
+  }
+
+  .intro-tagline {
+    max-width: 290px;
+    line-height: 1.6;
+    letter-spacing: 1px;
+  }
+
+  .skip-intro {
+    font-size: 16px;
+    padding: 10px 17px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
 </head>
 
-<body>
+<body class="no-scroll">
 
-  <!-- AÇILIŞ VİDEOSU -->
-  <div id="intro-screen" aria-label="Site açılış videosu">
-    <video
-      id="intro-video"
-      autoplay
-      muted
-      playsinline
-      preload="auto"
-      aria-label="kesmislalih açılış videosu"
-    >
-      <source src="intro.mp4" type="video/mp4">
-    </video>
+<!-- AÇILIŞ EKRANI -->
+<section id="intro-screen" aria-label="Site açılış ekranı">
+  <video id="intro-video" autoplay muted playsinline preload="auto">
+    <source src="Panconleche_xd_pindown.io_1793290847.mp4" type="video/mp4">
+  </video>
 
-    <button id="skip-intro" type="button">
-      Siteye geç →
-    </button>
+  <div class="intro-shade"></div>
+
+  <div class="intro-content">
+    <h1 class="intro-signature">kesmislalih</h1>
+
+    <div class="profile-frame">
+      <img
+        src="d08eae9afcf72d4a213a3d988ecf5935.jpg"
+        alt="kesmislalih profil fotoğrafı"
+      >
+    </div>
+
+    <p class="intro-tagline">
+      some stories are not meant to be told, but felt.
+    </p>
   </div>
 
-  <!-- ÜST KISIM -->
-  <header class="topbar">
+  <button class="skip-intro" id="skip-intro" type="button">
+    Siteye geç →
+  </button>
+</section>
+
+<!-- ANA SİTE -->
+<header class="site-header">
+  <div class="header-top">
+    <div class="brand">
+      <h1 class="brand-signature">kesmislalih</h1>
+      <p class="brand-name">𝙠𝙚𝙨𝙢𝙞𝙨𝙡𝙖𝙡𝙞𝙝</p>
+    </div>
+
     <button
       class="menu-button"
-      id="menu-open"
+      id="menu-button"
       type="button"
       aria-label="Menüyü aç"
       aria-expanded="false"
-      aria-controls="drawer"
     >
       <span></span>
       <span></span>
       <span></span>
     </button>
-  </header>
+  </div>
 
-  <!-- LOGO -->
-  <section class="brand" aria-label="kesmislalih">
-    <h1 class="logo">kesmislalih</h1>
+  <p class="tagline">
+    some stories are not meant to be told, but felt.
+  </p>
 
-    <p class="brand-name">𝙠𝙚𝙨𝙢𝙞𝙨𝙡𝙖𝙡𝙞𝙝</p>
-
-    <p class="tagline">
-      some stories are not meant to be told, but felt.
-    </p>
-  </section>
-
-  <!-- YATAY MENÜ -->
   <nav class="main-nav" aria-label="Ana menü">
-    <div class="nav-inner">
-      <a href="index.html">Ana Sayfa</a>
-      <a href="kitaplar.html">Kitaplar</a>
-      <a href="karakterler.html">Karakterler</a>
-      <a href="galeri.html">Galeri</a>
-    </div>
+    <a href="index.html">Ana Sayfa</a>
+    <a href="kitaplar.html">Kitaplar</a>
+    <a href="karakterler.html">Karakterler</a>
+    <a href="galeri.html">Galeri</a>
+  </nav>
+</header>
+
+<main>
+  <!-- Ana sayfanın içerik alanını daha sonra birlikte dolduracağız. -->
+  <section class="home-space" aria-label="Ana sayfa içerik alanı"></section>
+</main>
+
+<footer class="site-footer">
+  <p class="footer-signature">kesmislalih</p>
+  <p class="footer-tagline">
+    some stories are not meant to be told, but felt.
+  </p>
+  <p class="copyright">
+    © <span id="year"></span> kesmislalih
+  </p>
+</footer>
+
+<!-- SAĞDAN AÇILAN MENÜ -->
+<div class="drawer-backdrop" id="drawer-backdrop"></div>
+
+<aside class="drawer" id="drawer" aria-label="Yan menü" aria-hidden="true">
+  <div class="drawer-head">
+    <h2 class="drawer-title">kesmislalih</h2>
+    <button class="close-menu" id="close-menu" type="button" aria-label="Menüyü kapat">
+      ×
+    </button>
+  </div>
+
+  <nav class="drawer-links" aria-label="Diğer sayfalar">
+    <a href="duvar.html">Duvar</a>
+    <a href="duyurular.html">Duyurular</a>
+    <a href="iletisim.html">İletişim</a>
   </nav>
 
-  <!-- ŞİMDİLİK BOŞ ANA SAYFA ALANI -->
-  <main>
-    <section class="home-space" aria-label="Ana sayfa içerik alanı"></section>
-  </main>
+  <div class="drawer-bottom">
+    <p class="theme-label">Görünüm</p>
 
-  <!-- ALT BİLGİ -->
-  <footer>
-    <p class="footer-brand">kesmislalih</p>
-    <p>some stories are not meant to be told, but felt.</p>
-    <p>© <span id="year"></span> kesmislalih</p>
-  </footer>
-
-  <!-- MENÜ KARARTMASI -->
-  <div class="menu-overlay" id="menu-overlay"></div>
-
-  <!-- SAĞ MENÜ -->
-  <aside
-    class="drawer"
-    id="drawer"
-    role="dialog"
-    aria-modal="true"
-    aria-label="Site menüsü"
-    aria-hidden="true"
-    inert
-  >
-    <div class="drawer-header">
-      <h2 class="drawer-title">kesmislalih</h2>
-
-      <button
-        class="close-button"
-        id="menu-close"
-        type="button"
-        aria-label="Menüyü kapat"
-      >
-        ×
+    <div class="theme-controls">
+      <button class="theme-button" id="light-mode" type="button">
+        ☼ Aydınlık
+      </button>
+      <button class="theme-button" id="dark-mode" type="button">
+        ☾ Karanlık
       </button>
     </div>
+  </div>
+</aside>
 
-    <nav class="drawer-links" aria-label="Diğer sayfalar">
-      <a href="duvar.html">Duvar</a>
-      <a href="duyurular.html">Duyurular</a>
-      <a href="iletisim.html">İletişim</a>
-    </nav>
+<script>
+/* AÇILIŞ VİDEOSU */
+const introScreen = document.getElementById("intro-screen");
+const introVideo = document.getElementById("intro-video");
+const skipIntro = document.getElementById("skip-intro");
 
-    <div class="drawer-bottom">
-      <span class="theme-label">GÖRÜNÜM</span>
+function closeIntro() {
+  if (introScreen.classList.contains("hide")) return;
 
-      <div class="theme-controls">
-        <button
-          class="theme-option"
-          id="light-mode"
-          type="button"
-          aria-pressed="false"
-        >
-          ☼ Aydınlık
-        </button>
+  introScreen.classList.add("hide");
+  document.body.classList.remove("no-scroll");
 
-        <button
-          class="theme-option"
-          id="dark-mode"
-          type="button"
-          aria-pressed="false"
-        >
-          ☾ Karanlık
-        </button>
-      </div>
-    </div>
-  </aside>
+  introVideo.pause();
 
-  <script>
-    // AÇILIŞ VİDEOSU
-    const introScreen = document.getElementById("intro-screen");
-    const introVideo = document.getElementById("intro-video");
-    const skipIntro = document.getElementById("skip-intro");
+  window.setTimeout(() => {
+    introScreen.style.display = "none";
+  }, 850);
+}
 
-    let introClosed = false;
+skipIntro.addEventListener("click", closeIntro);
+introVideo.addEventListener("ended", closeIntro);
 
-    function closeIntro() {
-      if (introClosed) return;
+/* Video yüklenemezse ziyaretçinin sitede kalmasını önleme */
+introVideo.addEventListener("error", () => {
+  closeIntro();
+});
 
-      introClosed = true;
-      introScreen.classList.add("hide");
-      introVideo.pause();
-    }
+/* Video otomatik başlamazsa yine de Siteye geç butonu çalışır. */
+const videoPlay = introVideo.play();
 
-    skipIntro.addEventListener("click", closeIntro);
-    introVideo.addEventListener("ended", closeIntro);
+if (videoPlay && typeof videoPlay.catch === "function") {
+  videoPlay.catch(() => {
+    /* Kullanıcı isterse Siteye geç butonuna basabilir. */
+  });
+}
 
-    introVideo.play().catch(() => {
-      // Otomatik oynatma engellenirse
-      // ziyaretçi Siteye geç düğmesini kullanabilir.
-    });
+/* YAN MENÜ */
+const menuButton = document.getElementById("menu-button");
+const closeMenuButton = document.getElementById("close-menu");
+const drawer = document.getElementById("drawer");
+const backdrop = document.getElementById("drawer-backdrop");
 
-    // TEMA
-    const body = document.body;
-    const lightMode = document.getElementById("light-mode");
-    const darkMode = document.getElementById("dark-mode");
+function openMenu() {
+  drawer.classList.add("open");
+  backdrop.classList.add("open");
+  drawer.setAttribute("aria-hidden", "false");
+  menuButton.setAttribute("aria-expanded", "true");
+}
 
-    function applyTheme(theme) {
-      const light = theme === "light";
+function closeMenu() {
+  drawer.classList.remove("open");
+  backdrop.classList.remove("open");
+  drawer.setAttribute("aria-hidden", "true");
+  menuButton.setAttribute("aria-expanded", "false");
+}
 
-      body.classList.toggle("light", light);
+menuButton.addEventListener("click", openMenu);
+closeMenuButton.addEventListener("click", closeMenu);
+backdrop.addEventListener("click", closeMenu);
 
-      lightMode.classList.toggle("active", light);
-      darkMode.classList.toggle("active", !light);
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeMenu();
+  }
+});
 
-      lightMode.setAttribute("aria-pressed", String(light));
-      darkMode.setAttribute("aria-pressed", String(!light));
+/* AYDINLIK / KARANLIK MODU */
+const lightButton = document.getElementById("light-mode");
+const darkButton = document.getElementById("dark-mode");
 
-      document.querySelector('meta[name="theme-color"]')
-        .setAttribute("content", light ? "#f5f1f0" : "#0b090a");
+function setTheme(theme) {
+  const isLight = theme === "light";
 
-      try {
-        localStorage.setItem("siteTheme", theme);
-      } catch (error) {
-        // Tema, depolama kullanılamasa da değişir.
-      }
-    }
+  document.body.classList.toggle("light", isLight);
+  lightButton.classList.toggle("active", isLight);
+  darkButton.classList.toggle("active", !isLight);
 
-    let savedTheme = "dark";
+  try {
+    localStorage.setItem("siteTheme", theme);
+  } catch (error) {
+    /* Tarayıcı depolamayı engellerse sayfa yine çalışır. */
+  }
+}
 
-    try {
-      savedTheme = localStorage.getItem("siteTheme") || "dark";
-    } catch (error) {
-      // Varsayılan koyu tema kullanılır.
-    }
+let savedTheme = "dark";
 
-    applyTheme(savedTheme);
+try {
+  savedTheme = localStorage.getItem("siteTheme") || "dark";
+} catch (error) {
+  savedTheme = "dark";
+}
 
-    lightMode.addEventListener("click", () => applyTheme("light"));
-    darkMode.addEventListener("click", () => applyTheme("dark"));
+setTheme(savedTheme);
 
-    // SAĞ MENÜ
-    const drawer = document.getElementById("drawer");
-    const menuOverlay = document.getElementById("menu-overlay");
-    const menuOpen = document.getElementById("menu-open");
-    const menuClose = document.getElementById("menu-close");
+lightButton.addEventListener("click", () => setTheme("light"));
+darkButton.addEventListener("click", () => setTheme("dark"));
 
-    function openMenu() {
-      drawer.classList.add("open");
-      menuOverlay.classList.add("open");
-      body.classList.add("menu-open");
-
-      drawer.removeAttribute("inert");
-      drawer.setAttribute("aria-hidden", "false");
-      menuOpen.setAttribute("aria-expanded", "true");
-
-      menuClose.focus();
-    }
-
-    function closeMenu() {
-      drawer.classList.remove("open");
-      menuOverlay.classList.remove("open");
-      body.classList.remove("menu-open");
-
-      drawer.setAttribute("inert", "");
-      drawer.setAttribute("aria-hidden", "true");
-      menuOpen.setAttribute("aria-expanded", "false");
-
-      menuOpen.focus();
-    }
-
-    menuOpen.addEventListener("click", openMenu);
-    menuClose.addEventListener("click", closeMenu);
-    menuOverlay.addEventListener("click", closeMenu);
-
-    document.addEventListener("keydown", (event) => {
-      if (
-        event.key === "Escape" &&
-        drawer.classList.contains("open")
-      ) {
-        closeMenu();
-      }
-    });
-
-    // YIL
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-  </script>
+/* YIL */
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
