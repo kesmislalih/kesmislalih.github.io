@@ -1,781 +1,597 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#09090b">
-<title>kesmislalih | Kelimelerden Doğan Hikâyeler</title>
+<meta name="theme-color" content="#09090B">
+<title>kesmislalih | Kelimelerden doğan hikâyeler</title>
+<meta name="description" content="kesmislalih'in kitapları, karakterleri ve hikâyelerinden kareler.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#09090b;
-  --panel:#100e12;
-  --text:#f3efe8;
-  --muted:#a9a0a8;
-  --accent:#cdb9eb;
-  --line:#382b40;
-  --wine:#512733;
+  --black:#09090B;
+  --anthracite:#29292D;
+  --anthracite-light:#35353A;
+  --burgundy:#3B0B19;
+  --burgundy-light:#591326;
+  --text:#F2ECEE;
+  --muted:#B9ADB2;
+  --border:#4B3039;
+  --signature:#D6B9C2;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --script:"Great Vibes",cursive;
 }
-*{margin:0;padding:0;box-sizing:border-box}
+*{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:20px}
 body{
-  background:var(--bg);
+  margin:0;
+  background:var(--black);
   color:var(--text);
-  font-family:"Cormorant Garamond",serif;
-  min-height:100vh;
+  font-family:var(--serif);
+  font-size:17px;
 }
 body.locked{overflow:hidden}
-button,a{-webkit-tap-highlight-color:transparent}
+button,input,a{-webkit-tap-highlight-color:transparent}
 button{font:inherit}
 a{color:inherit;text-decoration:none}
+img,video{max-width:100%}
 button:focus-visible,a:focus-visible{
-  outline:2px solid var(--accent);
+  outline:2px solid var(--signature);
   outline-offset:4px;
 }
 
-/* AÇILIŞ EKRANI — İLK VİDEO KORUNDU */
+/* AÇILIŞ EKRANI */
 .intro{
-  position:fixed;
-  inset:0;
-  z-index:1000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  gap:0;
-  padding:25px;
-  background:#08080a;
-  transition:opacity .65s ease,visibility .65s ease;
+  position:fixed;inset:0;z-index:1000;
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;background:var(--black);
+  opacity:1;visibility:visible;
+  transition:opacity .65s,visibility .65s;
 }
-.intro.hide{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-}
+.intro.hide{opacity:0;visibility:hidden;pointer-events:none}
+.intro-content{width:min(430px,100%);text-align:center}
 .intro-frame{
-  position:absolute;
-  width:min(1100px,94vw);
-  height:min(72svh,700px);
-  min-height:320px;
-  overflow:hidden;
-  border:1px solid #493b4e;
-  background:#111015;
+  position:relative;width:100%;aspect-ratio:4/5;
+  max-height:65vh;overflow:hidden;
+  border:1px solid var(--border);
+  background:var(--anthracite);
 }
-.intro-frame video{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center;
+.intro-video{display:block;width:100%;height:100%;object-fit:cover}
+.intro-overlay{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:flex-end;
+  gap:12px;padding:28px 16px;
+  background:linear-gradient(180deg,transparent 30%,#09090b38 53%,#09090bf2);
 }
-.intro-shade{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    180deg,
-    #08080a22,
-    #08080a44 45%,
-    #08080acc
-  );
+.intro-logo{
+  margin:0;color:#fff;font-family:var(--script);
+  font-size:clamp(48px,12vw,76px);
+  font-weight:400;line-height:1.1;
 }
-.intro-content{
-  position:relative;
-  z-index:2;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  width:100%;
-  min-height:72svh;
-  text-align:center;
+.intro-caption{
+  margin:0;color:#eee3e6;
+  font-size:clamp(12px,3vw,15px);
+  font-style:italic;letter-spacing:1px;
 }
-.signature{
-  color:#fffaff;
-  font-family:"Great Vibes",cursive;
-  font-size:clamp(70px,12vw,135px);
-  font-weight:400;
-  line-height:1.25;
-  text-shadow:0 3px 30px #000b;
+.primary-button{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:45px;padding:12px 25px;
+  border:1px solid var(--signature);
+  background:var(--burgundy);color:#fff;
+  font-family:Arial,sans-serif;font-size:10px;
+  letter-spacing:3px;cursor:pointer;
 }
-.thin-line{
-  width:clamp(110px,22vw,250px);
-  height:1px;
-  margin:12px auto 28px;
-  background:linear-gradient(90deg,transparent,#d8c8e8,transparent);
-}
-.outline-button{
-  min-width:155px;
-  padding:14px 28px;
-  border:1px solid #e0d0ed;
-  background:#09090bbd;
-  color:#fff;
-  font-family:Arial,sans-serif;
-  font-size:10px;
-  letter-spacing:4px;
-  cursor:pointer;
-  transition:background .25s,color .25s;
-}
-.outline-button:hover{
-  background:#d8c7e8;
-  color:#17121b;
-}
+.primary-button:hover{background:var(--burgundy-light)}
+.intro-content>.primary-button{margin-top:20px}
 
-/* PROFİL ALANI */
+/* PROFİL */
 .profile{
   position:relative;
-  isolation:isolate;
-  display:flex;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(105px,220px);
   align-items:center;
-  justify-content:center;
-  min-height:650px;
-  min-height:88svh;
-  overflow:hidden;
-  padding:90px 24px 55px;
-  background:#100d12;
+  gap:clamp(16px,5vw,65px);
+  width:min(1100px,100%);
+  margin:0 auto;
+  padding:70px clamp(22px,7vw,80px) 55px;
 }
-.profile-video{
-  position:absolute;
-  z-index:-3;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center;
-}
-.profile-shade{
-  position:absolute;
-  z-index:-2;
-  inset:0;
-  background:linear-gradient(
-    180deg,
-    #08070b55,
-    #08070b91 48%,
-    #08070be8
-  );
-}
-.profile-content{
-  width:min(700px,100%);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-}
-.avatar{
-  display:block;
-  width:clamp(120px,18vw,175px);
-  aspect-ratio:1;
-  object-fit:cover;
-  border-radius:50%;
-  border:1px solid #d6c4e7;
-  box-shadow:0 0 35px #08060b88;
-  margin-bottom:25px;
+.profile-copy{min-width:0}
+.profile-eyebrow{
+  margin:0 0 10px;color:var(--signature);
+  font-family:Arial,sans-serif;font-size:10px;
+  letter-spacing:4px;text-transform:uppercase;
 }
 .profile-name{
-  color:#fff;
-  font-size:clamp(32px,5vw,57px);
-  font-weight:400;
-  letter-spacing:clamp(3px,.8vw,8px);
+  margin:0;font-size:clamp(43px,8vw,88px);
+  font-weight:400;line-height:.95;overflow-wrap:anywhere;
 }
-.slogan{
-  margin-top:12px;
-  color:#e4d8eb;
-  font-size:clamp(16px,2.2vw,22px);
-  font-style:italic;
-  letter-spacing:.5px;
+.profile-tagline{
+  margin:15px 0 0;color:var(--muted);
+  font-size:clamp(16px,2.5vw,22px);font-style:italic;
 }
-.socials{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:23px;
-  margin-top:32px;
+.profile-description{
+  max-width:470px;margin:23px 0 0;
+  color:#D2C7CB;font-size:18px;line-height:1.7;
 }
-.socials a{
-  display:grid;
-  place-items:center;
-  width:27px;
-  height:27px;
-  color:#f1e8f6;
-  opacity:.88;
-  transition:color .2s,transform .2s,opacity .2s;
+.profile-photo-wrap{
+  width:100%;max-width:220px;aspect-ratio:4/5;
+  overflow:hidden;border:1px solid var(--border);
+  background:var(--anthracite);
 }
-.socials a:hover{
-  color:var(--accent);
-  opacity:1;
-  transform:translateY(-3px);
+.profile-photo{display:block;width:100%;height:100%;object-fit:cover}
+.social-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
+.social-link{
+  display:grid;place-items:center;width:36px;height:36px;
+  border:1px solid #514047;border-radius:50%;
+  background:var(--anthracite);color:var(--text);
+  font-family:Arial,sans-serif;font-size:11px;
 }
-.socials svg{
-  display:block;
-  width:100%;
-  height:100%;
-  fill:none;
-  stroke:currentColor;
-  stroke-width:1.6;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-.socials .x-brand svg,
-.socials .pinterest-brand svg{
-  fill:currentColor;
-  stroke:none;
-}
-.socials .x-brand svg path,
-.socials .pinterest-brand svg path{
-  fill:currentColor;
-}
-.socials .whatsapp-brand svg path:first-child{
-  fill:none;
+.social-link:hover{border-color:var(--signature);background:var(--burgundy)}
+.profile-rule{
+  width:88%;height:1px;margin:0 auto;
+  background:linear-gradient(90deg,transparent,var(--border),transparent);
 }
 
-/* SAĞDAN AÇILAN MENÜ */
+/* SAĞ MENÜ */
 .menu-button{
-  position:absolute;
-  z-index:30;
-  top:27px;
-  right:5%;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  justify-content:center;
-  gap:7px;
-  width:49px;
-  height:45px;
-  padding:8px;
-  border:1px solid #ffffff50;
-  background:#09090b66;
+  position:fixed;top:22px;right:22px;z-index:902;
+  display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:6px;width:47px;height:47px;
+  border:1px solid var(--border);background:#09090B;
   cursor:pointer;
-  transition:border-color .2s,background .2s;
-}
-.menu-button:hover{
-  border-color:var(--accent);
-  background:#09090bbd;
 }
 .menu-button span{
-  display:block;
-  height:1px;
-  background:#fff;
-  transition:width .2s;
+  display:block;width:19px;height:1px;
+  background:var(--text);transition:transform .2s;
 }
-.menu-button span:nth-child(1){width:27px}
-.menu-button span:nth-child(2){width:21px}
-.menu-button span:nth-child(3){width:25px}
-.menu-button:hover span:nth-child(2){width:27px}
-
+.menu-button[aria-expanded="true"] span:first-child{
+  transform:translateY(3.5px) rotate(45deg);
+}
+.menu-button[aria-expanded="true"] span:last-child{
+  transform:translateY(-3.5px) rotate(-45deg);
+}
 .menu-backdrop{
-  position:fixed;
-  z-index:39;
-  inset:0;
-  background:#030204b8;
-  opacity:0;
-  visibility:hidden;
+  position:fixed;inset:0;z-index:900;
+  background:#0009;opacity:0;visibility:hidden;
   transition:opacity .3s,visibility .3s;
 }
-.menu-backdrop.open{
-  opacity:1;
-  visibility:visible;
-}
+.menu-backdrop.open{opacity:1;visibility:visible}
 .menu-panel{
-  position:fixed;
-  z-index:40;
-  top:0;
-  right:0;
-  display:flex;
-  flex-direction:column;
-  width:min(390px,86vw);
-  height:100%;
-  height:100dvh;
-  overflow-y:auto;
-  padding:65px 35px 35px;
-  border-left:1px solid #594362;
-  background:linear-gradient(150deg,#17121b,#09090b 70%);
-  transform:translateX(102%);
-  visibility:hidden;
-  transition:transform .35s ease,visibility .35s;
+  position:fixed;top:0;right:0;z-index:901;
+  display:flex;flex-direction:column;
+  width:min(340px,86vw);height:100%;
+  padding:95px 32px 35px;overflow-y:auto;
+  border-left:1px solid var(--border);
+  background:var(--anthracite);
+  transform:translateX(102%);visibility:hidden;
+  transition:transform .3s,visibility .3s;
 }
-.menu-panel.open{
-  transform:translateX(0);
-  visibility:visible;
-}
+.menu-panel.open{transform:translateX(0);visibility:visible}
 .menu-signature{
-  color:#f8f1ff;
-  font-family:"Great Vibes",cursive;
-  font-size:43px;
+  margin:0 0 6px;color:var(--signature);
+  font-family:var(--script);font-size:43px;
 }
-.menu-kicker{
-  margin-top:7px;
-  color:#a79aaf;
-  font-family:Arial,sans-serif;
-  font-size:8px;
-  line-height:1.8;
-  letter-spacing:2.5px;
+.menu-subtitle{
+  margin:0 0 28px;color:var(--muted);
+  font-size:15px;font-style:italic;
 }
-.menu-head{
-  padding-bottom:30px;
-  border-bottom:1px solid #44354a;
+.menu-link{
+  display:block;padding:16px 0;
+  border:0;border-bottom:1px solid #ffffff12;
+  background:transparent;color:var(--text);
+  font-size:21px;letter-spacing:1px;
+  text-align:left;cursor:pointer;
 }
-.menu-panel nav{
-  display:flex;
-  flex-direction:column;
-  margin-top:25px;
+.menu-link:hover{color:var(--signature)}
+.menu-socials{display:flex;flex-wrap:wrap;gap:9px;margin-top:25px}
+.menu-socials a{
+  padding:8px 10px;border:1px solid #514047;
+  color:var(--muted);font-family:Arial,sans-serif;font-size:10px;
 }
-.menu-panel nav a{
-  display:flex;
-  align-items:center;
-  gap:18px;
-  padding:17px 0;
-  border-bottom:1px solid #ffffff12;
-  color:#f0e8f2;
-  font-size:22px;
-  transition:color .2s,padding-left .2s;
-}
-.menu-panel nav a:hover{
-  padding-left:7px;
-  color:var(--accent);
-}
-.menu-panel nav a span{
-  color:#9b829f;
-  font-family:Arial,sans-serif;
-  font-size:9px;
-  letter-spacing:1px;
-}
-.menu-note{
-  margin-top:auto;
-  padding-top:35px;
-  color:#a99cad;
-  font-size:17px;
-  font-style:italic;
-  line-height:1.6;
-}
-
-/* TELEFON */
-@media(max-width:600px){
-  .intro{padding:14px}
-  .intro-frame{
-    width:92vw;
-    height:min(60svh,520px);
-    min-height:300px;
-  }
-  .intro-content{min-height:60svh}
-  .signature{font-size:clamp(59px,14vw,85px)}
-  .profile{
-    min-height:620px;
-    min-height:82svh;
-    padding:72px 18px 38px;
-  }
-  .avatar{width:clamp(112px,34vw,145px)}
-  .profile-name{
-    font-size:clamp(31px,8vw,48px);
-    letter-spacing:2px;
-  }
-  .slogan{font-size:17px}
-  .socials{gap:20px}
-  .socials a{width:25px;height:25px}
-  .menu-button{top:17px;right:5%}
-  .menu-panel{padding:55px 25px 28px}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{
-    scroll-behavior:auto!important;
-    transition-duration:.01ms!important;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<!-- AÇILIŞ EKRANI: İLK VİDEO DOSYASI DEĞİŞTİRİLMEDİ -->
-<div class="intro" id="intro" aria-label="Site açılış ekranı">
-  <div class="intro-frame">
-    <video autoplay muted loop playsinline preload="metadata">
-      <source src="macadoodle31_pindown.io_1793296533.mp4" type="video/mp4">
-    </video>
-    <div class="intro-shade"></div>
-  </div>
-
-  <div class="intro-content">
-    <h1 class="signature">kesmislalih</h1>
-    <div class="thin-line"></div>
-    <button class="outline-button" id="enterButton" type="button">KEŞFET</button>
-  </div>
-</div>
-
-<!-- ANA SAYFA / PROFİL -->
-<section class="profile" id="anasayfa">
-  <video class="profile-video" autoplay muted loop playsinline preload="metadata">
-    <source src="bloggg_erss_pindown.io_1793296543.mp4" type="video/mp4">
-  </video>
-  <div class="profile-shade"></div>
-
-  <!-- MENÜ BUTONU -->
-  <button
-    class="menu-button"
-    id="menuButton"
-    type="button"
-    aria-label="Menüyü aç"
-    aria-expanded="false"
-    aria-controls="menuPanel">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-
-  <div class="menu-backdrop" id="menuBackdrop"></div>
-
-  <!-- SAĞ MENÜ -->
-  <aside class="menu-panel" id="menuPanel" aria-hidden="true">
-    <div class="menu-head">
-      <div class="menu-signature">kesmislalih</div>
-      <div class="menu-kicker">KELİMELERDEN DOĞAN HİKÂYELER</div>
-    </div>
-
-    <nav aria-label="Ana menü">
-      <a href="#anasayfa" data-home><span>01</span>Ana Sayfa</a>
-      <a href="#kitaplar" data-open-panel="kitaplar"><span>02</span>Kitaplar</a>
-      <a href="#pano" data-open-panel="pano"><span>03</span>Pano</a>
-      <a href="#karakterler" data-open-panel="karakterler"><span>04</span>Karakterler</a>
-      <a href="galeri.html"><span>05</span>Galeri</a>
-    </nav>
-
-    <p class="menu-note">“Some stories are not meant to be told, but felt.”</p>
-  </aside>
-
-  <!-- PROFİL BİLGİLERİ -->
-  <div class="profile-content">
-    <img
-      class="avatar"
-      src="d08eae9afcf72d4a213a3d988ecf5935.jpg"
-      alt="kesmislalih profil fotoğrafı">
-
-    <h2 class="profile-name">KESMİSLALİH</h2>
-    <p class="slogan">some stories are not meant to be told, but felt.</p>
-
-    <!-- SOSYAL MEDYA İKONLARI -->
-    <div class="socials" aria-label="Sosyal medya bağlantıları">
-
-      <a href="https://www.instagram.com/"
-         target="_blank" rel="noopener noreferrer"
-         aria-label="Instagram">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="5"/>
-          <circle cx="12" cy="12" r="4"/>
-          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-        </svg>
-      </a>
-
-      <a class="x-brand" href="https://x.com/kesmislalih"
-         target="_blank" rel="noopener noreferrer" aria-label="X">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.9 5.8 22H2.6l7.3-8.4L1.9 2h6.5l4.5 6.7L18.9 2Zm-1.1 17.9h1.7L7.4 4H5.6l12.2 15.9Z"/>
-        </svg>
-      </a>
-
-      <a class="pinterest-brand" href="https://pin.it/2jHDXi48B"
-         target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 1.8a10.2 10.2 0 0 0-3.7 19.7c-.1-1.7 0-3.7.4-5.5l1.4-5.9s-.4-.8-.4-2c0-1.9 1.1-3.3 2.5-3.3 1.2 0 1.8.9 1.8 2 0 1.2-.8 3-1.2 4.7-.4 1.4.7 2.5 2.1 2.5 2.5 0 4.4-2.7 4.4-6.6 0-3.4-2.4-5.8-5.9-5.8-4 0-6.4 3-6.4 6.2 0 1.2.5 2.6 1.1 3.3.1.2.2.4.1.6l-.4 1.5c-.1.5-.3.6-.8.4-1.8-.8-2.9-3.2-2.9-5.1 0-4.2 3-8.1 8.7-8.1 4.6 0 8.2 3.3 8.2 7.7 0 4.6-2.9 8.4-6.9 8.4-1.3 0-2.6-.7-3-1.6l-.8 3.1c-.3 1.1-1 2.5-1.5 3.3A10.2 10.2 0 1 0 12 1.8Z"/>
-        </svg>
-      </a>
-
-      <a class="whatsapp-brand"
-         href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
-         target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M20.2 11.7a8.2 8.2 0 0 1-12.1 7.2L3 20l1.2-4.9a8.2 8.2 0 1 1 16-3.4Z"/>
-          <path d="M8.2 7.8c.3-.6.6-.6.9-.6h.5c.2 0 .4.1.5.5l.8 1.8c.1.3.1.5-.1.7l-.6.7c-.2.2-.2.4 0 .7.5.9 1.3 1.7 2.2 2.2.3.2.5.2.7 0l.8-.9c.2-.2.4-.2.7-.1l1.7.8c.3.1.4.3.4.5 0 .5-.3 1.4-.8 1.8-.5.4-1.2.7-2 .5-1-.2-2.4-.8-3.9-2.1-1.3-1.1-2.2-2.5-2.5-3.5-.3-1 .1-1.8.7-2.5Z"/>
-        </svg>
-      </a>
-
-      <a href="https://www.tiktok.com/@kesmislalih_"
-         target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M15 3v11.1a4.1 4.1 0 1 1-3.5-4.05"/>
-          <path d="M15 3c.5 3.1 2.2 4.8 5 5.1"/>
-        </svg>
-      </a>
-
-      <a href="https://www.wattpad.com/user/kesmislalih"
-         target="_blank" rel="noopener noreferrer" aria-label="Wattpad">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M4 3v18h4.2v-7.1l4.1 4.2 4.1-4.2V21H20V3h-4.2l-3.5 4.2L8.2 3H4Z"/>
-        </svg>
-      </a>
-
-      <a href="https://open.spotify.com/"
-         target="_blank" rel="noopener noreferrer" aria-label="Spotify">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="12" cy="12" r="9.5"/>
-          <path d="M6.5 9c4.3-1.3 8.7-.7 11.7 1.2M7.2 12.3c3.5-1 7.2-.5 9.8 1M8 15.4c2.7-.7 5.5-.3 7.6.8"/>
-        </svg>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<style>
-/* SEKMELER VE İÇERİK PANELLERİ */
+.menu-socials a:hover{border-color:var(--signature);color:#fff;background:var(--burgundy)}
+    
+/* SEKME VE PANEL TASARIMLARI */
 .tabs{
-  position:relative;
-  z-index:2;
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  padding:0 5%;
-  background:#0b090d;
-  border-bottom:1px solid #382b40;
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  padding:0 3%;border-bottom:1px solid var(--border);
+  background:var(--black);
 }
 .tabs button{
-  padding:20px 5px 17px;
-  border:0;
-  border-bottom:2px solid transparent;
-  background:transparent;
-  color:#a99eaa;
-  font-family:Arial,sans-serif;
-  font-size:10px;
-  letter-spacing:2px;
-  cursor:pointer;
+  min-width:0;padding:19px 5px 16px;
+  border:0;border-bottom:2px solid transparent;
+  background:transparent;color:var(--muted);
+  font-family:Arial,sans-serif;font-size:10px;
+  letter-spacing:2px;cursor:pointer;
 }
 .tabs button:hover,.tabs button.active{
-  color:#e8d9f5;
-  border-bottom-color:#cdb9eb;
+  border-bottom-color:var(--signature);color:#fff;
 }
-.panel-stage{position:relative;background:#0b090d}
+.panel-stage{background:var(--black)}
 .panel{
-  position:relative;
-  display:none;
-  min-height:470px;
-  padding:65px 6% 80px;
-  overflow:hidden;
-  background:#0d0b10;
+  display:none;min-height:440px;
+  padding:60px clamp(16px,6vw,70px) 75px;
+  background:var(--black);
 }
 .panel.active{display:block}
 .panel-title{
-  position:relative;
-  text-align:center;
-  font-size:clamp(38px,6vw,65px);
-  font-weight:400;
+  margin:0;text-align:center;
+  font-size:clamp(38px,6vw,62px);font-weight:400;
 }
 .panel-subtitle{
-  position:relative;
-  margin:12px 0 38px;
-  color:#cdb9eb;
-  text-align:center;
-  font-family:"Great Vibes",cursive;
-  font-size:27px;
+  margin:8px 0 38px;color:var(--signature);
+  font-family:var(--script);font-size:29px;text-align:center;
 }
-.books-panel{isolation:isolate}
+.books-panel{position:relative;isolation:isolate;overflow:hidden}
 .books-video{
-  position:absolute;
-  z-index:-2;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:.24;
+  position:absolute;inset:0;z-index:-2;
+  width:100%;height:100%;object-fit:cover;opacity:.22;
 }
 .books-shade{
-  position:absolute;
-  z-index:-1;
-  inset:0;
+  position:absolute;inset:0;z-index:-1;
   background:linear-gradient(#09090be8,#09090bf5);
 }
-.books-grid{
-  position:relative;
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,250px));
-  justify-content:center;
-  gap:clamp(20px,5vw,55px);
-  width:100%;
-  max-width:700px;
-  margin:0 auto;
+.books-grid,.character-books{
+  display:grid;grid-template-columns:repeat(2,minmax(0,250px));
+  justify-content:center;gap:clamp(18px,5vw,48px);
+  width:100%;max-width:650px;margin:0 auto;
 }
-.book-card{
-  min-width:0;
-  text-align:center;
-  cursor:pointer;
+.book-card,.character-book{
+  min-width:0;padding:0;border:0;
+  background:transparent;color:inherit;
+  text-align:center;cursor:pointer;
 }
 .cover-frame{
-  position:relative;
-  width:100%;
-  aspect-ratio:2/3;
-  overflow:hidden;
-  border:1px solid #512733;
-  background:#111015;
+  position:relative;width:100%;aspect-ratio:2/3;
+  overflow:hidden;border:1px solid var(--border);
+  background:var(--anthracite);
 }
 .cover{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:transform .4s,opacity .3s;
+  display:block;width:100%;height:100%;
+  object-fit:cover;transition:transform .3s,opacity .3s;
 }
-.book-card:hover .cover{transform:scale(1.035);opacity:.85}
-.book-title{
-  margin-top:16px;
-  color:#f5eef6;
-  font-size:clamp(15px,2vw,21px);
-  font-weight:500;
-  letter-spacing:1px;
+.book-card:hover .cover,.character-book:hover .cover{
+  transform:scale(1.025);opacity:.86;
+}
+.book-title,.character-book-title{
+  display:block;margin:14px 0 0;
+  font-size:clamp(14px,2.3vw,21px);
+  font-weight:500;letter-spacing:1px;
 }
 .book-author{
-  margin-top:7px;
-  color:#b7a6bb;
-  font-family:Arial,sans-serif;
-  font-size:9px;
-  letter-spacing:3px;
+  display:block;margin:7px 0 0;color:var(--muted);
+  font-family:Arial,sans-serif;font-size:9px;letter-spacing:3px;
 }
 .coming{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:10px;
-  background:#09090b8a;
-  color:#fff;
-  font-family:Arial,sans-serif;
-  font-size:clamp(13px,2vw,18px);
-  letter-spacing:3px;
-  text-align:center;
+  position:absolute;inset:0;display:flex;
+  align-items:center;justify-content:center;padding:12px;
+  background:#09090b9c;color:#fff;
+  font-family:Arial,sans-serif;font-size:14px;
+  letter-spacing:3px;text-align:center;
 }
 .simple-card{
-  width:min(650px,100%);
-  margin:0 auto;
-  padding:35px clamp(18px,5vw,50px);
-  border:1px solid #512733;
-  background:linear-gradient(145deg,#171019,#0b090d);
-  text-align:center;
+  width:min(650px,100%);margin:0 auto;
+  padding:30px clamp(16px,5vw,45px);
+  border:1px solid var(--border);
+  background:var(--anthracite);text-align:center;
 }
-.ornament{color:#cdb9eb;font-size:35px}
-.quote{
-  margin:15px 0 30px;
-  color:#eee4f1;
-  font-size:clamp(21px,4vw,30px);
-  font-style:italic;
-}
-.announcement-list{
-  border-top:1px solid #493348;
-}
+.ornament{color:var(--signature);font-size:34px}
+.announcement-list{border-top:1px solid var(--border)}
 .announcement-list p{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:12px;
-  padding:19px 0;
-  border-bottom:1px solid #493348;
-  text-align:left;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;margin:0;padding:19px 0;
+  border-bottom:1px solid var(--border);text-align:left;
 }
 .announcement-list strong{
   font-size:clamp(13px,2.5vw,18px);
-  font-weight:500;
-  letter-spacing:1px;
+  font-weight:500;letter-spacing:1px;
 }
-.announcement-list span{
-  color:#d5b9e7;
-  font-size:18px;
-}
-.muted{margin-top:25px;color:#b6aab8;font-size:17px}
+.announcement-list span{color:var(--signature);font-size:18px}
+.muted{margin-top:24px;color:var(--muted);font-size:16px}
 .signature-small{
-  margin-top:15px;
-  color:#f8f1ff;
-  font-family:"Great Vibes",cursive;
-  font-size:35px;
+  margin-top:12px;color:var(--signature);
+  font-family:var(--script);font-size:36px;
 }
 
-/* GALERİ ÖNİZLEMESİ */
+/* GALERİ */
 .gallery-grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:14px;
-  width:min(1000px,100%);
-  margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:13px;width:min(950px,100%);margin:0 auto;
 }
 .gallery-thumb{
-  display:block;
-  aspect-ratio:4/5;
-  overflow:hidden;
-  border:1px solid #512733;
-  background:#111;
+  display:block;aspect-ratio:4/5;overflow:hidden;
+  border:1px solid var(--border);background:var(--anthracite);
 }
 .gallery-thumb img{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:transform .35s,opacity .3s;
+  display:block;width:100%;height:100%;object-fit:cover;
+  transition:transform .3s,opacity .3s;
 }
-.gallery-thumb:hover img{transform:scale(1.04);opacity:.8}
-.gallery-open-button{
-  display:block;
-  width:min(300px,100%);
-  margin:28px auto 0;
+.gallery-thumb:hover img{transform:scale(1.035);opacity:.8}
+.continue-button{
+  display:flex;align-items:center;justify-content:center;
+  width:min(290px,100%);min-height:45px;
+  margin:25px auto 0;padding:13px 18px;
+  border:1px solid var(--signature);
+  background:var(--burgundy);color:#fff;
+  font-family:Arial,sans-serif;font-size:10px;
+  letter-spacing:2px;text-align:center;cursor:pointer;
+}
+.continue-button:hover{background:var(--burgundy-light)}
+
+/* KARAKTERLER */
+.character-results{
+  display:none;width:100%;max-width:950px;margin:35px auto 0;
+}
+.character-results.open{display:block}
+.character-results-head{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:15px;margin-bottom:23px;padding-bottom:15px;
+  border-bottom:1px solid var(--border);
+}
+.character-results-head h3{
+  margin:0;font-size:clamp(22px,4vw,32px);font-weight:400;
+}
+.character-back{
+  padding:10px 12px;border:1px solid var(--border);
+  background:var(--anthracite);color:var(--text);
+  font-family:Arial,sans-serif;font-size:9px;cursor:pointer;
+}
+.character-back:hover{background:var(--burgundy)}
+.character-cards{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;
+}
+.character-card{
+  min-width:0;padding:0;overflow:hidden;
+  border:1px solid var(--border);
+  background:var(--anthracite);color:var(--text);cursor:pointer;
+}
+.character-photo{
+  display:block;width:100%;aspect-ratio:4/5;object-fit:cover;
+}
+.character-card h4{
+  margin:0;padding:13px 5px 15px;
+  font-size:clamp(14px,2.4vw,19px);font-weight:500;
+}
+.character-card:hover{border-color:var(--signature)}
+
+/* AÇILIR PENCERELER */
+.book-modal,.character-viewer{
+  position:fixed;inset:0;z-index:950;
+  display:none;align-items:center;justify-content:center;
+  padding:20px;overflow-y:auto;background:#09090bf5;
+}
+.book-modal.open,.character-viewer.open{display:flex}
+.modal-content{
+  width:100%;max-width:510px;margin:auto;padding:35px 0 20px;
   text-align:center;
 }
-.continue-button{
-  display:block;
-  width:min(290px,90%);
-  margin:0 auto;
-  padding:15px 18px;
-  border:1px solid #8c3045;
-  background:#090809d9;
-  color:#fff;
-  font-family:Arial,sans-serif;
-  font-size:11px;
-  letter-spacing:3px;
-  cursor:pointer;
+.modal-cover{
+  display:block;width:min(45%,220px);max-height:34vh;
+  aspect-ratio:2/3;margin:0 auto 16px;
+  border:1px solid var(--border);object-fit:cover;
 }
-.continue-button:hover{background:#751b31}
+.modal-title{
+  margin:8px 0 0;font-size:clamp(27px,5vw,39px);font-weight:600;
+}
+.modal-author{
+  margin:3px 0 18px;color:var(--signature);
+  font-family:var(--script);font-size:28px;
+}
+.modal-quote{
+  margin:16px auto 23px;font-size:clamp(19px,3.5vw,26px);
+  font-style:italic;line-height:1.5;
+}
+.modal-close,.character-viewer-close{
+  position:fixed;top:12px;right:20px;z-index:3;
+  border:0;background:transparent;color:#fff;font-size:42px;cursor:pointer;
+}
+.read-more{
+  display:block;margin-top:18px;color:var(--signature);
+  font-family:Arial,sans-serif;font-size:10px;letter-spacing:1px;
+}
+.character-viewer-content{
+  width:min(390px,65vw);text-align:center;
+}
+.character-viewer-content img{
+  display:block;width:100%;max-height:62vh;aspect-ratio:4/5;
+  border:1px solid var(--border);object-fit:cover;
+}
+.character-viewer-content h3{
+  margin:18px 0 0;font-size:clamp(20px,4vw,32px);
+  font-weight:500;letter-spacing:2px;
+}
+.character-viewer-content p{
+  color:var(--signature);font-family:Arial,sans-serif;
+  font-size:9px;letter-spacing:2px;
+}
+.character-arrow{
+  position:fixed;top:50%;z-index:3;
+  width:45px;height:45px;transform:translateY(-50%);
+  border:1px solid var(--border);border-radius:50%;
+  background:var(--anthracite);color:#fff;font-size:30px;cursor:pointer;
+}
+.character-arrow:hover{background:var(--burgundy)}
+.character-prev{left:clamp(8px,4vw,50px)}
+.character-next{right:clamp(8px,4vw,50px)}
 
+/* ALT ALAN */
+.footer{
+  padding:35px 16px;border-top:1px solid var(--border);
+  background:var(--black);color:var(--muted);text-align:center;
+}
+.footer-signature{
+  margin:0;color:var(--signature);
+  font-family:var(--script);font-size:40px;
+}
+.footer-slogan{margin:6px 0 0;font-size:15px;font-style:italic}
+.footer-links{
+  display:flex;flex-wrap:wrap;justify-content:center;
+  gap:12px 19px;margin:22px 0;
+}
+.footer-links a{font-size:14px}
+.footer-links a:hover{color:var(--signature)}
+.copyright{
+  color:#8E8389;font-family:Arial,sans-serif;
+  font-size:9px;letter-spacing:3px;
+}
+
+/* TELEFON EKRANLARI */
 @media(max-width:600px){
+  .profile{
+    grid-template-columns:minmax(0,1fr) 95px;
+    gap:16px;padding:75px 18px 35px;
+  }
+  .profile-name{font-size:clamp(38px,10vw,57px)}
+  .profile-description{font-size:15px;line-height:1.55}
+  .profile-photo-wrap{max-width:95px}
+  .profile-eyebrow{font-size:8px;letter-spacing:2px}
+  .profile-tagline{font-size:15px}
+  .social-links{gap:7px;margin-top:17px}
+  .social-link{width:31px;height:31px;font-size:10px}
+  .menu-button{top:12px;right:12px;width:41px;height:41px}
   .tabs{padding:0 2%}
-  .tabs button{padding:17px 1px 15px;font-size:9px;letter-spacing:0}
-  .panel{padding:38px 16px 48px}
-  .panel-subtitle{font-size:23px;margin-bottom:27px}
-  .books-grid{gap:14px}
-  .book-title{font-size:15px;line-height:1.3}
+  .tabs button{padding:16px 1px;font-size:9px;letter-spacing:0}
+  .panel{padding:38px 15px 48px}
+  .panel-subtitle{font-size:25px;margin-bottom:28px}
+  .books-grid,.character-books{gap:13px}
+  .book-title,.character-book-title{font-size:14px;line-height:1.35}
   .book-author{font-size:8px;letter-spacing:2px}
-  .gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .gallery-grid,.character-cards{
+    grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;
+  }
+  .character-results-head{align-items:flex-start;flex-direction:column}
+  .character-viewer-content{width:min(390px,65vw)}
+  .character-viewer-content img{max-height:53vh}
+  .character-arrow{width:37px;height:37px;font-size:25px}
+  .character-prev{left:5px}
+  .character-next{right:5px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
 }
 </style>
+</head>
+<body>
 
-<!-- BÖLÜM SEKMELERİ -->
-<nav class="tabs" aria-label="Bölümler">
-  <button class="active" data-tab="kitaplar" type="button">KİTAPLAR</button>
-  <button data-tab="pano" type="button">PANO</button>
-  <button data-tab="karakterler" type="button">KARAKTERLER</button>
-  <button data-tab="galeri" type="button">GALERİ</button>
+<!-- İLK AÇILIŞ VİDEOSU: DOSYA ADI DEĞİŞTİRİLMEDİ -->
+<section class="intro" id="intro" aria-label="Siteye hoş geldin">
+  <div class="intro-content">
+    <div class="intro-frame">
+      <video class="intro-video" autoplay muted loop playsinline preload="metadata">
+        <source src="macadoodle31_pindown.io_1793296533.mp4" type="video/mp4">
+      </video>
+      <div class="intro-overlay">
+        <h1 class="intro-logo">kesmislalih</h1>
+        <p class="intro-caption">some stories are not meant to be told, but felt.</p>
+      </div>
+    </div>
+    <button class="primary-button" id="enterButton" type="button">KEŞFET</button>
+  </div>
+</section>
+
+<!-- SAĞ MENÜ DÜĞMESİ -->
+<button class="menu-button" id="menuButton" type="button"
+  aria-label="Menüyü aç" aria-expanded="false" aria-controls="menuPanel">
+  <span></span><span></span>
+</button>
+<div class="menu-backdrop" id="menuBackdrop"></div>
+
+<!-- PROFİL -->
+<header class="profile" id="anasayfa">
+  <div class="profile-copy">
+    <p class="profile-eyebrow">YAZAR · HAYALPEREST</p>
+    <h2 class="profile-name">kesmislalih</h2>
+    <p class="profile-tagline">Kelimelerden doğan hikâyeler.</p>
+    <p class="profile-description">
+      Bazı hikâyeler anlatılmak için değil, hissedilmek için yazılır.
+    </p>
+
+    <div class="social-links" aria-label="Sosyal medya hesapları">
+      <a class="social-link" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+      <a class="social-link" href="https://x.com/kesmislalih" target="_blank" rel="noopener noreferrer" aria-label="X">X</a>
+      <a class="social-link" href="https://pin.it/2jHDXi48B" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">P</a>
+      <a class="social-link" href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">W</a>
+      <a class="social-link" href="https://www.tiktok.com/@kesmislalih_" target="_blank" rel="noopener noreferrer" aria-label="TikTok">TT</a>
+      <a class="social-link" href="https://www.wattpad.com/user/kesmislalih" target="_blank" rel="noopener noreferrer" aria-label="Wattpad">WP</a>
+      <a class="social-link" href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer" aria-label="Spotify">SP</a>
+    </div>
+  </div>
+
+  <div class="profile-photo-wrap">
+    <img class="profile-photo"
+      src="d08eae9afcf72d4a213a3d988ecf5935.jpg"
+      alt="kesmislalih profil fotoğrafı">
+  </div>
+</header>
+
+<div class="profile-rule"></div>
+
+<!-- SAĞDAN AÇILAN MENÜ -->
+<aside class="menu-panel" id="menuPanel" aria-hidden="true" aria-label="Ana menü">
+  <p class="menu-signature">kesmislalih</p>
+  <p class="menu-subtitle">Kelimelerden doğan hikâyeler.</p>
+
+  <button class="menu-link" type="button" data-home>Ana Sayfa</button>
+  <button class="menu-link" type="button" data-open-panel="kitaplar">Kitaplar</button>
+  <button class="menu-link" type="button" data-open-panel="pano">Pano</button>
+  <button class="menu-link" type="button" data-open-panel="karakterler">Karakterler</button>
+  <button class="menu-link" type="button" data-open-panel="galeri">Galeri</button>
+
+  <div class="menu-socials">
+    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href="https://x.com/kesmislalih" target="_blank" rel="noopener noreferrer">X</a>
+    <a href="https://pin.it/2jHDXi48B" target="_blank" rel="noopener noreferrer">Pinterest</a>
+    <a href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    <a href="https://www.tiktok.com/@kesmislalih_" target="_blank" rel="noopener noreferrer">TikTok</a>
+    <a href="https://www.wattpad.com/user/kesmislalih" target="_blank" rel="noopener noreferrer">Wattpad</a>
+    <a href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer">Spotify</a>
+  </div>
+</aside>
+<!-- SEKME MENÜSÜ -->
+<nav class="tabs" aria-label="Site bölümleri">
+  <button class="active" type="button" data-tab="kitaplar">KİTAPLAR</button>
+  <button type="button" data-tab="pano">PANO</button>
+  <button type="button" data-tab="karakterler">KARAKTERLER</button>
+  <button type="button" data-tab="galeri">GALERİ</button>
 </nav>
 
 <main class="panel-stage">
 
   <!-- KİTAPLAR -->
   <section class="panel books-panel active" id="panel-kitaplar">
-    <video class="books-video" autoplay muted loop playsinline preload="metadata">
+    <video class="books-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
       <source src="bloggg_erss_pindown.io_1793296543.mp4" type="video/mp4">
     </video>
     <div class="books-shade"></div>
 
     <h2 class="panel-title">Kitaplar</h2>
-    <p class="panel-subtitle">Her hikâye başka bir dünyadır.</p>
+    <p class="panel-subtitle">Her hikâye başka bir dünya.</p>
 
     <div class="books-grid">
-      <article class="book-card" id="ringBook" tabindex="0" role="button" aria-label="Ringteki Son Dans tanıtımını aç">
+      <button class="book-card" id="ringBook" type="button" aria-label="Ringteki Son Dans kitap tanıtımını aç">
         <div class="cover-frame">
-          <img class="cover" src="file_0000000025bc81f4894ba4ef290f1c32.png" alt="Ringteki Son Dans kitap kapağı">
+          <img
+            class="cover"
+            src="file_0000000025bc81f4894ba4ef290f1c32.png"
+            alt="Ringteki Son Dans kitap kapağı"
+            loading="lazy">
         </div>
-        <h3 class="book-title">RİNGTEKİ SON DANS</h3>
-        <p class="book-author">KESMİSLALİH</p>
-      </article>
+        <span class="book-title">RİNGTEKİ SON DANS</span>
+        <span class="book-author">KESMİSLALİH</span>
+      </button>
 
-      <article class="book-card" aria-label="İkinci kitap yakında">
+      <article class="book-card">
         <div class="cover-frame">
-          <img class="cover" src="ikinci-kitap-kapagi.jpg" alt="İkinci kitap kapağı">
+          <img
+            class="cover"
+            src="ikinci-kitap-kapagi.jpg"
+            alt="İkinci kitap kapağı"
+            loading="lazy">
           <div class="coming">ÇOK YAKINDA</div>
         </div>
         <h3 class="book-title">ÇOK YAKINDA</h3>
@@ -787,11 +603,10 @@ button:focus-visible,a:focus-visible{
   <!-- PANO -->
   <section class="panel" id="panel-pano">
     <h2 class="panel-title">Pano</h2>
-    <p class="panel-subtitle">Kelimelerin bıraktığı izler.</p>
+    <p class="panel-subtitle">Yeni hikâyeler, yeni dünyalar.</p>
 
-    <div class="simple-card announcement-card">
-      <span class="ornament">❦</span>
-      <p class="quote">Yeni hikâyeler için geri sayım başladı.</p>
+    <div class="simple-card">
+      <span class="ornament" aria-hidden="true">❦</span>
 
       <div class="announcement-list">
         <p>
@@ -809,7 +624,43 @@ button:focus-visible,a:focus-visible{
     </div>
   </section>
 
-  <!-- KARAKTERLER BÖLÜMÜ 3. PARÇADA GELECEK -->
+  <!-- KARAKTERLER -->
+  <section class="panel" id="panel-karakterler">
+    <h2 class="panel-title">Karakterler</h2>
+    <p class="panel-subtitle">Önce kitaplarını seç.</p>
+
+    <div class="character-books" id="characterBooks">
+      <button class="character-book" type="button" data-character-book="ring">
+        <div class="cover-frame">
+          <img
+            class="cover"
+            src="file_0000000025bc81f4894ba4ef290f1c32.png"
+            alt="Ringteki Son Dans kitap kapağı"
+            loading="lazy">
+        </div>
+        <span class="character-book-title">RİNGTEKİ SON DANS</span>
+      </button>
+
+      <button class="character-book" type="button" data-character-book="yeraltı">
+        <div class="cover-frame">
+          <img
+            class="cover"
+            src="ikinci-kitap-kapagi.jpg"
+            alt="Yeraltının Kanunu kitap kapağı"
+            loading="lazy">
+        </div>
+        <span class="character-book-title">YERALTİNIN KANUNU</span>
+      </button>
+    </div>
+
+    <div class="character-results" id="characterResults" aria-live="polite">
+      <div class="character-results-head">
+        <h3 id="characterResultsTitle">Karakterler</h3>
+        <button class="character-back" id="characterBack" type="button">← KİTAPLARA DÖN</button>
+      </div>
+      <div class="character-cards" id="characterCards"></div>
+    </div>
+  </section>
 
   <!-- GALERİ -->
   <section class="panel" id="panel-galeri">
@@ -817,473 +668,225 @@ button:focus-visible,a:focus-visible{
     <p class="panel-subtitle">Hikâyelerden kareler.</p>
 
     <div class="gallery-grid">
-      <a class="gallery-thumb" href="galeri.html">
+      <a class="gallery-thumb" href="galeri.html" aria-label="Galeriyi aç">
         <img src="772b5be803dcc10b56a2cae0088acf3e.jpg" alt="Galeri fotoğrafı 1" loading="lazy">
       </a>
-      <a class="gallery-thumb" href="galeri.html">
+      <a class="gallery-thumb" href="galeri.html" aria-label="Galeriyi aç">
         <img src="ad301506aa5527e2b6d349fcbf02e9a8 (1).jpg" alt="Galeri fotoğrafı 2" loading="lazy">
       </a>
-      <a class="gallery-thumb" href="galeri.html">
+      <a class="gallery-thumb" href="galeri.html" aria-label="Galeriyi aç">
         <img src="0f8b7991dde0f22ff23fb81e0fc16649.jpg" alt="Galeri fotoğrafı 3" loading="lazy">
       </a>
-      <a class="gallery-thumb" href="galeri.html">
+      <a class="gallery-thumb" href="galeri.html" aria-label="Galeriyi aç">
         <img src="bd00784591329cdde6e7804525bb3951.jpg" alt="Galeri fotoğrafı 4" loading="lazy">
       </a>
-      <a class="gallery-thumb" href="galeri.html">
+      <a class="gallery-thumb" href="galeri.html" aria-label="Galeriyi aç">
         <img src="9be113dce8dd12d87ae4f2bf8cf5293e (1).jpg" alt="Galeri fotoğrafı 5" loading="lazy">
       </a>
-      <a class="gallery-thumb" href="galeri.html">
+      <a class="gallery-thumb" href="galeri.html" aria-label="Galeriyi aç">
         <img src="6b0bac9092b0bc230917f062c52e84ad.jpg" alt="Galeri fotoğrafı 6" loading="lazy">
       </a>
-      <a class="gallery-thumb" href="45041afda2229d508a38cc012aaa7174.jpg">
+      <a class="gallery-thumb" href="galeri.html" aria-label="Galeriyi aç">
         <img src="45041afda2229d508a38cc012aaa7174.jpg" alt="Galeri fotoğrafı 7" loading="lazy">
       </a>
-      <a class="gallery-thumb" href="0668f965d8247c1756f1be2f3ee5e1be.jpg">
+      <a class="gallery-thumb" href="galeri.html" aria-label="Galeriyi aç">
         <img src="0668f965d8247c1756f1be2f3ee5e1be.jpg" alt="Galeri fotoğrafı 8" loading="lazy">
       </a>
-      <a class="gallery-thumb" href="025e7f39ec9bd3227fa182d2f735d65c.jpg">
+      <a class="gallery-thumb" href="galeri.html" aria-label="Galeriyi aç">
         <img src="025e7f39ec9bd3227fa182d2f735d65c.jpg" alt="Galeri fotoğrafı 9" loading="lazy">
       </a>
-      
-<style>
-/* KARAKTER KİTAPLARI VE KARTLARI */
-.character-books{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,230px));
-  justify-content:center;
-  gap:clamp(18px,5vw,45px);
-  width:100%;
-  max-width:600px;
-  margin:0 auto;
-}
-.character-book{
-  display:block;
-  min-width:0;
-  padding:0;
-  border:0;
-  background:transparent;
-  color:inherit;
-  cursor:pointer;
-  text-align:center;
-}
-.character-book .cover-frame{
-  border:1px solid #512733;
-  transition:border-color .2s,transform .2s;
-}
-.character-book:hover .cover-frame{
-  border-color:#cdb9eb;
-  transform:translateY(-3px);
-}
-.character-book-title{
-  margin-top:14px;
-  font-size:clamp(13px,2vw,18px);
-  font-weight:500;
-  letter-spacing:1px;
-}
-.character-results{display:none;width:100%;max-width:1000px;margin:35px auto 0}
-.character-results.open{display:block}
-.character-results-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  margin-bottom:25px;
-  padding-bottom:15px;
-  border-bottom:1px solid #512733;
-}
-.character-results-head h3{font-size:clamp(22px,4vw,32px);font-weight:400}
-.character-back{
-  padding:10px 12px;
-  border:1px solid #512733;
-  background:transparent;
-  color:#e8d9f5;
-  font-family:Arial,sans-serif;
-  font-size:9px;
-  letter-spacing:1px;
-  cursor:pointer;
-}
-.character-back:hover{background:#321724}
-.character-cards{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:17px;
-}
-.character-card{
-  display:block;
-  min-width:0;
-  padding:0;
-  overflow:hidden;
-  border:1px solid #512733;
-  background:#0c0b0c;
-  color:inherit;
-  cursor:pointer;
-  text-align:center;
-  transition:transform .2s,border-color .2s;
-}
-.character-card:hover{transform:translateY(-3px);border-color:#a64b63}
-.character-card .character-photo{
-  display:block;
-  width:100%;
-  aspect-ratio:4/5;
-  object-fit:cover;
-}
-.character-card h4{padding:13px 7px 3px;font-size:19px;font-weight:500}
-.character-card p{padding:3px 10px 15px;color:#b7a6bb;font-size:14px}
-
-/* KARAKTER BÜYÜTME PENCERESİ */
-.character-viewer{
-  position:fixed;
-  inset:0;
-  z-index:300;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:25px 18px;
-  background:rgba(5,5,7,.96);
-  opacity:0;
-  visibility:hidden;
-  transition:opacity .25s,visibility .25s;
-}
-.character-viewer.open{opacity:1;visibility:visible}
-.character-viewer-content{
-  position:relative;
-  z-index:1;
-  width:min(400px,65vw);
-  text-align:center;
-}
-.character-viewer-content img{
-  display:block;
-  width:100%;
-  max-height:62svh;
-  aspect-ratio:4/5;
-  object-fit:cover;
-  border:1px solid #733143;
-}
-.character-viewer-content h3{
-  margin-top:20px;
-  color:#f6f1f2;
-  font-family:Arial,sans-serif;
-  font-size:clamp(20px,4vw,34px);
-  font-weight:400;
-  letter-spacing:3px;
-  text-transform:uppercase;
-}
-.character-viewer-content p{
-  margin-top:12px;
-  color:#cdb9eb;
-  font-family:Arial,sans-serif;
-  font-size:10px;
-  letter-spacing:2px;
-}
-.character-arrow{
-  position:absolute;
-  z-index:3;
-  top:50%;
-  transform:translateY(-50%);
-  display:grid;
-  place-items:center;
-  width:50px;
-  height:50px;
-  border:1px solid #7777774d;
-  border-radius:50%;
-  background:#09090b77;
-  color:#fff;
-  font-size:36px;
-  cursor:pointer;
-}
-.character-arrow:hover{background:#512733}
-.character-prev{left:clamp(10px,5vw,65px)}
-.character-next{right:clamp(10px,5vw,65px)}
-.character-viewer-close{
-  position:absolute;
-  z-index:4;
-  top:12px;
-  right:22px;
-  border:0;
-  background:none;
-  color:#fff;
-  font-size:44px;
-  cursor:pointer;
-}
-
-/* KİTAP TANITIM PENCERESİ */
-.book-modal{
-  position:fixed;
-  inset:0;
-  z-index:200;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:22px 18px;
-  overflow-y:auto;
-  background:#080809;
-}
-.book-modal.open{display:flex}
-.modal-shade{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg,#080809c4,#080809f2);
-}
-.modal-close{
-  position:fixed;
-  top:12px;
-  right:19px;
-  z-index:3;
-  border:0;
-  background:#08080999;
-  color:#fff;
-  font-size:45px;
-  cursor:pointer;
-}
-.modal-content{
-  position:relative;
-  z-index:1;
-  width:100%;
-  max-width:540px;
-  margin:auto;
-  padding:38px 0 18px;
-  text-align:center;
-}
-.modal-cover{
-  display:block;
-  width:min(48%,245px);
-  max-height:34svh;
-  aspect-ratio:2/3;
-  object-fit:cover;
-  margin:0 auto 17px;
-  border:1px solid #512733;
-}
-.modal-title{
-  margin:10px 0 0;
-  color:#fff;
-  font-size:clamp(27px,5vw,39px);
-  font-weight:600;
-}
-.modal-author{
-  margin:3px 0 17px;
-  color:#d18b9b;
-  font-family:"Great Vibes",cursive;
-  font-size:28px;
-}
-.modal-quote{
-  margin:17px auto 22px;
-  color:#fff;
-  font-size:clamp(19px,3.5vw,26px);
-  font-style:italic;
-  line-height:1.5;
-}
-.read-more{
-  display:block;
-  margin:17px 0 28px;
-  color:#e2a0b0;
-  font-size:11px;
-  letter-spacing:1.5px;
-}
-.swipe-note{margin-top:18px;color:#bfb3b9;font-size:10px;letter-spacing:2px}
-
-/* ALT BİLGİ */
-.footer{
-  padding:35px 15px;
-  border-top:1px solid #38232a;
-  background:#080809;
-  color:#c0b7bb;
-  text-align:center;
-}
-.footer-signature{color:#f6f2f3;font-family:"Great Vibes",cursive;font-size:38px}
-.footer-slogan{margin-top:5px;font-size:15px;color:#c9bec3}
-.footer-links{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:15px 20px;
-  margin:20px 0;
-}
-.footer-links a{font-size:14px}
-.footer-links a:hover{color:#d18b9b}
-.copyright{color:#8e8389;font-family:Arial,sans-serif;font-size:9px;letter-spacing:3px}
-
-@media(max-width:600px){
-  .character-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-  .character-results-head{align-items:flex-start;flex-direction:column}
-  .character-viewer-content{width:min(390px,65vw)}
-  .character-viewer-content img{max-height:53svh}
-  .character-arrow{width:40px;height:40px;font-size:30px}
-  .character-prev{left:7px}
-  .character-next{right:7px}
-  .character-viewer-content h3{font-size:17px;letter-spacing:2px}
-  .modal-content{padding-top:35px}
-}
-</style>
-
-<!-- KARAKTERLER SEKMESİNİN İÇERİĞİ -->
-<section class="panel" id="panel-karakterler">
-  <h2 class="panel-title">Karakterler</h2>
-  <p class="panel-subtitle">Bir kitabı seç, karakterlerini keşfet.</p>
-
-  <div class="character-books" id="characterBooks">
-    <button class="character-book" type="button" data-character-book="ring">
-      <div class="cover-frame">
-        <img class="cover" src="file_0000000025bc81f4894ba4ef290f1c32.png" alt="Ringteki Son Dans kitabı">
-      </div>
-      <h3 class="character-book-title">RİNGTEKİ SON DANS</h3>
-    </button>
-
-    <button class="character-book" type="button" data-character-book="yeraltı">
-      <div class="cover-frame">
-        <img class="cover" src="ikinci-kitap-kapagi.jpg" alt="Yeraltının Kanunu kitabı">
-      </div>
-      <h3 class="character-book-title">YERALTİNIN KANUNU</h3>
-    </button>
-  </div>
-
-  <div class="character-results" id="characterResults" aria-live="polite">
-    <div class="character-results-head">
-      <h3 id="characterResultsTitle">Karakterler</h3>
-      <button class="character-back" id="characterBack" type="button">← KİTAPLARA DÖN</button>
+      <a class="gallery-thumb" href="galeri.html" aria-label="Galeriyi aç">
+        <img src="520b988f63b52ae66a0127a457e5e7d0.jpg" alt="Galeri fotoğrafı 10" loading="lazy">
+      </a>
     </div>
-    <div class="character-cards" id="characterCards"></div>
-  </div>
-</section>
 
-<!-- KARAKTER FOTOĞRAFI GÖRÜNTÜLEYİCİ -->
-<div class="character-viewer" id="characterViewer" aria-hidden="true" role="dialog" aria-modal="true">
-  <button class="character-viewer-close" id="characterViewerClose" type="button" aria-label="Kapat">×</button>
+    <a class="continue-button" href="galeri.html">TÜM GALERİYİ GÖR</a>
+  </section>
+
+</main>
+
+<!-- RİNGTEKİ SON DANS TANITIM PENCERESİ -->
+<div class="book-modal" id="bookModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <button class="modal-close" id="closeModal" type="button" aria-label="Pencereyi kapat">×</button>
+
+  <div class="modal-content">
+    <img
+      class="modal-cover"
+      src="file_0000000025bc81f4894ba4ef290f1c32.png"
+      alt="Ringteki Son Dans kitap kapağı">
+
+    <h2 class="modal-title" id="modalTitle">RİNGTEKİ SON DANS</h2>
+    <p class="modal-author">kesmislalih</p>
+
+    <p class="modal-quote">
+      Bir karanlık, iki kurşun.<br>
+      Binbir acı, iki yetim.
+    </p>
+
+    <a class="continue-button" href="ringteki-son-dans.html">KİTABI İNCELE →</a>
+    <a class="read-more" href="ringteki-son-dans.html">KİTABIN SAYFASINA GİT</a>
+  </div>
+</div>
+
+<!-- KARAKTER FOTOĞRAFLARINI BÜYÜTME PENCERESİ -->
+<div class="character-viewer" id="characterViewer" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="characterViewerName">
+  <button class="character-viewer-close" id="characterViewerClose" type="button" aria-label="Karakter penceresini kapat">×</button>
+
   <button class="character-arrow character-prev" id="characterPrev" type="button" aria-label="Önceki karakter">‹</button>
+
   <div class="character-viewer-content">
     <img id="characterViewerImage" src="" alt="">
     <h3 id="characterViewerName"></h3>
-    <p>KESMİSLALİH KARAKTER ARŞİVİ</p>
+    <p>KESMİSLALİH · KARAKTERLER</p>
   </div>
+
   <button class="character-arrow character-next" id="characterNext" type="button" aria-label="Sonraki karakter">›</button>
 </div>
 
-<!-- KİTAP TANITIM PENCERESİ -->
-<div class="book-modal" id="bookModal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="modal-shade"></div>
-  <button class="modal-close" id="closeModal" type="button" aria-label="Kapat">×</button>
-  <div class="modal-content">
-    <img class="modal-cover" src="file_0000000025bc81f4894ba4ef290f1c32.png" alt="Ringteki Son Dans kitap kapağı">
-    <h2 class="modal-title" id="modalTitle">RİNGTEKİ SON DANS</h2>
-    <p class="modal-author">kesmislalih</p>
-    <p class="modal-quote">Bir karanlık, iki kurşun.<br>Binbir acı, iki yetim.</p>
-    <a class="continue-button" href="ringteki-son-dans.html">KİTABI İNCELE →</a>
-    <a class="read-more" href="ringteki-son-dans.html">TANITIMIN TAMAMINI OKU ↓</a>
-    <p class="swipe-note">KESMİSLALİH</p>
-  </div>
-</div>
-
-<!-- FOOTER -->
+<!-- SİTE ALT BÖLÜMÜ -->
 <footer class="footer">
   <p class="footer-signature">kesmislalih</p>
   <p class="footer-slogan">some stories are not meant to be told, but felt.</p>
+
   <div class="footer-links">
     <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
     <a href="https://x.com/kesmislalih" target="_blank" rel="noopener noreferrer">X</a>
-    <a href="https://www.tiktok.com/@kesmislalih_" target="_blank" rel="noopener noreferrer">TikTok</a>
-    <a href="https://www.wattpad.com/user/kesmislalih" target="_blank" rel="noopener noreferrer">Wattpad</a>
     <a href="https://pin.it/2jHDXi48B" target="_blank" rel="noopener noreferrer">Pinterest</a>
     <a href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    <a href="https://www.tiktok.com/@kesmislalih_" target="_blank" rel="noopener noreferrer">TikTok</a>
+    <a href="https://www.wattpad.com/user/kesmislalih" target="_blank" rel="noopener noreferrer">Wattpad</a>
     <a href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer">Spotify</a>
   </div>
+
   <p class="copyright">© 2026 KESMİSLALİH</p>
 </footer>
-      
+
 <script>
-/* AÇILIŞ EKRANI */
+"use strict";
+
+/* 1. İLK AÇILIŞ VİDEOSUNDAN SİTEYE GEÇİŞ */
 const intro = document.getElementById("intro");
 const enterButton = document.getElementById("enterButton");
 
-enterButton.addEventListener("click", () => {
-  intro.classList.add("hide");
-  window.setTimeout(() => {
-    intro.style.display = "none";
-  }, 700);
-});
+if (intro && enterButton) {
+  enterButton.addEventListener("click", () => {
+    intro.classList.add("hide");
 
-/* SAĞ MENÜ */
+    window.setTimeout(() => {
+      intro.style.display = "none";
+    }, 700);
+  });
+}
+
+/* 2. SAĞ MENÜ */
 const menuButton = document.getElementById("menuButton");
 const menuPanel = document.getElementById("menuPanel");
 const menuBackdrop = document.getElementById("menuBackdrop");
 
 function openMenu() {
+  if (!menuPanel || !menuBackdrop || !menuButton) return;
+
   menuPanel.classList.add("open");
   menuBackdrop.classList.add("open");
   menuButton.setAttribute("aria-expanded", "true");
+  menuButton.setAttribute("aria-label", "Menüyü kapat");
   menuPanel.setAttribute("aria-hidden", "false");
   document.body.classList.add("locked");
 }
 
 function closeMenu() {
-  menuPanel.classList.remove("open");
-  menuBackdrop.classList.remove("open");
-  menuButton.setAttribute("aria-expanded", "false");
-  menuPanel.setAttribute("aria-hidden", "true");
-
-  if (
-    !document.getElementById("characterViewer").classList.contains("open") &&
-    !document.getElementById("bookModal").classList.contains("open")
-  ) {
-    document.body.classList.remove("locked");
+  if (menuPanel) {
+    menuPanel.classList.remove("open");
+    menuPanel.setAttribute("aria-hidden", "true");
   }
+
+  if (menuBackdrop) {
+    menuBackdrop.classList.remove("open");
+  }
+
+  if (menuButton) {
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.setAttribute("aria-label", "Menüyü aç");
+  }
+
+  updateScrollLock();
 }
 
-menuButton.addEventListener("click", () => {
-  if (menuButton.getAttribute("aria-expanded") === "true") {
-    closeMenu();
-  } else {
-    openMenu();
-  }
-});
+if (menuButton) {
+  menuButton.addEventListener("click", () => {
+    const isOpen = menuButton.getAttribute("aria-expanded") === "true";
 
-menuBackdrop.addEventListener("click", closeMenu);
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+}
 
-/* SEKMELER */
-const tabButtons = [...document.querySelectorAll("[data-tab]")];
-const panels = [...document.querySelectorAll(".panel")];
+if (menuBackdrop) {
+  menuBackdrop.addEventListener("click", closeMenu);
+}
+
+/* 3. SEKME GEÇİŞLERİ */
+const tabButtons = Array.from(
+  document.querySelectorAll("[data-tab]")
+);
+
+const panels = Array.from(
+  document.querySelectorAll(".panel")
+);
 
 function showPanel(name) {
+  const target = document.getElementById("panel-" + name);
+
+  if (!target) return;
+
   tabButtons.forEach(button => {
-    button.classList.toggle("active", button.dataset.tab === name);
+    const selected = button.dataset.tab === name;
+
+    button.classList.toggle("active", selected);
+    button.setAttribute("aria-selected", String(selected));
   });
 
   panels.forEach(panel => {
-    panel.classList.toggle("active", panel.id === "panel-" + name);
+    const selected = panel.id === "panel-" + name;
+
+    panel.classList.toggle("active", selected);
+    panel.setAttribute("aria-hidden", String(!selected));
   });
 
   closeMenu();
 
   if (name === "karakterler") {
-    document.getElementById("characterResults").classList.remove("open");
-    document.getElementById("characterBooks").style.display = "grid";
+    resetCharacterBooks();
   }
 }
 
 tabButtons.forEach(button => {
+  button.setAttribute(
+    "aria-selected",
+    String(button.classList.contains("active"))
+  );
+
   button.addEventListener("click", () => {
     showPanel(button.dataset.tab);
   });
 });
 
-document.querySelectorAll("[data-open-panel]").forEach(link => {
-  link.addEventListener("click", event => {
-    event.preventDefault();
-    showPanel(link.dataset.openPanel);
-    document.querySelector(".tabs").scrollIntoView({
-      behavior: "smooth",
-      block: "start"
+/* 4. ANA SAYFA MENÜSÜ */
+document.querySelectorAll("[data-home]").forEach(button => {
+  button.addEventListener("click", () => {
+    closeMenu();
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
     });
   });
 });
 
-document.querySelectorAll("[data-home]").forEach(link => {
-  link.addEventListener("click", event => {
-    event.preventDefault();
-    closeMenu();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-});
-
-/* KARAKTER VERİLERİ */
+/* 5. KARAKTERLER */
 const characterData = {
   ring: {
     title: "Ringteki Son Dans",
@@ -1315,7 +918,7 @@ const characterData = {
     ]
   },
 
-  "yeraltı": {
+  yeraltı: {
     title: "Yeraltının Kanunu",
     items: []
   }
@@ -1335,77 +938,75 @@ const characterViewerClose = document.getElementById("characterViewerClose");
 let activeCharacters = [];
 let activeCharacterIndex = 0;
 
-/* KİTAP KAPAĞINA BASINCA KARAKTERLERİ GÖSTER */
+function resetCharacterBooks() {
+  if (characterBooks) characterBooks.style.display = "grid";
+  if (characterResults) characterResults.classList.remove("open");
+}
+
+function showCharacterBook(bookKey) {
+  const book = characterData[bookKey];
+
+  if (!book || !characterBooks || !characterResults || !characterCards) {
+    return;
+  }
+
+  activeCharacters = book.items;
+  characterResultsTitle.textContent = book.title;
+  characterCards.replaceChildren();
+
+  if (activeCharacters.length === 0) {
+    const message = document.createElement("p");
+    message.className = "muted";
+    message.textContent =
+      "Bu kitabın karakterleri daha sonra eklenecek.";
+
+    characterCards.appendChild(message);
+  } else {
+    activeCharacters.forEach((character, index) => {
+      const card = document.createElement("button");
+      card.type = "button";
+      card.className = "character-card";
+      card.setAttribute(
+        "aria-label",
+        character.name + " fotoğrafını görüntüle"
+      );
+
+      const photo = document.createElement("img");
+      photo.className = "character-photo";
+      photo.src = character.image;
+      photo.alt = character.name;
+      photo.loading = "lazy";
+
+      const name = document.createElement("h4");
+      name.textContent = character.name;
+
+      card.append(photo, name);
+
+      card.addEventListener("click", () => {
+        openCharacterViewer(index);
+      });
+
+      characterCards.appendChild(card);
+    });
+  }
+
+  characterBooks.style.display = "none";
+  characterResults.classList.add("open");
+}
+
 document.querySelectorAll("[data-character-book]").forEach(button => {
   button.addEventListener("click", () => {
-    const selectedBook = characterData[button.dataset.characterBook];
-
-    characterResultsTitle.textContent = selectedBook.title;
-    activeCharacters = selectedBook.items;
-    characterCards.innerHTML = "";
-
-    if (activeCharacters.length === 0) {
-      const message = document.createElement("p");
-      message.className = "muted";
-      message.textContent =
-        "Bu kitaba ait karakterleri daha sonra ekleyeceğiz.";
-      characterCards.appendChild(message);
-    } else {
-      activeCharacters.forEach((character, index) => {
-        const card = document.createElement("button");
-        card.type = "button";
-        card.className = "character-card";
-        card.setAttribute(
-          "aria-label",
-          character.name + " karakterini görüntüle"
-        );
-
-        const image = document.createElement("img");
-        image.className = "character-photo";
-        image.src = character.image;
-        image.alt = character.name;
-        image.loading = "lazy";
-
-        const name = document.createElement("h4");
-        name.textContent = character.name;
-
-        const description = document.createElement("p");
-        description.textContent =
-          "Karakter bilgileri daha sonra eklenecek.";
-
-        card.append(image, name, description);
-
-        card.addEventListener("click", () => {
-          openCharacterViewer(index);
-        });
-
-        characterCards.appendChild(card);
-      });
-    }
-
-    characterBooks.style.display = "none";
-    characterResults.classList.add("open");
+    showCharacterBook(button.dataset.characterBook);
   });
 });
 
-/* KİTAP KAPAKLARINA GERİ DÖN */
-characterBack.addEventListener("click", () => {
-  characterResults.classList.remove("open");
-  characterBooks.style.display = "grid";
-});
-
-/* KARAKTER GÖRÜNTÜLEYİCİ */
-function openCharacterViewer(index) {
-  activeCharacterIndex = index;
-  updateCharacterViewer();
-
-  characterViewer.classList.add("open");
-  characterViewer.setAttribute("aria-hidden", "false");
-  document.body.classList.add("locked");
+if (characterBack) {
+  characterBack.addEventListener("click", resetCharacterBooks);
 }
 
+/* 6. KARAKTER FOTOĞRAFINI BÜYÜTME VE İLERİ-GERİ GEÇİŞ */
 function updateCharacterViewer() {
-  if (activeCharacters.length === 0) return;
+  if (!activeCharacters.length) return;
 
   activeCharacterIndex =
     (activeCharacterIndex + activeCharacters.length) %
@@ -1418,87 +1019,117 @@ function updateCharacterViewer() {
   characterViewerName.textContent = character.name;
 }
 
+function openCharacterViewer(index) {
+  if (!characterViewer || !activeCharacters.length) return;
+
+  activeCharacterIndex = index;
+  updateCharacterViewer();
+
+  characterViewer.classList.add("open");
+  characterViewer.setAttribute("aria-hidden", "false");
+  updateScrollLock();
+}
+
 function closeCharacterViewer() {
+  if (!characterViewer) return;
+
   characterViewer.classList.remove("open");
   characterViewer.setAttribute("aria-hidden", "true");
-
-  if (!document.getElementById("bookModal").classList.contains("open")) {
-    document.body.classList.remove("locked");
-  }
+  updateScrollLock();
 }
 
-document.getElementById("characterPrev").addEventListener("click", () => {
-  activeCharacterIndex--;
-  updateCharacterViewer();
-});
+const characterPrev = document.getElementById("characterPrev");
+const characterNext = document.getElementById("characterNext");
 
-document.getElementById("characterNext").addEventListener("click", () => {
-  activeCharacterIndex++;
-  updateCharacterViewer();
-});
+if (characterPrev) {
+  characterPrev.addEventListener("click", () => {
+    activeCharacterIndex--;
+    updateCharacterViewer();
+  });
+}
 
-characterViewerClose.addEventListener("click", closeCharacterViewer);
+if (characterNext) {
+  characterNext.addEventListener("click", () => {
+    activeCharacterIndex++;
+    updateCharacterViewer();
+  });
+}
 
-characterViewer.addEventListener("click", event => {
-  if (event.target === characterViewer) {
-    closeCharacterViewer();
-  }
-});
+if (characterViewerClose) {
+  characterViewerClose.addEventListener("click", closeCharacterViewer);
+}
 
-/* RİNGTEKİ SON DANS TANITIMI */
-const modal = document.getElementById("bookModal");
+if (characterViewer) {
+  characterViewer.addEventListener("click", event => {
+    if (event.target === characterViewer) {
+      closeCharacterViewer();
+    }
+  });
+}
+
+/* 7. KİTAP TANITIM PENCERESİ */
 const ringBook = document.getElementById("ringBook");
+const bookModal = document.getElementById("bookModal");
+const closeModalButton = document.getElementById("closeModal");
 
-function openBook() {
-  modal.classList.add("open");
-  modal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("locked");
+function openBookModal() {
+  if (!bookModal) return;
+
+  bookModal.classList.add("open");
+  bookModal.setAttribute("aria-hidden", "false");
+  updateScrollLock();
 }
 
-function closeBook() {
-  modal.classList.remove("open");
-  modal.setAttribute("aria-hidden", "true");
+function closeBookModal() {
+  if (!bookModal) return;
 
-  if (!characterViewer.classList.contains("open")) {
-    document.body.classList.remove("locked");
-  }
+  bookModal.classList.remove("open");
+  bookModal.setAttribute("aria-hidden", "true");
+  updateScrollLock();
 }
 
-ringBook.addEventListener("click", openBook);
+if (ringBook) {
+  ringBook.addEventListener("click", openBookModal);
+}
 
-ringBook.addEventListener("keydown", event => {
-  if (event.key === "Enter" || event.key === " ") {
-    event.preventDefault();
-    openBook();
-  }
-});
+if (closeModalButton) {
+  closeModalButton.addEventListener("click", closeBookModal);
+}
 
-document.getElementById("closeModal").addEventListener("click", closeBook);
+if (bookModal) {
+  bookModal.addEventListener("click", event => {
+    if (event.target === bookModal) {
+      closeBookModal();
+    }
+  });
+}
 
-modal.addEventListener("click", event => {
-  if (event.target === modal) {
-    closeBook();
-  }
-});
+/* 8. KAYDIRMAYI YALNIZCA AÇIK PENCERELERDE ENGELLE */
+function updateScrollLock() {
+  const menuOpen =
+    menuPanel && menuPanel.classList.contains("open");
 
-/* ESC TUŞUYLA PENCERELERİ KAPAT */
+  const bookOpen =
+    bookModal && bookModal.classList.contains("open");
+
+  const characterOpen =
+    characterViewer && characterViewer.classList.contains("open");
+
+  document.body.classList.toggle(
+    "locked",
+    Boolean(menuOpen || bookOpen || characterOpen)
+  );
+}
+
+/* 9. ESC TUŞUYLA AÇIK PENCERELERİ KAPAT */
 document.addEventListener("keydown", event => {
-  if (event.key === "Escape") {
-    closeMenu();
-    closeBook();
-    closeCharacterViewer();
-  }
+  if (event.key !== "Escape") return;
+
+  closeMenu();
+  closeBookModal();
+  closeCharacterViewer();
 });
 </script>
 
 </body>
-    </html>
-      
-      <a class="gallery-thumb" href="520b988f63b52ae66a0127a457e5e7d0.jpg">
-        <img src="520b988f63b52ae66a0127a457e5e7d0.jpg" alt="Galeri fotoğrafı 10" loading="lazy">
-      </a>
-    </div>
-
-    <a class="continue-button gallery-open-button" href="galeri.html">TÜM GALERİYİ GÖR</a>
-  </section>
-</main>
+</html>
