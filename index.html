@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>kesmislalih | Resmî Yazar Sitesi</title>
 <meta name="theme-color" content="#10090d">
-<meta name="description" content="kesmislalih'in kişisel yazar sitesi. Bazı hikâyeler anlatılmak için değil, hissedilmek içindir.">
+<meta name="description" content="kesmislalih'in kişisel yazar sitesi.">
+
+<title>kesmislalih | Yazar Sitesi</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,8 +21,8 @@
   --muted: #b9aab3;
   --accent: #9c243f;
   --silver: #d8d1d7;
-  --border: rgba(216, 209, 215, .19);
-  --shadow: rgba(0, 0, 0, .48);
+  --border: rgba(216,209,215,.19);
+  --shadow: rgba(0,0,0,.48);
 }
 
 body.light {
@@ -33,40 +33,27 @@ body.light {
   --muted: #715d67;
   --accent: #86213c;
   --silver: #604d57;
-  --border: rgba(65, 32, 47, .2);
-  --shadow: rgba(50, 20, 35, .15);
+  --border: rgba(65,32,47,.2);
+  --shadow: rgba(50,20,35,.15);
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(103, 21, 48, .14), transparent 55%),
+    radial-gradient(ellipse at 50% 0%, rgba(103,21,48,.14), transparent 55%),
     var(--bg);
   color: var(--text);
   font-family: "Cormorant Garamond", serif;
-  transition: background .35s ease, color .35s ease;
+  transition: background .35s, color .35s;
 }
 
-body.no-scroll {
-  overflow: hidden;
-}
+body.no-scroll { overflow: hidden; }
 
-button, a {
-  -webkit-tap-highlight-color: transparent;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
+a { color: inherit; text-decoration: none; }
 
 /* AÇILIŞ VİDEOSU */
 
@@ -103,8 +90,8 @@ a {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(8, 4, 7, .46), rgba(8, 4, 7, .14) 45%, rgba(8, 4, 7, .7)),
-    radial-gradient(ellipse at center, transparent 10%, rgba(7, 3, 6, .36) 100%);
+    linear-gradient(180deg, rgba(8,4,7,.46), rgba(8,4,7,.14) 45%, rgba(8,4,7,.7)),
+    radial-gradient(ellipse at center, transparent 10%, rgba(7,3,6,.36) 100%);
 }
 
 .intro-content {
@@ -128,29 +115,16 @@ a {
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: 1px;
-  text-shadow:
-    0 1px 1px #fff,
-    0 0 12px rgba(255, 255, 255, .3),
-    0 5px 24px rgba(0, 0, 0, .8);
+  text-shadow: 0 1px 1px #fff, 0 0 12px rgba(255,255,255,.3), 0 5px 24px rgba(0,0,0,.8);
 }
 
 .profile-frame {
   width: clamp(145px, 36vw, 220px);
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1;
   padding: 5px;
   border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    #f4edf2 0%,
-    #9b8b95 23%,
-    #4c2737 48%,
-    #d7cbd3 70%,
-    #6f1c35 100%
-  );
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,.3),
-    0 0 35px rgba(128, 25, 56, .48),
-    0 15px 50px rgba(0,0,0,.5);
+  background: linear-gradient(135deg, #f4edf2, #9b8b95 23%, #4c2737 48%, #d7cbd3 70%, #6f1c35);
+  box-shadow: 0 0 0 1px rgba(255,255,255,.3), 0 0 35px rgba(128,25,56,.48), 0 15px 50px rgba(0,0,0,.5);
 }
 
 .profile-frame img {
@@ -160,7 +134,7 @@ a {
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
-  border: 3px solid rgba(12, 7, 10, .9);
+  border: 3px solid rgba(12,7,10,.9);
 }
 
 .intro-tagline {
@@ -180,15 +154,14 @@ a {
   bottom: max(24px, env(safe-area-inset-bottom));
   padding: 11px 20px;
   color: #f5edf2;
-  background: rgba(20, 10, 16, .52);
-  border: 1px solid rgba(235, 222, 231, .65);
+  background: rgba(20,10,16,.52);
+  border: 1px solid rgba(235,222,231,.65);
   border-radius: 2px;
   font-family: "Cormorant Garamond", serif;
   font-size: 17px;
   letter-spacing: 1px;
   cursor: pointer;
   backdrop-filter: blur(8px);
-  transition: background .25s, color .25s;
 }
 
 .skip-intro:hover {
@@ -215,9 +188,7 @@ a {
   min-height: 90px;
 }
 
-.brand {
-  text-align: center;
-}
+.brand { text-align: center; }
 
 .brand-signature {
   margin: 0;
@@ -226,7 +197,6 @@ a {
   font-size: clamp(45px, 8vw, 70px);
   font-weight: 400;
   line-height: 1.05;
-  text-shadow: 0 0 16px rgba(156, 36, 63, .16);
 }
 
 .brand-name {
@@ -268,18 +238,15 @@ a {
   width: 100%;
   height: 1px;
   background: var(--silver);
-  transition: transform .25s;
 }
 
-.menu-button:hover {
-  border-color: var(--accent);
-}
+.menu-button:hover { border-color: var(--accent); }
 
 .main-nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: clamp(22px, 5vw, 65px);
+  gap: clamp(22px,5vw,65px);
   padding: 18px 0 21px;
 }
 
@@ -303,13 +270,8 @@ a {
   transition: transform .25s;
 }
 
-.main-nav a:hover {
-  color: var(--text);
-}
-
-.main-nav a:hover::after {
-  transform: scaleX(1);
-}
+.main-nav a:hover { color: var(--text); }
+.main-nav a:hover::after { transform: scaleX(1); }
 
 /* YAN MENÜ */
 
@@ -317,7 +279,7 @@ a {
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: rgba(0, 0, 0, .55);
+  background: rgba(0,0,0,.55);
   opacity: 0;
   visibility: hidden;
   transition: opacity .3s, visibility .3s;
@@ -336,7 +298,7 @@ a {
   bottom: 0;
   display: flex;
   flex-direction: column;
-  width: min(330px, 86vw);
+  width: min(330px,86vw);
   padding: 32px 28px;
   background: var(--surface);
   border-left: 1px solid var(--border);
@@ -345,9 +307,7 @@ a {
   transition: transform .35s ease;
 }
 
-.drawer.open {
-  transform: translateX(0);
-}
+.drawer.open { transform: translateX(0); }
 
 .drawer-head {
   display: flex;
@@ -378,7 +338,6 @@ a {
 .drawer-links {
   display: flex;
   flex-direction: column;
-  gap: 0;
   padding-top: 18px;
 }
 
@@ -422,7 +381,6 @@ a {
   font-family: inherit;
   font-size: 17px;
   cursor: pointer;
-  transition: background .2s, border-color .2s;
 }
 
 .theme-button.active,
@@ -434,9 +392,7 @@ a {
 
 /* ANA SAYFA */
 
-.home-space {
-  min-height: 58vh;
-}
+.home-space { min-height: 58vh; }
 
 .site-footer {
   padding: 28px 20px 22px;
@@ -470,66 +426,31 @@ a {
 /* MOBİL */
 
 @media (max-width: 600px) {
-  .site-header {
-    padding: 20px 16px 0;
-  }
-
-  .header-top {
-    min-height: 82px;
-  }
-
-  .brand-signature {
-    font-size: 53px;
-  }
-
-  .brand-name {
-    font-size: 11px;
-    letter-spacing: 3px;
-  }
-
-  .menu-button {
-    top: 10px;
-    right: 0;
-    width: 38px;
-    height: 38px;
-  }
-
+  .site-header { padding: 20px 16px 0; }
+  .header-top { min-height: 82px; }
+  .brand-signature { font-size: 53px; }
+  .brand-name { font-size: 11px; letter-spacing: 3px; }
+  .menu-button { top: 10px; width: 38px; height: 38px; }
   .tagline {
     max-width: 290px;
     margin: 10px auto 20px;
     font-size: 14px;
     line-height: 1.5;
   }
-
   .main-nav {
     gap: 0;
     justify-content: space-between;
     padding: 15px 0 18px;
   }
-
-  .main-nav a {
-    font-size: 16px;
-    letter-spacing: .3px;
-  }
-
-  .home-space {
-    min-height: 48vh;
-  }
-
-  .intro-signature {
-    margin-bottom: 23px;
-  }
-
+  .main-nav a { font-size: 16px; letter-spacing: .3px; }
+  .home-space { min-height: 48vh; }
+  .intro-signature { margin-bottom: 23px; }
   .intro-tagline {
     max-width: 290px;
     line-height: 1.6;
     letter-spacing: 1px;
   }
-
-  .skip-intro {
-    font-size: 16px;
-    padding: 10px 17px;
-  }
+  .skip-intro { font-size: 16px; padding: 10px 17px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -546,7 +467,7 @@ a {
 <!-- AÇILIŞ EKRANI -->
 <section id="intro-screen" aria-label="Site açılış ekranı">
   <video id="intro-video" autoplay muted playsinline preload="auto">
-    <source src="Panconleche_xd_pindown.io_1793290847.mp4" type="video/mp4">
+    <source src="pepperonisprinkles_pindown.io_1793293544.mp4" type="video/mp4">
   </video>
 
   <div class="intro-shade"></div>
@@ -586,9 +507,7 @@ a {
       aria-label="Menüyü aç"
       aria-expanded="false"
     >
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </button>
   </div>
 
@@ -605,7 +524,6 @@ a {
 </header>
 
 <main>
-  <!-- Ana sayfanın içerik alanını daha sonra birlikte dolduracağız. -->
   <section class="home-space" aria-label="Ana sayfa içerik alanı"></section>
 </main>
 
@@ -614,20 +532,16 @@ a {
   <p class="footer-tagline">
     some stories are not meant to be told, but felt.
   </p>
-  <p class="copyright">
-    © <span id="year"></span> kesmislalih
-  </p>
+  <p class="copyright">© <span id="year"></span> kesmislalih</p>
 </footer>
 
-<!-- SAĞDAN AÇILAN MENÜ -->
+<!-- SAĞ YAN MENÜ -->
 <div class="drawer-backdrop" id="drawer-backdrop"></div>
 
 <aside class="drawer" id="drawer" aria-label="Yan menü" aria-hidden="true">
   <div class="drawer-head">
     <h2 class="drawer-title">kesmislalih</h2>
-    <button class="close-menu" id="close-menu" type="button" aria-label="Menüyü kapat">
-      ×
-    </button>
+    <button class="close-menu" id="close-menu" type="button" aria-label="Menüyü kapat">×</button>
   </div>
 
   <nav class="drawer-links" aria-label="Diğer sayfalar">
@@ -638,14 +552,9 @@ a {
 
   <div class="drawer-bottom">
     <p class="theme-label">Görünüm</p>
-
     <div class="theme-controls">
-      <button class="theme-button" id="light-mode" type="button">
-        ☼ Aydınlık
-      </button>
-      <button class="theme-button" id="dark-mode" type="button">
-        ☾ Karanlık
-      </button>
+      <button class="theme-button" id="light-mode" type="button">☼ Aydınlık</button>
+      <button class="theme-button" id="dark-mode" type="button">☾ Karanlık</button>
     </div>
   </div>
 </aside>
@@ -661,7 +570,6 @@ function closeIntro() {
 
   introScreen.classList.add("hide");
   document.body.classList.remove("no-scroll");
-
   introVideo.pause();
 
   window.setTimeout(() => {
@@ -671,18 +579,13 @@ function closeIntro() {
 
 skipIntro.addEventListener("click", closeIntro);
 introVideo.addEventListener("ended", closeIntro);
+introVideo.addEventListener("error", closeIntro);
 
-/* Video yüklenemezse ziyaretçinin sitede kalmasını önleme */
-introVideo.addEventListener("error", () => {
-  closeIntro();
-});
-
-/* Video otomatik başlamazsa yine de Siteye geç butonu çalışır. */
 const videoPlay = introVideo.play();
 
 if (videoPlay && typeof videoPlay.catch === "function") {
   videoPlay.catch(() => {
-    /* Kullanıcı isterse Siteye geç butonuna basabilir. */
+    /* Video otomatik başlamazsa Siteye geç düğmesi kullanılabilir. */
   });
 }
 
@@ -711,12 +614,10 @@ closeMenuButton.addEventListener("click", closeMenu);
 backdrop.addEventListener("click", closeMenu);
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    closeMenu();
-  }
+  if (event.key === "Escape") closeMenu();
 });
 
-/* AYDINLIK / KARANLIK MODU */
+/* TEMA */
 const lightButton = document.getElementById("light-mode");
 const darkButton = document.getElementById("dark-mode");
 
@@ -729,18 +630,14 @@ function setTheme(theme) {
 
   try {
     localStorage.setItem("siteTheme", theme);
-  } catch (error) {
-    /* Tarayıcı depolamayı engellerse sayfa yine çalışır. */
-  }
+  } catch (error) {}
 }
 
 let savedTheme = "dark";
 
 try {
   savedTheme = localStorage.getItem("siteTheme") || "dark";
-} catch (error) {
-  savedTheme = "dark";
-}
+} catch (error) {}
 
 setTheme(savedTheme);
 
