@@ -2,940 +2,884 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#090909">
-<meta name="description" content="kesmislalih — Kelimelerden doğan hikâyeler.">
-<title>kesmislalih | Hikâyelerden Bir Dünya</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100e10">
+<meta name="description" content="kesmislalih — kelimelerden doğan hikâyeler.">
+<title>kesmislalih | Resmî Site</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg:#090909;
-  --panel:#101011;
-  --panel2:#171416;
-  --text:#f5f1f1;
-  --muted:#a7a0a3;
-  --accent:#861b32;
-  --accent-light:#b72b48;
-  --line:#292326;
-  --glow:rgba(120,20,42,.22);
-  --serif:"Cormorant Garamond",Georgia,serif;
-  --script:"Great Vibes",cursive;
+  --bg: #100e10;
+  --bg-soft: #191518;
+  --panel: #211b1e;
+  --text: #eee8e8;
+  --muted: #b7a9ad;
+  --accent: #9d344e;
+  --accent-light: #c16b7e;
+  --silver: #c9c2c5;
+  --border: rgba(201,194,197,.18);
+  --shadow: 0 18px 55px rgba(0,0,0,.28);
 }
-* { box-sizing:border-box; }
-html { scroll-behavior:smooth; scroll-padding-top:25px; }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
 body {
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:var(--serif);
-  font-size:18px;
-  line-height:1.5;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  line-height: 1.65;
+  overflow-x: hidden;
 }
-body.no-scroll { overflow:hidden; }
-a { color:inherit; text-decoration:none; }
-button { font:inherit; }
-button:focus-visible,a:focus-visible {
-  outline:2px solid #d16a80;
-  outline-offset:4px;
-}
-img,video { display:block; max-width:100%; }
-.signature {
-  margin:0;
-  color:#f8f3f4;
-  font-family:var(--script);
-  font-weight:400;
-  line-height:1.15;
-}
-.eyebrow {
-  color:#c45b70;
-  font-family:Arial,sans-serif;
-  font-size:10px;
-  font-weight:600;
-  letter-spacing:3px;
-  text-transform:uppercase;
-}
-.tagline {
-  margin:0;
-  color:#d0c5c9;
-  font-size:clamp(15px,2vw,21px);
-  font-style:italic;
-  letter-spacing:.5px;
-}
-.primary-button,.book-button {
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  min-height:44px;
-  padding:12px 24px;
-  border:1px solid var(--accent-light);
-  background:var(--accent);
-  color:#fff;
-  font-family:Arial,sans-serif;
-  font-size:10px;
-  font-weight:600;
-  letter-spacing:2px;
-  text-align:center;
-  cursor:pointer;
-  transition:background .25s,border-color .25s,transform .25s;
-}
-.primary-button:hover,.book-button:hover {
-  background:#a32643;
-  border-color:#d15b76;
-  transform:translateY(-2px);
-}
-.socials {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:13px;
-}
-.social-icon {
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:42px;
-  height:42px;
-  border:1px solid #393034;
-  border-radius:50%;
-  background:#111;
-  color:#f6f0f2;
-  transition:color .2s,border-color .2s,background .2s;
-}
-.social-icon:hover {
-  color:#fff;
-  background:#34101b;
-  border-color:#a62c47;
-}
-.social-icon svg { width:20px;height:20px;fill:currentColor; }
-.social-icon.wattpad-icon { color:#ff4b08; }
-.social-icon.wattpad-icon svg { width:25px;height:25px; }
 
-/* AÇILIŞ EKRANI */
-.intro {
-  position:fixed;
-  z-index:1000;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:24px;
-  background:#050505;
-  transition:opacity .5s,visibility .5s;
+body.light {
+  --bg: #f2eeee;
+  --bg-soft: #e9e0e2;
+  --panel: #fffafa;
+  --text: #282024;
+  --muted: #75656b;
+  --accent: #843047;
+  --accent-light: #a84e65;
+  --silver: #5f5358;
+  --border: rgba(75,45,55,.18);
+  --shadow: 0 18px 55px rgba(70,35,45,.10);
 }
-.intro.hidden { opacity:0;visibility:hidden;pointer-events:none; }
-.intro-inner { width:min(800px,100%);text-align:center; }
-.intro-frame {
-  position:relative;
-  overflow:hidden;
-  aspect-ratio:16/9;
-  border:1px solid #38252a;
-  background:#111;
-  box-shadow:0 0 45px var(--glow);
-}
-.intro-video {
-  width:100%;height:100%;object-fit:cover;
-}
-.intro-shade {
-  position:absolute;inset:0;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  gap:10px;padding:20px;
-  background:linear-gradient(0deg,rgba(0,0,0,.65),rgba(0,0,0,.12));
-}
-.intro-shade .signature { font-size:clamp(55px,12vw,105px); }
-.intro .primary-button { margin-top:24px; }
 
-/* MENÜ */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+img, video {
+  display: block;
+  max-width: 100%;
+}
+
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.container {
+  width: min(1120px, 90%);
+  margin: 0 auto;
+}
+
+.section {
+  padding: 88px 0;
+  position: relative;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 42px;
+}
+
+.section-heading .eyebrow {
+  color: var(--accent-light);
+  font-size: 13px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.section-heading h2 {
+  color: var(--text);
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-top: 7px;
+}
+
+.section-heading h2 span {
+  color: var(--accent-light);
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.2em;
+}
+
+.section-heading::after {
+  content: "";
+  display: block;
+  width: 58px;
+  height: 1px;
+  background: var(--accent);
+  margin: 19px auto 0;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 24px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: .25s ease;
+  cursor: pointer;
+}
+
+.primary-button:hover {
+  background: transparent;
+  color: var(--accent-light);
+  transform: translateY(-2px);
+}
+
+.outline-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 22px;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: .25s ease;
+}
+
+.outline-button:hover {
+  border-color: var(--accent);
+  color: var(--accent-light);
+}
+
+::selection {
+  background: var(--accent);
+  color: white;
+}
+  /* ÜST ALAN */
+.site-header {
+  position: relative;
+  z-index: 20;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.social-strip {
+  min-height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  padding: 8px 15px;
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--border);
+}
+
+.social-strip a {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  transition: color .2s;
+}
+
+.social-strip a:hover {
+  color: var(--accent-light);
+}
+
+.header-main {
+  min-height: 78px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.brand {
+  color: var(--text);
+  font-family: 'Great Vibes', cursive;
+  font-size: 40px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.brand span {
+  color: var(--accent-light);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.theme-toggle,
 .menu-toggle {
-  position:fixed;z-index:900;top:18px;right:18px;
-  display:flex;flex-direction:column;justify-content:center;
-  gap:6px;width:47px;height:47px;padding:12px;
-  border:1px solid var(--line);background:rgba(8,8,8,.92);
-  cursor:pointer;
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: transparent;
+  width: 39px;
+  height: 39px;
+  cursor: pointer;
+  transition: .2s;
 }
-.menu-toggle span {
-  display:block;width:100%;height:2px;background:#eee;
-}
-.menu-backdrop {
-  position:fixed;z-index:899;inset:0;
-  background:rgba(0,0,0,.7);
-  opacity:0;visibility:hidden;transition:.3s;
-}
-.menu-backdrop.open { opacity:1;visibility:visible; }
-.menu {
-  position:fixed;z-index:901;top:0;right:0;
-  display:flex;flex-direction:column;gap:9px;
-  width:min(370px,88vw);height:100dvh;overflow:auto;
-  padding:80px 28px 30px;
-  border-left:1px solid var(--line);
-  background:#0d0c0d;
-  transform:translateX(105%);transition:transform .3s;
-}
-.menu.open { transform:translateX(0); }
-.menu .signature { color:#e8d9de;font-size:49px; }
-.menu .tagline { margin-bottom:15px;font-size:15px; }
-.menu-link {
-  display:block;width:100%;padding:11px 0;
-  border:0;border-bottom:1px solid var(--line);
-  background:transparent;color:var(--text);
-  font-size:21px;text-align:left;cursor:pointer;
-}
-.menu-link:hover { color:#d46b81; }
-.menu .socials { justify-content:flex-start;margin-top:18px; }
 
-/* ANA SAYFA */
+.theme-toggle:hover,
+.menu-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent-light);
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 21px;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 29px;
+  padding: 0 15px 19px;
+}
+
+.main-nav a {
+  position: relative;
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: color .2s;
+}
+
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 1px;
+  background: var(--accent-light);
+  transition: width .25s;
+}
+
+.main-nav a:hover {
+  color: var(--text);
+}
+
+.main-nav a:hover::after {
+  width: 100%;
+}
+
+/* GİRİŞ */
 .hero {
-  position:relative;isolation:isolate;
-  display:flex;align-items:center;justify-content:center;
-  min-height:660px;min-height:min(90vh,850px);
-  overflow:hidden;padding:100px 24px 75px;
-  text-align:center;background:#111;
+  position: relative;
+  min-height: 590px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #171115;
 }
-.hero-video,.hero-shade {
-  position:absolute;z-index:-2;inset:0;width:100%;height:100%;
-}
-.hero-video { object-fit:cover; }
-.hero-shade {
-  z-index:-1;
-  background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.78)),
-             radial-gradient(ellipse at center,rgba(70,10,25,.16),transparent 70%);
-}
-.hero-content { width:min(760px,100%); }
-.hero .eyebrow { margin-bottom:10px; }
-.hero .signature {
-  font-size:clamp(75px,14vw,145px);
-  text-shadow:0 5px 30px #000;
-}
-.hero .tagline { margin:12px 0 20px; }
-.hero-note { margin:0 0 25px;color:#e2d8dc;font-size:22px; }
-.hero .socials { margin:0 0 27px; }
-</style>
-</head>
-<body>
-  
-<style>
-/* DÖRT ANA SEKME */
-.content-area { min-height:70vh;background:var(--bg); }
-.tabs-wrap {
-  position:relative;
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-  background:#0a0a0a;
-}
-.tabs {
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  width:min(1100px,100%);
-  margin:auto;
-}
-.tab {
-  position:relative;
-  min-height:82px;padding:18px 8px;
-  border:0;background:transparent;
-  color:#777276;font-family:Arial,sans-serif;
-  font-size:clamp(12px,2.1vw,25px);
-  font-weight:700;letter-spacing:.5px;
-  cursor:pointer;transition:color .2s;
-}
-.tab::after {
-  position:absolute;right:0;bottom:0;left:0;
-  height:5px;background:var(--accent);
-  content:"";transform:scaleX(0);transition:transform .25s;
-}
-.tab:hover,.tab[aria-selected="true"] { color:#f7f3f4; }
-.tab[aria-selected="true"]::after { transform:scaleX(1); }
-.tab-panel { display:none;padding:58px 24px 75px; }
-.tab-panel.active { display:block; }
-.panel-heading {
-  margin:0 auto 38px;text-align:center;
-}
-.panel-heading .eyebrow { margin:0 0 5px; }
-.panel-heading h2 {
-  margin:0;color:#f5eff1;font-size:clamp(39px,6vw,60px);
-  font-weight:500;line-height:1.1;
-}
-.panel-heading>p:last-child { margin:8px 0 0;color:var(--muted); }
 
-/* KİTAPLAR — YAN YANA KAPAKLAR */
-.book-grid {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,300px));
-  justify-content:center;
-  align-items:start;
-  gap:clamp(24px,7vw,85px);
-  width:min(900px,100%);margin:auto;
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .36;
 }
-.book-card { min-width:0;text-align:center; }
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(12,9,11,.94), rgba(12,9,11,.60) 55%, rgba(12,9,11,.35)),
+    linear-gradient(0deg, rgba(12,9,11,.75), transparent 55%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: min(1120px, 90%);
+  margin: 0 auto;
+  padding: 95px 0;
+}
+
+.hero-kicker {
+  color: #d49aa7;
+  font-size: 12px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.hero-title {
+  max-width: 750px;
+  color: #f5eeee;
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(64px, 10vw, 112px);
+  font-weight: 400;
+  line-height: 1.1;
+  text-shadow: 0 5px 25px rgba(0,0,0,.25);
+}
+
+.hero-title span {
+  color: #c16b7e;
+}
+
+.hero-subtitle {
+  max-width: 440px;
+  color: #e0d4d7;
+  font-size: clamp(17px, 2vw, 22px);
+  font-style: italic;
+  margin: 17px 0 30px;
+  letter-spacing: .5px;
+}
+
+.hero-buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 13px;
+}
+
+/* HAKKIMDA */
+.about-grid {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  align-items: center;
+  gap: clamp(30px, 6vw, 75px);
+}
+
+.about-image-wrap {
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.about-image-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 13px -13px -13px 13px;
+  border: 1px solid var(--accent);
+  z-index: 0;
+}
+
+.about-image {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-height: 430px;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.8);
+}
+
+.about-copy .script {
+  color: var(--accent-light);
+  font-family: 'Great Vibes', cursive;
+  font-size: 38px;
+  margin-bottom: 8px;
+}
+
+.about-copy h3 {
+  font-weight: 400;
+  font-size: 34px;
+  margin-bottom: 18px;
+}
+
+.about-copy p {
+  color: var(--muted);
+  margin-bottom: 15px;
+}
+
+/* KİTAPLAR */
+.books-section {
+  background: var(--bg-soft);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.book-card {
+  min-width: 0;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  padding: 22px;
+  transition: transform .25s, border-color .25s;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+}
+
+.book-cover-link {
+  display: block;
+  overflow: hidden;
+  background: #191518;
+}
+
 .book-cover {
-  position:relative;overflow:hidden;
-  aspect-ratio:2/3;width:100%;
-  border:1px solid #3b252b;border-radius:7px;
-  background:#171214;
-  box-shadow:0 0 22px var(--glow);
-  transition:transform .3s,box-shadow .3s;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: contain;
+  transition: transform .35s;
 }
-.book-card>a:first-child:hover .book-cover {
-  transform:translateY(-4px);
-  box-shadow:0 0 35px rgba(145,28,53,.4);
+
+.book-card:hover .book-cover {
+  transform: scale(1.025);
 }
-.book-cover img {
-  width:100%;height:100%;object-fit:cover;object-position:center;
+
+.book-info {
+  padding-top: 19px;
 }
-.book-name {
-  margin:17px 0 0;color:#f6f1f2;
-  font-size:clamp(23px,3vw,32px);font-weight:600;
-  line-height:1.15;
+
+.book-info h3 {
+  font-size: 27px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 7px;
 }
-.book-author {
-  margin:5px 0 17px;color:#a92742;
-  font-family:Arial,sans-serif;font-size:12px;
-  font-weight:600;letter-spacing:4px;
+
+.book-info p {
+  color: var(--muted);
+  font-size: 16px;
+  margin-bottom: 17px;
 }
-.book-button { margin-top:5px; }
+
 .book-coming {
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  aspect-ratio:2/3;padding:20px;
-  border:1px solid #30252a;border-radius:7px;
-  background:linear-gradient(150deg,#21151a,#0b0b0c 70%);
-  box-shadow:0 0 20px var(--glow);
-}
-.book-coming .signature { margin:20px 0;font-size:55px; }
-.book-coming span {
-  color:#a79a9f;font-family:Arial,sans-serif;
-  font-size:9px;letter-spacing:2px;text-align:center;
-}
-
-/* PANO */
-.pano-grid {
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:20px;width:min(1000px,100%);margin:auto;
-}
-.pano-card {
-  display:flex;flex-direction:column;justify-content:space-between;
-  min-height:225px;padding:24px;
-  border:1px solid var(--line);
-  background:linear-gradient(145deg,#171315,#0c0c0d);
-}
-.pano-card h3 { margin:5px 0;font-size:31px;font-weight:500; }
-.pano-card p:not(.eyebrow) { color:var(--muted); }
-.pano-card a,.small-label {
-  align-self:flex-start;margin-top:15px;
-  color:#c64b66;font-family:Arial,sans-serif;
-  font-size:10px;font-weight:600;letter-spacing:2px;
+  aspect-ratio: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(ellipse at center, rgba(157,52,78,.17), transparent 65%),
+    var(--bg);
+  text-align: center;
+  padding: 20px;
 }
 
-/* KARAKTERLER */
-.character-book-note {
-  width:min(800px,100%);margin:0 auto 28px;
-  padding:13px 18px;border-left:3px solid var(--accent);
-  background:#131112;color:#bcb2b6;text-align:center;
-}
-.character-book-note strong { color:#f4e9ec; }
-.character-layout {
-  display:grid;grid-template-columns:minmax(230px,.85fr) minmax(0,1.2fr);
-  gap:25px;align-items:start;
-  width:min(1000px,100%);margin:auto;
-}
-.character-list { display:flex;flex-direction:column;gap:8px; }
-.character-choice {
-  display:grid;grid-template-columns:34px 1fr 20px;
-  align-items:center;gap:10px;width:100%;min-height:65px;
-  padding:12px 15px;border:1px solid var(--line);
-  background:#101011;color:#d7cdd1;
-  font-size:22px;text-align:left;cursor:pointer;
-  transition:background .2s,border-color .2s,color .2s;
-}
-.character-choice:hover,.character-choice.active {
-  border-color:#772137;background:#211116;color:#fff;
-}
-.character-index {
-  color:#b84b64;font-family:Arial,sans-serif;
-  font-size:10px;letter-spacing:1px;
-}
-.character-arrow { color:#bd526b;text-align:right; }
-.character-feature {
-  overflow:hidden;border:1px solid #34252a;
-  background:#100e0f;box-shadow:0 0 25px var(--glow);
-}
-.character-photo-wrap {
-  position:relative;height:470px;background:#151214;
-}
-.character-photo-wrap img {
-  width:100%;height:100%;object-fit:cover;object-position:center;
-  transition:opacity .2s;
-}
-.character-photo-number {
-  position:absolute;right:12px;bottom:12px;
-  padding:6px 10px;background:rgba(0,0,0,.75);
-  color:white;font-family:Arial,sans-serif;font-size:10px;letter-spacing:2px;
-}
-.character-caption { padding:19px 23px 23px; }
-.character-caption .eyebrow { margin:0; }
-.character-caption h3 { margin:3px 0;font-size:39px;font-weight:500; }
-.character-caption p:last-child { margin:0;color:var(--muted); }
-.gallery-note { margin:24px auto 0;color:var(--muted);text-align:center; }
-
-/* GALERİ */
-.gallery-grid {
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:18px;width:min(1050px,100%);margin:auto;
-}
-.gallery-item {
-  display:block;overflow:hidden;aspect-ratio:3/4;
-  padding:0;border:1px solid #38252a;
-  background:#151214;box-shadow:0 0 14px rgba(0,0,0,.25);
-  cursor:zoom-in;
-}
-.gallery-item img {
-  width:100%;height:100%;object-fit:cover;
-  transition:transform .35s,filter .35s;
-}
-.gallery-item:hover img { transform:scale(1.04);filter:brightness(1.08); }
-
-/* FOTOĞRAF BÜYÜTME */
-.lightbox {
-  position:fixed;z-index:1100;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  padding:55px 18px 25px;background:rgba(0,0,0,.94);
-  opacity:0;visibility:hidden;transition:opacity .2s,visibility .2s;
-}
-.lightbox.open { opacity:1;visibility:visible; }
-.lightbox img {
-  max-width:min(100%,1000px);max-height:100%;
-  object-fit:contain;
-}
-.lightbox-close {
-  position:absolute;top:12px;right:17px;
-  width:44px;height:44px;border:1px solid #554047;
-  background:#171214;color:#fff;font-size:30px;cursor:pointer;
+.book-coming .coming-symbol {
+  color: var(--accent-light);
+  font-size: 40px;
+  font-weight: 300;
 }
 
-/* ALT BİLGİ */
-.site-footer {
-  padding:35px 18px;border-top:1px solid var(--line);
-  background:#070707;text-align:center;
+.book-coming h3 {
+  font-size: 27px;
+  font-weight: 400;
 }
-.site-footer .signature { font-size:52px;color:#e8d8dd; }
-.site-footer>p:not(.signature) { color:var(--muted); }
-.site-footer .socials { margin:20px 0; }
-.site-footer small {
-  color:#766c70;font-family:Arial,sans-serif;
-  font-size:9px;letter-spacing:2px;
+
+.book-coming p {
+  color: var(--muted);
+  font-size: 16px;
 }
-@media(max-width:650px) {
-  .hero { min-height:75vh;padding:90px 16px 50px; }
-  .hero .signature { font-size:clamp(67px,17vw,100px); }
-  .tab { min-height:65px;font-size:clamp(10px,2.7vw,14px); }
-  .tab-panel { padding:38px 15px 50px; }
-  .book-grid { gap:14px; }
-  .book-name { font-size:20px; }
-  .book-author { font-size:9px;letter-spacing:2px; }
-  .book-button { padding:10px 7px;font-size:9px;letter-spacing:1px; }
-  .pano-grid { gap:10px; }
-  .pano-card { min-height:190px;padding:15px; }
-  .pano-card h3 { font-size:24px; }
-  .character-layout { grid-template-columns:1fr; }
-  .character-list { display:grid;grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .character-choice { grid-template-columns:22px 1fr;gap:5px;padding:10px 7px;font-size:16px; }
-  .character-arrow { display:none; }
-  .character-photo-wrap { height:min(112vw,440px); }
-  .gallery-grid { grid-template-columns:repeat(2,minmax(0,1fr));gap:10px; }
-  .socials { gap:9px; }
-  .social-icon { width:39px;height:39px; }
+
+@media (max-width: 760px) {
+  .header-main {
+    min-height: 70px;
+  }
+
+  .brand {
+    font-size: 34px;
+  }
+
+  .menu-toggle {
+    display: inline-block;
+  }
+
+  .main-nav {
+    display: none;
+    flex-direction: column;
+    gap: 18px;
+    padding: 12px 20px 24px;
+  }
+
+  .main-nav.open {
+    display: flex;
+  }
+
+  .hero {
+    min-height: 530px;
+  }
+
+  .hero-content {
+    padding: 75px 0;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-image-wrap {
+    max-width: 260px;
+  }
+
+  .books-grid {
+    gap: 15px;
+  }
+
+  .book-card {
+    padding: 12px;
+  }
+
+  .book-info h3 {
+    font-size: 22px;
+  }
+
+  .book-info p {
+    font-size: 15px;
+  }
 }
-@media(max-width:360px) {
-  .tab { letter-spacing:-.4px; }
-  .book-grid { gap:9px; }
-  .book-name { font-size:18px; }
-  .character-choice { font-size:14px; }
-}
-@media(prefers-reduced-motion:reduce) {
-  *,*::before,*::after { scroll-behavior:auto!important;transition:none!important; }
-}
-</style>
+
+@media (max-width: 430px) {
+  .social-strip {
+    gap: 15px;
+  }
+
+  .social-strip a {
+    font-size: 11px;
+    letter-spacing: .5px;
+  }
+
+  .books-grid {
+    grid-template-columns: 1fr;
+    max-width: 290px;
+  }
+
+  .section {
+    padding: 65px 0;
+  }
+
+  .hero-title {
+    font-size: 65px;
+  }
+  }
+  </style>
 </head>
+
 <body>
-  
-<!-- AÇILIŞ EKRANI -->
-<div class="intro" id="intro">
-  <div class="intro-inner">
-    <div class="intro-frame">
-      <video class="intro-video" autoplay muted loop playsinline preload="metadata">
-        <source src="macadoodle31_pindown.io_1793296533.mp4" type="video/mp4">
-      </video>
-      <div class="intro-shade">
-        <h1 class="signature">kesmislalih</h1>
-        <p class="tagline">Some stories are not meant to be told, but felt.</p>
-      </div>
+
+<header class="site-header">
+  <div class="social-strip">
+    <a href="https://www.tiktok.com/@kesmislalih_" target="_blank" rel="noopener noreferrer">TikTok</a>
+    <a href="https://x.com/kesmislalih" target="_blank" rel="noopener noreferrer">X</a>
+    <a href="https://pin.it/2jHDXi48B" target="_blank" rel="noopener noreferrer">Pinterest</a>
+    <a href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv" target="_blank" rel="noopener noreferrer">Spotify</a>
+    <a href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  </div>
+
+  <div class="container header-main">
+    <a class="brand" href="#anasayfa">kesmis<span>lalih</span></a>
+
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Tema değiştir">☾</button>
+      <button class="menu-toggle" id="menuToggle" type="button"
+        aria-label="Menüyü aç" aria-expanded="false">☰</button>
     </div>
-    <button class="primary-button" id="enterSite" type="button">KEŞFET</button>
   </div>
-</div>
 
-<!-- MOBİL MENÜ -->
-<button class="menu-toggle" id="menuToggle" type="button"
-  aria-label="Menüyü aç" aria-expanded="false" aria-controls="siteMenu">
-  <span></span><span></span>
-</button>
-<div class="menu-backdrop" id="menuBackdrop"></div>
-
-<nav class="menu" id="siteMenu" aria-hidden="true" aria-label="Site menüsü">
-  <p class="signature">kesmislalih</p>
-  <p class="tagline">Some stories are not meant to be told, but felt.</p>
-  <a class="menu-link" href="#anasayfa">Ana Sayfa</a>
-  <button class="menu-link" type="button" data-tab-target="kitaplar">Kitaplar</button>
-  <button class="menu-link" type="button" data-tab-target="pano">Pano</button>
-  <button class="menu-link" type="button" data-tab-target="karakterler">Karakterler</button>
-  <button class="menu-link" type="button" data-tab-target="galeri">Galeri</button>
-  <a class="menu-link" href="ringteki-son-dans.html">Ringteki Son Dans</a>
-  <a class="menu-link" href="duvar.html">Duvar</a>
-  <a class="menu-link" href="galeri.html">Galeri sayfası</a>
-
-  <div class="socials">
-    <a class="social-icon" href="https://www.tiktok.com/@kesmislalih_" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-      <svg viewBox="0 0 24 24"><path d="M19.6 7.1a6.7 6.7 0 0 1-4.2-1.5v8.1a6.1 6.1 0 1 1-5.3-6.05v3.2a2.9 2.9 0 1 0 2.1 2.8V2.5h3.2c.2 2 1.8 3.6 4.2 3.8z"/></svg>
-    </a>
-    <a class="social-icon" href="https://x.com/kesmislalih" target="_blank" rel="noopener noreferrer" aria-label="X">
-      <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-5-7.4L5.4 22H2.2l7.3-8.4L1.8 2h6.5l4.5 6.8zm-1.1 17.8h1.7L7.3 4H5.5z"/></svg>
-    </a>
-    <a class="social-icon wattpad-icon" href="https://www.wattpad.com/user/kesmislalih" target="_blank" rel="noopener noreferrer" aria-label="Wattpad">
-      <svg viewBox="0 0 40 40"><path d="M3 3h8c7 0 11 4 11 11 0 4-2 7-5 9 5 1 8 5 8 10 0 7-5 11-13 11H3V3zm8 15c3 0 5-2 5-5s-2-4-5-4H8v9h3zm1 19c4 0 6-2 6-6s-2-5-6-5H8v11h4zM28 3h9v41h-9z" fill="currentColor" transform="translate(0 -2) scale(.9)"/></svg>
-    </a>
-    <a class="social-icon" href="https://pin.it/2jHDXi48B" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
-      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.6 19.3c0-.8 0-1.8.2-2.7l1.3-5.5s-.3-.6-.3-1.5c0-1.4.8-2.5 1.9-2.5.9 0 1.3.7 1.3 1.6 0 1-.6 2.6-.9 4.1-.3 1.2.6 2.1 1.8 2.1 2.2 0 3.8-2.9 3.8-6.3 0-2.6-1.8-4.5-5-4.5-3.7 0-6 2.8-6 5.9 0 1.1.3 1.9.9 2.5.3.3.3.4.2.8l-.3 1c-.1.3-.4.4-.7.3-1.6-.7-2.4-2.5-2.4-4.5 0-3.3 2.8-7.3 8.5-7.3 4.5 0 7.5 3.3 7.5 6.8 0 4.7-2.6 8.2-6.5 8.2-1.3 0-2.5-.7-2.9-1.5l-.8 3.1c-.2.9-.7 1.8-1.1 2.5A10 10 0 1 0 12 2z"/></svg>
-    </a>
-    <a class="social-icon" href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.4-.2-3.1.8.8-3-.2-.4A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8.9-.3.2-.6.1a6.5 6.5 0 0 1-1.9-1.2 7 7 0 0 1-1.3-1.6c-.1-.3 0-.4.1-.5l.4-.5.3-.4c.1-.2 0-.4 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4s-.9.9-.9 2.1 1 2.4 1.1 2.6a11 11 0 0 0 4.2 3.7c.6.3 1.1.4 1.5.5.6.2 1.2.1 1.7.1.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2s-.3-.2-.5-.3z"/></svg>
-    </a>
-    <a class="social-icon" href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv" target="_blank" rel="noopener noreferrer" aria-label="Spotify">
-      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.6 14.4a.8.8 0 0 1-1.1.3 10.7 10.7 0 0 0-7.8-.9.8.8 0 1 1-.4-1.5 12.2 12.2 0 0 1 8.9 1 .8.8 0 0 1 .4 1.1zm1.2-2.7a1 1 0 0 1-1.3.4 13.3 13.3 0 0 0-9.4-1.1 1 1 0 1 1-.6-1.8 15.2 15.2 0 0 1 10.8 1.3 1 1 0 0 1 .5 1.2zm.1-2.9a1.1 1.1 0 0 1-1.5.5 16 16 0 0 0-10.8-1.3 1.1 1.1 0 1 1-.7-2.1 18.1 18.1 0 0 1 12.5 1.5 1.1 1.1 0 0 1 .5 1.4z"/></svg>
-    </a>
-  </div>
-</nav>
-
-<!-- ANA SAYFA -->
-<header class="hero" id="anasayfa">
-  <video class="hero-video" autoplay muted loop playsinline preload="metadata">
-    <source src="bloggg_erss_pindown.io_1793296543.mp4" type="video/mp4">
-  </video>
-  <div class="hero-shade"></div>
-  <div class="hero-content">
-    <p class="eyebrow">YAZAR · HAYALPEREST</p>
-    <h1 class="signature">kesmislalih</h1>
-    <p class="tagline">Some stories are not meant to be told, but felt.</p>
-    <p class="hero-note">Kelimelerden doğan hikâyeler.</p>
-    <div class="socials">
-      <a class="social-icon" href="https://www.tiktok.com/@kesmislalih_" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M19.6 7.1a6.7 6.7 0 0 1-4.2-1.5v8.1a6.1 6.1 0 1 1-5.3-6.05v3.2a2.9 2.9 0 1 0 2.1 2.8V2.5h3.2c.2 2 1.8 3.6 4.2 3.8z"/></svg></a>
-      <a class="social-icon" href="https://x.com/kesmislalih" target="_blank" rel="noopener noreferrer" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-5-7.4L5.4 22H2.2l7.3-8.4L1.8 2h6.5l4.5 6.8zm-1.1 17.8h1.7L7.3 4H5.5z"/></svg></a>
-      <a class="social-icon wattpad-icon" href="https://www.wattpad.com/user/kesmislalih" target="_blank" rel="noopener noreferrer" aria-label="Wattpad"><svg viewBox="0 0 40 40"><path d="M3 3h8c7 0 11 4 11 11 0 4-2 7-5 9 5 1 8 5 8 10 0 7-5 11-13 11H3V3zm8 15c3 0 5-2 5-5s-2-4-5-4H8v9h3zm1 19c4 0 6-2 6-6s-2-5-6-5H8v11h4zM28 3h9v41h-9z" fill="currentColor" transform="translate(0 -2) scale(.9)"/></svg></a>
-      <a class="social-icon" href="https://pin.it/2jHDXi48B" target="_blank" rel="noopener noreferrer" aria-label="Pinterest"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.6 19.3c0-.8 0-1.8.2-2.7l1.3-5.5s-.3-.6-.3-1.5c0-1.4.8-2.5 1.9-2.5.9 0 1.3.7 1.3 1.6 0 1-.6 2.6-.9 4.1-.3 1.2.6 2.1 1.8 2.1 2.2 0 3.8-2.9 3.8-6.3 0-2.6-1.8-4.5-5-4.5-3.7 0-6 2.8-6 5.9 0 1.1.3 1.9.9 2.5.3.3.3.4.2.8l-.3 1c-.1.3-.4.4-.7.3-1.6-.7-2.4-2.5-2.4-4.5 0-3.3 2.8-7.3 8.5-7.3 4.5 0 7.5 3.3 7.5 6.8 0 4.7-2.6 8.2-6.5 8.2-1.3 0-2.5-.7-2.9-1.5l-.8 3.1c-.2.9-.7 1.8-1.1 2.5A10 10 0 1 0 12 2z"/></svg></a>
-      <a class="social-icon" href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.4-.2-3.1.8.8-3-.2-.4A8 8 0 1 1 12 20z"/></svg></a>
-      <a class="social-icon" href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.6 14.4a.8.8 0 0 1-1.1.3 10.7 10.7 0 0 0-7.8-.9.8.8 0 1 1-.4-1.5 12.2 12.2 0 0 1 8.9 1 .8.8 0 0 1 .4 1.1z"/></svg></a>
-    </div>
-    <a class="primary-button" href="#koleksiyon">HİKÂYELERİ KEŞFET</a>
-  </div>
+  <nav class="main-nav" id="mainNav" aria-label="Ana menü">
+    <a href="#anasayfa">Ana Sayfa</a>
+    <a href="#hakkimda">Hakkımda</a>
+    <a href="#kitaplar">Kitaplar</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="duvar.html">Duvar</a>
+    <a href="#duyurular">Duyurular</a>
+    <a href="#iletisim">İletişim</a>
+  </nav>
 </header>
 
-<!-- ANA SEKMELER -->
-<main class="content-area" id="koleksiyon">
-  <div class="tabs-wrap">
-    <div class="tabs" role="tablist" aria-label="İçerik bölümleri">
-      <button class="tab" id="tab-kitaplar" role="tab" aria-selected="true" aria-controls="panel-kitaplar" data-tab="kitaplar" type="button">KİTAPLAR</button>
-      <button class="tab" id="tab-pano" role="tab" aria-selected="false" aria-controls="panel-pano" data-tab="pano" type="button" tabindex="-1">PANO</button>
-      <button class="tab" id="tab-karakterler" role="tab" aria-selected="false" aria-controls="panel-karakterler" data-tab="karakterler" type="button" tabindex="-1">KARAKTERLER</button>
-      <button class="tab" id="tab-galeri" role="tab" aria-selected="false" aria-controls="panel-galeri" data-tab="galeri" type="button" tabindex="-1">GALERİ</button>
-    </div>
-  </div>
+<main>
+  <section class="hero" id="anasayfa">
+    <video class="hero-video" autoplay muted loop playsinline
+      aria-hidden="true">
+      <source src="bloggg_erss_pindown.io_1793296543.mp4" type="video/mp4">
+    </video>
 
-  <!-- KİTAPLAR -->
-  <section class="tab-panel active" id="panel-kitaplar" role="tabpanel" aria-labelledby="tab-kitaplar" data-panel="kitaplar">
-    <div class="panel-heading">
-      <p class="eyebrow">KELİMELERİN DÜNYASI</p>
-      <h2>Kitaplar</h2>
-      <p>Her kitabın ardında başka bir evren.</p>
-    </div>
+    <div class="hero-overlay"></div>
 
-    <div class="book-grid">
-      <article class="book-card">
-        <a href="ringteki-son-dans.html" aria-label="Ringteki Son Dans kitabını aç">
-          <div class="book-cover">
-            <img src="file_00000000ce4881f4b929fc5dfbb07694.png" alt="Ringteki Son Dans kitap kapağı" loading="eager">
-          </div>
-          <h3 class="book-name">Ringteki Son Dans</h3>
-          <p class="book-author">KESMİSLALİH</p>
-        </a>
-        <a class="book-button" href="ringteki-son-dans.html">KİTABI İNCELE ↗</a>
-      </article>
+    <div class="hero-content">
+      <p class="hero-kicker">Kelimelerden doğan hikâyeler</p>
 
-      <article class="book-card">
-        <div class="book-coming">
-          <p class="eyebrow">YENİ HİKÂYELER</p>
-          <p class="signature">Yakında...</p>
-          <span>YENİ EVRENLER · YENİ KARAKTERLER</span>
-        </div>
-        <h3 class="book-name">Yeni kitaplar</h3>
-        <p class="book-author">HAZIRLANIYOR</p>
-      </article>
+      <h1 class="hero-title">kesmis<span>lalih</span></h1>
+
+      <p class="hero-subtitle">
+        Some stories are not meant to be told, but felt.
+      </p>
+
+      <div class="hero-buttons">
+        <a class="primary-button" href="#kitaplar">Kitaplarımı keşfet</a>
+        <a class="outline-button" href="#hakkimda">Beni tanı</a>
+      </div>
     </div>
   </section>
 
-  <!-- PANO -->
-  <section class="tab-panel" id="panel-pano" role="tabpanel" aria-labelledby="tab-pano" data-panel="pano" hidden>
-    <div class="panel-heading">
-      <p class="eyebrow">HABERLER VE NOTLAR</p>
-      <h2>Pano</h2>
-      <p>Hikâyelerimden haberler ve küçük notlar.</p>
-    </div>
-    <div class="pano-grid">
-      <article class="pano-card">
-        <div>
-          <p class="eyebrow">KİTAP</p>
-          <h3>Ringteki Son Dans</h3>
-          <p>Kitabın ayrıntılarını ve karakterlerini keşfet.</p>
-        </div>
-        <a href="ringteki-son-dans.html">KİTABI AÇ ↗</a>
-      </article>
-      <article class="pano-card">
-        <div>
-          <p class="eyebrow">OKURLARLA</p>
-          <h3>Duvar</h3>
-          <p>Okur notları ve paylaşımlar için Duvar sayfasına geç.</p>
-        </div>
-        <a href="duvar.html">DUVARA GİT ↗</a>
-      </article>
-      <article class="pano-card">
-        <div>
-          <p class="eyebrow">DUYURULAR</p>
-          <h3>Yeni başlangıçlar</h3>
-          <p>Yeni kitaplar ve yayın tarihleri için bu alan güncellenecek.</p>
-        </div>
-        <span class="small-label">YENİ DUYURULAR YAKINDA</span>
-      </article>
-      <article class="pano-card">
-        <div>
-          <p class="eyebrow">SOSYAL MEDYA</p>
-          <h3>Bağlantıda kalalım</h3>
-          <p>Diğer paylaşımlarım için sosyal medya hesaplarımı ziyaret et.</p>
-        </div>
-        <a href="#sosyal">HESAPLARI GÖR ↗</a>
-      </article>
-    </div>
-  </section>
-
-  <!-- KARAKTERLER -->
-  <section class="tab-panel" id="panel-karakterler" role="tabpanel" aria-labelledby="tab-karakterler" data-panel="karakterler" hidden>
-    <div class="panel-heading">
-      <p class="eyebrow">SAYFALARIN ARDINDA</p>
-      <h2>Karakterler</h2>
-      <p>Bir karakter seç ve portresini keşfet.</p>
-    </div>
-
-    <div class="character-book-note">
-      Bu karakter koleksiyonu <strong>Ringteki Son Dans</strong> kitabına aittir.
-    </div>
-
-    <div class="character-layout">
-      <div class="character-list" aria-label="Karakter seçimi">
-        <button class="character-choice active" type="button" data-name="Lavinia" data-image="a90393fd3d48a69ffbec30ef8ba04749 (1).jpg" aria-pressed="true">
-          <span class="character-index">01</span><span>Lavinia</span><span class="character-arrow">↗</span>
-        </button>
-        <button class="character-choice" type="button" data-name="Arel" data-image="41723ea72a5db4f82fe52815d61e341a.jpg" aria-pressed="false">
-          <span class="character-index">02</span><span>Arel</span><span class="character-arrow">↗</span>
-        </button>
-        <button class="character-choice" type="button" data-name="Defne Yalçın" data-image="066f212a61b08c53d9eb10ef7647a0f3.jpg" aria-pressed="false">
-          <span class="character-index">03</span><span>Defne Yalçın</span><span class="character-arrow">↗</span>
-        </button>
-        <button class="character-choice" type="button" data-name="Efe Yalçın" data-image="0b873940e46b8abc779347119a1998e0.jpg" aria-pressed="false">
-          <span class="character-index">04</span><span>Efe Yalçın</span><span class="character-arrow">↗</span>
-        </button>
-        <button class="character-choice" type="button" data-name="Seren Yalçın" data-image="5ea49c0b074bc3d33b1516a381a7e689.jpg" aria-pressed="false">
-          <span class="character-index">05</span><span>Seren Yalçın</span><span class="character-arrow">↗</span>
-        </button>
-        <button class="character-choice" type="button" data-name="Cihangir Yalçın" data-image="723a5f267d9ced55d8babbb5f9539a07.jpg" aria-pressed="false">
-          <span class="character-index">06</span><span>Cihangir Yalçın</span><span class="character-arrow">↗</span>
-        </button>
+  <section class="section" id="hakkimda">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Satırların ardında</p>
+        <h2>Biraz <span>ben</span></h2>
       </div>
 
-      <article class="character-feature">
-        <div class="character-photo-wrap">
-          <img id="characterPhoto" src="a90393fd3d48a69ffbec30ef8ba04749 (1).jpg" alt="Lavinia karakter görseli">
-          <span class="character-photo-number" id="characterNumber">01 / 06</span>
+      <div class="about-grid">
+        <div class="about-image-wrap">
+          <img
+            class="about-image"
+            src="d08eae9afcf72d4a213a3d988ecf5935.jpg"
+            alt="kesmislalih profil fotoğrafı"
+            loading="lazy">
         </div>
-        <div class="character-caption">
-          <p class="eyebrow">KARAKTER DOSYASI</p>
-          <h3 id="characterName">Lavinia</h3>
-          <p id="characterDescription">Lavinia'nın hikâyesi burada başlayacak.</p>
+
+        <div class="about-copy">
+          <p class="script">Merhaba, ben kesmislalih.</p>
+          <h3>Hayal ettiğim dünyaların yazarı.</h3>
+
+          <p>
+            Bazı hikâyeler yalnızca okunmak için değil,
+            hissedilmek için yazılır.
+          </p>
+
+          <p>
+            Burası kelimelerimin, karakterlerimin ve henüz
+            anlatılmamış hikâyelerimin küçük dünyası.
+            Her satırda başka bir duygu, her hikâyede
+            keşfedilmeyi bekleyen başka bir evren var.
+          </p>
+
+          <p>
+            Buraya hoş geldin.
+          </p>
         </div>
-      </article>
-    </div>
-    <p class="gallery-note">Karakterlerin kişilikleri ve hikâye ayrıntıları daha sonra eklenebilir.</p>
-    <div style="text-align:center">
-      <a class="book-button" href="ringteki-son-dans.html">RİNGTEKİ SON DANS SAYFASINA GİT ↗</a>
+      </div>
     </div>
   </section>
 
-  <!-- GALERİ: ÖNCEDEN VERDİĞİN 6 FOTOĞRAF + EKLEDİĞİN 4 FOTOĞRAF -->
-  <section class="tab-panel" id="panel-galeri" role="tabpanel" aria-labelledby="tab-galeri" data-panel="galeri" hidden>
-    <div class="panel-heading">
-      <p class="eyebrow">KARELERE SIĞAN DÜNYALAR</p>
-      <h2>Galeri</h2>
-      <p>Fotoğraflara dokunarak büyütebilirsin.</p>
-    </div>
+  <section class="section books-section" id="kitaplar">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Sayfaların arasında</p>
+        <h2>Kitap <span>Rafım</span></h2>
+      </div>
 
-    <div class="gallery-grid">
-      <button class="gallery-item" type="button" data-full-image="772b5be803dcc10b56a2cae0088acf3e.jpg" aria-label="Galeri fotoğrafı 1'i büyüt">
-        <img src="772b5be803dcc10b56a2cae0088acf3e.jpg" alt="Galeri fotoğrafı 1" loading="lazy">
-      </button>
-      <button class="gallery-item" type="button" data-full-image="ad301506aa5527e2b6d349fcbf02e9a8 (1).jpg" aria-label="Galeri fotoğrafı 2'yi büyüt">
-        <img src="ad301506aa5527e2b6d349fcbf02e9a8 (1).jpg" alt="Galeri fotoğrafı 2" loading="lazy">
-      </button>
-      <button class="gallery-item" type="button" data-full-image="0f8b7991dde0f22ff23fb81e0fc16649.jpg" aria-label="Galeri fotoğrafı 3'ü büyüt">
-        <img src="0f8b7991dde0f22ff23fb81e0fc16649.jpg" alt="Galeri fotoğrafı 3" loading="lazy">
-      </button>
-      <button class="gallery-item" type="button" data-full-image="bd00784591329cdde6e7804525bb3951.jpg" aria-label="Galeri fotoğrafı 4'ü büyüt">
-        <img src="bd00784591329cdde6e7804525bb3951.jpg" alt="Galeri fotoğrafı 4" loading="lazy">
-      </button>
-      <button class="gallery-item" type="button" data-full-image="9be113dce8dd12d87ae4f2bf8cf5293e (1).jpg" aria-label="Galeri fotoğrafı 5'i büyüt">
-        <img src="9be113dce8dd12d87ae4f2bf8cf5293e (1).jpg" alt="Galeri fotoğrafı 5" loading="lazy">
-      </button>
-      <button class="gallery-item" type="button" data-full-image="6b0bac9092b0bc230917f062c52e84ad.jpg" aria-label="Galeri fotoğrafı 6'yı büyüt">
-        <img src="6b0bac9092b0bc230917f062c52e84ad.jpg" alt="Galeri fotoğrafı 6" loading="lazy">
-      </button>
-      <button class="gallery-item" type="button" data-full-image="45041afda2229d508a38cc012aaa7174.jpg" aria-label="Galeri fotoğrafı 7'yi büyüt">
-        <img src="45041afda2229d508a38cc012aaa7174.jpg" alt="Galeri fotoğrafı 7" loading="lazy">
-      </button>
-      <button class="gallery-item" type="button" data-full-image="0668f965d8247c1756f1be2f3ee5e1be.jpg" aria-label="Galeri fotoğrafı 8'i büyüt">
-        <img src="0668f965d8247c1756f1be2f3ee5e1be.jpg" alt="Galeri fotoğrafı 8" loading="lazy">
-      </button>
-      <button class="gallery-item" type="button" data-full-image="025e7f39ec9bd3227fa182d2f735d65c.jpg" aria-label="Galeri fotoğrafı 9'u büyüt">
-        <img src="025e7f39ec9bd3227fa182d2f735d65c.jpg" alt="Galeri fotoğrafı 9" loading="lazy">
-      </button>
-      <button class="gallery-item" type="button" data-full-image="520b988f63b52ae66a0127a457e5e7d0.jpg" aria-label="Galeri fotoğrafı 10'u büyüt">
-        <img src="520b988f63b52ae66a0127a457e5e7d0.jpg" alt="Galeri fotoğrafı 10" loading="lazy">
-      </button>
+      <div class="books-grid">
+        <article class="book-card">
+          <a class="book-cover-link" href="ringteki-son-dans.html"
+            aria-label="Ringteki Son Dans kitabını incele">
+            <img
+              class="book-cover"
+              src="file_0000000025bc81f4894ba4ef290f1c32.png"
+              alt="Ringteki Son Dans kitap kapağı"
+              loading="lazy">
+          </a>
+
+          <div class="book-info">
+            <h3>Ringteki Son Dans</h3>
+            <p>Bir karanlık, iki kurşun. Binbir acı, iki yetim.</p>
+            <a class="primary-button" href="ringteki-son-dans.html">
+              Kitabı incele <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="book-card">
+          <div class="book-coming">
+            <span class="coming-symbol" aria-hidden="true">✧</span>
+            <h3>Yakında…</h3>
+            <p>Yeni bir hikâye, yeni bir dünya.</p>
+          </div>
+
+          <div class="book-info">
+            <h3>Sıradaki Hikâye</h3>
+            <p>Henüz anlatılmayı bekliyor.</p>
+          </div>
+        </article>
+      </div>
     </div>
-    <p class="gallery-note">10 fotoğrafın görüntülenebilmesi için dosyaların GitHub deposunda aynı adlarla bulunması gerekir.</p>
-    <div style="text-align:center">
-      <a class="book-button" href="galeri.html">AYRI GALERİ SAYFASINI AÇ ↗</a>
+  </section>
+    <section class="section" id="video">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Kelimelerin ötesinde</p>
+        <h2>Hikâyelerden bir <span>kesit</span></h2>
+      </div>
+
+      <div style="max-width:760px;margin:0 auto;border:1px solid var(--border);padding:10px;background:var(--panel);box-shadow:var(--shadow)">
+        <video
+          controls
+          playsinline
+          preload="metadata"
+          style="width:100%;max-height:430px;object-fit:contain;background:#100e10">
+          <source src="macadoodle31_pindown.io_1793296533.mp4" type="video/mp4">
+          Tarayıcınız video oynatmayı desteklemiyor.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <section class="section books-section" id="duyurular">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Benden haberler</p>
+        <h2>Son <span>Duyurular</span></h2>
+      </div>
+
+      <div style="max-width:760px;margin:0 auto;padding:28px;border:1px solid var(--border);background:var(--panel);text-align:center">
+        <p style="color:var(--accent-light);font-size:12px;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px">
+          kesmislalih'ten
+        </p>
+        <h3 style="font-size:28px;font-weight:400;margin-bottom:10px">
+          Yeni duyurular burada.
+        </h3>
+        <p class="muted">
+          Yeni hikâyeler, paylaşım tarihleri ve diğer haberler için
+          bu bölümü takip edebilirsin.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="iletisim">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Bir iz bırak</p>
+        <h2>Benimle <span>iletişim</span></h2>
+      </div>
+
+      <div style="max-width:650px;margin:0 auto;text-align:center">
+        <p class="muted" style="margin-bottom:25px">
+          Hikâyeler, düşünceler ve kelimeler üzerine…
+          Bana sosyal medya hesaplarımdan ulaşabilirsin.
+        </p>
+
+        <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:12px">
+          <a class="outline-button" href="https://www.tiktok.com/@kesmislalih_" target="_blank" rel="noopener noreferrer">TikTok</a>
+          <a class="outline-button" href="https://x.com/kesmislalih" target="_blank" rel="noopener noreferrer">X</a>
+          <a class="outline-button" href="https://pin.it/2jHDXi48B" target="_blank" rel="noopener noreferrer">Pinterest</a>
+          <a class="outline-button" href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv" target="_blank" rel="noopener noreferrer">Spotify</a>
+          <a class="outline-button" href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </div>
+      </div>
     </div>
   </section>
 </main>
 
-<!-- FOTOĞRAF BÜYÜTME PENCERESİ -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Büyütülmüş fotoğraf">
-  <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Fotoğrafı kapat">×</button>
-  <img id="lightboxImage" src="" alt="Büyütülmüş galeri fotoğrafı">
-</div>
-
-<!-- ALT BİLGİ -->
-<footer class="site-footer" id="sosyal">
-  <p class="signature">kesmislalih</p>
-  <p>Some stories are not meant to be told, but felt.</p>
-
-  <div class="socials">
-    <a class="social-icon" href="https://www.tiktok.com/@kesmislalih_" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-      <svg viewBox="0 0 24 24"><path d="M19.6 7.1a6.7 6.7 0 0 1-4.2-1.5v8.1a6.1 6.1 0 1 1-5.3-6.05v3.2a2.9 2.9 0 1 0 2.1 2.8V2.5h3.2c.2 2 1.8 3.6 4.2 3.8z"/></svg>
-    </a>
-    <a class="social-icon" href="https://x.com/kesmislalih" target="_blank" rel="noopener noreferrer" aria-label="X">
-      <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-5-7.4L5.4 22H2.2l7.3-8.4L1.8 2h6.5l4.5 6.8zm-1.1 17.8h1.7L7.3 4H5.5z"/></svg>
-    </a>
-    <a class="social-icon wattpad-icon" href="https://www.wattpad.com/user/kesmislalih" target="_blank" rel="noopener noreferrer" aria-label="Wattpad">
-      <svg viewBox="0 0 40 40"><path d="M3 3h8c7 0 11 4 11 11 0 4-2 7-5 9 5 1 8 5 8 10 0 7-5 11-13 11H3V3zm8 15c3 0 5-2 5-5s-2-4-5-4H8v9h3zm1 19c4 0 6-2 6-6s-2-5-6-5H8v11h4zM28 3h9v41h-9z" fill="currentColor" transform="translate(0 -2) scale(.9)"/></svg>
-    </a>
-    <a class="social-icon" href="https://pin.it/2jHDXi48B" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
-      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.6 19.3c0-.8 0-1.8.2-2.7l1.3-5.5s-.3-.6-.3-1.5c0-1.4.8-2.5 1.9-2.5.9 0 1.3.7 1.3 1.6 0 1-.6 2.6-.9 4.1-.3 1.2.6 2.1 1.8 2.1 2.2 0 3.8-2.9 3.8-6.3 0-2.6-1.8-4.5-5-4.5-3.7 0-6 2.8-6 5.9 0 1.1.3 1.9.9 2.5.3.3.3.4.2.8l-.3 1c-.1.3-.4.4-.7.3-1.6-.7-2.4-2.5-2.4-4.5 0-3.3 2.8-7.3 8.5-7.3 4.5 0 7.5 3.3 7.5 6.8 0 4.7-2.6 8.2-6.5 8.2-1.3 0-2.5-.7-2.9-1.5l-.8 3.1c-.2.9-.7 1.8-1.1 2.5A10 10 0 1 0 12 2z"/></svg>
-    </a>
-    <a class="social-icon" href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.4-.2-3.1.8.8-3-.2-.4A8 8 0 1 1 12 20z"/></svg>
-    </a>
-    <a class="social-icon" href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzv" target="_blank" rel="noopener noreferrer" aria-label="Spotify">
-      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.6 14.4a.8.8 0 0 1-1.1.3 10.7 10.7 0 0 0-7.8-.9.8.8 0 1 1-.4-1.5 12.2 12.2 0 0 1 8.9 1 .8.8 0 0 1 .4 1.1zm1.2-2.7a1 1 0 0 1-1.3.4 13.3 13.3 0 0 0-9.4-1.1 1 1 0 1 1-.6-1.8 15.2 15.2 0 0 1 10.8 1.3 1 1 0 0 1 .5 1.2z"/></svg>
-    </a>
+<footer style="border-top:1px solid var(--border);background:var(--bg-soft);padding:27px 0;text-align:center">
+  <div class="container">
+    <a class="brand" href="#anasayfa" style="font-size:32px">kesmis<span>lalih</span></a>
+    <p class="muted" style="font-size:14px;margin-top:9px">
+      Some stories are not meant to be told, but felt.
+    </p>
+    <p class="muted" style="font-size:13px;margin-top:12px">
+      © 2026 kesmislalih. Tüm hakları saklıdır.
+    </p>
   </div>
-  <small>© <span id="currentYear">2026</span> KESMİSLALİH · TÜM HAKLARI SAKLIDIR</small>
 </footer>
-
 <script>
-(() => {
-  const intro = document.getElementById("intro");
-  const enterButton = document.getElementById("enterSite");
-  const menuToggle = document.getElementById("menuToggle");
-  const menu = document.getElementById("siteMenu");
-  const backdrop = document.getElementById("menuBackdrop");
+(function () {
+  const body = document.body;
+  const themeToggle = document.getElementById('themeToggle');
+  const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
 
-  function closeIntro() {
-    if (intro) intro.classList.add("hidden");
-  }
+  // Kayıtlı tema tercihini yükle.
+  try {
+    const savedTheme = localStorage.getItem('siteTheme');
 
-  if (enterButton) enterButton.addEventListener("click", closeIntro);
-
-  /* SEKME DEĞİŞTİRME */
-  const tabs = [...document.querySelectorAll(".tab[data-tab]")];
-  const panels = [...document.querySelectorAll(".tab-panel[data-panel]")];
-
-  function activateTab(name, shouldScroll = false) {
-    const selectedTab = tabs.find(tab => tab.dataset.tab === name);
-    const selectedPanel = panels.find(panel => panel.dataset.panel === name);
-    if (!selectedTab || !selectedPanel) return;
-
-    tabs.forEach(tab => {
-      const active = tab === selectedTab;
-      tab.setAttribute("aria-selected", String(active));
-      tab.tabIndex = active ? 0 : -1;
-    });
-
-    panels.forEach(panel => {
-      const active = panel === selectedPanel;
-      panel.classList.toggle("active", active);
-      panel.hidden = !active;
-    });
-
-    if (shouldScroll) {
-      document.getElementById("koleksiyon").scrollIntoView({ behavior: "smooth" });
+    if (savedTheme === 'light') {
+      body.classList.add('light');
     }
+  } catch (error) {
+    // Tarayıcı depolaması kullanılamıyorsa varsayılan tema korunur.
   }
 
-  tabs.forEach((tab, index) => {
-    tab.addEventListener("click", () => activateTab(tab.dataset.tab));
-    tab.addEventListener("keydown", event => {
-      if (!["ArrowRight", "ArrowLeft", "Home", "End"].includes(event.key)) return;
-      event.preventDefault();
-
-      let nextIndex = index;
-      if (event.key === "ArrowRight") nextIndex = (index + 1) % tabs.length;
-      if (event.key === "ArrowLeft") nextIndex = (index - 1 + tabs.length) % tabs.length;
-      if (event.key === "Home") nextIndex = 0;
-      if (event.key === "End") nextIndex = tabs.length - 1;
-
-      tabs[nextIndex].focus();
-      activateTab(tabs[nextIndex].dataset.tab);
-    });
-  });
-
-  /* MOBİL MENÜ */
-  function setMenu(open) {
-    menu.classList.toggle("open", open);
-    backdrop.classList.toggle("open", open);
-    menuToggle.setAttribute("aria-expanded", String(open));
-    menu.setAttribute("aria-hidden", String(!open));
-    menuToggle.setAttribute("aria-label", open ? "Menüyü kapat" : "Menüyü aç");
-    document.body.classList.toggle("no-scroll", open);
+  function updateThemeIcon() {
+    const isLight = body.classList.contains('light');
+    themeToggle.textContent = isLight ? '☀' : '☾';
+    themeToggle.setAttribute(
+      'aria-label',
+      isLight ? 'Koyu temaya geç' : 'Açık temaya geç'
+    );
   }
 
-  menuToggle.addEventListener("click", () => {
-    setMenu(menuToggle.getAttribute("aria-expanded") !== "true");
-  });
+  updateThemeIcon();
 
-  backdrop.addEventListener("click", () => setMenu(false));
+  themeToggle.addEventListener('click', function () {
+    body.classList.toggle('light');
 
-  menu.querySelectorAll("[data-tab-target]").forEach(button => {
-    button.addEventListener("click", () => {
-      activateTab(button.dataset.tabTarget, true);
-      setMenu(false);
-    });
-  });
+    const selectedTheme = body.classList.contains('light')
+      ? 'light'
+      : 'dark';
 
-  menu.querySelectorAll("a[href^='#']").forEach(link => {
-    link.addEventListener("click", () => setMenu(false));
-  });
-
-  /* KARAKTER SEÇİMİ */
-  const characterButtons = [...document.querySelectorAll(".character-choice")];
-  const characterPhoto = document.getElementById("characterPhoto");
-  const characterName = document.getElementById("characterName");
-  const characterNumber = document.getElementById("characterNumber");
-  const characterDescription = document.getElementById("characterDescription");
-
-  characterButtons.forEach((button, index) => {
-    button.addEventListener("click", () => {
-      const imagePath = button.dataset.image;
-      const name = button.dataset.name;
-      const testImage = new Image();
-
-      testImage.onload = () => {
-        characterPhoto.style.opacity = "0";
-
-        window.setTimeout(() => {
-          characterPhoto.src = imagePath;
-          characterPhoto.alt = name + " karakter görseli";
-          characterName.textContent = name;
-          characterNumber.textContent =
-            String(index + 1).padStart(2, "0") + " / " +
-            String(characterButtons.length).padStart(2, "0");
-          characterDescription.textContent =
-            name + " karakterinin hikâyesi burada başlayacak.";
-          characterPhoto.style.opacity = "1";
-        }, 150);
-
-        characterButtons.forEach(item => {
-          item.classList.remove("active");
-          item.setAttribute("aria-pressed", "false");
-        });
-
-        button.classList.add("active");
-        button.setAttribute("aria-pressed", "true");
-      };
-
-      testImage.onerror = () => {
-        console.error("Karakter görseli yüklenemedi:", imagePath);
-      };
-
-      testImage.src = imagePath;
-    });
-  });
-
-  /* GALERİ LIGHTBOX */
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImage = document.getElementById("lightboxImage");
-  const lightboxClose = document.getElementById("lightboxClose");
-
-  function openLightbox(src, alt) {
-    lightboxImage.src = src;
-    lightboxImage.alt = alt;
-    lightbox.classList.add("open");
-    document.body.classList.add("no-scroll");
-    lightboxClose.focus();
-  }
-
-  function closeLightbox() {
-    if (!lightbox.classList.contains("open")) return;
-    lightbox.classList.remove("open");
-    lightboxImage.src = "";
-    document.body.classList.remove("no-scroll");
-  }
-
-  document.querySelectorAll(".gallery-item").forEach(button => {
-    button.addEventListener("click", () => {
-      const image = button.querySelector("img");
-      openLightbox(button.dataset.fullImage, image.alt);
-    });
-  });
-
-  lightboxClose.addEventListener("click", closeLightbox);
-
-  lightbox.addEventListener("click", event => {
-    if (event.target === lightbox) closeLightbox();
-  });
-
-  document.addEventListener("keydown", event => {
-    if (event.key === "Escape") {
-      closeIntro();
-      setMenu(false);
-      closeLightbox();
+    try {
+      localStorage.setItem('siteTheme', selectedTheme);
+    } catch (error) {
+      // Tema, sayfa açık olduğu sürece çalışmaya devam eder.
     }
+
+    updateThemeIcon();
   });
 
-  document.getElementById("currentYear").textContent = new Date().getFullYear();
+  // Mobil menüyü açıp kapat.
+  menuToggle.addEventListener('click', function () {
+    const isOpen = mainNav.classList.toggle('open');
 
-  /* İLK AÇILIŞTA KİTAPLAR GÖRÜNSÜN */
-  activateTab("kitaplar");
+    menuToggle.textContent = isOpen ? '×' : '☰';
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+    menuToggle.setAttribute(
+      'aria-label',
+      isOpen ? 'Menüyü kapat' : 'Menüyü aç'
+    );
+  });
+
+  // Menü bağlantısına basılınca mobil menüyü kapat.
+  mainNav.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      mainNav.classList.remove('open');
+      menuToggle.textContent = '☰';
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Menüyü aç');
+    });
+  });
+
+  // Hareket azaltma tercihi olan cihazlarda videoları durdur.
+  const reducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  );
+
+  if (reducedMotion.matches) {
+    document.querySelectorAll('.hero-video').forEach(function (video) {
+      video.pause();
+    });
+  }
 })();
 </script>
+
 </body>
 </html>
