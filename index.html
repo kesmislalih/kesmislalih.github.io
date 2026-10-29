@@ -1,169 +1,396 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#080809">
-<title>kesmislalih</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#09090b">
+<title>kesmislalih | Kelimelerden Doğan Hikâyeler</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
 <style>
-:root{--bg:#080809;--panel:#111012;--wine:#751b31;--wine2:#a43c55;--paper:#f7f1f3;--muted:#c9bec3;--line:#38232a;--blue:#8199c9}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;background:var(--bg)}
-body{margin:0;background:var(--bg);color:var(--paper);font-family:Arial,sans-serif;overflow-x:hidden}
-body.locked{overflow:hidden}
-a{color:inherit;text-decoration:none}
-button{font:inherit;-webkit-tap-highlight-color:transparent}
-button:focus-visible,a:focus-visible{outline:2px solid #d7b1bd;outline-offset:4px}
-.intro{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:24px;background:#080809;transition:opacity .65s,visibility .65s}
-.intro.hide{opacity:0;visibility:hidden;pointer-events:none}
-.intro-frame{position:absolute;width:min(1100px,94vw);height:min(72svh,700px);min-height:340px;overflow:hidden;border:1px solid #5b2937;border-radius:3px;box-shadow:0 22px 75px #000b,0 0 40px #6f1a3024}
-.intro-frame video{width:100%;height:100%;display:block;object-fit:cover;object-position:center;filter:brightness(.66) saturate(.83)}
-.intro-shade{position:absolute;inset:0;background:linear-gradient(180deg,#08080930,#08080935 40%,#080809d9),linear-gradient(90deg,#08080955,transparent 45%,#08080955)}
-.intro-content{position:relative;z-index:1;width:100%;text-align:center;padding:20px;animation:fadeIn 1s ease both}
-.signature{margin:0;color:#fff;font-family:"Great Vibes",cursive;font-size:clamp(64px,11vw,112px);font-weight:400;line-height:1.15;text-shadow:0 3px 20px #000,0 0 22px #751b3166}
-.thin-line{width:56px;height:1px;margin:12px auto 25px;background:linear-gradient(90deg,transparent,#b55b70,transparent)}
-.outline-button{min-width:145px;padding:14px 26px;border:1px solid #bd687e;background:#090809c9;color:#fff;font-size:11px;letter-spacing:3px;cursor:pointer;transition:background .25s,border-color .25s}
-.outline-button:hover{background:var(--wine);border-color:#e0a1b0}
-@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.profile{position:relative;isolation:isolate;min-height:720px;min-height:100svh;display:grid;place-items:center;padding:95px 22px 56px;overflow:hidden;background:#080809}
-.profile-video{position:absolute;z-index:-2;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.52;filter:brightness(.68) saturate(.8)}
-.profile-shade{position:absolute;z-index:-1;inset:0;background:linear-gradient(180deg,#08080968 0%,#08080972 42%,#080809f4 100%),linear-gradient(90deg,#08080980,transparent 50%,#08080980)}
-.profile-content{width:100%;max-width:760px;text-align:center}
-.avatar{display:block;width:clamp(118px,17vw,166px);aspect-ratio:1;object-fit:cover;border:2px solid #8e344a;border-radius:50%;margin:0 auto;box-shadow:0 0 0 5px #08080980,0 0 26px #751b3150}
-.profile-name{margin:23px 0 0;font-family:"Cormorant Garamond",serif;font-size:clamp(35px,7vw,70px);font-weight:500;letter-spacing:clamp(2px,.8vw,8px);line-height:1.2;overflow-wrap:anywhere;color:#fff;text-shadow:0 3px 14px #000}
-.slogan{display:table;max-width:100%;margin:10px auto 23px;padding:4px 10px;font-family:"Cormorant Garamond",serif;font-size:clamp(17px,3vw,25px);font-style:italic;letter-spacing:.5px;color:#fff;text-shadow:0 2px 10px #000}
-.socials{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:23px;margin:24px 0 0}
-.socials a{width:30px;height:30px;display:grid;place-items:center;color:#f4eff1;transition:color .2s,transform .2s}
-.socials a:hover{color:#d9a7b3;transform:translateY(-3px)}
-.socials svg{width:100%;height:100%;display:block;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.socials .x-brand svg,.socials .pinterest-brand svg{fill:currentColor;stroke:none}
-.socials .instagram-brand{color:#f0dce2}
-.socials .whatsapp-brand svg{stroke-width:1.7}
-.menu-button{position:absolute;top:25px;right:clamp(20px,4vw,48px);z-index:80;width:44px;height:40px;padding:8px 3px;display:flex;flex-direction:column;justify-content:space-between;border:0;background:#08080955;cursor:pointer}
-.menu-button span{display:block;width:100%;height:2px;background:#fff;box-shadow:0 1px 5px #0009;transition:transform .25s,opacity .25s}
-.menu-button[aria-expanded="true"] span:first-child{transform:translateY(11px) rotate(45deg)}
-.menu-button[aria-expanded="true"] span:nth-child(2){opacity:0}
-.menu-button[aria-expanded="true"] span:last-child{transform:translateY(-11px) rotate(-45deg)}
-.menu-backdrop{position:fixed;inset:0;z-index:89;background:#0009;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
-.menu-backdrop.open{opacity:1;visibility:visible}
-.menu-panel{position:fixed;z-index:90;top:0;right:0;width:min(360px,86vw);height:100dvh;padding:28px 28px 32px;background:linear-gradient(155deg,#1a1115,#09090b 70%);border-left:1px solid #6e293c;box-shadow:-18px 0 55px #0008;transform:translateX(105%);visibility:hidden;transition:transform .35s ease,visibility .35s;display:flex;flex-direction:column;overflow-y:auto}
-.menu-panel.open{transform:translateX(0);visibility:visible}
-.menu-head{display:flex;align-items:center;justify-content:space-between;padding:8px 0 25px;border-bottom:1px solid var(--line);margin-bottom:16px}
-.menu-signature{font-family:"Great Vibes",cursive;font-size:35px;color:#f6e9ed}
-.menu-kicker{font-size:9px;letter-spacing:3px;color:#c38a99}
-.menu-panel nav{display:flex;flex-direction:column}
-.menu-panel nav a{display:flex;align-items:center;gap:15px;padding:16px 2px;border-bottom:1px solid #38232a88;font-family:"Cormorant Garamond",serif;font-size:25px;color:#f7f1f3;transition:padding .2s,color .2s}
-.menu-panel nav a span{font-family:Arial,sans-serif;font-size:10px;letter-spacing:1px;color:#b56b7e}
-.menu-panel nav a:hover{padding-left:9px;color:#e0a4b3}
-.menu-note{margin-top:auto;padding-top:35px;color:#a99ca2;font-family:"Cormorant Garamond",serif;font-size:16px;font-style:italic;line-height:1.6}
-.tabs{position:sticky;top:0;z-index:30;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:#09090af2;border-top:1px solid #282326;border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
-.tabs button{position:relative;min-width:0;padding:19px 3px 17px;border:0;background:transparent;color:#b9afb4;font-size:clamp(9px,1.55vw,13px);font-weight:700;letter-spacing:clamp(.4px,.3vw,2px);white-space:nowrap;cursor:pointer}
-.tabs button.active,.tabs button:hover{color:#fff}
-.tabs button.active:after{content:"";position:absolute;bottom:0;left:18%;right:18%;height:2px;background:#b65b73}
-.panel-stage{position:relative;min-height:560px;overflow:hidden;background:#09090a}
-.panel{display:none;min-height:560px;padding:48px clamp(18px,5vw,70px) 65px;animation:slideIn .32s ease both}
-.panel.active{display:block}
-@keyframes slideIn{from{opacity:0;transform:translateX(15px)}to{opacity:1;transform:translateX(0)}}
-.panel-title{margin:0;text-align:center;font-family:"Cormorant Garamond",serif;font-size:clamp(35px,5vw,52px);font-weight:500;color:#fff;text-shadow:0 2px 12px #000}
-.panel-subtitle{margin:8px 0 34px;text-align:center;color:#d4c9ce;font-family:"Cormorant Garamond",serif;font-size:19px;text-shadow:0 2px 10px #000}
-.books-panel{position:relative;isolation:isolate;overflow:hidden}
-.books-video,.books-shade{position:absolute;inset:0;z-index:-2;width:100%;height:100%}
-.books-video{object-fit:cover;opacity:.28;filter:brightness(.58) saturate(.7)}
-.books-shade{z-index:-1;background:linear-gradient(180deg,#080809e8,#080809c9 48%,#080809f2)}
-.books-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(22px,5vw,58px);width:100%;max-width:800px;margin:0 auto}
-.book-card{min-width:0;text-align:center;cursor:pointer}
-.cover-frame{position:relative;overflow:hidden;width:100%;max-width:300px;margin:0 auto;border:1px solid #5c2a39;border-radius:3px;background:#111012;box-shadow:0 10px 32px #0008,0 0 20px #751b3120;transition:transform .25s,box-shadow .25s}
-.book-card:hover .cover-frame{transform:translateY(-4px);box-shadow:0 14px 36px #000a,0 0 25px #751b3240}
-.cover{display:block;width:100%;aspect-ratio:2/3;object-fit:cover}
-.coming{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:22px 8px;background:linear-gradient(180deg,transparent 25%,#08080930 50%,#080809df 100%);color:#fff;font-family:"Cormorant Garamond",serif;font-size:clamp(17px,2.5vw,23px);font-weight:600;letter-spacing:2px;text-shadow:0 2px 8px #000}
-.book-title{margin:17px 0 6px;font-family:"Cormorant Garamond",serif;font-size:clamp(17px,2.8vw,26px);font-weight:600;color:#fff}
-.book-author{margin:0;color:#d18b9b;font-size:10px;letter-spacing:3px}
-.simple-card{position:relative;width:100%;max-width:720px;margin:auto;padding:clamp(28px,6vw,56px) 22px;text-align:center;border:1px solid #512733;border-radius:3px;background:linear-gradient(145deg,#1c1418,#0b0a0b 80%);box-shadow:0 15px 45px #0006}
-.ornament{color:#d18b9b;font-size:35px}
-.announcement-list{width:100%;max-width:440px;margin:25px auto 18px;text-align:left}
-.announcement-list p{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:0;padding:17px 0;border-top:1px solid #512733;font-size:clamp(12px,2vw,15px);letter-spacing:1px}
-.announcement-list p:last-child{border-bottom:1px solid #512733}
-.announcement-list strong{font-weight:500;color:#fff}
-.announcement-list span{white-space:nowrap;color:#e1a1b1;font-family:"Cormorant Garamond",serif;font-size:20px}
-.quote{margin:20px 0;color:#fff;font-family:"Cormorant Garamond",serif;font-size:clamp(24px,4vw,36px);line-height:1.45}
-.signature-small{margin:12px 0;color:#e5cbd2;font-family:"Great Vibes",cursive;font-size:35px}
-.muted{color:#c9bec3;line-height:1.8}
-.gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;width:100%;max-width:850px;margin:auto}
-.gallery-card{aspect-ratio:3/4;display:flex;flex-direction:column;justify-content:center;align-items:center;border:1px solid #512733;background:linear-gradient(145deg,#24161c,#0c0b0c);color:#fff;text-align:center}
-.gallery-card span{color:#d18b9b;font-family:"Cormorant Garamond",serif;font-size:34px}
-.gallery-card p{padding:0 5px;font-family:"Cormorant Garamond",serif;font-size:clamp(15px,2.5vw,21px)}
-.character-books{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,4vw,42px);width:100%;max-width:680px;margin:0 auto}
-.character-book{padding:0;border:0;background:transparent;color:inherit;text-align:center;cursor:pointer;min-width:0}
-.character-book .cover-frame{width:100%;max-width:250px}
-.character-book:hover .cover-frame{transform:translateY(-4px);box-shadow:0 14px 36px #000a,0 0 25px #751b3240}
-.character-book:focus-visible{outline:2px solid #d7b1bd;outline-offset:6px}
-.character-book-title{margin:14px 0 0;font-family:"Cormorant Garamond",serif;font-size:clamp(16px,2.7vw,23px);color:#fff}
-.character-results{display:none;width:100%;max-width:850px;margin:28px auto 0;animation:slideIn .3s ease both}
-.character-results.open{display:block}
-.character-results-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px;padding-bottom:13px;border-bottom:1px solid #512733}
-.character-results-head h3{margin:0;font-family:"Cormorant Garamond",serif;font-size:clamp(22px,4vw,31px);font-weight:500}
-.character-back{padding:10px 13px;border:1px solid #754050;background:#100c0e;color:#f7f1f3;font-size:10px;letter-spacing:1px;cursor:pointer}
-.character-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.character-card{min-width:0;padding:18px 12px;text-align:center;border:1px solid #512733;background:linear-gradient(145deg,#21151a,#0c0b0c)}
-.character-card .character-symbol{display:grid;place-items:center;width:72px;max-width:100%;aspect-ratio:3/4;margin:0 auto 12px;border:1px solid #754050;background:linear-gradient(160deg,#3a202b,#100d10);color:#d9a0af;font-family:"Cormorant Garamond",serif;font-size:30px}
-.character-card h4{margin:0 0 7px;font-family:"Cormorant Garamond",serif;font-size:21px;font-weight:500;color:#fff}
-.character-card p{margin:0;color:#c9bec3;font-size:12px;line-height:1.6}
-.character-hint{margin:18px auto 0;text-align:center;color:#a99ca2;font-size:11px;letter-spacing:.5px;line-height:1.7}
-.book-modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:22px 18px;overflow-y:auto;background:#080809}
-.book-modal.open{display:flex}
-.modal-shade{position:absolute;inset:0;background:linear-gradient(180deg,#080809c4,#080809f2),url("file_0000000025bc81f4894ba4ef290f1c32.png") center/cover}
-.modal-close{position:fixed;top:12px;right:19px;z-index:3;border:0;background:#08080999;color:#fff;font-size:45px;font-weight:200;line-height:1;cursor:pointer}
-.modal-content{position:relative;z-index:1;width:100%;max-width:540px;margin:auto;padding:38px 0 18px;text-align:center}
-.modal-cover{display:block;width:min(48%,245px);max-height:34svh;aspect-ratio:2/3;object-fit:cover;margin:0 auto 17px;border:1px solid #512733;box-shadow:0 8px 30px #000b}
-.modal-title{margin:10px 0 0;color:#fff;font-family:"Cormorant Garamond",serif;font-size:clamp(27px,5vw,39px);font-weight:600}
-.modal-author{margin:3px 0 17px;color:#d18b9b;font-family:"Great Vibes",cursive;font-size:28px}
-.modal-quote{margin:17px auto 22px;color:#fff;font-family:"Cormorant Garamond",serif;font-size:clamp(19px,3.5vw,26px);font-style:italic;line-height:1.5}
-.continue-button{display:block;width:min(290px,90%);margin:0 auto;padding:15px 18px;border:1px solid #8c3045;background:#090809d9;color:#fff;font-size:12px;letter-spacing:3px;transition:background .2s}
-.continue-button:hover{background:#751b31}
-.read-more{display:block;margin:17px 0 28px;color:#e2a0b0;font-size:11px;letter-spacing:1.5px}
-.swipe-note{margin-top:18px;color:#bfb3b9;font-size:10px;letter-spacing:2px}
-.footer{padding:28px 15px;text-align:center;border-top:1px solid #38232a;background:#080809;color:#c0b7bb;font-family:"Cormorant Garamond",serif}
-.footer-signature{margin:0;color:#f6f2f3;font-family:"Great Vibes",cursive;font-size:38px}
-.footer-slogan{font-size:15px;color:#c9bec3}
-.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:19px;margin:18px 0}
-.footer-links a{font-size:14px}
-.footer-links a:hover{color:#d18b9b}
-.copyright{color:#8e8389;font-family:Arial,sans-serif;font-size:9px;letter-spacing:3px}
-@media(max-width:600px){
- .intro{padding:14px}
- .intro-frame{width:92vw;height:min(60svh,520px);min-height:300px}
- .signature{font-size:clamp(59px,14vw,85px)}
- .profile{min-height:680px;padding:88px 18px 45px}
- .profile-video{object-position:center}
- .avatar{width:clamp(112px,34vw,145px)}
- .profile-name{font-size:clamp(31px,8vw,48px);letter-spacing:2px}
- .slogan{font-size:17px}
- .socials{gap:20px}
- .socials a{width:27px;height:27px}
- .tabs button{padding:17px 1px 15px;letter-spacing:0;font-size:9px}
- .panel{padding:38px 16px 48px}
- .panel-subtitle{font-size:17px;margin-bottom:27px}
- .books-grid{gap:14px}
- .cover-frame{border-radius:2px}
- .book-title{font-size:16px;line-height:1.25}
- .book-author{letter-spacing:2px;font-size:9px}
- .gallery-grid{gap:7px}
- .gallery-card span{font-size:28px}
- .gallery-card p{font-size:14px}
- .character-books{gap:12px}
- .character-card{padding:13px 7px}
- .character-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
- .character-results-head{align-items:flex-start;flex-direction:column}
- .modal-content{padding-top:35px}
+:root{
+  --bg:#09090b;
+  --panel:#100e12;
+  --text:#f3efe8;
+  --muted:#a9a0a8;
+  --accent:#cdb9eb;
+  --line:#382b40;
+  --wine:#512733;
 }
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Cormorant Garamond",serif;
+  min-height:100vh;
+}
+body.locked{overflow:hidden}
+button,a{-webkit-tap-highlight-color:transparent}
+button{font:inherit}
+a{color:inherit;text-decoration:none}
+button:focus-visible,a:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:4px;
+}
+
+/* AÇILIŞ EKRANI — İLK VİDEO KORUNDU */
+.intro{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:0;
+  padding:25px;
+  background:#08080a;
+  transition:opacity .65s ease,visibility .65s ease;
+}
+.intro.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+.intro-frame{
+  position:absolute;
+  width:min(1100px,94vw);
+  height:min(72svh,700px);
+  min-height:320px;
+  overflow:hidden;
+  border:1px solid #493b4e;
+  background:#111015;
+}
+.intro-frame video{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+.intro-shade{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    180deg,
+    #08080a22,
+    #08080a44 45%,
+    #08080acc
+  );
+}
+.intro-content{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-height:72svh;
+  text-align:center;
+}
+.signature{
+  color:#fffaff;
+  font-family:"Great Vibes",cursive;
+  font-size:clamp(70px,12vw,135px);
+  font-weight:400;
+  line-height:1.25;
+  text-shadow:0 3px 30px #000b;
+}
+.thin-line{
+  width:clamp(110px,22vw,250px);
+  height:1px;
+  margin:12px auto 28px;
+  background:linear-gradient(90deg,transparent,#d8c8e8,transparent);
+}
+.outline-button{
+  min-width:155px;
+  padding:14px 28px;
+  border:1px solid #e0d0ed;
+  background:#09090bbd;
+  color:#fff;
+  font-family:Arial,sans-serif;
+  font-size:10px;
+  letter-spacing:4px;
+  cursor:pointer;
+  transition:background .25s,color .25s;
+}
+.outline-button:hover{
+  background:#d8c7e8;
+  color:#17121b;
+}
+
+/* PROFİL ALANI */
+.profile{
+  position:relative;
+  isolation:isolate;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:650px;
+  min-height:88svh;
+  overflow:hidden;
+  padding:90px 24px 55px;
+  background:#100d12;
+}
+.profile-video{
+  position:absolute;
+  z-index:-3;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+.profile-shade{
+  position:absolute;
+  z-index:-2;
+  inset:0;
+  background:linear-gradient(
+    180deg,
+    #08070b55,
+    #08070b91 48%,
+    #08070be8
+  );
+}
+.profile-content{
+  width:min(700px,100%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+.avatar{
+  display:block;
+  width:clamp(120px,18vw,175px);
+  aspect-ratio:1;
+  object-fit:cover;
+  border-radius:50%;
+  border:1px solid #d6c4e7;
+  box-shadow:0 0 35px #08060b88;
+  margin-bottom:25px;
+}
+.profile-name{
+  color:#fff;
+  font-size:clamp(32px,5vw,57px);
+  font-weight:400;
+  letter-spacing:clamp(3px,.8vw,8px);
+}
+.slogan{
+  margin-top:12px;
+  color:#e4d8eb;
+  font-size:clamp(16px,2.2vw,22px);
+  font-style:italic;
+  letter-spacing:.5px;
+}
+.socials{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:23px;
+  margin-top:32px;
+}
+.socials a{
+  display:grid;
+  place-items:center;
+  width:27px;
+  height:27px;
+  color:#f1e8f6;
+  opacity:.88;
+  transition:color .2s,transform .2s,opacity .2s;
+}
+.socials a:hover{
+  color:var(--accent);
+  opacity:1;
+  transform:translateY(-3px);
+}
+.socials svg{
+  display:block;
+  width:100%;
+  height:100%;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.6;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.socials .x-brand svg,
+.socials .pinterest-brand svg{
+  fill:currentColor;
+  stroke:none;
+}
+.socials .x-brand svg path,
+.socials .pinterest-brand svg path{
+  fill:currentColor;
+}
+.socials .whatsapp-brand svg path:first-child{
+  fill:none;
+}
+
+/* SAĞDAN AÇILAN MENÜ */
+.menu-button{
+  position:absolute;
+  z-index:30;
+  top:27px;
+  right:5%;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  justify-content:center;
+  gap:7px;
+  width:49px;
+  height:45px;
+  padding:8px;
+  border:1px solid #ffffff50;
+  background:#09090b66;
+  cursor:pointer;
+  transition:border-color .2s,background .2s;
+}
+.menu-button:hover{
+  border-color:var(--accent);
+  background:#09090bbd;
+}
+.menu-button span{
+  display:block;
+  height:1px;
+  background:#fff;
+  transition:width .2s;
+}
+.menu-button span:nth-child(1){width:27px}
+.menu-button span:nth-child(2){width:21px}
+.menu-button span:nth-child(3){width:25px}
+.menu-button:hover span:nth-child(2){width:27px}
+
+.menu-backdrop{
+  position:fixed;
+  z-index:39;
+  inset:0;
+  background:#030204b8;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .3s,visibility .3s;
+}
+.menu-backdrop.open{
+  opacity:1;
+  visibility:visible;
+}
+.menu-panel{
+  position:fixed;
+  z-index:40;
+  top:0;
+  right:0;
+  display:flex;
+  flex-direction:column;
+  width:min(390px,86vw);
+  height:100%;
+  height:100dvh;
+  overflow-y:auto;
+  padding:65px 35px 35px;
+  border-left:1px solid #594362;
+  background:linear-gradient(150deg,#17121b,#09090b 70%);
+  transform:translateX(102%);
+  visibility:hidden;
+  transition:transform .35s ease,visibility .35s;
+}
+.menu-panel.open{
+  transform:translateX(0);
+  visibility:visible;
+}
+.menu-signature{
+  color:#f8f1ff;
+  font-family:"Great Vibes",cursive;
+  font-size:43px;
+}
+.menu-kicker{
+  margin-top:7px;
+  color:#a79aaf;
+  font-family:Arial,sans-serif;
+  font-size:8px;
+  line-height:1.8;
+  letter-spacing:2.5px;
+}
+.menu-head{
+  padding-bottom:30px;
+  border-bottom:1px solid #44354a;
+}
+.menu-panel nav{
+  display:flex;
+  flex-direction:column;
+  margin-top:25px;
+}
+.menu-panel nav a{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:17px 0;
+  border-bottom:1px solid #ffffff12;
+  color:#f0e8f2;
+  font-size:22px;
+  transition:color .2s,padding-left .2s;
+}
+.menu-panel nav a:hover{
+  padding-left:7px;
+  color:var(--accent);
+}
+.menu-panel nav a span{
+  color:#9b829f;
+  font-family:Arial,sans-serif;
+  font-size:9px;
+  letter-spacing:1px;
+}
+.menu-note{
+  margin-top:auto;
+  padding-top:35px;
+  color:#a99cad;
+  font-size:17px;
+  font-style:italic;
+  line-height:1.6;
+}
+
+/* TELEFON */
+@media(max-width:600px){
+  .intro{padding:14px}
+  .intro-frame{
+    width:92vw;
+    height:min(60svh,520px);
+    min-height:300px;
+  }
+  .intro-content{min-height:60svh}
+  .signature{font-size:clamp(59px,14vw,85px)}
+  .profile{
+    min-height:620px;
+    min-height:82svh;
+    padding:72px 18px 38px;
+  }
+  .avatar{width:clamp(112px,34vw,145px)}
+  .profile-name{
+    font-size:clamp(31px,8vw,48px);
+    letter-spacing:2px;
+  }
+  .slogan{font-size:17px}
+  .socials{gap:20px}
+  .socials a{width:25px;height:25px}
+  .menu-button{top:17px;right:5%}
+  .menu-panel{padding:55px 25px 28px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    scroll-behavior:auto!important;
+    transition-duration:.01ms!important;
+  }
+}
 </style>
 </head>
+
 <body>
 
+<!-- AÇILIŞ EKRANI: İLK VİDEO DOSYASI DEĞİŞTİRİLMEDİ -->
 <div class="intro" id="intro" aria-label="Site açılış ekranı">
   <div class="intro-frame">
     <video autoplay muted loop playsinline preload="metadata">
@@ -171,6 +398,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #d7b1bd;outline-offset:4p
     </video>
     <div class="intro-shade"></div>
   </div>
+
   <div class="intro-content">
     <h1 class="signature">kesmislalih</h1>
     <div class="thin-line"></div>
@@ -185,49 +413,339 @@ button:focus-visible,a:focus-visible{outline:2px solid #d7b1bd;outline-offset:4p
   </video>
   <div class="profile-shade"></div>
 
-  <button class="menu-button" id="menuButton" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="menuPanel">
-    <span></span><span></span><span></span>
+  <!-- MENÜ BUTONU -->
+  <button
+    class="menu-button"
+    id="menuButton"
+    type="button"
+    aria-label="Menüyü aç"
+    aria-expanded="false"
+    aria-controls="menuPanel">
+    <span></span>
+    <span></span>
+    <span></span>
   </button>
 
   <div class="menu-backdrop" id="menuBackdrop"></div>
+
+  <!-- SAĞ MENÜ -->
   <aside class="menu-panel" id="menuPanel" aria-hidden="true">
     <div class="menu-head">
-      <div>
-        <div class="menu-signature">kesmislalih</div>
-        <div class="menu-kicker">KELİMELERDEN DOĞAN HİKÂYELER</div>
-      </div>
+      <div class="menu-signature">kesmislalih</div>
+      <div class="menu-kicker">KELİMELERDEN DOĞAN HİKÂYELER</div>
     </div>
+
     <nav aria-label="Ana menü">
       <a href="#anasayfa" data-home><span>01</span>Ana Sayfa</a>
       <a href="#kitaplar" data-open-panel="kitaplar"><span>02</span>Kitaplar</a>
       <a href="#pano" data-open-panel="pano"><span>03</span>Pano</a>
       <a href="#karakterler" data-open-panel="karakterler"><span>04</span>Karakterler</a>
-      <a href="#galeri" data-open-panel="galeri"><span>05</span>Galeri</a>
+      <a href="galeri.html"><span>05</span>Galeri</a>
     </nav>
+
     <p class="menu-note">“Some stories are not meant to be told, but felt.”</p>
   </aside>
 
+  <!-- PROFİL BİLGİLERİ -->
   <div class="profile-content">
-    <img class="avatar" src="d08eae9afcf72d4a213a3d988ecf5935.jpg" alt="kesmislalih profil fotoğrafı">
+    <img
+      class="avatar"
+      src="d08eae9afcf72d4a213a3d988ecf5935.jpg"
+      alt="kesmislalih profil fotoğrafı">
+
     <h2 class="profile-name">KESMİSLALİH</h2>
     <p class="slogan">some stories are not meant to be told, but felt.</p>
+
+    <!-- SOSYAL MEDYA İKONLARI -->
     <div class="socials" aria-label="Sosyal medya bağlantıları">
-      <a class="instagram-brand" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+
+      <a href="https://www.instagram.com/"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
       </a>
-      <a class="x-brand" href="https://x.com/kesmislalih" target="_blank" rel="noopener" aria-label="X">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.9 5.8 22H2.6l7.3-8.4L1.9 2h6.5l4.5 6.7L18.9 2Zm-1.1 17.9h1.7L7.4 4H5.6l12.2 15.9Z"/></svg>
+
+      <a class="x-brand" href="https://x.com/kesmislalih"
+         target="_blank" rel="noopener noreferrer" aria-label="X">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.9 5.8 22H2.6l7.3-8.4L1.9 2h6.5l4.5 6.7L18.9 2Zm-1.1 17.9h1.7L7.4 4H5.6l12.2 15.9Z"/>
+        </svg>
       </a>
-      <a class="pinterest-brand" href="https://pin.it/2jHDXi48B" target="_blank" rel="noopener" aria-label="Pinterest">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.8a10.2 10.2 0 0 0-3.7 19.7c-.1-1.7 0-3.7.4-5.5l1.4-5.9s-.4-.8-.4-2c0-1.9 1.1-3.3 2.5-3.3 1.2 0 1.8.9 1.8 2 0 1.2-.8 3-1.2 4.7-.4 1.4.7 2.5 2.1 2.5 2.5 0 4.4-2.7 4.4-6.6 0-3.4-2.4-5.8-5.9-5.8-4 0-6.4 3-6.4 6.2 0 1.2.5 2.6 1.1 3.3.1.2.2.4.1.6l-.4 1.5c-.1.5-.3.6-.8.4-1.8-.8-2.9-3.2-2.9-5.1 0-4.2 3-8.1 8.7-8.1 4.6 0 8.2 3.3 8.2 7.7 0 4.6-2.9 8.4-6.9 8.4-1.3 0-2.6-.7-3-1.6l-.8 3.1c-.3 1.1-1 2.5-1.5 3.3A10.2 10.2 0 1 0 12 1.8Z"/></svg>
+
+      <a class="pinterest-brand" href="https://pin.it/2jHDXi48B"
+         target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 1.8a10.2 10.2 0 0 0-3.7 19.7c-.1-1.7 0-3.7.4-5.5l1.4-5.9s-.4-.8-.4-2c0-1.9 1.1-3.3 2.5-3.3 1.2 0 1.8.9 1.8 2 0 1.2-.8 3-1.2 4.7-.4 1.4.7 2.5 2.1 2.5 2.5 0 4.4-2.7 4.4-6.6 0-3.4-2.4-5.8-5.9-5.8-4 0-6.4 3-6.4 6.2 0 1.2.5 2.6 1.1 3.3.1.2.2.4.1.6l-.4 1.5c-.1.5-.3.6-.8.4-1.8-.8-2.9-3.2-2.9-5.1 0-4.2 3-8.1 8.7-8.1 4.6 0 8.2 3.3 8.2 7.7 0 4.6-2.9 8.4-6.9 8.4-1.3 0-2.6-.7-3-1.6l-.8 3.1c-.3 1.1-1 2.5-1.5 3.3A10.2 10.2 0 1 0 12 1.8Z"/>
+        </svg>
       </a>
-      <a class="whatsapp-brand" href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" target="_blank" rel="noopener" aria-label="WhatsApp">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 11.7a8.2 8.2 0 0 1-12.1 7.2L3 20l1.2-4.9a8.2 8.2 0 1 1 16-3.4Z"/><path d="M8.2 7.8c.3-.6.6-.6.9-.6h.5c.2 0 .4.1.5.5l.8 1.8c.1.3.1.5-.1.7l-.6.7c-.2.2-.2.4 0 .7.5.9 1.3 1.7 2.2 2.2.3.2.5.2.7 0l.8-.9c.2-.2.4-.2.7-.1l1.7.8c.3.1.4.3.4.5 0 .5-.3 1.4-.8 1.8-.5.4-1.2.7-2 .5-1-.2-2.4-.8-3.9-2.1-1.3-1.1-2.2-2.5-2.5-3.5-.3-1 .1-1.8.7-2.5Z"/></svg>
+
+      <a class="whatsapp-brand"
+         href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
+         target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.2 11.7a8.2 8.2 0 0 1-12.1 7.2L3 20l1.2-4.9a8.2 8.2 0 1 1 16-3.4Z"/>
+          <path d="M8.2 7.8c.3-.6.6-.6.9-.6h.5c.2 0 .4.1.5.5l.8 1.8c.1.3.1.5-.1.7l-.6.7c-.2.2-.2.4 0 .7.5.9 1.3 1.7 2.2 2.2.3.2.5.2.7 0l.8-.9c.2-.2.4-.2.7-.1l1.7.8c.3.1.4.3.4.5 0 .5-.3 1.4-.8 1.8-.5.4-1.2.7-2 .5-1-.2-2.4-.8-3.9-2.1-1.3-1.1-2.2-2.5-2.5-3.5-.3-1 .1-1.8.7-2.5Z"/>
+        </svg>
       </a>
+
+      <a href="https://www.tiktok.com/@kesmislalih_"
+         target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15 3v11.1a4.1 4.1 0 1 1-3.5-4.05"/>
+          <path d="M15 3c.5 3.1 2.2 4.8 5 5.1"/>
+        </svg>
+      </a>
+
+      <a href="https://www.wattpad.com/user/kesmislalih"
+         target="_blank" rel="noopener noreferrer" aria-label="Wattpad">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 3v18h4.2v-7.1l4.1 4.2 4.1-4.2V21H20V3h-4.2l-3.5 4.2L8.2 3H4Z"/>
+        </svg>
+      </a>
+
+      <a href="https://open.spotify.com/"
+         target="_blank" rel="noopener noreferrer" aria-label="Spotify">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="9.5"/>
+          <path d="M6.5 9c4.3-1.3 8.7-.7 11.7 1.2M7.2 12.3c3.5-1 7.2-.5 9.8 1M8 15.4c2.7-.7 5.5-.3 7.6.8"/>
+        </svg>
+      </a>
+
     </div>
   </div>
 </section>
 
+<style>
+/* SEKMELER VE İÇERİK PANELLERİ */
+.tabs{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  padding:0 5%;
+  background:#0b090d;
+  border-bottom:1px solid #382b40;
+}
+.tabs button{
+  padding:20px 5px 17px;
+  border:0;
+  border-bottom:2px solid transparent;
+  background:transparent;
+  color:#a99eaa;
+  font-family:Arial,sans-serif;
+  font-size:10px;
+  letter-spacing:2px;
+  cursor:pointer;
+}
+.tabs button:hover,.tabs button.active{
+  color:#e8d9f5;
+  border-bottom-color:#cdb9eb;
+}
+.panel-stage{position:relative;background:#0b090d}
+.panel{
+  position:relative;
+  display:none;
+  min-height:470px;
+  padding:65px 6% 80px;
+  overflow:hidden;
+  background:#0d0b10;
+}
+.panel.active{display:block}
+.panel-title{
+  position:relative;
+  text-align:center;
+  font-size:clamp(38px,6vw,65px);
+  font-weight:400;
+}
+.panel-subtitle{
+  position:relative;
+  margin:12px 0 38px;
+  color:#cdb9eb;
+  text-align:center;
+  font-family:"Great Vibes",cursive;
+  font-size:27px;
+}
+.books-panel{isolation:isolate}
+.books-video{
+  position:absolute;
+  z-index:-2;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.24;
+}
+.books-shade{
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  background:linear-gradient(#09090be8,#09090bf5);
+}
+.books-grid{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,250px));
+  justify-content:center;
+  gap:clamp(20px,5vw,55px);
+  width:100%;
+  max-width:700px;
+  margin:0 auto;
+}
+.book-card{
+  min-width:0;
+  text-align:center;
+  cursor:pointer;
+}
+.cover-frame{
+  position:relative;
+  width:100%;
+  aspect-ratio:2/3;
+  overflow:hidden;
+  border:1px solid #512733;
+  background:#111015;
+}
+.cover{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .4s,opacity .3s;
+}
+.book-card:hover .cover{transform:scale(1.035);opacity:.85}
+.book-title{
+  margin-top:16px;
+  color:#f5eef6;
+  font-size:clamp(15px,2vw,21px);
+  font-weight:500;
+  letter-spacing:1px;
+}
+.book-author{
+  margin-top:7px;
+  color:#b7a6bb;
+  font-family:Arial,sans-serif;
+  font-size:9px;
+  letter-spacing:3px;
+}
+.coming{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px;
+  background:#09090b8a;
+  color:#fff;
+  font-family:Arial,sans-serif;
+  font-size:clamp(13px,2vw,18px);
+  letter-spacing:3px;
+  text-align:center;
+}
+.simple-card{
+  width:min(650px,100%);
+  margin:0 auto;
+  padding:35px clamp(18px,5vw,50px);
+  border:1px solid #512733;
+  background:linear-gradient(145deg,#171019,#0b090d);
+  text-align:center;
+}
+.ornament{color:#cdb9eb;font-size:35px}
+.quote{
+  margin:15px 0 30px;
+  color:#eee4f1;
+  font-size:clamp(21px,4vw,30px);
+  font-style:italic;
+}
+.announcement-list{
+  border-top:1px solid #493348;
+}
+.announcement-list p{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+  padding:19px 0;
+  border-bottom:1px solid #493348;
+  text-align:left;
+}
+.announcement-list strong{
+  font-size:clamp(13px,2.5vw,18px);
+  font-weight:500;
+  letter-spacing:1px;
+}
+.announcement-list span{
+  color:#d5b9e7;
+  font-size:18px;
+}
+.muted{margin-top:25px;color:#b6aab8;font-size:17px}
+.signature-small{
+  margin-top:15px;
+  color:#f8f1ff;
+  font-family:"Great Vibes",cursive;
+  font-size:35px;
+}
+
+/* GALERİ ÖNİZLEMESİ */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+  width:min(1000px,100%);
+  margin:0 auto;
+}
+.gallery-thumb{
+  display:block;
+  aspect-ratio:4/5;
+  overflow:hidden;
+  border:1px solid #512733;
+  background:#111;
+}
+.gallery-thumb img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .35s,opacity .3s;
+}
+.gallery-thumb:hover img{transform:scale(1.04);opacity:.8}
+.gallery-open-button{
+  display:block;
+  width:min(300px,100%);
+  margin:28px auto 0;
+  text-align:center;
+}
+.continue-button{
+  display:block;
+  width:min(290px,90%);
+  margin:0 auto;
+  padding:15px 18px;
+  border:1px solid #8c3045;
+  background:#090809d9;
+  color:#fff;
+  font-family:Arial,sans-serif;
+  font-size:11px;
+  letter-spacing:3px;
+  cursor:pointer;
+}
+.continue-button:hover{background:#751b31}
+
+@media(max-width:600px){
+  .tabs{padding:0 2%}
+  .tabs button{padding:17px 1px 15px;font-size:9px;letter-spacing:0}
+  .panel{padding:38px 16px 48px}
+  .panel-subtitle{font-size:23px;margin-bottom:27px}
+  .books-grid{gap:14px}
+  .book-title{font-size:15px;line-height:1.3}
+  .book-author{font-size:8px;letter-spacing:2px}
+  .gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+}
+</style>
+
+<!-- BÖLÜM SEKMELERİ -->
 <nav class="tabs" aria-label="Bölümler">
   <button class="active" data-tab="kitaplar" type="button">KİTAPLAR</button>
   <button data-tab="pano" type="button">PANO</button>
@@ -236,22 +754,29 @@ button:focus-visible,a:focus-visible{outline:2px solid #d7b1bd;outline-offset:4p
 </nav>
 
 <main class="panel-stage">
+
+  <!-- KİTAPLAR -->
   <section class="panel books-panel active" id="panel-kitaplar">
     <video class="books-video" autoplay muted loop playsinline preload="metadata">
       <source src="bloggg_erss_pindown.io_1793296543.mp4" type="video/mp4">
     </video>
     <div class="books-shade"></div>
+
     <h2 class="panel-title">Kitaplar</h2>
     <p class="panel-subtitle">Her hikâye başka bir dünyadır.</p>
+
     <div class="books-grid">
       <article class="book-card" id="ringBook" tabindex="0" role="button" aria-label="Ringteki Son Dans tanıtımını aç">
-        <div class="cover-frame"><img class="cover" src="file_0000000025bc81f4894ba4ef290f1c32.png" alt="Ringteki Son Dans kitap kapağı"></div>
+        <div class="cover-frame">
+          <img class="cover" src="file_0000000025bc81f4894ba4ef290f1c32.png" alt="Ringteki Son Dans kitap kapağı">
+        </div>
         <h3 class="book-title">RİNGTEKİ SON DANS</h3>
         <p class="book-author">KESMİSLALİH</p>
       </article>
-      <article class="book-card" aria-label="Yakında yayımlanacak kitap">
+
+      <article class="book-card" aria-label="İkinci kitap yakında">
         <div class="cover-frame">
-          <img class="cover" src="ikinci-kitap-kapagi.jpg" alt="İkinci kitabın kapak görseli">
+          <img class="cover" src="ikinci-kitap-kapagi.jpg" alt="İkinci kitap kapağı">
           <div class="coming">ÇOK YAKINDA</div>
         </div>
         <h3 class="book-title">ÇOK YAKINDA</h3>
@@ -260,203 +785,71 @@ button:focus-visible,a:focus-visible{outline:2px solid #d7b1bd;outline-offset:4p
     </div>
   </section>
 
+  <!-- PANO -->
   <section class="panel" id="panel-pano">
     <h2 class="panel-title">Pano</h2>
     <p class="panel-subtitle">Kelimelerin bıraktığı izler.</p>
+
     <div class="simple-card announcement-card">
       <span class="ornament">❦</span>
       <p class="quote">Yeni hikâyeler için geri sayım başladı.</p>
+
       <div class="announcement-list">
-        <p><strong>RİNGTEKİ SON DANS</strong><span>6 Kasım</span></p>
-        <p><strong>YERALTİNIN KANUNU</strong><span>6 Aralık</span></p>
+        <p>
+          <strong>RİNGTEKİ SON DANS</strong>
+          <span>6 Kasım</span>
+        </p>
+        <p>
+          <strong>YERALTİNIN KANUNU</strong>
+          <span>6 Aralık</span>
+        </p>
       </div>
+
       <p class="muted">Bizlerle olacaklar. 💜</p>
       <p class="signature-small">kesmislalih</p>
     </div>
   </section>
 
-  <section class="panel" id="panel-karakterler">
-    <h2 class="panel-title">Karakterler</h2>
-    <p class="panel-subtitle">Bir kitabı seç, karakterleri keşfet.</p>
-    <div class="character-books" id="characterBooks">
-      <button class="character-book" type="button" data-character-book="ring">
-        <div class="cover-frame"><img class="cover" src="file_0000000025bc81f4894ba4ef290f1c32.png" alt="Ringteki Son Dans kitap kapağı"></div>
-        <h3 class="character-book-title">RİNGTEKİ SON DANS</h3>
-      </button>
-      <button class="character-book" type="button" data-character-book="yeraltı">
-        <div class="cover-frame"><img class="cover" src="ikinci-kitap-kapagi.jpg" alt="Yeraltının Kanunu kitap kapağı"></div>
-        <h3 class="character-book-title">YERALTİNIN KANUNU</h3>
-      </button>
-    </div>
-    <div class="character-results" id="characterResults" aria-live="polite">
-      <div class="character-results-head">
-        <h3 id="characterResultsTitle">Karakterler</h3>
-        <button class="character-back" id="characterBack" type="button">← KİTAPLARA DÖN</button>
-      </div>
-      <div class="character-cards" id="characterCards"></div>
-      <p class="character-hint">Karakter kartları şimdilik taslak. İsimleri ve bilgileri daha sonra birlikte düzenleyeceğiz.</p>
-    </div>
-  </section>
+  <!-- KARAKTERLER BÖLÜMÜ 3. PARÇADA GELECEK -->
 
+  <!-- GALERİ -->
   <section class="panel" id="panel-galeri">
     <h2 class="panel-title">Galeri</h2>
     <p class="panel-subtitle">Hikâyelerden kareler.</p>
+
     <div class="gallery-grid">
-      <div class="gallery-card"><span>01</span><p>Hikâyeler</p></div>
-      <div class="gallery-card"><span>02</span><p>Karakterler</p></div>
-      <div class="gallery-card"><span>03</span><p>Detaylar</p></div>
+      <a class="gallery-thumb" href="galeri.html">
+        <img src="772b5be803dcc10b56a2cae0088acf3e.jpg" alt="Galeri fotoğrafı 1" loading="lazy">
+      </a>
+      <a class="gallery-thumb" href="galeri.html">
+        <img src="ad301506aa5527e2b6d349fcbf02e9a8 (1).jpg" alt="Galeri fotoğrafı 2" loading="lazy">
+      </a>
+      <a class="gallery-thumb" href="galeri.html">
+        <img src="0f8b7991dde0f22ff23fb81e0fc16649.jpg" alt="Galeri fotoğrafı 3" loading="lazy">
+      </a>
+      <a class="gallery-thumb" href="galeri.html">
+        <img src="bd00784591329cdde6e7804525bb3951.jpg" alt="Galeri fotoğrafı 4" loading="lazy">
+      </a>
+      <a class="gallery-thumb" href="galeri.html">
+        <img src="9be113dce8dd12d87ae4f2bf8cf5293e (1).jpg" alt="Galeri fotoğrafı 5" loading="lazy">
+      </a>
+      <a class="gallery-thumb" href="galeri.html">
+        <img src="6b0bac9092b0bc230917f062c52e84ad.jpg" alt="Galeri fotoğrafı 6" loading="lazy">
+      </a>
+      <a class="gallery-thumb" href="45041afda2229d508a38cc012aaa7174.jpg">
+        <img src="45041afda2229d508a38cc012aaa7174.jpg" alt="Galeri fotoğrafı 7" loading="lazy">
+      </a>
+      <a class="gallery-thumb" href="0668f965d8247c1756f1be2f3ee5e1be.jpg">
+        <img src="0668f965d8247c1756f1be2f3ee5e1be.jpg" alt="Galeri fotoğrafı 8" loading="lazy">
+      </a>
+      <a class="gallery-thumb" href="025e7f39ec9bd3227fa182d2f735d65c.jpg">
+        <img src="025e7f39ec9bd3227fa182d2f735d65c.jpg" alt="Galeri fotoğrafı 9" loading="lazy">
+      </a>
+      <a class="gallery-thumb" href="520b988f63b52ae66a0127a457e5e7d0.jpg">
+        <img src="520b988f63b52ae66a0127a457e5e7d0.jpg" alt="Galeri fotoğrafı 10" loading="lazy">
+      </a>
     </div>
+
+    <a class="continue-button gallery-open-button" href="galeri.html">TÜM GALERİYİ GÖR</a>
   </section>
 </main>
-
-<div class="book-modal" id="bookModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal-shade"></div>
-  <button class="modal-close" id="closeModal" type="button" aria-label="Kapat">×</button>
-  <div class="modal-content">
-    <img class="modal-cover" src="file_0000000025bc81f4894ba4ef290f1c32.png" alt="Ringteki Son Dans kitap kapağı">
-    <h2 class="modal-title" id="modalTitle">RİNGTEKİ SON DANS</h2>
-    <p class="modal-author">kesmislalih</p>
-    <p class="modal-quote">Bir karanlık, iki kurşun.<br>Binbir acı, iki yetim.</p>
-    <a class="continue-button" href="ringteki-son-dans.html">DEVAM ET</a>
-    <a class="read-more" href="ringteki-son-dans.html">TANITIMIN TAMAMINI OKU ↓</a>
-    <p class="swipe-note">DİĞER KİTAPLAR YAKINDA</p>
-  </div>
-</div>
-
-<footer class="footer">
-  <p class="footer-signature">kesmislalih</p>
-  <p class="footer-slogan">some stories are not meant to be told, but felt.</p>
-  <div class="footer-links">
-    <a href="https://x.com/kesmislalih" target="_blank" rel="noopener">X</a>
-    <a href="https://www.wattpad.com/user/kesmislalih" target="_blank" rel="noopener">Wattpad</a>
-    <a href="https://pin.it/2jHDXi48B" target="_blank" rel="noopener">Pinterest</a>
-    <a href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" target="_blank" rel="noopener">WhatsApp</a>
-  </div>
-  <p class="copyright">© KESMİSLALİH</p>
-</footer>
-
-<script>
-const intro=document.getElementById("intro");
-document.getElementById("enterButton").addEventListener("click",()=>{
-  intro.classList.add("hide");
-  window.setTimeout(()=>intro.remove(),700);
-});
-
-const menuButton=document.getElementById("menuButton");
-const menuPanel=document.getElementById("menuPanel");
-const menuBackdrop=document.getElementById("menuBackdrop");
-
-function openMenu(){
-  menuPanel.classList.add("open");
-  menuBackdrop.classList.add("open");
-  menuButton.setAttribute("aria-expanded","true");
-  menuPanel.setAttribute("aria-hidden","false");
-  document.body.classList.add("locked");
-}
-function closeMenu(){
-  menuPanel.classList.remove("open");
-  menuBackdrop.classList.remove("open");
-  menuButton.setAttribute("aria-expanded","false");
-  menuPanel.setAttribute("aria-hidden","true");
-  document.body.classList.remove("locked");
-}
-menuButton.addEventListener("click",()=>menuButton.getAttribute("aria-expanded")==="true"?closeMenu():openMenu());
-menuBackdrop.addEventListener("click",closeMenu);
-
-const tabButtons=[...document.querySelectorAll("[data-tab]")];
-const panels=[...document.querySelectorAll(".panel")];
-
-function showPanel(name){
-  tabButtons.forEach(button=>button.classList.toggle("active",button.dataset.tab===name));
-  panels.forEach(panel=>panel.classList.toggle("active",panel.id==="panel-"+name));
-  closeMenu();
-}
-tabButtons.forEach(button=>button.addEventListener("click",()=>showPanel(button.dataset.tab)));
-
-document.querySelectorAll("[data-open-panel]").forEach(link=>link.addEventListener("click",event=>{
-  event.preventDefault();
-  showPanel(link.dataset.openPanel);
-  document.querySelector(".tabs").scrollIntoView({behavior:"smooth",block:"start"});
-}));
-document.querySelectorAll("[data-home]").forEach(link=>link.addEventListener("click",event=>{
-  event.preventDefault();
-  closeMenu();
-  window.scrollTo({top:0,behavior:"smooth"});
-}));
-
-const characterBooks=document.getElementById("characterBooks");
-const characterResults=document.getElementById("characterResults");
-const characterResultsTitle=document.getElementById("characterResultsTitle");
-const characterCards=document.getElementById("characterCards");
-const characterBack=document.getElementById("characterBack");
-
-const characterData={
-  ring:{
-    title:"Ringteki Son Dans",
-    items:[
-      {name:"Karakter 1",role:"Karakter bilgileri daha sonra eklenecek."},
-      {name:"Karakter 2",role:"Karakter bilgileri daha sonra eklenecek."},
-      {name:"Karakter 3",role:"Karakter bilgileri daha sonra eklenecek."}
-    ]
-  },
-  "yeraltı":{
-    title:"Yeraltının Kanunu",
-    items:[
-      {name:"Karakter 1",role:"Karakter bilgileri daha sonra eklenecek."},
-      {name:"Karakter 2",role:"Karakter bilgileri daha sonra eklenecek."},
-      {name:"Karakter 3",role:"Karakter bilgileri daha sonra eklenecek."}
-    ]
-  }
-};
-
-document.querySelectorAll("[data-character-book]").forEach(button=>button.addEventListener("click",()=>{
-  const data=characterData[button.dataset.characterBook];
-  characterResultsTitle.textContent=data.title;
-  characterCards.innerHTML=data.items.map((item,index)=>`
-    <article class="character-card">
-      <div class="character-symbol">${String(index+1).padStart(2,"0")}</div>
-      <h4>${item.name}</h4>
-      <p>${item.role}</p>
-    </article>
-  `).join("");
-  characterBooks.style.display="none";
-  characterResults.classList.add("open");
-}));
-
-characterBack.addEventListener("click",()=>{
-  characterResults.classList.remove("open");
-  characterBooks.style.display="grid";
-});
-
-const modal=document.getElementById("bookModal");
-const ringBook=document.getElementById("ringBook");
-
-function openBook(){
-  modal.classList.add("open");
-  modal.setAttribute("aria-hidden","false");
-  document.body.classList.add("locked");
-}
-function closeBook(){
-  modal.classList.remove("open");
-  modal.setAttribute("aria-hidden","true");
-  document.body.classList.remove("locked");
-}
-
-ringBook.addEventListener("click",openBook);
-ringBook.addEventListener("keydown",event=>{
-  if(event.key==="Enter"||event.key===" "){
-    event.preventDefault();
-    openBook();
-  }
-});
-document.getElementById("closeModal").addEventListener("click",closeBook);
-modal.addEventListener("click",event=>{if(event.target===modal)closeBook();});
-document.addEventListener("keydown",event=>{
-  if(event.key==="Escape"){
-    closeMenu();
-    closeBook();
-  }
-});
-</script>
-</body>
-</html>
