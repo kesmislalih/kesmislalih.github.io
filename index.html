@@ -1,2748 +1,689 @@
+
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>kesmislalih</title>
-
-<style>
-
-/* =========================
-   FONTLAR
-========================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap');
-
-
-/* =========================
-   TEMEL
-========================= */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-
-    --bg: #09090b;
-    --surface: #111015;
-    --surface-2: #17141a;
-
-    --text: #eee9e2;
-    --soft: #aaa39a;
-    --muted: #756d76;
-
-    --border: #29252d;
-
-    --accent: #cdb9eb;
-
-    min-height: 100vh;
-
-    background: var(--bg);
-
-    color: var(--text);
-
-    font-family:
-        "Cormorant Garamond",
-        Georgia,
-        serif;
-
-    transition:
-        background .35s ease,
-        color .35s ease;
-}
-
-
-/* =========================
-   AYDINLIK MOD
-========================= */
-
-body.light {
-
-    --bg: #f6f2ed;
-    --surface: #eee8e1;
-    --surface-2: #e7dfd7;
-
-    --text: #18151a;
-    --soft: #3f3936;
-    --muted: #625b57;
-
-    --border: #c9c0b7;
-
-    --accent: #80659e;
-}
-
-
-/* =========================
-   GENEL
-========================= */
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-button {
-    font-family: inherit;
-}
-
-
-/* =========================
-   HEADER
-========================= */
-
-header {
-
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 78px;
-
-    padding: 0 6%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    z-index: 1000;
-
-    background:
-        rgba(9, 9, 11, .90);
-
-    backdrop-filter:
-        blur(15px);
-
-    border-bottom:
-        1px solid var(--border);
-
-    transition:
-        background .35s ease;
-}
-
-body.light header {
-
-    background:
-        rgba(246, 242, 237, .94);
-}
-
-
-/* =========================
-   LOGO
-========================= */
-
-.logo {
-
-    display: flex;
-
-    align-items: center;
-}
-
-.logo-image {
-
-    width: 140px;
-
-    height: auto;
-
-    display: block;
-}
-
-
-/* =========================
-   MENÜ BUTONU
-   TÜM CİHAZLARDA
-========================= */
-
-.menu-button {
-
-    width: 42px;
-    height: 42px;
-
-    padding: 0;
-
-    border:
-        1px solid var(--border);
-
-    background:
-        var(--surface);
-
-    color:
-        var(--text);
-
-    cursor:
-        pointer;
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    gap:
-        5px;
-
-    z-index:
-        1101;
-
-    transition:
-        .3s ease;
-}
-
-.menu-button:hover {
-
-    border-color:
-        var(--accent);
-
-    color:
-        var(--accent);
-}
-
-.menu-button span {
-
-    width:
-        18px;
-
-    height:
-        1px;
-
-    background:
-        currentColor;
-
-    transition:
-        .3s ease;
-}
-
-.menu-button.active span:nth-child(1) {
-
-    transform:
-        translateY(6px)
-        rotate(45deg);
-}
-
-.menu-button.active span:nth-child(2) {
-
-    opacity:
-        0;
-}
-
-.menu-button.active span:nth-child(3) {
-
-    transform:
-        translateY(-6px)
-        rotate(-45deg);
-}
-
-
-/* =========================
-   ANA MENÜ
-========================= */
-
-nav {
-
-    position:
-        fixed;
-
-    top:
-        78px;
-
-    right:
-        6%;
-
-    width:
-        250px;
-
-    padding:
-        20px;
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    gap:
-        0;
-
-    background:
-        var(--surface);
-
-    border:
-        1px solid var(--border);
-
-    box-shadow:
-        0 20px 50px
-        rgba(0,0,0,.35);
-
-    opacity:
-        0;
-
-    visibility:
-        hidden;
-
-    transform:
-        translateY(-10px);
-
-    transition:
-        .3s ease;
-
-    z-index:
-        1100;
-}
-
-nav.active {
-
-    opacity:
-        1;
-
-    visibility:
-        visible;
-
-    transform:
-        translateY(0);
-}
-
-nav a {
-
-    position:
-        relative;
-
-    display:
-        block;
-
-    padding:
-        15px 5px;
-
-    border-bottom:
-        1px solid var(--border);
-
-    color:
-        var(--soft);
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size:
-        9px;
-
-    letter-spacing:
-        2px;
-
-    transition:
-        .3s ease;
-}
-
-nav a:hover {
-
-    color:
-        var(--accent);
-
-    padding-left:
-        10px;
-}
-
-
-/* =========================
-   TEMA BUTONU
-========================= */
-
-.theme-button {
-
-    width:
-        38px;
-
-    height:
-        38px;
-
-    min-width:
-        38px;
-
-    min-height:
-        38px;
-
-    padding:
-        0;
-
-    margin:
-        18px auto 0;
-
-    border:
-        1px solid var(--border);
-
-    background:
-        var(--surface-2);
-
-    color:
-        var(--text);
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    cursor:
-        pointer;
-
-    font-size:
-        17px;
-
-    border-radius:
-        0;
-
-    transition:
-        .3s ease;
-}
-
-.theme-button:hover {
-
-    color:
-        var(--accent);
-
-    border-color:
-        var(--accent);
-}
-
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-
-    min-height:
-        100vh;
-
-    padding:
-        130px 6% 90px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    position:
-        relative;
-
-    text-align:
-        center;
-
-    overflow:
-        hidden;
-}
-
-.hero::before {
-
-    content:
-        "";
-
-    position:
-        absolute;
-
-    width:
-        650px;
-
-    height:
-        650px;
-
-    border-radius:
-        50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(173,142,214,.12),
-            transparent 68%
-        );
-
-    top:
-        50%;
-
-    left:
-        50%;
-
-    transform:
-        translate(-50%, -50%);
-}
-
-.hero-content {
-
-    position:
-        relative;
-
-    z-index:
-        2;
-
-    width:
-        100%;
-
-    max-width:
-        850px;
-}
-
-
-/* =========================
-   HERO ÜST YAZI
-========================= */
-
-.hero-small {
-
-    margin-bottom:
-        24px;
-
-    color:
-        var(--muted);
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size:
-        8px;
-
-    letter-spacing:
-        5px;
-}
-
-
-/* =========================
-   ANA LOGO
-========================= */
-
-.hero-logo {
-
-    display:
-        block;
-
-    width:
-        min(430px, 78vw);
-
-    height:
-        auto;
-
-    margin:
-        0 auto;
-}
-
-
-/* =========================
-   ALT YAZI
-========================= */
-
-.hero-subtitle {
-
-    margin-top:
-        25px;
-
-    color:
-        var(--soft);
-
-    font-size:
-        17px;
-
-    letter-spacing:
-        2px;
-
-    line-height:
-        1.8;
-}
-
-
-/* =========================
-   AÇIKLAMA
-========================= */
-
-.hero-description {
-
-    max-width:
-        560px;
-
-    margin:
-        20px auto 0;
-
-    color:
-        var(--soft);
-
-    font-size:
-        18px;
-
-    line-height:
-        1.75;
-}
-
-
-/* =========================
-   HERO BUTONU
-========================= */
-
-.hero-button {
-
-    display:
-        inline-flex;
-
-    align-items:
-        center;
-
-    gap:
-        14px;
-
-    margin-top:
-        30px;
-
-    padding:
-        14px 26px;
-
-    border:
-        1px solid var(--accent);
-
-    color:
-        var(--text);
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size:
-        8px;
-
-    letter-spacing:
-        3px;
-
-    transition:
-        .3s ease;
-}
-
-.hero-button:hover {
-
-    background:
-        var(--accent);
-
-    color:
-        var(--bg);
-}
-
-
-/* =========================
-   SCROLL
-========================= */
-
-.scroll-indicator {
-
-    position:
-        absolute;
-
-    bottom:
-        28px;
-
-    left:
-        50%;
-
-    transform:
-        translateX(-50%);
-
-    color:
-        var(--muted);
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size:
-        7px;
-
-    letter-spacing:
-        4px;
-}
-
-
-/* =========================
-   GENEL BÖLÜMLER
-========================= */
-
-.section {
-
-    width:
-        min(1100px, 88%);
-
-    margin:
-        0 auto;
-
-    padding:
-        100px 0;
-}
-
-
-/* =========================
-   AYIRICI
-========================= */
-
-.divider {
-
-    width:
-        45px;
-
-    height:
-        1px;
-
-    margin:
-        0 auto;
-
-    background:
-        var(--accent);
-}
-
-
-/* =========================
-   HAKKIMDA
-========================= */
-
-.about {
-
-    text-align:
-        center;
-}
-
-.about-inner {
-
-    max-width:
-        680px;
-
-    margin:
-        0 auto;
-}
-
-.section-title {
-
-    color:
-        var(--text);
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size:
-        16px;
-
-    font-weight:
-        400;
-
-    letter-spacing:
-        5px;
-
-    margin-bottom:
-        28px;
-}
-
-.about-text {
-
-    color:
-        var(--soft);
-
-    font-size:
-        20px;
-
-    line-height:
-        1.8;
-}
-
-.signature {
-
-    margin-top:
-        25px;
-
-    color:
-        var(--accent);
-
-    font-family:
-        "Great Vibes",
-        cursive;
-
-    font-size:
-        30px;
-}
-
-
-/* =========================
-   BÖLÜM BAŞLIKLARI
-========================= */
-
-.section-heading {
-
-    text-align:
-        center;
-
-    margin-bottom:
-        55px;
-}
-
-.section-heading h2 {
-
-    color:
-        var(--text);
-
-    font-size:
-        38px;
-
-    font-weight:
-        400;
-
-    letter-spacing:
-        3px;
-}
-
-.section-heading p {
-
-    margin-top:
-        10px;
-
-    color:
-        var(--muted);
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size:
-        8px;
-
-    letter-spacing:
-        4px;
-
-    text-transform:
-        uppercase;
-}
-      /* =========================
-   HERO
-========================= */
-
-.hero {
-
-    min-height: 100vh;
-
-    padding:
-        130px 6% 90px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    position:
-        relative;
-
-    text-align:
-        center;
-
-    overflow:
-        hidden;
-}
-
-.hero::before {
-
-    content: "";
-
-    position:
-        absolute;
-
-    width:
-        650px;
-
-    height:
-        650px;
-
-    border-radius:
-        50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(173,142,214,.12),
-            transparent 68%
-        );
-
-    top:
-        50%;
-
-    left:
-        50%;
-
-    transform:
-        translate(-50%, -50%);
-}
-
-.hero-content {
-
-    position:
-        relative;
-
-    z-index:
-        2;
-
-    width:
-        100%;
-
-    max-width:
-        850px;
-}
-
-
-/* =========================
-   HERO ÜST YAZI
-========================= */
-
-.hero-small {
-
-    margin-bottom:
-        24px;
-
-    color:
-        var(--muted);
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size:
-        8px;
-
-    letter-spacing:
-        5px;
-}
-
-
-/* =========================
-   ANA LOGO
-========================= */
-
-.hero-logo {
-
-    display:
-        block;
-
-    width:
-        min(430px, 78vw);
-
-    height:
-        auto;
-
-    margin:
-        0 auto;
-}
-
-
-/* =========================
-   ALT YAZI
-========================= */
-
-.hero-subtitle {
-
-    margin-top:
-        25px;
-
-    color:
-        var(--soft);
-
-    font-size:
-        17px;
-
-    letter-spacing:
-        2px;
-
-    line-height:
-        1.8;
-}
-
-
-/* =========================
-   AÇIKLAMA
-========================= */
-
-.hero-description {
-
-    max-width:
-        560px;
-
-    margin:
-        20px auto 0;
-
-    color:
-        var(--soft);
-
-    font-size:
-        18px;
-
-    line-height:
-        1.75;
-}
-
-
-/* =========================
-   HERO BUTON
-========================= */
-
-.hero-button {
-
-    display:
-        inline-flex;
-
-    align-items:
-        center;
-
-    gap:
-        14px;
-
-    margin-top:
-        30px;
-
-    padding:
-        14px 26px;
-
-    border:
-        1px solid var(--accent);
-
-    color:
-        var(--text);
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size:
-        8px;
-
-    letter-spacing:
-        3px;
-
-    transition:
-        .3s ease;
-}
-
-.hero-button:hover {
-
-    background:
-        var(--accent);
-
-    color:
-        var(--bg);
-}
-
-
-/* =========================
-   SCROLL
-========================= */
-
-.scroll-indicator {
-
-    position:
-        absolute;
-
-    bottom:
-        28px;
-
-    left:
-        50%;
-
-    transform:
-        translateX(-50%);
-
-    color:
-        var(--muted);
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size:
-        7px;
-
-    letter-spacing:
-        4px;
-}
-
-
-/* =========================
-   GENEL BÖLÜMLER
-========================= */
-
-.section {
-
-    width:
-        min(1100px, 88%);
-
-    margin:
-        0 auto;
-
-    padding:
-        100px 0;
-}
-
-
-/* =========================
-   AYIRICI
-========================= */
-
-.divider {
-
-    width:
-        45px;
-
-    height:
-        1px;
-
-    margin:
-        0 auto;
-
-    background:
-        var(--accent);
-}
-
-
-/* =========================
-   HAKKIMDA
-========================= */
-
-.about {
-
-    text-align:
-        center;
-}
-
-.about-inner {
-
-    max-width:
-        680px;
-
-    margin:
-        0 auto;
-}
-
-.section-title {
-
-    color:
-        var(--text);
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size:
-        16px;
-
-    font-weight:
-        400;
-
-    letter-spacing:
-        5px;
-
-    margin-bottom:
-        28px;
-}
-
-.about-text {
-
-    color:
-        var(--soft);
-
-    font-size:
-        20px;
-
-    line-height:
-        1.8;
-}
-
-.signature {
-
-    margin-top:
-        25px;
-
-    color:
-        var(--accent);
-
-    font-family:
-        "Great Vibes",
-        cursive;
-
-    font-size:
-        30px;
-}
-
-
-/* =========================
-   BÖLÜM BAŞLIKLARI
-========================= */
-
-.section-heading {
-
-    text-align:
-        center;
-
-    margin-bottom:
-        55px;
-}
-
-.section-heading h2 {
-
-    color:
-        var(--text);
-
-    font-size:
-        38px;
-
-    font-weight:
-        400;
-
-    letter-spacing:
-        3px;
-}
-
-.section-heading p {
-
-    margin-top:
-        10px;
-
-    color:
-        var(--muted);
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size:
-        8px;
-
-    letter-spacing:
-        4px;
-
-    text-transform:
-        uppercase;
-}
-
-
-/* =========================
-   KİTAPLAR
-========================= */
-
-.bookshelf {
-
-    width:
-        100%;
-
-    overflow:
-        hidden;
-
-    padding:
-        10px 0 35px;
-
-    position:
-        relative;
-}
-
-.books-grid {
-
-    display:
-        flex;
-
-    align-items:
-        flex-end;
-
-    gap:
-        38px;
-
-    overflow-x:
-        auto;
-
-    overflow-y:
-        hidden;
-
-    padding:
-        15px 20px 25px;
-
-    scroll-snap-type:
-        x mandatory;
-
-    scrollbar-width:
-        thin;
-
-    scrollbar-color:
-        var(--accent)
-        var(--surface);
-}
-
-.books-grid::-webkit-scrollbar {
-
-    height:
-        5px;
-}
-
-.books-grid::-webkit-scrollbar-track {
-
-    background:
-        var(--surface);
-}
-
-.books-grid::-webkit-scrollbar-thumb {
-
-    background:
-        var(--accent);
-}
-
-
-/* =========================
-   KİTAP KARTI
-========================= */
-
-.book-card {
-
-    flex:
-        0 0 235px;
-
-    scroll-snap-align:
-        center;
-
-    position:
-        relative;
-
-    transition:
-        transform .35s ease;
-}
-
-.book-card:hover {
-
-    transform:
-        translateY(-8px);
-}
-
-
-/* =========================
-   KİTAP KAPAĞI
-========================= */
-
-.book-cover {
-    width: 235px;
-    aspect-ratio: 2 / 3;
-    overflow: hidden;
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-
-    box-shadow:
-        8px 5px 0 rgba(0, 0, 0, .18),
-        15px 10px 25px rgba(0, 0, 0, .30);
-
-    position: relative;
-}
-
-.book-cover img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform .45s ease;
-}
-
-.book-card:hover .book-cover img {
-    transform: scale(1.025);
-}
-
-
-/* =========================
-   KİTAP BİLGİLERİ
-========================= */
-
-.book-info {
-
-    padding:
-        18px 4px 5px;
-
-    text-align:
-        center;
-}
-
-.book-info h3 {
-
-    color:
-        var(--text);
-
-    font-size:
-        26px;
-
-    font-weight:
-        400;
-
-    line-height:
-        1.2;
-}
-
-.book-author {
-
-    margin-top:
-        3px;
-
-    color:
-        var(--accent);
-
-    font-family:
-        "Great Vibes",
-        cursive;
-
-    font-size:
-        23px;
-}
-
-.book-description {
-
-    margin:
-        15px auto 0;
-
-    color:
-        var(--soft);
-
-    font-size:
-        15px;
-
-    line-height:
-        1.7;
-}
-
-
-/* =========================
-   KİTAP BUTONU
-========================= */
-
-.book-button {
-
-    display:
-        inline-flex;
-
-    align-items:
-        center;
-
-    gap:
-        12px;
-
-    margin-top:
-        20px;
-
-    padding:
-        12px 21px;
-
-    border:
-        1px solid var(--accent);
-
-    color:
-        var(--text);
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size:
-        8px;
-
-    letter-spacing:
-        3px;
-
-    transition:
-        .3s ease;
-}
-
-.book-button:hover {
-
-    background:
-        var(--accent);
-
-    color:
-        var(--bg);
-      }
-      /* =========================
-   YAKINDA
-========================= */
-
-.coming-soon {
-
-    width:
-        235px;
-
-    aspect-ratio:
-        2 / 3;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    background:
-        var(--surface-2);
-
-    border:
-        1px solid var(--border);
-
-    color:
-        var(--muted);
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size:
-        8px;
-
-    letter-spacing:
-        4px;
-
-    box-shadow:
-        8px 5px 0
-        rgba(0,0,0,.18),
-
-        15px 10px 25px
-        rgba(0,0,0,.25);
-}
-
-
-/* =========================
-   KİTAPLIK ALT ÇİZGİ
-========================= */
-
-.shelf-line {
-
-    width:
-        calc(100% - 40px);
-
-    height:
-        12px;
-
-    margin:
-        -12px auto 0;
-
-    background:
-        linear-gradient(
-            to bottom,
-            var(--accent),
-            var(--border)
-        );
-
-    border:
-        1px solid var(--border);
-
-    box-shadow:
-        0 9px 20px
-        rgba(0,0,0,.25);
-}
-
-
-/* =========================
-   SOSYAL MEDYA
-========================= */
-
-.social-section {
-
-    text-align:
-        center;
-}
-
-.social-grid {
-
-    width:
-        min(850px, 100%);
-
-    margin:
-        0 auto;
-
-    display:
-        grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap:
-        14px;
-}
-
-.social-link {
-
-    padding:
-        22px 12px;
-
-    border:
-        1px solid var(--border);
-
-    background:
-        var(--surface);
-
-    color:
-        var(--soft);
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size:
-        8px;
-
-    letter-spacing:
-        2px;
-
-    transition:
-        .3s ease;
-}
-
-.social-link:hover {
-
-    color:
-        var(--accent);
-
-    border-color:
-        var(--accent);
-
-    transform:
-        translateY(-4px);
-}
-
-
-/* =========================
-   DUVAR
-========================= */
-
-.wall-box {
-
-    max-width:
-        720px;
-
-    margin:
-        0 auto;
-
-    padding:
-        38px;
-
-    background:
-        var(--surface);
-
-    border:
-        1px solid var(--border);
-
-    text-align:
-        center;
-}
-
-.wall-box h3 {
-
-    color:
-        var(--text);
-
-    font-size:
-        27px;
-
-    font-weight:
-        400;
-}
-
-.wall-box p {
-
-    margin-top:
-        14px;
-
-    color:
-        var(--soft);
-
-    font-size:
-        18px;
-
-    line-height:
-        1.7;
-}
-
-
-/* =========================
-   DUVAR BUTONU
-========================= */
-
-.wall-button {
-
-    display:
-        inline-flex;
-
-    align-items:
-        center;
-
-    gap:
-        12px;
-
-    margin-top:
-        24px;
-
-    padding:
-        12px 24px;
-
-    border:
-        1px solid var(--accent);
-
-    color:
-        var(--text);
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size:
-        8px;
-
-    letter-spacing:
-        3px;
-
-    transition:
-        .3s ease;
-}
-
-.wall-button:hover {
-
-    background:
-        var(--accent);
-
-    color:
-        var(--bg);
-}
-
-
-/* =========================
-   DUYURULAR
-========================= */
-
-.announcement {
-
-    max-width:
-        720px;
-
-    margin:
-        0 auto;
-
-    padding:
-        35px;
-
-    background:
-        var(--surface);
-
-    border:
-        1px solid var(--border);
-
-    text-align:
-        center;
-}
-
-.announcement h3 {
-
-    font-size:
-        25px;
-
-    font-weight:
-        400;
-
-    color:
-        var(--text);
-}
-
-.announcement p {
-
-    margin-top:
-        12px;
-
-    color:
-        var(--soft);
-
-    font-size:
-        17px;
-
-    line-height:
-        1.7;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-
-    padding:
-        55px 20px;
-
-    border-top:
-        1px solid var(--border);
-
-    text-align:
-        center;
-}
-
-.footer-logo {
-
-    color:
-        var(--text);
-
-    font-family:
-        "Great Vibes",
-        cursive;
-
-    font-size:
-        31px;
-}
-
-footer p {
-
-    margin-top:
-        9px;
-
-    color:
-        var(--muted);
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size:
-        7px;
-
-    letter-spacing:
-        2px;
-}
-
-
-/* =========================
-   MOBİL
-========================= */
-
-@media (max-width: 700px) {
-
-    .logo-image {
-
-        width:
-            115px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>kesmislalih | Resmî Yazar Sitesi</title>
+  <meta name="description" content="kesmislalih'in kitaplarını, karakterlerini ve hikâyelerini keşfet.">
+
+  <meta name="theme-color" content="#0b090a">
+
+  <!-- Yazı tipleri -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <!-- Favicon: Özel simgemizi belirleyince buraya ekleyeceğiz -->
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b090a;
+      --surface: #130e10;
+      --text: #eee6e8;
+      --muted: #b8a5aa;
+      --accent: #a77b88;
+      --silver: #d4cbd0;
+      --border: #352329;
+      --shadow: rgba(0, 0, 0, 0.25);
     }
 
-    nav {
-
-        top:
-            72px;
-
-        right:
-            5%;
-
-        width:
-            225px;
+    body.light {
+      color-scheme: light;
+      --bg: #f5f1f0;
+      --surface: #fffaf9;
+      --text: #26191e;
+      --muted: #78666c;
+      --accent: #875363;
+      --silver: #74515d;
+      --border: #e2d3d7;
+      --shadow: rgba(70, 35, 45, 0.08);
     }
 
+    * {
+      box-sizing: border-box;
+    }
 
-    /* HERO */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 18px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 5px;
+    }
+
+    /* ÜST ALAN */
+
+    .topbar {
+      height: 58px;
+      padding: 0 6%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .icon-button {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      background: transparent;
+      border: 0;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .menu-button {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .menu-button span {
+      display: block;
+      width: 25px;
+      height: 1px;
+      background: var(--silver);
+      transition: width 0.2s;
+    }
+
+    .menu-button span:nth-child(2) {
+      width: 18px;
+    }
+
+    .menu-button:hover span:nth-child(2) {
+      width: 25px;
+    }
+
+    /* LOGO */
+
+    .brand {
+      min-height: 310px;
+      padding: 55px 20px 42px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .logo {
+      margin: 0;
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(65px, 12vw, 112px);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: 1px;
+      color: var(--silver);
+      text-shadow: 0 1px 1px var(--shadow);
+    }
+
+    .brand-name {
+      margin: 12px 0 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(20px, 4vw, 30px);
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: var(--text);
+    }
+
+    .tagline {
+      margin: 17px 0 0;
+      font-size: clamp(15px, 2.5vw, 19px);
+      font-style: italic;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+    }
+
+    /* YATAY MENÜ */
+
+    .main-nav {
+      padding: 0 12px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .main-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-inner {
+      width: max-content;
+      min-width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(22px, 4vw, 55px);
+      padding: 19px 10px;
+    }
+
+    .main-nav a {
+      position: relative;
+      white-space: nowrap;
+      font-size: 17px;
+      letter-spacing: 0.4px;
+      transition: color 0.2s;
+    }
+
+    .main-nav a:hover {
+      color: var(--accent);
+    }
+
+    .main-nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -7px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.25s;
+    }
+
+    .main-nav a:hover::after {
+      width: 100%;
+    }
+
+    /* ANA GÖRSEL ALANI */
 
     .hero {
-
-        padding:
-            120px 6% 80px;
+      min-height: 460px;
+      padding: 85px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(
+          ellipse at 50% 45%,
+          rgba(101, 43, 61, 0.22),
+          transparent 68%
+        ),
+        var(--bg);
     }
 
-    .hero-logo {
-
-        width:
-            min(330px, 82vw);
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 1px;
+      background: var(--border);
+      left: 50%;
+      transform: translateX(-50%);
     }
 
-    .hero-subtitle {
+    .hero::before {
+      top: 45px;
+    }
 
-        font-size:
-            13px;
+    .hero::after {
+      bottom: 45px;
+    }
 
-        letter-spacing:
-            1.5px;
+    .hero-content {
+      max-width: 650px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-kicker {
+      margin: 0 0 18px;
+      color: var(--accent);
+      font-size: 14px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .hero h2 {
+      margin: 0;
+      font-size: clamp(35px, 7vw, 62px);
+      font-weight: 400;
+      line-height: 1.15;
     }
 
     .hero-description {
-
-        font-size:
-            17px;
+      max-width: 470px;
+      margin: 22px auto 30px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 19px;
     }
 
-
-    /* BÖLÜMLER */
-
-    .section {
-
-        width:
-            88%;
-
-        padding:
-            75px 0;
+    .primary-link {
+      display: inline-block;
+      padding: 13px 25px;
+      border: 1px solid var(--accent);
+      color: var(--text);
+      font-size: 14px;
+      letter-spacing: 2px;
+      transition: background 0.25s, color 0.25s;
     }
 
-    .about-text {
-
-        font-size:
-            17px;
+    .primary-link:hover {
+      background: var(--accent);
+      color: #fff;
     }
 
-    .section-heading h2 {
+    /* ALT ALAN */
 
-        font-size:
-            29px;
+    footer {
+      padding: 30px 20px;
+      border-top: 1px solid var(--border);
+      text-align: center;
     }
 
-
-    /* KİTAPLAR */
-
-    .books-grid {
-
-        gap:
-            25px;
-
-        padding:
-            10px 15px 25px;
+    footer p {
+      margin: 5px 0;
+      color: var(--muted);
+      font-size: 15px;
     }
 
-    .book-card {
-
-        flex:
-            0 0 190px;
+    .footer-brand {
+      color: var(--silver);
+      font-family: "Great Vibes", cursive;
+      font-size: 30px;
     }
 
-    .book-cover {
+    /* AÇILIR MENÜ */
 
-        width:
-            190px;
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.52);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s, visibility 0.25s;
     }
 
-    .coming-soon {
-
-        width:
-            190px;
+    .menu-overlay.open {
+      opacity: 1;
+      visibility: visible;
     }
 
-    .book-info h3 {
-
-        font-size:
-            23px;
+    .drawer {
+      position: fixed;
+      z-index: 11;
+      top: 0;
+      right: 0;
+      width: min(360px, 88vw);
+      height: 100%;
+      padding: 28px;
+      background: var(--surface);
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
     }
 
-    .book-description {
-
-        font-size:
-            14px;
+    .drawer.open {
+      transform: translateX(0);
     }
 
-    .shelf-line {
-
-        width:
-            calc(100% - 30px);
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
     }
 
-
-    /* SOSYAL */
-
-    .social-grid {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-        gap:
-            10px;
+    .drawer-title {
+      margin: 0;
+      font-family: "Great Vibes", cursive;
+      font-size: 35px;
+      color: var(--silver);
     }
 
-    .social-link {
-
-        padding:
-            19px 8px;
-
-        font-size:
-            7px;
+    .close-button {
+      font-size: 28px;
     }
 
-
-    /* DUVAR */
-
-    .wall-box,
-    .announcement {
-
-        padding:
-            28px 20px;
+    .drawer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding-top: 18px;
     }
 
-}
+    .drawer-links a {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 21px;
+      transition: color 0.2s;
+    }
 
+    .drawer-links a:hover {
+      color: var(--accent);
+    }
 
-/* =========================
-   SEÇİM RENGİ
-========================= */
+    .drawer-bottom {
+      margin-top: auto;
+      padding-top: 30px;
+    }
 
-::selection {
+    .theme-label {
+      display: block;
+      margin-bottom: 14px;
+      color: var(--muted);
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
 
-    background:
-        var(--accent);
+    .theme-controls {
+      display: flex;
+      gap: 10px;
+    }
 
-    color:
-        var(--bg);
-}
+    .theme-option {
+      flex: 1;
+      padding: 12px 8px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 16px;
+    }
 
+    .theme-option.active {
+      border-color: var(--accent);
+      background: var(--bg);
+      color: var(--accent);
+    }
 
-</style>
+    body.menu-open {
+      overflow: hidden;
+    }
 
+    @media (max-width: 600px) {
+      .topbar {
+        height: 52px;
+        padding: 0 18px;
+      }
+
+      .brand {
+        min-height: 255px;
+        padding: 40px 12px;
+      }
+
+      .nav-inner {
+        justify-content: flex-start;
+        gap: 27px;
+        padding: 16px 10px;
+      }
+
+      .main-nav a {
+        font-size: 16px;
+      }
+
+      .hero {
+        min-height: 410px;
+        padding: 75px 23px;
+      }
+
+      .hero::before {
+        top: 30px;
+      }
+
+      .hero::after {
+        bottom: 30px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 
-
 <body>
-
-
-<!-- =========================
-     HEADER
-========================= -->
-
-<header>
-
-    <a
-        href="index.html"
-        class="logo">
-
-        <img
-            src="kesmislalih-logo.png"
-            alt="kesmislalih"
-            class="logo-image">
-
-    </a>
-
-
-    <!-- ÜÇ ÇİZGİLİ MENÜ
-         HER CİHAZDA GÖRÜNÜR -->
-
+  <!-- SAĞ ÜST KONTROLLER -->
+  <header class="topbar">
     <button
-        type="button"
-        class="menu-button"
-        id="menuButton"
-        aria-label="Menüyü aç">
-
-        <span></span>
-        <span></span>
-        <span></span>
-
+      class="icon-button menu-button"
+      id="menuOpen"
+      aria-label="Menüyü aç"
+      aria-expanded="false"
+      aria-controls="drawer"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
+  </header>
 
+  <!-- LOGO VE SLOGAN -->
+  <section class="brand" aria-label="kesmislalih">
+    <h1 class="logo">kesmislalih</h1>
 
-    <!-- ANA MENÜ -->
+    <p class="brand-name">𝙠𝙚𝙨𝙢𝙞𝙨𝙡𝙖𝙡𝙞𝙝</p>
 
-    <nav id="mainNav">
+    <p class="tagline">
+      some stories are not meant to be told, but felt.
+    </p>
+  </section>
 
-        <a href="index.html">
-            ANASAYFA
-        </a>
+  <!-- YATAY MENÜ: 4 SAYFA -->
+  <nav class="main-nav" aria-label="Ana navigasyon">
+    <div class="nav-inner">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="kitaplar.html">Kitaplar</a>
+      <a href="karakterler.html">Karakterler</a>
+      <a href="galeri.html">Galeri</a>
+    </div>
+  </nav>
 
-        <a href="#kitaplar">
-            KİTAPLAR
-        </a>
+  <!-- ANA SAYFA KARŞILAMA ALANI -->
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <p class="hero-kicker">kesmislalih'in dünyası</p>
 
-        <a href="galeri.html">
-            GALERİ
-        </a>
-
-        <a href="#hakkimda">
-            HAKKIMDA
-        </a>
-
-        <a href="#duyurular">
-            DUYURULAR
-        </a>
-
-        <a href="iletisim.html">
-            İLETİŞİM
-        </a>
-
-        <a href="duvar.html">
-            DUVAR
-        </a>
-
-        <button
-            type="button"
-            class="theme-button"
-            id="themeButton"
-            aria-label="Tema değiştir">
-
-            <span id="themeIcon">☾</span>
-
-        </button>
-
-    </nav>
-
-</header>
-
-
-<!-- =========================
-     ANA İÇERİK
-========================= -->
-
-<main>
-
-
-<!-- =========================
-     HERO
-========================= -->
-
-<section class="hero">
-
-    <div class="hero-content">
-
-        <div class="hero-small">
-
-            YAZAR • HİKÂYELER • HAYALLER
-
-        </div>
-
-        <img
-            src="kesmislalih-logo.png"
-            alt="kesmislalih"
-            class="hero-logo">
-
-        <div class="hero-subtitle">
-
-            Some stories are not meant to be
-            read. They are meant to be felt.
-
-        </div>
+        <h2>
+          Her hikâyenin<br>
+          bir sırrı vardır.
+        </h2>
 
         <p class="hero-description">
-
-            Bazı hikâyeler yalnızca okunmaz.
-            İçinde biraz kaybolmak gerekir.
-
+          Bazı dünyalar yalnızca kelimelerle kurulur.
+          Bazı karakterler ise kitabın son sayfasından
+          sonra bile yaşamaya devam eder.
         </p>
 
-        <a
-            href="#kitaplar"
-            class="hero-button">
-
-            HİKÂYELERİ KEŞFET
-
-            <span>→</span>
-
+        <a href="kitaplar.html" class="primary-link">
+          KİTAPLARIMI KEŞFET
         </a>
+      </div>
+    </section>
+  </main>
 
+  <!-- ALT BİLGİ -->
+  <footer>
+    <div class="footer-brand">kesmislalih</div>
+    <p>some stories are not meant to be told, but felt.</p>
+    <p>© <span id="year"></span> kesmislalih</p>
+  </footer>
+
+  <!-- MENÜ ARKA PLANI -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <!-- ÜÇ ÇİZGİLİ MENÜ -->
+  <aside
+    class="drawer"
+    id="drawer"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Site menüsü"
+    aria-hidden="true"
+    inert
+  >
+    <div class="drawer-header">
+      <h2 class="drawer-title">kesmislalih</h2>
+
+      <button
+        class="icon-button close-button"
+        id="menuClose"
+        aria-label="Menüyü kapat"
+      >
+        ×
+      </button>
     </div>
 
+    <nav class="drawer-links" aria-label="Ek sayfalar">
+      <a href="duvar.html">Duvar</a>
+      <a href="duyurular.html">Duyurular</a>
+      <a href="iletisim.html">İletişim</a>
+    </nav>
 
-    <div class="scroll-indicator">
+    <!-- TEMA AYARI -->
+    <div class="drawer-bottom">
+      <span class="theme-label">GÖRÜNÜM</span>
 
-        SCROLL
+      <div class="theme-controls">
+        <button
+          class="theme-option"
+          id="lightMode"
+          aria-pressed="false"
+        >
+          ☼ Aydınlık
+        </button>
 
+        <button
+          class="theme-option"
+          id="darkMode"
+          aria-pressed="false"
+        >
+          ☾ Karanlık
+        </button>
+      </div>
     </div>
-
-</section>
-
-
-<!-- =========================
-     HAKKIMDA
-========================= -->
-
-<section
-    class="section about"
-    id="hakkimda">
-
-    <div class="about-inner">
-
-        <h2 class="section-title">
-
-            HAKKIMDA
-
-        </h2>
-
-        <p class="about-text">
-
-            Kelimelerin arasında kendi dünyasını
-            kurmayı seven bir yazarım.
-
-            <br><br>
-
-            Bazen bir karakterin gözlerinden,
-            bazen bir şehrin sokaklarından,
-            bazen de küçücük bir ayrıntının
-            içinden hikâyeler anlatıyorum.
-
-            <br><br>
-
-            Burada yazdığım hikâyeleri,
-            karakterleri ve onların dünyalarını
-            sizinle paylaşacağım.
-
-        </p>
-
-        <div class="signature">
-
-            kesmislalih
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<div class="divider"></div>
-<!-- =========================
-     KİTAPLAR
-========================= -->
-
-<section
-    class="section"
-    id="kitaplar">
-
-    <div class="section-heading">
-
-        <h2>
-            Kitaplar
-        </h2>
-
-        <p>
-            Hikâyelerimin dünyasına hoş geldin
-        </p>
-
-    </div>
-
-
-    <div class="bookshelf">
-
-        <div class="books-grid">
-
-
-            <!-- RİNGTEKİ SON DANS -->
-
-            <article class="book-card">
-
-                <a href="ringteki-son-dans.html">
-
-                    <div class="book-cover">
-
-                        <img
-                            src="file_0000000025bc81f4894ba4ef290f1c32.png"
-                            alt="Ringteki Son Dans kitap kapağı">
-
-                    </div>
-
-                </a>
-
-
-                <div class="book-info">
-
-                    <h3>
-                        Ringteki Son Dans
-                    </h3>
-
-                    <div class="book-author">
-                        kesmislalih
-                    </div>
-
-                    <p class="book-description">
-
-                        Bir karanlık, iki kurşun.
-                        Binbir acı, iki yetim.
-
-                        <br><br>
-
-                        Balerin ve boksörün
-                        hikâyesine hoş geldin.
-
-                    </p>
-
-                    <a
-                        href="ringteki-son-dans.html"
-                        class="book-button">
-
-                        KİTABI KEŞFET
-
-                        <span>→</span>
-
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <!-- İKİNCİ KİTAP -->
-
-            <article class="book-card">
-
-                <div class="coming-soon">
-
-                    YAKINDA
-
-                </div>
-
-                <div class="book-info">
-
-                    <h3>
-                        Yeni Hikâye
-                    </h3>
-
-                    <div class="book-author">
-                        kesmislalih
-                    </div>
-
-                    <p class="book-description">
-
-                        Yeni bir hikâye,
-                        yeni karakterler
-                        ve yeni bir dünya...
-
-                    </p>
-
-                    <span class="book-button">
-
-                        ÇOK YAKINDA
-
-                    </span>
-
-                </div>
-
-            </article>
-
-        </div>
-
-
-        <div class="shelf-line"></div>
-
-    </div>
-
-</section>
-
-
-<div class="divider"></div>
-
-
-<!-- =========================
-     SOSYAL MEDYA
-========================= -->
-
-<section
-    class="section social-section"
-    id="sosyal">
-
-    <div class="section-heading">
-
-        <h2>
-            Sosyal
-        </h2>
-
-        <p>
-            Beni başka yerlerde de bulabilirsin
-        </p>
-
-    </div>
-
-
-    <div class="social-grid">
-
-        <a
-            href="https://www.tiktok.com/@kesmislalih_?_r=1&_t=ZS-98gv3YRvFOK"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link">
-
-            TIKTOK
-
-        </a>
-
-
-        <a
-            href="https://x.com/kesmislalih"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link">
-
-            X
-
-        </a>
-
-
-        <a
-            href="https://www.wattpad.com/user/kesmislalih"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link">
-
-            WATTPAD
-
-        </a>
-
-
-        <a
-            href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzvci7khutxy?si=nSiRsHM4Reym3i7IfWZXMg&utm_source=copy-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link">
-
-            SPOTIFY
-
-        </a>
-
-
-        <a
-            href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link">
-
-            WHATSAPP KANALI
-
-        </a>
-
-
-        <a
-            href="https://pin.it/6uAtX7ZrC"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link">
-
-            PINTEREST
-
-        </a>
-
-    </div>
-
-</section>
-
-
-<div class="divider"></div>
-
-
-<!-- =========================
-     DUVAR
-========================= -->
-
-<section
-    class="section"
-    id="duvar">
-
-    <div class="section-heading">
-
-        <h2>
-            Duvar
-        </h2>
-
-        <p>
-            Okurlardan sana
-        </p>
-
-    </div>
-
-
-    <div class="wall-box">
-
-        <h3>
-
-            Bir şeyler bırakmak ister misin?
-
-        </h3>
-
-        <p>
-
-            Hikâyeler hakkında düşüncelerini,
-            mesajlarını veya sadece küçük bir
-            merhaba bırakabileceğin yer.
-
-        </p>
-
-        <a
-            href="duvar.html"
-            class="wall-button">
-
-            DUVARA GİT
-
-            <span>→</span>
-
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     DUYURULAR
-========================= -->
-
-<section
-    class="section"
-    id="duyurular">
-
-    <div class="section-heading">
-
-        <h2>
-            Duyurular
-        </h2>
-
-        <p>
-            Buradan haberdar ol
-        </p>
-
-    </div>
-
-
-    <div class="announcement">
-
-        <h3>
-
-            Şimdilik sessiziz.
-
-        </h3>
-
-        <p>
-
-            Yeni duyurular ve siteyle ilgili
-            gelişmeler burada paylaşılacak.
-
-        </p>
-
-    </div>
-
-</section>
-
-</main>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-    <div class="footer-logo">
-
-        kesmislalih
-
-    </div>
-
-    <p>
-
-        © 2026 kesmislalih
-
-    </p>
-
-</footer>
-
-
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
-<script>
-
-
-/* =========================
-   TEMA
-========================= */
-
-const themeButton =
-    document.getElementById("themeButton");
-
-const themeIcon =
-    document.getElementById("themeIcon");
-
-const savedTheme =
-    localStorage.getItem("kesmislalih-theme");
-
-
-if (savedTheme === "light") {
-
-    document.body.classList.add("light");
-
-    themeIcon.textContent = "☀";
-
-} else {
-
-    themeIcon.textContent = "☾";
-
-}
-
-
-themeButton.addEventListener(
-    "click",
-    function () {
-
-        document.body.classList.toggle("light");
-
-        const isLight =
-            document.body.classList.contains("light");
-
-
-        if (isLight) {
-
-            themeIcon.textContent = "☀";
-
-            localStorage.setItem(
-                "kesmislalih-theme",
-                "light"
-            );
-
-        } else {
-
-            themeIcon.textContent = "☾";
-
-            localStorage.setItem(
-                "kesmislalih-theme",
-                "dark"
-            );
-
-        }
-
+  </aside>
+
+  <script>
+    const body = document.body;
+    const drawer = document.getElementById("drawer");
+    const overlay = document.getElementById("menuOverlay");
+    const openButton = document.getElementById("menuOpen");
+    const closeButton = document.getElementById("menuClose");
+    const lightButton = document.getElementById("lightMode");
+    const darkButton = document.getElementById("darkMode");
+
+    // Varsayılan tema
+    function applyTheme(theme) {
+      const isLight = theme === "light";
+
+      body.classList.toggle("light", isLight);
+
+      lightButton.classList.toggle("active", isLight);
+      darkButton.classList.toggle("active", !isLight);
+
+      lightButton.setAttribute("aria-pressed", String(isLight));
+      darkButton.setAttribute("aria-pressed", String(!isLight));
+
+      document.querySelector('meta[name="theme-color"]')
+        .setAttribute("content", isLight ? "#f5f1f0" : "#0b090a");
+
+      try {
+        localStorage.setItem("siteTheme", theme);
+      } catch (error) {
+        // Depolama kullanılamazsa tema yine çalışır.
+      }
     }
-);
 
+    let savedTheme = "dark";
 
-/* =========================
-   MENÜ
-========================= */
-
-const menuButton =
-    document.getElementById("menuButton");
-
-const mainNav =
-    document.getElementById("mainNav");
-
-
-menuButton.addEventListener(
-    "click",
-    function () {
-
-        mainNav.classList.toggle("active");
-
-        menuButton.classList.toggle("active");
-
-
-        if (
-            mainNav.classList.contains("active")
-        ) {
-
-            menuButton.setAttribute(
-                "aria-label",
-                "Menüyü kapat"
-            );
-
-        } else {
-
-            menuButton.setAttribute(
-                "aria-label",
-                "Menüyü aç"
-            );
-
-        }
-
+    try {
+      savedTheme = localStorage.getItem("siteTheme") || "dark";
+    } catch (error) {
+      // Varsayılan koyu tema kullanılır.
     }
-);
 
+    applyTheme(savedTheme);
 
-/* =========================
-   MENÜ LİNKLERİ
-========================= */
+    lightButton.addEventListener("click", () => {
+      applyTheme("light");
+    });
 
-const menuLinks =
-    mainNav.querySelectorAll("a");
+    darkButton.addEventListener("click", () => {
+      applyTheme("dark");
+    });
 
+    // Menü açma ve kapama
+    function openMenu() {
+      drawer.classList.add("open");
+      overlay.classList.add("open");
+      body.classList.add("menu-open");
 
-menuLinks.forEach(
-    function(link) {
+      drawer.removeAttribute("inert");
+      drawer.setAttribute("aria-hidden", "false");
+      openButton.setAttribute("aria-expanded", "true");
 
-        link.addEventListener(
-            "click",
-            function() {
-
-                mainNav.classList.remove(
-                    "active"
-                );
-
-                menuButton.classList.remove(
-                    "active"
-                );
-
-                menuButton.setAttribute(
-                    "aria-label",
-                    "Menüyü aç"
-                );
-
-            }
-        );
-
+      closeButton.focus();
     }
-);
 
+    function closeMenu() {
+      drawer.classList.remove("open");
+      overlay.classList.remove("open");
+      body.classList.remove("menu-open");
 
-/* =========================
-   KİTAP YATAY KAYDIRMA
-========================= */
+      drawer.setAttribute("inert", "");
+      drawer.setAttribute("aria-hidden", "true");
+      openButton.setAttribute("aria-expanded", "false");
 
-const booksGrid =
-    document.querySelector(".books-grid");
+      openButton.focus();
+    }
 
+    openButton.addEventListener("click", openMenu);
+    closeButton.addEventListener("click", closeMenu);
+    overlay.addEventListener("click", closeMenu);
 
-if (booksGrid) {
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && drawer.classList.contains("open")) {
+        closeMenu();
+      }
+    });
 
-    booksGrid.addEventListener(
-        "wheel",
-        function(event) {
-
-            if (
-                Math.abs(event.deltaY) >
-                Math.abs(event.deltaX)
-            ) {
-
-                event.preventDefault();
-
-                booksGrid.scrollLeft +=
-                    event.deltaY;
-
-            }
-
-        },
-        {
-            passive: false
-        }
-    );
-
-}
-
-
-</script>
-
-
-<!-- =========================
-     BİTTİ
-========================= -->
-
+    // Güncel yıl
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
 </body>
-
 </html>
