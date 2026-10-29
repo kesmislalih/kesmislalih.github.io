@@ -1,503 +1,668 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>kesmislalih | Resmî Yazar Sitesi</title>
-<meta name="theme-color" content="#10090d">
-<meta name="description" content="kesmislalih'in kişisel yazar sitesi. Bazı hikâyeler anlatılmak için değil, hissedilmek içindir.">
+<meta name="theme-color" content="#100b0e">
+<title>kesmislalih | Kelimelerden Doğan Hikâyeler</title>
+<meta name="description" content="Kesmislalih'in kitapları, karakterleri ve hikâyeleri.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg: #10090d;
-  --surface: #1a1016;
-  --text: #eee7eb;
-  --muted: #b9aab3;
-  --accent: #9c243f;
-  --silver: #d8d1d7;
-  --border: rgba(216,209,215,.19);
-  --shadow: rgba(0,0,0,.48);
+  --bg: #100b0e;
+  --surface: #191115;
+  --surface2: #21151b;
+  --text: #f1e8eb;
+  --muted: #b7a5ad;
+  --accent: #a64d68;
+  --accent2: #d4a0b1;
+  --silver: #ded5da;
+  --border: rgba(212,160,177,.22);
+  --wood: #542938;
+  --shadow: rgba(0,0,0,.42);
 }
 
 body.light {
-  --bg: #f4eef1;
-  --surface: #fff9fb;
-  --text: #26141d;
-  --muted: #715d67;
-  --accent: #86213c;
-  --silver: #604d57;
-  --border: rgba(65,32,47,.2);
-  --shadow: rgba(50,20,35,.15);
+  --bg: #f4eff0;
+  --surface: #fffafa;
+  --surface2: #eee3e7;
+  --text: #2a1720;
+  --muted: #725d66;
+  --accent: #85405a;
+  --accent2: #a75e78;
+  --silver: #503440;
+  --border: rgba(133,64,90,.22);
+  --wood: #8b5266;
+  --shadow: rgba(61,25,39,.13);
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
 
 body {
   margin: 0;
-  background: radial-gradient(ellipse at 50% 0%, rgba(103,21,48,.14), transparent 55%), var(--bg);
+  background: var(--bg);
   color: var(--text);
-  font-family: "Cormorant Garamond", serif;
-  transition: background .35s, color .35s;
+  font-family: "DM Sans", sans-serif;
+  transition: background .3s, color .3s;
 }
 
-body.no-scroll { overflow: hidden; }
-a { color: inherit; text-decoration: none; }
-button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
-
-/* AÇILIŞ EKRANI */
-
-#intro-screen {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: #090609;
-  opacity: 1;
-  visibility: visible;
-  transition: opacity .8s, visibility .8s;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-#intro-screen.hide {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+button {
+  font: inherit;
 }
 
-/* AÇILIŞ VİDEOSU: KÜÇÜLTÜLMÜŞ */
-#intro-video {
-  position: absolute;
-  width: min(82%, 560px);
-  height: min(58vh, 360px);
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  object-fit: cover;
-  border-radius: 8px;
+button, a {
+  -webkit-tap-highlight-color: transparent;
 }
 
-.intro-shade {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(8,4,7,.45), rgba(8,4,7,.12) 45%, rgba(8,4,7,.72));
-  pointer-events: none;
+img, video {
+  max-width: 100%;
 }
 
-.intro-content {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 25px 20px;
-  text-align: center;
-  pointer-events: none;
-}
-
-.intro-signature {
-  margin: 0 0 20px;
-  color: #eee6ec;
-  font-family: "Great Vibes", cursive;
-  font-size: clamp(54px, 11vw, 88px);
-  font-weight: 400;
-  line-height: 1.2;
-  text-shadow: 0 0 12px rgba(255,255,255,.3), 0 5px 24px #000;
-}
-
-.profile-frame {
-  width: clamp(125px, 29vw, 185px);
-  aspect-ratio: 1;
-  padding: 4px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #f4edf2, #9b8b95, #4c2737, #d7cbd3, #6f1c35);
-  box-shadow: 0 0 30px rgba(128,25,56,.45), 0 15px 40px rgba(0,0,0,.5);
-}
-
-.profile-frame img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #10090d;
-}
-
-.intro-tagline {
-  margin: 22px 0 0;
-  color: #eee5eb;
-  font-size: clamp(14px, 3.5vw, 19px);
-  font-style: italic;
-  letter-spacing: 1.5px;
-  text-shadow: 0 2px 10px #000;
-}
-
-.skip-intro {
-  position: absolute;
-  z-index: 4;
-  right: max(20px, env(safe-area-inset-right));
-  bottom: max(24px, env(safe-area-inset-bottom));
-  padding: 10px 18px;
-  color: #f5edf2;
-  background: rgba(20,10,16,.8);
-  border: 1px solid rgba(235,222,231,.65);
-  border-radius: 2px;
-  font-size: 17px;
-  letter-spacing: 1px;
-  cursor: pointer;
-}
-
-.skip-intro:hover {
-  background: #e8dce4;
-  color: #1b0d14;
-}
-
-/* ÜST ALAN */
+/* ÜST MENÜ */
 
 .site-header {
-  position: relative;
-  z-index: 20;
-  padding: 28px 22px 0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg);
   border-bottom: 1px solid var(--border);
 }
 
-.header-top {
-  position: relative;
+.header-inner {
+  width: min(1180px, 92%);
+  min-height: 76px;
+  margin: auto;
   display: flex;
   align-items: center;
-  justify-content: center;
-  max-width: 1150px;
-  margin: 0 auto;
-  min-height: 90px;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-.brand { text-align: center; }
-
-.brand-signature {
-  margin: 0;
-  color: var(--silver);
+.logo {
   font-family: "Great Vibes", cursive;
-  font-size: clamp(45px, 8vw, 70px);
-  font-weight: 400;
-  line-height: 1.05;
-}
-
-.brand-name {
-  margin: 7px 0 0;
-  color: var(--muted);
-  font-size: 13px;
-  letter-spacing: 4px;
-}
-
-.tagline {
-  margin: 12px 0 25px;
-  color: var(--muted);
-  font-size: 16px;
-  font-style: italic;
-  letter-spacing: 1px;
-  text-align: center;
-}
-
-/* MENÜ DÜĞMESİ */
-
-.menu-button {
-  position: absolute;
-  top: 14px;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 6px;
-  width: 43px;
-  height: 43px;
-  padding: 9px;
-  background: transparent;
-  border: 1px solid var(--border);
-  cursor: pointer;
-}
-
-.menu-button span {
-  display: block;
-  width: 100%;
-  height: 1px;
-  background: var(--silver);
+  font-size: 39px;
+  color: var(--silver);
+  white-space: nowrap;
 }
 
 .main-nav {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: clamp(22px, 5vw, 65px);
-  padding: 18px 0 21px;
+  justify-content: center;
+  gap: clamp(12px, 2vw, 27px);
 }
 
 .main-nav a {
-  position: relative;
+  font-size: 11px;
+  letter-spacing: 1.5px;
   color: var(--muted);
-  font-size: 19px;
-  letter-spacing: 1px;
-  transition: color .25s;
 }
 
-.main-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -7px;
-  height: 1px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transition: transform .25s;
+.main-nav a:hover,
+.main-nav a.active {
+  color: var(--accent2);
 }
 
-.main-nav a:hover { color: var(--text); }
-.main-nav a:hover::after { transform: scaleX(1); }
-
-/* SOSYAL MEDYA AMBLEMLERİ */
-
-.social-links {
+.header-actions {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin: 25px auto 30px;
+  gap: 10px;
 }
 
-.social-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 41px;
-  height: 41px;
-  flex: 0 0 41px;
-  border: 1px solid var(--border);
-  border-radius: 50%;
+.icon-button {
+  width: 39px;
+  height: 39px;
+  display: grid;
+  place-items: center;
   color: var(--silver);
   background: var(--surface);
-  transition: transform .25s, color .25s, background .25s;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
 }
 
-.social-icon:hover {
-  transform: translateY(-3px);
-  color: #fff;
-  background: var(--accent);
+/* SOSYAL MEDYA ÜST BÖLÜMDE */
+
+.social-strip {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
 }
 
-.social-icon svg {
-  display: block;
-  width: 19px;
-  height: 19px;
+.social-inner {
+  width: min(1180px, 92%);
+  min-height: 43px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 17px;
 }
 
-.social-icon .letter {
-  font-family: Arial, sans-serif;
-  font-size: 19px;
-  font-weight: 600;
+.social-label {
+  margin-right: auto;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.social-inner a {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.social-inner a:hover {
+  color: var(--accent2);
 }
 
 /* YAN MENÜ */
 
-.drawer-backdrop {
+.menu-overlay {
   position: fixed;
   inset: 0;
-  z-index: 100;
-  background: rgba(0,0,0,.55);
+  z-index: 80;
+  background: rgba(0,0,0,.6);
   opacity: 0;
   visibility: hidden;
-  transition: opacity .3s, visibility .3s;
+  transition: .25s;
 }
 
-.drawer-backdrop.open {
+.menu-overlay.open {
   opacity: 1;
   visibility: visible;
 }
 
-.drawer {
+.menu-panel {
   position: fixed;
-  z-index: 101;
+  z-index: 90;
   top: 0;
   right: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  width: min(330px,86vw);
-  padding: 32px 28px;
+  width: min(340px, 86vw);
+  height: 100dvh;
+  padding: 35px 27px;
   background: var(--surface);
   border-left: 1px solid var(--border);
-  box-shadow: -15px 0 45px var(--shadow);
   transform: translateX(105%);
-  transition: transform .35s;
+  transition: transform .3s ease;
+  overflow-y: auto;
 }
 
-.drawer.open { transform: translateX(0); }
+.menu-panel.open {
+  transform: translateX(0);
+}
 
-.drawer-head {
+.menu-top {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--border);
+  align-items: center;
+  margin-bottom: 32px;
 }
 
-.drawer-title {
-  margin: 0;
-  font-family: "Great Vibes", cursive;
-  color: var(--silver);
-  font-size: 43px;
-  font-weight: 400;
+.menu-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 30px;
 }
 
-.close-menu {
-  width: 38px;
-  height: 38px;
-  color: var(--text);
-  background: transparent;
-  border: 1px solid var(--border);
-  font-size: 24px;
-  cursor: pointer;
+.menu-links {
+  display: grid;
 }
 
-.drawer-links {
-  display: flex;
-  flex-direction: column;
-  padding-top: 18px;
-}
-
-.drawer-links a {
-  padding: 17px 0;
+.menu-links a {
+  padding: 16px 0;
   border-bottom: 1px solid var(--border);
   color: var(--muted);
-  font-size: 22px;
+  letter-spacing: 1px;
+  font-size: 13px;
 }
 
-.drawer-links a:hover { color: var(--text); }
-
-.drawer-bottom {
-  margin-top: auto;
-  padding-top: 24px;
-  border-top: 1px solid var(--border);
+.menu-links a:hover {
+  color: var(--accent2);
 }
 
-.theme-label {
-  margin: 0 0 13px;
-  color: var(--muted);
-  font-size: 16px;
-}
+/* KARŞILAMA ALANI */
 
-.theme-controls { display: flex; gap: 10px; }
-
-.theme-button {
-  flex: 1;
-  padding: 11px 7px;
-  background: transparent;
-  color: var(--text);
-  border: 1px solid var(--border);
-  font-size: 17px;
-  cursor: pointer;
-}
-
-.theme-button.active,
-.theme-button:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-}
-
-/* ANA SAYFA VİDEO ALANI */
-
-.home-space {
-  padding: 10px 18px 35px;
-  min-height: 0;
+.hero {
+  width: min(1080px, 92%);
+  margin: auto;
+  padding: 47px 0 58px;
   text-align: center;
 }
 
-.hero-video-frame {
-  width: min(88%, 560px);
-  margin: 24px auto 0;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 7px;
-  background: #090609;
-  box-shadow: 0 12px 35px var(--shadow);
-}
-
-#hero-video {
+.profile-photo {
   display: block;
-  width: 100%;
-  height: clamp(170px, 38vw, 315px);
+  width: 82px;
+  height: 82px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
   object-fit: cover;
+  border: 1px solid var(--accent2);
+  padding: 4px;
+  background: var(--surface);
+  box-shadow: 0 8px 28px var(--shadow);
 }
 
-/* ALT BİLGİ */
-
-.site-footer {
-  padding: 28px 20px 22px;
-  text-align: center;
-  border-top: 1px solid var(--border);
-}
-
-.footer-signature {
+.hero-signature {
   margin: 0;
-  color: var(--silver);
   font-family: "Great Vibes", cursive;
-  font-size: 43px;
+  font-size: clamp(58px, 10vw, 91px);
+  line-height: 1.2;
   font-weight: 400;
+  color: var(--silver);
 }
 
-.footer-tagline {
-  margin: 7px 0 15px;
+.hero-subtitle {
+  margin: 8px 0 26px;
   color: var(--muted);
-  font-size: 15px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(18px, 3vw, 23px);
   font-style: italic;
-}
-
-.copyright {
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
   letter-spacing: 1px;
 }
 
-/* MOBİL UYUMLULUK */
+.hero-description {
+  max-width: 540px;
+  margin: 0 auto 27px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.9;
+}
 
-@media (max-width: 600px) {
-  .site-header { padding: 20px 16px 0; }
-  .header-top { min-height: 82px; }
-  .brand-signature { font-size: 53px; }
-  .brand-name { font-size: 11px; letter-spacing: 3px; }
-  .menu-button { top: 10px; width: 38px; height: 38px; }
-  .tagline {
-    max-width: 290px;
-    margin: 10px auto 20px;
-    font-size: 14px;
-    line-height: 1.5;
+.primary-button {
+  display: inline-block;
+  padding: 13px 25px;
+  border: 1px solid var(--accent);
+  color: var(--silver);
+  background: linear-gradient(135deg, var(--surface2), var(--surface));
+  font-size: 11px;
+  letter-spacing: 2px;
+  transition: .25s;
+}
+
+.primary-button:hover {
+  background: var(--wood);
+  transform: translateY(-2px);
+}
+
+/* ANA SAYFA VİDEOSU */
+
+.video-section {
+  width: min(920px, 90%);
+  margin: 0 auto;
+  padding: 0 0 70px;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--accent2);
+  font-size: 10px;
+  letter-spacing: 4px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: var(--silver);
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+  font-size: clamp(34px, 5vw, 45px);
+}
+
+.video-frame {
+  width: 100%;
+  max-width: 780px;
+  aspect-ratio: 16 / 9;
+  margin: auto;
+  overflow: hidden;
+  background: #080607;
+  border: 1px solid var(--border);
+  box-shadow: 0 18px 45px var(--shadow);
+}
+
+.hero-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* KİTAPLIK VE RAF */
+
+.bookshelf-section {
+  padding: 65px 0 85px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.bookshelf-content {
+  width: min(1000px, 90%);
+  margin: auto;
+}
+
+.bookshelf-heading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.bookshelf-heading h2 {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(38px, 6vw, 51px);
+  font-weight: 400;
+  color: var(--silver);
+}
+
+.bookshelf-heading p:last-child {
+  color: var(--muted);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 19px;
+  font-style: italic;
+}
+
+.bookshelf {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 30px;
+  padding: 0 25px 17px;
+  border-bottom: 11px solid var(--wood);
+  box-shadow: 0 14px 18px -12px var(--shadow);
+}
+
+.bookshelf::after {
+  content: "";
+  position: absolute;
+  height: 5px;
+  bottom: -16px;
+  left: -8px;
+  right: -8px;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    #28131c,
+    #a36b7d,
+    #492331,
+    #b17a8c,
+    #28131c
+  );
+}
+
+.book-card {
+  width: min(220px, 70vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform .3s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-6px);
+}
+
+.book-cover-wrap {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  background: var(--surface2);
+  box-shadow: 8px 8px 17px var(--shadow);
+}
+
+.book-cover {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.book-card h3 {
+  margin: 17px 0 5px;
+  color: var(--text);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.book-card p {
+  margin: 0 0 15px;
+  color: var(--muted);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 17px;
+  font-style: italic;
+}
+
+.book-link {
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--accent);
+  color: var(--silver);
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+/* HAKKIMDA */
+
+.about-section {
+  width: min(780px, 90%);
+  margin: auto;
+  padding: 75px 0;
+  text-align: center;
+}
+
+.about-section h2 {
+  margin: 0 0 18px;
+  color: var(--silver);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 43px;
+  font-weight: 400;
+}
+
+.about-section p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 2;
+}
+
+/* ALT BÖLÜM */
+
+.site-footer {
+  padding: 25px 15px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.footer-signature {
+  display: block;
+  margin-bottom: 5px;
+  font-family: "Great Vibes", cursive;
+  font-size: 29px;
+  color: var(--silver);
+}
+
+/* AÇILIŞ EKRANI */
+
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #090608;
+  transition: opacity .7s ease, visibility .7s ease;
+}
+
+.intro-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.intro-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .55;
+}
+
+.intro-content {
+  position: relative;
+  z-index: 1;
+  padding: 25px;
+  text-align: center;
+}
+
+.intro-content h1 {
+  margin: 0;
+  color: #f0e3e8;
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(58px, 12vw, 95px);
+  font-weight: 400;
+}
+
+.intro-content p {
+  color: #dfcbd3;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px;
+  font-style: italic;
+}
+
+.intro-enter {
+  margin-top: 20px;
+  padding: 13px 23px;
+  color: #f8edf1;
+  background: rgba(64,26,42,.6);
+  border: 1px solid #a76a80;
+  cursor: pointer;
+  font-size: 10px;
+  letter-spacing: 3px;
+}
+
+/* TELEFON UYUMLULUĞU */
+
+@media (max-width: 760px) {
+  .header-inner {
+    min-height: 68px;
+    gap: 10px;
   }
+
+  .logo {
+    font-size: 32px;
+  }
+
   .main-nav {
-    gap: 0;
-    justify-content: space-between;
-    padding: 15px 0 18px;
+    gap: 12px;
   }
-  .main-nav a { font-size: 16px; letter-spacing: .2px; }
-  .social-links { gap: 9px; margin-top: 22px; }
-  .social-icon { width: 37px; height: 37px; flex-basis: 37px; }
-  .social-icon svg { width: 17px; height: 17px; }
-  .hero-video-frame { width: min(94%, 440px); }
-  #hero-video { height: clamp(165px, 55vw, 250px); }
-  .intro-signature { font-size: clamp(48px, 12vw, 70px); }
-  .intro-tagline { max-width: 290px; line-height: 1.6; }
+
+  .main-nav a {
+    font-size: 9px;
+    letter-spacing: .5px;
+  }
+
+  .main-nav a:nth-child(3) {
+    display: none;
+  }
+
+  .header-actions {
+    gap: 6px;
+  }
+
+  .icon-button {
+    width: 34px;
+    height: 34px;
+  }
+
+  .social-inner {
+    justify-content: center;
+    gap: 13px;
+    padding: 10px 0;
+  }
+
+  .social-label {
+    display: none;
+  }
+
+  .hero {
+    padding-top: 36px;
+  }
+
+  .profile-photo {
+    width: 76px;
+    height: 76px;
+  }
+
+  .video-section {
+    width: 92%;
+    padding-bottom: 50px;
+  }
+
+  .bookshelf-section {
+    padding: 48px 0 65px;
+  }
+
+  .bookshelf {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .book-card {
+    width: min(190px, 68vw);
+  }
+}
+
+@media (max-width: 390px) {
+  .header-inner {
+    width: 94%;
+  }
+
+  .logo {
+    font-size: 28px;
+  }
+
+  .main-nav {
+    gap: 8px;
+  }
+
+  .main-nav a {
+    font-size: 8px;
+  }
+
+  .header-actions {
+    gap: 4px;
+  }
+
+  .icon-button {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -508,220 +673,202 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 }
 </style>
 </head>
-
-<body class="no-scroll">
-
+<body>
+  
 <!-- AÇILIŞ EKRANI -->
-<section id="intro-screen" aria-label="Site açılış ekranı">
-  <video id="intro-video" autoplay muted playsinline preload="metadata">
+<div class="intro-screen" id="introScreen">
+  <video class="intro-video" autoplay muted playsinline loop>
     <source src="macadoodle31_pindown.io_1793296533.mp4" type="video/mp4">
   </video>
 
-  <div class="intro-shade"></div>
-
   <div class="intro-content">
-    <h1 class="intro-signature">kesmislalih</h1>
-
-    <div class="profile-frame">
-      <img src="d08eae9afcf72d4a213a3d988ecf5935.jpg"
-           alt="kesmislalih profil fotoğrafı">
-    </div>
-
-    <p class="intro-tagline">
-      some stories are not meant to be told, but felt.
-    </p>
+    <h1>kesmislalih</h1>
+    <p>some stories are not meant to be told, but felt.</p>
+    <button class="intro-enter" id="enterSite">HİKÂYEYE GİR</button>
   </div>
-
-  <button class="skip-intro" id="skip-intro" type="button">
-    Siteye geç →
-  </button>
-</section>
+</div>
 
 <!-- ÜST MENÜ -->
 <header class="site-header">
-  <div class="header-top">
-    <div class="brand">
-      <h1 class="brand-signature">kesmislalih</h1>
-      <p class="brand-name">𝙠𝙚𝙨𝙢𝙞𝙨𝙡𝙖𝙡𝙞𝙝</p>
+  <div class="header-inner">
+    <a class="logo" href="index.html">kesmislalih</a>
+
+    <nav class="main-nav" aria-label="Ana menü">
+      <a class="active" href="index.html">ANA SAYFA</a>
+      <a href="#kitaplarim">KİTAPLAR</a>
+      <a href="#hakkimda">HAKKIMDA</a>
+      <a href="galeri.html">GALERİ</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-button" id="themeButton" aria-label="Temayı değiştir">☾</button>
+      <button class="icon-button" id="menuButton" aria-label="Menüyü aç">☰</button>
     </div>
-
-    <button class="menu-button" id="menu-button"
-            type="button" aria-label="Menüyü aç"
-            aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
   </div>
-
-  <p class="tagline">some stories are not meant to be told, but felt.</p>
-
-  <nav class="main-nav" aria-label="Ana menü">
-    <a href="index.html">Ana Sayfa</a>
-    <a href="kitaplar.html">Kitaplar</a>
-    <a href="karakterler.html">Karakterler</a>
-    <a href="galeri.html">Galeri</a>
-  </nav>
 </header>
 
-<main>
-  <section class="home-space" aria-label="Ana sayfa">
+<!-- SOSYAL MEDYA: SAYFANIN ÜST KISMINDA -->
+<div class="social-strip">
+  <div class="social-inner">
+    <span class="social-label">BENİ TAKİP ET</span>
+    <a href="https://www.tiktok.com/@kesmislalih_" target="_blank" rel="noopener noreferrer">TikTok</a>
+    <a href="https://x.com/kesmislalih" target="_blank" rel="noopener noreferrer">X</a>
+    <a href="https://www.wattpad.com/user/kesmislalih" target="_blank" rel="noopener noreferrer">Wattpad</a>
+    <a href="https://pin.it/2jHDXi48B" target="_blank" rel="noopener noreferrer">Pinterest</a>
+    <a href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  </div>
+</div>
 
-    <!-- ANA SAYFA VİDEOSU: ORTADA VE KÜÇÜK -->
-    <div class="hero-video-frame">
-      <video id="hero-video" autoplay muted loop playsinline preload="metadata">
-        <source src="bloggg_erss_pindown.io_1793296543.mp4" type="video/mp4">
-      </video>
-    </div>
+<!-- YAN MENÜ -->
+<div class="menu-overlay" id="menuOverlay"></div>
 
-    <!-- SOSYAL MEDYA AMBLEMLERİ -->
-    <nav class="social-links" aria-label="Sosyal medya bağlantıları">
-
-      <a class="social-icon" href="https://tiktok.com/@kesmislalih"
-         target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M19.6 7.2a7.2 7.2 0 0 1-4.4-1.5v8.1a6 6 0 1 1-6-6c.4 0 .8 0 1.2.1v3.4a2.7 2.7 0 1 0 1.7 2.5V2.5h3.1c.3 2.3 2.1 4 4.4 4.2v.5z"/>
-        </svg>
-      </a>
-
-      <a class="social-icon" href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
-         target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20.2 11.7a8.2 8.2 0 0 1-12.1 7.2L3 20l1.2-4.9a8.2 8.2 0 1 1 16-3.4z"/>
-          <path d="M8.3 7.7c.3-.5.6-.5.9-.5h.5c.2 0 .4.1.5.5l.8 1.8c.1.3.1.5-.1.7l-.6.8c-.2.2-.2.4 0 .7.7 1.2 1.7 2.1 2.9 2.7.3.1.5.1.7-.1l.9-1c.2-.2.4-.2.7-.1l1.7.8c.3.1.4.3.4.5 0 .4-.2 1.3-.8 1.8-.5.5-1.4.8-2.3.6-1-.2-2.3-.7-3.9-2.1-1.3-1.2-2.2-2.7-2.5-3.7-.3-1 .1-2.1.5-2.6z"/>
-        </svg>
-      </a>
-
-      <a class="social-icon" href="https://youtube.com/@kesmislalih?si=imv1-0rrtrLcjkmg"
-         target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M23 7a3 3 0 0 0-2.1-2.1C19 4.4 12 4.4 12 4.4s-7 0-8.9.5A3 3 0 0 0 1 7a31 31 0 0 0-.5 5 31 31 0 0 0 .5 5 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5A3 3 0 0 0 23 17a31 31 0 0 0 .5-5 31 31 0 0 0-.5-5zM9.6 15.5v-7l6 3.5z"/>
-        </svg>
-      </a>
-
-      <a class="social-icon" href="https://x.com/kesmislalih"
-         target="_blank" rel="noopener noreferrer" aria-label="X" title="X">
-        <span class="letter">𝕏</span>
-      </a>
-
-      <a class="social-icon"
-         href="https://open.spotify.com/user/31vnu4cvo5mm2pkwmzvci7khutxy?si=u2Nu3sDRT8KbCD929zVnqg&utm_source=copy-link&sci=spotify%3Acard-config%3A6GQ9StbTx7sa80ZFMx9lhq"
-         target="_blank" rel="noopener noreferrer" aria-label="Spotify" title="Spotify">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 1.5a10.5 10.5 0 1 0 0 21 10.5 10.5 0 0 0 0-21zm4.8 15.1a.7.7 0 0 1-1 .2c-2.7-1.7-6.1-2.1-10.1-1.1a.7.7 0 1 1-.4-1.3c4.4-1.1 8.2-.7 11.3 1.3.3.2.4.6.2.9zm1.3-2.9a.9.9 0 0 1-1.2.3c-3.1-1.9-7.8-2.5-11.4-1.3a.9.9 0 1 1-.5-1.7c4.2-1.3 9.4-.7 12.8 1.5.4.2.5.8.3 1.2zm.1-3a1 1 0 0 1-1.4.3c-3.7-2.2-9.1-2.4-12.4-1.3a1 1 0 1 1-.6-1.9c3.8-1.2 9.8-1 14.1 1.5.5.3.6.9.3 1.4z"/>
-        </svg>
-      </a>
-
-      <a class="social-icon" href="https://www.wattpad.com/user/kesmislalih"
-         target="_blank" rel="noopener noreferrer" aria-label="Wattpad" title="Wattpad">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M3.2 2.5c.8 0 1.4.5 1.7 1.4l2.7 8.5 2.1-6.5c.3-.9.9-1.4 1.7-1.4s1.4.5 1.7 1.4l2.1 6.5 2.7-8.5c.3-.9.9-1.4 1.7-1.4 1.1 0 1.8.9 1.4 2L16.7 20c-.3.9-.9 1.4-1.7 1.4s-1.4-.5-1.7-1.4l-1.9-5.8-1.9 5.8c-.3.9-.9 1.4-1.7 1.4S6.4 20.9 6.1 20L1.8 4.5c-.4-1.1.3-2 1.4-2z"/>
-        </svg>
-      </a>
-
-      <a class="social-icon" href="https://pin.it/x7c3G5YDE"
-         target="_blank" rel="noopener noreferrer" aria-label="Pinterest" title="Pinterest">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2a10 10 0 0 0-3.6 19.3c0-.8 0-1.8.2-2.6l1.3-5.5s-.3-.6-.3-1.5c0-1.4.8-2.5 1.9-2.5.9 0 1.3.7 1.3 1.5 0 .9-.6 2.3-.9 3.6-.3 1.1.5 2 1.6 2 1.9 0 3.3-2.5 3.3-5.4 0-2.2-1.5-3.9-4.2-3.9-3.1 0-5 2.3-5 4.8 0 .9.3 1.6.7 2.1.2.2.2.3.1.6l-.2.8c-.1.3-.3.4-.6.3-1.3-.5-1.9-1.9-1.9-3.5 0-2.6 2.2-5.8 6.7-5.8 3.6 0 6 2.6 6 5.5 0 3.8-2.1 6.7-5.2 6.7-1 0-2-.6-2.3-1.2l-.7 2.7c-.2.8-.7 1.7-1 2.4A10 10 0 1 0 12 2z"/>
-        </svg>
-      </a>
-
-    </nav>
-  </section>
-</main>
-
-<footer class="site-footer">
-  <p class="footer-signature">kesmislalih</p>
-  <p class="footer-tagline">some stories are not meant to be told, but felt.</p>
-  <p class="copyright">© <span id="year"></span> kesmislalih</p>
-</footer>
-
-<!-- SAĞ YAN MENÜ -->
-<div class="drawer-backdrop" id="drawer-backdrop"></div>
-
-<aside class="drawer" id="drawer" aria-label="Yan menü" aria-hidden="true">
-  <div class="drawer-head">
-    <h2 class="drawer-title">kesmislalih</h2>
-    <button class="close-menu" id="close-menu" type="button" aria-label="Menüyü kapat">×</button>
+<aside class="menu-panel" id="menuPanel" aria-label="Ek menü">
+  <div class="menu-top">
+    <span class="menu-title">Menü</span>
+    <button class="icon-button" id="closeMenu" aria-label="Menüyü kapat">×</button>
   </div>
 
-  <nav class="drawer-links" aria-label="Diğer sayfalar">
+  <nav class="menu-links">
+    <a href="index.html">Ana Sayfa</a>
+    <a href="#kitaplarim">Kitaplığım</a>
+    <a href="#hakkimda">Hakkımda</a>
+    <a href="galeri.html">Galeri</a>
     <a href="duvar.html">Pano</a>
     <a href="duyurular.html">Duyurular</a>
     <a href="iletisim.html">İletişim</a>
   </nav>
-
-  <div class="drawer-bottom">
-    <p class="theme-label">Görünüm</p>
-    <div class="theme-controls">
-      <button class="theme-button" id="light-mode" type="button">☼ Aydınlık</button>
-      <button class="theme-button" id="dark-mode" type="button">☾ Karanlık</button>
-    </div>
-  </div>
 </aside>
 
+<main>
+
+  <!-- KARŞILAMA -->
+  <section class="hero" id="anasayfa">
+    <img
+      class="profile-photo"
+      src="d08eae9afcf72d4a213a3d988ecf5935.jpg"
+      alt="kesmislalih profil fotoğrafı"
+    >
+
+    <h1 class="hero-signature">kesmislalih</h1>
+
+    <p class="hero-subtitle">
+      some stories are not meant to be told, but felt.
+    </p>
+
+    <p class="hero-description">
+      Bazı hikâyeler kelimelerle başlar, bazılarıysa insanın içinde
+      sessizce büyür. Burası, kelimelerden doğan hikâyelerin dünyası.
+    </p>
+
+    <a class="primary-button" href="#kitaplarim">
+      KİTAPLARIMI KEŞFET ↓
+    </a>
+  </section>
+
+  <!-- ANA SAYFA VİDEOSU -->
+  <section class="video-section" aria-label="Tanıtım videosu">
+    <div class="section-heading">
+      <p class="eyebrow">KELİMELERİN ARASINDA</p>
+      <h2>Bir Hikâyenin İçinde</h2>
+    </div>
+
+    <div class="video-frame">
+      <video
+        class="hero-video"
+        controls
+        playsinline
+        preload="metadata"
+        poster="d08eae9afcf72d4a213a3d988ecf5935.jpg"
+      >
+        <source src="bloggg_erss_pindown.io_1793296543.mp4" type="video/mp4">
+        Tarayıcınız video oynatmayı desteklemiyor.
+      </video>
+    </div>
+  </section>
+
+  <!-- KİTAPLIK -->
+  <section class="bookshelf-section" id="kitaplarim">
+    <div class="bookshelf-content">
+
+      <div class="bookshelf-heading">
+        <p class="eyebrow">KELİMELERDEN DOĞAN HİKÂYELER</p>
+        <h2>Kitaplığım</h2>
+        <p>Her kitap, başka bir dünyanın kapısıdır.</p>
+      </div>
+
+      <div class="bookshelf">
+        <a class="book-card" href="ringteki-son-dans.html">
+          <div class="book-cover-wrap">
+            <img
+              class="book-cover"
+              src="file_0000000025bc81f4894ba4ef290f1c32.png"
+              alt="Ringteki Son Dans kitap kapağı"
+              loading="lazy"
+            >
+          </div>
+
+          <h3>Ringteki Son Dans</h3>
+          <p>Bir karanlık, iki kurşun.</p>
+          <span class="book-link">KİTABI İNCELE ↗</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HAKKIMDA -->
+  <section class="about-section" id="hakkimda">
+    <p class="eyebrow">BİRKAÇ KELİME</p>
+    <h2>Hakkımda</h2>
+
+    <p>
+      Kelimelerin arasında kendi dünyasını kuran bir yazar.
+      Her karakterin bir hikâyesi, her hikâyenin sakladığı bir şey var.
+      Burası da o dünyalara açılan küçük bir kapı.
+    </p>
+  </section>
+
+</main>
+
+<!-- EN ALTTA YALNIZCA İMZA VE TELİF -->
+<footer class="site-footer">
+  <span class="footer-signature">kesmislalih</span>
+  <span>© <span id="currentYear"></span> · Tüm hakları saklıdır.</span>
+</footer>
+
 <script>
-/* AÇILIŞ */
-const introScreen = document.getElementById("intro-screen");
-const introVideo = document.getElementById("intro-video");
-const skipIntro = document.getElementById("skip-intro");
+/* AÇILIŞ EKRANI */
+const introScreen = document.getElementById("introScreen");
+const enterSite = document.getElementById("enterSite");
 
 function closeIntro() {
-  if (introScreen.classList.contains("hide")) return;
-  introScreen.classList.add("hide");
-  document.body.classList.remove("no-scroll");
-  introVideo.pause();
+  introScreen.classList.add("hidden");
 
-  setTimeout(() => {
-    introScreen.style.display = "none";
-  }, 850);
+  try {
+    sessionStorage.setItem("kesmislalihIntroSeen", "yes");
+  } catch (error) {}
 }
 
-skipIntro.addEventListener("click", closeIntro);
-introVideo.addEventListener("ended", closeIntro);
-introVideo.addEventListener("error", closeIntro);
-introVideo.play().catch(() => {});
+try {
+  if (sessionStorage.getItem("kesmislalihIntroSeen") === "yes") {
+    introScreen.classList.add("hidden");
+  }
+} catch (error) {}
 
-/* ANA SAYFA VİDEOSU */
-const heroVideo = document.getElementById("hero-video");
-heroVideo.play().catch(() => {});
+enterSite.addEventListener("click", closeIntro);
 
-/* YAN MENÜ */
-const menuButton = document.getElementById("menu-button");
-const closeMenuButton = document.getElementById("close-menu");
-const drawer = document.getElementById("drawer");
-const backdrop = document.getElementById("drawer-backdrop");
-
-function openMenu() {
-  drawer.classList.add("open");
-  backdrop.classList.add("open");
-  drawer.setAttribute("aria-hidden", "false");
-  menuButton.setAttribute("aria-expanded", "true");
-}
-
-function closeMenu() {
-  drawer.classList.remove("open");
-  backdrop.classList.remove("open");
-  drawer.setAttribute("aria-hidden", "true");
-  menuButton.setAttribute("aria-expanded", "false");
-}
-
-menuButton.addEventListener("click", openMenu);
-closeMenuButton.addEventListener("click", closeMenu);
-backdrop.addEventListener("click", closeMenu);
-
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape") closeMenu();
-});
-
-/* TEMA */
-const lightButton = document.getElementById("light-mode");
-const darkButton = document.getElementById("dark-mode");
+/* TEMA DEĞİŞTİRME */
+const themeButton = document.getElementById("themeButton");
 
 function setTheme(theme) {
-  const light = theme === "light";
-  document.body.classList.toggle("light", light);
-  lightButton.classList.toggle("active", light);
-  darkButton.classList.toggle("active", !light);
+  document.body.classList.toggle("light", theme === "light");
+
+  themeButton.textContent = theme === "light" ? "☀" : "☾";
+
+  themeButton.setAttribute(
+    "aria-label",
+    theme === "light" ? "Koyu temaya geç" : "Açık temaya geç"
+  );
 
   try {
     localStorage.setItem("siteTheme", theme);
@@ -729,16 +876,50 @@ function setTheme(theme) {
 }
 
 let savedTheme = "dark";
+
 try {
   savedTheme = localStorage.getItem("siteTheme") || "dark";
 } catch (error) {}
 
 setTheme(savedTheme);
-lightButton.addEventListener("click", () => setTheme("light"));
-darkButton.addEventListener("click", () => setTheme("dark"));
 
-/* YIL */
-document.getElementById("year").textContent = new Date().getFullYear();
+themeButton.addEventListener("click", () => {
+  const nextTheme = document.body.classList.contains("light")
+    ? "dark"
+    : "light";
+
+  setTheme(nextTheme);
+});
+
+/* YAN MENÜ */
+const menuButton = document.getElementById("menuButton");
+const menuPanel = document.getElementById("menuPanel");
+const menuOverlay = document.getElementById("menuOverlay");
+const closeMenu = document.getElementById("closeMenu");
+
+function openMenu() {
+  menuPanel.classList.add("open");
+  menuOverlay.classList.add("open");
+  menuButton.setAttribute("aria-expanded", "true");
+}
+
+function hideMenu() {
+  menuPanel.classList.remove("open");
+  menuOverlay.classList.remove("open");
+  menuButton.setAttribute("aria-expanded", "false");
+}
+
+menuButton.addEventListener("click", openMenu);
+closeMenu.addEventListener("click", hideMenu);
+menuOverlay.addEventListener("click", hideMenu);
+
+menuPanel.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", hideMenu);
+});
+
+/* GÜNCEL YIL */
+document.getElementById("currentYear").textContent =
+  new Date().getFullYear();
 </script>
 
 </body>
