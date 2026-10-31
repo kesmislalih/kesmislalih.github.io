@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sıfırıncı Dans: Ringteki Son Dans</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #080808;
+  --text: #f2f2f2;
+  --muted: #999;
+  --accent: #8f1530;
+  --line: #292929;
+  --comment-bg: #111;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.page {
+  width: min(100%, 760px);
+  margin: auto;
+  padding: 34px 24px 70px;
+}
+
+.intro {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.dedication {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #d4d4d4;
+  font-style: italic;
+}
+
+.intro-image {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  margin: 12px auto;
+  object-fit: cover;
+}
+
+.book-title {
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  line-height: 1.6;
+  font-weight: 800;
+}
+
+.book-title small {
+  display: block;
+  color: var(--accent);
+  font-size: 14px;
+  letter-spacing: 6px;
+}
+
+.book-title h1 {
+  margin: 0;
+  font-size: clamp(24px, 6vw, 38px);
+}
+
+.ornament {
+  color: var(--accent);
+  font-size: 17px;
+  letter-spacing: 3px;
+  line-height: 2;
+  overflow-wrap: anywhere;
+  margin: 20px 0;
+}
+
+.chapter-header {
+  text-align: center;
+  margin: 70px 0 55px;
+}
+
+.chapter-header .chapter-number {
+  color: var(--accent);
+  font-size: 14px;
+  letter-spacing: 6px;
+  font-weight: 800;
+  margin-bottom: 22px;
+}
+
+.chapter-header h2 {
+  font-size: clamp(23px, 5.5vw, 36px);
+  font-weight: 800;
+  letter-spacing: 4px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.chapter-header::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background: var(--line);
+  margin-top: 38px;
+}
+
+.quote {
+  text-align: center;
+  font-size: clamp(18px, 4.5vw, 25px);
+  font-style: italic;
+  line-height: 1.8;
+  margin: 55px 0 35px;
+}
+
+.story {
+  margin-top: 55px;
+}
+
+.paragraph {
+  position: relative;
+  margin: 0 0 48px;
+  padding-right: 42px;
+  font-size: clamp(17px, 4.2vw, 23px);
+  font-weight: 500;
+  line-height: 1.95;
+  white-space: pre-line;
+}
+
+.paragraph.emphasis {
+  font-weight: 700;
+  font-style: italic;
+}
+
+.comment-button {
+  position: absolute;
+  right: 0;
+  top: 8px;
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  font-size: 22px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.comment-count {
+  font-size: 12px;
+  margin-left: 3px;
+}
+
+.comment-box {
+  display: none;
+  margin: -28px 0 42px;
+  padding: 16px;
+  background: var(--comment-bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.comment-box.open {
+  display: block;
+}
+
+.comment-box textarea {
+  width: 100%;
+  min-height: 90px;
+  resize: vertical;
+  background: #080808;
+  color: var(--text);
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 12px;
+  font: inherit;
+  font-size: 14px;
+}
+
+.comment-box button {
+  margin-top: 10px;
+  background: var(--accent);
+  color: white;
+  border: 0;
+  border-radius: 4px;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.comment-list {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #ccc;
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 24px 22px 50px;
+  }
+
+  .paragraph {
+    padding-right: 34px;
+    margin-bottom: 42px;
+  }
+
+  .comment-button {
+    font-size: 19px;
+  }
+}
+</style>
+</head>
+
+<body>
+<main class="page">
+
+<section class="intro">
+  <p class="dedication">
+    Küçükken gözlerini kapayınca oyuncaklarının uyanacağını sananlara...
+  </p>
+
+  <img
+    class="intro-image"
+    src="giris-gorsel.png"
+    alt="Sıfırıncı Dans giriş görseli"
+  >
+
+  <div class="book-title">
+    <small>Sıfırıncı Dans</small>
+    <h1>Ringteki Son Dans</h1>
+  </div>
+
+  <div class="ornament">
+   ๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭
+  </div>
+</section>
+
+<section class="chapter">
+  <header class="chapter-header">
+    <div class="chapter-number">SIFIRINCI BÖLÜM</div>
+    <h2>RİNGTEKİ SON DANS</h2>
+  </header>
+
+  <blockquote class="quote">
+    ❝Gök gürleyecek kalbini incitecekti.<br>
+    Paramparça olan kalbinin düzelmesi bir çocuğun tatlı kıkırtısında yeniden hayat bulacaktı.❞
+  </blockquote>
+
+  <blockquote class="quote">
+    Bir karanlık, iki kurşun.<br>
+    Binbir acı, iki yetim.
+  </blockquote>
+
+  <blockquote class="quote">
+    Sihirli değneğin ucu müzik kutusunda usul usul dönen balerinin üzerinde durdu.
+    Ardından boksör bebeğin omzuna dokundu. Gözleri acıtan bir ışık ardından soluk
+    renklerin yerine gelmesi bir mucizeydi. Belki de kabul edilen büyü...
+  </blockquote>
+
+  <div class="ornament">𓍼</div>
+
+  <div class="story">
+    <p class="paragraph">
+Masallar gerçekti, dünyalar apayrıydı. Her masal her dünyada gerçekleşmezdi. Sihirli peri tozları, süpürgesiyle uçan cadılar, özel güce sahip kahramanlar bir hayalden ibaretti. Onlar yalnızca hayal dünyasına aitti. Gerçek olan tek şey hayal kırıklığından başka bir şey değildi.
+</p>
+
+<p class="paragraph">
+Aşk vardı bir de. Masalların gerçekleşme imkânıyla aynı masada oturan. O da masallar gibi gerçeklik dışı, hayal kırıklığından oluşan bir boşluktu.
+</p>
+
+<p class="paragraph">
+Ben bu masalın müzik kutusunda sadece etrafında dönmeye mahkûm edilmiş baleriniydim. Beni tanımlayan süslü sözcükler, tabirler veya vasıflar yoktu. Yalnızca başkaları tarafından tek bir düğmeyle hayatı şekillendirilen oyuncak bir bebektim.
+</p>
+
+<p class="paragraph">
+Üzerimde bir ağırlık hissediyordum. Yük olarak değil, bedensel bir ağırlık. Göz kapaklarımı bile açmakta zorlanıyordum. Neler oluyordu?
+</p>
+
+<p class="paragraph">
+İşitme algılarım yavaş yavaş açılmaya başladığında çocuk sesleri duydum. Acıyla bağıran çocuk sesleri...
+</p>
+
+<p class="paragraph">
+Yarı yarıya açık gözlerimin görüş açısı pusluydu. Gözlerimi birkaç kez kırpıştırıp düzeltmeye çalıştım.
+</p>
+
+<p class="paragraph">
+Her an kapanabilecek olan yarı açık gözlerim bir çocuk çığlığıyla aniden açıldı. Tavanla birkaç saniyeliğine bakışıp bakışlarımı etrafımda gezdirdim. Depoya benzer bir odada, yerde uzanmış bir vaziyetteydim.
+</p>
+
+<p class="paragraph">
+İçeriden çocuk sesleri gelmeye devam ederken yattığım yerden kalkmaya çalıştım ama vücudumda feci bir ağrı vardı. Belim mi tutulmuştu?
+</p>
+
+<p class="paragraph">
+Uzandığım yere baktığımda bir zeminde yattığımı fark ettim. "İnsan bir yatağın üstüne atardı! Yere mi atılır?!" Kime kızdığımı bile bilmeden laf edip sırtımı yerden hafifçe kaldırarak üzerime baktım. Üzerimdeki beyaz balerin elbisem yerdeki tozlardan kirlenmişti. Rengi griye dönmüştü.
+</p>
+
+<p class="paragraph">
+Başımı yan tarafıma çevirmek gibi bir hata yaptım. Gördüğümle şaşkınlıkla dudaklarım aralandı. Onunla mı gelmiştim? Olamaz...
+</p>
+
+<p class="paragraph">
+Yanımdakini uyandırmamaya çalışarak tam kalkacakken bacağımdan tutuldum.
+</p>
+
+<p class="paragraph">
+"Nereye aptal balerin?"
+</p>
+
+<p class="paragraph">
+Yakalanmanın siniriyle ona bakarken eline tekme atıp ayak bileğimdeki elini savurdum. "Gezmeye. Gelmek ister misin?"
+</p>
+
+<p class="paragraph">
+"Çok iyi olur da... Burası neresi?" Gevşek gevşek konuştuğunda ağzına tek bir şamar indirmeyi o kadar istemiştim ki...
+</p>
+
+<p class="paragraph">
+"Dünya'ya gelmişiz geri zekâlı!" Ağzımdan çıkan kelimelerle gözlerim fal taşı gibi açıldı. Ben konuşmayı nereden biliyordum?
+</p>
+
+<p class="paragraph">
+O da daha az önceki kelimelerini fark ettiğinde ufak bir şok geçirdi. "Bana elçilerin beni seninle buraya gönderdiğini söyleme sakın!"
+</p>
+
+<p class="paragraph">
+Elçiler... Tabii ya! Onlar bizi seçmişti. Gözlerimi ona kenetlediğimde yüzümde ciddi bir ifade vardı. "Yok, ben hologramım. Birazdan gideceğim! Yanına başka biri gelecek."
+</p>
+
+<p class="paragraph">
+Büyük bir rahatlamayla "Heh, iyi o zaman. Çekilmezdin yoksa. İyi oldu bu." dedi.
+</p>
+
+<p class="paragraph">
+Bale ayakkabılarıyla kapattığım ayağımı sanki bale yapıyorcasına kaldırıp sertçe karnına geçirdim. "Bunun da ne kadarı hologram, ona sen karar verirsin!"
+</p>
+
+<p class="paragraph">
+"Lavinia," dedi sinirle soluyarak. "Kaşınma!"
+</p>
+
+<p class="paragraph">
+Yüzümdeki küçümsemeyle ona baktım. Bana hiçbir şey yapamazdı. "Kaşınırsam ne olur?"
+</p>
+
+<p class="paragraph">
+"Müzik kutuna hapsederim seni!"
+</p>
+
+<p class="paragraph">
+Verdiği cevaba hiddetlenerek "Denesene!" diye daha da diklendim ona. Hatta yetmedi, üzerine atlayıp kısa saçlarını çekiştirdim. "Oha!" Benden böyle bir atak beklemediği için sinire karışık şaşkınca bana bağırdı. "Bıraksana kızım, acıyor!"
+</p>
+
+<p class="paragraph">
+Daha da hırslanarak çekiştirmeye devam ettim saçlarını. "Müzik kutuma hapsedeceksin beni ha? Seni o kum torbana gömerim!"
+</p>
+
+<p class="paragraph">
+Tehdidime karşılık daha az önceki dediklerimi taklit ederek "Denesene!" deyip beni birden altına aldı. Altındayken ona bakakaldım.
+</p>
+
+<p class="paragraph">
+Ellerimi çıplak göğsüne koyup "Arel! Çekil üzerimden hayvan! Goril gibisin!" diye çığırdım.
+</p>
+
+<p class="paragraph">
+Onu her zaman bir gorile benzettiğimden ve bunu hep dile getirdiğimden dolayı alınganlık dahi yapmadı. Hatta "Kaslarımdandır," dedi böbürlenerek.
+</p>
+
+<p class="paragraph">
+Yüzümü buruşturdum. "Gazların olmasın da..."
+</p>
+
+<p class="paragraph">
+"Bak, şu durumda bile dır dır ediyor!"
+</p>
+
+<p class="paragraph">
+"Çekil üstümden!" Onu üzerimden itmeye çalıştığımda bir ses ile kaskatı kesildik ikimiz de.
+</p>
+
+<p class="paragraph">
+"Ağlama! Ağlamayın Cihangir'in piçleri!"
+</p>
+
+<p class="paragraph">
+Birinin yüksek sesle azarlayan sesini duyduğumuzda Arel'le göz göze geldik. O sese eşlik eden çocuk ağlama sesleri de vardı.
+</p>
+
+<p class="paragraph">
+Arel üstümden çekilmeyi düşünmüyor olmalıydı ki hâlâ üzerimdeydi. Başını yukarı tarafa çevirmiş, yukarıya çıkan merdiven tarafından gelen sesleri anlamaya çalışıyordu.
+</p>
+
+<p class="paragraph">
+Ellerim omzunu bulduğunda üzerimden ittim. Bu sefer dikkati dağınık olduğu için kolayca kalktı üstümden.
+</p>
+
+<p class="paragraph">
+Ben de ayağa kalkıp üstümü çırptım. Bana ağlama sesi gelen yeri işaret ettiğinde başımı olumlu anlamda salladım. Tam önden gideceğim esnada kolundan tutup beni arkasına çekti. Çıplak sırt kaslarıyla göz göze geldiğimde afalladım.
+</p>
+
+<p class="paragraph">
+"Arkada kal, çok gürültülü yürüyorsun," dedi fısıltıyla.
+</p>
+
+<p class="paragraph">
+Gözlerimi belerttim. Ben mi gürültülü yürüyordum? Sırtına sert ama sessiz bir yumruk geçirdim. "Balerin olan benim salak! Parmak ucumla yürüyorum. Nasıl sesli olabilirim?" Kısık sesle ona kızdığımda bir şeyler homurdandı.
+</p>
+
+<p class="paragraph">
+O önden sessizce yürüyüp merdivenlere çıkmaya başladı. Ben de parmak ucumla yürüyerek arkasında yer aldım. Başını kaldırıp yukarıdan gelen boğuk sesleri anlamaya çalıştı.
+</p>
+
+<p class="paragraph">
+Sonunda merdivenleri çıkmayı bitirdiğimizde koridora çıktı yolumuz. Karşımızda iki tane oda gördüğümüzde birinin kapısı açık, diğerininki kapalıydı.
+</p>
+
+<p class="paragraph">
+Açık olan kapıdan çocuk ve adamların sesi geliyordu fakat ikinci odadan hiçbir ses gelmiyordu. O kapıyı açma isteğiyle tutuşup iyice meraklanmıştım.
+</p>
+
+<p class="paragraph">
+"Sakın," Arel'in uyaran sesiyle ona döndüm.
+</p>
+
+<p class="paragraph">
+"Ne?"
+</p>
+
+<p class="paragraph">
+"O odaya girmeye kalkışma bile."
+</p>
+
+<p class="paragraph">
+Bu adam her şeyi anlamak zorunda mıydı? Düşmanını iyi tanı lafını sahiplenmiş gibiydi! "Girmeyecektim zaten," diyerek ona yalan söyleyip gözlerimi ondan kaçırdım.
+</p>
+
+<p class="paragraph">
+"Çok belli girmek istemediğin." dedi imayla.
+</p>
+
+<p class="paragraph">
+Benimle uğraşmayı bırakıp sessiz ve gizlice açık kapının ardından bakmaya başladı. İçeride her ne gördüyse eli arkaya doğru havalandı, sanki koluyla bana kalkan yapıp beni korumaya çalışır gibi. Bu yaptığıyla daha da meraklanarak başımı uzattım ama cüssesinden pek bir şey göremiyordum.
+</p>
+
+<p class="paragraph">
+"Şu omuzlarını çek," diye sızlandım fısıldayarak. "Hiçbir şey göremiyorum." Gerçekten hiçbir şey göremiyordum!
+</p>
+
+<p class="paragraph">
+Kısa bir an bana dönüp çatık kaşların altından baktı. Ne? Dercesine başımı salladığımda parmağını dudağına getirdi. Bu yaptığıyla gözlerimi devirdiğimde önüne döndü. Birkaç dakika daha içeriyi izleyip "Lavinia," diye mırıldandığında "Hı?" diyerek karşılık verdim.
+</p>
+
+<p class="paragraph">
+"İçeride dört tane adam var."
+</p>
+
+<p class="paragraph">
+Anlatmak istediğini anlamayarak kafa karışıklığıyla ona baktım. "Sen boksörsün, hepsini dövebilirsin."
+</p>
+
+<p class="paragraph">
+"Ben döverim zaten ama," dediğinde duraksadı. Bakışlarını gözlerime çıkardı. "Hepsi benim üzerime gelmez. Senin üzerine de gelen olur."
+</p>
+
+<p class="paragraph">
+Tereddütle ona bakıp dudaklarımı araladım. Umarım aklıma geleni söylemezdi. "Ne yapmamı bekliyorsun?"
+</p>
+
+<p class="paragraph">
+Bana koridorun en sonunu gösterip "Orada kal. Hatta bulabilirsen saklanacak yer, oraya saklan." dedi.
+</p>
+
+<p class="paragraph">
+"Hayatta olmaz!" Koridorun sonu dar ve karanlıktı. En büyük iki korkumun buluştuğu yerde asla bulunamazdım. Ayrıca içeride çocuklar vardı. O, adamlarla boğuşurken adamlardan biri çocuklara bir şey yapabilirdi! Hiddetle bağırdığımda içerden "Kim var lan orada!" diye bir ses yükseldi.
+</p>
+
+<p class="paragraph">
+Telaşla Arel'e baktığımda beni hemen arkasına aldı. Beni azarlamayı sonraya bırakarak önüme siper oldu. Kapının eşiğinde saklanarak adamların çıkmasını bekliyorduk. "Kim var orada, dedim!"
+</p>
+
+<p class="paragraph">
+Adım sesleri gitgide yaklaşırken beni tamamen arkasına aldı. İstemsizce nefesimi tutarken kapının yakınlarında siyah ayakkabılar kadrajımıza girince dizlerimin titrediğini hissettim. Bu refleksimle hareket edeceğimi sanmış olmalı ki "Bekle," diye mırıldandı. Sakinleşmek adına derin ama sessiz nefesler almaya başladım.
+</p>
+
+<p class="paragraph">
+Adam kapıdan dışarı çıktığında etrafını kontrol ettiği an Arel adamın yakasından kavrayıp kendine çekti. Esmer, kahve gözlü adamın ağzını kapatıp boştaki elini kafasına, adamın dudağının üzerindeki elini çenesinin altına getirdi. Çevik hareketlerle elini farklı yöne çevirip adamın boynunu kırdı. Adamın dudaklarından ince ama acı bir inleme sesi geldiğinde adamı bıraktı. Adam yere düştüğünde içeriden "Bekir?" diye bir ses duyuldu.
+</p>
+
+<p class="paragraph">
+"Kaldı üç." diye mırıldandığında yerde yatan adama korkuyla bakıp yutkundum. Korkunç görünüyordu, ikisi de.
+</p>
+
+<p class="paragraph">
+Ona olan değişik bakışlarımı görmüş olmalı ki boğazını temizleyip gözlerini kaçırdı. Nefes hızını ayarlayıp tekrar çevirdi bakışlarını. "Ben içeri gireceğim, sen buradan hiçbir yere ayrılmayacaksın. Hatta benim sesim kesildiğinde veya Lavinia diye bağırdığımda dön arkanı ve kaç."
+</p>
+
+<p class="paragraph">
+İtiraz istemeyen sesini duyduğumda çenemi dikleştirdim. "Senin burada ölmene göz yumacağımı mı sanıyorsun?" dediğimde güldü. Acı bir gülüştü. "Sanki daha önce öldürmemiş gibi diyor ya bir de,"
+</p>
+
+<p class="paragraph">
+Mırıldanarak söylediklerini duymadığımı sandı. Anlamlandıramadığım bazı şeylerden dolayı "O ne demek?" dedim merakla.
+</p>
+
+<p class="paragraph">
+"Boşversene," dedi bu sefer umursamazlıkla. Başını içeri uzatıp girmeye kalkışacakken şortunun lastiğinden tuttum.
+</p>
+
+<p class="paragraph">
+Üst tarafına hiçbir şey giymemişti. Üzeri çıplaktı. Onu durdurabilmek için şortundan tutmak zorunda kalmıştım.
+</p>
+
+<p class="paragraph">
+"Sen manyak mısın?" Bana baktığında şortunu tutup çekmemin şaşkınlığıyla sormuştu bunu. "Aklındakilere beni alet etme, aptal balerin."
+</p>
+
+<p class="paragraph">
+Gözlerim yuvarlarından çıkacakmış gibi büyüdü. "Pislik! Öyle şeyler düşünmem bile ben!"
+</p>
+
+<p class="paragraph">
+"Peki o zaman, şortumun lastiğini tutup yetmezmiş gibi bir de çekerken ne düşünüyordun ayıptır sorması?"
+</p>
+
+<p class="paragraph">
+"Bir soru soracaktım!"
+</p>
+
+<p class="paragraph">
+"Sor." dedi aceleyle. İçeri gitmek için can atıyordu. Adamların da sesi gitmiş, çocukların ağlayışları kesilmişti. Bu, merak duygumuzu daha da kamçılıyordu.
+</p>
+
+<p class="paragraph">
+"O içerideki çocuklar... Onlar mı?"
+</p>
+
+<p class="paragraph">
+Hemen anladı neyden bahsettiğimi. "Bilmiyorum, izin verirsen bakacağım."
+</p>
+
+<p class="paragraph">
+Benim onayıma gerek kalmadan kendi tam girecekken onu tekrar tuttum. Fakat bu sefer kolundan.
+</p>
+
+<p class="paragraph">
+İçeri girmesi için onu tekrar engellediğim için sinirle bana döndü. "Rahat bıraksana beni bi'!"
+</p>
+
+<p class="paragraph">
+Yükselişiyle başımı kaldırıp ona baktım. Amacı benim ayarlarımı altüst etmekse çok yakındı. "Bir daha," dedim uyarırcasına. İşaret parmağımı da sallarken "Bir daha bana o bir şeye benzemeyen sesini yükseltirsen seni buna çok pişman ederim." diye tehdit ettim onu.
+</p>
+
+<p class="paragraph">
+"Defol git şimdi nereye gidiyorsan, bana ne!"
+</p>
+
+<p class="paragraph">
+Bana arkasını dönüp bu sefer gerçekten içeri girdiğinde stresten dudaklarımı yemeye başladım. Çünkü ardından kapıyı kapatmıştı. İki adım gerileyerek kulağımı duvara yaslayıp içerideki sesleri dinlemeye çalıştım.
+</p>
+
+<p class="paragraph">
+Boğuk sesler harici hiçbir şey duymazken kafamı yasladığım duvarın oradan kapısı kapalı o gizemli odayı hatırladım. Odağım o odaya kaydığında engel olamadığım dürtüyle oraya gitme isteğiyle tutuştum.
+</p>
+
+<p class="paragraph">
+Kulağımı usulca duvardan ayırdım. O kapıyla bakışırken içimi yiyip bitiren sorular beni deli ediyordu. Oraya hemen bakıp gelsem bir şey olmazdı değil mi?
+</p>
+
+<p class="paragraph">
+Olmazdı. Kendi vardığım kanıyla o kapıya ilerleyip önünde durdum. Susup yalnızca içeriyi dinlemeye çalıştım. İçeriden yalnızca tekrar eden tik tak sesleri geliyordu. Sanki bir saat vardı ve zaman akıp gittikçe doğuracağı felakete daha da yaklaşıyordu.
+</p>
+
+<p class="paragraph">
+Can havliyle kapıyı açtım. İçeriden insan sesi duymamıştım. İçeri girdiğim an odayı kaplayan bilgisayar ve sayaçlar görmüştüm. Yutkunarak açık olan her bir ekranda gezindi gözlerim.
+</p>
+
+<p class="paragraph">
+Sayaçların üzerinde 23:42 yazıyordu ve her saniye geçtiği sürede azalıyordu sayaçtaki sayılar. Gözlerim burayı biraz daha tarayınca yerde bir düzenekle karşılaştım. Dinamite benzer şeylerin üzerinde de aynı sayılar yazıyordu ve bu açıkçası benim daha fazla paniklememe neden oluyordu.
+</p>
+
+<p class="paragraph">
+Bu süre bittiği an burası patlayacak ve bu yerin içinde kalanları da yok edecekti. Aceleyle kendimi dışarı atıp etrafıma baktım. Çıkış kapısına giden merdivenlere bakarak aklımdan geçen kaçma dürtüsünü Arel'in sinire karışık küfür eden sesi durdurdu. Bağıran sesini duyduğum an aklımdaki önceliklerin hepsini geçerek ilk amacımın onu kurtarmak oldu. Onu burada bırakamazdım, beni soytarı ve kuklacının elinden -her ne kadar istemese de- o kurtarmıştı. Bu iyiliğini karşılıksız bırakamazdım.
+</p>
+<p class="paragraph">
+Hızlı düşünmem gerekiyordu. Buraya geldiğimden beri dikkatimi çeken koridorun sonunda bulunan demir sopaya doğru koştum. Sopayı elime aldığım gibi küçücük aralıktaki kapıdan içeri bakmaya başladım.
+</p>
+
+<p class="paragraph">
+Yerde yüzü tanınmayacak hâle gelmiş bir adam görüyordum. Onu büyük ihtimalle Arel bu hâle getirmişti. Fakat neredeyse Arel'in cüssesindeki iki adama gücü yetmemişti. Adamlar şu anda Arel'i yerde kan kustura kustura tekmeliyordu. Ona ne kadar kinli de olsam buradan kaçıp canımı kurtarmayı kendime yakıştıramadım. Aramızda bir günlük ateşkesin mahzuru olmazdı.
+</p>
+
+<p class="paragraph">
+Kapıyı en sessiz biçimde açmaya başladım. Hafif aralık kapının arasından içeri süzüldüm. Adamların arkası bana dönük olduğundan dolayı benim geldiğimi fark etmemişlerdi. Kumral adama yavaş yavaş yaklaşırken parmak uçlarımla yürümeye özen gösteriyordum.
+</p>
+
+<p class="paragraph">
+Adamla aramda yaklaşık bir metreden az bir mesafe kalınca durdum. Demir sopayı bilerek yere hafifçe sürttüm. Eğer vurmaya devam ederlerse Dünya'daki işimiz başlamadan sona erecekti.
+</p>
+
+<p class="paragraph">
+Yere sürttüğüm demirle her ikisinin odağı da Arel'den kayıp bana gelmişti. Kaşları usulca çatılırken diğer adam konuşmaya başladı. "Maskeli balodan mı fırladınız amına koyayım? Bu ne lan!" Bunları ikimizin üzerinde olan kıyafetlerden dolayı söylediğini anlamıştım.
+</p>
+
+<p class="paragraph">
+Öfkeyle konuşmasının ardından bana doğru ilerlemeye başladı. Yanıma ulaşıp yüzüme doğru bir yumruk savurdu fakat başımı son anda yana çekmemle ıskaladı. Boks veya dövüş bilgim pek yoktu. Ama düşmanımın zayıflıkları benim avantajlarım olabileceğinden azıcık öğrenmiştim.
+</p>
+
+<p class="paragraph">
+Fakat ben dövüş yerine dans ederek düşmanımı alt ederdim. Şu an aynen onu yapacaktım. Dudaklarımdan Danella Sandoval'ın Tuesday şarkısı mırıldanarak dökülmeye başladı.
+</p>
+
+<p class="paragraph">
+Demir sopayı kaldırdığım gibi adamın karnına indirdim. Adam acıyla inleyerek geriye sarsak adımlarla gittiğinde demir sopayı iki elimle alıp yukarı kaldırdım. Bedenimi kıvırırken başımı sola doğru savurunca sarı saçlarım da yoğunlukla sol tarafa toplandı. Bacağımı bale yapıyormuşçasına yukarı kaldırıp arkama sertçe çarptım. Böylelikle arkamdan beni etkisiz hâle getirmeyi planlayan adamın planını suya düşürmüş oldum.
+</p>
+
+<p class="paragraph">
+İlgim arkadaki adamda olduğundan karnıma yediğim yumruğu yeni fark ettim. Onu idrak edip toparlamama izin bile vermeden ikinci yumruğu yüzüme savurmak gibi bir hata yaptı. Başımı yana çekerek yanağıma atmasını engelledim. Ama o yumruk kulağıma sert bir darbe olarak ulaştı bana. Kulağım uğuldarken elimde sıkıca tuttuğum demir sopayı kaldırıp yüzüne indirdim.
+</p>
+
+<p class="paragraph">
+Acıyla inlediğinde yüz kaslarının gerildiğini gördüm. Yüzünde indirdiğim sopanın şimdiden kızarmış dokuyu görebiliyordum. "Kaltak!" diye kanlı tükürükleriyle bağırdığında yüzümü buruşturdum. İğrenç görünüyordu.
+</p>
+
+<p class="paragraph">
+Söylediğim şarkıya devam ederek adamın yüzüne bir tane de sert bir tekme indirip onu yarı baygın hâle getirdim. Şimdilik ayağıma bağ olmayacaktı. Diğer adama baktığımda elindeki silahın mermisini yeniliyordu. Hızlı bir atakta bulunarak ona ilerledim.
+</p>
+
+<p class="paragraph">
+Adamın elindeki silahı almak için etrafımda dönmeye başladım. Bale yaparcasına hızla onun etrafında dolandım. Bu hareketim onun başını döndürmüştü. Etrafımda dönmeye devam ederken çevik hareketlerle elindeki silahı ondan alıp ikimize uzak bir yere fırlattım.
+</p>
+
+<p class="paragraph">
+Silahı fırlattıktan sonra durdum. Dengemi düzene sokmak için on-on beş saniye hareketsiz durmaya çalıştım. Ama alçak adam bunu fırsat bilerek elimdeki demir sopayı alarak beni rutubetli duvara sertçe çarpıp elindeki demir sopayı göğsüme doğrulttu.
+</p>
+
+<p class="paragraph">
+Demir sopayla elbisemin açıkta bıraktığı dekolteme bastırdığından demirin soğuğunu iliklerime kadar hissediyordum. Karşımda nefeslenirken baş dönmesinin bitmesini bekliyordu.
+</p>
+
+<p class="paragraph">
+Nihayetinde kendini toparladığında "Küçücük bir şey için şekilden şekle girdik iki adam." dedi. Bunu kendine söylemişti.
+</p>
+
+<p class="paragraph">
+"Yanlış düşünüyorsun." diye ona cevap verdiğimde tek kaşını kaldırdı. Söyleyeceğime devam ettim. "Kelebekler de küçüktür, ama onu yakalayabilmek için şekilden şekle girersin."
+</p>
+
+<p class="paragraph">
+Ölümcül bakışları bana döndüğünde konuşmaya başladı. "Birazdan ölecek olan birine göre çok konuşmuyor musun sence?"
+</p>
+
+<p class="paragraph">
+"Sen de kendinden çok emin gibi konuşuyorsun sanıyorsun sanki?" Ayağım dizinin arkasına dolanıp diz katlanma yerine sert bir baskı uygulayıp onun önümde diz çökmesini sağladı. Ayaklarımı saran zarif balerin ayakkabımın sivri ucunu onun bacağına sertçe bastırarak acıyla bağırmasını sağladım.
+</p>
+
+<p class="paragraph">
+Yere düşen demir sopama tekrar kavuştuğumda az önce bana yaptığı gibi göğsüne doğrulttum sopayı. "Ne diyorduk?" dedim. Biraz düşünür gibi yapıp yüzü acıyla kasılan adama döndü gözlerim. "Küçük şeyleri küçümsememeyi öğrenirsin sanırım bundan sonra."
+</p>
+
+<p class="paragraph">
+Sopayla nabzının oraya vurduğumda kısa süreliğine bayılttım onu da. Biz buradan çıktıktan sonra ölmeden çıkabilsinler diye. Demir sopa hâlâ elimdeyken yerde bana baygın numarası yapan baş düşmanıma doğru ilerledim. Egosunu dindirmenin yolunu ne zaman bulacaktım?
+</p>
+
+<p class="paragraph">
+Adamları yere serdiğimde yerde baygın numarası yapan Arel'e döndüm. Fark etmediğimi mi sanıyordu? Gözleri hafifçe aralıklıydı. Beni oradan izliyordu. Elimdeki demir sopayı çenesinin altına getirip "Uyan lan!" diye bağırdım çenesine sürterek.
+</p>
+
+<p class="paragraph">
+Gözlerini yavaşça açarak bana baktı. Yüzündeki kanlar iyi dayak yediğini gösteriyordu. Kaşlarını hafifçe çatıp "Cehenneme mi gidiyorum lan ben?" Kendi kendine konuşup bana döndü. Beni görünce cin çarpmış gibi gözleri büyüdü. "Hassiktir! Bu da Azrail! Lan bir de bizim aptal balerinin kılığına girmiş. Kanlı kanlı..."
+</p>
+
+<p class="paragraph">
+Yutkunarak bana baktığında "Azrail Lavinia balerini?" diye garip bir cümle kurdu. Yüzüm istemsizce buruştuğunda ona bir oyun oynama isteğiyle tutuştum. Sopa hâlâ çenesinin altındayken "Hı?" diye karşılık verdim ona.
+</p>
+
+<p class="paragraph">
+Sesimi duyduğunda bembeyaz yüzü hâlâ dikkat çekiyordu. Ama benim sesimle yüzünde rahatlama ifadesi oluştu. "Lavina?" Sesi heyecanla çıktığında benim yüzümü izledi. Başını hafifçe sola eğerek hiç beklemediğim bir soru yöneltti. "Ölüm meleğini öpersek çarpılır mıyız?" Sesi mayışmış bir tonda çıkınca gözlerini kırpıştırarak baktı bana. Dudağının köşesi kıvrılmış bir hâlde, sorusuna cevap bekliyordu.
+</p>
+
+<p class="paragraph">
+Çenemi dikleştirip kaşlarımı çattım. "Ne biçim konuşuyorsun sen bir ölüm meleğiyle?"
+</p>
+
+<p class="paragraph">
+"Yaklaş bi'," dedi. Tereddüt dolu bakışlarım ondaydı. Ne yapmak istiyordu? Sopa hâlâ elimdeyken çenesinin altından çıkarmadım. "Ne?"
+</p>
+
+<p class="paragraph">
+"Lavinia?" diye fısıldadı soru sorar gibi.
+</p>
+
+<p class="paragraph">
+"Arel?" Onun kullandığı tonlamayla ben de ona soru sorar gibi adını fısıldadım.
+</p>
+
+<p class="paragraph">
+"Lavinia?" Bu yaptığına devam ederken ben de devam ettim aynı şekilde.
+</p>
+
+<p class="paragraph">
+"Arel?"
+</p>
+
+<p class="paragraph">
+"Lavinia?"
+</p>
+
+<p class="paragraph">
+"Arel?!" Bıkkın bir şekilde ona cevap verdiğimde sabrımın sınırlarındaydım. "Lavin-" diyecekken çenesinin altındaki demir sopayı yukarı kaldırıp susmasını sağladım. Yüzümü ona yaklaştırıp dudaklarımı araladım. "Kalk lan! Salak numarası yapıyor hâlâ!"
+</p>
+
+<p class="paragraph">
+Ayaklanıp onun kalkmasını bekledim. Hayvan herif, manipüle etmeye çalışıyordu beni.
+</p>
+
+<p class="paragraph">
+"Kim yapıyor onu?" Hiçbir şey bilmiyormuş gibi masumca bana baktı.
+</p>
+
+<p class="paragraph">
+"Kim diyen! Bir de o salak iki erkeklik taslayıp üç tane cüsseli adamın arasına dalarsa tabii belasını sikerler!" Ağzımdan çıkan sözcüklerin ne anlama geldiğini bilmiyordum. Değişik bir içgüdüyle dudağımdan çıkıyordu. Garip bir şekilde anlayabiliyorduk birbirimizi.
+</p>
+
+<p class="paragraph">
+Şaşkınlıkla bana baktı. "Ne biçim konuşuyorsun sen?" Konuyu değiştirmeye çabasına girmeye başlamışken hemen durdurdum onu. "Sana ne? Kalk demedim mi ben sana? Hadi! İşimiz var! Hadi, hadi..."
+</p>
+
+<p class="paragraph">
+"Ne işimiz var?" dedi doğrulurken.
+</p>
+
+<p class="paragraph">
+"Çocuklar için buradayız ya hani," Ona işimizi hatırlatırken o yerden sırtını ayırıp ayaklanmaya başladı. "Doğru, bir de onlar da vardı değil mi?"
+</p>
+
+<p class="paragraph">
+O kalkmadan durdurdum onu. Ellerim omuzlarını tutarak engellediğinde "Evet," dedikten sonra elbisemi ona gösterip "Ayrıca, senin yüzünden bu hâle gelen elbisemin yenisini almazsan buraya yeni birinin kanı da eklenecek."
+</p>
+
+<p class="paragraph">
+Beyaz balerin elbisemin üzerindeki kanlara göz gezdirip bana cevap verdi. "Tamam, hallederim birazdan."
+</p>
+
+<p class="paragraph">
+Dudağımın köşesinin kıvrıldığını görünce ona istediğimi yaptırmanın zaferini yaşıyordum. Gülüşüme karşılık sinirlendi. "Gülme."
+</p>
+
+<p class="paragraph">
+Gülüşüm hâlâ yüzümdeyken "Sus," dedim keyifle. Onun yüzünden bana herhangi bir şey olabilirdi. Beraber bulunduğumuz odanın içinden geçen bir diğer odanın kapısını açtım hızla. Arel'e söylemediğim detay vardı. Her an patlayabilecek olan depo.
+</p>
+
+<p class="paragraph">
+Kapının önündeyken onları sandalyeye bağlayan iplerden yeni çıkmayı başarmış ikizleri gördüğümüzde donup kalmıştık. Onlar da öyle. Kız çocuğu dudaklarını aralayarak "Siz... Siz ne yapıyorsunuz burada? Anne!" diye çığlık attı.
+</p>
+
+<p class="paragraph">
+Korkudan ağlamaya başlayınca aceleyle ona doğru yürüdüm. "Defne?" Onun Defne olduğunu anlamak için Defne ismini seslendiğimde yüzü değişik bir şekle girdi. Bu hareketimle daha da ağlayarak Efe'ye döndü. "Efe, bir şey de! Bu kadın benim adımı nereden biliyor?!"
+</p>
+
+<p class="paragraph">
+Adımlarım durunca Efe bana bakakaldı. "Kimsiniz siz?" Cesareti takdir edilecek boyuttaydı. Zira ben onların yerinde olsam Defne'nin verdiği tepkinin on katını verirdim muhtemelen.
+</p>
+
+<p class="paragraph">
+"Biz..." Efe'ye açıklama yapacakken duraksamayla bana dönüp kısık sesle "Biz kimiz harbiden?" dedi bana.
+</p>
+
+<p class="paragraph">
+Bana söylediğiyle donakaldım. Ben nereden bilecektim? "Ne bileyim ben?! Elçiler sana bir şey söylemedi mi?" Kısık sesle söylediklerimle omzunu kaldırıp indirdi.
+</p>
+
+<p class="paragraph">
+"Yok ama bunların anne ve babası ölmüş herhalde. Bizi de onun için gönderdiler büyük ihtimalle."
+</p>
+
+<p class="paragraph">
+Kafa karışıklığıyla ona baktım. "Niye? Biz iyilik meleği miyiz? Yani... Benden olur da senden pek ümitli değilim açıkçası."
+</p>
+
+<p class="paragraph">
+"Sen kurban ol bana," dedi kendini beğenmiş edayla.
+</p>
+
+<p class="paragraph">
+"Son korban ol bono." diye onu taklit edip ters bakışlarımı ondan çektim. Gülümseyerek karşımızda titreyen çocuklara döndüm. Onları korkutmamalıydım. "Bizi anne ve babanız gönderdi."
+</p>
+
+<p class="paragraph">
+Dediğimle "Yalan söylemeyin!" diye bağırarak bize karşılık verdiklerinde irkildim.
+</p>
+
+<p class="paragraph emphasis">
+İşimiz çok zordu, değil mi?
+</p>
+
+</div>
+</section>
+</main>
+
+<script>
+document.querySelectorAll('.paragraph').forEach((paragraph, index) => {
+  const button = document.createElement('button');
+  button.className = 'comment-button';
+  button.type = 'button';
+  button.setAttribute('aria-label', 'Paragrafa yorum yap');
+  button.innerHTML = '•••';
+
+  const box = document.createElement('div');
+  box.className = 'comment-box';
+  box.innerHTML = `
+    <textarea placeholder="Bu paragraf hakkında yorumunu yaz..."></textarea>
+    <button type="button">Yorum ekle</button>
+    <div class="comment-list"></div>
+  `;
+
+  button.addEventListener('click', () => {
+    box.classList.toggle('open');
+  });
+
+  box.querySelector('button').addEventListener('click', () => {
+    const textarea = box.querySelector('textarea');
+    const value = textarea.value.trim();
+
+    if (!value) return;
+
+    const comment = document.createElement('p');
+    comment.textContent = value;
+    box.querySelector('.comment-list').appendChild(comment);
+    textarea.value = '';
+  });
+
+  paragraph.appendChild(button);
+  paragraph.after(box);
+});
+</script>
+
+</body>
+</html>
