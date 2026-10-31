@@ -486,4 +486,419 @@ main{padding:28px 0 60px}
     </section>
   </main>
         </div>
-        
+        <script>
+/* Supabase bağlantısı */
+const SUPABASE_URL =  "https://fehafqjajlkpwpmsfawz.supabase.co";
+const SUPABASE_ANON_KEY = "BURAYA_SUPABASE_ANON_KEY";
+let db = null;
+
+if (SUPABASE_ANON_KEY !== "sb_publishable_DxPVeds0soH_Pakw58B5Hg_Ru-HQHob") {
+  db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+}
+
+/* Kitap verileri */
+const books = [
+  {
+    title: "Ringteki Son Dans",
+    cover: "file_00000000375c81f4b311415188148be7.png",
+    link: "ringteki-son-dans.html",
+    author: "KESMİSLALİH"
+  }
+];
+
+/* Karakterler */
+const characters = [
+  {
+    name: "Lavinia",
+    image: "a90393fd3d48a69ffbec30ef8ba04749 (1).jpg"
+  },
+  {
+    name: "Arel",
+    image: "41723ea72a5db4f82fe52815d61e341a.jpg"
+  },
+  {
+    name: "Defne Yalçın",
+    image: "066f212a61b08c53d9eb10ef7647a0f3.jpg"
+  },
+  {
+    name: "Efe Yalçın",
+    image: "0b873940e46b8abc779347119a1998e0.jpg"
+  },
+  {
+    name: "Seren Yalçın",
+    image: "5ea49c0b074bc3d33b1516a381a7e689.jpg"
+  },
+  {
+    name: "Cihangir Yalçın",
+    image: "723a5f267d9ced55d8babbb5f9539a07.jpg"
+  }
+];
+
+/* Galeri görselleri */
+const galleryImages = [
+  "520b988f63b52ae66a0127a457e5e7d0.jpg",
+  "45041afda2229d508a38cc012aaa7174.jpg",
+  "0f8b7991dde0f22ff23fb81e0fc16649.jpg",
+  "0668f965d8247c1756f1be2f3ee5e1be.jpg",
+  "025e7f39ec9bd3227fa182d2f735d65c.jpg",
+  "6b0bac9092b0bc230917f062c52e84ad.jpg",
+  "9be113dce8dd12d87ae4f2bf8cf5293e (1).jpg",
+  "bd00784591329cdde6e7804525bb3951.jpg"
+];
+
+/* Sayfa sekmeleri */
+function showTab(tabId) {
+  document.querySelectorAll(".tab").forEach(button => {
+    button.classList.toggle("active", button.dataset.tab === tabId);
+  });
+
+  document.querySelectorAll(".panel").forEach(panel => {
+    panel.classList.toggle("active", panel.id === tabId);
+  });
+
+  closeMenu();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+document.querySelectorAll(".tab").forEach(button => {
+  button.addEventListener("click", () => showTab(button.dataset.tab));
+});
+
+/* Menü */
+const menuOverlay = document.getElementById("menuOverlay");
+const menuBtn = document.getElementById("menuBtn");
+
+function openMenu() {
+  menuOverlay.classList.add("open");
+  menuBtn.setAttribute("aria-expanded", "true");
+}
+
+function closeMenu() {
+  menuOverlay.classList.remove("open");
+  menuBtn.setAttribute("aria-expanded", "false");
+}
+
+menuBtn.addEventListener("click", openMenu);
+document.getElementById("menuClose").addEventListener("click", closeMenu);
+
+menuOverlay.addEventListener("click", event => {
+  if (event.target === menuOverlay) closeMenu();
+});
+
+document.querySelectorAll("[data-go]").forEach(button => {
+  button.addEventListener("click", () => showTab(button.dataset.go));
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    closeMenu();
+    closeProfileModal();
+  }
+});
+
+/* Tema */
+const themeBtn = document.getElementById("themeBtn");
+const savedTheme = localStorage.getItem("siteTheme");
+
+if (savedTheme === "light") document.body.classList.add("light");
+
+function updateThemeButton() {
+  themeBtn.textContent = document.body.classList.contains("light") ? "☾" : "☼";
+}
+
+updateThemeButton();
+
+themeBtn.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+  localStorage.setItem(
+    "siteTheme",
+    document.body.classList.contains("light") ? "light" : "dark"
+  );
+  updateThemeButton();
+});
+
+/* Giriş ekranı */
+document.getElementById("enterBtn").addEventListener("click", () => {
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("site").style.display = "block";
+});
+
+/* Kitap kartlarını oluştur */
+const booksGrid = document.getElementById("booksGrid");
+
+books.forEach(book => {
+  const card = document.createElement("article");
+  card.className = "book-card";
+  card.innerHTML = `
+    <a href="${book.link}">
+      <img class="book-cover" src="${book.cover}" alt="${book.title}">
+    </a>
+    <div class="book-meta">
+      <h3 class="book-name">${book.title}</h3>
+      <div class="book-author">${book.author}</div>
+      <a class="book-link" href="${book.link}">KİTABI İNCELE →</a>
+    </div>
+  `;
+  booksGrid.appendChild(card);
+});
+
+/* Karakter kitabı seçimi */
+const characterBooks = document.getElementById("characterBooks");
+const characterList = document.getElementById("characterList");
+const characterGrid = document.getElementById("characterGrid");
+
+const characterBookCard = document.createElement("button");
+characterBookCard.className = "character-book";
+characterBookCard.style.cssText =
+  "border:0;background:none;color:var(--text);padding:0;text-align:left";
+characterBookCard.innerHTML = `
+  <img src="file_00000000375c81f4b311415188148be7.png" alt="Ringteki Son Dans">
+  <div class="book-meta">
+    <h3 class="book-name">Ringteki Son Dans</h3>
+    <span class="book-link">KARAKTERLERİ GÖR →</span>
+  </div>
+`;
+characterBooks.appendChild(characterBookCard);
+
+characterBookCard.addEventListener("click", () => {
+  characterBooks.style.display = "none";
+  characterList.classList.add("open");
+  document.getElementById("characterBookTitle").textContent = "Ringteki Son Dans";
+});
+
+document.getElementById("backToBooks").addEventListener("click", () => {
+  characterList.classList.remove("open");
+  characterBooks.style.display = "grid";
+  document.getElementById("characterDetail").classList.remove("open");
+});
+
+characters.forEach((character, index) => {
+  const card = document.createElement("button");
+  card.className = "character-card";
+  card.innerHTML = `
+    <img src="${character.image}" alt="${character.name}">
+    <h3>${character.name}</h3>
+    <span class="small-label">KARAKTERİ İNCELE</span>
+  `;
+
+  card.addEventListener("click", () => {
+    const detail = document.getElementById("characterDetail");
+    detail.classList.add("open");
+    detail.innerHTML = `
+      <img src="${character.image}" alt="${character.name}">
+      <h2>${character.name}</h2>
+      <p>Karakter bilgileri yakında.</p>
+    `;
+    detail.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  characterGrid.appendChild(card);
+});
+
+/* Galeri */
+const galleryGrid = document.getElementById("galleryGrid");
+
+galleryImages.forEach((src, index) => {
+  const image = document.createElement("img");
+  image.src = src;
+  image.alt = `Galeri görseli ${index + 1}`;
+  image.loading = "lazy";
+  galleryGrid.appendChild(image);
+});
+
+/* Okur profili */
+const profileModal = document.getElementById("profileModal");
+const readerNameInput = document.getElementById("readerName");
+const profilePreviewName = document.getElementById("profilePreviewName");
+
+function openProfileModal() {
+  const profile = JSON.parse(localStorage.getItem("readerProfile") || "{}");
+  readerNameInput.value = profile.name || "";
+  profilePreviewName.textContent = profile.name || "Lal Gezegeni Sakini";
+  profileModal.classList.add("open");
+}
+
+function closeProfileModal() {
+  profileModal.classList.remove("open");
+}
+
+document.getElementById("menuProfile").addEventListener("click", () => {
+  closeMenu();
+  openProfileModal();
+});
+
+document.getElementById("profileModalClose").addEventListener("click", closeProfileModal);
+document.getElementById("profileCancel").addEventListener("click", closeProfileModal);
+
+readerNameInput.addEventListener("input", () => {
+  profilePreviewName.textContent = readerNameInput.value.trim() || "Lal Gezegeni Sakini";
+});
+
+document.getElementById("profileForm").addEventListener("submit", event => {
+  event.preventDefault();
+  const name = readerNameInput.value.trim();
+  if (!name) return;
+
+  localStorage.setItem("readerProfile", JSON.stringify({ name }));
+  document.getElementById("postName").value = name;
+  closeProfileModal();
+});
+
+/* Pano */
+const writeBtn = document.getElementById("writeBtn");
+const writeForm = document.getElementById("writeForm");
+const postList = document.getElementById("postList");
+const wallStatus = document.getElementById("wallStatus");
+
+writeBtn.addEventListener("click", () => {
+  const profile = JSON.parse(localStorage.getItem("readerProfile") || "{}");
+  if (profile.name) document.getElementById("postName").value = profile.name;
+  writeForm.classList.toggle("open");
+});
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[char]);
+}
+
+function formatDate(value) {
+  return new Date(value).toLocaleDateString("tr-TR", {
+    day: "numeric", month: "short", year: "numeric"
+  });
+}
+
+async function loadPosts() {
+  if (!db) {
+    wallStatus.textContent =
+      "Pano'yu ortak kullanıma açmak için Supabase anon anahtarını eklemelisin.";
+    postList.innerHTML = "";
+    return;
+  }
+
+  wallStatus.textContent = "Paylaşımlar yükleniyor...";
+
+  const { data, error } = await db
+    .from("wall_posts")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    wallStatus.textContent = "Pano yüklenemedi. Supabase tablo ve erişim politikalarını kontrol et.";
+    return;
+  }
+
+  wallStatus.textContent = "";
+  postList.innerHTML = "";
+
+  for (const post of data || []) {
+    const postElement = document.createElement("article");
+    postElement.className = "post";
+    postElement.innerHTML = `
+      <div class="post-head">
+        <img class="post-avatar" src="d08eae9afcf72d4a213a3d988ecf5935.jpg" alt="">
+        <div>
+          <div class="post-author">${escapeHTML(post.name || "Lal Gezegeni Sakini")}</div>
+          <div class="post-date">${formatDate(post.created_at)}</div>
+        </div>
+      </div>
+      <div class="post-text">${escapeHTML(post.text || "")}</div>
+      <div class="post-actions">
+        <button class="text-btn comment-toggle">YORUM YAZ</button>
+      </div>
+      <div class="comment-area">
+        <input class="comment-input" maxlength="500" placeholder="Yorumun...">
+        <button class="submit-btn comment-submit">GÖNDER</button>
+        <div class="comments"></div>
+      </div>
+    `;
+
+    const commentArea = postElement.querySelector(".comment-area");
+    postElement.querySelector(".comment-toggle").addEventListener("click", () => {
+      commentArea.classList.toggle("open");
+    });
+
+    postElement.querySelector(".comment-submit").addEventListener("click", async () => {
+      const input = postElement.querySelector(".comment-input");
+      const text = input.value.trim();
+      const profile = JSON.parse(localStorage.getItem("readerProfile") || "{}");
+      const name = profile.name || post.name || "Lal Gezegeni Sakini";
+
+      if (!text) return;
+
+      const { error } = await db.from("wall_comments").insert({
+        post_id: post.id,
+        name,
+        text
+      });
+
+      if (error) {
+        alert("Yorum gönderilemedi. Supabase izinlerini kontrol et.");
+        return;
+      }
+
+      input.value = "";
+      await loadComments(post.id, postElement.querySelector(".comments"));
+    });
+
+    postList.appendChild(postElement);
+    await loadComments(post.id, postElement.querySelector(".comments"));
+  }
+}
+
+async function loadComments(postId, target) {
+  if (!db) return;
+
+  const { data, error } = await db
+    .from("wall_comments")
+    .select("*")
+    .eq("post_id", postId)
+    .order("created_at", { ascending: true });
+
+  if (error) return;
+
+  target.innerHTML = "";
+  (data || []).forEach(comment => {
+    const element = document.createElement("div");
+    element.className = "comment";
+    element.innerHTML = `
+      <strong>${escapeHTML(comment.name || "Okur")}:</strong>
+      ${escapeHTML(comment.text || "")}
+    `;
+    target.appendChild(element);
+  });
+}
+
+writeForm.addEventListener("submit", async event => {
+  event.preventDefault();
+
+  if (!db) {
+    wallStatus.textContent = "Önce Supabase anon anahtarını eklemelisin.";
+    return;
+  }
+
+  const name = document.getElementById("postName").value.trim();
+  const text = document.getElementById("postText").value.trim();
+
+  if (!name || !text) return;
+
+  const { error } = await db.from("wall_posts").insert({ name, text });
+
+  if (error) {
+    wallStatus.textContent = "Paylaşım gönderilemedi. Supabase izinlerini kontrol et.";
+    return;
+  }
+
+  document.getElementById("postText").value = "";
+  writeForm.classList.remove("open");
+  await loadPosts();
+});
+
+loadPosts();
+        </script>
+  </body>
+</html>
