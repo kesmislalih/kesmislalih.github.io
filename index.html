@@ -78,20 +78,16 @@ img,video{display:block;max-width:100%}
   font:11px Arial,sans-serif;letter-spacing:1.5px
 }
 
-/* Giriş ekranı — 4:3 video */
+/* Giriş ekranı */
 #intro{
   position:fixed;inset:0;z-index:100;
   display:grid;place-items:center;
   background:#050505;overflow:hidden
 }
 .intro-frame{
-  position:absolute;
-  width:min(92vw,900px);
-  aspect-ratio:4 / 3;
-  height:auto;
-  max-height:78vh;
-  overflow:hidden;
-  background:#100d0e
+  position:absolute;width:min(92vw,900px);
+  aspect-ratio:4 / 3;height:auto;max-height:78vh;
+  overflow:hidden;background:#100d0e
 }
 .intro-video{
   width:100%;height:100%;object-fit:cover;opacity:.66
@@ -119,6 +115,7 @@ img,video{display:block;max-width:100%}
 
 /* Profil alanı */
 #site{display:none}
+#site.open{display:block}
 .site-header{position:relative}
 .top-actions{
   position:absolute;right:15px;top:15px;z-index:8;
@@ -197,8 +194,7 @@ img,video{display:block;max-width:100%}
 .menu-bottom{display:grid;gap:10px}
 .menu-bottom .primary-btn{width:100%;text-align:center}
 .menu-note{color:var(--muted);font-size:14px;line-height:1.5;margin-top:20px}
-
-/* Sekmeler */
+  /* Sekmeler */
 .tabs{
   display:flex;justify-content:center;position:sticky;top:0;z-index:5;
   background:var(--bg);border-bottom:1px solid var(--line);
@@ -307,24 +303,16 @@ main{padding:28px 0 60px}
 
 /* Profil fotoğrafı seçenekleri */
 .avatar-options{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin:14px 0
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:12px;margin:14px 0
 }
 .avatar-choice{
-  padding:3px;
-  border:1px solid var(--line);
-  background:var(--card);
-  border-radius:50%;
-  aspect-ratio:1;
-  overflow:hidden
+  padding:3px;border:1px solid var(--line);
+  background:var(--card);border-radius:50%;
+  aspect-ratio:1;overflow:hidden
 }
 .avatar-choice img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:50%
+  width:100%;height:100%;object-fit:cover;border-radius:50%
 }
 .avatar-choice.selected{
   border:2px solid var(--accent-soft);
@@ -341,14 +329,12 @@ main{padding:28px 0 60px}
   .tab{padding-inline:9px;font-size:9px;letter-spacing:1px}
   .profile{min-height:270px}
 }
-
-/* KEŞFET butonunun açılma düzeltmesi */
-#site{display:none}
-#site.open{display:block}
 </style>
 </head>
+
 <body>
- <!-- Giriş ekranı -->
+
+<!-- Giriş ekranı -->
 <section id="intro">
   <div class="intro-frame">
     <video class="intro-video" autoplay muted loop playsinline>
@@ -360,7 +346,7 @@ main{padding:28px 0 60px}
   <div class="intro-content">
     <h1 class="intro-logo">kesmislalih</h1>
     <p class="intro-caption">KELİMELERDEN DOĞAN HİKÂYELER</p>
-    <button class="intro-button" id="enterBtn">KEŞFET</button>
+    <button class="intro-button" id="enterBtn" type="button">KEŞFET</button>
   </div>
 </section>
 
@@ -405,8 +391,7 @@ main{padding:28px 0 60px}
       <button class="tab" data-tab="gallery">GALERİ</button>
     </nav>
   </header>
-
-  <!-- Açılır menü -->
+    <!-- Açılır menü -->
   <div class="menu-overlay" id="menuOverlay">
     <aside class="side-menu" aria-label="Site menüsü">
       <div class="menu-header">
@@ -530,37 +515,19 @@ main{padding:28px 0 60px}
       <div class="gallery-grid" id="galleryGrid"></div>
     </section>
   </main>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-  /* =========================
-   SUPABASE AYARLARI
-========================= */
-  const SUPABASE_URL =
-"https://fehafqjajlkpwpmsfawz.supabase.co";
-
-const SUPABASE_ANON_KEY =
-"sb_publishable_DxPVeds0soH_Pakw58B5Hg_Ru-HQHob";
+  <script>
+/* SUPABASE AYARLARI */
+const SUPABASE_URL = "https://fehafqjajlkpwpmsfawz.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_DxPVeds0soH_Pakw58B5Hg_Ru-HQHob";
 
 let db = null;
 
-if (
-  SUPABASE_ANON_KEY &&
-  SUPABASE_ANON_KEY !== "sb_publishable_DxPVeds0soH_Pakw58B5Hg_Ru-HQHob"
-) {
-  db = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-  );
+if (window.supabase && SUPABASE_ANON_KEY) {
+  db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 }
 
-/* =========================
-   SABİT BİLGİLER
-========================= */
-
-const AUTHOR_AVATAR =
-"d08eae9afcf72d4a213a3d988ecf5935.jpg";
+/* SABİT BİLGİLER */
+const AUTHOR_AVATAR = "d08eae9afcf72d4a213a3d988ecf5935.jpg";
 
 const BOOKS = [
   {
@@ -571,30 +538,12 @@ const BOOKS = [
 ];
 
 const CHARACTERS = [
-  {
-    name: "Lavinia",
-    image: "a90393fd3d48a69ffbec30ef8ba04749 (1).jpg"
-  },
-  {
-    name: "Arel",
-    image: "41723ea72a5db4f82fe52815d61e341a.jpg"
-  },
-  {
-    name: "Defne Yalçın",
-    image: "066f212a61b08c53d9eb10ef7647a0f3.jpg"
-  },
-  {
-    name: "Efe Yalçın",
-    image: "0b873940e46b8abc779347119a1998e0.jpg"
-  },
-  {
-    name: "Seren Yalçın",
-    image: "5ea49c0b074bc3d33b1516a381a7e689.jpg"
-  },
-  {
-    name: "Cihangir Yalçın",
-    image: "723a5f267d9ced55d8babbb5f9539a07.jpg"
-  }
+  {name:"Lavinia",image:"a90393fd3d48a69ffbec30ef8ba04749 (1).jpg"},
+  {name:"Arel",image:"41723ea72a5db4f82fe52815d61e341a.jpg"},
+  {name:"Defne Yalçın",image:"066f212a61b08c53d9eb10ef7647a0f3.jpg"},
+  {name:"Efe Yalçın",image:"0b873940e46b8abc779347119a1998e0.jpg"},
+  {name:"Seren Yalçın",image:"5ea49c0b074bc3d33b1516a381a7e689.jpg"},
+  {name:"Cihangir Yalçın",image:"723a5f267d9ced55d8babbb5f9539a07.jpg"}
 ];
 
 const GALLERY = [
@@ -608,130 +557,67 @@ const GALLERY = [
   "bd00784591329cdde6e7804525bb3951.jpg"
 ];
 
-/* =========================
-   OKUYUCU PROFİLİ
-========================= */
-
-/*
-  Bu dosya adlarını kendi yükleyeceğin
-  profil fotoğraflarıyla değiştirebilirsin.
-
-  Fotoğrafları GitHub deposunun ana
-  klasörüne yüklemen gerekiyor.
-*/
-
 const AVATAR_IMAGES = [
-  "profil-1.jpg",
-  "profil-2.jpg",
-  "profil-3.jpg",
-  "profil-4.jpg",
-  "profil-5.jpg",
-  "profil-6.jpg",
-  "profil-7.jpg",
-  "profil-8.jpg"
+  "profil-1.jpg","profil-2.jpg","profil-3.jpg","profil-4.jpg",
+  "profil-5.jpg","profil-6.jpg","profil-7.jpg","profil-8.jpg"
 ];
 
+/* OKUYUCU PROFİLİ */
 function getReaderProfile() {
   try {
-    return JSON.parse(
-      localStorage.getItem("lalReaderProfile")
-    ) || {
-      name: "",
-      avatar: AUTHOR_AVATAR
+    return JSON.parse(localStorage.getItem("lalReaderProfile")) || {
+      name:"",
+      avatar:AUTHOR_AVATAR
     };
   } catch {
-    return {
-      name: "",
-      avatar: AUTHOR_AVATAR
-    };
+    return {name:"",avatar:AUTHOR_AVATAR};
   }
 }
 
-function saveReaderProfile(name, avatar) {
-  const profile = {
-    name: name.trim(),
-    avatar: avatar
-  };
-
-  localStorage.setItem(
-    "lalReaderProfile",
-    JSON.stringify(profile)
-  );
-
+function saveReaderProfile(name,avatar) {
+  localStorage.setItem("lalReaderProfile",JSON.stringify({
+    name:name.trim(),avatar:avatar
+  }));
   updateProfileDisplay();
 }
 
 function updateProfileDisplay() {
   const profile = getReaderProfile();
+  const nameElement = document.getElementById("profileDisplayName");
+  const imageElement = document.getElementById("profileDisplayImage");
 
-  const nameElement =
-    document.getElementById("profileDisplayName");
-
-  const imageElement =
-    document.getElementById("profileDisplayImage");
-
-  if (nameElement) {
-    nameElement.textContent =
-      profile.name || "Okuyucu";
-  }
-
-  if (imageElement) {
-    imageElement.src =
-      profile.avatar || AUTHOR_AVATAR;
-  }
+  if(nameElement) nameElement.textContent = profile.name || "Okuyucu";
+  if(imageElement) imageElement.src = profile.avatar || AUTHOR_AVATAR;
 }
 
-/* =========================
-   PROFİL FOTOĞRAFI SEÇİMİ
-========================= */
-
+/* PROFİL FOTOĞRAFI SEÇİMİ */
 function renderAvatarOptions() {
-  const container =
-    document.getElementById("avatarOptions");
-
-  if (!container) return;
+  const container = document.getElementById("avatarOptions");
+  if(!container) return;
 
   const profile = getReaderProfile();
-
   container.innerHTML = "";
 
-  AVATAR_IMAGES.forEach((image) => {
+  AVATAR_IMAGES.forEach(image => {
     const button = document.createElement("button");
-
     button.type = "button";
     button.className = "avatar-choice";
 
-    if (profile.avatar === image) {
-      button.classList.add("selected");
-    }
+    if(profile.avatar === image) button.classList.add("selected");
 
     const img = document.createElement("img");
     img.src = image;
     img.alt = "Profil fotoğrafı";
-
-    img.onerror = function () {
-      this.src = AUTHOR_AVATAR;
-    };
+    img.onerror = function(){this.src=AUTHOR_AVATAR};
 
     button.appendChild(img);
 
-    button.addEventListener("click", () => {
-      document
-        .querySelectorAll(".avatar-choice")
-        .forEach(item =>
-          item.classList.remove("selected")
-        );
-
+    button.addEventListener("click",()=>{
+      document.querySelectorAll(".avatar-choice").forEach(item=>{
+        item.classList.remove("selected");
+      });
       button.classList.add("selected");
-
-      const preview =
-        document.getElementById("profilePreviewImage");
-
-      if (preview) {
-        preview.src = image;
-      }
-
-      button.dataset.selected = "true";
+      document.getElementById("profilePreviewImage").src = image;
     });
 
     container.appendChild(button);
@@ -739,373 +625,218 @@ function renderAvatarOptions() {
 }
 
 function openProfileModal() {
-  const modal =
-    document.getElementById("profileModal");
-
+  const modal = document.getElementById("profileModal");
   const profile = getReaderProfile();
+  if(!modal) return;
 
-  if (!modal) return;
-
-  const nameInput =
-    document.getElementById("profileNameInput");
-
-  const preview =
-    document.getElementById("profilePreviewImage");
-
-  if (nameInput) {
-    nameInput.value = profile.name;
-  }
-
-  if (preview) {
-    preview.src = profile.avatar || AUTHOR_AVATAR;
-  }
+  document.getElementById("readerName").value = profile.name;
+  document.getElementById("profilePreviewImage").src = profile.avatar || AUTHOR_AVATAR;
+  document.getElementById("profilePreviewName").textContent = profile.name || "Lal Gezegeni Sakini";
 
   renderAvatarOptions();
-
-  modal.classList.add("active");
+  modal.classList.add("open");
 }
 
 function closeProfileModal() {
-  const modal =
-    document.getElementById("profileModal");
-
-  if (modal) {
-    modal.classList.remove("active");
-  }
+  document.getElementById("profileModal")?.classList.remove("open");
 }
 
-function saveProfile() {
-  const nameInput =
-    document.getElementById("profileNameInput");
-
-  const selected =
-    document.querySelector(
-      ".avatar-choice.selected"
-    );
-
-  const name = nameInput
-    ? nameInput.value.trim()
-    : "";
-
-  const current = getReaderProfile();
-
-  const avatar = selected
-    ? selected.querySelector("img").getAttribute("src")
-    : current.avatar;
-
-  if (!name) {
-    alert("Lütfen bir kullanıcı adı belirle.");
-    return;
-  }
-
-  saveReaderProfile(name, avatar);
-  closeProfileModal();
-}
-
-/* =========================
-   TEMA
-========================= */
-
+/* TEMA */
 function toggleTheme() {
   document.body.classList.toggle("light");
-
-  const isLight =
-    document.body.classList.contains("light");
-
   localStorage.setItem(
     "siteTheme",
-    isLight ? "light" : "dark"
+    document.body.classList.contains("light") ? "light" : "dark"
   );
 }
 
 function loadTheme() {
-  const saved =
-    localStorage.getItem("siteTheme");
-
-  if (saved === "light") {
+  if(localStorage.getItem("siteTheme") === "light") {
     document.body.classList.add("light");
   }
 }
 
-/* =========================
-   MENÜ
-========================= */
-
+/* MENÜ */
 function openMenu() {
-  const menu = document.getElementById("sideMenu");
-
-  if (menu) menu.classList.add("active");
+  document.getElementById("menuOverlay")?.classList.add("open");
 }
 
 function closeMenu() {
-  const menu = document.getElementById("sideMenu");
-
-  if (menu) menu.classList.remove("active");
+  document.getElementById("menuOverlay")?.classList.remove("open");
 }
 
-/* =========================
-   SAYFA BÖLÜMLERİ
-========================= */
+/* SEKMELER */
+function showSection(name) {
+  document.querySelectorAll(".panel").forEach(panel=>{
+    panel.classList.toggle("active",panel.id === name);
+  });
 
-function showSection(sectionName) {
-  document
-    .querySelectorAll(".page-section")
-    .forEach(section => {
-      section.classList.remove("active");
-    });
-
-  const selected =
-    document.getElementById(sectionName);
-
-  if (selected) {
-    selected.classList.add("active");
-  }
-
-  document
-    .querySelectorAll("[data-section]")
-    .forEach(button => {
-      button.classList.toggle(
-        "active",
-        button.dataset.section === sectionName
-      );
-    });
+  document.querySelectorAll(".tab").forEach(tab=>{
+    tab.classList.toggle("active",tab.dataset.tab === name);
+  });
 
   closeMenu();
 }
 
-/* =========================
-   KİTAPLAR
-========================= */
-
+/* KİTAPLAR */
 function renderBooks() {
-  const container =
-    document.getElementById("booksContainer");
-
-  if (!container) return;
+  const container = document.getElementById("booksGrid");
+  if(!container) return;
 
   container.innerHTML = "";
 
-  BOOKS.forEach(book => {
+  BOOKS.forEach(book=>{
     const card = document.createElement("a");
-
     card.className = "book-card";
     card.href = book.link;
 
     card.innerHTML = `
-      <img src="${book.image}" alt="${book.title}">
-      <h3>${book.title}</h3>
-      <span>KİTABI İNCELE →</span>
+      <img class="book-cover" src="${book.image}" alt="${book.title}">
+      <div class="book-meta">
+        <h3 class="book-name">${book.title}</h3>
+        <span class="book-author">KESMİSLALİH</span>
+        <span class="book-link">KİTABI İNCELE →</span>
+      </div>
     `;
 
     container.appendChild(card);
   });
 }
 
-/* =========================
-   KARAKTERLER
-========================= */
-
+/* KARAKTERLER */
 function renderCharacters() {
-  const container =
-    document.getElementById("charactersContainer");
-
-  if (!container) return;
+  const container = document.getElementById("characterGrid");
+  if(!container) return;
 
   container.innerHTML = "";
 
-  CHARACTERS.forEach(character => {
+  CHARACTERS.forEach(character=>{
     const card = document.createElement("div");
-
     card.className = "character-card";
-
     card.innerHTML = `
-      <img
-        src="${character.image}"
-        alt="${character.name}"
-      >
+      <img src="${character.image}" alt="${character.name}">
       <h3>${character.name}</h3>
     `;
-
     container.appendChild(card);
   });
 }
 
-/* =========================
-   GALERİ
-========================= */
-
+/* GALERİ */
 function renderGallery() {
-  const container =
-    document.getElementById("galleryContainer");
-
-  if (!container) return;
+  const container = document.getElementById("galleryGrid");
+  if(!container) return;
 
   container.innerHTML = "";
 
-  GALLERY.forEach(image => {
+  GALLERY.forEach(image=>{
     const item = document.createElement("div");
-
-    item.className = "gallery-item";
-
-    item.innerHTML = `
-      <img src="${image}" alt="Galeri görseli">
-    `;
-
+    item.innerHTML = `<img src="${image}" alt="Galeri görseli">`;
     container.appendChild(item);
   });
 }
 
-/* =========================
-   GÜVENLİ METİN
-========================= */
-
+/* GÜVENLİ METİN */
 function escapeHTML(value) {
-  return String(value).replace(
-    /[&<>"']/g,
-    character => ({
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#039;"
-    })[character]
-  );
+  return String(value).replace(/[&<>"']/g,character=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  })[character]);
 }
 
 function formatDate(date) {
-  return new Date(date).toLocaleString("tr-TR", {
-    dateStyle: "short",
-    timeStyle: "short"
+  return new Date(date).toLocaleString("tr-TR",{
+    dateStyle:"short",timeStyle:"short"
   });
 }
 
-/* =========================
-   LAL GEZEGENİ
-========================= */
-
+/* PANO GÖNDERİLERİ */
 async function loadPosts() {
-  const container =
-    document.getElementById("wallPosts");
+  const container = document.getElementById("postList");
+  if(!container) return;
 
-  if (!container) return;
-
-  if (!db) {
-    container.innerHTML =
-      "<p>Topluluk alanını kullanabilmek için Supabase anahtarını eklemelisin.</p>";
+  if(!db) {
+    container.innerHTML = "<p>Topluluk alanı şu anda kullanılamıyor.</p>";
     return;
   }
 
-  const { data, error } = await db
-    .from("wall_posts")
+  const {data,error} = await db.from("wall_posts")
     .select("*")
-    .order("created_at", { ascending: false });
+    .order("created_at",{ascending:false});
 
-  if (error) {
+  if(error) {
     console.error(error);
-
-    container.innerHTML =
-      "<p>Gönderiler yüklenemedi.</p>";
-
+    container.innerHTML = "<p>Gönderiler yüklenemedi.</p>";
     return;
   }
 
   container.innerHTML = "";
 
-  for (const post of data || []) {
+  for(const post of data || []) {
     const card = document.createElement("article");
-
-    card.className = "wall-post";
-
-    const avatar =
-      post.avatar || AUTHOR_AVATAR;
+    card.className = "post";
 
     card.innerHTML = `
-      <div class="post-heading">
-        <img
-          class="post-avatar"
-          src="${escapeHTML(avatar)}"
-          alt=""
-          onerror="this.src='${AUTHOR_AVATAR}'"
-        >
-
+      <div class="post-head">
+        <img class="post-avatar" src="${escapeHTML(post.avatar || AUTHOR_AVATAR)}" alt="">
         <div>
-          <strong>${escapeHTML(post.name)}</strong>
-          <small>${formatDate(post.created_at)}</small>
+          <div class="post-author">${escapeHTML(post.name)}</div>
+          <div class="post-date">${formatDate(post.created_at)}</div>
         </div>
       </div>
-
-      <p>${escapeHTML(post.text)}</p>
-
-      <div class="post-comments" id="comments-${post.id}"></div>
-
-      <form
-        class="comment-form"
-        onsubmit="addComment(event, '${post.id}')"
-      >
-        <input
-          type="text"
-          name="comment"
-          placeholder="Bir yorum yaz..."
-          maxlength="500"
-          required
-        >
-
-        <button type="submit">Gönder</button>
-      </form>
+      <div class="post-text">${escapeHTML(post.text)}</div>
+      <div class="post-actions">
+        <button class="text-btn" type="button">Yorumlar</button>
+      </div>
+      <div class="comment-area">
+        <div class="comments"></div>
+        <form class="comment-form">
+          <input class="comment-input" name="comment" placeholder="Bir yorum yaz..." maxlength="500" required>
+          <button class="submit-btn" type="submit">GÖNDER</button>
+        </form>
+      </div>
     `;
 
     container.appendChild(card);
 
-    loadComments(post.id);
+    const commentArea = card.querySelector(".comment-area");
+    card.querySelector(".text-btn").addEventListener("click",()=>{
+      commentArea.classList.toggle("open");
+    });
+
+    card.querySelector(".comment-form").addEventListener("submit",event=>{
+      addComment(event,post.id,card);
+    });
+
+    loadComments(post.id,card);
   }
 }
-
-/* =========================
-   GÖNDERİ EKLEME
-========================= */
 
 async function addPost(event) {
   event.preventDefault();
 
   const profile = getReaderProfile();
-
-  if (!profile.name) {
+  if(!profile.name) {
     openProfileModal();
     alert("Önce okuyucu profilini oluşturmalısın.");
     return;
   }
 
-  if (!db) {
+  if(!db) {
     alert("Supabase bağlantısı henüz ayarlanmamış.");
     return;
   }
 
-  const input =
-    document.getElementById("wallPostInput");
-
+  const input = document.getElementById("postText");
   const text = input.value.trim();
+  if(!text) return;
 
-  if (!text) return;
+  const {error} = await db.from("wall_posts").insert({
+    name:profile.name,
+    text:text,
+    avatar:profile.avatar
+  });
 
-  let result = await db
-    .from("wall_posts")
-    .insert({
-      name: profile.name,
-      text: text,
-      avatar: profile.avatar
-    });
-
-  if (result.error) {
-    result = await db
-      .from("wall_posts")
-      .insert({
-        name: profile.name,
-        text: text
-      });
-  }
-
-  if (result.error) {
-    console.error(result.error);
+  if(error) {
+    console.error(error);
     alert("Gönderin paylaşılırken bir hata oluştu.");
     return;
   }
@@ -1114,127 +845,152 @@ async function addPost(event) {
   loadPosts();
 }
 
-/* =========================
-   YORUMLARI YÜKLE
-========================= */
+/* YORUMLAR */
+async function loadComments(postId,card) {
+  if(!db) return;
 
-async function loadComments(postId) {
-  if (!db) return;
-
-  const container =
-    document.getElementById(`comments-${postId}`);
-
-  if (!container) return;
-
-  const { data, error } = await db
-    .from("wall_comments")
+  const container = card.querySelector(".comments");
+  const {data,error} = await db.from("wall_comments")
     .select("*")
-    .eq("post_id", postId)
-    .order("created_at", { ascending: true });
+    .eq("post_id",postId)
+    .order("created_at",{ascending:true});
 
-  if (error) {
+  if(error) {
     console.error(error);
     return;
   }
 
   container.innerHTML = "";
 
-  (data || []).forEach(comment => {
+  (data || []).forEach(comment=>{
     const item = document.createElement("div");
-
-    item.className = "wall-comment";
-
-    const avatar =
-      comment.avatar || AUTHOR_AVATAR;
-
+    item.className = "comment";
     item.innerHTML = `
-      <img
-        src="${escapeHTML(avatar)}"
-        alt=""
-        onerror="this.src='${AUTHOR_AVATAR}'"
-      >
-
-      <div>
-        <strong>${escapeHTML(comment.name)}</strong>
-        <p>${escapeHTML(comment.text)}</p>
-      </div>
+      <strong>${escapeHTML(comment.name)}</strong>
+      <p>${escapeHTML(comment.text)}</p>
     `;
-
     container.appendChild(item);
   });
 }
 
-/* =========================
-   YORUM EKLE
-========================= */
-
-async function addComment(event, postId) {
+async function addComment(event,postId,card) {
   event.preventDefault();
 
   const profile = getReaderProfile();
-
-  if (!profile.name) {
+  if(!profile.name) {
     openProfileModal();
     alert("Önce okuyucu profilini oluşturmalısın.");
     return;
   }
 
-  if (!db) {
+  if(!db) {
     alert("Supabase bağlantısı henüz ayarlanmamış.");
     return;
   }
 
-  const form = event.target;
-
-  const input =
-    form.querySelector("input[name='comment']");
-
+  const input = card.querySelector("input[name='comment']");
   const text = input.value.trim();
+  if(!text) return;
 
-  if (!text) return;
+  const {error} = await db.from("wall_comments").insert({
+    post_id:postId,
+    name:profile.name,
+    text:text,
+    avatar:profile.avatar
+  });
 
-  let result = await db
-    .from("wall_comments")
-    .insert({
-      post_id: postId,
-      name: profile.name,
-      text: text,
-      avatar: profile.avatar
-    });
-
-  if (result.error) {
-    result = await db
-      .from("wall_comments")
-      .insert({
-        post_id: postId,
-        name: profile.name,
-        text: text
-      });
-  }
-
-  if (result.error) {
-    console.error(result.error);
+  if(error) {
+    console.error(error);
     alert("Yorum gönderilemedi.");
     return;
   }
 
   input.value = "";
-  loadComments(postId);
+  loadComments(postId,card);
 }
 
-/* =========================
-   İLK AÇILIŞ
-========================= */
-
-document.addEventListener("DOMContentLoaded", () => {
+/* SAYFA AÇILIŞI VE BUTONLAR */
+document.addEventListener("DOMContentLoaded",()=>{
   loadTheme();
   updateProfileDisplay();
   renderBooks();
   renderCharacters();
   renderGallery();
   loadPosts();
+
+  /* KEŞFET BUTONU */
+  const enterBtn = document.getElementById("enterBtn");
+  const intro = document.getElementById("intro");
+  const site = document.getElementById("site");
+
+  if(enterBtn && intro && site) {
+    enterBtn.addEventListener("click",()=>{
+      intro.style.display = "none";
+      site.classList.add("open");
+      window.scrollTo(0,0);
+    });
+  }
+
+  /* TEMA */
+  document.getElementById("themeBtn")?.addEventListener("click",toggleTheme);
+
+  /* MENÜ */
+  document.getElementById("menuBtn")?.addEventListener("click",openMenu);
+  document.getElementById("menuClose")?.addEventListener("click",closeMenu);
+  document.getElementById("menuOverlay")?.addEventListener("click",event=>{
+    if(event.target.id === "menuOverlay") closeMenu();
+  });
+
+  /* MENÜ SEKMELERİ */
+  document.querySelectorAll("[data-go]").forEach(button=>{
+    button.addEventListener("click",()=>{
+      showSection(button.dataset.go);
+    });
+  });
+
+  document.querySelectorAll("[data-tab]").forEach(button=>{
+    button.addEventListener("click",()=>{
+      showSection(button.dataset.tab);
+    });
+  });
+
+  /* PROFİL PENCERESİ */
+  document.getElementById("menuProfile")?.addEventListener("click",()=>{
+    closeMenu();
+    openProfileModal();
+  });
+
+  document.getElementById("profileModalClose")?.addEventListener("click",closeProfileModal);
+  document.getElementById("profileCancel")?.addEventListener("click",closeProfileModal);
+
+  document.getElementById("profileForm")?.addEventListener("submit",event=>{
+    event.preventDefault();
+
+    const name = document.getElementById("readerName").value.trim();
+    const selected = document.querySelector(".avatar-choice.selected");
+    const avatar = selected
+      ? selected.querySelector("img").getAttribute("src")
+      : getReaderProfile().avatar;
+
+    if(!name) {
+      alert("Lütfen bir kullanıcı adı belirle.");
+      return;
+    }
+
+    saveReaderProfile(name,avatar);
+    document.getElementById("profilePreviewName").textContent = name;
+    closeProfileModal();
+  });
+
+  /* PANO */
+  document.getElementById("writeBtn")?.addEventListener("click",()=>{
+    document.getElementById("writeForm")?.classList.toggle("open");
+  });
+
+  document.getElementById("writeForm")?.addEventListener("submit",addPost);
 });
 </script>
+
 </div>
 </body>
 </html>
