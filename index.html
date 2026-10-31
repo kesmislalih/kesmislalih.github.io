@@ -2,324 +2,357 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>kesmislalih</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
-:root{--bg:#09090b;--surface:#141114;--text:#eee7eb;--muted:#b6aab1;--accent:#300000;--border:#35282d}
-body.light{--bg:#f5f1f1;--surface:#fffafa;--text:#241b1f;--muted:#766970;--accent:#620000;--border:#ded3d8}
+:root{
+  --bg:#080808;--panel:#111;--card:#151515;--text:#f2eeee;
+  --muted:#999;--accent:#300000;--line:#292929;--shadow:#30000055;
+}
+body.light{
+  --bg:#f4f1ef;--panel:#fff;--card:#fff;--text:#211d1d;
+  --muted:#777;--accent:#650d18;--line:#ded7d7;--shadow:#650d1820;
+}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font-family:"Cormorant Garamond",serif}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:'Cormorant Garamond',serif;transition:.25s;
+}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
 a{color:inherit;text-decoration:none}
-button{font:inherit;cursor:pointer}
-.intro{position:fixed;inset:0;z-index:1000;background:#050505;display:grid;place-items:center;padding:24px}
-.intro-frame{position:relative;width:min(900px,90vw);height:min(520px,68vh);overflow:hidden;border:1px solid #4a343a}
-.intro video{width:100%;height:100%;object-fit:cover}
-.intro-shade{position:absolute;inset:0;background:rgba(0,0,0,.2)}
-.intro-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.intro-logo{font-family:"Great Vibes",cursive;font-size:clamp(3rem,9vw,6rem);color:white}
-.intro-button{margin-top:18px;padding:11px 26px;background:transparent;color:white;border:1px solid #ddd;letter-spacing:3px}
-.intro.hidden{display:none}
-.site-header{position:absolute;top:18px;right:20px;z-index:30;display:flex;gap:10px}
-.icon-button{width:38px;height:38px;border:1px solid var(--border);border-radius:50%;background:rgba(0,0,0,.25);color:white;font-size:18px}
-.menu{display:none;position:absolute;right:0;top:46px;min-width:170px;padding:12px;background:var(--surface);border:1px solid var(--border)}
-.menu.open{display:grid;gap:12px}
-.menu a{padding:5px}
-.profile{position:relative;min-height:380px;padding:70px 20px 35px;display:grid;place-items:center;overflow:hidden;text-align:center}
-.profile-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.profile-shade{position:absolute;inset:0;background:rgba(0,0,0,.28)}
-.profile-content{position:relative;display:flex;flex-direction:column;align-items:center;gap:12px}
-.avatar{width:110px;height:110px;border-radius:50%;object-fit:cover;border:1px solid #aaa}
-.profile-kicker{font:11px Arial;letter-spacing:3px}
-.profile-name{margin:0;font-size:clamp(2.5rem,7vw,4rem);font-weight:400;letter-spacing:3px}
-.profile-quote{margin:0;color:#eee;font-size:18px;font-style:italic}
-.socials{display:flex;gap:18px;align-items:center;margin-top:8px}
-.socials a{width:25px;height:25px;display:grid;place-items:center;color:white}
-.socials svg{width:23px;height:23px;fill:currentColor}
-.tabs{display:flex;justify-content:center;gap:8px;padding:12px 8px;border-bottom:1px solid var(--border)}
-.tab-button{flex:1;max-width:220px;padding:12px 4px;background:transparent;color:var(--muted);border:0;border-bottom:1px solid transparent;font:12px Arial}
-.tab-button.active{color:var(--text);border-bottom-color:var(--accent)}
-.panel-stage{max-width:1100px;margin:auto;padding:25px 20px 50px}
-.panel{display:none}.panel.active{display:block}
-.section-title{text-align:center;font-size:2.4rem;font-weight:400;margin:0 0 8px}
-.section-subtitle{text-align:center;color:var(--muted);margin:0 0 28px;font-size:1.2rem}
-.books{display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
-.book-card{width:min(100%,240px);text-align:center}
-.book-cover{width:100%;aspect-ratio:2/3;object-fit:cover;border:1px solid var(--border)}
-.book-title{font-size:1.6rem;font-weight:400;margin:14px 0}
-.book-button{display:inline-block;padding:10px 18px;border:1px solid var(--accent);font:12px Arial;letter-spacing:1px;background:transparent;color:var(--text)}
-.notice-list{max-width:650px;margin:auto}
-.notice{padding:18px 0;border-bottom:1px solid var(--border)}
-.notice-date{color:var(--muted);font-size:14px}
-.notice-title{font-size:1.6rem;margin:5px 0}
-.character-books,.character-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.character-book,.character-card{padding:0;background:var(--surface);color:var(--text);border:1px solid var(--border);text-align:center}
-.character-book{cursor:pointer}
-.character-book img,.character-card img{display:block;width:100%;aspect-ratio:2/3;object-fit:cover}
-.character-book span,.character-card span{display:block;padding:12px 5px;font-size:1.25rem}
-.back-button{display:block;margin:0 auto 22px;padding:9px 18px;background:transparent;color:var(--text);border:1px solid var(--border)}
-.character-viewer{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.9);padding:20px;align-items:center;justify-content:center}
-.character-viewer.open{display:flex}
-.character-viewer-inner{position:relative;width:min(420px,100%);text-align:center;color:white}
-.character-viewer img{max-width:100%;max-height:65vh;object-fit:contain}
-.character-viewer h3{font-size:2rem;font-weight:400}
-.viewer-close{position:absolute;top:-35px;right:0;background:none;border:0;color:white;font-size:28px}
-.gallery-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.gallery-item{overflow:hidden}
-.gallery-item img{display:block;width:100%;aspect-ratio:1;object-fit:cover;transition:transform .3s}
-.gallery-item:hover img{transform:scale(1.04)}
-footer{text-align:center;padding:25px;border-top:1px solid var(--border);color:var(--muted)}
-@media(max-width:650px){
-.profile{min-height:350px;padding-top:65px}.avatar{width:95px;height:95px}
-.tabs{gap:2px}.tab-button{font-size:10px;padding:11px 2px}
-.panel-stage{padding:20px 14px 35px}
-.character-books,.character-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.book-card{width:min(100%,210px)}
+img{max-width:100%;display:block}
+.container{width:min(100% - 28px,760px);margin:auto}
+.top-actions{position:absolute;right:16px;top:15px;display:flex;gap:10px;z-index:5}
+.icon-btn{
+  width:34px;height:34px;border:1px solid var(--line);
+  border-radius:50%;background:var(--panel);color:var(--text);
+}
+.profile{
+  min-height:245px;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  padding:35px 15px 18px;
+}
+.profile-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.32}
+.profile::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent,var(--bg))}
+.profile-content{position:relative;z-index:1}
+.avatar{
+  width:86px;height:86px;border-radius:50%;object-fit:cover;
+  border:2px solid var(--accent);margin:0 auto 8px;
+}
+.profile h1{font-size:clamp(25px,6vw,36px);font-weight:500;letter-spacing:3px;margin:0}
+.tagline{font-size:15px;font-style:italic;color:var(--muted);margin:0 0 12px}
+.socials{display:flex;justify-content:center;gap:14px;margin:10px 0}
+.socials a{font-family:Arial,sans-serif;font-size:19px;opacity:.8}
+.tabs{
+  display:flex;justify-content:center;gap:0;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--bg);z-index:4;
+}
+.tab{
+  border:0;background:none;color:var(--muted);padding:14px 12px 11px;
+  font-size:12px;font-family:Arial,sans-serif;font-weight:600;
+  border-bottom:2px solid transparent;
+}
+.tab.active{color:var(--text);border-color:var(--accent)}
+main{padding:14px 0 35px}
+.panel{display:none}
+.panel.active{display:block}
+.section-title{font-size:22px;font-weight:500;margin:0 0 12px}
+.books-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.book-card{min-width:0;text-align:center}
+.book-cover{
+  width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:3px;
+  border:1px solid var(--line);box-shadow:0 5px 18px var(--shadow);
+}
+.book-name{font-size:16px;margin:7px 0 0}
+.book-author{font:10px Arial,sans-serif;letter-spacing:2px;color:var(--muted);margin-top:3px}
+  .post-list{display:grid;gap:12px}
+.post{
+  background:var(--card);border:1px solid var(--line);
+  border-radius:5px;padding:13px;
+}
+.post-head{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.post-avatar{width:32px;height:32px;border-radius:50%;object-fit:cover}
+.post-author{font-size:15px}
+.post-date{font:10px Arial,sans-serif;color:var(--muted)}
+.post-text{font-size:17px;white-space:pre-wrap;overflow-wrap:anywhere}
+.post-actions{display:flex;gap:14px;margin-top:10px;font:11px Arial,sans-serif;color:var(--muted)}
+.write-btn,.submit-btn,.back-btn{
+  background:var(--accent);color:#fff;border:0;border-radius:3px;
+  padding:10px 15px;font:12px Arial,sans-serif;letter-spacing:.5px;
+}
+.write-form{display:none;margin:12px 0}
+.write-form.open{display:block}
+.write-form input,.write-form textarea,.comment-input{
+  width:100%;padding:11px;background:var(--panel);color:var(--text);
+  border:1px solid var(--line);border-radius:3px;margin-bottom:8px;
+}
+.write-form textarea{min-height:110px;resize:vertical}
+.character-books{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.character-book{background:none;border:0;color:var(--text);text-align:center}
+.character-book img{width:100%;aspect-ratio:2/3;object-fit:cover;border:1px solid var(--line);box-shadow:0 5px 18px var(--shadow)}
+.character-list{display:none}
+.character-list.open{display:block}
+.character-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.character-card{background:var(--card);border:1px solid var(--line);padding:8px;text-align:center;color:var(--text)}
+.character-card img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.character-card h3{font-size:17px;font-weight:500;margin:8px 0 3px}
+.character-detail{display:none;margin-top:14px;padding:12px;background:var(--card);border:1px solid var(--line)}
+.character-detail.open{display:block}
+.character-detail img{width:min(100%,260px);margin:0 auto 12px}
+.gallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.gallery-grid img{width:100%;aspect-ratio:1;object-fit:cover}
+.comment-area{display:none;margin-top:10px}
+.comment-area.open{display:block}
+.comment{font-size:14px;border-top:1px solid var(--line);padding:7px 0}
+@media(min-width:600px){
+  .books-grid,.character-books{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .character-grid,.gallery-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .profile{min-height:280px}
 }
 </style>
 </head>
 <body>
-  <div class="intro" id="intro">
-  <div class="intro-frame">
-    <video autoplay muted loop playsinline>
-      <source src="macadoodle31_pindown.io_1793296533.mp4" type="video/mp4">
-    </video>
-    <div class="intro-shade"></div>
-    <div class="intro-content">
-      <div class="intro-logo">kesmislalih</div>
-      <button class="intro-button" id="discoverButton">KEŞFET</button>
-    </div>
+  <header>
+  <div class="top-actions">
+    <button class="icon-btn" id="menuBtn" aria-label="Menü">☰</button>
+    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir">☼</button>
   </div>
-</div>
 
-<header class="site-header">
-  <button class="icon-button" id="themeButton" aria-label="Tema değiştir">◐</button>
-  <button class="icon-button" id="menuButton" aria-label="Menüyü aç">☰</button>
-  <nav class="menu" id="menu">
-    <a href="#profil">Ana Sayfa</a>
-    <a href="#kitaplar" data-open-panel="kitaplar">Kitaplar</a>
-    <a href="#pano" data-open-panel="pano">Pano</a>
-    <a href="#karakterler" data-open-panel="karakterler">Karakterler</a>
-    <a href="#galeri" data-open-panel="galeri">Galeri</a>
+  <section class="profile">
+    <video class="profile-bg" autoplay muted loop playsinline>
+      <source src="bloggg_erss_pindown.io_1793296543.mp4" type="video/mp4">
+    </video>
+    <div class="profile-content">
+      <img class="avatar" src="d08eae9afcf72d4a213a3d988ecf5935.jpg" alt="kesmislalih">
+      <h1>KESMİSLALİH</h1>
+      <p class="tagline">some stories are not meant to be told, but felt.</p>
+      <div class="socials">
+        <a href="https://www.tiktok.com/@kesmislalih_" aria-label="TikTok">♪</a>
+        <a href="https://x.com/kesmislalih" aria-label="X">𝕏</a>
+        <a href="https://pin.it/2jHDXi48B" aria-label="Pinterest">℘</a>
+        <a href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" aria-label="WhatsApp">◉</a>
+      </div>
+    </div>
+  </section>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="books">KİTAPLAR</button>
+    <button class="tab" data-tab="wall">PANO</button>
+    <button class="tab" data-tab="characters">KARAKTERLER</button>
+    <button class="tab" data-tab="gallery">GALERİ</button>
   </nav>
 </header>
 
-<section class="profile" id="profil">
-  <video class="profile-video" autoplay muted loop playsinline>
-    <source src="bloggg_erss_pindown.io_1793296543.mp4" type="video/mp4">
-  </video>
-  <div class="profile-shade"></div>
-  <div class="profile-content">
-    <img class="avatar" src="d08eae9afcf72d4a213a3d988ecf5935.jpg" alt="kesmislalih">
-    <div class="profile-kicker">YAZAR · HAYALPEREST</div>
-    <h1 class="profile-name">KESMİSLALİH</h1>
-    <p class="profile-quote">some stories are not meant to be told, but felt.</p>
-    <div class="socials">
-      <a href="https://www.tiktok.com/@kesmislalih_" aria-label="TikTok" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M19.6 7.2a6.2 6.2 0 0 1-3.8-1.3v8.2a5.8 5.8 0 1 1-5-5.7v3.2a2.7 2.7 0 1 0 1.8 2.5V2.5h3.2c.2 2.1 1.5 3.8 3.8 4.1z"/></svg>
-      </a>
-      <a href="https://x.com/kesmislalih" aria-label="X" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.8 5.7 22H2.5l7.3-8.4L1.8 2h6.5l4.5 6.7zM17.8 20h1.7L7.2 3.9H5.4z"/></svg>
-      </a>
-      <a href="https://pin.it/2jHDXi48B" aria-label="Pinterest" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M12 1.5A10.5 10.5 0 0 0 8.2 21.8c-.1-.9-.2-2.2 0-3.2l1.4-5.9s-.4-.8-.4-1.9c0-1.8 1-3.1 2.4-3.1 1.1 0 1.6.8 1.6 1.8 0 1.1-.7 2.8-1.1 4.4-.3 1.3.6 2.3 1.9 2.3 2.3 0 4-2.4 4-5.8 0-3-2.1-5.1-5.2-5.1-3.6 0-5.7 2.7-5.7 5.5 0 1.1.4 2.3 1 3 .1.2.2.3.1.6l-.4 1.5c-.1.5-.4.6-.8.4-1.6-.8-2.6-3.2-2.6-5.2 0-4.2 3-8 8.7-8 4.6 0 8.2 3.3 8.2 7.7 0 4.6-2.9 8.3-7 8.3-1.4 0-2.8-.8-3.3-1.7l-.9 3.4c-.3 1.1-1 2.4-1.5 3.2A10.5 10.5 0 1 0 12 1.5z"/></svg>
-      </a>
-      <a href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" aria-label="WhatsApp" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M12 2a9.8 9.8 0 0 0-8.4 14.8L2 22l5.4-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3.2.8.9-3.1-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-1.9-1.2 7 7 0 0 1-1.3-1.7c-.1-.2 0-.3.1-.5l.4-.4.2-.4c.1-.2 0-.4 0-.5l-.7-1.7c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3s-.9.9-.9 2.1 1 2.4 1.1 2.6a10 10 0 0 0 3.8 3.4c.5.2 1 .4 1.3.5.5.2 1 .1 1.3.1.4-.1 1.4-.6 1.6-1.1s.2-.9.1-1z"/></svg>
-      </a>
-      <a href="https://open.spotify.com/" aria-label="Spotify" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M12 1.5A10.5 10.5 0 1 0 12 22.5 10.5 10.5 0 0 0 12 1.5zm4.8 15.1a.7.7 0 0 1-1 .2c-2.7-1.7-6.1-2.1-10.1-1.1a.7.7 0 1 1-.3-1.4c4.4-1 8.2-.5 11.2 1.4.3.2.4.6.2.9zm1.3-2.9a.9.9 0 0 1-1.2.3c-3.1-1.9-7.8-2.5-11.4-1.3a.9.9 0 1 1-.5-1.7c4.2-1.3 9.3-.6 12.8 1.5.4.2.5.8.3 1.2zm.1-3a1 1 0 0 1-1.4.4c-3.6-2.1-9.2-2.3-12.5-1.3a1 1 0 1 1-.6-1.9c3.8-1.1 10- .9 14.1 1.6a1 1 0 0 1 .4 1.2z"/></svg>
+<main class="container">
+  <section class="panel active" id="books">
+    <div class="books-grid">
+      <a class="book-card" href="ringteki-son-dans.html">
+        <img class="book-cover" src="file_00000000375c81f4b311415188148be7.png" alt="Ringteki Son Dans">
+        <div class="book-name">Ringteki Son Dans</div>
+        <div class="book-author">KESMİSLALİH</div>
       </a>
     </div>
-  </div>
-</section>
+  </section>
 
-<nav class="tabs">
-  <button class="tab-button active" data-panel="kitaplar">KİTAPLAR</button>
-  <button class="tab-button" data-panel="pano">PANO</button>
-  <button class="tab-button" data-panel="karakterler">KARAKTERLER</button>
-  <button class="tab-button" data-panel="galeri">GALERİ</button>
-</nav>
+  <section class="panel" id="wall">
+    <button class="write-btn" id="writeBtn">YAZMA</button>
+    <form class="write-form" id="writeForm">
+      <input id="postName" maxlength="40" placeholder="Adın veya kullanıcı adın" required>
+      <textarea id="postText" maxlength="1500" placeholder="Pano'ya bir şeyler yaz..." required></textarea>
+      <button class="submit-btn" type="submit">PAYLAŞ</button>
+    </form>
+    <div class="post-list" id="postList"></div>
+  </section>
 
-<main class="panel-stage">
-<section class="panel active" id="panel-kitaplar">
-  <h2 class="section-title">Kitaplar</h2>
-  <p class="section-subtitle">Kelimelerden doğan hikâyeler.</p>
-  <div class="books">
-    <article class="book-card">
-      <img class="book-cover" src="file_00000000375c81f4b311415188148be7.png" alt="Ringteki Son Dans">
-      <h3 class="book-title">Ringteki Son Dans</h3>
-      <a class="book-button" href="ringteki-son-dans.html">KİTABI İNCELE →</a>
-    </article>
-  </div>
-</section>
-<section class="panel" id="panel-pano">
-  <h2 class="section-title">Pano</h2>
-  <p class="section-subtitle">Duyurular ve güncellemeler.</p>
-  <div class="notice-list">
-    <article class="notice">
-      <div class="notice-date">6 Kasım</div>
-      <h3 class="notice-title">RİNGTEKİ SON DANS</h3>
-      <p>İlk bölüm sizlerle olacak.</p>
-    </article>
-  </div>
-</section>
-<section class="panel" id="panel-karakterler">
-  <h2 class="section-title">Karakterler</h2>
-  <p class="section-subtitle">Önce bir kitap seç.</p>
+  <section class="panel" id="characters">
+    <div id="characterBooks" class="character-books"></div>
+    <div id="characterList" class="character-list">
+      <button class="back-btn" id="backToBooks">← KİTAPLAR</button>
+      <h2 class="section-title" id="characterBookTitle"></h2>
+      <div class="character-grid" id="characterGrid"></div>
+      <div class="character-detail" id="characterDetail"></div>
+    </div>
+  </section>
 
-  <div class="character-books" id="characterBooks">
-    <button class="character-book" data-book="ring">
-      <img src="file_00000000375c81f4b311415188148be7.png" alt="Ringteki Son Dans">
-      <span>Ringteki Son Dans</span>
-    </button>
-  </div>
-
-  <div id="bookCharacters" hidden>
-    <button class="back-button" id="backToBooks">← Kitaplara dön</button>
-    <h3 class="section-title" id="selectedBookTitle"></h3>
-    <div class="character-grid" id="characterGrid"></div>
-  </div>
-</section>
-
-<section class="panel" id="panel-galeri">
-  <h2 class="section-title">Galeri</h2>
-  <p class="section-subtitle">Hikâyelerden kareler.</p>
-  <div class="gallery-grid">
-    <a class="gallery-item" href="520b988f63b52ae66a0127a457e5e7d0.jpg" target="_blank"><img src="520b988f63b52ae66a0127a457e5e7d0.jpg" alt="Galeri 1"></a>
-    <a class="gallery-item" href="45041afda2229d508a38cc012aaa7174.jpg" target="_blank"><img src="45041afda2229d508a38cc012aaa7174.jpg" alt="Galeri 2"></a>
-    <a class="gallery-item" href="0f8b7991dde0f22ff23fb81e0fc16649.jpg" target="_blank"><img src="0f8b7991dde0f22ff23fb81e0fc16649.jpg" alt="Galeri 3"></a>
-    <a class="gallery-item" href="0668f965d8247c1756f1be2f3ee5e1be.jpg" target="_blank"><img src="0668f965d8247c1756f1be2f3ee5e1be.jpg" alt="Galeri 4"></a>
-    <a class="gallery-item" href="025e7f39ec9bd3227fa182d2f735d65c.jpg" target="_blank"><img src="025e7f39ec9bd3227fa182d2f735d65c.jpg" alt="Galeri 5"></a>
-    <a class="gallery-item" href="6b0bac9092b0bc230917f062c52e84ad.jpg" target="_blank"><img src="6b0bac9092b0bc230917f062c52e84ad.jpg" alt="Galeri 6"></a>
-    <a class="gallery-item" href="9be113dce8dd12d87ae4f2bf8cf5293e (1).jpg" target="_blank"><img src="9be113dce8dd12d87ae4f2bf8cf5293e (1).jpg" alt="Galeri 7"></a>
-    <a class="gallery-item" href="bd00784591329cdde6e7804525bb3951.jpg" target="_blank"><img src="bd00784591329cdde6e7804525bb3951.jpg" alt="Galeri 8"></a>
-  </div>
-</section>
+  <section class="panel" id="gallery">
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </section>
 </main>
-
-<div class="character-viewer" id="characterViewer">
-  <div class="character-viewer-inner">
-    <button class="viewer-close" id="viewerClose">×</button>
-    <img id="viewerImage" src="" alt="">
-    <h3 id="viewerName"></h3>
-    <p id="viewerDescription"></p>
-  </div>
-</div>
-
-<footer>© kesmislalih</footer>
 <script>
-const intro = document.getElementById("intro");
-document.getElementById("discoverButton").addEventListener("click", () => {
-  intro.classList.add("hidden");
-});
-
-if (localStorage.getItem("siteTheme") === "light") {
-  document.body.classList.add("light");
-}
-document.getElementById("themeButton").addEventListener("click", () => {
-  document.body.classList.toggle("light");
-  localStorage.setItem(
-    "siteTheme",
-    document.body.classList.contains("light") ? "light" : "dark"
-  );
-});
-
-const menu = document.getElementById("menu");
-document.getElementById("menuButton").addEventListener("click", () => {
-  menu.classList.toggle("open");
-});
-document.addEventListener("click", event => {
-  if (!menu.contains(event.target) && event.target.id !== "menuButton") {
-    menu.classList.remove("open");
-  }
-});
-
-function showPanel(name) {
-  document.querySelectorAll(".panel").forEach(panel => panel.classList.remove("active"));
-  document.querySelectorAll(".tab-button").forEach(tab => tab.classList.remove("active"));
-  document.getElementById("panel-" + name)?.classList.add("active");
-  document.querySelector(`.tab-button[data-panel="${name}"]`)?.classList.add("active");
-  menu.classList.remove("open");
-  if (name === "karakterler") resetCharacterBooks();
-}
-
-document.querySelectorAll(".tab-button").forEach(tab => {
-  tab.addEventListener("click", () => showPanel(tab.dataset.panel));
-});
-document.querySelectorAll("[data-open-panel]").forEach(link => {
-  link.addEventListener("click", event => {
-    event.preventDefault();
-    showPanel(link.dataset.openPanel);
-  });
-});
-
-/* Yeni kitaplar ve karakterler buraya eklenebilir. */
-const characterData = {
-  ring: {
-    title: "Ringteki Son Dans",
-    characters: [
-      {name:"Lavinia", image:"a90393fd3d48a69ffbec30ef8ba04749 (1).jpg", description:""},
-      {name:"Arel", image:"41723ea72a5db4f82fe52815d61e341a.jpg", description:""},
-      {name:"Defne Yalçın", image:"066f212a61b08c53d9eb10ef7647a0f3.jpg", description:""},
-      {name:"Efe Yalçın", image:"0b873940e46b8abc779347119a1998e0.jpg", description:""},
-      {name:"Seren Yalçın", image:"5ea49c0b074bc3d33b1516a381a7e689.jpg", description:""},
-      {name:"Cihangir Yalçın", image:"723a5f267d9ced55d8babbb5f9539a07.jpg", description:""}
+const books = [
+  {
+    id:"ring",
+    title:"Ringteki Son Dans",
+    cover:"file_00000000375c81f4b311415188148be7.png",
+    characters:[
+      {name:"Lavinia",image:"a90393fd3d48a69ffbec30ef8ba04749 (1).jpg",bio:""},
+      {name:"Arel",image:"41723ea72a5db4f82fe52815d61e341a.jpg",bio:""},
+      {name:"Defne Yalçın",image:"066f212a61b08c53d9eb10ef7647a0f3.jpg",bio:""},
+      {name:"Efe Yalçın",image:"0b873940e46b8abc779347119a1998e0.jpg",bio:""},
+      {name:"Seren Yalçın",image:"5ea49c0b074bc3d33b1516a381a7e689.jpg",bio:""},
+      {name:"Cihangir Yalçın",image:"723a5f267d9ced55d8babbb5f9539a07.jpg",bio:""}
     ]
   }
-};
+];
+
+const galleryImages = [
+"520b988f63b52ae66a0127a457e5e7d0.jpg",
+"45041afda2229d508a38cc012aaa7174.jpg",
+"0f8b7991dde0f22ff23fb81e0fc16649.jpg",
+"0668f965d8247c1756f1be2f3ee5e1be.jpg",
+"025e7f39ec9bd3227fa182d2f735d65c.jpg",
+"6b0bac9092b0bc230917f062c52e84ad.jpg",
+"9be113dce8dd12d87ae4f2bf8cf5293e (1).jpg",
+"bd00784591329cdde6e7804525bb3951.jpg"
+];
 
 const characterBooks = document.getElementById("characterBooks");
-const bookCharacters = document.getElementById("bookCharacters");
+const characterList = document.getElementById("characterList");
 const characterGrid = document.getElementById("characterGrid");
+const characterDetail = document.getElementById("characterDetail");
 
-document.querySelectorAll(".character-book").forEach(book => {
-  book.addEventListener("click", () => {
-    const data = characterData[book.dataset.book];
-    if (!data) return;
+books.forEach(book=>{
+  const button=document.createElement("button");
+  button.className="character-book";
+  button.innerHTML=`<img src="${book.cover}" alt="${book.title}"><div class="book-name">${book.title}</div>`;
+  button.addEventListener("click",()=>showBookCharacters(book));
+  characterBooks.appendChild(button);
+});
 
-    characterBooks.hidden = true;
-    bookCharacters.hidden = false;
-    document.getElementById("selectedBookTitle").textContent = data.title;
-    characterGrid.innerHTML = "";
+function showBookCharacters(book){
+  characterBooks.style.display="none";
+  characterList.classList.add("open");
+  document.getElementById("characterBookTitle").textContent=book.title;
+  characterGrid.innerHTML="";
+  characterDetail.classList.remove("open");
 
-    data.characters.forEach(character => {
-      const card = document.createElement("button");
-      card.className = "character-card";
-      card.innerHTML = `
-        <img src="${character.image}" alt="">
-        <span>${character.name}</span>
-      `;
-      card.addEventListener("click", () => openCharacter(character));
-      characterGrid.appendChild(card);
+  book.characters.forEach(character=>{
+    const card=document.createElement("button");
+    card.className="character-card";
+    card.innerHTML=`<img src="${character.image}" alt="${character.name}"><h3>${character.name}</h3>`;
+    card.addEventListener("click",()=>{
+      characterDetail.innerHTML=`
+        <img src="${character.image}" alt="${character.name}">
+        <h2 class="section-title">${character.name}</h2>
+        <p>${character.bio || "Karakter bilgileri yakında."}</p>`;
+      characterDetail.classList.add("open");
     });
+    characterGrid.appendChild(card);
+  });
+}
+
+document.getElementById("backToBooks").addEventListener("click",()=>{
+  characterList.classList.remove("open");
+  characterBooks.style.display="grid";
+});
+
+galleryImages.forEach(src=>{
+  const img=document.createElement("img");
+  img.src=src;img.alt="Galeri görseli";img.loading="lazy";
+  document.getElementById("galleryGrid").appendChild(img);
+});
+  document.querySelectorAll(".tab").forEach(tab=>{
+  tab.addEventListener("click",()=>{
+    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+    document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+    tab.classList.add("active");
+    document.getElementById(tab.dataset.tab).classList.add("active");
   });
 });
 
-function resetCharacterBooks() {
-  characterBooks.hidden = false;
-  bookCharacters.hidden = true;
+const themeBtn=document.getElementById("themeBtn");
+if(localStorage.getItem("siteTheme")==="light") document.body.classList.add("light");
+
+themeBtn.addEventListener("click",()=>{
+  document.body.classList.toggle("light");
+  localStorage.setItem("siteTheme",document.body.classList.contains("light")?"light":"dark");
+});
+
+document.getElementById("writeBtn").addEventListener("click",()=>{
+  document.getElementById("writeForm").classList.toggle("open");
+});
+
+const SUPABASE_URL="SUPABASE_PROJE_URLİNİ_BURAYA_YAZ";
+const SUPABASE_ANON_KEY="SUPABASE_ANON_KEYİNİ_BURAYA_YAZ";
+let supabaseClient=null;
+
+if(SUPABASE_URL.startsWith("https://") && !SUPABASE_URL.includes("BURAYA")){
+  supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 }
 
-document.getElementById("backToBooks").addEventListener("click", resetCharacterBooks);
+const postList=document.getElementById("postList");
+let localPosts=JSON.parse(localStorage.getItem("wallPosts")||"[]");
 
-const viewer = document.getElementById("characterViewer");
-function openCharacter(character) {
-  document.getElementById("viewerImage").src = character.image;
-  document.getElementById("viewerImage").alt = character.name;
-  document.getElementById("viewerName").textContent = character.name;
-  document.getElementById("viewerDescription").textContent = character.description || "";
-  viewer.classList.add("open");
+function renderPosts(posts){
+  postList.innerHTML="";
+  posts.forEach(post=>{
+    const article=document.createElement("article");
+    article.className="post";
+    article.innerHTML=`
+      <div class="post-head">
+        <img class="post-avatar" src="d08eae9afcf72d4a213a3d988ecf5935.jpg" alt="">
+        <div><div class="post-author"></div><div class="post-date"></div></div>
+      </div>
+      <div class="post-text"></div>
+      <div class="post-actions"><button class="comment-toggle">Yorumlar</button></div>
+      <div class="comment-area"><div class="comments"></div>
+        <input class="comment-input" placeholder="Yorum yaz...">
+        <button class="submit-btn comment-submit">Gönder</button>
+      </div>`;
+    article.querySelector(".post-author").textContent=post.name;
+    article.querySelector(".post-date").textContent=post.date;
+    article.querySelector(".post-text").textContent=post.text;
+    article.querySelector(".comment-toggle").addEventListener("click",()=>{
+      article.querySelector(".comment-area").classList.toggle("open");
+    });
+    article.querySelector(".comment-submit").addEventListener("click",()=>{
+      const input=article.querySelector(".comment-input");
+      if(!input.value.trim())return;
+      const comment=document.createElement("div");
+      comment.className="comment";
+      comment.textContent=input.value.trim();
+      article.querySelector(".comments").appendChild(comment);
+      input.value="";
+    });
+    postList.appendChild(article);
+  });
 }
 
-document.getElementById("viewerClose").addEventListener("click", () => {
-  viewer.classList.remove("open");
+async function loadPosts(){
+  if(supabaseClient){
+    const {data,error}=await supabaseClient.from("wall_posts").select("*").order("created_at",{ascending:false});
+    if(!error && data){renderPosts(data.map(p=>({name:p.name,text:p.text,date:new Date(p.created_at).toLocaleDateString("tr-TR")})));return;}
+  }
+  renderPosts(localPosts);
+}
+
+document.getElementById("writeForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const name=document.getElementById("postName").value.trim();
+  const text=document.getElementById("postText").value.trim();
+  if(!name||!text)return;
+  const post={name,text,date:new Date().toLocaleDateString("tr-TR")};
+
+  if(supabaseClient){
+    const {error}=await supabaseClient.from("wall_posts").insert({name,text});
+    if(error){alert("Paylaşım gönderilemedi. Supabase ayarlarını kontrol et.");return;}
+    await loadPosts();
+  }else{
+    localPosts.unshift(post);
+    localStorage.setItem("wallPosts",JSON.stringify(localPosts));
+    renderPosts(localPosts);
+  }
+  e.target.reset();
+  e.target.classList.remove("open");
 });
-viewer.addEventListener("click", event => {
-  if (event.target === viewer) viewer.classList.remove("open");
-});
+
+loadPosts();
 </script>
 </body>
 </html>
