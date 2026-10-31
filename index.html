@@ -507,7 +507,7 @@ main{padding:28px 0 60px}
   letter-spacing:1.5px;
 }
 
-/* PAN0 */
+/* PANO */
 
 .write-btn,.submit-btn,.back-btn{
   background:var(--accent);
@@ -643,28 +643,6 @@ main{padding:28px 0 60px}
   margin:9px 0 2px;
 }
 
-.character-detail{
-  display:none;
-  margin-top:18px;
-  padding:18px;
-  background:var(--card);
-  border:1px solid var(--line);
-}
-
-.character-detail.open{display:block}
-
-.character-detail img{
-  width:min(100%,280px);
-  margin:0 auto 14px;
-  aspect-ratio:3/4;
-  object-fit:cover;
-}
-
-.character-detail h2{
-  text-align:center;
-  font-weight:500;
-}
-
 /* GALERİ */
 
 .gallery-grid{
@@ -673,10 +651,79 @@ main{padding:28px 0 60px}
   gap:9px;
 }
 
+.gallery-grid button{
+  display:block;
+  width:100%;
+  padding:0;
+  border:0;
+  background:none;
+  overflow:hidden;
+}
+
 .gallery-grid img{
   width:100%;
   aspect-ratio:1;
   object-fit:cover;
+  transition:transform .3s;
+}
+
+.gallery-grid button:hover img{
+  transform:scale(1.04);
+}
+
+/* FOTOĞRAF BÜYÜTME PENCERESİ */
+
+.image-viewer{
+  position:fixed;
+  inset:0;
+  z-index:200;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:22px;
+  background:#000e;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .25s,visibility .25s;
+}
+
+.image-viewer.open{
+  opacity:1;
+  visibility:visible;
+}
+
+.image-viewer img{
+  max-width:min(92vw,850px);
+  max-height:85vh;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  box-shadow:0 15px 60px #0009;
+}
+
+.image-viewer-close{
+  position:absolute;
+  top:18px;
+  right:18px;
+  width:44px;
+  height:44px;
+  border:1px solid #ffffff70;
+  border-radius:50%;
+  background:#171313;
+  color:white;
+  font:28px Arial,sans-serif;
+  display:grid;
+  place-items:center;
+}
+
+.image-viewer-caption{
+  position:absolute;
+  bottom:18px;
+  left:15px;
+  right:15px;
+  text-align:center;
+  color:#fff;
+  font-size:20px;
 }
 
 /* PROFİL PENCERESİ */
@@ -821,6 +868,78 @@ main{padding:28px 0 60px}
 
   .profile{min-height:270px}
 }
+  /* FOTOĞRAF BÜYÜTME PENCERESİ */
+
+.image-viewer{
+  position:fixed;
+  inset:0;
+  z-index:200;
+  background:#000e;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:55px 18px 25px;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .25s,visibility .25s;
+}
+
+.image-viewer.open{
+  opacity:1;
+  visibility:visible;
+}
+
+.image-viewer img{
+  max-width:100%;
+  max-height:80vh;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  box-shadow:0 15px 50px #0008;
+}
+
+.image-viewer-caption{
+  color:#fff;
+  font-size:19px;
+  margin-top:14px;
+  text-align:center;
+}
+
+.image-viewer-close{
+  position:absolute;
+  top:16px;
+  right:18px;
+  width:42px;
+  height:42px;
+  border:1px solid #ffffff70;
+  border-radius:50%;
+  background:#171717;
+  color:#fff;
+  font-size:27px;
+}
+
+.gallery-item{
+  display:block;
+  width:100%;
+  padding:0;
+  border:0;
+  background:none;
+  cursor:zoom-in;
+  overflow:hidden;
+}
+
+.gallery-item img{
+  transition:transform .3s;
+}
+
+.gallery-item:hover img{
+  transform:scale(1.04);
+}
+
+.character-card{
+  cursor:zoom-in;
+}
 </style>
 </head>
 <body>
@@ -847,22 +966,31 @@ main{padding:28px 0 60px}
   <header class="site-header">
 
     <div class="top-actions">
-      <button class="icon-btn" id="menuBtn" aria-label="Menüyü aç" aria-expanded="false">☰</button>
-      <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir">☼</button>
+      <button class="icon-btn" id="menuBtn"
+        aria-label="Menüyü aç" aria-expanded="false">☰</button>
+
+      <button class="icon-btn" id="themeBtn"
+        aria-label="Tema değiştir">☼</button>
     </div>
 
     <!-- YAZAR PROFİLİ -->
     <section class="profile">
+
       <video class="profile-bg" autoplay muted loop playsinline>
         <source src="bloggg_erss_pindown.io_1793296543.mp4" type="video/mp4">
       </video>
 
       <div class="profile-content">
-        <img class="avatar" src="d08eae9afcf72d4a213a3d988ecf5935.jpg" alt="kesmislalih">
+
+        <img class="avatar"
+          src="d08eae9afcf72d4a213a3d988ecf5935.jpg"
+          alt="kesmislalih">
 
         <h1>KESMİSLALİH</h1>
 
-        <p class="tagline">some stories are not meant to be told, but felt.</p>
+        <p class="tagline">
+          some stories are not meant to be told, but felt.
+        </p>
 
         <div class="socials">
 
@@ -915,7 +1043,8 @@ main{padding:28px 0 60px}
 
       <div class="menu-header">
         <span class="menu-logo">kesmislalih</span>
-        <button class="icon-btn" id="menuClose" aria-label="Menüyü kapat">×</button>
+        <button class="icon-btn" id="menuClose"
+          aria-label="Menüyü kapat">×</button>
       </div>
 
       <div class="menu-content">
@@ -937,7 +1066,10 @@ main{padding:28px 0 60px}
         <div class="menu-label">TOPLULUK</div>
 
         <nav class="menu-links">
-          <button id="menuProfile">Profil oluştur <span class="menu-arrow">↗</span></button>
+
+          <button id="menuProfile">
+            Profil oluştur <span class="menu-arrow">↗</span>
+          </button>
 
           <a href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e"
              target="_blank" rel="noopener">
@@ -948,16 +1080,19 @@ main{padding:28px 0 60px}
              target="_blank" rel="noopener">
             Tüm linkler <span class="menu-arrow">↗</span>
           </a>
+
         </nav>
 
         <div class="menu-bottom">
+
           <a class="primary-btn" href="ringteki-son-dans.html">
             RİNGTEKİ SON DANS'I İNCELE
           </a>
 
           <a class="primary-btn" href="yeraltinin-kanunu.html">
-            YERALTİNIN KANUNU'NU İNCELE
+            YERALTININ KANUNU'NU İNCELE
           </a>
+
         </div>
 
         <p class="menu-note">
@@ -975,7 +1110,8 @@ main{padding:28px 0 60px}
 
       <div class="modal-head">
         <h2>Okur profilin</h2>
-        <button class="icon-btn" id="profileModalClose" aria-label="Kapat">×</button>
+        <button class="icon-btn" id="profileModalClose"
+          aria-label="Kapat">×</button>
       </div>
 
       <p class="modal-description">
@@ -983,11 +1119,13 @@ main{padding:28px 0 60px}
       </p>
 
       <div class="profile-preview">
+
         <img id="profilePreviewImage"
-             src="d08eae9afcf72d4a213a3d988ecf5935.jpg"
-             alt="Seçilen profil fotoğrafı">
+          src="d08eae9afcf72d4a213a3d988ecf5935.jpg"
+          alt="Seçilen profil fotoğrafı">
 
         <span id="profilePreviewName">Lal Gezegeni Sakini</span>
+
       </div>
 
       <p class="menu-label">PROFİL FOTOĞRAFINI SEÇ</p>
@@ -999,17 +1137,36 @@ main{padding:28px 0 60px}
         <label for="readerName">KULLANICI ADI</label>
 
         <input id="readerName"
-               maxlength="30"
-               placeholder="Kullanıcı adın"
-               required>
+          maxlength="30"
+          placeholder="Kullanıcı adın"
+          required>
 
         <div class="modal-actions">
-          <button class="outline-btn" type="button" id="profileCancel">İPTAL</button>
-          <button class="primary-btn" type="submit">KAYDET</button>
+          <button class="outline-btn" type="button" id="profileCancel">
+            İPTAL
+          </button>
+
+          <button class="primary-btn" type="submit">
+            KAYDET
+          </button>
         </div>
 
       </form>
     </section>
+  </div>
+
+  <!-- FOTOĞRAF BÜYÜTME PENCERESİ -->
+  <div class="image-viewer" id="imageViewer"
+       role="dialog" aria-modal="true"
+       aria-label="Büyük fotoğraf görünümü">
+
+    <button class="image-viewer-close" id="imageViewerClose"
+      type="button" aria-label="Fotoğrafı kapat">×</button>
+
+    <img id="imageViewerPhoto" src="" alt="">
+
+    <div class="image-viewer-caption" id="imageViewerCaption"></div>
+
   </div>
 
   <!-- ANA İÇERİK -->
@@ -1040,14 +1197,14 @@ main{padding:28px 0 60px}
       <form class="write-form" id="writeForm">
 
         <input id="postName"
-               maxlength="40"
-               placeholder="Görünen adın"
-               required>
+          maxlength="40"
+          placeholder="Görünen adın"
+          required>
 
         <textarea id="postText"
-                  maxlength="1500"
-                  placeholder="Pano'ya bir şeyler yaz..."
-                  required></textarea>
+          maxlength="1500"
+          placeholder="Pano'ya bir şeyler yaz..."
+          required></textarea>
 
         <button class="submit-btn" type="submit">PAYLAŞ</button>
 
@@ -1067,10 +1224,8 @@ main{padding:28px 0 60px}
         <span class="small-label">HİKÂYELERDEN</span>
       </div>
 
-      <!-- İLK AŞAMADA İKİ KİTAP KAPAĞI -->
       <div class="character-books" id="characterBooks"></div>
 
-      <!-- KİTAP SEÇİLDİKTEN SONRA KARAKTERLER -->
       <div class="character-list" id="characterList">
 
         <button class="back-btn" id="backToBooks" type="button">
@@ -1080,8 +1235,6 @@ main{padding:28px 0 60px}
         <h2 class="section-heading" id="characterBookTitle"></h2>
 
         <div class="character-grid" id="characterGrid"></div>
-
-        <div class="character-detail" id="characterDetail"></div>
 
       </div>
 
@@ -1137,69 +1290,24 @@ const BOOKS = [
 /* KARAKTERLER */
 const CHARACTERS = {
   ring:[
-    {
-      name:"Lavinia",
-      image:"a90393fd3d48a69ffbec30ef8ba04749 (1).jpg"
-    },
-    {
-      name:"Arel",
-      image:"41723ea72a5db4f82fe52815d61e341a.jpg"
-    },
-    {
-      name:"Defne Yalçın",
-      image:"066f212a61b08c53d9eb10ef7647a0f3.jpg"
-    },
-    {
-      name:"Efe Yalçın",
-      image:"0b873940e46b8abc779347119a1998e0.jpg"
-    },
-    {
-      name:"Seren Yalçın",
-      image:"5ea49c0b074bc3d33b1516a381a7e689.jpg"
-    },
-    {
-      name:"Cihangir Yalçın",
-      image:"723a5f267d9ced55d8babbb5f9539a07.jpg"
-    }
+    {name:"Lavinia",image:"a90393fd3d48a69ffbec30ef8ba04749 (1).jpg"},
+    {name:"Arel",image:"41723ea72a5db4f82fe52815d61e341a.jpg"},
+    {name:"Defne Yalçın",image:"066f212a61b08c53d9eb10ef7647a0f3.jpg"},
+    {name:"Efe Yalçın",image:"0b873940e46b8abc779347119a1998e0.jpg"},
+    {name:"Seren Yalçın",image:"5ea49c0b074bc3d33b1516a381a7e689.jpg"},
+    {name:"Cihangir Yalçın",image:"723a5f267d9ced55d8babbb5f9539a07.jpg"}
   ],
 
   yeraltı:[
-    {
-      name:"Lize Akyaz",
-      image:"lizee.jpg"
-    },
-    {
-      name:"Yiğit Altay Korkmaz",
-      image:"yigitaltay.jpg"
-    },
-    {
-      name:"İlenya Kuznetsov Akyaz",
-      image:"1edfd8f6db630d6d234b4deece4558aa.jpg"
-    },
-    {
-      name:"Kerem Akyaz",
-      image:"c5e0d50ff6b73bd631d45dff86459caf.jpg"
-    },
-    {
-      name:"İncila Korkmaz",
-      image:"ilenya.jpg"
-    },
-    {
-      name:"Polat Korkmaz",
-      image:"kerem.jpg"
-    },
-    {
-      name:"Asel Aksın",
-      image:"asel.jpg"
-    },
-    {
-      name:"Lizge Akyaz Aksın",
-      image:"lizge.jpg"
-    },
-    {
-      name:"Utku Can Aksın",
-      image:"utku.jpg"
-    }
+    {name:"Lize Akyaz",image:"lizee.png"},
+    {name:"Yiğit Altay Korkmaz",image:"yigitaltay.png"},
+    {name:"İlenya Kuznetsov Akyaz",image:"1edfd8f6db630d6d234b4deece4558aa.jpg"},
+    {name:"Kerem Akyaz",image:"ca9efcc735f457301221f25118f50a13.jpg"},
+    {name:"İncila Korkmaz",image:"ilenya.jpg"},
+    {name:"Polat Korkmaz",image:"kerem.jpg"},
+    {name:"Asel Aksın",image:"asel.jpg"},
+    {name:"Lizge Akyaz Aksın",image:"lizge.jpg"},
+    {name:"Utku Can Aksın",image:"utku.jpg"}
   ]
 };
 
@@ -1293,6 +1401,7 @@ function renderAvatarOptions(){
 
     img.src = image;
     img.alt = "Profil fotoğrafı";
+
     img.onerror = function(){
       this.src = AUTHOR_AVATAR;
     };
@@ -1385,7 +1494,7 @@ function showSection(name){
   });
 }
 
-/* KİTAPLARI EKRANA YAZDIR */
+/* KİTAPLARI GÖSTER */
 function renderBooks(){
   const container = document.getElementById("booksGrid");
 
@@ -1423,24 +1532,42 @@ function renderBooks(){
     link.className = "book-link";
     link.textContent = "KİTABI İNCELE →";
 
-    meta.append(
-      title,
-      author,
-      document.createElement("br"),
-      link
-    );
-
+    meta.append(title,author,document.createElement("br"),link);
     card.append(image,meta);
 
     container.appendChild(card);
   });
 }
-    /* KARAKTERLER */
 
-/* Şu anda seçili kitap */
+/* KARAKTERLER */
 let selectedCharacterBook = null;
 
-/* Kitap kapaklarını göster */
+/* FOTOĞRAFI BÜYÜTME */
+function openImageViewer(src,caption){
+  const viewer = document.getElementById("imageViewer");
+  const photo = document.getElementById("imageViewerPhoto");
+  const text = document.getElementById("imageViewerCaption");
+
+  if(!viewer || !photo) return;
+
+  photo.src = src;
+  photo.alt = caption || "Büyütülmüş fotoğraf";
+  text.textContent = caption || "";
+
+  viewer.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeImageViewer(){
+  const viewer = document.getElementById("imageViewer");
+
+  if(!viewer) return;
+
+  viewer.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+/* KİTAP KAPAKLARINI GÖSTER */
 function renderCharacterBooks(){
   const container = document.getElementById("characterBooks");
 
@@ -1453,13 +1580,6 @@ function renderCharacterBooks(){
 
     card.type = "button";
     card.className = "character-book";
-
-    card.style.border = "0";
-    card.style.padding = "0";
-    card.style.background = "none";
-    card.style.color = "var(--text)";
-    card.style.cursor = "pointer";
-    card.style.textAlign = "left";
 
     const image = document.createElement("img");
 
@@ -1481,7 +1601,7 @@ function renderCharacterBooks(){
   });
 }
 
-/* Seçilen kitabın karakterlerini aç */
+/* SEÇİLEN KİTABIN KARAKTERLERİ */
 function openCharacterBook(bookId){
   if(!CHARACTERS[bookId]) return;
 
@@ -1490,9 +1610,7 @@ function openCharacterBook(bookId){
   const book = BOOKS.find(item=>item.id === bookId);
 
   document.getElementById("characterBooks").style.display = "none";
-
-  document.getElementById("characterList")
-    .classList.add("open");
+  document.getElementById("characterList").classList.add("open");
 
   document.getElementById("characterBookTitle").textContent =
     book.title;
@@ -1505,17 +1623,13 @@ function openCharacterBook(bookId){
   });
 }
 
-/* Karakter kartlarını oluştur */
+/* KARAKTER KARTLARI */
 function renderCharacterCards(){
   const container = document.getElementById("characterGrid");
-  const detail = document.getElementById("characterDetail");
 
   if(!container || !selectedCharacterBook) return;
 
   container.innerHTML = "";
-
-  detail.innerHTML = "";
-  detail.classList.remove("open");
 
   CHARACTERS[selectedCharacterBook].forEach(character=>{
     const card = document.createElement("button");
@@ -1535,52 +1649,20 @@ function renderCharacterCards(){
     card.append(image,title);
 
     card.addEventListener("click",()=>{
-      showCharacterDetail(character);
+      openImageViewer(character.image,character.name);
     });
 
     container.appendChild(card);
   });
 }
 
-/* Karakterin büyük fotoğrafını aç */
-function showCharacterDetail(character){
-  const detail = document.getElementById("characterDetail");
-
-  detail.innerHTML = "";
-
-  const image = document.createElement("img");
-
-  image.src = character.image;
-  image.alt = character.name;
-
-  const title = document.createElement("h2");
-
-  title.textContent = character.name;
-
-  detail.append(image,title);
-
-  detail.classList.add("open");
-
-  detail.scrollIntoView({
-    behavior:"smooth",
-    block:"center"
-  });
-}
-
-/* Kitap kapaklarına geri dön */
+/* KİTAP KAPAKLARINA GERİ DÖN */
 function backToCharacterBooks(){
   selectedCharacterBook = null;
 
-  document.getElementById("characterList")
-    .classList.remove("open");
-
+  document.getElementById("characterList").classList.remove("open");
   document.getElementById("characterBooks").style.display = "grid";
-
   document.getElementById("characterGrid").innerHTML = "";
-
-  document.getElementById("characterDetail").innerHTML = "";
-  document.getElementById("characterDetail")
-    .classList.remove("open");
 }
 
 /* GALERİ */
@@ -1592,7 +1674,10 @@ function renderGallery(){
   container.innerHTML = "";
 
   GALLERY.forEach(image=>{
-    const item = document.createElement("div");
+    const item = document.createElement("button");
+
+    item.type = "button";
+    item.className = "gallery-item";
 
     const img = document.createElement("img");
 
@@ -1601,11 +1686,14 @@ function renderGallery(){
 
     item.appendChild(img);
 
+    item.addEventListener("click",()=>{
+      openImageViewer(image,"Galeri");
+    });
+
     container.appendChild(item);
   });
 }
-
-/* GÜVENLİ METİN */
+    /* GÜVENLİ METİN */
 function escapeHTML(value){
   return String(value).replace(/[&<>"']/g,character=>({
     "&":"&amp;",
@@ -1656,18 +1744,20 @@ async function loadPosts(){
 
     card.className = "post";
 
+    const avatar = escapeHTML(post.avatar || AUTHOR_AVATAR);
+    const name = escapeHTML(post.name || "Okur");
+    const text = escapeHTML(post.text || "");
+
     card.innerHTML = `
       <div class="post-head">
-        <img class="post-avatar"
-          src="${escapeHTML(post.avatar || AUTHOR_AVATAR)}" alt="">
-
+        <img class="post-avatar" src="${avatar}" alt="">
         <div>
-          <div class="post-author">${escapeHTML(post.name)}</div>
+          <div class="post-author">${name}</div>
           <div class="post-date">${formatDate(post.created_at)}</div>
         </div>
       </div>
 
-      <div class="post-text">${escapeHTML(post.text)}</div>
+      <div class="post-text">${text}</div>
 
       <div class="post-actions">
         <button class="text-btn" type="button">Yorumlar</button>
@@ -1712,15 +1802,12 @@ async function addPost(event){
 
   if(!profile.name){
     openProfileModal();
-
     alert("Önce okuyucu profilini oluşturmalısın.");
-
     return;
   }
 
   if(!db){
-    alert("Supabase bağlantısı henüz ayarlanmamış.");
-
+    alert("Supabase bağlantısı şu anda kullanılamıyor.");
     return;
   }
 
@@ -1739,13 +1826,12 @@ async function addPost(event){
 
   if(error){
     console.error(error);
-
     alert("Gönderin paylaşılırken bir hata oluştu.");
-
     return;
   }
 
   input.value = "";
+  document.getElementById("writeForm").classList.remove("open");
 
   loadPosts();
 }
@@ -1775,8 +1861,8 @@ async function loadComments(postId,card){
     item.className = "comment";
 
     item.innerHTML = `
-      <strong>${escapeHTML(comment.name)}</strong>
-      <p>${escapeHTML(comment.text)}</p>
+      <strong>${escapeHTML(comment.name || "Okur")}</strong>
+      <p>${escapeHTML(comment.text || "")}</p>
     `;
 
     container.appendChild(item);
@@ -1791,15 +1877,12 @@ async function addComment(event,postId,card){
 
   if(!profile.name){
     openProfileModal();
-
     alert("Önce okuyucu profilini oluşturmalısın.");
-
     return;
   }
 
   if(!db){
-    alert("Supabase bağlantısı henüz ayarlanmamış.");
-
+    alert("Supabase bağlantısı şu anda kullanılamıyor.");
     return;
   }
 
@@ -1819,16 +1902,13 @@ async function addComment(event,postId,card){
 
   if(error){
     console.error(error);
-
     alert("Yorum gönderilemedi.");
-
     return;
   }
 
   input.value = "";
-
   loadComments(postId,card);
-      }
+}
     /* SAYFA AÇILIŞI VE BUTONLAR */
 document.addEventListener("DOMContentLoaded",()=>{
 
@@ -1842,7 +1922,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   loadPosts();
 
-  /* KEŞFET BUTONU */
+  /* GİRİŞ EKRANI */
   const enterBtn = document.getElementById("enterBtn");
   const intro = document.getElementById("intro");
   const site = document.getElementById("site");
@@ -1856,15 +1936,14 @@ document.addEventListener("DOMContentLoaded",()=>{
     });
   }
 
-  /* TEMA DEĞİŞTİRME */
+  /* TEMA */
   document.getElementById("themeBtn")
     ?.addEventListener("click",toggleTheme);
 
-  /* MENÜYÜ AÇ */
+  /* MENÜ */
   document.getElementById("menuBtn")
     ?.addEventListener("click",openMenu);
 
-  /* MENÜYÜ KAPAT */
   document.getElementById("menuClose")
     ?.addEventListener("click",closeMenu);
 
@@ -1893,14 +1972,32 @@ document.addEventListener("DOMContentLoaded",()=>{
   document.getElementById("backToBooks")
     ?.addEventListener("click",backToCharacterBooks);
 
-  /* PROFİL PENCERESİNİ AÇ */
+  /* FOTOĞRAF PENCERESİ */
+  document.getElementById("imageViewerClose")
+    ?.addEventListener("click",closeImageViewer);
+
+  document.getElementById("imageViewer")
+    ?.addEventListener("click",event=>{
+      if(event.target.id === "imageViewer"){
+        closeImageViewer();
+      }
+    });
+
+  document.addEventListener("keydown",event=>{
+    if(event.key === "Escape"){
+      closeImageViewer();
+      closeMenu();
+      closeProfileModal();
+    }
+  });
+
+  /* PROFİL PENCERESİ */
   document.getElementById("menuProfile")
     ?.addEventListener("click",()=>{
       closeMenu();
       openProfileModal();
     });
 
-  /* PROFİL PENCERESİNİ KAPAT */
   document.getElementById("profileModalClose")
     ?.addEventListener("click",closeProfileModal);
 
@@ -1943,14 +2040,13 @@ document.addEventListener("DOMContentLoaded",()=>{
       closeProfileModal();
     });
 
-  /* PANO YAZMA FORMUNU AÇ VE KAPAT */
+  /* PANO FORMU */
   document.getElementById("writeBtn")
     ?.addEventListener("click",()=>{
       document.getElementById("writeForm")
         ?.classList.toggle("open");
     });
 
-  /* PANO GÖNDERİSİ PAYLAŞ */
   document.getElementById("writeForm")
     ?.addEventListener("submit",addPost);
 
