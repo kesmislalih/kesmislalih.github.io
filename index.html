@@ -2,190 +2,227 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>kesmislalih</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <style>
 :root{
-  --bg:#080808;--panel:#111;--card:#151515;--text:#f2eeee;
-  --muted:#999;--accent:#300000;--line:#292929;--shadow:#30000055;
+  --bg:#080808;--panel:#111;--card:#151515;--text:#eee;
+  --muted:#999;--accent:#300000;--line:#292929;
 }
 body.light{
-  --bg:#f4f1ef;--panel:#fff;--card:#fff;--text:#211d1d;
-  --muted:#777;--accent:#650d18;--line:#ded7d7;--shadow:#650d1820;
+  --bg:#f5f2f0;--panel:#fff;--card:#fff;--text:#211d1d;
+  --muted:#777;--accent:#650d18;--line:#ded7d7;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:'Cormorant Garamond',serif;transition:.25s;
-}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',serif}
 button,input,textarea{font:inherit}
 button{cursor:pointer}
 a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
+img,video{display:block;max-width:100%}
 .container{width:min(100% - 28px,760px);margin:auto}
-.top-actions{position:absolute;right:16px;top:15px;display:flex;gap:10px;z-index:5}
-.icon-btn{
-  width:34px;height:34px;border:1px solid var(--line);
-  border-radius:50%;background:var(--panel);color:var(--text);
+.hidden{display:none!important}
+
+/* Giriş */
+#intro{
+  position:fixed;inset:0;z-index:20;background:#050505;
+  display:grid;place-items:center;overflow:hidden;
 }
-.profile{
-  min-height:245px;position:relative;overflow:hidden;
-  display:flex;align-items:center;justify-content:center;text-align:center;
-  padding:35px 15px 18px;
+.intro-video{position:absolute;width:100%;height:100%;object-fit:cover;opacity:.75}
+.intro-shade{position:absolute;inset:0;background:linear-gradient(0deg,#0009,#0002 55%,#0006)}
+.intro-content{position:relative;text-align:center;padding:20px;color:#fff}
+.intro-logo{font-family:'Great Vibes',cursive;font-size:clamp(48px,12vw,90px);margin:0}
+.intro-button{
+  margin-top:20px;padding:11px 30px;border:1px solid #ffffff99;
+  background:#300000;color:white;letter-spacing:3px;font:12px Arial,sans-serif
 }
-.profile-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.32}
-.profile::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent,var(--bg))}
+
+/* Profil */
+#site{display:none}
+.top-actions{position:absolute;right:14px;top:14px;display:flex;gap:8px;z-index:5}
+.icon-btn{width:35px;height:35px;border:1px solid var(--line);border-radius:50%;background:var(--panel);color:var(--text)}
+.profile{min-height:245px;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;padding:35px 14px 18px;overflow:hidden}
+.profile-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.28}
 .profile-content{position:relative;z-index:1}
-.avatar{
-  width:86px;height:86px;border-radius:50%;object-fit:cover;
-  border:2px solid var(--accent);margin:0 auto 8px;
-}
+.avatar{width:86px;height:86px;object-fit:cover;border-radius:50%;border:2px solid var(--accent);margin:0 auto 8px}
 .profile h1{font-size:clamp(25px,6vw,36px);font-weight:500;letter-spacing:3px;margin:0}
-.tagline{font-size:15px;font-style:italic;color:var(--muted);margin:0 0 12px}
-.socials{display:flex;justify-content:center;gap:14px;margin:10px 0}
-.socials a{font-family:Arial,sans-serif;font-size:19px;opacity:.8}
-.tabs{
-  display:flex;justify-content:center;gap:0;border-bottom:1px solid var(--line);
-  position:sticky;top:0;background:var(--bg);z-index:4;
+.tagline{font-size:15px;font-style:italic;color:var(--muted);margin:0 0 10px}
+.socials{display:flex;justify-content:center;align-items:center;gap:15px;margin:10px 0}
+.socials a{width:22px;height:22px;display:grid;place-items:center}
+.socials svg{width:20px;height:20px;fill:currentColor}
+  /* Menü */
+.menu-overlay{position:fixed;inset:0;background:#0009;z-index:10;display:none}
+.menu-overlay.open{display:block}
+.side-menu{
+  position:absolute;right:0;top:0;height:100%;width:min(290px,85vw);
+  background:var(--panel);padding:65px 22px 25px;box-shadow:-8px 0 30px #0003
 }
-.tab{
-  border:0;background:none;color:var(--muted);padding:14px 12px 11px;
-  font-size:12px;font-family:Arial,sans-serif;font-weight:600;
-  border-bottom:2px solid transparent;
+.menu-close{position:absolute;right:16px;top:16px}
+.menu-links{display:grid;gap:4px}
+.menu-links button{
+  text-align:left;border:0;background:none;color:var(--text);
+  padding:13px 8px;border-bottom:1px solid var(--line);letter-spacing:1px
 }
+
+/* Sekmeler */
+.tabs{display:flex;justify-content:center;position:sticky;top:0;z-index:4;background:var(--bg);border-bottom:1px solid var(--line)}
+.tab{border:0;background:none;color:var(--muted);padding:13px 10px 10px;font:600 11px Arial,sans-serif;border-bottom:2px solid transparent}
 .tab.active{color:var(--text);border-color:var(--accent)}
 main{padding:14px 0 35px}
 .panel{display:none}
 .panel.active{display:block}
 .section-title{font-size:22px;font-weight:500;margin:0 0 12px}
-.books-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
-.book-card{min-width:0;text-align:center}
-.book-cover{
-  width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:3px;
-  border:1px solid var(--line);box-shadow:0 5px 18px var(--shadow);
-}
+
+/* Kitaplar */
+.books-grid,.character-books{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.book-card,.character-book{min-width:0;text-align:center}
+.book-cover,.character-book img{width:100%;aspect-ratio:2/3;object-fit:cover;border:1px solid var(--line)}
 .book-name{font-size:16px;margin:7px 0 0}
 .book-author{font:10px Arial,sans-serif;letter-spacing:2px;color:var(--muted);margin-top:3px}
-  .post-list{display:grid;gap:12px}
-.post{
-  background:var(--card);border:1px solid var(--line);
-  border-radius:5px;padding:13px;
-}
-.post-head{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+
+/* Pano */
+.post-list{display:grid;gap:12px;margin-top:12px}
+.post{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:13px}
+.post-head{display:flex;align-items:center;gap:9px;margin-bottom:9px}
 .post-avatar{width:32px;height:32px;border-radius:50%;object-fit:cover}
 .post-author{font-size:15px}
 .post-date{font:10px Arial,sans-serif;color:var(--muted)}
 .post-text{font-size:17px;white-space:pre-wrap;overflow-wrap:anywhere}
-.post-actions{display:flex;gap:14px;margin-top:10px;font:11px Arial,sans-serif;color:var(--muted)}
-.write-btn,.submit-btn,.back-btn{
-  background:var(--accent);color:#fff;border:0;border-radius:3px;
-  padding:10px 15px;font:12px Arial,sans-serif;letter-spacing:.5px;
-}
-.write-form{display:none;margin:12px 0}
-.write-form.open{display:block}
-.write-form input,.write-form textarea,.comment-input{
-  width:100%;padding:11px;background:var(--panel);color:var(--text);
-  border:1px solid var(--line);border-radius:3px;margin-bottom:8px;
-}
+.post-actions{display:flex;gap:14px;margin-top:10px}
+.text-btn{border:0;background:none;color:var(--muted);font:11px Arial,sans-serif;padding:0}
+.write-btn,.submit-btn,.back-btn{background:var(--accent);color:#fff;border:0;border-radius:3px;padding:10px 15px;font:12px Arial,sans-serif}
+.write-form,.comment-area{display:none;margin-top:12px}
+.write-form.open,.comment-area.open{display:block}
+.write-form input,.write-form textarea,.comment-input{width:100%;padding:11px;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:3px;margin-bottom:8px}
 .write-form textarea{min-height:110px;resize:vertical}
-.character-books{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
-.character-book{background:none;border:0;color:var(--text);text-align:center}
-.character-book img{width:100%;aspect-ratio:2/3;object-fit:cover;border:1px solid var(--line);box-shadow:0 5px 18px var(--shadow)}
+.comment{font-size:14px;border-top:1px solid var(--line);padding:8px 0}
+.status{font-size:13px;color:var(--muted);margin:10px 0}
+
+/* Karakterler ve galeri */
 .character-list{display:none}
 .character-list.open{display:block}
-.character-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.character-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
 .character-card{background:var(--card);border:1px solid var(--line);padding:8px;text-align:center;color:var(--text)}
 .character-card img{width:100%;aspect-ratio:3/4;object-fit:cover}
 .character-card h3{font-size:17px;font-weight:500;margin:8px 0 3px}
-.character-detail{display:none;margin-top:14px;padding:12px;background:var(--card);border:1px solid var(--line)}
+.character-detail{display:none;margin-top:12px;padding:12px;background:var(--card);border:1px solid var(--line)}
 .character-detail.open{display:block}
 .character-detail img{width:min(100%,260px);margin:0 auto 12px}
 .gallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .gallery-grid img{width:100%;aspect-ratio:1;object-fit:cover}
-.comment-area{display:none;margin-top:10px}
-.comment-area.open{display:block}
-.comment{font-size:14px;border-top:1px solid var(--line);padding:7px 0}
 @media(min-width:600px){
   .books-grid,.character-books{grid-template-columns:repeat(3,minmax(0,1fr))}
   .character-grid,.gallery-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .profile{min-height:280px}
+  .profile{min-height:270px}
 }
 </style>
 </head>
 <body>
-  <header>
+  <section id="intro">
+  <video class="intro-video" autoplay muted loop playsinline>
+    <source src="macadoodle31_pindown.io_1793296533.mp4" type="video/mp4">
+  </video>
+  <div class="intro-shade"></div>
+  <div class="intro-content">
+    <h1 class="intro-logo">kesmislalih</h1>
+    <button class="intro-button" id="enterBtn">KEŞFET</button>
+  </div>
+</section>
+
+<div id="site">
   <div class="top-actions">
-    <button class="icon-btn" id="menuBtn" aria-label="Menü">☰</button>
+    <button class="icon-btn" id="menuBtn" aria-label="Menüyü aç">☰</button>
     <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir">☼</button>
   </div>
 
-  <section class="profile">
-    <video class="profile-bg" autoplay muted loop playsinline>
-      <source src="bloggg_erss_pindown.io_1793296543.mp4" type="video/mp4">
-    </video>
-    <div class="profile-content">
-      <img class="avatar" src="d08eae9afcf72d4a213a3d988ecf5935.jpg" alt="kesmislalih">
-      <h1>KESMİSLALİH</h1>
-      <p class="tagline">some stories are not meant to be told, but felt.</p>
-      <div class="socials">
-        <a href="https://www.tiktok.com/@kesmislalih_" aria-label="TikTok">♪</a>
-        <a href="https://x.com/kesmislalih" aria-label="X">𝕏</a>
-        <a href="https://pin.it/2jHDXi48B" aria-label="Pinterest">℘</a>
-        <a href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" aria-label="WhatsApp">◉</a>
+  <header>
+    <section class="profile">
+      <video class="profile-bg" autoplay muted loop playsinline>
+        <source src="bloggg_erss_pindown.io_1793296543.mp4" type="video/mp4">
+      </video>
+      <div class="profile-content">
+        <img class="avatar" src="d08eae9afcf72d4a213a3d988ecf5935.jpg" alt="kesmislalih">
+        <h1>KESMİSLALİH</h1>
+        <p class="tagline">some stories are not meant to be told, but felt.</p>
+        <div class="socials">
+          <a href="https://www.tiktok.com/@kesmislalih_" aria-label="TikTok">
+            <svg viewBox="0 0 24 24"><path d="M19.6 7.2a6.2 6.2 0 0 1-4-1.5v8.1a5.7 5.7 0 1 1-5.7-5.7c.4 0 .8 0 1.2.1v3.2a2.5 2.5 0 1 0 1.3 2.2V2.5h3.2c.2 2.2 1.8 3.9 4 4.2z"/></svg>
+          </a>
+          <a href="https://x.com/kesmislalih" aria-label="X">
+            <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-5-6.5L6.2 22H3l7.3-8.4L2.5 2h6.5l4.5 6zm-1.1 18h1.7L7.9 3.9H6.1z"/></svg>
+          </a>
+          <a href="https://pin.it/2jHDXi48B" aria-label="Pinterest">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.6 19.3c0-.8 0-1.8.2-2.7l1.3-5.5s-.3-.7-.3-1.7c0-1.6.9-2.8 2.1-2.8 1 0 1.5.8 1.5 1.7 0 1-.6 2.5-.9 3.9-.3 1.2.6 2.1 1.8 2.1 2.2 0 3.9-2.3 3.9-5.6 0-2.9-2.1-4.9-5-4.9-3.4 0-5.4 2.5-5.4 5.1 0 1 .4 2.2.9 2.8.1.2.2.3.1.6l-.3 1.1c0 .2-.2.3-.4.2-1.5-.7-2.4-2.8-2.4-4.5 0-3.7 2.7-7.1 7.8-7.1 4.1 0 7.3 2.9 7.3 6.8 0 4.1-2.6 7.5-6.2 7.5-1.2 0-2.4-.7-2.8-1.5l-.8 3.1c-.3 1.1-1 2.4-1.5 3.2A10 10 0 1 0 12 2z"/></svg>
+          </a>
+          <a href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-5.9c-.2-.1-1.4-.7-1.6-.7s-.4-.1-.5.1-.6.7-.8.8-.3.1-.3 0a6.5 6.5 0 0 1-1.9-1.2 7 7 0 0 1-1.3-1.6c-.1-.2 0-.3.1-.4l.4-.5.2-.4c.1-.1 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3s-.8.8-.8 1.9.8 2.2.9 2.4a9 9 0 0 0 3.5 3.1c.5.2.9.4 1.2.5.5.2 1 .2 1.4.1.4-.1 1.4-.6 1.6-1.1s.2-.9.2-1-.1-.2-.3-.3z"/></svg>
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <nav class="tabs">
-    <button class="tab active" data-tab="books">KİTAPLAR</button>
-    <button class="tab" data-tab="wall">PANO</button>
-    <button class="tab" data-tab="characters">KARAKTERLER</button>
-    <button class="tab" data-tab="gallery">GALERİ</button>
-  </nav>
-</header>
+    <nav class="tabs">
+      <button class="tab active" data-tab="books">KİTAPLAR</button>
+      <button class="tab" data-tab="wall">PANO</button>
+      <button class="tab" data-tab="characters">KARAKTERLER</button>
+      <button class="tab" data-tab="gallery">GALERİ</button>
+    </nav>
+  </header>
 
-<main class="container">
-  <section class="panel active" id="books">
-    <div class="books-grid">
-      <a class="book-card" href="ringteki-son-dans.html">
-        <img class="book-cover" src="file_00000000375c81f4b311415188148be7.png" alt="Ringteki Son Dans">
-        <div class="book-name">Ringteki Son Dans</div>
-        <div class="book-author">KESMİSLALİH</div>
-      </a>
-    </div>
-  </section>
+  <div class="menu-overlay" id="menuOverlay">
+    <aside class="side-menu">
+      <button class="icon-btn menu-close" id="menuClose" aria-label="Menüyü kapat">×</button>
+      <nav class="menu-links">
+        <button data-go="books">KİTAPLAR</button>
+        <button data-go="wall">PANO</button>
+        <button data-go="characters">KARAKTERLER</button>
+        <button data-go="gallery">GALERİ</button>
+        <a href="ringteki-son-dans.html">RİNGTEKİ SON DANS</a>
+      </nav>
+    </aside>
+  </div>
 
-  <section class="panel" id="wall">
-    <button class="write-btn" id="writeBtn">YAZMA</button>
-    <form class="write-form" id="writeForm">
-      <input id="postName" maxlength="40" placeholder="Adın veya kullanıcı adın" required>
-      <textarea id="postText" maxlength="1500" placeholder="Pano'ya bir şeyler yaz..." required></textarea>
-      <button class="submit-btn" type="submit">PAYLAŞ</button>
-    </form>
-    <div class="post-list" id="postList"></div>
-  </section>
+  <main class="container">
+    <section class="panel active" id="books">
+      <div class="books-grid">
+        <a class="book-card" href="ringteki-son-dans.html">
+          <img class="book-cover" src="file_00000000375c81f4b311415188148be7.png" alt="Ringteki Son Dans">
+          <div class="book-name">Ringteki Son Dans</div>
+          <div class="book-author">KESMİSLALİH</div>
+        </a>
+      </div>
+    </section>
 
-  <section class="panel" id="characters">
-    <div id="characterBooks" class="character-books"></div>
-    <div id="characterList" class="character-list">
-      <button class="back-btn" id="backToBooks">← KİTAPLAR</button>
-      <h2 class="section-title" id="characterBookTitle"></h2>
-      <div class="character-grid" id="characterGrid"></div>
-      <div class="character-detail" id="characterDetail"></div>
-    </div>
-  </section>
+    <section class="panel" id="wall">
+      <button class="write-btn" id="writeBtn">YAZMA</button>
+      <form class="write-form" id="writeForm">
+        <input id="postName" maxlength="40" placeholder="Adın veya kullanıcı adın" required>
+        <textarea id="postText" maxlength="1500" placeholder="Pano'ya bir şeyler yaz..." required></textarea>
+        <button class="submit-btn" type="submit">PAYLAŞ</button>
+      </form>
+      <p class="status" id="wallStatus"></p>
+      <div class="post-list" id="postList"></div>
+    </section>
 
-  <section class="panel" id="gallery">
-    <div class="gallery-grid" id="galleryGrid"></div>
-  </section>
-</main>
+    <section class="panel" id="characters">
+      <div class="character-books" id="characterBooks"></div>
+      <div class="character-list" id="characterList">
+        <button class="back-btn" id="backToBooks">← KİTAPLAR</button>
+        <h2 class="section-title" id="characterBookTitle"></h2>
+        <div class="character-grid" id="characterGrid"></div>
+        <div class="character-detail" id="characterDetail"></div>
+      </div>
+    </section>
+
+    <section class="panel" id="gallery">
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+  </main>
+</div>
 <script>
-const books = [
+const books=[
   {
     id:"ring",
     title:"Ringteki Son Dans",
@@ -193,7 +230,7 @@ const books = [
     characters:[
       {name:"Lavinia",image:"a90393fd3d48a69ffbec30ef8ba04749 (1).jpg",bio:""},
       {name:"Arel",image:"41723ea72a5db4f82fe52815d61e341a.jpg",bio:""},
-      {name:"Defne Yalçın",image:"066f212a61b08c53d9eb10ef7647a0f3.jpg",bio:""},
+      {name:"Defne Yalçın",image:"0668f965d8247c1756f1be2f3ee5e1be.jpg",bio:""},
       {name:"Efe Yalçın",image:"0b873940e46b8abc779347119a1998e0.jpg",bio:""},
       {name:"Seren Yalçın",image:"5ea49c0b074bc3d33b1516a381a7e689.jpg",bio:""},
       {name:"Cihangir Yalçın",image:"723a5f267d9ced55d8babbb5f9539a07.jpg",bio:""}
@@ -201,7 +238,7 @@ const books = [
   }
 ];
 
-const galleryImages = [
+const galleryImages=[
 "520b988f63b52ae66a0127a457e5e7d0.jpg",
 "45041afda2229d508a38cc012aaa7174.jpg",
 "0f8b7991dde0f22ff23fb81e0fc16649.jpg",
@@ -212,15 +249,19 @@ const galleryImages = [
 "bd00784591329cdde6e7804525bb3951.jpg"
 ];
 
-const characterBooks = document.getElementById("characterBooks");
-const characterList = document.getElementById("characterList");
-const characterGrid = document.getElementById("characterGrid");
-const characterDetail = document.getElementById("characterDetail");
+const characterBooks=document.getElementById("characterBooks");
+const characterList=document.getElementById("characterList");
+const characterGrid=document.getElementById("characterGrid");
+const characterDetail=document.getElementById("characterDetail");
 
 books.forEach(book=>{
   const button=document.createElement("button");
   button.className="character-book";
-  button.innerHTML=`<img src="${book.cover}" alt="${book.title}"><div class="book-name">${book.title}</div>`;
+  const cover=document.createElement("img");
+  cover.src=book.cover;cover.alt=book.title;
+  const title=document.createElement("div");
+  title.className="book-name";title.textContent=book.title;
+  button.append(cover,title);
   button.addEventListener("click",()=>showBookCharacters(book));
   characterBooks.appendChild(button);
 });
@@ -229,18 +270,27 @@ function showBookCharacters(book){
   characterBooks.style.display="none";
   characterList.classList.add("open");
   document.getElementById("characterBookTitle").textContent=book.title;
-  characterGrid.innerHTML="";
+  characterGrid.replaceChildren();
   characterDetail.classList.remove("open");
 
   book.characters.forEach(character=>{
     const card=document.createElement("button");
     card.className="character-card";
-    card.innerHTML=`<img src="${character.image}" alt="${character.name}"><h3>${character.name}</h3>`;
+    const img=document.createElement("img");
+    img.src=character.image;img.alt=character.name;
+    const name=document.createElement("h3");
+    name.textContent=character.name;
+    card.append(img,name);
     card.addEventListener("click",()=>{
-      characterDetail.innerHTML=`
-        <img src="${character.image}" alt="${character.name}">
-        <h2 class="section-title">${character.name}</h2>
-        <p>${character.bio || "Karakter bilgileri yakında."}</p>`;
+      characterDetail.replaceChildren();
+      const detailImg=document.createElement("img");
+      detailImg.src=character.image;detailImg.alt=character.name;
+      const detailTitle=document.createElement("h2");
+      detailTitle.className="section-title";
+      detailTitle.textContent=character.name;
+      const bio=document.createElement("p");
+      bio.textContent=character.bio||"Karakter bilgileri yakında.";
+      characterDetail.append(detailImg,detailTitle,bio);
       characterDetail.classList.add("open");
     });
     characterGrid.appendChild(card);
@@ -257,99 +307,158 @@ galleryImages.forEach(src=>{
   img.src=src;img.alt="Galeri görseli";img.loading="lazy";
   document.getElementById("galleryGrid").appendChild(img);
 });
-  document.querySelectorAll(".tab").forEach(tab=>{
-  tab.addEventListener("click",()=>{
-    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-    document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
-    tab.classList.add("active");
-    document.getElementById(tab.dataset.tab).classList.add("active");
-  });
+  // Giriş ekranı
+document.getElementById("enterBtn").addEventListener("click",()=>{
+  document.getElementById("intro").classList.add("hidden");
+  document.getElementById("site").style.display="block";
 });
 
-const themeBtn=document.getElementById("themeBtn");
-if(localStorage.getItem("siteTheme")==="light") document.body.classList.add("light");
+// Sekmeler
+function openTab(tabId){
+  document.querySelectorAll(".tab").forEach(tab=>{
+    tab.classList.toggle("active",tab.dataset.tab===tabId);
+  });
+  document.querySelectorAll(".panel").forEach(panel=>{
+    panel.classList.toggle("active",panel.id===tabId);
+  });
+  closeMenu();
+}
+document.querySelectorAll(".tab").forEach(tab=>{
+  tab.addEventListener("click",()=>openTab(tab.dataset.tab));
+});
 
-themeBtn.addEventListener("click",()=>{
+// Açılır menü
+const menuOverlay=document.getElementById("menuOverlay");
+function closeMenu(){menuOverlay.classList.remove("open")}
+document.getElementById("menuBtn").addEventListener("click",()=>menuOverlay.classList.add("open"));
+document.getElementById("menuClose").addEventListener("click",closeMenu);
+menuOverlay.addEventListener("click",e=>{if(e.target===menuOverlay)closeMenu()});
+document.querySelectorAll("[data-go]").forEach(button=>{
+  button.addEventListener("click",()=>openTab(button.dataset.go));
+});
+
+// Tema
+if(localStorage.getItem("siteTheme")==="light")document.body.classList.add("light");
+document.getElementById("themeBtn").addEventListener("click",()=>{
   document.body.classList.toggle("light");
   localStorage.setItem("siteTheme",document.body.classList.contains("light")?"light":"dark");
 });
 
+// Pano formu
 document.getElementById("writeBtn").addEventListener("click",()=>{
   document.getElementById("writeForm").classList.toggle("open");
 });
 
+// Supabase bağlantısı — kendi proje bilgilerinle değiştir
 const SUPABASE_URL="SUPABASE_PROJE_URLİNİ_BURAYA_YAZ";
 const SUPABASE_ANON_KEY="SUPABASE_ANON_KEYİNİ_BURAYA_YAZ";
-let supabaseClient=null;
-
-if(SUPABASE_URL.startsWith("https://") && !SUPABASE_URL.includes("BURAYA")){
-  supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
-}
+const supabaseReady=SUPABASE_URL.startsWith("https://")&&!SUPABASE_URL.includes("BURAYA");
+const db=supabaseReady?window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY):null;
 
 const postList=document.getElementById("postList");
+const wallStatus=document.getElementById("wallStatus");
 let localPosts=JSON.parse(localStorage.getItem("wallPosts")||"[]");
 
+function el(tag,cls,text){
+  const node=document.createElement(tag);
+  if(cls)node.className=cls;
+  if(text!==undefined)node.textContent=text;
+  return node;
+}
+
 function renderPosts(posts){
-  postList.innerHTML="";
+  postList.replaceChildren();
   posts.forEach(post=>{
-    const article=document.createElement("article");
-    article.className="post";
-    article.innerHTML=`
-      <div class="post-head">
-        <img class="post-avatar" src="d08eae9afcf72d4a213a3d988ecf5935.jpg" alt="">
-        <div><div class="post-author"></div><div class="post-date"></div></div>
-      </div>
-      <div class="post-text"></div>
-      <div class="post-actions"><button class="comment-toggle">Yorumlar</button></div>
-      <div class="comment-area"><div class="comments"></div>
-        <input class="comment-input" placeholder="Yorum yaz...">
-        <button class="submit-btn comment-submit">Gönder</button>
-      </div>`;
-    article.querySelector(".post-author").textContent=post.name;
-    article.querySelector(".post-date").textContent=post.date;
-    article.querySelector(".post-text").textContent=post.text;
-    article.querySelector(".comment-toggle").addEventListener("click",()=>{
-      article.querySelector(".comment-area").classList.toggle("open");
+    const article=el("article","post");
+    const head=el("div","post-head");
+    const avatar=el("img","post-avatar");
+    avatar.src="d08eae9afcf72d4a213a3d988ecf5935.jpg";
+    avatar.alt="";
+    const authorBox=el("div","");
+    authorBox.append(el("div","post-author",post.name),el("div","post-date",post.date));
+    head.append(avatar,authorBox);
+
+    const text=el("div","post-text",post.text);
+    const actions=el("div","post-actions");
+    const toggle=el("button","text-btn","Yorumlar");
+    actions.appendChild(toggle);
+
+    const area=el("div","comment-area");
+    const comments=el("div","");
+    const input=el("input","comment-input");
+    input.placeholder="Yorum yaz...";
+    const send=el("button","submit-btn","Gönder");
+    area.append(comments,input,send);
+
+    toggle.addEventListener("click",()=>{
+      area.classList.toggle("open");
+      if(area.classList.contains("open"))loadComments(post.id,comments);
     });
-    article.querySelector(".comment-submit").addEventListener("click",()=>{
-      const input=article.querySelector(".comment-input");
-      if(!input.value.trim())return;
-      const comment=document.createElement("div");
-      comment.className="comment";
-      comment.textContent=input.value.trim();
-      article.querySelector(".comments").appendChild(comment);
-      input.value="";
-    });
+    send.addEventListener("click",()=>submitComment(post.id,input,comments));
+
+    article.append(head,text,actions,area);
     postList.appendChild(article);
   });
 }
 
+async function loadComments(postId,container){
+  container.replaceChildren();
+  if(!db||!postId)return;
+  const {data,error}=await db.from("wall_comments").select("name,text,created_at")
+    .eq("post_id",postId).order("created_at",{ascending:true});
+  if(error)return;
+  data.forEach(comment=>{
+    container.appendChild(el("div","comment",comment.name+": "+comment.text));
+  });
+}
+
+async function submitComment(postId,input,container){
+  const text=input.value.trim();
+  if(!text)return;
+  if(!db||!postId){alert("Ortak yorumlar için Supabase bağlantısı gerekli.");return;}
+  const name=prompt("Yorumda görünecek adın?");
+  if(!name||!name.trim())return;
+  const {error}=await db.from("wall_comments").insert({post_id:postId,name:name.trim(),text});
+  if(error){alert("Yorum gönderilemedi. Supabase tablo ve politikalarını kontrol et.");return;}
+  input.value="";
+  await loadComments(postId,container);
+}
+
 async function loadPosts(){
-  if(supabaseClient){
-    const {data,error}=await supabaseClient.from("wall_posts").select("*").order("created_at",{ascending:false});
-    if(!error && data){renderPosts(data.map(p=>({name:p.name,text:p.text,date:new Date(p.created_at).toLocaleDateString("tr-TR")})));return;}
+  if(db){
+    const {data,error}=await db.from("wall_posts").select("id,name,text,created_at").order("created_at",{ascending:false});
+    if(!error&&data){
+      wallStatus.textContent="";
+      renderPosts(data.map(post=>({
+        id:post.id,name:post.name,text:post.text,
+        date:new Date(post.created_at).toLocaleString("tr-TR")
+      })));
+      return;
+    }
+    wallStatus.textContent="Pano yüklenemedi. Supabase tablolarını ve erişim politikalarını kontrol et.";
+  }else{
+    wallStatus.textContent="Yerel önizleme: gönderiler yalnızca bu cihazda saklanır.";
   }
   renderPosts(localPosts);
 }
 
-document.getElementById("writeForm").addEventListener("submit",async e=>{
-  e.preventDefault();
+document.getElementById("writeForm").addEventListener("submit",async event=>{
+  event.preventDefault();
   const name=document.getElementById("postName").value.trim();
   const text=document.getElementById("postText").value.trim();
   if(!name||!text)return;
-  const post={name,text,date:new Date().toLocaleDateString("tr-TR")};
 
-  if(supabaseClient){
-    const {error}=await supabaseClient.from("wall_posts").insert({name,text});
+  if(db){
+    const {error}=await db.from("wall_posts").insert({name,text});
     if(error){alert("Paylaşım gönderilemedi. Supabase ayarlarını kontrol et.");return;}
     await loadPosts();
   }else{
-    localPosts.unshift(post);
+    localPosts.unshift({id:null,name,text,date:new Date().toLocaleString("tr-TR")});
     localStorage.setItem("wallPosts",JSON.stringify(localPosts));
     renderPosts(localPosts);
   }
-  e.target.reset();
-  e.target.classList.remove("open");
+  event.target.reset();
+  event.target.classList.remove("open");
 });
 
 loadPosts();
