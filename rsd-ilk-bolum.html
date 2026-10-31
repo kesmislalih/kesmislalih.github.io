@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sıfırıncı Dans | Ringteki Son Dans</title>
+<title>Ringteki Son Dans | kesmislalih</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -24,7 +24,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
@@ -38,10 +38,10 @@ body {
 .page {
   width: min(100%, 760px);
   margin: auto;
-  padding: 34px 24px 70px;
+  padding: 34px 24px 100px;
 }
 
-/* Üst menü */
+/* Üst okuma araçları */
 .topbar {
   position: fixed;
   top: 0;
@@ -52,9 +52,19 @@ body {
   align-items: center;
   gap: 15px;
   padding: 14px 20px;
-  background: rgba(8, 8, 8, .94);
+  background: rgba(8, 8, 8, .96);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-100%);
+  transition: .22s ease;
+}
+
+.topbar.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 .topbar a {
@@ -85,6 +95,7 @@ body {
   border: 0;
   background: transparent;
   cursor: pointer;
+  color: var(--text);
 }
 
 .settings-button {
@@ -94,72 +105,116 @@ body {
 }
 
 .menu-button {
-  color: var(--text);
   font-size: 25px;
   line-height: 1;
   padding: 4px;
 }
 
-/* Kitap menüsü */
-.chapter-menu {
-  display: none;
+/* Üç çizgili kitap menüsü */
+.menu-shade {
   position: fixed;
-  top: 68px;
-  right: 14px;
+  inset: 0;
+  z-index: 140;
+  background: rgba(0,0,0,.65);
+  opacity: 0;
+  visibility: hidden;
+  transition: .2s;
+}
+
+.menu-shade.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.chapter-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
   z-index: 150;
-  width: min(300px, calc(100vw - 28px));
-  padding: 12px;
+  width: min(330px, 88vw);
+  padding: 25px 22px;
+  overflow-y: auto;
   background: #111;
   color: #f2f2f2;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  box-shadow: 0 12px 35px rgba(0,0,0,.4);
+  border-left: 1px solid var(--line);
+  transform: translateX(105%);
+  transition: transform .25s ease;
 }
 
 .chapter-menu.open {
-  display: block;
+  transform: translateX(0);
 }
 
-.chapter-menu a {
+.menu-close {
   display: block;
-  padding: 12px;
+  margin-left: auto;
+  padding: 4px 8px;
+  background: none;
+  border: 0;
   color: #f2f2f2;
-  text-decoration: none;
-  font-size: 13px;
+  font-size: 27px;
+  cursor: pointer;
+}
+
+.menu-cover {
+  display: block;
+  width: 125px;
+  height: 175px;
+  margin: 15px auto 18px;
+  object-fit: cover;
+  box-shadow: 0 8px 25px #0008;
 }
 
 .menu-book-title {
+  text-align: center;
+  font-size: 19px;
   font-weight: 800;
   letter-spacing: 1px;
+  line-height: 1.5;
 }
 
-.menu-book-info {
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px solid #292929;
-}
-
-.menu-book-info span {
-  display: block;
-  padding: 10px 12px;
+.menu-author {
+  text-align: center;
   color: #aaa;
-  font-size: 13px;
+  font-size: 12px;
+  margin-top: 8px;
 }
 
-/* Yazı ayarları penceresi */
+.menu-space {
+  height: 38px;
+}
+
+.menu-heading {
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.chapter-menu a.chapter-link {
+  display: block;
+  padding: 13px 0;
+  border-bottom: 1px solid #292929;
+  color: #f2f2f2;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* Yazı ve renk ayarları */
 .settings-popup {
   display: none;
   position: fixed;
-  top: 78px;
+  top: 72px;
   right: 14px;
-  z-index: 200;
-  width: min(530px, calc(100vw - 28px));
-  padding: 24px 22px;
+  z-index: 160;
+  width: min(390px, calc(100vw - 28px));
+  padding: 22px;
   background: #111;
   color: #eee;
   border: 1px solid #292929;
-  border-radius: 14px;
-  box-shadow: 0 12px 35px rgba(0,0,0,.45);
+  border-radius: 10px;
+  box-shadow: 0 12px 35px #0008;
 }
 
 .settings-popup.open {
@@ -167,23 +222,23 @@ body {
 }
 
 .settings-section + .settings-section {
-  margin-top: 28px;
+  margin-top: 25px;
 }
 
 .settings-section p {
-  margin: 0 0 20px;
+  margin: 0 0 15px;
   color: #aaa;
-  font-size: 16px;
+  font-size: 13px;
 }
 
 .color-options {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 13px;
 }
 
 .color-swatch {
-  height: 68px;
+  height: 55px;
   border: 3px solid #292929;
   border-radius: 7px;
   cursor: pointer;
@@ -196,21 +251,17 @@ body {
 .font-controls {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 13px;
 }
 
 .font-controls button {
-  min-height: 66px;
+  min-height: 53px;
   background: #1d1d1d;
   color: #eee;
   border: 1px solid #303030;
   border-radius: 7px;
-  font: 600 20px Montserrat, sans-serif;
+  font: 600 19px Montserrat, sans-serif;
   cursor: pointer;
-}
-
-.font-controls button:active {
-  background: #303030;
 }
 
 /* Giriş */
@@ -315,7 +366,7 @@ body {
 /* Alıntılar ve hikâye */
 .quote {
   text-align: center;
-  font-size: clamp(18px, 4.5vw, 25px);
+  font-size: var(--story-font-size);
   font-style: italic;
   line-height: 1.8;
   margin: 55px 0 35px;
@@ -340,59 +391,121 @@ body {
   font-style: italic;
 }
 
-/* Paragraf yorumları */
-.comment-button {
-  position: absolute;
-  right: 0;
-  top: 8px;
-  border: 0;
-  background: transparent;
-  color: var(--accent);
-  font-size: 22px;
-  cursor: pointer;
-  padding: 4px;
-}
-
-.comment-box {
-  display: none;
-  margin: -28px 0 42px;
-  padding: 16px;
-  background: var(--comment-bg);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-}
-
-.comment-box.open {
-  display: block;
-}
-
-.comment-box textarea {
-  width: 100%;
-  min-height: 90px;
-  resize: vertical;
-  background: var(--bg);
-  color: var(--text);
-  border: 1px solid #333;
+/* Paragraf seçimi */
+.paragraph.selected {
+  background: rgba(143, 21, 48, .12);
   border-radius: 5px;
-  padding: 12px;
-  font: inherit;
-  font-size: 14px;
 }
 
-.comment-box button {
-  margin-top: 10px;
+/* Yorum penceresi */
+.comment-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0,0,0,.72);
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.comment-modal.open {
+  display: flex;
+}
+
+.comment-modal-content {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 24px;
+  background: #111;
+  color: #f2f2f2;
+  border: 1px solid #333;
+  border-radius: 12px;
+}
+
+.modal-close {
+  display: block;
+  margin-left: auto;
+  background: none;
+  border: 0;
+  color: #ddd;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+#selectedParagraph {
+  margin: 8px 0 22px;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+#commentInput {
+  width: 100%;
+  min-height: 100px;
+  padding: 12px;
+  resize: vertical;
+  background: #080808;
+  color: #f2f2f2;
+  border: 1px solid #333;
+  border-radius: 6px;
+  font: inherit;
+}
+
+#submitComment {
+  margin-top: 12px;
+  padding: 11px 18px;
   background: var(--accent);
   color: white;
   border: 0;
-  border-radius: 4px;
-  padding: 10px 16px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-.comment-list {
-  margin-top: 12px;
-  font-size: 14px;
-  color: var(--text);
+#commentList p {
+  padding: 12px 0;
+  border-bottom: 1px solid #333;
+  overflow-wrap: anywhere;
+}
+
+/* Alttaki okuma ilerleme çubuğu */
+.reader-progress {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  padding: 13px 20px 17px;
+  background: rgba(8,8,8,.97);
+  border-top: 1px solid var(--line);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(100%);
+  transition: .22s ease;
+}
+
+.reader-progress.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 9px;
+}
+
+#progressSlider {
+  display: block;
+  width: 100%;
+  margin: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+  touch-action: pan-x;
 }
 
 /* Metin seçimini kapatma */
@@ -406,7 +519,7 @@ body,
 
 @media (max-width: 480px) {
   .page {
-    padding: 24px 22px 50px;
+    padding: 24px 22px 100px;
   }
 
   .topbar {
@@ -423,94 +536,80 @@ body,
     margin-bottom: 42px;
   }
 
-  .comment-button {
-    font-size: 19px;
-  }
-
   .settings-popup {
-    top: 72px;
-    padding: 22px 18px;
+    top: 68px;
+    padding: 20px 17px;
   }
 
   .color-options {
-    gap: 12px;
+    gap: 10px;
   }
 
   .color-swatch {
-    height: 60px;
+    height: 52px;
   }
 }
 </style>
 </head>
-
 <body>
 
-<nav class="topbar">
+<nav class="topbar" id="topbar">
   <a href="ringteki-son-dans.html" class="back-link" aria-label="Kitaba dön">←</a>
 
   <a href="ringteki-son-dans.html" class="topbar-title">
     RİNGTEKİ SON DANS
   </a>
 
-  <button
-    class="settings-button"
-    id="settingsButton"
-    type="button"
-    aria-label="Yazı ayarları"
-    aria-expanded="false"
-  >Aa</button>
+  <button class="settings-button" id="settingsButton"
+    type="button" aria-label="Yazı ayarları">Aa</button>
 
-  <button
-    class="menu-button"
-    id="menuButton"
-    type="button"
-    aria-label="Kitap menüsünü aç"
-    aria-expanded="false"
-  >☰</button>
+  <button class="menu-button" id="menuButton"
+    type="button" aria-label="Kitap menüsünü aç">☰</button>
 </nav>
 
-<div class="chapter-menu" id="chapterMenu">
-  <a href="ringteki-son-dans.html" class="menu-book-title">
-    RİNGTEKİ SON DANS
-  </a>
+<div class="menu-shade" id="menuShade"></div>
 
-  <div class="menu-book-info">
-    <a href="ringteki-son-dans.html">Kitap profili</a>
-    <span>Yazar: kesmislalih</span>
-  </div>
-</div>
+<nav class="chapter-menu" id="chapterMenu">
+  <button class="menu-close" id="menuClose" type="button">×</button>
+
+  <img
+    class="menu-cover"
+    src="giris-gorsel.png"
+    alt="Ringteki Son Dans kitap kapağı"
+  >
+
+  <div class="menu-book-title">RİNGTEKİ SON DANS</div>
+  <div class="menu-author">Yazar: kesmislalih</div>
+
+  <div class="menu-space"></div>
+
+  <div class="menu-heading">BÖLÜMLER</div>
+
+  <a class="chapter-link" href="#chapter-0">
+    Sıfırıncı Bölüm — Ringteki Son Dans
+  </a>
+</nav>
 
 <div class="settings-popup" id="settingsPopup">
+
   <div class="settings-section">
     <p>Sayfa rengi</p>
 
     <div class="color-options">
-      <button
-        class="color-swatch"
-        data-bg="#ffffff"
-        data-text="#222222"
+      <button class="color-swatch"
+        data-bg="#ffffff" data-text="#222222"
         style="background:#ffffff"
-        aria-label="Beyaz sayfa"
-        type="button"
-      ></button>
+        aria-label="Beyaz sayfa" type="button"></button>
 
-      <button
-        class="color-swatch active"
-        data-bg="#080808"
-        data-text="#f2f2f2"
+      <button class="color-swatch active"
+        data-bg="#080808" data-text="#f2f2f2"
         style="background:#080808"
-        aria-label="Siyah sayfa"
-        type="button"
-      ></button>
+        aria-label="Siyah sayfa" type="button"></button>
 
-      <button
-        class="color-swatch"
-        data-bg="#f4ead5"
-        data-text="#332b22"
+      <button class="color-swatch"
+        data-bg="#f4ead5" data-text="#332b22"
         style="background:#f4ead5"
-        aria-label="Krem sayfa"
-        type="button"
-      ></button>
+        aria-label="Krem sayfa" type="button"></button>
     </div>
   </div>
 
@@ -518,11 +617,12 @@ body,
     <p>Yazı boyutu</p>
 
     <div class="font-controls">
-      <button id="fontDecrease" type="button">Aa-</button>
+      <button id="fontDecrease" type="button">Aa−</button>
       <button id="fontIncrease" type="button">Aa+</button>
     </div>
   </div>
 </div>
+
 <main class="page">
 
 <section class="intro">
@@ -533,16 +633,16 @@ body,
   <img
     class="intro-image"
     src="giris-gorsel.png"
-    alt="Sıfırıncı Dans giriş görseli"
+    alt="Ringteki Son Dans giriş görseli"
   >
 
   <div class="book-title">
-    <small>Sıfırıncı Dans</small>
+    <small>RİNGTEKİ</small>
     <h1>Ringteki Son Dans</h1>
   </div>
 
   <div class="ornament">
-   ๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭
+   ๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭
   </div>
 
   <div class="audio-player">
@@ -582,7 +682,6 @@ body,
   <div class="ornament">𓍼</div>
 
   <div class="story">
-
     <p class="paragraph">
 Masallar gerçekti, dünyalar apayrıydı. Her masal her dünyada gerçekleşmezdi. Sihirli peri tozları, süpürgesiyle uçan cadılar, özel güce sahip kahramanlar bir hayalden ibaretti. Onlar yalnızca hayal dünyasına aitti. Gerçek olan tek şey hayal kırıklığından başka bir şey değildi.
 </p>
@@ -858,6 +957,7 @@ Gözlerim yuvarlarından çıkacakmış gibi büyüdü. "Pislik! Öyle şeyler d
 <p class="paragraph">
 "O içerideki çocuklar... Onlar mı?"
 </p>
+
 <p class="paragraph">
 Hemen anladı neyden bahsettiğimi. "Bilmiyorum, izin verirsen bakacağım."
 </p>
@@ -969,6 +1069,7 @@ Nihayetinde kendini toparladığında "Küçücük bir şey için şekilden şek
 <p class="paragraph">
 "Yanlış düşünüyorsun." diye ona cevap verdiğimde tek kaşını kaldırdı. Söyleyeceğime devam ettim. "Kelebekler de küçüktür, ama onu yakalayabilmek için şekilden şekle girersin."
 </p>
+
 <p class="paragraph">
 Ölümcül bakışları bana döndüğünde konuşmaya başladı. "Birazdan ölecek olan birine göre çok konuşmuyor musun sence?"
 </p>
@@ -984,6 +1085,11 @@ Yere düşen demir sopama tekrar kavuştuğumda az önce bana yaptığı gibi g�
 <p class="paragraph">
 Sopayla nabzının oraya vurduğumda kısa süreliğine bayılttım onu da. Biz buradan çıktıktan sonra ölmeden çıkabilsinler diye. Demir sopa hâlâ elimdeyken yerde bana baygın numarası yapan baş düşmanıma doğru ilerledim. Egosunu dindirmenin yolunu ne zaman bulacaktım?
 </p>
+
+<p class="paragraph">
+Adamları yere serdiğimde yerde baygın numarası yapan Arel'e döndüm. Fark etmediğimi mi sanıyordu? Gözleri hafifçe aralıklıydı. Beni oradan izliyordu. Elimdeki demir sopayı çenesinin altına getirip "Uyan lan!" diye bağırdım çenesine sürterek.
+</p>
+
 <p class="paragraph">
 Adamları yere serdiğimde yerde baygın numarası yapan Arel'e döndüm. Fark etmediğimi mi sanıyordu? Gözleri hafifçe aralıklıydı. Beni oradan izliyordu. Elimdeki demir sopayı çenesinin altına getirip "Uyan lan!" diye bağırdım çenesine sürterek.
 </p>
@@ -995,6 +1101,7 @@ Gözlerini yavaşça açarak bana baktı. Yüzündeki kanlar iyi dayak yediğini
 <p class="paragraph">
 Yutkunarak bana baktığında "Azrail Lavinia balerini?" diye garip bir cümle kurdu. Yüzüm istemsizce buruştuğunda ona bir oyun oynama isteğiyle tutuştum. Sopa hâlâ çenesinin altındayken "Hı?" diye karşılık verdim ona.
 </p>
+
 <p class="paragraph">
 Sesimi duyduğunda bembeyaz yüzü hâlâ dikkat çekiyordu. Ama benim sesimle yüzünde rahatlama ifadesi oluştu. "Lavina?" Sesi heyecanla çıktığında benim yüzümü izledi. Başını hafifçe sola eğerek hiç beklemediğim bir soru yöneltti. "Ölüm meleğini öpersek çarpılır mıyız?" Sesi mayışmış bir tonda çıkınca gözlerini kırpıştırarak baktı bana. Dudağının köşesi kıvrılmış bir hâlde, sorusuna cevap bekliyordu.
 </p>
@@ -1014,6 +1121,7 @@ Sesimi duyduğunda bembeyaz yüzü hâlâ dikkat çekiyordu. Ama benim sesimle y
 <p class="paragraph">
 "Arel?" Onun kullandığı tonlamayla ben de ona soru sorar gibi adını fısıldadım.
 </p>
+
 <p class="paragraph">
 "Lavinia?" Bu yaptığına devam ederken ben de devam ettim aynı şekilde.
 </p>
@@ -1041,6 +1149,7 @@ Ayaklanıp onun kalkmasını bekledim. Hayvan herif, manipüle etmeye çalışı
 <p class="paragraph">
 "Kim diyen! Bir de o salak iki erkeklik taslayıp üç tane cüsseli adamın arasına dalarsa tabii belasını sikerler!" Ağzımdan çıkan sözcüklerin ne anlama geldiğini bilmiyordum. Değişik bir içgüdüyle dudağımdan çıkıyordu. Garip bir şekilde anlayabiliyorduk birbirimizi.
 </p>
+
 <p class="paragraph">
 "Ne işimiz var?" dedi doğrulurken.
 </p>
@@ -1068,6 +1177,7 @@ Gülüşüm hâlâ yüzümdeyken "Sus," dedim keyifle. Onun yüzünden bana herh
 <p class="paragraph">
 Kapının önündeyken onları sandalyeye bağlayan iplerden yeni çıkmayı başarmış ikizleri gördüğümüzde donup kalmıştık. Onlar da öyle. Kız çocuğu dudaklarını aralayarak "Siz... Siz ne yapıyorsunuz burada? Anne!" diye çığlık attı.
 </p>
+
 <p class="paragraph">
 Korkudan ağlamaya başlayınca aceleyle ona doğru yürüdüm. "Defne?" Onun Defne olduğunu anlamak için Defne ismini seslendiğimde yüzü değişik bir şekle girdi. Bu hareketimle daha da ağlayarak Efe'ye döndü. "Efe, bir şey de! Bu kadın benim adımı nereden biliyor?!"
 </p>
@@ -1095,6 +1205,7 @@ Kafa karışıklığıyla ona baktım. "Niye? Biz iyilik meleği miyiz? Yani... 
 <p class="paragraph">
 "Sen kurban ol bana," dedi kendini beğenmiş edayla.
 </p>
+
 <p class="paragraph">
 "Son korban ol bono." diye onu taklit edip ters bakışlarımı ondan çektim. Gülümseyerek karşımızda titreyen çocuklara döndüm. Onları korkutmamalıydım. "Bizi anne ve babanız gönderdi."
 </p>
@@ -1110,349 +1221,322 @@ Dediğimle "Yalan söylemeyin!" diye bağırarak bize karşılık verdiklerinde 
 </section>
 </main>
 
-<!-- Paragraf seçimi ve okuma ayarları -->
-<div class="reading-overlay" id="readingOverlay"></div>
-
-<div class="reading-settings" id="readingSettings">
-  <div class="settings-title">Sayfa rengi</div>
-
-  <div class="color-options">
-    <button class="color-option" data-bg="#ffffff" data-text="#222222"
-      style="background:#ffffff" aria-label="Beyaz sayfa"></button>
-
-    <button class="color-option" data-bg="#080808" data-text="#f2f2f2"
-      style="background:#080808" aria-label="Siyah sayfa"></button>
-
-    <button class="color-option" data-bg="#f4ead4" data-text="#332b22"
-      style="background:#f4ead4" aria-label="Krem sayfa"></button>
+<!-- Okuma ilerleme çubuğu -->
+<div class="reader-progress" id="readerProgress">
+  <div class="progress-info">
+    <span>OKUMA İLERLEMESİ</span>
+    <span id="progressPercent">%0</span>
   </div>
 
-  <div class="settings-title">Yazı boyutu</div>
-
-  <div class="font-controls">
-    <button type="button" id="fontDecrease">Aa-</button>
-    <button type="button" id="fontIncrease">Aa+</button>
-  </div>
+  <input
+    type="range"
+    id="progressSlider"
+    min="0"
+    max="100"
+    value="0"
+    step="0.1"
+    aria-label="Hikâyede ileri veya geri git"
+  >
 </div>
 
 <!-- Paragraf yorumları -->
 <div class="comment-modal" id="commentModal">
   <div class="comment-modal-content">
-    <button class="modal-close" id="closeComment" aria-label="Kapat">×</button>
+    <button class="modal-close" id="closeComment"
+      aria-label="Kapat" type="button">×</button>
+
     <div id="selectedParagraph"></div>
 
-    <textarea id="commentInput"
-      placeholder="Bu paragraf hakkında yorumunu yaz..."></textarea>
+    <textarea
+      id="commentInput"
+      placeholder="Bu paragraf hakkında yorumunu yaz...">
+    </textarea>
 
     <button type="button" id="submitComment">Yorum ekle</button>
+
     <div id="commentList"></div>
   </div>
 </div>
 
-<style>
-/* Okuma ayarları */
-.reading-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 150;
-}
-
-.reading-settings {
-  display: none;
-  position: fixed;
-  top: 68px;
-  right: 14px;
-  width: min(530px, calc(100vw - 28px));
-  padding: 28px 24px;
-  background: #111;
-  border: 1px solid #292929;
-  border-radius: 12px;
-  z-index: 151;
-  box-shadow: 0 10px 35px #0008;
-}
-
-.reading-settings.open,
-.reading-overlay.open {
-  display: block;
-}
-
-.settings-title {
-  color: #aaa;
-  font-size: 16px;
-  margin-bottom: 20px;
-}
-
-.color-options {
-  display: flex;
-  gap: 14px;
-  margin-bottom: 38px;
-}
-
-.color-option {
-  flex: 1;
-  height: 58px;
-  border: 3px solid #333;
-  border-radius: 7px;
-  cursor: pointer;
-}
-
-.color-option.active {
-  border-color: var(--accent);
-}
-
-.font-controls {
-  display: flex;
-  gap: 14px;
-}
-
-.font-controls button {
-  flex: 1;
-  padding: 16px;
-  color: #eee;
-  background: #202020;
-  border: 1px solid #333;
-  border-radius: 7px;
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-/* Wattpad benzeri paragraf seçimi */
-.paragraph {
-  cursor: pointer;
-}
-
-.paragraph.selected {
-  background: rgba(143, 21, 48, 0.12);
-  border-radius: 5px;
-}
-
-.comment-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  background: rgba(0, 0, 0, 0.72);
-  align-items: center;
-  justify-content: center;
-  padding: 18px;
-}
-
-.comment-modal.open {
-  display: flex;
-}
-
-.comment-modal-content {
-  position: relative;
-  width: min(560px, 100%);
-  max-height: 85vh;
-  overflow-y: auto;
-  padding: 24px;
-  background: #111;
-  color: #f2f2f2;
-  border: 1px solid #333;
-  border-radius: 12px;
-}
-
-.modal-close {
-  display: block;
-  margin-left: auto;
-  background: none;
-  border: 0;
-  color: #ddd;
-  font-size: 28px;
-  cursor: pointer;
-}
-
-#selectedParagraph {
-  margin: 8px 0 22px;
-  font-size: 15px;
-  line-height: 1.8;
-}
-
-#commentInput {
-  width: 100%;
-  min-height: 100px;
-  padding: 12px;
-  resize: vertical;
-  background: #080808;
-  color: #f2f2f2;
-  border: 1px solid #333;
-  border-radius: 6px;
-  font: inherit;
-}
-
-#submitComment {
-  margin-top: 12px;
-  padding: 11px 18px;
-  background: var(--accent);
-  color: white;
-  border: 0;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#commentList p {
-  padding: 12px 0;
-  border-bottom: 1px solid #333;
-  overflow-wrap: anywhere;
-}
-</style>
-
 <script>
-/* Üç çizgili menü */
-const menuButton = document.getElementById('menuButton');
-const chapterMenu = document.getElementById('chapterMenu');
+/* Gerekli alanlar */
+const topbar = document.getElementById("topbar");
+const menuButton = document.getElementById("menuButton");
+const chapterMenu = document.getElementById("chapterMenu");
+const menuShade = document.getElementById("menuShade");
+const menuClose = document.getElementById("menuClose");
 
-menuButton.addEventListener('click', () => {
-  const opened = chapterMenu.classList.toggle('open');
-  menuButton.setAttribute('aria-expanded', String(opened));
-});
+const settingsButton = document.getElementById("settingsButton");
+const settingsPopup = document.getElementById("settingsPopup");
 
-chapterMenu.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    chapterMenu.classList.remove('open');
-    menuButton.setAttribute('aria-expanded', 'false');
-  });
-});
+const readerProgress = document.getElementById("readerProgress");
+const progressSlider = document.getElementById("progressSlider");
+const progressPercent = document.getElementById("progressPercent");
 
-/* Okuma ayarlarını açma-kapama */
-const readingSettings = document.getElementById('readingSettings');
-const readingOverlay = document.getElementById('readingOverlay');
+let controlsVisible = false;
+let isSeeking = false;
 
-/* Üst menüye Aa düğmesi ekle */
-const settingsButton = document.createElement('button');
-settingsButton.type = 'button';
-settingsButton.className = 'menu-button';
-settingsButton.textContent = 'Aa';
-settingsButton.setAttribute('aria-label', 'Okuma ayarları');
-menuButton.before(settingsButton);
-
-function toggleSettings(forceClose = false) {
-  const shouldOpen = forceClose
-    ? false
-    : !readingSettings.classList.contains('open');
-
-  readingSettings.classList.toggle('open', shouldOpen);
-  readingOverlay.classList.toggle('open', shouldOpen);
+/* Ekrana dokununca üst ve alt araçları göster */
+function showReaderControls() {
+  controlsVisible = true;
+  topbar.classList.add("visible");
+  readerProgress.classList.add("visible");
 }
 
-settingsButton.addEventListener('click', () => toggleSettings());
-readingOverlay.addEventListener('click', () => toggleSettings(true));
+function hideReaderControls() {
+  controlsVisible = false;
+  topbar.classList.remove("visible");
+  readerProgress.classList.remove("visible");
+  settingsPopup.classList.remove("open");
+}
 
-/* Sayfa renkleri */
-document.querySelectorAll('.color-option').forEach(button => {
-  button.addEventListener('click', () => {
-    const bg = button.dataset.bg;
-    const text = button.dataset.text;
+function toggleReaderControls() {
+  if (controlsVisible) {
+    hideReaderControls();
+  } else {
+    showReaderControls();
+  }
+}
 
-    document.documentElement.style.setProperty('--bg', bg);
-    document.documentElement.style.setProperty('--text', text);
+/*
+  Okuma alanına dokununca araçlar açılır.
+  Paragrafa dokunulduğunda yorum penceresi açılması korunur.
+  Menü, ayarlar ve ilerleme çubuğuna dokunmak araçları kapatmaz.
+*/
+document.addEventListener("click", function(event) {
+  const target = event.target;
 
-    document.querySelectorAll('.color-option').forEach(option => {
-      option.classList.remove('active');
-    });
+  if (
+    target.closest("#topbar") ||
+    target.closest("#readerProgress") ||
+    target.closest("#chapterMenu") ||
+    target.closest("#settingsPopup") ||
+    target.closest("#menuShade") ||
+    target.closest("#commentModal") ||
+    target.closest(".paragraph")
+  ) {
+    return;
+  }
 
-    button.classList.add('active');
+  toggleReaderControls();
+});
+
+/* Üç çizgili menü */
+function openMenu() {
+  chapterMenu.classList.add("open");
+  menuShade.classList.add("visible");
+  settingsPopup.classList.remove("open");
+  showReaderControls();
+}
+
+function closeMenu() {
+  chapterMenu.classList.remove("open");
+  menuShade.classList.remove("visible");
+}
+
+menuButton.addEventListener("click", function() {
+  if (chapterMenu.classList.contains("open")) {
+    closeMenu();
+  } else {
+    openMenu();
+  }
+});
+
+menuClose.addEventListener("click", closeMenu);
+menuShade.addEventListener("click", closeMenu);
+
+chapterMenu.querySelectorAll(".chapter-link").forEach(function(link) {
+  link.addEventListener("click", function() {
+    closeMenu();
+    hideReaderControls();
   });
 });
 
-/* Kontrollü yazı boyutu */
-let storyFontSize = 23;
-const minFontSize = 17;
+/* Yazı ayarları penceresi */
+settingsButton.addEventListener("click", function() {
+  settingsPopup.classList.toggle("open");
+  showReaderControls();
+});
+
+/* Yazı boyutu */
+let storyFontSize = 19;
+const minFontSize = 15;
 const maxFontSize = 29;
 const fontStep = 2;
 
 function updateFontSize() {
-  document.querySelectorAll('.paragraph, .quote').forEach(element => {
-    element.style.fontSize = storyFontSize + 'px';
-  });
+  document.documentElement.style.setProperty(
+    "--story-font-size",
+    storyFontSize + "px"
+  );
 }
 
-document.getElementById('fontIncrease').addEventListener('click', () => {
+document.getElementById("fontIncrease").addEventListener("click", function() {
   storyFontSize = Math.min(maxFontSize, storyFontSize + fontStep);
   updateFontSize();
 });
 
-document.getElementById('fontDecrease').addEventListener('click', () => {
+document.getElementById("fontDecrease").addEventListener("click", function() {
   storyFontSize = Math.max(minFontSize, storyFontSize - fontStep);
   updateFontSize();
 });
 
-/* Paragrafa dokununca yorum penceresi */
-const commentModal = document.getElementById('commentModal');
-const selectedParagraph = document.getElementById('selectedParagraph');
-const commentInput = document.getElementById('commentInput');
-const commentList = document.getElementById('commentList');
+/* Sayfa renkleri */
+document.querySelectorAll(".color-swatch").forEach(function(button) {
+  button.addEventListener("click", function() {
+    const bg = button.dataset.bg;
+    const text = button.dataset.text;
+
+    document.documentElement.style.setProperty("--bg", bg);
+    document.documentElement.style.setProperty("--text", text);
+
+    document.querySelectorAll(".color-swatch").forEach(function(swatch) {
+      swatch.classList.remove("active");
+    });
+
+    button.classList.add("active");
+  });
+});
+
+/* İlerleme yüzdesi */
+function getScrollLimit() {
+  return Math.max(
+    1,
+    document.documentElement.scrollHeight - window.innerHeight
+  );
+}
+
+function updateProgress() {
+  if (isSeeking) return;
+
+  const limit = getScrollLimit();
+  const percent = Math.min(
+    100,
+    Math.max(0, (window.scrollY / limit) * 100)
+  );
+
+  progressSlider.value = percent;
+  progressPercent.textContent = "%" + Math.round(percent);
+}
+
+window.addEventListener("scroll", updateProgress, { passive: true });
+window.addEventListener("resize", updateProgress);
+
+/* Çubuğu sürükleyerek ileri ve geri git */
+progressSlider.addEventListener("pointerdown", function() {
+  isSeeking = true;
+});
+
+progressSlider.addEventListener("input", function() {
+  const percent = Number(progressSlider.value);
+  const limit = getScrollLimit();
+
+  window.scrollTo({
+    top: (percent / 100) * limit,
+    behavior: "auto"
+  });
+
+  progressPercent.textContent = "%" + Math.round(percent);
+});
+
+function finishSeeking() {
+  isSeeking = false;
+  updateProgress();
+}
+
+progressSlider.addEventListener("change", finishSeeking);
+progressSlider.addEventListener("pointerup", finishSeeking);
+progressSlider.addEventListener("pointercancel", finishSeeking);
+
+/* Paragraf yorumları */
+const commentModal = document.getElementById("commentModal");
+const selectedParagraph = document.getElementById("selectedParagraph");
+const commentInput = document.getElementById("commentInput");
+const commentList = document.getElementById("commentList");
 
 let activeParagraph = null;
 
-document.querySelectorAll('.paragraph').forEach(paragraph => {
-  paragraph.addEventListener('click', event => {
-    if (event.target.closest('button')) return;
+document.querySelectorAll(".paragraph").forEach(function(paragraph) {
+  paragraph.addEventListener("click", function(event) {
+    if (event.target.closest("button")) return;
 
     activeParagraph = paragraph;
     selectedParagraph.textContent = paragraph.innerText;
-    commentInput.value = '';
-    commentList.innerHTML = '';
+    commentInput.value = "";
+    commentList.innerHTML = "";
 
-    paragraph.classList.add('selected');
-    commentModal.classList.add('open');
+    document.querySelectorAll(".paragraph.selected").forEach(function(item) {
+      item.classList.remove("selected");
+    });
+
+    paragraph.classList.add("selected");
+    commentModal.classList.add("open");
   });
 });
 
 function closeCommentModal() {
-  commentModal.classList.remove('open');
+  commentModal.classList.remove("open");
 
-  document.querySelectorAll('.paragraph.selected').forEach(paragraph => {
-    paragraph.classList.remove('selected');
+  document.querySelectorAll(".paragraph.selected").forEach(function(item) {
+    item.classList.remove("selected");
   });
 
   activeParagraph = null;
 }
 
-document.getElementById('closeComment').addEventListener(
-  'click',
+document.getElementById("closeComment").addEventListener(
+  "click",
   closeCommentModal
 );
 
-commentModal.addEventListener('click', event => {
-  if (event.target === commentModal) closeCommentModal();
+commentModal.addEventListener("click", function(event) {
+  if (event.target === commentModal) {
+    closeCommentModal();
+  }
 });
 
-document.getElementById('submitComment').addEventListener('click', () => {
+document.getElementById("submitComment").addEventListener("click", function() {
   const value = commentInput.value.trim();
+
   if (!value || !activeParagraph) return;
 
-  const comment = document.createElement('p');
+  const comment = document.createElement("p");
   comment.textContent = value;
   commentList.appendChild(comment);
 
-  commentInput.value = '';
+  commentInput.value = "";
 });
 
 /* Kopyalamayı zorlaştırma */
-document.addEventListener('contextmenu', event => event.preventDefault());
+document.addEventListener("contextmenu", function(event) {
+  event.preventDefault();
+});
 
-document.addEventListener('copy', event => event.preventDefault());
-document.addEventListener('cut', event => event.preventDefault());
-document.addEventListener('selectstart', event => event.preventDefault());
+document.addEventListener("copy", function(event) {
+  event.preventDefault();
+});
 
-document.addEventListener('keydown', event => {
-  const key = event.key.toLowerCase();
+document.addEventListener("cut", function(event) {
+  event.preventDefault();
+});
 
-  if ((event.ctrlKey || event.metaKey) &&
-      ['c', 'x', 'a', 's', 'u', 'p'].includes(key)) {
-    event.preventDefault();
-  }
+document.addEventListener("selectstart", function(event) {
+  event.preventDefault();
+});
 
-  if (event.key === 'Escape') {
+/* Escape ile açık pencereleri kapat */
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Escape") {
     closeCommentModal();
-    toggleSettings(true);
-    chapterMenu.classList.remove('open');
+    closeMenu();
+    settingsPopup.classList.remove("open");
+    hideReaderControls();
   }
 });
+
+/* Sayfa açıldığında araçlar kapalı başlasın */
+hideReaderControls();
+updateProgress();
 </script>
 
 </body>
