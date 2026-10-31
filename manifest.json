@@ -1,0 +1,11 @@
+{
+  "name": "kesmislalih",
+  "short_name": "kesmislalih",
+  "description": "Kelimelerden doğan hikâyeler",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#cdb9eb",
+  "lang": "tr"
+}
