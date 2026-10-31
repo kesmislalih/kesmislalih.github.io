@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#090909">
 <title>kesmislalih</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -45,6 +46,7 @@ a{color:inherit;text-decoration:none}
 img,video{display:block;max-width:100%}
 .container{width:min(100% - 30px,900px);margin:auto}
 .hidden{display:none!important}
+
 .eyebrow{
   font:10px Arial,sans-serif;letter-spacing:3px;
   text-transform:uppercase;color:var(--muted)
@@ -55,6 +57,7 @@ img,video{display:block;max-width:100%}
 }
 .section-heading h2{font-size:27px;font-weight:500;margin:0}
 .small-label{font:10px Arial,sans-serif;letter-spacing:2px;color:var(--muted)}
+
 .icon-btn{
   width:40px;height:40px;border:1px solid var(--line);
   border-radius:50%;background:var(--panel);color:var(--text);
@@ -75,19 +78,23 @@ img,video{display:block;max-width:100%}
   font:11px Arial,sans-serif;letter-spacing:1.5px
 }
 
-/* Giriş ekranı */
+/* Giriş ekranı — 4:3 video */
 #intro{
   position:fixed;inset:0;z-index:100;
   display:grid;place-items:center;
   background:#050505;overflow:hidden
 }
 .intro-frame{
-  position:absolute;width:min(100%,1100px);height:min(78vh,720px);
-  overflow:hidden;background:#100d0e
+  position:absolute;
+  width:min(92vw,900px);
+  aspect-ratio:4 / 3;
+  height:auto;
+  max-height:78vh;
+  overflow:hidden;
+  background:#100d0e
 }
 .intro-video{
-  width:100%;height:100%;object-fit:cover;
-  opacity:.66
+  width:100%;height:100%;object-fit:cover;opacity:.66
 }
 .intro-shade{
   position:absolute;inset:0;
@@ -110,7 +117,7 @@ img,video{display:block;max-width:100%}
   font:11px Arial,sans-serif;letter-spacing:3px
 }
 
-/* Üst profil */
+/* Profil alanı */
 #site{display:none}
 .site-header{position:relative}
 .top-actions{
@@ -274,7 +281,7 @@ main{padding:28px 0 60px}
 .gallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
 .gallery-grid img{width:100%;aspect-ratio:1;object-fit:cover}
 
-/* Profil oluşturma penceresi */
+/* Profil penceresi */
 .modal-overlay{
   position:fixed;inset:0;z-index:80;background:#000a;
   display:grid;place-items:center;padding:18px;
@@ -282,8 +289,9 @@ main{padding:28px 0 60px}
 }
 .modal-overlay.open{opacity:1;visibility:visible}
 .modal{
-  width:min(100%,430px);background:var(--panel);
-  border:1px solid var(--line);padding:24px;box-shadow:var(--shadow)
+  width:min(100%,430px);max-height:90vh;overflow-y:auto;
+  background:var(--panel);border:1px solid var(--line);
+  padding:24px;box-shadow:var(--shadow)
 }
 .modal-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .modal-head h2{font-size:26px;font-weight:500;margin:0}
@@ -297,6 +305,32 @@ main{padding:28px 0 60px}
 .modal-actions{display:flex;gap:8px;margin-top:16px}
 .modal-actions button{flex:1}
 
+/* Profil fotoğrafı seçenekleri */
+.avatar-options{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin:14px 0
+}
+.avatar-choice{
+  padding:3px;
+  border:1px solid var(--line);
+  background:var(--card);
+  border-radius:50%;
+  aspect-ratio:1;
+  overflow:hidden
+}
+.avatar-choice img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:50%
+}
+.avatar-choice.selected{
+  border:2px solid var(--accent-soft);
+  box-shadow:0 0 0 2px var(--accent)
+}
+
 @media(min-width:620px){
   .books-grid,.character-books{grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
   .character-grid,.gallery-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -306,7 +340,6 @@ main{padding:28px 0 60px}
 @media(max-width:420px){
   .tab{padding-inline:9px;font-size:9px;letter-spacing:1px}
   .profile{min-height:270px}
-  .intro-frame{height:72vh}
 }
 </style>
 </head>
@@ -319,6 +352,7 @@ main{padding:28px 0 60px}
     </video>
     <div class="intro-shade"></div>
   </div>
+
   <div class="intro-content">
     <h1 class="intro-logo">kesmislalih</h1>
     <p class="intro-caption">KELİMELERDEN DOĞAN HİKÂYELER</p>
@@ -416,12 +450,16 @@ main{padding:28px 0 60px}
         <h2>Okur profilin</h2>
         <button class="icon-btn" id="profileModalClose" aria-label="Kapat">×</button>
       </div>
-      <p class="modal-description">Lal Gezegeni'nde kullanacağın görünen adı belirle.</p>
+
+      <p class="modal-description">Lal Gezegeni'nde kullanacağın görünen adı ve profil fotoğrafını seç.</p>
 
       <div class="profile-preview">
-        <img src="d08eae9afcf72d4a213a3d988ecf5935.jpg" alt="">
+        <img id="profilePreviewImage" src="d08eae9afcf72d4a213a3d988ecf5935.jpg" alt="Seçilen profil fotoğrafı">
         <span id="profilePreviewName">Lal Gezegeni Sakini</span>
       </div>
+
+      <p class="menu-label">PROFİL FOTOĞRAFINI SEÇ</p>
+      <div class="avatar-options" id="avatarOptions"></div>
 
       <form class="profile-form" id="profileForm">
         <label for="readerName">KULLANICI ADI</label>
@@ -457,6 +495,7 @@ main{padding:28px 0 60px}
         <textarea id="postText" maxlength="1500" placeholder="Pano'ya bir şeyler yaz..." required></textarea>
         <button class="submit-btn" type="submit">PAYLAŞ</button>
       </form>
+
       <p class="status" id="wallStatus"></p>
       <div class="post-list" id="postList"></div>
     </section>
@@ -467,7 +506,9 @@ main{padding:28px 0 60px}
         <h2>Karakterler</h2>
         <span class="small-label">HİKÂYELERDEN</span>
       </div>
+
       <div class="character-books" id="characterBooks"></div>
+
       <div class="character-list" id="characterList">
         <button class="back-btn" id="backToBooks">← KİTAPLAR</button>
         <h2 class="section-heading" id="characterBookTitle"></h2>
@@ -486,28 +527,47 @@ main{padding:28px 0 60px}
     </section>
   </main>
         </div>
-        <script>
-/* Supabase bağlantısı */
-const SUPABASE_URL =  "https://fehafqjajlkpwpmsfawz.supabase.co";
-const SUPABASE_ANON_KEY = "BURAYA_SUPABASE_ANON_KEY";
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+/* =========================
+   SUPABASE AYARLARI
+========================= */
+
+const SUPABASE_URL =
+"https://fehafqjajlkpwpmsfawz.supabase.co";
+
+const SUPABASE_ANON_KEY =
+"";
+
 let db = null;
 
-if (SUPABASE_ANON_KEY !== "sb_publishable_DxPVeds0soH_Pakw58B5Hg_Ru-HQHob") {
-  db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+if (
+  SUPABASE_ANON_KEY &&
+  SUPABASE_ANON_KEY !== "BURAYA_SUPABASE_ANON_KEY"
+) {
+  db = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
 }
 
-/* Kitap verileri */
-const books = [
+/* =========================
+   SABİT BİLGİLER
+========================= */
+
+const AUTHOR_AVATAR =
+"d08eae9afcf72d4a213a3d988ecf5935.jpg";
+
+const BOOKS = [
   {
     title: "Ringteki Son Dans",
-    cover: "file_00000000375c81f4b311415188148be7.png",
-    link: "ringteki-son-dans.html",
-    author: "KESMİSLALİH"
+    image: "file_00000000375c81f4b311415188148be7.png",
+    link: "ringteki-son-dans.html"
   }
 ];
 
-/* Karakterler */
-const characters = [
+const CHARACTERS = [
   {
     name: "Lavinia",
     image: "a90393fd3d48a69ffbec30ef8ba04749 (1).jpg"
@@ -534,8 +594,7 @@ const characters = [
   }
 ];
 
-/* Galeri görselleri */
-const galleryImages = [
+const GALLERY = [
   "520b988f63b52ae66a0127a457e5e7d0.jpg",
   "45041afda2229d508a38cc012aaa7174.jpg",
   "0f8b7991dde0f22ff23fb81e0fc16649.jpg",
@@ -546,241 +605,392 @@ const galleryImages = [
   "bd00784591329cdde6e7804525bb3951.jpg"
 ];
 
-/* Sayfa sekmeleri */
-function showTab(tabId) {
-  document.querySelectorAll(".tab").forEach(button => {
-    button.classList.toggle("active", button.dataset.tab === tabId);
-  });
+/* =========================
+   OKUYUCU PROFİLİ
+========================= */
 
-  document.querySelectorAll(".panel").forEach(panel => {
-    panel.classList.toggle("active", panel.id === tabId);
-  });
+/*
+  Bu dosya adlarını kendi yükleyeceğin
+  profil fotoğraflarıyla değiştirebilirsin.
 
-  closeMenu();
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
+  Fotoğrafları GitHub deposunun ana
+  klasörüne yüklemen gerekiyor.
+*/
 
-document.querySelectorAll(".tab").forEach(button => {
-  button.addEventListener("click", () => showTab(button.dataset.tab));
-});
+const AVATAR_IMAGES = [
+  "profil-1.jpg",
+  "profil-2.jpg",
+  "profil-3.jpg",
+  "profil-4.jpg",
+  "profil-5.jpg",
+  "profil-6.jpg",
+  "profil-7.jpg",
+  "profil-8.jpg"
+];
 
-/* Menü */
-const menuOverlay = document.getElementById("menuOverlay");
-const menuBtn = document.getElementById("menuBtn");
-
-function openMenu() {
-  menuOverlay.classList.add("open");
-  menuBtn.setAttribute("aria-expanded", "true");
-}
-
-function closeMenu() {
-  menuOverlay.classList.remove("open");
-  menuBtn.setAttribute("aria-expanded", "false");
-}
-
-menuBtn.addEventListener("click", openMenu);
-document.getElementById("menuClose").addEventListener("click", closeMenu);
-
-menuOverlay.addEventListener("click", event => {
-  if (event.target === menuOverlay) closeMenu();
-});
-
-document.querySelectorAll("[data-go]").forEach(button => {
-  button.addEventListener("click", () => showTab(button.dataset.go));
-});
-
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape") {
-    closeMenu();
-    closeProfileModal();
+function getReaderProfile() {
+  try {
+    return JSON.parse(
+      localStorage.getItem("lalReaderProfile")
+    ) || {
+      name: "",
+      avatar: AUTHOR_AVATAR
+    };
+  } catch {
+    return {
+      name: "",
+      avatar: AUTHOR_AVATAR
+    };
   }
-});
-
-/* Tema */
-const themeBtn = document.getElementById("themeBtn");
-const savedTheme = localStorage.getItem("siteTheme");
-
-if (savedTheme === "light") document.body.classList.add("light");
-
-function updateThemeButton() {
-  themeBtn.textContent = document.body.classList.contains("light") ? "☾" : "☼";
 }
 
-updateThemeButton();
+function saveReaderProfile(name, avatar) {
+  const profile = {
+    name: name.trim(),
+    avatar: avatar
+  };
 
-themeBtn.addEventListener("click", () => {
-  document.body.classList.toggle("light");
   localStorage.setItem(
-    "siteTheme",
-    document.body.classList.contains("light") ? "light" : "dark"
+    "lalReaderProfile",
+    JSON.stringify(profile)
   );
-  updateThemeButton();
-});
 
-/* Giriş ekranı */
-document.getElementById("enterBtn").addEventListener("click", () => {
-  document.getElementById("intro").style.display = "none";
-  document.getElementById("site").style.display = "block";
-});
+  updateProfileDisplay();
+}
 
-/* Kitap kartlarını oluştur */
-const booksGrid = document.getElementById("booksGrid");
+function updateProfileDisplay() {
+  const profile = getReaderProfile();
 
-books.forEach(book => {
-  const card = document.createElement("article");
-  card.className = "book-card";
-  card.innerHTML = `
-    <a href="${book.link}">
-      <img class="book-cover" src="${book.cover}" alt="${book.title}">
-    </a>
-    <div class="book-meta">
-      <h3 class="book-name">${book.title}</h3>
-      <div class="book-author">${book.author}</div>
-      <a class="book-link" href="${book.link}">KİTABI İNCELE →</a>
-    </div>
-  `;
-  booksGrid.appendChild(card);
-});
+  const nameElement =
+    document.getElementById("profileDisplayName");
 
-/* Karakter kitabı seçimi */
-const characterBooks = document.getElementById("characterBooks");
-const characterList = document.getElementById("characterList");
-const characterGrid = document.getElementById("characterGrid");
+  const imageElement =
+    document.getElementById("profileDisplayImage");
 
-const characterBookCard = document.createElement("button");
-characterBookCard.className = "character-book";
-characterBookCard.style.cssText =
-  "border:0;background:none;color:var(--text);padding:0;text-align:left";
-characterBookCard.innerHTML = `
-  <img src="file_00000000375c81f4b311415188148be7.png" alt="Ringteki Son Dans">
-  <div class="book-meta">
-    <h3 class="book-name">Ringteki Son Dans</h3>
-    <span class="book-link">KARAKTERLERİ GÖR →</span>
-  </div>
-`;
-characterBooks.appendChild(characterBookCard);
+  if (nameElement) {
+    nameElement.textContent =
+      profile.name || "Okuyucu";
+  }
 
-characterBookCard.addEventListener("click", () => {
-  characterBooks.style.display = "none";
-  characterList.classList.add("open");
-  document.getElementById("characterBookTitle").textContent = "Ringteki Son Dans";
-});
+  if (imageElement) {
+    imageElement.src =
+      profile.avatar || AUTHOR_AVATAR;
+  }
+}
 
-document.getElementById("backToBooks").addEventListener("click", () => {
-  characterList.classList.remove("open");
-  characterBooks.style.display = "grid";
-  document.getElementById("characterDetail").classList.remove("open");
-});
+/* =========================
+   PROFİL FOTOĞRAFI SEÇİMİ
+========================= */
 
-characters.forEach((character, index) => {
-  const card = document.createElement("button");
-  card.className = "character-card";
-  card.innerHTML = `
-    <img src="${character.image}" alt="${character.name}">
-    <h3>${character.name}</h3>
-    <span class="small-label">KARAKTERİ İNCELE</span>
-  `;
+function renderAvatarOptions() {
+  const container =
+    document.getElementById("avatarOptions");
 
-  card.addEventListener("click", () => {
-    const detail = document.getElementById("characterDetail");
-    detail.classList.add("open");
-    detail.innerHTML = `
-      <img src="${character.image}" alt="${character.name}">
-      <h2>${character.name}</h2>
-      <p>Karakter bilgileri yakında.</p>
-    `;
-    detail.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (!container) return;
+
+  const profile = getReaderProfile();
+
+  container.innerHTML = "";
+
+  AVATAR_IMAGES.forEach((image) => {
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className = "avatar-choice";
+
+    if (profile.avatar === image) {
+      button.classList.add("selected");
+    }
+
+    const img = document.createElement("img");
+    img.src = image;
+    img.alt = "Profil fotoğrafı";
+
+    img.onerror = function () {
+      this.src = AUTHOR_AVATAR;
+    };
+
+    button.appendChild(img);
+
+    button.addEventListener("click", () => {
+      document
+        .querySelectorAll(".avatar-choice")
+        .forEach(item =>
+          item.classList.remove("selected")
+        );
+
+      button.classList.add("selected");
+
+      const preview =
+        document.getElementById("profilePreviewImage");
+
+      if (preview) {
+        preview.src = image;
+      }
+
+      button.dataset.selected = "true";
+    });
+
+    container.appendChild(button);
   });
-
-  characterGrid.appendChild(card);
-});
-
-/* Galeri */
-const galleryGrid = document.getElementById("galleryGrid");
-
-galleryImages.forEach((src, index) => {
-  const image = document.createElement("img");
-  image.src = src;
-  image.alt = `Galeri görseli ${index + 1}`;
-  image.loading = "lazy";
-  galleryGrid.appendChild(image);
-});
-
-/* Okur profili */
-const profileModal = document.getElementById("profileModal");
-const readerNameInput = document.getElementById("readerName");
-const profilePreviewName = document.getElementById("profilePreviewName");
+}
 
 function openProfileModal() {
-  const profile = JSON.parse(localStorage.getItem("readerProfile") || "{}");
-  readerNameInput.value = profile.name || "";
-  profilePreviewName.textContent = profile.name || "Lal Gezegeni Sakini";
-  profileModal.classList.add("open");
+  const modal =
+    document.getElementById("profileModal");
+
+  const profile = getReaderProfile();
+
+  if (!modal) return;
+
+  const nameInput =
+    document.getElementById("profileNameInput");
+
+  const preview =
+    document.getElementById("profilePreviewImage");
+
+  if (nameInput) {
+    nameInput.value = profile.name;
+  }
+
+  if (preview) {
+    preview.src = profile.avatar || AUTHOR_AVATAR;
+  }
+
+  renderAvatarOptions();
+
+  modal.classList.add("active");
 }
 
 function closeProfileModal() {
-  profileModal.classList.remove("open");
+  const modal =
+    document.getElementById("profileModal");
+
+  if (modal) {
+    modal.classList.remove("active");
+  }
 }
 
-document.getElementById("menuProfile").addEventListener("click", () => {
-  closeMenu();
-  openProfileModal();
-});
+function saveProfile() {
+  const nameInput =
+    document.getElementById("profileNameInput");
 
-document.getElementById("profileModalClose").addEventListener("click", closeProfileModal);
-document.getElementById("profileCancel").addEventListener("click", closeProfileModal);
+  const selected =
+    document.querySelector(
+      ".avatar-choice.selected"
+    );
 
-readerNameInput.addEventListener("input", () => {
-  profilePreviewName.textContent = readerNameInput.value.trim() || "Lal Gezegeni Sakini";
-});
+  const name = nameInput
+    ? nameInput.value.trim()
+    : "";
 
-document.getElementById("profileForm").addEventListener("submit", event => {
-  event.preventDefault();
-  const name = readerNameInput.value.trim();
-  if (!name) return;
+  const current = getReaderProfile();
 
-  localStorage.setItem("readerProfile", JSON.stringify({ name }));
-  document.getElementById("postName").value = name;
-  closeProfileModal();
-});
+  const avatar = selected
+    ? selected.querySelector("img").getAttribute("src")
+    : current.avatar;
 
-/* Pano */
-const writeBtn = document.getElementById("writeBtn");
-const writeForm = document.getElementById("writeForm");
-const postList = document.getElementById("postList");
-const wallStatus = document.getElementById("wallStatus");
-
-writeBtn.addEventListener("click", () => {
-  const profile = JSON.parse(localStorage.getItem("readerProfile") || "{}");
-  if (profile.name) document.getElementById("postName").value = profile.name;
-  writeForm.classList.toggle("open");
-});
-
-function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  })[char]);
-}
-
-function formatDate(value) {
-  return new Date(value).toLocaleDateString("tr-TR", {
-    day: "numeric", month: "short", year: "numeric"
-  });
-}
-
-async function loadPosts() {
-  if (!db) {
-    wallStatus.textContent =
-      "Pano'yu ortak kullanıma açmak için Supabase anon anahtarını eklemelisin.";
-    postList.innerHTML = "";
+  if (!name) {
+    alert("Lütfen bir kullanıcı adı belirle.");
     return;
   }
 
-  wallStatus.textContent = "Paylaşımlar yükleniyor...";
+  saveReaderProfile(name, avatar);
+  closeProfileModal();
+}
+
+/* =========================
+   TEMA
+========================= */
+
+function toggleTheme() {
+  document.body.classList.toggle("light");
+
+  const isLight =
+    document.body.classList.contains("light");
+
+  localStorage.setItem(
+    "siteTheme",
+    isLight ? "light" : "dark"
+  );
+}
+
+function loadTheme() {
+  const saved =
+    localStorage.getItem("siteTheme");
+
+  if (saved === "light") {
+    document.body.classList.add("light");
+  }
+}
+
+/* =========================
+   MENÜ
+========================= */
+
+function openMenu() {
+  const menu = document.getElementById("sideMenu");
+
+  if (menu) menu.classList.add("active");
+}
+
+function closeMenu() {
+  const menu = document.getElementById("sideMenu");
+
+  if (menu) menu.classList.remove("active");
+}
+
+/* =========================
+   SAYFA BÖLÜMLERİ
+========================= */
+
+function showSection(sectionName) {
+  document
+    .querySelectorAll(".page-section")
+    .forEach(section => {
+      section.classList.remove("active");
+    });
+
+  const selected =
+    document.getElementById(sectionName);
+
+  if (selected) {
+    selected.classList.add("active");
+  }
+
+  document
+    .querySelectorAll("[data-section]")
+    .forEach(button => {
+      button.classList.toggle(
+        "active",
+        button.dataset.section === sectionName
+      );
+    });
+
+  closeMenu();
+}
+
+/* =========================
+   KİTAPLAR
+========================= */
+
+function renderBooks() {
+  const container =
+    document.getElementById("booksContainer");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  BOOKS.forEach(book => {
+    const card = document.createElement("a");
+
+    card.className = "book-card";
+    card.href = book.link;
+
+    card.innerHTML = `
+      <img src="${book.image}" alt="${book.title}">
+      <h3>${book.title}</h3>
+      <span>KİTABI İNCELE →</span>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+/* =========================
+   KARAKTERLER
+========================= */
+
+function renderCharacters() {
+  const container =
+    document.getElementById("charactersContainer");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  CHARACTERS.forEach(character => {
+    const card = document.createElement("div");
+
+    card.className = "character-card";
+
+    card.innerHTML = `
+      <img
+        src="${character.image}"
+        alt="${character.name}"
+      >
+      <h3>${character.name}</h3>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+/* =========================
+   GALERİ
+========================= */
+
+function renderGallery() {
+  const container =
+    document.getElementById("galleryContainer");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  GALLERY.forEach(image => {
+    const item = document.createElement("div");
+
+    item.className = "gallery-item";
+
+    item.innerHTML = `
+      <img src="${image}" alt="Galeri görseli">
+    `;
+
+    container.appendChild(item);
+  });
+}
+
+/* =========================
+   GÜVENLİ METİN
+========================= */
+
+function escapeHTML(value) {
+  return String(value).replace(
+    /[&<>"']/g,
+    character => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#039;"
+    })[character]
+  );
+}
+
+function formatDate(date) {
+  return new Date(date).toLocaleString("tr-TR", {
+    dateStyle: "short",
+    timeStyle: "short"
+  });
+}
+
+/* =========================
+   LAL GEZEGENİ
+========================= */
+
+async function loadPosts() {
+  const container =
+    document.getElementById("wallPosts");
+
+  if (!container) return;
+
+  if (!db) {
+    container.innerHTML =
+      "<p>Topluluk alanını kullanabilmek için Supabase anahtarını eklemelisin.</p>";
+    return;
+  }
 
   const { data, error } = await db
     .from("wall_posts")
@@ -788,70 +998,130 @@ async function loadPosts() {
     .order("created_at", { ascending: false });
 
   if (error) {
-    wallStatus.textContent = "Pano yüklenemedi. Supabase tablo ve erişim politikalarını kontrol et.";
+    console.error(error);
+
+    container.innerHTML =
+      "<p>Gönderiler yüklenemedi.</p>";
+
     return;
   }
 
-  wallStatus.textContent = "";
-  postList.innerHTML = "";
+  container.innerHTML = "";
 
   for (const post of data || []) {
-    const postElement = document.createElement("article");
-    postElement.className = "post";
-    postElement.innerHTML = `
-      <div class="post-head">
-        <img class="post-avatar" src="d08eae9afcf72d4a213a3d988ecf5935.jpg" alt="">
+    const card = document.createElement("article");
+
+    card.className = "wall-post";
+
+    const avatar =
+      post.avatar || AUTHOR_AVATAR;
+
+    card.innerHTML = `
+      <div class="post-heading">
+        <img
+          class="post-avatar"
+          src="${escapeHTML(avatar)}"
+          alt=""
+          onerror="this.src='${AUTHOR_AVATAR}'"
+        >
+
         <div>
-          <div class="post-author">${escapeHTML(post.name || "Lal Gezegeni Sakini")}</div>
-          <div class="post-date">${formatDate(post.created_at)}</div>
+          <strong>${escapeHTML(post.name)}</strong>
+          <small>${formatDate(post.created_at)}</small>
         </div>
       </div>
-      <div class="post-text">${escapeHTML(post.text || "")}</div>
-      <div class="post-actions">
-        <button class="text-btn comment-toggle">YORUM YAZ</button>
-      </div>
-      <div class="comment-area">
-        <input class="comment-input" maxlength="500" placeholder="Yorumun...">
-        <button class="submit-btn comment-submit">GÖNDER</button>
-        <div class="comments"></div>
-      </div>
+
+      <p>${escapeHTML(post.text)}</p>
+
+      <div class="post-comments" id="comments-${post.id}"></div>
+
+      <form
+        class="comment-form"
+        onsubmit="addComment(event, '${post.id}')"
+      >
+        <input
+          type="text"
+          name="comment"
+          placeholder="Bir yorum yaz..."
+          maxlength="500"
+          required
+        >
+
+        <button type="submit">Gönder</button>
+      </form>
     `;
 
-    const commentArea = postElement.querySelector(".comment-area");
-    postElement.querySelector(".comment-toggle").addEventListener("click", () => {
-      commentArea.classList.toggle("open");
-    });
+    container.appendChild(card);
 
-    postElement.querySelector(".comment-submit").addEventListener("click", async () => {
-      const input = postElement.querySelector(".comment-input");
-      const text = input.value.trim();
-      const profile = JSON.parse(localStorage.getItem("readerProfile") || "{}");
-      const name = profile.name || post.name || "Lal Gezegeni Sakini";
-
-      if (!text) return;
-
-      const { error } = await db.from("wall_comments").insert({
-        post_id: post.id,
-        name,
-        text
-      });
-
-      if (error) {
-        alert("Yorum gönderilemedi. Supabase izinlerini kontrol et.");
-        return;
-      }
-
-      input.value = "";
-      await loadComments(post.id, postElement.querySelector(".comments"));
-    });
-
-    postList.appendChild(postElement);
-    await loadComments(post.id, postElement.querySelector(".comments"));
+    loadComments(post.id);
   }
 }
 
-async function loadComments(postId, target) {
+/* =========================
+   GÖNDERİ EKLEME
+========================= */
+
+async function addPost(event) {
+  event.preventDefault();
+
+  const profile = getReaderProfile();
+
+  if (!profile.name) {
+    openProfileModal();
+    alert("Önce okuyucu profilini oluşturmalısın.");
+    return;
+  }
+
+  if (!db) {
+    alert("Supabase bağlantısı henüz ayarlanmamış.");
+    return;
+  }
+
+  const input =
+    document.getElementById("wallPostInput");
+
+  const text = input.value.trim();
+
+  if (!text) return;
+
+  let result = await db
+    .from("wall_posts")
+    .insert({
+      name: profile.name,
+      text: text,
+      avatar: profile.avatar
+    });
+
+  if (result.error) {
+    result = await db
+      .from("wall_posts")
+      .insert({
+        name: profile.name,
+        text: text
+      });
+  }
+
+  if (result.error) {
+    console.error(result.error);
+    alert("Gönderin paylaşılırken bir hata oluştu.");
+    return;
+  }
+
+  input.value = "";
+  loadPosts();
+}
+
+/* =========================
+   YORUMLARI YÜKLE
+========================= */
+
+async function loadComments(postId) {
   if (!db) return;
+
+  const container =
+    document.getElementById(`comments-${postId}`);
+
+  if (!container) return;
 
   const { data, error } = await db
     .from("wall_comments")
@@ -859,46 +1129,109 @@ async function loadComments(postId, target) {
     .eq("post_id", postId)
     .order("created_at", { ascending: true });
 
-  if (error) return;
+  if (error) {
+    console.error(error);
+    return;
+  }
 
-  target.innerHTML = "";
+  container.innerHTML = "";
+
   (data || []).forEach(comment => {
-    const element = document.createElement("div");
-    element.className = "comment";
-    element.innerHTML = `
-      <strong>${escapeHTML(comment.name || "Okur")}:</strong>
-      ${escapeHTML(comment.text || "")}
+    const item = document.createElement("div");
+
+    item.className = "wall-comment";
+
+    const avatar =
+      comment.avatar || AUTHOR_AVATAR;
+
+    item.innerHTML = `
+      <img
+        src="${escapeHTML(avatar)}"
+        alt=""
+        onerror="this.src='${AUTHOR_AVATAR}'"
+      >
+
+      <div>
+        <strong>${escapeHTML(comment.name)}</strong>
+        <p>${escapeHTML(comment.text)}</p>
+      </div>
     `;
-    target.appendChild(element);
+
+    container.appendChild(item);
   });
 }
 
-writeForm.addEventListener("submit", async event => {
+/* =========================
+   YORUM EKLE
+========================= */
+
+async function addComment(event, postId) {
   event.preventDefault();
 
+  const profile = getReaderProfile();
+
+  if (!profile.name) {
+    openProfileModal();
+    alert("Önce okuyucu profilini oluşturmalısın.");
+    return;
+  }
+
   if (!db) {
-    wallStatus.textContent = "Önce Supabase anon anahtarını eklemelisin.";
+    alert("Supabase bağlantısı henüz ayarlanmamış.");
     return;
   }
 
-  const name = document.getElementById("postName").value.trim();
-  const text = document.getElementById("postText").value.trim();
+  const form = event.target;
 
-  if (!name || !text) return;
+  const input =
+    form.querySelector("input[name='comment']");
 
-  const { error } = await db.from("wall_posts").insert({ name, text });
+  const text = input.value.trim();
 
-  if (error) {
-    wallStatus.textContent = "Paylaşım gönderilemedi. Supabase izinlerini kontrol et.";
+  if (!text) return;
+
+  let result = await db
+    .from("wall_comments")
+    .insert({
+      post_id: postId,
+      name: profile.name,
+      text: text,
+      avatar: profile.avatar
+    });
+
+  if (result.error) {
+    result = await db
+      .from("wall_comments")
+      .insert({
+        post_id: postId,
+        name: profile.name,
+        text: text
+      });
+  }
+
+  if (result.error) {
+    console.error(result.error);
+    alert("Yorum gönderilemedi.");
     return;
   }
 
-  document.getElementById("postText").value = "";
-  writeForm.classList.remove("open");
-  await loadPosts();
+  input.value = "";
+  loadComments(postId);
+}
+
+/* =========================
+   İLK AÇILIŞ
+========================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadTheme();
+  updateProfileDisplay();
+  renderBooks();
+  renderCharacters();
+  renderGallery();
+  loadPosts();
 });
-
-loadPosts();
-        </script>
-  </body>
+</script>
+</div>
+</body>
 </html>
