@@ -128,6 +128,14 @@ body {
   border-color: #684052;
   box-shadow: 0 0 25px rgba(35,0,20,.5);
 }
+
+/* OKUNMA SAYACI */
+.view-count {
+  margin: 16px auto 0;
+  color: #8a7885;
+  font: 13px Arial, sans-serif;
+  letter-spacing: 1.5px;
+}
 .description-toggle {
   margin-top: 21px;
   padding: 8px;
@@ -166,7 +174,7 @@ body {
   font-style: italic;
 }
 .description-content p:last-child { margin-bottom: 0; }
-    .music-section {
+  .music-section {
   width: min(350px, 95%);
   margin: 48px auto 0;
 }
@@ -293,6 +301,10 @@ body {
 
     <a href="rsd-ilk-bolum.html" class="continue-button">DEVAM ET</a>
 
+    <div class="view-count" id="viewCount" aria-live="polite">
+      Okunma sayısı yükleniyor...
+    </div>
+
     <button type="button" class="description-toggle"
             id="descriptionToggle" aria-expanded="false">
       TANITIMIN TAMAMINI OKU <span aria-hidden="true">⌄</span>
@@ -326,7 +338,8 @@ body {
       </iframe>
     </div>
   </section>
-    <section class="chapters-section" id="chapters">
+
+  <section class="chapters-section" id="chapters">
     <h2 class="section-title">BÖLÜMLER</h2>
     <div class="chapter-list">
       <a href="rsd-ilk-bolum.html" class="chapter-link">
@@ -341,10 +354,8 @@ body {
   </a>
 
   <div class="swipe-hint">YERALTININ KANUNU İÇİN SOLA KAYDIR</div>
-
   <footer class="intro-footer">kesmislalih · 2026</footer>
 </main>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
@@ -359,67 +370,56 @@ descriptionToggle.addEventListener("click", () => {
 
   descriptionToggle.classList.toggle("active", isOpen);
   descriptionToggle.setAttribute("aria-expanded", String(isOpen));
+
   descriptionToggle.innerHTML = isOpen
     ? 'TANITIMI KAPAT <span aria-hidden="true">⌄</span>'
     : 'TANITIMIN TAMAMINI OKU <span aria-hidden="true">⌄</span>';
 });
 
-/* SUPABASE BAĞLANTISI */
+/* SUPABASE */
 const SUPABASE_URL = "https://edgpwcoypywwodgfkkbi.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY =
   "sb_publishable_9eEl_WjKST_TLNRrzN7jmA_5npT6GPc";
 
 const BOOK_NAME = "Ringteki Son Dans";
-const VIEW_SESSION_KEY = "rsd-view-counted-v1";
+const viewCountElement = document.getElementById("viewCount");
 
-let supabaseClient = null;
-
-try {
-  if (window.supabase?.createClient) {
-    supabaseClient = window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_PUBLISHABLE_KEY
-    );
-  }
-} catch (error) {
-  console.warn("Okunma sayacı başlatılamadı.");
-}
-    async function increaseBookView() {
-  if (!supabaseClient) return;
-
-  /* Aynı sekme oturumunda tekrarlı sayımı önle */
+async function updateBookView() {
   try {
-    if (sessionStorage.getItem(VIEW_SESSION_KEY) === "1") return;
-  } catch {
-    /* Oturum depolaması kullanılamıyorsa sayaç akışı devam eder. */
-  }
-
-  try {
-    const { error } = await supabaseClient.rpc(
-      "arttir_goruntulenme",
-      {
-        p_kitap: BOOK_NAME,
-        p_bolum: 0
-      }
-    );
-
-    if (error) {
-      console.warn("Okunma sayacı şu anda güncellenemedi.");
+    if (!window.supabase?.createClient) {
+      viewCountElement.textContent = "Okunma sayısı şu an görüntülenemiyor.";
       return;
     }
 
-    try {
-      sessionStorage.setItem(VIEW_SESSION_KEY, "1");
-    } catch {
-      /* Depolama engellense bile sayfa çalışmaya devam eder. */
+    const client = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+    const { data, error } = await client.rpc("arttir_goruntulenme", {
+      p_kitap: BOOK_NAME,
+      p_bolum: 0
+    });
+
+    if (error) throw error;
+
+    /* RPC fonksiyonu toplam sayıyı döndürüyorsa ekranda göster. */
+    if (typeof data === "number") {
+      viewCountElement.textContent = "Okunma: " + data;
+    } else if (typeof data === "string" && data.trim() !== "") {
+      viewCountElement.textContent = "Okunma: " + data;
+    } else {
+      viewCountElement.textContent = "Okunma sayısı kaydedildi.";
     }
-  } catch {
-    console.warn("Okunma sayacı bağlantısı kurulamadı.");
+  } catch (error) {
+    console.warn("Okunma sayacı yüklenemedi.");
+    viewCountElement.textContent = "Okunma sayısı şu an görüntülenemiyor.";
   }
 }
 
-increaseBookView();
-    /* KİTAPLAR ARASI KAYDIRMA */
+updateBookView();
+
+/* KİTAPLAR ARASI KAYDIRMA */
 let touchStartX = 0;
 let touchStartY = 0;
 
