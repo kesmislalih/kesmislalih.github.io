@@ -5,568 +5,361 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080608">
-
 <title>Yeraltının Kanunu | kesmislalih</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
 :root {
-    --background: #080608;
-    --surface: #100a0f;
-    --text: #f0ebef;
-    --soft: #b9afb7;
-    --muted: #786d76;
-    --border: #30202a;
-    --accent: #3a071f;
-    --accent-light: #57102e;
+    --background:#080608;
+    --text:#f0ebef;
+    --soft:#b9afb7;
+    --accent:#86516a;
+    --border:#30202a;
 }
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
 body {
-    margin: 0;
-    min-height: 100vh;
-    background: var(--background);
-    color: var(--text);
-    font-family: "Cormorant Garamond", serif;
+    margin:0;
+    min-height:100vh;
+    background:var(--background);
+    color:var(--text);
+    font-family:"Cormorant Garamond",serif;
+    touch-action:pan-y;
 }
-
-/* ARKA PLAN */
-
 .background {
-    position: fixed;
-    inset: 0;
-    z-index: -2;
-
+    position:fixed;
+    inset:0;
+    z-index:-2;
     background:
-        linear-gradient(
-            to bottom,
-            rgba(5,4,5,.76),
-            rgba(5,4,5,.89),
-            #080608 100%
-        ),
-        url("file_0000000059fc8210bf05bef9f5435f60.png")
-        center 35% / cover no-repeat;
-
-    filter: blur(3px);
-    transform: scale(1.04);
+        linear-gradient(to bottom,rgba(5,4,5,.76),rgba(5,4,5,.89),#080608 100%),
+        url("file_0000000059fc8210bf05bef9f5435f60.png") center 35%/cover no-repeat;
+    filter:blur(3px);
+    transform:scale(1.04);
 }
-
 .background::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-
-    background: radial-gradient(
-        ellipse at center,
-        transparent 0%,
-        rgba(0,0,0,.38) 65%,
-        rgba(0,0,0,.78) 100%
-    );
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(ellipse at center,transparent 0%,rgba(0,0,0,.38) 65%,rgba(0,0,0,.78) 100%);
 }
-
-/* KAPATMA */
-
 .close-button {
-    position: fixed;
-    top: 20px;
-    right: 25px;
-    z-index: 20;
-
-    color: #f5f0f3;
-    font-family: Arial, sans-serif;
-    font-size: 42px;
-    font-weight: 200;
-
-    text-decoration: none;
-    transition: .3s;
+    position:fixed;
+    top:20px;
+    right:25px;
+    z-index:20;
+    color:#f5f0f3;
+    font-family:Arial,sans-serif;
+    font-size:42px;
+    font-weight:200;
+    text-decoration:none;
+    transition:.3s;
 }
-
-.close-button:hover {
-    color: #86516a;
-    transform: rotate(90deg);
-}
-
-/* ANA EKRAN */
+.close-button:hover { color:#86516a; transform:rotate(90deg); }
 
 .intro-page {
-    width: 100%;
-    min-height: 100vh;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    padding: 75px 20px 30px;
-    text-align: center;
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:75px 20px 30px;
+    text-align:center;
 }
-
-/* KİTAP KAPAĞI */
-
 .cover-container {
-    width: 260px;
-    max-width: 72vw;
-
-    margin-bottom: 27px;
-    position: relative;
+    width:260px;
+    max-width:72vw;
+    margin-bottom:27px;
+    position:relative;
 }
-
 .cover-container::before {
-    content: "";
-    position: absolute;
-    inset: -12px;
-    z-index: -1;
-
-    background: #3a071f;
-    filter: blur(35px);
-    opacity: .52;
+    content:"";
+    position:absolute;
+    inset:-12px;
+    z-index:-1;
+    background:#3a071f;
+    filter:blur(35px);
+    opacity:.52;
 }
-
 .book-cover {
-    display: block;
-    width: 100%;
-    height: auto;
-
-    border-radius: 5px;
-    border: 1px solid rgba(95,42,65,.65);
-
-    box-shadow: 0 20px 60px rgba(0,0,0,.68);
+    display:block;
+    width:100%;
+    height:auto;
+    border-radius:5px;
+    border:1px solid rgba(95,42,65,.65);
+    box-shadow:0 20px 60px rgba(0,0,0,.68);
 }
-
-/* KİTAP BİLGİSİ */
-
-.book-information {
-    width: min(700px, 100%);
-}
-
+.book-information { width:min(700px,100%); }
 .book-title {
-    margin: 0;
-
-    font-family: Arial, sans-serif;
-    font-size: clamp(30px, 7vw, 45px);
-    font-weight: 500;
-
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    margin:0;
+    font-family:Arial,sans-serif;
+    font-size:clamp(30px,7vw,45px);
+    font-weight:500;
+    letter-spacing:2px;
+    text-transform:uppercase;
 }
-
 .book-author {
-    margin-top: 12px;
-
-    color: #86516a;
-    font-family: Arial, sans-serif;
-    font-size: 18px;
-    font-weight: 500;
-
-    letter-spacing: 5px;
+    margin-top:12px;
+    color:#86516a;
+    font-family:Arial,sans-serif;
+    font-size:18px;
+    font-weight:500;
+    letter-spacing:5px;
 }
 
 /* ANA ALINTI */
 
 .book-quote {
-    max-width: 700px;
-    margin: 30px auto 34px;
-
-    color: #eee8ed;
-    font-family: Arial, sans-serif;
-    font-size: clamp(19px, 4.5vw, 26px);
-    font-style: italic;
-
-    line-height: 1.55;
+    max-width:700px;
+    margin:30px auto 34px;
+    color:#eee8ed;
+    font-family:Arial,sans-serif;
+    font-size:clamp(19px,4.5vw,25px);
+    font-style:italic;
+    line-height:1.8;
+}
+.book-quote span {
+    display:block;
+    margin:4px 0;
 }
 
 /* DEVAM ET */
 
 .continue-button {
-    width: 290px;
-    max-width: 90%;
-    min-height: 62px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin: auto;
-
-    border: 1px solid #4a1830;
-    background: rgba(12,5,10,.62);
-
-    color: #f2edf0;
-    font-family: Arial, sans-serif;
-    font-size: 20px;
-    letter-spacing: 4px;
-
-    text-decoration: none;
-    transition: .3s;
+    width:290px;
+    max-width:90%;
+    min-height:62px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:auto;
+    border:1px solid #4a1830;
+    background:rgba(12,5,10,.62);
+    color:#f2edf0;
+    font-family:Arial,sans-serif;
+    font-size:20px;
+    letter-spacing:4px;
+    text-decoration:none;
+    transition:.3s;
 }
-
 .continue-button:hover {
-    background: #3a071f;
-    border-color: #71334f;
-    box-shadow: 0 0 25px rgba(65,0,30,.45);
+    background:#3a071f;
+    border-color:#71334f;
+    box-shadow:0 0 25px rgba(65,0,30,.45);
 }
 
-/* TANITIM BUTONU */
+/* TANITIM */
 
 .description-toggle {
-    margin-top: 21px;
-    padding: 8px;
-
-    border: none;
-    background: transparent;
-
-    color: #86516a;
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    letter-spacing: 2px;
-
-    cursor: pointer;
+    margin-top:21px;
+    padding:8px;
+    border:0;
+    background:transparent;
+    color:#86516a;
+    font-family:Arial,sans-serif;
+    font-size:13px;
+    letter-spacing:2px;
+    cursor:pointer;
 }
-
 .description-toggle span {
-    display: inline-block;
-    margin-left: 5px;
-    transition: transform .3s;
+    display:inline-block;
+    margin-left:5px;
+    transition:transform .3s;
 }
-
-.description-toggle.active span {
-    transform: rotate(180deg);
-}
-
-/* TANITIM METNİ */
+.description-toggle.active span { transform:rotate(180deg); }
 
 .description-content {
-    width: min(620px, 95%);
-
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-
-    margin: 0 auto;
-
-    color: #c9bec6;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.75;
-
-    transition:
-        max-height .6s ease,
-        opacity .4s,
-        margin .4s;
+    width:min(620px,95%);
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    margin:0 auto;
+    color:#c9bec6;
+    font-family:Arial,sans-serif;
+    font-size:14px;
+    line-height:1.7;
+    transition:max-height .6s ease,opacity .4s,margin .4s;
 }
-
 .description-content.open {
-    max-height: 900px;
-    opacity: 1;
-
-    margin-top: 17px;
-    margin-bottom: 12px;
+    max-height:900px;
+    opacity:1;
+    margin-top:17px;
+    margin-bottom:12px;
 }
-
-.description-content p {
-    margin: 0 0 13px;
-}
-
+.description-content p { margin:0 0 13px; }
 .description-content .description-quote {
-    color: #eee3eb;
-    font-style: italic;
-    line-height: 1.7;
-    margin-bottom: 16px;
+    color:#eee3eb;
+    font-style:italic;
+    line-height:1.9;
+    margin-bottom:16px;
+    text-align:center;
 }
-
-.description-content p:last-child {
-    margin-bottom: 0;
-}
+.description-content p:last-child { margin-bottom:0; }
 
 /* MÜZİK */
 
 .music-section {
-    width: min(350px, 95%);
-    margin: 48px auto 0;
+    width:min(350px,95%);
+    margin:45px auto 0;
 }
-
 .music-title {
-    margin-bottom: 13px;
-
-    color: #927486;
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    letter-spacing: 4px;
+    margin-bottom:13px;
+    color:#927486;
+    font-family:Arial,sans-serif;
+    font-size:12px;
+    letter-spacing:4px;
 }
-
 .music-player {
-    width: 100%;
-    height: 152px;
-
-    border: 1px solid #38212e;
-    border-radius: 10px;
-    overflow: hidden;
+    width:100%;
+    height:152px;
+    border:1px solid #38212e;
+    border-radius:10px;
+    overflow:hidden;
 }
-
 .music-player iframe {
-    display: block;
-    width: 100%;
-    height: 152px;
-    border: 0;
+    display:block;
+    width:100%;
+    height:152px;
+    border:0;
 }
 
 /* BÖLÜMLER */
 
 .chapters-section {
-    width: min(520px, 95%);
-    margin: 55px auto 0;
+    width:min(520px,95%);
+    margin:52px auto 0;
 }
-
 .section-title {
-    margin: 0 0 19px;
-
-    color: #927486;
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 4px;
+    margin:0 0 18px;
+    color:#927486;
+    font-family:Arial,sans-serif;
+    font-size:12px;
+    font-weight:400;
+    letter-spacing:4px;
 }
-
-.chapter-list {
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-}
-
+.chapter-list { display:flex; flex-direction:column; gap:9px; }
 .chapter-link {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    min-height: 52px;
-    padding: 12px 17px;
-
-    border: 1px solid #30202a;
-    background: rgba(16,10,15,.72);
-
-    color: #e8dfe5;
-    font-family: "Cormorant Garamond", serif;
-    font-size: 19px;
-    letter-spacing: .5px;
-
-    text-decoration: none;
-    transition: .3s;
+    min-height:52px;
+    padding:12px 17px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border:1px solid #30202a;
+    background:rgba(16,10,15,.72);
+    color:#e8dfe5;
+    font-size:19px;
+    text-decoration:none;
+    transition:.3s;
 }
-
 .chapter-link:hover {
-    background: rgba(58,7,31,.55);
-    border-color: #67344d;
-    padding-left: 22px;
+    background:rgba(58,7,31,.55);
+    border-color:#67344d;
+    padding-left:22px;
 }
-
-.chapter-arrow {
-    color: #86516a;
-    font-family: Arial, sans-serif;
-    font-size: 17px;
-}
-
+.chapter-arrow { color:#86516a; font-family:Arial,sans-serif; }
 .empty-chapters {
-    padding: 17px 12px;
-
-    border: 1px solid #30202a;
-    color: #8d8089;
-
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    letter-spacing: 1.5px;
-    line-height: 1.7;
+    padding:17px 12px;
+    border:1px solid #30202a;
+    color:#8d8089;
+    font-family:Arial,sans-serif;
+    font-size:12px;
+    letter-spacing:1.5px;
+    line-height:1.7;
 }
 
 /* DİĞER KİTAPLAR */
 
 .other-books {
-    display: inline-block;
-
-    margin-top: 65px;
-    padding: 12px 10px;
-
-    color: #927486;
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    letter-spacing: 3px;
-
-    text-decoration: none;
-    transition: .3s;
+    display:inline-block;
+    margin-top:65px;
+    padding:12px 10px;
+    color:#927486;
+    font-family:Arial,sans-serif;
+    font-size:12px;
+    letter-spacing:3px;
+    text-decoration:none;
+    transition:.3s;
 }
-
-.other-books:hover {
-    color: #d0b3c2;
+.other-books:hover { color:#d0b3c2; }
+.swipe-hint {
+    margin-top:8px;
+    color:#62545e;
+    font-family:Arial,sans-serif;
+    font-size:10px;
+    letter-spacing:1.5px;
 }
-
-/* ALT BİLGİ */
-
 .intro-footer {
-    margin-top: auto;
-    padding-top: 30px;
-
-    color: #514650;
-    font-size: 14px;
-    letter-spacing: 2px;
+    margin-top:auto;
+    padding-top:30px;
+    color:#514650;
+    font-size:14px;
+    letter-spacing:2px;
 }
 
 /* MOBİL */
 
-@media (max-width: 600px) {
-
-    .intro-page {
-        padding: 85px 18px 25px;
-    }
-
-    .close-button {
-        top: 17px;
-        right: 19px;
-        font-size: 37px;
-    }
-
-    .cover-container {
-        width: 260px;
-        max-width: 72vw;
-        margin-bottom: 27px;
-    }
-
-    .book-title {
-        font-size: 33px;
-        letter-spacing: 1px;
-    }
-
-    .book-author {
-        font-size: 16px;
-    }
-
-    .book-quote {
-        margin-top: 26px;
-        margin-bottom: 29px;
-        font-size: 20px;
-        line-height: 1.55;
-    }
-
-    .continue-button {
-        min-height: 60px;
-        font-size: 18px;
-    }
-
-    .description-toggle {
-        font-size: 12px;
-        letter-spacing: 1.5px;
-    }
-
-    .description-content {
-        font-size: 13px;
-        line-height: 1.7;
-    }
-
-    .music-section {
-        margin-top: 40px;
-    }
-
-    .chapters-section {
-        margin-top: 45px;
-    }
-
-    .chapter-link {
-        min-height: 49px;
-        font-size: 18px;
-    }
-
-    .other-books {
-        margin-top: 55px;
-        font-size: 11px;
-        letter-spacing: 2px;
-    }
+@media(max-width:600px) {
+    .intro-page { padding:85px 18px 25px; }
+    .close-button { top:17px; right:19px; font-size:37px; }
+    .cover-container { width:260px; max-width:72vw; margin-bottom:27px; }
+    .book-title { font-size:33px; letter-spacing:1px; }
+    .book-author { font-size:16px; }
+    .book-quote { margin:26px auto 29px; font-size:20px; line-height:1.8; }
+    .continue-button { min-height:60px; font-size:18px; }
+    .description-toggle { font-size:12px; letter-spacing:1.5px; }
+    .description-content { font-size:13px; line-height:1.7; }
+    .music-section { margin-top:40px; }
+    .chapters-section { margin-top:43px; }
+    .chapter-link { min-height:49px; font-size:18px; }
+    .other-books { margin-top:52px; font-size:11px; letter-spacing:2px; }
 }
-
 </style>
 </head>
 
 <body>
-
 <div class="background"></div>
 
-<a href="index.html"
-   class="close-button"
-   aria-label="Kapat">×</a>
+<a href="index.html" class="close-button" aria-label="Kapat">×</a>
 
 <main class="intro-page">
 
-    <!-- KİTAP KAPAĞI -->
-
     <div class="cover-container">
-
         <img
             class="book-cover"
             src="file_0000000059fc8210bf05bef9f5435f60.png"
-            alt="Yeraltının Kanunu kitap kapağı"
-        >
-
+            alt="Yeraltının Kanunu kitap kapağı">
     </div>
-
-    <!-- KİTAP BİLGİLERİ -->
 
     <section class="book-information">
 
-        <h1 class="book-title">
-            Yeraltının Kanunu
-        </h1>
-
-        <div class="book-author">
-            KESMİSLALİH
-        </div>
-
-        <!-- ANA ALINTI -->
+        <h1 class="book-title">Yeraltının Kanunu</h1>
+        <div class="book-author">KESMİSLALİH</div>
 
         <blockquote class="book-quote">
-            ❝Kabul ediyorum.
-
-            Neyi?
-
-            Evlilik teklifini...❞
+            ❝
+            <span>"Kabul ediyorum."</span>
+            <span>"Neyi?"</span>
+            <span>"Evlilik teklifini..."</span>
+            ❞
         </blockquote>
 
-        <!-- DEVAM ET -->
+        <a href="#chapters" class="continue-button">DEVAM ET</a>
 
-        <a href="#chapters" class="continue-button">
-            DEVAM ET
-        </a>
-
-        <!-- TANITIM -->
-
-        <button
-            type="button"
-            class="description-toggle"
-            id="descriptionToggle"
-            aria-expanded="false"
-        >
-            TANITIMIN TAMAMINI OKU
-            <span>⌄</span>
+        <button type="button" class="description-toggle"
+                id="descriptionToggle" aria-expanded="false">
+            TANITIMIN TAMAMINI OKU <span>⌄</span>
         </button>
 
-        <div
-            class="description-content"
-            id="descriptionContent"
-        >
+        <div class="description-content" id="descriptionContent">
 
             <p class="description-quote">
-                ❝Kabul ediyorum.
-
-                Neyi?
-
-                Evlilik teklifini...❞
+                ❝<br>
+                "Kabul ediyorum."<br>
+                "Neyi?"<br>
+                "Evlilik teklifini..."<br>
+                ❞
             </p>
 
             <p>
@@ -582,63 +375,40 @@ body {
             </p>
 
         </div>
-
     </section>
 
-    <!-- MÜZİK -->
-
     <section class="music-section">
-
-        <div class="music-title">
-            HİKÂYENİN ŞARKISI
-        </div>
+        <div class="music-title">HİKÂYENİN ŞARKISI</div>
 
         <div class="music-player">
-
             <iframe
                 src="https://open.spotify.com/embed/track/1T8K4Zt55Nylgnfp0LpsMZ?utm_source=generator&theme=0"
                 title="Ebru Gündeş - Tanrım"
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                 loading="lazy">
             </iframe>
-
         </div>
-
     </section>
     
-    <!-- BÖLÜMLER -->
-
     <section class="chapters-section" id="chapters">
+        <h2 class="section-title">BÖLÜMLER</h2>
 
-        <h2 class="section-title">
-            BÖLÜMLER
-        </h2>
-
-        <div class="chapter-list" id="chapterList">
-
-            <!-- Bölüm bağlantıları buraya eklenecek -->
-
-        </div>
-
+        <div class="chapter-list" id="chapterList"></div>
     </section>
 
-    <!-- DİĞER KİTAPLAR -->
-
-    <a href="index.html" class="other-books">
-        ← DİĞER KİTAPLAR İÇİN KAYDIR →
+    <a href="ringteki-son-dans.html" class="other-books">
+        ← DİĞER KİTABA GEÇ →
     </a>
 
-    <footer class="intro-footer">
-        kesmislalih · 2026
-    </footer>
+    <div class="swipe-hint">RİNGTEKİ SON DANS İÇİN SAĞA KAYDIR</div>
+
+    <footer class="intro-footer">kesmislalih · 2026</footer>
 
 </main>
 
 <script>
 
-/* =========================
-   TANITIMI AÇ / KAPAT
-========================= */
+/* TANITIMI AÇ / KAPAT */
 
 const descriptionToggle =
     document.getElementById("descriptionToggle");
@@ -646,36 +416,23 @@ const descriptionToggle =
 const descriptionContent =
     document.getElementById("descriptionContent");
 
-descriptionToggle.addEventListener("click", function () {
+descriptionToggle.addEventListener("click", function() {
+    const isOpen = descriptionContent.classList.toggle("open");
 
-    const isOpen =
-        descriptionContent.classList.toggle("open");
-
-    descriptionToggle.classList.toggle(
-        "active",
-        isOpen
-    );
-
-    descriptionToggle.setAttribute(
-        "aria-expanded",
-        String(isOpen)
-    );
+    descriptionToggle.classList.toggle("active", isOpen);
+    descriptionToggle.setAttribute("aria-expanded", String(isOpen));
 
     descriptionToggle.innerHTML = isOpen
         ? 'TANITIMI KAPAT <span>⌄</span>'
         : 'TANITIMIN TAMAMINI OKU <span>⌄</span>';
-
 });
 
 
-/* =========================
-   BÖLÜM LİSTESİ
-========================= */
+/* BÖLÜM LİSTESİ */
 
 const CHAPTERS = [
-
     /*
-    Bölüm eklemek istediğinde aşağıdaki örneği kullan:
+    Bölüm eklemek için örnek:
 
     {
         title: "Birinci Bölüm",
@@ -683,40 +440,64 @@ const CHAPTERS = [
     },
 
     */
-
 ];
 
-const chapterList =
-    document.getElementById("chapterList");
+const chapterList = document.getElementById("chapterList");
 
 function renderChapters() {
-
     if (CHAPTERS.length === 0) {
-
         chapterList.innerHTML = `
             <div class="empty-chapters">
                 BÖLÜMLER YAKINDA BURADA OLACAK.
             </div>
         `;
-
         return;
     }
 
     chapterList.innerHTML = CHAPTERS.map(chapter => `
-
-        <a
-            class="chapter-link"
-            href="${chapter.link}"
-        >
+        <a class="chapter-link" href="${chapter.link}">
             <span>${chapter.title}</span>
             <span class="chapter-arrow">→</span>
         </a>
-
     `).join("");
-
 }
 
 renderChapters();
+
+
+/* KİTAPLAR ARASI KAYDIRMA */
+
+let touchStartX = 0;
+let touchStartY = 0;
+
+document.addEventListener("touchstart", function(event) {
+    if (event.touches.length !== 1) return;
+
+    touchStartX = event.touches[0].clientX;
+    touchStartY = event.touches[0].clientY;
+}, { passive: true });
+
+document.addEventListener("touchend", function(event) {
+    if (!touchStartX && !touchStartY) return;
+
+    const touchEndX = event.changedTouches[0].clientX;
+    const touchEndY = event.changedTouches[0].clientY;
+
+    const differenceX = touchEndX - touchStartX;
+    const differenceY = touchEndY - touchStartY;
+
+    touchStartX = 0;
+    touchStartY = 0;
+
+    if (
+        Math.abs(differenceX) < 85 ||
+        Math.abs(differenceX) < Math.abs(differenceY) * 1.3
+    ) return;
+
+    if (differenceX > 0) {
+        window.location.href = "ringteki-son-dans.html";
+    }
+}, { passive: true });
 
 </script>
 
