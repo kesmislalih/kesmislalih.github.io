@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090609">
+<meta name="theme-color" content="#080608">
 
 <title>Ringteki Son Dans | kesmislalih</title>
 
@@ -13,16 +13,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
+
 :root {
-    --background: #090609;
-    --surface: #110b10;
-    --text: #f2edf0;
-    --soft: #b8afb5;
-    --muted: #756a72;
-    --border: #30232d;
-    --accent: #260015;
-    --accent-light: #490020;
-    --shadow: 0 20px 70px rgba(0,0,0,.7);
+    --background: #080608;
+    --surface: #100a0f;
+    --text: #f0ebef;
+    --soft: #b9afb7;
+    --muted: #786d76;
+    --border: #282027;
+    --accent: #19000f;
+    --accent-light: #300019;
 }
 
 * {
@@ -39,66 +39,61 @@ body {
     background: var(--background);
     color: var(--text);
     font-family: "Cormorant Garamond", serif;
-    overflow-x: hidden;
 }
 
 /* ARKA PLAN */
 
-.background-image {
+.background {
     position: fixed;
     inset: 0;
     z-index: -2;
+
     background:
         linear-gradient(
-            180deg,
-            rgba(5,3,5,.76),
-            rgba(5,3,5,.94) 65%,
-            #090609
+            to bottom,
+            rgba(5,4,5,.76),
+            rgba(5,4,5,.88),
+            #080608 100%
         ),
         url("file_00000000375c81f4b311415188148be7.png")
         center 35% / cover no-repeat;
-    filter: blur(2px);
+
+    filter: blur(3px);
     transform: scale(1.04);
 }
 
-.background-overlay {
-    position: fixed;
+.background::after {
+    content: "";
+    position: absolute;
     inset: 0;
-    z-index: -1;
-    background:
-        radial-gradient(
-            ellipse at center,
-            transparent 0%,
-            rgba(0,0,0,.35) 65%,
-            rgba(0,0,0,.8) 100%
-        );
+
+    background: radial-gradient(
+        ellipse at center,
+        transparent 0%,
+        rgba(0,0,0,.35) 65%,
+        rgba(0,0,0,.75) 100%
+    );
 }
 
 /* KAPATMA */
 
 .close-button {
     position: fixed;
-    top: 25px;
-    right: 30px;
+    top: 20px;
+    right: 25px;
     z-index: 20;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
+
+    color: #f5f0f3;
     font-family: Arial, sans-serif;
-    font-size: 39px;
+    font-size: 42px;
     font-weight: 200;
+
     text-decoration: none;
-    background: transparent;
-    border: none;
-    cursor: pointer;
     transition: .3s;
 }
 
 .close-button:hover {
-    color: #9b667f;
+    color: #684052;
     transform: rotate(90deg);
 }
 
@@ -107,20 +102,23 @@ body {
 .intro-page {
     width: 100%;
     min-height: 100vh;
-    padding: 85px 20px 35px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+
+    padding: 75px 20px 30px;
     text-align: center;
 }
 
-/* KAPAK */
+/* KİTAP KAPAĞI */
 
 .cover-container {
-    width: min(310px, 76vw);
-    position: relative;
+    width: 260px;
+    max-width: 72vw;
+
     margin-bottom: 27px;
+    position: relative;
 }
 
 .cover-container::before {
@@ -128,98 +126,111 @@ body {
     position: absolute;
     inset: -12px;
     z-index: -1;
-    background: var(--accent);
+
+    background: #19000f;
     filter: blur(35px);
-    opacity: .42;
+    opacity: .5;
 }
 
 .book-cover {
     display: block;
     width: 100%;
     height: auto;
-    max-height: 490px;
-    object-fit: contain;
+
     border-radius: 5px;
-    border: 1px solid rgba(90,30,55,.45);
-    box-shadow: var(--shadow);
+    border: 1px solid rgba(65,30,48,.55);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.65);
 }
 
 /* KİTAP BİLGİSİ */
 
 .book-information {
-    width: min(650px, 100%);
+    width: min(700px, 100%);
 }
 
 .book-title {
     margin: 0;
+
     font-family: Arial, sans-serif;
-    font-size: clamp(30px, 7vw, 48px);
+    font-size: clamp(32px, 7vw, 46px);
     font-weight: 500;
+
     letter-spacing: 2px;
     text-transform: uppercase;
-    line-height: 1.2;
 }
 
 .book-author {
     margin-top: 12px;
-    color: #6e1237;
+
+    color: #45132e;
     font-family: Arial, sans-serif;
     font-size: 19px;
     font-weight: 500;
+
     letter-spacing: 5px;
-    text-transform: uppercase;
 }
 
-/* ALINTI */
+/* ANA ALINTI */
 
 .book-quote {
-    max-width: 690px;
-    margin: 32px auto 34px;
-    color: #f0e9ed;
+    max-width: 700px;
+    margin: 30px auto 34px;
+
+    color: #eee8ed;
     font-family: Arial, sans-serif;
-    font-size: clamp(19px, 4.5vw, 28px);
+    font-size: clamp(19px, 4.5vw, 27px);
     font-style: italic;
-    font-weight: 400;
-    line-height: 1.7;
+
+    line-height: 1.65;
 }
 
 /* DEVAM ET */
 
 .continue-button {
-    width: min(310px, 85%);
-    min-height: 65px;
+    width: 290px;
+    max-width: 90%;
+    min-height: 62px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
-    border: 1px solid #390018;
-    background: rgba(10,4,8,.5);
-    color: #f3edf0;
+
+    margin: auto;
+
+    border: 1px solid #260014;
+    background: rgba(12,5,10,.55);
+
+    color: #f2edf0;
     font-family: Arial, sans-serif;
-    font-size: 22px;
+    font-size: 21px;
     letter-spacing: 4px;
+
     text-decoration: none;
     transition: .3s;
 }
 
 .continue-button:hover {
-    background: #260015;
-    border-color: #4c092b;
-    box-shadow: 0 0 25px rgba(65,0,30,.35);
+    background: #19000f;
+    border-color: #391329;
+    box-shadow: 0 0 25px rgba(35,0,20,.5);
 }
 
-/* TANITIM */
+/* TANITIM BUTONU */
 
 .description-toggle {
-    margin-top: 22px;
-    padding: 8px 12px;
-    border: 0;
+    margin-top: 21px;
+    padding: 8px;
+
+    border: none;
     background: transparent;
-    color: #68102f;
+
+    color: #542039;
     font-family: Arial, sans-serif;
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 14px;
     letter-spacing: 2px;
+
     cursor: pointer;
 }
 
@@ -233,49 +244,106 @@ body {
     transform: rotate(180deg);
 }
 
+/* TANITIM METNİ */
+
 .description-content {
-    width: min(620px, 94%);
+    width: min(620px, 95%);
+
     max-height: 0;
     overflow: hidden;
     opacity: 0;
+
     margin: 0 auto;
-    color: var(--soft);
+
+    color: #c9bec6;
     font-family: Arial, sans-serif;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.9;
-    transition: max-height .5s ease, opacity .4s, margin .4s;
+
+    transition:
+        max-height .6s ease,
+        opacity .4s,
+        margin .4s;
 }
 
 .description-content.open {
-    max-height: 350px;
+    max-height: 700px;
     opacity: 1;
-    margin-top: 18px;
-    margin-bottom: 10px;
+
+    margin-top: 22px;
+    margin-bottom: 15px;
 }
 
-/* ALT YÖNLENDİRME */
+.description-content p {
+    margin: 0 0 22px;
+}
+
+.description-content .description-quote {
+    color: #e8dfe6;
+    font-style: italic;
+}
+
+.description-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* MÜZİK */
+
+.music-section {
+    width: min(350px, 95%);
+    margin: 55px auto 0;
+}
+
+.music-title {
+    margin-bottom: 15px;
+
+    color: #796472;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+}
+
+.music-player {
+    width: 100%;
+    height: 152px;
+
+    border: 1px solid #21151e;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.music-player iframe {
+    width: 100%;
+    height: 152px;
+    border: 0;
+}
+
+/* DİĞER KİTAPLAR */
 
 .other-books {
-    margin-top: 100px;
+    margin-top: 75px;
     padding: 20px;
-    color: #958b92;
+
+    color: #8a8088;
     font-family: Arial, sans-serif;
-    font-size: 15px;
-    letter-spacing: 4px;
+    font-size: 14px;
+    letter-spacing: 3px;
+
     text-decoration: none;
     transition: .3s;
 }
 
 .other-books:hover {
-    color: #7b2346;
+    color: #76516a;
 }
 
-/* FOOTER */
+/* ALT BİLGİ */
 
 .intro-footer {
     margin-top: auto;
-    padding-top: 35px;
-    color: #665b63;
+    padding-top: 30px;
+
+    color: #514650;
     font-size: 14px;
     letter-spacing: 2px;
 }
@@ -285,35 +353,35 @@ body {
 @media (max-width: 600px) {
 
     .intro-page {
-        padding: 90px 18px 25px;
+        padding: 85px 18px 25px;
     }
 
     .close-button {
-        top: 18px;
-        right: 18px;
-        font-size: 35px;
+        top: 17px;
+        right: 19px;
+        font-size: 37px;
     }
 
     .cover-container {
-        width: min(285px, 78vw);
-        margin-bottom: 28px;
+        width: 260px;
+        max-width: 72vw;
+        margin-bottom: 27px;
     }
 
     .book-title {
-        font-size: 34px;
+        font-size: 35px;
         letter-spacing: 1px;
     }
 
     .book-author {
         font-size: 17px;
-        letter-spacing: 4px;
     }
 
     .book-quote {
-        margin-top: 29px;
-        margin-bottom: 31px;
+        margin-top: 27px;
+        margin-bottom: 30px;
         font-size: 21px;
-        line-height: 1.6;
+        line-height: 1.65;
     }
 
     .continue-button {
@@ -322,62 +390,76 @@ body {
     }
 
     .description-toggle {
-        font-size: 13px;
+        font-size: 12px;
         letter-spacing: 1.5px;
     }
 
+    .description-content {
+        font-size: 14px;
+    }
+
     .other-books {
-        margin-top: 90px;
-        font-size: 13px;
-        letter-spacing: 3px;
+        margin-top: 65px;
+        font-size: 12px;
+    }
+
+    .music-section {
+        margin-top: 45px;
     }
 }
 
-/* MASAÜSTÜ */
-
-@media (min-width: 900px) {
-    .intro-page {
-        padding-top: 55px;
-    }
-
-    .cover-container {
-        width: 305px;
-    }
-}
 </style>
 </head>
 
 <body>
 
-<div class="background-image"></div>
-<div class="background-overlay"></div>
+<div class="background"></div>
 
-<a href="index.html" class="close-button" aria-label="Kapat">×</a>
+<a href="index.html"
+   class="close-button"
+   aria-label="Kapat">×</a>
 
 <main class="intro-page">
 
+    <!-- KİTAP KAPAĞI -->
+
     <div class="cover-container">
+
         <img
             class="book-cover"
             src="file_00000000375c81f4b311415188148be7.png"
             alt="Ringteki Son Dans kitap kapağı"
         >
+
     </div>
+
+    <!-- KİTAP BİLGİLERİ -->
 
     <section class="book-information">
 
-        <h1 class="book-title">Ringteki Son Dans</h1>
+        <h1 class="book-title">
+            Ringteki Son Dans
+        </h1>
 
-        <div class="book-author">KESMİSLALİH</div>
+        <div class="book-author">
+            KESMİSLALİH
+        </div>
+
+        <!-- ANA ALINTI -->
 
         <blockquote class="book-quote">
-            “Bir karanlık, iki kurşun.
-            Binbir acı, iki yetim.”
+            ❝Gök gürleyecek kalbini incitecekti.
+            Paramparça olan kalbinin düzelmesi bir çocuğun
+            tatlı kıkırtısında yeniden hayat bulacaktı.❞
         </blockquote>
+
+        <!-- DEVAM ET -->
 
         <a href="bolum-1.html" class="continue-button">
             DEVAM ET
         </a>
+
+        <!-- TANITIM -->
 
         <button
             type="button"
@@ -389,11 +471,51 @@ body {
             <span>⌄</span>
         </button>
 
-        <div class="description-content" id="descriptionContent">
-            <p>
-                Küçükken gözlerini kapayınca oyuncaklarının
-                uyanacağını sananlara...
+        <div
+            class="description-content"
+            id="descriptionContent"
+        >
+
+            <p class="description-quote">
+                ❝Gök gürleyecek kalbini incitecekti.
+                Paramparça olan kalbinin düzelmesi bir çocuğun
+                tatlı kıkırtısında yeniden hayat bulacaktı.❞
             </p>
+
+            <p>
+                Bir karanlık, iki kurşun.<br>
+                Binbir acı, iki yetim.
+            </p>
+
+            <p>
+                Sihirli değneğin ucu müzik kutusunda usul usul
+                dönen balerinin üzerinde durdu. Ardından boksör
+                bebeğin omzuna dokundu. Gözleri acıtan bir ışık
+                ardından soluk renklerin yerine gelmesi bir
+                mucizeydi. Belki de kabul edilen büyü...
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- MÜZİK -->
+
+    <section class="music-section">
+
+        <div class="music-title">
+            HİKÂYENİN ŞARKISI
+        </div>
+
+        <div class="music-player">
+
+            <iframe
+                src="https://open.spotify.com/embed/track/3bUkBCbcOg787J2jEp3lN7?utm_source=generator&theme=0"
+                title="Dolu Kadehi Ters Tut - Sahte Dualar"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy">
+            </iframe>
+
         </div>
 
     </section>
@@ -426,7 +548,10 @@ descriptionToggle.addEventListener("click", function () {
     const isOpen =
         descriptionContent.classList.toggle("open");
 
-    descriptionToggle.classList.toggle("active", isOpen);
+    descriptionToggle.classList.toggle(
+        "active",
+        isOpen
+    );
 
     descriptionToggle.setAttribute(
         "aria-expanded",
@@ -441,7 +566,7 @@ descriptionToggle.addEventListener("click", function () {
 
 
 /* =========================
-   SUPABASE BAĞLANTISI
+   SUPABASE
 ========================= */
 
 const SUPABASE_URL =
@@ -459,7 +584,7 @@ const BOOK_NAME = "Ringteki Son Dans";
 
 
 /* =========================
-   KİTAP GÖRÜNTÜLENMESİ
+   KİTAP OKUNMA SAYISI
 ========================= */
 
 async function increaseBookView() {
@@ -486,9 +611,7 @@ async function increaseBookView() {
    SAYFA BAŞLAT
 ========================= */
 
-document.addEventListener("DOMContentLoaded", function () {
-    increaseBookView();
-});
+increaseBookView();
 
 </script>
 
