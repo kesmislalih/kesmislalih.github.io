@@ -35,6 +35,67 @@ body {
   padding: 34px 24px 70px;
 }
 
+/* Üst menü */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  background: rgba(8, 8, 8, 0.94);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+}
+
+.topbar a,
+.menu-button {
+  color: var(--text);
+  text-decoration: none;
+  font: inherit;
+  font-size: 13px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.menu-button {
+  font-size: 25px;
+  line-height: 1;
+}
+
+.chapter-menu {
+  display: none;
+  position: fixed;
+  top: 58px;
+  right: 14px;
+  z-index: 101;
+  min-width: 220px;
+  padding: 12px;
+  background: #111;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.chapter-menu.open {
+  display: block;
+}
+
+.chapter-menu a {
+  display: block;
+  padding: 12px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.chapter-menu a:hover {
+  color: var(--accent);
+}
+
 .intro {
   text-align: center;
   min-height: 100vh;
@@ -43,13 +104,15 @@ body {
   justify-content: center;
   align-items: center;
   gap: 24px;
+  padding-top: 60px;
 }
 
 .dedication {
-  font-size: 14px;
+  font-size: clamp(17px, 4.5vw, 23px);
   line-height: 1.8;
   color: #d4d4d4;
   font-style: italic;
+  max-width: 600px;
 }
 
 .intro-image {
@@ -87,6 +150,20 @@ body {
   line-height: 2;
   overflow-wrap: anywhere;
   margin: 20px 0;
+}
+
+.audio-player {
+  width: min(100%, 420px);
+  margin: 10px auto;
+}
+
+.audio-player audio {
+  width: 100%;
+}
+
+.chapter-menu a,
+.topbar a {
+  transition: color 0.2s ease;
 }
 
 .chapter-header {
@@ -158,11 +235,6 @@ body {
   padding: 4px;
 }
 
-.comment-count {
-  font-size: 12px;
-  margin-left: 3px;
-}
-
 .comment-box {
   display: none;
   margin: -28px 0 42px;
@@ -205,6 +277,15 @@ body {
   color: #ccc;
 }
 
+/* Kopyalamayı zorlaştırma */
+body,
+.story,
+.chapter-header,
+.quote {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 @media (max-width: 480px) {
   .page {
     padding: 24px 22px 50px;
@@ -218,11 +299,32 @@ body {
   .comment-button {
     font-size: 19px;
   }
+
+  .topbar {
+    padding: 12px 16px;
+  }
 }
 </style>
 </head>
 
 <body>
+
+<nav class="topbar">
+  <a href="ringteki-son-dans.html">← Kitaba dön</a>
+
+  <button
+    class="menu-button"
+    id="menuButton"
+    type="button"
+    aria-label="Bölüm menüsünü aç"
+    aria-expanded="false"
+  >☰</button>
+</nav>
+
+<div class="chapter-menu" id="chapterMenu">
+  <a href="#chapter-0">Sıfırıncı Bölüm</a>
+</div>
+
 <main class="page">
 
 <section class="intro">
@@ -244,9 +346,17 @@ body {
   <div class="ornament">
    ๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭
   </div>
+
+  <div class="audio-player">
+    <audio controls loop>
+      <source src="muzik.mp3" type="audio/mpeg">
+      Tarayıcınız ses oynatmayı desteklemiyor.
+    </audio>
+  </div>
 </section>
 
-<section class="chapter">
+<section class="chapter" id="chapter-0">
+
   <header class="chapter-header">
     <div class="chapter-number">SIFIRINCI BÖLÜM</div>
     <h2>RİNGTEKİ SON DANS</h2>
@@ -271,6 +381,7 @@ body {
   <div class="ornament">𓍼</div>
 
   <div class="story">
+
     <p class="paragraph">
 Masallar gerçekti, dünyalar apayrıydı. Her masal her dünyada gerçekleşmezdi. Sihirli peri tozları, süpürgesiyle uçan cadılar, özel güce sahip kahramanlar bir hayalden ibaretti. Onlar yalnızca hayal dünyasına aitti. Gerçek olan tek şey hayal kırıklığından başka bir şey değildi.
 </p>
@@ -444,7 +555,7 @@ Açık olan kapıdan çocuk ve adamların sesi geliyordu fakat ikinci odadan hi�
 </p>
 
 <p class="paragraph">
-Bu adam her şeyi anlamak zorunda mıydı? Düşmanını iyi tanı lafını sahiplenmiş gibiydi! "Girmeyecektim zaten," diyerek ona yalan söyleyip gözlerimi ondan kaçırdım.
+Bu adam her şeyi anlamak zorunda mıydı? Düşmanını iyi tanı lafını sahiplenmiş gibiydi! "Girmeyecektım zaten," diyerek ona yalan söyleyip gözlerimi ondan kaçırdım.
 </p>
 
 <p class="paragraph">
@@ -545,9 +656,8 @@ Gözlerim yuvarlarından çıkacakmış gibi büyüdü. "Pislik! Öyle şeyler d
 
 <p class="paragraph">
 "O içerideki çocuklar... Onlar mı?"
-</p>
-
-<p class="paragraph">
+  </p>
+  <p class="paragraph">
 Hemen anladı neyden bahsettiğimi. "Bilmiyorum, izin verirsen bakacağım."
 </p>
 
@@ -594,6 +704,7 @@ Sayaçların üzerinde 23:42 yazıyordu ve her saniye geçtiği sürede azalıyo
 <p class="paragraph">
 Bu süre bittiği an burası patlayacak ve bu yerin içinde kalanları da yok edecekti. Aceleyle kendimi dışarı atıp etrafıma baktım. Çıkış kapısına giden merdivenlere bakarak aklımdan geçen kaçma dürtüsünü Arel'in sinire karışık küfür eden sesi durdurdu. Bağıran sesini duyduğum an aklımdaki önceliklerin hepsini geçerek ilk amacımın onu kurtarmak oldu. Onu burada bırakamazdım, beni soytarı ve kuklacının elinden -her ne kadar istemese de- o kurtarmıştı. Bu iyiliğini karşılıksız bırakamazdım.
 </p>
+
 <p class="paragraph">
 Hızlı düşünmem gerekiyordu. Buraya geldiğimden beri dikkatimi çeken koridorun sonunda bulunan demir sopaya doğru koştum. Sopayı elime aldığım gibi küçücük aralıktaki kapıdan içeri bakmaya başladım.
 </p>
@@ -735,10 +846,6 @@ Ayaklanıp onun kalkmasını bekledim. Hayvan herif, manipüle etmeye çalışı
 </p>
 
 <p class="paragraph">
-Şaşkınlıkla bana baktı. "Ne biçim konuşuyorsun sen?" Konuyu değiştirmeye çabasına girmeye başlamışken hemen durdurdum onu. "Sana ne? Kalk demedim mi ben sana? Hadi! İşimiz var! Hadi, hadi..."
-</p>
-
-<p class="paragraph">
 "Ne işimiz var?" dedi doğrulurken.
 </p>
 
@@ -805,45 +912,92 @@ Dediğimle "Yalan söylemeyin!" diye bağırarak bize karşılık verdiklerinde 
 <p class="paragraph emphasis">
 İşimiz çok zordu, değil mi?
 </p>
-
-</div>
+  </div>
 </section>
 </main>
 
 <script>
-document.querySelectorAll('.paragraph').forEach((paragraph, index) => {
+/* Paragraf yorumları */
+document.querySelectorAll('.paragraph').forEach(paragraph => {
   const button = document.createElement('button');
   button.className = 'comment-button';
   button.type = 'button';
   button.setAttribute('aria-label', 'Paragrafa yorum yap');
-  button.innerHTML = '•••';
+  button.textContent = '•••';
 
   const box = document.createElement('div');
   box.className = 'comment-box';
-  box.innerHTML = `
-    <textarea placeholder="Bu paragraf hakkında yorumunu yaz..."></textarea>
-    <button type="button">Yorum ekle</button>
-    <div class="comment-list"></div>
-  `;
+
+  const textarea = document.createElement('textarea');
+  textarea.placeholder = 'Bu paragraf hakkında yorumunu yaz...';
+
+  const submitButton = document.createElement('button');
+  submitButton.type = 'button';
+  submitButton.textContent = 'Yorum ekle';
+
+  const commentList = document.createElement('div');
+  commentList.className = 'comment-list';
+
+  box.append(textarea, submitButton, commentList);
 
   button.addEventListener('click', () => {
     box.classList.toggle('open');
   });
 
-  box.querySelector('button').addEventListener('click', () => {
-    const textarea = box.querySelector('textarea');
+  submitButton.addEventListener('click', () => {
     const value = textarea.value.trim();
-
     if (!value) return;
 
     const comment = document.createElement('p');
     comment.textContent = value;
-    box.querySelector('.comment-list').appendChild(comment);
+    commentList.appendChild(comment);
     textarea.value = '';
   });
 
   paragraph.appendChild(button);
   paragraph.after(box);
+});
+
+/* Üç çizgili bölüm menüsü */
+const menuButton = document.getElementById('menuButton');
+const chapterMenu = document.getElementById('chapterMenu');
+
+menuButton.addEventListener('click', () => {
+  const isOpen = chapterMenu.classList.toggle('open');
+  menuButton.setAttribute('aria-expanded', String(isOpen));
+});
+
+chapterMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    chapterMenu.classList.remove('open');
+    menuButton.setAttribute('aria-expanded', 'false');
+  });
+});
+
+/* Kopyalamayı zorlaştırma */
+document.addEventListener('contextmenu', event => {
+  event.preventDefault();
+});
+
+document.addEventListener('copy', event => {
+  event.preventDefault();
+});
+
+document.addEventListener('cut', event => {
+  event.preventDefault();
+});
+
+document.addEventListener('selectstart', event => {
+  event.preventDefault();
+});
+
+document.addEventListener('keydown', event => {
+  const key = event.key.toLowerCase();
+
+  if ((event.ctrlKey || event.metaKey) &&
+      ['c', 'x', 'a', 's', 'u', 'p'].includes(key)) {
+    event.preventDefault();
+  }
 });
 </script>
 
