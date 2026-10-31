@@ -3,24 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#09090b">
+<meta name="theme-color" content="#090609">
+
 <title>Ringteki Son Dans | kesmislalih</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
 :root {
-    --background: #09090b;
-    --surface: #111015;
-    --surface-two: #19161e;
-    --text: #eee9e2;
-    --text-soft: #aaa39a;
-    --text-muted: #756d76;
-    --border: #29252d;
-    --accent: #cdb9eb;
-    --shadow: 0 20px 60px rgba(0,0,0,.35);
+    --background: #090609;
+    --surface: #110b10;
+    --text: #f2edf0;
+    --soft: #b8afb5;
+    --muted: #756a72;
+    --border: #30232d;
+    --accent: #260015;
+    --accent-light: #490020;
+    --shadow: 0 20px 70px rgba(0,0,0,.7);
 }
 
 * {
@@ -33,528 +35,415 @@ html {
 
 body {
     margin: 0;
+    min-height: 100vh;
     background: var(--background);
     color: var(--text);
-    font-family: "Cormorant Garamond", Georgia, serif;
-    transition: background .3s, color .3s;
+    font-family: "Cormorant Garamond", serif;
+    overflow-x: hidden;
 }
 
-body.light {
-    --background: #f5f1eb;
-    --surface: #ebe5dd;
-    --surface-two: #e3dcd3;
-    --text: #242126;
-    --text-soft: #514a45;
-    --text-muted: #6c625d;
-    --border: #d3cbc1;
-    --accent: #806a9c;
-    --shadow: 0 20px 60px rgba(60,45,35,.12);
+/* ARKA PLAN */
+
+.background-image {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5,3,5,.76),
+            rgba(5,3,5,.94) 65%,
+            #090609
+        ),
+        url("file_00000000375c81f4b311415188148be7.png")
+        center 35% / cover no-repeat;
+    filter: blur(2px);
+    transform: scale(1.04);
 }
 
-button, input, textarea {
-    font: inherit;
+.background-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 0%,
+            rgba(0,0,0,.35) 65%,
+            rgba(0,0,0,.8) 100%
+        );
 }
 
-button, a {
-    -webkit-tap-highlight-color: transparent;
-}
+/* KAPATMA */
 
-button {
-    cursor: pointer;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-/* HEADER */
-
-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--background);
-    border-bottom: 1px solid var(--border);
-}
-
-.header-inner {
-    width: min(1100px, 90%);
-    min-height: 70px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-}
-
-.logo {
-    font-size: 27px;
-    font-weight: 600;
-    letter-spacing: 1px;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-}
-
-.back-home {
-    color: var(--text-soft);
-    font-size: 14px;
-    letter-spacing: 1px;
-}
-
-.theme-button {
-    width: 40px;
-    height: 40px;
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    background: transparent;
-    color: var(--text);
-    font-size: 19px;
-}
-
-/* ANA ALAN */
-
-.book-page {
-    width: min(900px, 90%);
-    margin: auto;
-    padding: 65px 0 80px;
-}
-
-.book-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.book-title {
-    margin: 0;
-    font-size: clamp(42px, 7vw, 72px);
-    line-height: 1.1;
-    font-weight: 500;
-}
-
-.book-author {
-    margin-top: 15px;
-    color: var(--accent);
-    font-size: 20px;
-    letter-spacing: 2px;
-}
-
-.book-stats {
+.close-button {
+    position: fixed;
+    top: 25px;
+    right: 30px;
+    z-index: 20;
+    width: 45px;
+    height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    margin-top: 20px;
-    color: var(--text-muted);
-    font-size: 15px;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 39px;
+    font-weight: 200;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: .3s;
 }
 
-.dot {
-    color: var(--accent);
+.close-button:hover {
+    color: #9b667f;
+    transform: rotate(90deg);
 }
 
-/* OKUNMA İKONU */
+/* ANA EKRAN */
 
-.view-count {
-    display: inline-flex;
+.intro-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 85px 20px 35px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 6px;
-}
-
-.view-icon {
-    width: 15px;
-    height: 10px;
-    display: inline-block;
-    position: relative;
-    border: 1.4px solid currentColor;
-    border-radius: 80% 20% 80% 20%;
-    transform: rotate(-45deg);
-}
-
-.view-icon::after {
-    content: "";
-    width: 4px;
-    height: 4px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid currentColor;
-    border-radius: 50%;
+    justify-content: flex-start;
+    text-align: center;
 }
 
 /* KAPAK */
 
-.cover-wrapper {
-    width: min(330px, 80%);
-    margin: 0 auto 55px;
+.cover-container {
+    width: min(310px, 76vw);
     position: relative;
+    margin-bottom: 27px;
 }
 
-.cover-wrapper img {
+.cover-container::before {
+    content: "";
+    position: absolute;
+    inset: -12px;
+    z-index: -1;
+    background: var(--accent);
+    filter: blur(35px);
+    opacity: .42;
+}
+
+.book-cover {
+    display: block;
     width: 100%;
     height: auto;
-    display: block;
-    border-radius: 3px;
-    box-shadow: 0 25px 70px rgba(0,0,0,.45);
-}
-
-/* BÖLÜMLER */
-
-.chapter-menu {
-    margin-top: 45px;
-    border: 1px solid var(--border);
-    background: var(--surface);
+    max-height: 490px;
+    object-fit: contain;
+    border-radius: 5px;
+    border: 1px solid rgba(90,30,55,.45);
     box-shadow: var(--shadow);
 }
 
-.chapter-menu-button {
-    width: 100%;
-    padding: 20px 22px;
-    border: 0;
-    background: transparent;
-    color: var(--text);
+/* KİTAP BİLGİSİ */
+
+.book-information {
+    width: min(650px, 100%);
+}
+
+.book-title {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: clamp(30px, 7vw, 48px);
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.book-author {
+    margin-top: 12px;
+    color: #6e1237;
+    font-family: Arial, sans-serif;
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+/* ALINTI */
+
+.book-quote {
+    max-width: 690px;
+    margin: 32px auto 34px;
+    color: #f0e9ed;
+    font-family: Arial, sans-serif;
+    font-size: clamp(19px, 4.5vw, 28px);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+/* DEVAM ET */
+
+.continue-button {
+    width: min(310px, 85%);
+    min-height: 65px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    font-size: 17px;
+    justify-content: center;
+    margin: 0 auto;
+    border: 1px solid #390018;
+    background: rgba(10,4,8,.5);
+    color: #f3edf0;
+    font-family: Arial, sans-serif;
+    font-size: 22px;
+    letter-spacing: 4px;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.continue-button:hover {
+    background: #260015;
+    border-color: #4c092b;
+    box-shadow: 0 0 25px rgba(65,0,30,.35);
+}
+
+/* TANITIM */
+
+.description-toggle {
+    margin-top: 22px;
+    padding: 8px 12px;
+    border: 0;
+    background: transparent;
+    color: #68102f;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
     letter-spacing: 2px;
+    cursor: pointer;
 }
 
-.chapter-menu-arrow {
-    transition: transform .25s;
+.description-toggle span {
+    display: inline-block;
+    margin-left: 5px;
+    transition: transform .3s;
 }
 
-.chapter-menu.open .chapter-menu-arrow {
+.description-toggle.active span {
     transform: rotate(180deg);
 }
 
-.chapter-menu-list {
-    display: none;
-    border-top: 1px solid var(--border);
+.description-content {
+    width: min(620px, 94%);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin: 0 auto;
+    color: var(--soft);
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.9;
+    transition: max-height .5s ease, opacity .4s, margin .4s;
 }
 
-.chapter-menu.open .chapter-menu-list {
-    display: block;
-}
-
-.chapter-link {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-    padding: 20px 22px;
-    border-bottom: 1px solid var(--border);
-    color: var(--text-soft);
-    transition: background .2s, color .2s;
-}
-
-.chapter-link:last-child {
-    border-bottom: 0;
-}
-
-.chapter-link:hover {
-    background: var(--surface-two);
-    color: var(--accent);
-}
-
-.chapter-link-title {
-    font-size: 19px;
-}
-
-.chapter-link-stats {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--text-muted);
-    font-size: 13px;
-}
-
-.chapter-card {
-    padding: 22px;
+.description-content.open {
+    max-height: 350px;
+    opacity: 1;
     margin-top: 18px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    transition: border-color .2s;
+    margin-bottom: 10px;
 }
 
-.chapter-card:hover {
-    border-color: var(--accent);
+/* ALT YÖNLENDİRME */
+
+.other-books {
+    margin-top: 100px;
+    padding: 20px;
+    color: #958b92;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    letter-spacing: 4px;
+    text-decoration: none;
+    transition: .3s;
 }
 
-.chapter-card-title {
-    margin: 0 0 15px;
-    font-size: 23px;
-    font-weight: 500;
-}
-
-.chapter-card-meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 12px;
-    color: var(--text-muted);
-    font-size: 14px;
-}
-
-.chapter-card-link {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 16px;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    letter-spacing: 1px;
-    font-size: 13px;
-    transition: background .2s, color .2s;
-}
-
-.chapter-card-link:hover {
-    background: var(--accent);
-    color: var(--background);
-}
-    /* MOBİL TASARIM */
-
-@media (max-width: 650px) {
-    .header-inner {
-        min-height: 62px;
-    }
-
-    .logo {
-        font-size: 23px;
-    }
-
-    .back-home {
-        font-size: 11px;
-    }
-
-    .header-right {
-        gap: 10px;
-    }
-
-    .theme-button {
-        width: 36px;
-        height: 36px;
-    }
-
-    .book-page {
-        padding-top: 45px;
-    }
-
-    .book-title {
-        font-size: 44px;
-    }
-
-    .book-author {
-        font-size: 17px;
-    }
-
-    .cover-wrapper {
-        width: min(300px, 85%);
-    }
-
-    .chapter-link {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .chapter-link-title {
-        font-size: 18px;
-    }
-
-    .chapter-card-title {
-        font-size: 21px;
-    }
+.other-books:hover {
+    color: #7b2346;
 }
 
 /* FOOTER */
 
-.site-footer {
-    width: min(900px, 90%);
-    margin: auto;
-    padding: 40px 0 30px;
-    border-top: 1px solid var(--border);
-    text-align: center;
+.intro-footer {
+    margin-top: auto;
+    padding-top: 35px;
+    color: #665b63;
+    font-size: 14px;
+    letter-spacing: 2px;
 }
 
-.footer-logo {
-    font-size: 25px;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
+/* MOBİL */
+
+@media (max-width: 600px) {
+
+    .intro-page {
+        padding: 90px 18px 25px;
+    }
+
+    .close-button {
+        top: 18px;
+        right: 18px;
+        font-size: 35px;
+    }
+
+    .cover-container {
+        width: min(285px, 78vw);
+        margin-bottom: 28px;
+    }
+
+    .book-title {
+        font-size: 34px;
+        letter-spacing: 1px;
+    }
+
+    .book-author {
+        font-size: 17px;
+        letter-spacing: 4px;
+    }
+
+    .book-quote {
+        margin-top: 29px;
+        margin-bottom: 31px;
+        font-size: 21px;
+        line-height: 1.6;
+    }
+
+    .continue-button {
+        min-height: 60px;
+        font-size: 19px;
+    }
+
+    .description-toggle {
+        font-size: 13px;
+        letter-spacing: 1.5px;
+    }
+
+    .other-books {
+        margin-top: 90px;
+        font-size: 13px;
+        letter-spacing: 3px;
+    }
 }
 
-.footer-text {
-    color: var(--text-muted);
-    font-size: 15px;
-    line-height: 1.6;
-}
+/* MASAÜSTÜ */
 
-.footer-copy {
-    margin-top: 20px;
-    color: var(--text-muted);
-    font-size: 12px;
+@media (min-width: 900px) {
+    .intro-page {
+        padding-top: 55px;
+    }
+
+    .cover-container {
+        width: 305px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-    <div class="header-inner">
-        <a href="index.html" class="logo">kesmislalih</a>
+<div class="background-image"></div>
+<div class="background-overlay"></div>
 
-        <div class="header-right">
-            <a href="index.html" class="back-home">← ANA SAYFA</a>
+<a href="index.html" class="close-button" aria-label="Kapat">×</a>
 
-            <button
-                id="themeButton"
-                class="theme-button"
-                type="button"
-                aria-label="Tema değiştir"
-            >
-                <span id="themeIcon">☾</span>
-            </button>
-        </div>
-    </div>
-</header>
+<main class="intro-page">
 
-<main class="book-page">
-
-    <section class="book-header">
-        <h1 class="book-title">Ringteki Son Dans</h1>
-        <div class="book-author">kesmislalih</div>
-
-        <div class="book-stats">
-            <span class="view-count">
-                <span class="view-icon"></span>
-                <span id="bookViews">0</span>
-                okunma
-            </span>
-
-            <span class="dot">•</span>
-
-            <span>
-                <span id="bookComments">0</span>
-                yorum
-            </span>
-        </div>
-    </section>
-
-    <div class="cover-wrapper">
+    <div class="cover-container">
         <img
+            class="book-cover"
             src="file_00000000375c81f4b311415188148be7.png"
             alt="Ringteki Son Dans kitap kapağı"
         >
     </div>
 
-    <section class="chapter-menu" id="chapterMenu">
+    <section class="book-information">
+
+        <h1 class="book-title">Ringteki Son Dans</h1>
+
+        <div class="book-author">KESMİSLALİH</div>
+
+        <blockquote class="book-quote">
+            “Bir karanlık, iki kurşun.
+            Binbir acı, iki yetim.”
+        </blockquote>
+
+        <a href="bolum-1.html" class="continue-button">
+            DEVAM ET
+        </a>
+
         <button
             type="button"
-            class="chapter-menu-button"
-            id="chapterMenuButton"
+            class="description-toggle"
+            id="descriptionToggle"
             aria-expanded="false"
         >
-            <span>BÖLÜMLER</span>
-            <span class="chapter-menu-arrow">↓</span>
+            TANITIMIN TAMAMINI OKU
+            <span>⌄</span>
         </button>
 
-        <div class="chapter-menu-list" id="chapterMenuList">
-            <a href="bolum-1.html" class="chapter-link">
-                <span class="chapter-link-title">Bölüm 1</span>
-                <span class="chapter-link-stats">
-                    <span class="view-icon"></span>
-                    <span id="menuViews1">0</span>
-                    <span>okunma</span>
-                </span>
-            </a>
-
-            <a href="bolum-2.html" class="chapter-link">
-                <span class="chapter-link-title">Bölüm 2</span>
-                <span class="chapter-link-stats">
-                    <span class="view-icon"></span>
-                    <span id="menuViews2">0</span>
-                    <span>okunma</span>
-                </span>
-            </a>
-
-            <a href="bolum-3.html" class="chapter-link">
-                <span class="chapter-link-title">Bölüm 3</span>
-                <span class="chapter-link-stats">
-                    <span class="view-icon"></span>
-                    <span id="menuViews3">0</span>
-                    <span>okunma</span>
-                </span>
-            </a>
+        <div class="description-content" id="descriptionContent">
+            <p>
+                Küçükken gözlerini kapayınca oyuncaklarının
+                uyanacağını sananlara...
+            </p>
         </div>
+
     </section>
 
-    <section class="chapter-list">
-        <article class="chapter-card">
-            <h2 class="chapter-card-title">Bölüm 1</h2>
+    <a href="index.html" class="other-books">
+        ← DİĞER KİTAPLAR İÇİN KAYDIR →
+    </a>
 
-            <div class="chapter-card-meta">
-                <span class="view-count">
-                    <span class="view-icon"></span>
-                    <span id="chapterViews1">0</span>
-                    okunma
-                </span>
-            </div>
-
-            <a href="bolum-1.html" class="chapter-card-link">
-                BÖLÜMÜ OKU →
-            </a>
-        </article>
-
-        <article class="chapter-card">
-            <h2 class="chapter-card-title">Bölüm 2</h2>
-
-            <div class="chapter-card-meta">
-                <span class="view-count">
-                    <span class="view-icon"></span>
-                    <span id="chapterViews2">0</span>
-                    okunma
-                </span>
-            </div>
-
-            <a href="bolum-2.html" class="chapter-card-link">
-                BÖLÜMÜ OKU →
-            </a>
-        </article>
-
-        <article class="chapter-card">
-            <h2 class="chapter-card-title">Bölüm 3</h2>
-
-            <div class="chapter-card-meta">
-                <span class="view-count">
-                    <span class="view-icon"></span>
-                    <span id="chapterViews3">0</span>
-                    okunma
-                </span>
-            </div>
-
-            <a href="bolum-3.html" class="chapter-card-link">
-                BÖLÜMÜ OKU →
-            </a>
-        </article>
-    </section>
+    <footer class="intro-footer">
+        kesmislalih · 2026
+    </footer>
 
 </main>
-
-<footer class="site-footer">
-    <div class="footer-logo">kesmislalih</div>
-    <div class="footer-text">
-        Yazılan her hikâye, başka birinin dünyasında yeni bir hayat bulur.
-    </div>
-    <div class="footer-copy">© 2026 kesmislalih</div>
-</footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+
+/* =========================
+   TANITIMI AÇ / KAPAT
+========================= */
+
+const descriptionToggle =
+    document.getElementById("descriptionToggle");
+
+const descriptionContent =
+    document.getElementById("descriptionContent");
+
+descriptionToggle.addEventListener("click", function () {
+
+    const isOpen =
+        descriptionContent.classList.toggle("open");
+
+    descriptionToggle.classList.toggle("active", isOpen);
+
+    descriptionToggle.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+    );
+
+    descriptionToggle.innerHTML = isOpen
+        ? 'TANITIMI KAPAT <span>⌄</span>'
+        : 'TANITIMIN TAMAMINI OKU <span>⌄</span>';
+
+});
+
+
+/* =========================
+   SUPABASE BAĞLANTISI
+========================= */
+
 const SUPABASE_URL =
     "https://edgpwcoypywwodgfkkbi.supabase.co";
 
@@ -568,88 +457,13 @@ const supabaseClient = window.supabase.createClient(
 
 const BOOK_NAME = "Ringteki Son Dans";
 
-/* TEMA */
 
-const themeButton = document.getElementById("themeButton");
-const themeIcon = document.getElementById("themeIcon");
+/* =========================
+   KİTAP GÖRÜNTÜLENMESİ
+========================= */
 
-function applyTheme(theme) {
-    const isLight = theme === "light";
+async function increaseBookView() {
 
-    document.body.classList.toggle("light", isLight);
-    themeIcon.textContent = isLight ? "☀" : "☾";
-}
-
-applyTheme(localStorage.getItem("kesmislalih-theme") || "dark");
-
-themeButton.addEventListener("click", function () {
-    const isLight = !document.body.classList.contains("light");
-    const theme = isLight ? "light" : "dark";
-
-    applyTheme(theme);
-    localStorage.setItem("kesmislalih-theme", theme);
-});
-
-/* BÖLÜM MENÜSÜ */
-
-const chapterMenu = document.getElementById("chapterMenu");
-const chapterMenuButton = document.getElementById("chapterMenuButton");
-
-chapterMenuButton.addEventListener("click", function () {
-    const isOpen = chapterMenu.classList.toggle("open");
-
-    chapterMenuButton.setAttribute(
-        "aria-expanded",
-        String(isOpen)
-    );
-});
-
-/* GÖRÜNTÜLENMELERİ GETİR */
-
-async function loadAllViews() {
-    const { data, error } = await supabaseClient
-        .from("kitap_goruntulenmeleri")
-        .select("bolum, goruntulenme")
-        .eq("kitap", BOOK_NAME);
-
-    if (error) {
-        console.error("Okunma sayıları alınamadı:", error);
-        return;
-    }
-
-    let totalViews = 0;
-
-    (data || []).forEach(function (item) {
-        const chapter = Number(item.bolum);
-        const views = Number(item.goruntulenme || 0);
-
-        if (chapter >= 1 && chapter <= 3) {
-            totalViews += views;
-
-            const cardCounter = document.getElementById(
-                "chapterViews" + chapter
-            );
-
-            const menuCounter = document.getElementById(
-                "menuViews" + chapter
-            );
-
-            if (cardCounter) {
-                cardCounter.textContent = views;
-            }
-
-            if (menuCounter) {
-                menuCounter.textContent = views;
-            }
-        }
-    });
-
-    document.getElementById("bookViews").textContent = totalViews;
-}
-
-/* GÖRÜNTÜLENME ARTIR */
-
-async function increaseView() {
     const { error } = await supabaseClient.rpc(
         "arttir_goruntulenme",
         {
@@ -659,21 +473,23 @@ async function increaseView() {
     );
 
     if (error) {
-        console.error("Okunma sayısı artırılamadı:", error);
-        return;
+        console.error(
+            "Kitap görüntülenmesi kaydedilemedi:",
+            error
+        );
     }
 
-    await loadAllViews();
 }
 
-/* SAYFA BAŞLAT */
 
-async function initBookPage() {
-    await loadAllViews();
-    await increaseView();
-}
+/* =========================
+   SAYFA BAŞLAT
+========================= */
 
-initBookPage();
+document.addEventListener("DOMContentLoaded", function () {
+    increaseBookView();
+});
+
 </script>
 
 </body>
