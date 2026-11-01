@@ -854,10 +854,11 @@ async function addComment(event,postId,card){
     avatar:profile.avatar
   });
 
-  if(error){
-    console.error(error);
-    alert("Yorum gönderilemedi.");
-    return;
+  if (error) {
+  console.error(error);
+  document.getElementById("wallStatus").textContent =
+    "Hata: " + (error.message || error.details || "Gönderi kaydedilemedi.");
+  return;
   }
 
   input.value="";
