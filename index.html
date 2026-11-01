@@ -187,7 +187,7 @@ main{padding:28px 0 60px}
 .panel{display:none}
 .panel.active{display:block;animation:fadeIn .25s ease}
 @keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-
+  <style>
 /* KİTAPLAR */
 .books-grid,.character-books{
   display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px
@@ -223,25 +223,18 @@ main{padding:28px 0 60px}
 .comment{font-size:15px;border-top:1px solid var(--line);padding:10px 0}
 .status{font-size:14px;color:var(--muted);margin:12px 0}
 
-/* KARAKTERLER */
+/* KARAKTERLER VE GALERİ */
 .character-list{display:none}
 .character-list.open{display:block}
-.character-grid{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:14px;margin-top:18px
-}
+.character-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
 .character-card{
   background:var(--card);border:1px solid var(--line);padding:9px;
   text-align:center;color:var(--text);width:100%;cursor:zoom-in
 }
 .character-card img{width:100%;aspect-ratio:3/4;object-fit:cover}
 .character-card h3{font-size:19px;font-weight:500;margin:9px 0 2px}
-
-/* GALERİ */
 .gallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-.gallery-grid button{
-  display:block;width:100%;padding:0;border:0;background:none;overflow:hidden
-}
+.gallery-grid button{display:block;width:100%;padding:0;border:0;background:none;overflow:hidden}
 .gallery-grid img{width:100%;aspect-ratio:1;object-fit:cover;transition:transform .3s}
 .gallery-grid button:hover img{transform:scale(1.04)}
 .gallery-item{cursor:zoom-in}
@@ -254,15 +247,11 @@ main{padding:28px 0 60px}
   transition:opacity .25s,visibility .25s
 }
 .image-viewer.open{opacity:1;visibility:visible}
-.image-viewer img{
-  max-width:100%;max-height:80vh;width:auto;height:auto;
-  object-fit:contain;box-shadow:0 15px 50px #0008
-}
+.image-viewer img{max-width:100%;max-height:80vh;width:auto;height:auto;object-fit:contain;box-shadow:0 15px 50px #0008}
 .image-viewer-caption{color:#fff;font-size:19px;margin-top:14px;text-align:center}
 .image-viewer-close{
   position:absolute;top:16px;right:18px;width:42px;height:42px;
-  border:1px solid #ffffff70;border-radius:50%;background:#171717;
-  color:#fff;font-size:27px
+  border:1px solid #ffffff70;border-radius:50%;background:#171717;color:#fff;font-size:27px
 }
 
 /* PROFİL MODALI */
@@ -271,10 +260,7 @@ main{padding:28px 0 60px}
   place-items:center;padding:18px;opacity:0;visibility:hidden;transition:.25s
 }
 .modal-overlay.open{opacity:1;visibility:visible}
-.modal{
-  width:min(100%,430px);max-height:90vh;overflow-y:auto;
-  background:var(--panel);border:1px solid var(--line);padding:24px;box-shadow:var(--shadow)
-}
+.modal{width:min(100%,430px);max-height:90vh;overflow-y:auto;background:var(--panel);border:1px solid var(--line);padding:24px;box-shadow:var(--shadow)}
 .modal-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .modal-head h2{font-size:26px;font-weight:500;margin:0}
 .modal-description{font-size:16px;color:var(--muted);line-height:1.5}
@@ -287,17 +273,13 @@ main{padding:28px 0 60px}
 .modal-actions{display:flex;gap:8px;margin-top:16px}
 .modal-actions button{flex:1}
 .avatar-options{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}
-.avatar-choice{
-  padding:3px;border:1px solid var(--line);background:var(--card);
-  border-radius:50%;aspect-ratio:1;overflow:hidden
-}
+.avatar-choice{padding:3px;border:1px solid var(--line);background:var(--card);border-radius:50%;aspect-ratio:1;overflow:hidden}
 .avatar-choice img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 .avatar-choice.selected{border:2px solid var(--accent-soft);box-shadow:0 0 0 2px var(--accent)}
-  @media(min-width:620px){
+@media(min-width:620px){
   .books-grid,.character-books{grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
   .character-grid,.gallery-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .profile{min-height:330px}
-  .avatar{width:108px;height:108px}
+  .profile{min-height:330px}.avatar{width:108px;height:108px}
 }
 @media(max-width:420px){
   .tab{padding-inline:9px;font-size:9px;letter-spacing:1px}
@@ -306,7 +288,6 @@ main{padding:28px 0 60px}
 </style>
 </head>
 <body>
-
 <section id="intro">
   <div class="intro-frame">
     <video class="intro-video" autoplay muted loop playsinline>
@@ -324,10 +305,9 @@ main{padding:28px 0 60px}
 <div id="site">
 <header class="site-header">
   <div class="top-actions">
-    <button class="icon-btn" id="menuBtn" aria-label="Menüyü aç" aria-expanded="false">☰</button>
+    <button class="icon-btn" id="menuBtn" aria-label="Menüyü aç">☰</button>
     <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir">☼</button>
   </div>
-
   <section class="profile">
     <video class="profile-bg" autoplay muted loop playsinline>
       <source src="bloggg_erss_pindown.io_1793296543.mp4" type="video/mp4">
@@ -337,22 +317,13 @@ main{padding:28px 0 60px}
       <h1>KESMİSLALİH</h1>
       <p class="tagline">some stories are not meant to be told, but felt.</p>
       <div class="socials">
-        <a href="https://www.tiktok.com/@kesmislalih?_r=1&_t=ZS-9B0lLNBmJRi" target="_blank" rel="noopener" aria-label="TikTok">
-          <svg viewBox="0 0 24 24"><path d="M19.6 7.2a6.2 6.2 0 0 1-4-1.5v8.1a5.7 5.7 0 1 1-5.7-5.7c.4 0 .8 0 1.2.1v3.2a2.5 2.5 0 1 0 1.3 2.2V2.5h3.2c.2 2.2 1.8 3.9 4 4.2z"/></svg>
-        </a>
-        <a href="https://x.com/kesmislalih" target="_blank" rel="noopener" aria-label="X">
-          <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-5-6.5L6.2 22H3l7.3-8.4L2.5 2h6.5l4.5 6zm-1.1 18h1.7L7.9 3.9H6.1z"/></svg>
-        </a>
-        <a href="https://pin.it/2jHDXi48B" target="_blank" rel="noopener" aria-label="Pinterest">
-          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.6 19.3c0-.8 0-1.8.2-2.7l1.3-5.5s-.3-.7-.3-1.7c0-1.6.9-2.8 2.1-2.8 1 0 1.5.8 1.5 1.7 0 1-.6 2.5-.9 3.9-.3 1.2.6 2.1 1.8 2.1 2.2 0 3.9-2.3 3.9-5.6 0-2.9-2.1-4.9-5-4.9-3.4 0-5.4 2.5-5.4 5.1 0 1 .4 2.2.9 2.8.1.2.2.3.1.6l-.3 1.1c0 .2-.2.3-.4.2-1.5-.7-2.4-2.8-2.4-4.5 0-3.7 2.7-7.1 7.8-7.1 4.1 0 7.3 2.9 7.3 6.8 0 4.1-2.6 7.5-6.2 7.5-1.2 0-2.4-.7-2.8-1.5l-.8 3.1c-.3 1.1-1 2.4-1.5 3.2A10 10 0 1 0 12 2z"/></svg>
-        </a>
-        <a href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" target="_blank" rel="noopener" aria-label="WhatsApp">
-          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20z"/></svg>
-        </a>
+        <a href="https://www.tiktok.com/@kesmislalih" target="_blank" rel="noopener" aria-label="TikTok">TikTok</a>
+        <a href="https://x.com/kesmislalih" target="_blank" rel="noopener" aria-label="X">X</a>
+        <a href="https://pin.it/2jHDXi48B" target="_blank" rel="noopener" aria-label="Pinterest">Pinterest</a>
+        <a href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>
       </div>
     </div>
   </section>
-
   <nav class="tabs" aria-label="Ana sekmeler">
     <button class="tab active" data-tab="books">KİTAPLAR</button>
     <button class="tab" data-tab="wall">PANO</button>
@@ -362,16 +333,10 @@ main{padding:28px 0 60px}
 </header>
 
 <div class="menu-overlay" id="menuOverlay">
-  <aside class="side-menu" aria-label="Site menüsü">
-    <div class="menu-header">
-      <span class="menu-logo">kesmislalih</span>
-      <button class="icon-btn" id="menuClose" aria-label="Menüyü kapat">×</button>
-    </div>
+  <aside class="side-menu">
+    <div class="menu-header"><span class="menu-logo">kesmislalih</span><button class="icon-btn" id="menuClose">×</button></div>
     <div class="menu-content">
-      <div class="menu-welcome">
-        <div class="menu-label">YAZARIN DÜNYASINA HOŞ GELDİN</div>
-        <p>Her hikâyenin bir kapısı, her okurun bir yeri var.</p>
-      </div>
+      <div class="menu-welcome"><div class="menu-label">YAZARIN DÜNYASINA HOŞ GELDİN</div><p>Her hikâyenin bir kapısı, her okurun bir yeri var.</p></div>
       <div class="menu-label">KEŞFET</div>
       <nav class="menu-links">
         <button data-go="books">Kitaplar <span class="menu-arrow">↗</span></button>
@@ -382,54 +347,40 @@ main{padding:28px 0 60px}
       <div class="menu-label">TOPLULUK</div>
       <nav class="menu-links">
         <button id="menuProfile">Profil oluştur <span class="menu-arrow">↗</span></button>
-        <a href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" target="_blank" rel="noopener">Duyuru kanalı <span class="menu-arrow">↗</span></a>
-        <a href="https://kesmislalih.carrd.co/" target="_blank" rel="noopener">Tüm linkler <span class="menu-arrow">↗</span></a>
+        <a href="https://whatsapp.com/channel/0029VbD65x1KmCPN91PUU11e" target="_blank" rel="noopener">Duyuru kanalı ↗</a>
+        <a href="https://kesmislalih.carrd.co/" target="_blank" rel="noopener">Tüm linkler ↗</a>
       </nav>
       <div class="menu-bottom">
         <a class="primary-btn" href="ringteki-son-dans.html">RİNGTEKİ SON DANS'I İNCELE</a>
         <a class="primary-btn" href="yeraltinin-kanunu.html">YERALTININ KANUNU'NU İNCELE</a>
       </div>
-      <p class="menu-note">Fragmanlar, duyurular ve bilgilendirmeler Lal Gezegeni sakinleriyle paylaşılır.</p>
     </div>
   </aside>
 </div>
 
 <div class="modal-overlay" id="profileModal">
   <section class="modal">
-    <div class="modal-head">
-      <h2>Okur profilin</h2>
-      <button class="icon-btn" id="profileModalClose" aria-label="Kapat">×</button>
-    </div>
+    <div class="modal-head"><h2>Okur profilin</h2><button class="icon-btn" id="profileModalClose">×</button></div>
     <p class="modal-description">Lal Gezegeni'nde kullanacağın görünen adı ve profil fotoğrafını seç.</p>
-    <div class="profile-preview">
-      <img id="profilePreviewImage" src="d08eae9afcf72d4a213a3d988ecf5935.jpg" alt="Seçilen profil fotoğrafı">
-      <span id="profilePreviewName">Lal Gezegeni Sakini</span>
-    </div>
+    <div class="profile-preview"><img id="profilePreviewImage" src="d08eae9afcf72d4a213a3d988ecf5935.jpg" alt=""><span id="profilePreviewName">Lal Gezegeni Sakini</span></div>
     <p class="menu-label">PROFİL FOTOĞRAFINI SEÇ</p>
     <div class="avatar-options" id="avatarOptions"></div>
     <form class="profile-form" id="profileForm">
       <label for="readerName">KULLANICI ADI</label>
       <input id="readerName" maxlength="30" placeholder="Kullanıcı adın" required>
-      <div class="modal-actions">
-        <button class="outline-btn" type="button" id="profileCancel">İPTAL</button>
-        <button class="primary-btn" type="submit">KAYDET</button>
-      </div>
+      <div class="modal-actions"><button class="outline-btn" type="button" id="profileCancel">İPTAL</button><button class="primary-btn" type="submit">KAYDET</button></div>
     </form>
   </section>
 </div>
 
-<div class="image-viewer" id="imageViewer" role="dialog" aria-modal="true" aria-label="Büyük fotoğraf görünümü">
-  <button class="image-viewer-close" id="imageViewerClose" type="button" aria-label="Fotoğrafı kapat">×</button>
+<div class="image-viewer" id="imageViewer">
+  <button class="image-viewer-close" id="imageViewerClose">×</button>
   <img id="imageViewerPhoto" src="" alt="">
   <div class="image-viewer-caption" id="imageViewerCaption"></div>
 </div>
 
 <main class="container">
-  <section class="panel active" id="books">
-    <div class="section-heading"><h2>Kitaplarım</h2><span class="small-label">KESMİSLALİH</span></div>
-    <div class="books-grid" id="booksGrid"></div>
-  </section>
-
+  <section class="panel active" id="books"><div class="section-heading"><h2>Kitaplarım</h2><span class="small-label">KESMİSLALİH</span></div><div class="books-grid" id="booksGrid"></div></section>
   <section class="panel" id="wall">
     <div class="section-heading"><h2>Okur Panosu</h2><span class="small-label">LAL GEZEGENİ</span></div>
     <button class="write-btn" id="writeBtn">YAZMA</button>
@@ -438,33 +389,17 @@ main{padding:28px 0 60px}
       <textarea id="postText" maxlength="1500" placeholder="Pano'ya bir şeyler yaz..." required></textarea>
       <button class="submit-btn" type="submit">PAYLAŞ</button>
     </form>
-    <p class="status" id="wallStatus"></p>
-    <div class="post-list" id="postList"></div>
+    <p class="status" id="wallStatus"></p><div class="post-list" id="postList"></div>
   </section>
-
-  <section class="panel" id="characters">
-    <div class="section-heading"><h2>Karakterler</h2><span class="small-label">HİKÂYELERDEN</span></div>
-    <div class="character-books" id="characterBooks"></div>
-    <div class="character-list" id="characterList">
-      <button class="back-btn" id="backToBooks" type="button">← KİTAPLARA DÖN</button>
-      <h2 class="section-heading" id="characterBookTitle"></h2>
-      <div class="character-grid" id="characterGrid"></div>
-    </div>
-  </section>
-
-  <section class="panel" id="gallery">
-    <div class="section-heading"><h2>Galeri</h2><span class="small-label">GÖRSEL DÜNYA</span></div>
-    <div class="gallery-grid" id="galleryGrid"></div>
-  </section>
+  <section class="panel" id="characters"><div class="section-heading"><h2>Karakterler</h2><span class="small-label">HİKÂYELERDEN</span></div><div class="character-books" id="characterBooks"></div><div class="character-list" id="characterList"><button class="back-btn" id="backToBooks">← KİTAPLARA DÖN</button><h2 id="characterBookTitle"></h2><div class="character-grid" id="characterGrid"></div></div></section>
+  <section class="panel" id="gallery"><div class="section-heading"><h2>Galeri</h2><span class="small-label">GÖRSEL DÜNYA</span></div><div class="gallery-grid" id="galleryGrid"></div></section>
 </main>
 <script>
 const SUPABASE_URL = "https://fehafqjajlkpwpmsfawz.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_DxPVeds0soH_Pakw58B5Hg_Ru-HQHob";
-let db = null;
-
-if(window.supabase && SUPABASE_ANON_KEY){
-  db = window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
-}
+const db = window.supabase
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  : null;
 
 const AUTHOR_AVATAR = "d08eae9afcf72d4a213a3d988ecf5935.jpg";
 
@@ -513,17 +448,16 @@ const AVATAR_IMAGES = [
 
 function getReaderProfile(){
   try{
-    return JSON.parse(localStorage.getItem("lalReaderProfile")) || {name:"",avatar:AUTHOR_AVATAR};
+    return JSON.parse(localStorage.getItem("lalReaderProfile")) ||
+      {name:"",avatar:AUTHOR_AVATAR};
   }catch{
     return {name:"",avatar:AUTHOR_AVATAR};
   }
 }
-
 function saveReaderProfile(name,avatar){
   localStorage.setItem("lalReaderProfile",JSON.stringify({name:name.trim(),avatar}));
   updateProfileDisplay();
 }
-
 function updateProfileDisplay(){
   const profile=getReaderProfile();
   const nameElement=document.getElementById("profileDisplayName");
@@ -531,20 +465,17 @@ function updateProfileDisplay(){
   if(nameElement) nameElement.textContent=profile.name||"Okuyucu";
   if(imageElement) imageElement.src=profile.avatar||AUTHOR_AVATAR;
 }
-
 function renderAvatarOptions(){
   const container=document.getElementById("avatarOptions");
-  if(!container) return;
+  if(!container)return;
   const profile=getReaderProfile();
   container.innerHTML="";
   AVATAR_IMAGES.forEach(image=>{
     const button=document.createElement("button");
-    button.type="button";
-    button.className="avatar-choice";
-    if(profile.avatar===image) button.classList.add("selected");
+    button.type="button";button.className="avatar-choice";
+    if(profile.avatar===image)button.classList.add("selected");
     const img=document.createElement("img");
-    img.src=image;
-    img.alt="Profil fotoğrafı";
+    img.src=image;img.alt="Profil fotoğrafı";
     img.onerror=function(){this.src=AUTHOR_AVATAR};
     button.appendChild(img);
     button.addEventListener("click",()=>{
@@ -555,246 +486,169 @@ function renderAvatarOptions(){
     container.appendChild(button);
   });
 }
-
 function openProfileModal(){
   const modal=document.getElementById("profileModal");
   const profile=getReaderProfile();
-  if(!modal) return;
+  if(!modal)return;
   document.getElementById("readerName").value=profile.name;
   document.getElementById("profilePreviewImage").src=profile.avatar||AUTHOR_AVATAR;
   document.getElementById("profilePreviewName").textContent=profile.name||"Lal Gezegeni Sakini";
-  renderAvatarOptions();
-  modal.classList.add("open");
+  renderAvatarOptions();modal.classList.add("open");
 }
-
-function closeProfileModal(){
-  document.getElementById("profileModal")?.classList.remove("open");
-}
-
+function closeProfileModal(){document.getElementById("profileModal")?.classList.remove("open");}
 function toggleTheme(){
   document.body.classList.toggle("light");
   localStorage.setItem("siteTheme",document.body.classList.contains("light")?"light":"dark");
 }
-
-function loadTheme(){
-  if(localStorage.getItem("siteTheme")==="light") document.body.classList.add("light");
-}
-
+function loadTheme(){if(localStorage.getItem("siteTheme")==="light")document.body.classList.add("light");}
 function openMenu(){
   document.getElementById("menuOverlay")?.classList.add("open");
   document.getElementById("menuBtn")?.setAttribute("aria-expanded","true");
 }
-
 function closeMenu(){
   document.getElementById("menuOverlay")?.classList.remove("open");
   document.getElementById("menuBtn")?.setAttribute("aria-expanded","false");
 }
-
 function showSection(name){
   document.querySelectorAll(".panel").forEach(panel=>panel.classList.toggle("active",panel.id===name));
   document.querySelectorAll(".tab").forEach(tab=>tab.classList.toggle("active",tab.dataset.tab===name));
-  closeMenu();
-  window.scrollTo({top:0,behavior:"smooth"});
+  closeMenu();window.scrollTo({top:0,behavior:"smooth"});
 }
-
 function renderBooks(){
   const container=document.getElementById("booksGrid");
-  if(!container) return;
+  if(!container)return;
   container.innerHTML="";
   BOOKS.forEach(book=>{
     const card=document.createElement("a");
-    card.className="book-card";
-    card.href=book.link;
+    card.className="book-card";card.href=book.link;
     const image=document.createElement("img");
-    image.className="book-cover";
-    image.src=book.image;
-    image.alt=book.title;
-    const meta=document.createElement("div");
-    meta.className="book-meta";
-    const title=document.createElement("h3");
-    title.className="book-name";
-    title.textContent=book.title;
-    const author=document.createElement("span");
-    author.className="book-author";
-    author.textContent="KESMİSLALİH";
-    const link=document.createElement("span");
-    link.className="book-link";
-    link.textContent="KİTABI İNCELE →";
-    meta.append(title,author,document.createElement("br"),link);
-    card.append(image,meta);
-    container.appendChild(card);
+    image.className="book-cover";image.src=book.image;image.alt=book.title;
+    const meta=document.createElement("div");meta.className="book-meta";
+    const title=document.createElement("h3");title.className="book-name";title.textContent=book.title;
+    const author=document.createElement("span");author.className="book-author";author.textContent="KESMİSLALİH";
+    const link=document.createElement("span");link.className="book-link";link.textContent="KİTABI İNCELE →";
+    meta.append(title,author,document.createElement("br"),link);card.append(image,meta);container.appendChild(card);
   });
 }
-
 let selectedCharacterBook=null;
-
 function openImageViewer(src,caption){
   const viewer=document.getElementById("imageViewer");
   const photo=document.getElementById("imageViewerPhoto");
-  if(!viewer||!photo) return;
-  photo.src=src;
-  photo.alt=caption||"Büyütülmüş fotoğraf";
+  if(!viewer||!photo)return;
+  photo.src=src;photo.alt=caption||"Büyütülmüş fotoğraf";
   document.getElementById("imageViewerCaption").textContent=caption||"";
-  viewer.classList.add("open");
-  document.body.style.overflow="hidden";
+  viewer.classList.add("open");document.body.style.overflow="hidden";
 }
-
 function closeImageViewer(){
   document.getElementById("imageViewer")?.classList.remove("open");
   document.body.style.overflow="";
 }
-
 function renderCharacterBooks(){
   const container=document.getElementById("characterBooks");
-  if(!container) return;
-  container.innerHTML="";
+  if(!container)return;container.innerHTML="";
   BOOKS.forEach(book=>{
-    const card=document.createElement("button");
-    card.type="button";
-    card.className="character-book";
-    const image=document.createElement("img");
-    image.src=book.image;
-    image.alt=book.title;
-    const title=document.createElement("h3");
-    title.className="book-name";
-    title.textContent=book.title;
-    card.append(image,title);
-    card.addEventListener("click",()=>openCharacterBook(book.id));
+    const card=document.createElement("button");card.type="button";card.className="character-book";
+    const image=document.createElement("img");image.src=book.image;image.alt=book.title;
+    const title=document.createElement("h3");title.className="book-name";title.textContent=book.title;
+    card.append(image,title);card.addEventListener("click",()=>openCharacterBook(book.id));
     container.appendChild(card);
   });
 }
-
 function openCharacterBook(bookId){
-  if(!CHARACTERS[bookId]) return;
+  if(!CHARACTERS[bookId])return;
   selectedCharacterBook=bookId;
   const book=BOOKS.find(item=>item.id===bookId);
   document.getElementById("characterBooks").style.display="none";
   document.getElementById("characterList").classList.add("open");
   document.getElementById("characterBookTitle").textContent=book.title;
-  renderCharacterCards();
-  window.scrollTo({top:0,behavior:"smooth"});
+  renderCharacterCards();window.scrollTo({top:0,behavior:"smooth"});
 }
-
 function renderCharacterCards(){
   const container=document.getElementById("characterGrid");
-  if(!container||!selectedCharacterBook) return;
+  if(!container||!selectedCharacterBook)return;
   container.innerHTML="";
   CHARACTERS[selectedCharacterBook].forEach(character=>{
-    const card=document.createElement("button");
-    card.type="button";
-    card.className="character-card";
-    const image=document.createElement("img");
-    image.src=character.image;
-    image.alt=character.name;
-    const title=document.createElement("h3");
-    title.textContent=character.name;
-    card.append(image,title);
-    card.addEventListener("click",()=>openImageViewer(character.image,character.name));
+    const card=document.createElement("button");card.type="button";card.className="character-card";
+    const image=document.createElement("img");image.src=character.image;image.alt=character.name;
+    const title=document.createElement("h3");title.textContent=character.name;
+    card.append(image,title);card.addEventListener("click",()=>openImageViewer(character.image,character.name));
     container.appendChild(card);
   });
 }
-
 function backToCharacterBooks(){
   selectedCharacterBook=null;
   document.getElementById("characterList").classList.remove("open");
   document.getElementById("characterBooks").style.display="grid";
   document.getElementById("characterGrid").innerHTML="";
 }
-
 function renderGallery(){
   const container=document.getElementById("galleryGrid");
-  if(!container) return;
-  container.innerHTML="";
+  if(!container)return;container.innerHTML="";
   GALLERY.forEach(image=>{
-    const item=document.createElement("button");
-    item.type="button";
-    item.className="gallery-item";
-    const img=document.createElement("img");
-    img.src=image;
-    img.alt="Galeri görseli";
-    item.appendChild(img);
-    item.addEventListener("click",()=>openImageViewer(image,"Galeri"));
+    const item=document.createElement("button");item.type="button";item.className="gallery-item";
+    const img=document.createElement("img");img.src=image;img.alt="Galeri görseli";
+    item.appendChild(img);item.addEventListener("click",()=>openImageViewer(image,"Galeri"));
     container.appendChild(item);
   });
 }
-
 function escapeHTML(value){
   return String(value).replace(/[&<>"']/g,character=>({
     "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
   })[character]);
 }
-
 function formatDate(date){
   return new Date(date).toLocaleString("tr-TR",{dateStyle:"short",timeStyle:"short"});
 }
-  async function loadPosts(){
+  <script>
+async function loadPosts(){
   const container=document.getElementById("postList");
-  if(!container) return;
+  if(!container)return;
   if(!db){
-    container.innerHTML="<p>Topluluk alanı şu anda kullanılamıyor.</p>";
+    document.getElementById("wallStatus").textContent="Supabase bağlantısı kurulamadı.";
     return;
   }
-
   const {data,error}=await db.from("wall_posts").select("*").order("created_at",{ascending:false});
   if(error){
-    console.error(error);
-    container.innerHTML="<p>Gönderiler yüklenemedi.</p>";
+    console.error("Gönderiler yüklenemedi:",error);
+    document.getElementById("wallStatus").textContent="Gönderiler yüklenemedi: "+error.message;
     return;
   }
-
   container.innerHTML="";
-  for(const post of data||[]){
-    const card=document.createElement("article");
-    card.className="post";
-    const avatar=escapeHTML(post.avatar||AUTHOR_AVATAR);
-    const name=escapeHTML(post.name||"Okur");
-    const text=escapeHTML(post.content||"");
-
+  (data||[]).forEach(post=>{
+    const card=document.createElement("article");card.className="post";
     card.innerHTML=`
       <div class="post-head">
-        <img class="post-avatar" src="${avatar}" alt="">
-        <div>
-          <div class="post-author">${name}</div>
-          <div class="post-date">${formatDate(post.created_at)}</div>
-        </div>
+        <img class="post-avatar" src="${escapeHTML(post.avatar||AUTHOR_AVATAR)}" alt="">
+        <div><div class="post-author">${escapeHTML(post.name||"Okur")}</div>
+        <div class="post-date">${formatDate(post.created_at)}</div></div>
       </div>
-      <div class="post-text">${text}</div>
-      <div class="post-actions">
-        <button class="text-btn" type="button">Yorumlar</button>
-      </div>
-      <div class="comment-area">
-        <div class="comments"></div>
+      <div class="post-text">${escapeHTML(post.content||"")}</div>
+      <div class="post-actions"><button class="text-btn" type="button">Yorumlar</button></div>
+      <div class="comment-area"><div class="comments"></div>
         <form class="comment-form">
           <input class="comment-input" name="comment" placeholder="Bir yorum yaz..." maxlength="500" required>
           <button class="submit-btn" type="submit">GÖNDER</button>
         </form>
       </div>`;
-
     container.appendChild(card);
     const commentArea=card.querySelector(".comment-area");
     card.querySelector(".text-btn").addEventListener("click",()=>commentArea.classList.toggle("open"));
     card.querySelector(".comment-form").addEventListener("submit",event=>addComment(event,post.id,card));
     loadComments(post.id,card);
-  }
+  });
 }
 
 async function addPost(event){
   event.preventDefault();
   const profile=getReaderProfile();
-  if(!profile.name){
-    openProfileModal();
-    alert("Önce okuyucu profilini oluşturmalısın.");
-    return;
-  }
-  if(!db){
-    alert("Supabase bağlantısı şu anda kullanılamıyor.");
-    return;
-  }
-
+  const status=document.getElementById("wallStatus");
+  if(!profile.name){openProfileModal();alert("Önce okuyucu profilini oluşturmalısın.");return;}
+  if(!db){status.textContent="Supabase bağlantısı kurulamadı.";return;}
   const input=document.getElementById("postText");
   const text=input.value.trim();
-  if(!text) return;
+  if(!text)return;
 
+  status.textContent="Gönderi paylaşılıyor...";
   const {error}=await db.from("wall_posts").insert({
     name:profile.name,
     content:text,
@@ -802,29 +656,25 @@ async function addPost(event){
   });
 
   if(error){
-    console.error(error);
-    alert("Gönderin paylaşılırken bir hata oluştu.");
+    console.error("Gönderi ekleme hatası:",error);
+    status.textContent="Gönderi hatası: "+error.message;
     return;
   }
 
   input.value="";
+  status.textContent="Gönderin paylaşıldı.";
   document.getElementById("writeForm").classList.remove("open");
-  loadPosts();
+  await loadPosts();
 }
 
 async function loadComments(postId,card){
-  if(!db) return;
+  if(!db)return;
   const container=card.querySelector(".comments");
   const {data,error}=await db.from("wall_comments").select("*").eq("post_id",postId).order("created_at",{ascending:true});
-  if(error){
-    console.error(error);
-    return;
-  }
-
+  if(error){console.error("Yorumlar yüklenemedi:",error);return;}
   container.innerHTML="";
   (data||[]).forEach(comment=>{
-    const item=document.createElement("div");
-    item.className="comment";
+    const item=document.createElement("div");item.className="comment";
     item.innerHTML=`<strong>${escapeHTML(comment.name||"Okur")}</strong><p>${escapeHTML(comment.text||"")}</p>`;
     container.appendChild(item);
   });
@@ -833,99 +683,65 @@ async function loadComments(postId,card){
 async function addComment(event,postId,card){
   event.preventDefault();
   const profile=getReaderProfile();
-  if(!profile.name){
-    openProfileModal();
-    alert("Önce okuyucu profilini oluşturmalısın.");
-    return;
-  }
-  if(!db){
-    alert("Supabase bağlantısı şu anda kullanılamıyor.");
-    return;
-  }
-
+  const status=document.getElementById("wallStatus");
+  if(!profile.name){openProfileModal();alert("Önce okuyucu profilini oluşturmalısın.");return;}
+  if(!db){status.textContent="Supabase bağlantısı kurulamadı.";return;}
   const input=card.querySelector("input[name='comment']");
-  const text=input.value.trim();
-  if(!text) return;
+  const text=input.value.trim();if(!text)return;
 
   const {error}=await db.from("wall_comments").insert({
-    post_id:postId,
-    name:profile.name,
-    text:text,
-    avatar:profile.avatar
+    post_id:postId,name:profile.name,text:text,avatar:profile.avatar
   });
-
-  if (error) {
-  console.error(error);
-  document.getElementById("wallStatus").textContent =
-    "Hata: " + (error.message || error.details || "Gönderi kaydedilemedi.");
-  return;
+  if(error){
+    console.error("Yorum ekleme hatası:",error);
+    status.textContent="Yorum hatası: "+error.message;
+    return;
   }
-
   input.value="";
-  loadComments(postId,card);
-}
-
-document.addEventListener("DOMContentLoaded",()=>{
-  loadTheme();
-  updateProfileDisplay();
-  renderBooks();
-  renderCharacterBooks();
-  renderGallery();
-  loadPosts();
+  await loadComments(postId,card);
+    }
+  document.addEventListener("DOMContentLoaded",()=>{
+  loadTheme();updateProfileDisplay();renderBooks();renderCharacterBooks();renderGallery();loadPosts();
 
   const enterBtn=document.getElementById("enterBtn");
   const intro=document.getElementById("intro");
   const site=document.getElementById("site");
-
   if(enterBtn&&intro&&site){
     enterBtn.addEventListener("click",()=>{
-      intro.style.display="none";
-      site.classList.add("open");
-      window.scrollTo(0,0);
+      intro.style.display="none";site.classList.add("open");window.scrollTo(0,0);
     });
   }
 
   document.getElementById("themeBtn")?.addEventListener("click",toggleTheme);
   document.getElementById("menuBtn")?.addEventListener("click",openMenu);
   document.getElementById("menuClose")?.addEventListener("click",closeMenu);
-
   document.getElementById("menuOverlay")?.addEventListener("click",event=>{
-    if(event.target.id==="menuOverlay") closeMenu();
+    if(event.target.id==="menuOverlay")closeMenu();
   });
 
   document.querySelectorAll("[data-go]").forEach(button=>{
     button.addEventListener("click",()=>showSection(button.dataset.go));
   });
-
   document.querySelectorAll("[data-tab]").forEach(button=>{
     button.addEventListener("click",()=>showSection(button.dataset.tab));
   });
 
   document.getElementById("backToBooks")?.addEventListener("click",backToCharacterBooks);
   document.getElementById("imageViewerClose")?.addEventListener("click",closeImageViewer);
-
   document.getElementById("imageViewer")?.addEventListener("click",event=>{
-    if(event.target.id==="imageViewer") closeImageViewer();
+    if(event.target.id==="imageViewer")closeImageViewer();
   });
-
   document.addEventListener("keydown",event=>{
-    if(event.key==="Escape"){
-      closeImageViewer();
-      closeMenu();
-      closeProfileModal();
-    }
+    if(event.key==="Escape"){closeImageViewer();closeMenu();closeProfileModal();}
   });
 
   document.getElementById("menuProfile")?.addEventListener("click",()=>{
-    closeMenu();
-    openProfileModal();
+    closeMenu();openProfileModal();
   });
-
   document.getElementById("profileModalClose")?.addEventListener("click",closeProfileModal);
   document.getElementById("profileCancel")?.addEventListener("click",closeProfileModal);
-
   document.getElementById("profileModal")?.addEventListener("click",event=>{
-    if(event.target.id==="profileModal") closeProfileModal();
+    if(event.target.id==="profileModal")closeProfileModal();
   });
 
   document.getElementById("profileForm")?.addEventListener("submit",event=>{
@@ -933,12 +749,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     const name=document.getElementById("readerName").value.trim();
     const selected=document.querySelector(".avatar-choice.selected");
     const avatar=selected?selected.querySelector("img").getAttribute("src"):getReaderProfile().avatar;
-
-    if(!name){
-      alert("Lütfen bir kullanıcı adı belirle.");
-      return;
-    }
-
+    if(!name){alert("Lütfen bir kullanıcı adı belirle.");return;}
     saveReaderProfile(name,avatar);
     document.getElementById("profilePreviewName").textContent=name;
     closeProfileModal();
@@ -946,26 +757,21 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   document.getElementById("writeBtn")?.addEventListener("click",()=>{
     const profile=getReaderProfile();
-    if(!profile.name){
-      openProfileModal();
-      alert("Önce okuyucu profilini oluşturmalısın.");
-      return;
-    }
+    if(!profile.name){openProfileModal();alert("Önce okuyucu profilini oluşturmalısın.");return;}
     document.getElementById("postName").value=profile.name;
     document.getElementById("writeForm").classList.toggle("open");
   });
-
   document.getElementById("writeForm")?.addEventListener("submit",addPost);
 });
+
 </script>
 </div>
-
 <script>
 if("serviceWorker" in navigator){
   window.addEventListener("load",()=>{
     navigator.serviceWorker.register("/sw.js")
       .then(()=>console.log("Uygulama hazır"))
-      .catch(error=>console.log("Hata:",error));
+      .catch(error=>console.log("Service worker hatası:",error));
   });
 }
 </script>
