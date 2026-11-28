@@ -1,407 +1,1055 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Ringteki Son Dans | kesmislalih</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 :root {
-  --bg:#080808;
-  --text:#f2f2f2;
-  --muted:#999;
-  --accent:#8f1530;
-  --line:#292929;
-  --comment-bg:#111;
-  --story-font-size:19px;
+  --bg: #080808;
+  --text: #f2f2f2;
+  --muted: #999;
+  --accent: #a51b3d;
+  --line: #292929;
+  --panel: #111;
+  --story-font-size: 19px;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:auto}
-body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:Montserrat,sans-serif;
-  transition:background .2s,color .2s;
+
+* {
+  box-sizing: border-box;
 }
-.page{width:min(100%,760px);margin:auto;padding:34px 24px 190px}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Montserrat, sans-serif;
+  transition: background .2s, color .2s;
+}
+
+button, input, textarea {
+  font-family: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.page {
+  width: min(100%, 760px);
+  margin: auto;
+  padding: 30px 24px 110px;
+}
 
 /* ÜST MENÜ */
-.topbar{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;align-items:center;gap:15px;padding:14px 20px;
-  background:rgba(8,8,8,.96);border-bottom:1px solid var(--line);
-  backdrop-filter:blur(10px);opacity:0;visibility:hidden;
-  transform:translateY(-100%);transition:.22s;
-}
-.topbar.visible{opacity:1;visibility:visible;transform:translateY(0)}
-.topbar a{color:var(--text);text-decoration:none}
-.back-link{flex-shrink:0;font-size:28px;line-height:1}
-.topbar-title{
-  flex:1;min-width:0;font-size:14px;font-weight:800;
-  letter-spacing:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-.settings-button,.menu-button{
-  flex-shrink:0;border:0;background:transparent;cursor:pointer;color:var(--text);
-}
-.settings-button{color:var(--accent);font:italic 700 28px Georgia,serif;padding:4px}
-.menu-button{font-size:25px;line-height:1;padding:4px}
 
-/* KİTAP MENÜSÜ */
-.menu-shade{
-  position:fixed;inset:0;z-index:140;background:#000a;
-  opacity:0;visibility:hidden;transition:.2s;
-}
-.menu-shade.visible{opacity:1;visibility:visible}
-.chapter-menu{
-  position:fixed;top:0;right:0;bottom:0;z-index:150;
-  width:min(330px,88vw);padding:25px 22px;overflow-y:auto;
-  background:#111;color:#f2f2f2;border-left:1px solid var(--line);
-  transform:translateX(105%);transition:transform .25s;
-}
-.chapter-menu.open{transform:translateX(0)}
-.menu-close{
-  display:block;margin-left:auto;padding:4px 8px;background:none;
-  border:0;color:#f2f2f2;font-size:27px;cursor:pointer;
-}
-.menu-cover{
-  display:block;width:125px;height:175px;margin:15px auto 18px;
-  object-fit:cover;box-shadow:0 8px 25px #0008;
-}
-.menu-book-title{text-align:center;font-size:19px;font-weight:800;letter-spacing:1px;line-height:1.5}
-.menu-author{text-align:center;color:#aaa;font-size:12px;margin-top:8px}
-.menu-space{height:38px}
-.menu-heading{color:var(--accent);font-size:11px;letter-spacing:2px;margin-bottom:12px}
-.chapter-menu a.chapter-link{
-  display:block;padding:13px 0;border-bottom:1px solid #292929;
-  color:#f2f2f2;text-decoration:none;font-size:14px;
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 20px;
+  background: rgba(8,8,8,.97);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-100%);
+  transition: .22s;
 }
 
-/* AYARLAR */
-.settings-popup{
-  display:none;position:fixed;top:72px;right:14px;z-index:160;
-  width:min(390px,calc(100vw - 28px));padding:22px;
-  background:#111;color:#eee;border:1px solid #292929;
-  border-radius:10px;box-shadow:0 12px 35px #0008;
-}
-.settings-popup.open{display:block}
-.settings-section+.settings-section{margin-top:25px}
-.settings-section p{margin:0 0 15px;color:#aaa;font-size:13px}
-.color-options{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
-.color-swatch{
-  height:55px;border:3px solid #292929;border-radius:7px;cursor:pointer;
-}
-.color-swatch.active{border-color:var(--accent)}
-.font-controls{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-.font-controls button{
-  min-height:53px;background:#1d1d1d;color:#eee;border:1px solid #303030;
-  border-radius:7px;font:600 19px Montserrat,sans-serif;cursor:pointer;
+.topbar.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
-/* GİRİŞ */
-.intro{
-  text-align:center;min-height:100vh;display:flex;flex-direction:column;
-  justify-content:center;align-items:center;gap:24px;padding-top:60px;
-}
-.dedication{
-  font-size:clamp(17px,4.5vw,23px);line-height:1.8;color:#d4d4d4;
-  font-style:italic;max-width:600px;
-}
-.intro-image{
-  display:block;width:100%;max-width:520px;height:auto;
-  margin:12px auto;object-fit:cover;
-}
-.book-title{text-transform:uppercase;letter-spacing:5px;line-height:1.6;font-weight:800}
-.book-title small{display:block;color:var(--accent);font-size:14px;letter-spacing:6px}
-.book-title h1{margin:0;font-size:clamp(24px,6vw,38px)}
-.ornament{
-  color:var(--accent);font-size:17px;letter-spacing:3px;line-height:2;
-  overflow-wrap:anywhere;margin:20px 0;text-align:center;
-}
-.audio-player{width:min(100%,420px);margin:10px auto}
-.audio-player iframe{display:block;width:100%;border:0}
-
-/* BÖLÜM BAŞLIĞI VE HİKÂYE */
-.chapter-header{text-align:center;margin:70px 0 55px}
-.chapter-header .chapter-number{
-  color:var(--accent);font-size:14px;letter-spacing:6px;
-  font-weight:800;margin-bottom:22px;
-}
-.chapter-header h2{
-  font-size:clamp(23px,5.5vw,36px);font-weight:800;
-  letter-spacing:4px;line-height:1.5;text-transform:uppercase;margin:0;
-}
-.chapter-header::after{
-  content:"";display:block;height:1px;background:var(--line);margin-top:38px;
-}
-.quote{
-  text-align:center;font-size:var(--story-font-size);font-style:italic;
-  line-height:1.8;margin:55px 0 35px;
-}
-.quote strong{font-weight:800}
-.story{margin-top:55px}
-.paragraph{
-  position:relative;margin:0 0 48px;padding-right:42px;
-  font-size:var(--story-font-size);font-weight:500;line-height:1.95;
-  white-space:pre-line;
-}
-.paragraph.emphasis{font-weight:700;font-style:italic}
-.paragraph.selected{background:rgba(143,21,48,.12);border-radius:5px}
-.story-ornament{
-  text-align:center;color:var(--accent);font-size:23px;
-  margin:38px 0 48px;letter-spacing:4px;
+.topbar a {
+  color: var(--text);
+  text-decoration: none;
 }
 
-/* PARAGRAF YORUM DÜĞMESİ */
-.paragraph-wrap{position:relative}
-.paragraph-comment{
-  position:absolute;right:0;top:2px;width:31px;height:31px;
-  display:flex;align-items:center;justify-content:center;
-  border:1px solid var(--line);border-radius:50%;
-  background:transparent;color:var(--accent);font-size:15px;cursor:pointer;
+.back-link {
+  flex-shrink: 0;
+  font-size: 29px;
+  line-height: 1;
 }
-.paragraph-comment:hover{background:var(--accent);color:white}
 
-/* BÖLÜM İSTATİSTİKLERİ */
-.chapter-stats{
-  display:flex;justify-content:center;align-items:center;flex-wrap:wrap;
-  gap:22px;margin:0 0 35px;color:var(--muted);font-size:12px;
+.topbar-title {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.stat-item{display:flex;align-items:center;gap:7px}
-.stat-icon{font-size:17px;color:var(--accent)}
-.chapter-actions{
-  display:flex;justify-content:center;align-items:center;
-  flex-wrap:wrap;gap:18px;margin:35px 0 25px;
+
+.settings-button,
+.menu-button {
+  flex-shrink: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text);
 }
-.action-item{
-  display:flex;flex-direction:column;align-items:center;gap:5px;
-  color:var(--muted);font-size:11px;
+
+.settings-button {
+  color: var(--accent);
+  font: italic 700 28px Georgia, serif;
+  padding: 4px;
 }
-.action-item button{
-  width:43px;height:43px;border:1px solid var(--line);border-radius:50%;
-  background:transparent;color:var(--accent);font-size:20px;cursor:pointer;
+
+.menu-button {
+  font-size: 26px;
+  padding: 4px;
 }
-.action-item button:active{transform:scale(.94)}
-.rating-area{text-align:center;margin:30px 0}
-.rating-title{font-size:12px;color:var(--muted);letter-spacing:1px;margin-bottom:12px}
-.rating-stars{display:flex;justify-content:center;gap:8px}
-.rating-stars button{
-  padding:2px;border:0;background:none;color:#555;
-  font-size:29px;cursor:pointer;
+
+/* BÖLÜM MENÜSÜ */
+
+.menu-shade {
+  position: fixed;
+  inset: 0;
+  z-index: 140;
+  background: rgba(0,0,0,.72);
+  opacity: 0;
+  visibility: hidden;
+  transition: .22s;
 }
-.rating-stars button.active{color:#d6a83e}
-.rating-count{font-size:12px;color:var(--muted);margin-top:7px}
-.chapter-comment-button{
-  display:block;margin:25px auto;padding:12px 20px;
-  border:1px solid var(--line);border-radius:30px;
-  background:transparent;color:var(--text);font:inherit;cursor:pointer;
+
+.menu-shade.visible {
+  opacity: 1;
+  visibility: visible;
 }
-.chapter-comment-button span{color:var(--accent);margin-right:8px}
-.share-area{
-  display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:25px 0 35px;
+
+.chapter-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 150;
+  width: min(390px, 88vw);
+  padding: 20px 22px 35px;
+  overflow-y: auto;
+  background: #111;
+  color: #f2f2f2;
+  border-left: 1px solid #292929;
+  transform: translateX(105%);
+  transition: transform .25s ease;
 }
-.share-area button{
-  width:39px;height:39px;border:1px solid var(--line);border-radius:50%;
-  background:#151515;color:#eee;font-weight:700;cursor:pointer;
+
+.chapter-menu.open {
+  transform: translateX(0);
 }
-.share-area button:hover{border-color:var(--accent);color:var(--accent)}
-.save-reading{
-  display:block;margin:22px auto;padding:11px 18px;
-  border:1px solid var(--accent);border-radius:5px;
-  background:transparent;color:var(--text);cursor:pointer;font:inherit;
+
+.menu-close {
+  display: block;
+  margin-left: auto;
+  padding: 3px 8px;
+  background: none;
+  border: 0;
+  color: #f2f2f2;
+  font-size: 30px;
+  cursor: pointer;
 }
-.postit-button{
-  position:absolute;right:0;bottom:0;border:0;background:transparent;
-  color:#d6a83e;font-size:18px;cursor:pointer;padding:3px;
+
+.menu-cover {
+  display: block;
+  width: 145px;
+  height: 205px;
+  margin: 12px auto 22px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 8px 25px #0009;
 }
-.postit-button.saved{color:#f0c34e}
-.postit-panel{
-  display:none;margin:15px 0;padding:16px;background:#17130b;
-  border:1px solid #5b4822;border-radius:8px;color:#eee;
+
+.menu-book-title {
+  text-align: center;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  line-height: 1.5;
 }
-.postit-panel.open{display:block}
-.postit-panel textarea{
-  width:100%;min-height:70px;padding:10px;background:#080808;
-  color:#eee;border:1px solid #554522;border-radius:5px;font:inherit;
+
+.menu-author {
+  text-align: center;
+  color: #aaa;
+  font-size: 15px;
+  margin-top: 8px;
 }
-.postit-panel button{
-  margin-top:8px;padding:8px 13px;background:#806327;
-  border:0;border-radius:4px;color:white;cursor:pointer;
+
+.menu-divider {
+  height: 1px;
+  background: #292929;
+  margin: 35px -22px 20px;
 }
-.saved-notes{margin:35px 0;padding:18px;border:1px solid var(--line);border-radius:8px}
-.saved-notes h3{font-size:13px;color:var(--accent);letter-spacing:1px}
-.saved-note{padding:12px 0;border-bottom:1px solid var(--line);font-size:13px;line-height:1.7}
-.saved-note button{float:right;background:none;border:0;color:#c66;cursor:pointer}
+
+.menu-heading {
+  color: #aaa;
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin: 15px 0;
+}
+
+.chapter-link {
+  display: block;
+  padding: 17px 12px;
+  border-bottom: 1px solid #292929;
+  color: #eee;
+  text-decoration: none;
+  font-size: 15px;
+  transition: .2s;
+}
+
+.chapter-link:hover {
+  color: var(--accent);
+}
+
+.chapter-link.active {
+  color: var(--accent);
+  background: rgba(165,27,61,.12);
+  border-left: 4px solid var(--accent);
+  padding-left: 20px;
+}
+
+/* YAZI AYARLARI */
+
+.settings-popup {
+  display: none;
+  position: fixed;
+  top: 75px;
+  right: 14px;
+  z-index: 160;
+  width: min(390px, calc(100vw - 28px));
+  padding: 22px;
+  background: #111;
+  color: #eee;
+  border: 1px solid #292929;
+  border-radius: 10px;
+  box-shadow: 0 12px 35px #0009;
+}
+
+.settings-popup.open {
+  display: block;
+}
+
+.settings-section + .settings-section {
+  margin-top: 25px;
+}
+
+.settings-section p {
+  margin: 0 0 15px;
+  color: #aaa;
+  font-size: 13px;
+}
+
+.color-options {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 13px;
+}
+
+.color-swatch {
+  height: 55px;
+  border: 3px solid #292929;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.color-swatch.active {
+  border-color: var(--accent);
+}
+
+.font-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+}
+
+.font-controls button {
+  min-height: 53px;
+  background: #1d1d1d;
+  color: #eee;
+  border: 1px solid #303030;
+  border-radius: 7px;
+  font: 600 19px Montserrat, sans-serif;
+  cursor: pointer;
+}
+
+/* KİTAP GİRİŞİ */
+
+.intro {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding-top: 45px;
+}
+
+.dedication {
+  font-size: clamp(17px,4.5vw,23px);
+  line-height: 1.8;
+  color: #d4d4d4;
+  font-style: italic;
+  max-width: 600px;
+}
+
+.intro-image {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  margin: 12px auto;
+  object-fit: cover;
+}
+
+.book-title {
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  line-height: 1.6;
+  font-weight: 800;
+}
+
+.book-title small {
+  display: block;
+  color: var(--accent);
+  font-size: 14px;
+  letter-spacing: 6px;
+}
+
+.book-title h1 {
+  margin: 0;
+  font-size: clamp(24px,6vw,38px);
+}
+
+.ornament {
+  color: var(--accent);
+  font-size: 17px;
+  letter-spacing: 3px;
+  line-height: 2;
+  overflow-wrap: anywhere;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.audio-player {
+  width: min(100%,420px);
+  margin: 10px auto;
+}
+
+.audio-player iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+}
+
+/* BÖLÜM BAŞLIĞI */
+
+.chapter-header {
+  text-align: center;
+  margin: 70px 0 55px;
+}
+
+.chapter-number {
+  color: var(--accent);
+  font-size: 14px;
+  letter-spacing: 6px;
+  font-weight: 800;
+  margin-bottom: 22px;
+}
+
+.chapter-header h2 {
+  font-size: clamp(23px,5.5vw,36px);
+  font-weight: 800;
+  letter-spacing: 4px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.chapter-header::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background: var(--line);
+  margin-top: 38px;
+}
+
+/* ALINTILAR VE HİKÂYE */
+
+.quote {
+  text-align: center;
+  font-size: var(--story-font-size);
+  font-style: italic;
+  line-height: 1.8;
+  margin: 55px 0 35px;
+}
+
+.quote strong {
+  font-weight: 800;
+}
+
+.story {
+  margin-top: 55px;
+}
+
+.paragraph-wrap {
+  position: relative;
+  margin-bottom: 43px;
+}
+
+.paragraph {
+  position: relative;
+  margin: 0;
+  padding-right: 43px;
+  font-size: var(--story-font-size);
+  font-weight: 500;
+  line-height: 1.95;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.paragraph.emphasis {
+  font-weight: 700;
+  font-style: italic;
+}
+
+.paragraph.selected {
+  background: rgba(165,27,61,.12);
+  border-radius: 5px;
+}
+
+.story-ornament {
+  text-align: center;
+  color: var(--accent);
+  font-size: 23px;
+  margin: 38px 0 48px;
+  letter-spacing: 4px;
+}
+
+/* PARAGRAF YORUM SAYISI */
+
+.paragraph-comment {
+  position: absolute;
+  right: 0;
+  top: 1px;
+  min-width: 35px;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.paragraph-comment .comment-symbol {
+  font-size: 20px;
+}
+
+.paragraph-comment .comment-number {
+  font-size: 13px;
+}
+
+/* SABİT OKUMA ÇUBUĞU */
+
+.reader-progress {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  padding: 12px 20px 15px;
+  background: rgba(8,8,8,.97);
+  border-top: 1px solid var(--line);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(100%);
+  transition: .22s;
+}
+
+.reader-progress.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 9px;
+}
+
+.progress-info strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+#progressSlider {
+  display: block;
+  width: 100%;
+  height: 5px;
+  margin: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+  touch-action: pan-x;
+}
+
+.progress-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 11px;
+}
+
+.progress-buttons button {
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.progress-buttons button:disabled {
+  opacity: .3;
+  cursor: default;
+}
+
+.progress-buttons span {
+  font-size: 11px;
+  color: var(--muted);
+}
 
 /* YORUM PENCERESİ */
-.comment-modal{
-  display:none;position:fixed;inset:0;z-index:200;background:#000b;
-  align-items:center;justify-content:center;padding:18px;
-}
-.comment-modal.open{display:flex}
-.comment-modal-content{
-  position:relative;width:min(560px,100%);max-height:85vh;overflow-y:auto;
-  padding:24px;background:#111;color:#f2f2f2;
-  border:1px solid #333;border-radius:12px;
-}
-.modal-close{
-  display:block;margin-left:auto;background:none;border:0;
-  color:#ddd;font-size:28px;cursor:pointer;
-}
-#selectedParagraph{margin:8px 0 22px;font-size:15px;line-height:1.8}
-.comment-field{margin:15px 0}
-.comment-field label{
-  display:block;color:#aaa;font-size:12px;margin-bottom:8px;
-}
-#usernameInput,#commentInput{
-  display:block;width:100%;padding:12px;
-  background:#080808;color:#f2f2f2;border:1px solid #333;
-  border-radius:6px;font:inherit;
-}
-#commentInput{min-height:100px;resize:vertical}
-#submitComment{
-  margin-top:12px;padding:11px 18px;background:var(--accent);
-  color:white;border:0;border-radius:5px;cursor:pointer;
-}
-#submitComment:disabled{opacity:.5;cursor:wait}
-#commentStatus{font-size:12px;color:#aaa;margin-top:10px}
-#commentList{margin-top:20px}
-.comment-item{
-  padding:14px 0;border-bottom:1px solid #333;
-  overflow-wrap:anywhere;
-}
-.comment-user{font-weight:800;color:var(--accent);font-size:13px}
-.comment-date{display:block;color:#888;font-size:10px;margin-top:5px}
-.comment-text{font-size:13px;line-height:1.8;margin-top:9px;white-space:pre-wrap}
 
-/* OKUMA İLERLEMESİ */
-.reader-progress{
-  position:fixed;left:0;right:0;bottom:0;z-index:100;
-  padding:13px 20px 17px;background:rgba(8,8,8,.97);
-  border-top:1px solid var(--line);opacity:0;visibility:hidden;
-  transform:translateY(100%);transition:.22s;
+.comment-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: #000b;
+  align-items: stretch;
+  justify-content: center;
 }
-.reader-progress.visible{opacity:1;visibility:visible;transform:translateY(0)}
-.progress-info{
-  display:flex;justify-content:space-between;color:var(--muted);
-  font-size:11px;margin-bottom:9px;
-}
-#progressSlider{
-  display:block;width:100%;margin:0;accent-color:var(--accent);
-  cursor:pointer;touch-action:pan-x;
-}
-.progress-buttons{
-  display:flex;justify-content:space-between;align-items:center;
-  gap:12px;margin-top:10px;
-}
-.progress-buttons button{
-  border:0;background:transparent;color:var(--text);
-  font-size:12px;cursor:pointer;padding:5px;
-}
-.progress-buttons button:disabled{opacity:.3;cursor:default}
-.progress-buttons span{font-size:11px;color:var(--muted)}
 
-/* MOBİL */
-body,.story,.chapter-header,.quote{-webkit-user-select:none;user-select:none}
-@media(max-width:480px){
-  .page{padding:24px 22px 190px}
-  .topbar{gap:10px;padding:12px 14px}
-  .topbar-title{font-size:13px}
-  .paragraph{padding-right:38px;margin-bottom:42px}
-  .settings-popup{top:68px;padding:20px 17px}
-  .color-options{gap:10px}
-  .color-swatch{height:52px}
-  .chapter-stats{gap:14px}
+.comment-modal.open {
+  display: flex;
+}
+
+.comment-modal-content {
+  position: relative;
+  width: min(700px,100%);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #101010;
+  color: #f2f2f2;
+  overflow: hidden;
+}
+
+.modal-header {
+  flex-shrink: 0;
+  height: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-bottom: 1px solid #242424;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+.modal-close {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: 0;
+  color: #eee;
+  font-size: 34px;
+  cursor: pointer;
+}
+
+.comment-quote {
+  flex-shrink: 0;
+  max-height: 37%;
+  overflow-y: auto;
+  padding: 25px 22px;
+  border-bottom: 1px solid #242424;
+  color: #ccc;
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.85;
+}
+
+.comment-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 22px 20px;
+}
+
+.comment-item {
+  display: flex;
+  gap: 14px;
+  padding: 19px 0;
+  border-bottom: 1px solid #242424;
+}
+
+.comment-avatar {
+  flex-shrink: 0;
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #292929;
+  color: #ccc;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.comment-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.comment-user {
+  font-weight: 800;
+  font-size: 14px;
+  margin-bottom: 7px;
+}
+
+.comment-text {
+  color: #ddd;
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.comment-meta {
+  display: flex;
+  gap: 15px;
+  color: #888;
+  font-size: 11px;
+  margin-top: 10px;
+}
+
+.comment-input-area {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px 22px;
+  background: #191919;
+  border-top: 1px solid #292929;
+}
+
+.comment-input-wrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+#usernameInput {
+  display: block;
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 7px 12px;
+  background: transparent;
+  color: #eee;
+  border: 0;
+  outline: none;
+  font-size: 12px;
+}
+
+#commentInput {
+  display: block;
+  width: 100%;
+  min-height: 45px;
+  max-height: 110px;
+  resize: none;
+  padding: 11px 15px;
+  background: #252525;
+  color: #eee;
+  border: 1px solid #393939;
+  border-radius: 30px;
+  outline: none;
+  font-size: 14px;
+}
+
+#commentInput::placeholder {
+  color: #777;
+}
+
+#submitComment {
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  font-size: 29px;
+  cursor: pointer;
+}
+
+#submitComment:disabled {
+  opacity: .4;
+  cursor: wait;
+}
+
+#commentStatus {
+  font-size: 11px;
+  color: #aaa;
+  padding: 0 18px 8px;
+  background: #191919;
+}
+
+/* MOBİL UYUMLULUK */
+
+body,
+.story,
+.chapter-header,
+.quote {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.comment-modal,
+.comment-modal * {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+@media(max-width:480px) {
+  .page {
+    padding: 24px 22px 115px;
+  }
+
+  .topbar {
+    gap: 10px;
+    padding: 0 14px;
+  }
+
+  .topbar-title {
+    font-size: 13px;
+  }
+
+  .paragraph {
+    padding-right: 38px;
+  }
+
+  .paragraph-wrap {
+    margin-bottom: 38px;
+  }
+
+  .settings-popup {
+    top: 68px;
+    padding: 20px 17px;
+  }
+
+  .color-options {
+    gap: 10px;
+  }
+
+  .color-swatch {
+    height: 52px;
+  }
+
+  .chapter-menu {
+    width: min(390px,88vw);
+  }
+
+  .menu-cover {
+    width: 135px;
+    height: 190px;
+  }
+
+  .comment-quote {
+    font-size: 15px;
+    padding: 21px 20px;
+  }
+
+  .comment-list {
+    padding: 0 18px 15px;
+  }
+
+  .comment-input-area {
+    padding: 12px 13px 18px;
+  }
 }
 </style>
 </head>
 <body>
+  
+<!-- ÜST MENÜ -->
 
 <nav class="topbar" id="topbar">
+
   <a href="ringteki-son-dans.html" class="back-link">←</a>
-  <a href="ringteki-son-dans.html" class="topbar-title">RİNGTEKİ SON DANS</a>
-  <button class="settings-button" id="settingsButton" type="button">Aa</button>
-  <button class="menu-button" id="menuButton" type="button">☰</button>
+
+  <a href="ringteki-son-dans.html" class="topbar-title">
+    RİNGTEKİ SON DANS
+  </a>
+
+  <button class="settings-button" id="settingsButton" type="button">
+    Aa
+  </button>
+
+  <button class="menu-button" id="menuButton" type="button">
+    ☷
+  </button>
+
 </nav>
+
+<!-- MENÜ ARKA PLANI -->
 
 <div class="menu-shade" id="menuShade"></div>
 
+<!-- KİTAP PROFİLİ VE BÖLÜMLER -->
+
 <nav class="chapter-menu" id="chapterMenu">
-  <button class="menu-close" id="menuClose" type="button">×</button>
-  <img class="menu-cover" src="giris-gorsel.png" alt="Kitap kapağı">
-  <div class="menu-book-title">RİNGTEKİ SON DANS</div>
-  <div class="menu-author">Yazar: kesmislalih</div>
-  <div class="menu-space"></div>
-  <div class="menu-heading">BÖLÜMLER</div>
-  <a class="chapter-link" href="#chapter-0">Sıfırıncı Bölüm — Ringteki Son Dans</a>
-  <div class="menu-heading" style="margin-top:30px">OKUMA NOTLARIM</div>
-  <a class="chapter-link" href="#savedNotes">İşaretlediğim yerler</a>
+
+  <button class="menu-close" id="menuClose" type="button">
+    ×
+  </button>
+
+  <img
+    class="menu-cover"
+    src="giris-gorsel.png"
+    alt="Ringteki Son Dans kitap kapağı"
+  >
+
+  <div class="menu-book-title">
+    RİNGTEKİ SON DANS
+  </div>
+
+  <div class="menu-author">
+    kesmislalih
+  </div>
+
+  <div class="menu-divider"></div>
+
+  <div class="menu-heading">
+    BÖLÜMLER
+  </div>
+
+  <div id="chapterList">
+
+    <a href="#chapter-0" class="chapter-link active">
+      0. BÖLÜM
+    </a>
+
+    <!-- Yeni bölümleri buraya ekleyebilirsin -->
+
+    <!--
+    <a href="#chapter-1" class="chapter-link">
+      1. BÖLÜM
+    </a>
+
+    <a href="#chapter-2" class="chapter-link">
+      2. BÖLÜM
+    </a>
+    -->
+
+  </div>
+
 </nav>
 
+<!-- YAZI AYARLARI -->
+
 <div class="settings-popup" id="settingsPopup">
+
   <div class="settings-section">
+
     <p>Sayfa rengi</p>
+
     <div class="color-options">
-      <button class="color-swatch" data-bg="#ffffff" data-text="#222222" style="background:#fff" type="button"></button>
-      <button class="color-swatch active" data-bg="#080808" data-text="#f2f2f2" style="background:#080808" type="button"></button>
-      <button class="color-swatch" data-bg="#f4ead5" data-text="#332b22" style="background:#f4ead5" type="button"></button>
+
+      <button
+        class="color-swatch"
+        data-bg="#ffffff"
+        data-text="#222222"
+        style="background:#fff"
+        type="button">
+      </button>
+
+      <button
+        class="color-swatch active"
+        data-bg="#080808"
+        data-text="#f2f2f2"
+        style="background:#080808"
+        type="button">
+      </button>
+
+      <button
+        class="color-swatch"
+        data-bg="#f4ead5"
+        data-text="#332b22"
+        style="background:#f4ead5"
+        type="button">
+      </button>
+
     </div>
+
   </div>
+
   <div class="settings-section">
+
     <p>Yazı boyutu</p>
+
     <div class="font-controls">
-      <button id="fontDecrease" type="button">Aa−</button>
-      <button id="fontIncrease" type="button">Aa+</button>
+
+      <button id="fontDecrease" type="button">
+        Aa−
+      </button>
+
+      <button id="fontIncrease" type="button">
+        Aa+
+      </button>
+
     </div>
+
   </div>
+
 </div>
+
+<!-- ANA SAYFA -->
 
 <main class="page">
 
-<section class="intro">
-  <p class="dedication">Küçükken gözlerini kapayınca oyuncaklarının uyanacağını sananlara...</p>
-  <img class="intro-image" src="giris-gorsel.png" alt="Ringteki Son Dans">
-  <div class="book-title">
-    <small>RİNGTEKİ</small>
-    <h1>Ringteki Son Dans</h1>
-  </div>
-  <div class="ornament">๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭</div>
-  <div class="audio-player">
-    <iframe src="https://open.spotify.com/embed/track/7abpmGpF7PGep2rDU68GBR?utm_source=generator"
-      height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-      loading="lazy" title="Spotify müzik oynatıcı"></iframe>
-  </div>
-</section>
+  <!-- KİTAP GİRİŞİ -->
 
-<section class="chapter" id="chapter-0">
+  <section class="intro">
 
-<header class="chapter-header">
-  <div class="chapter-number">SIFIRINCI BÖLÜM</div>
-  <h2>RİNGTEKİ SON DANS</h2>
-</header>
+    <p class="dedication">
+      Küçükken gözlerini kapayınca oyuncaklarının uyanacağını sananlara...
+    </p>
 
-<div class="chapter-stats">
-  <div class="stat-item"><span class="stat-icon">◉</span><span id="viewCount">0</span> okunma</div>
-  <div class="stat-item"><span class="stat-icon">★</span><span id="totalStars">0</span> yıldız</div>
-  <div class="stat-item"><span class="stat-icon">▢</span><span id="totalComments">0</span> yorum</div>
-</div>
+    <img
+      class="intro-image"
+      src="giris-gorsel.png"
+      alt="Ringteki Son Dans"
+    >
 
-<blockquote class="quote">
-  <strong><em>❝Gök gürleyecek kalbini incitecekti.
-  Paramparça olan kalbinin düzelmesi bir çocuğun tatlı kıkırtısında yeniden hayat bulacaktı.❞</em></strong>
-</blockquote>
+    <div class="book-title">
 
-<blockquote class="quote">
-  <strong>Bir karanlık, iki kurşun.</strong><br>
-  <strong>Binbir acı, iki yetim.</strong>
-</blockquote>
+      <small>RİNGTEKİ</small>
 
-<blockquote class="quote">
-  <strong><em>Sihirli değneğin ucu müzik kutusunda usul usul dönen balerinin üzerinde durdu.
-  Ardından boksör bebeğin omzuna dokundu. Gözleri acıtan bir ışık ardından soluk
-  renklerin yerine gelmesi bir mucizeydi. Belki de kabul edilen büyü...</em></strong>
-</blockquote>
+      <h1>Ringteki Son Dans</h1>
 
+    </div>
+
+    <div class="ornament">
+      ๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑๋ ࣭ ⭑
+    </div>
+
+    <div class="audio-player">
+
+      <iframe
+        src="https://open.spotify.com/embed/track/7abpmGpF7PGep2rDU68GBR?utm_source=generator"
+        height="152"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+        title="Spotify müzik oynatıcı">
+      </iframe>
+
+    </div>
+
+  </section>
+
+  <!-- SIFIRINCI BÖLÜM -->
+
+  <section class="chapter" id="chapter-0">
+
+    <header class="chapter-header">
+
+      <div class="chapter-number">
+        SIFIRINCI BÖLÜM
+      </div>
+
+      <h2>RİNGTEKİ SON DANS</h2>
+
+    </header>
+
+    <!-- BÖLÜMÜN ALINTILARI -->
+
+    <blockquote class="quote">
+
+      <strong>
+        <em>
+          ❝Gök gürleyecek kalbini incitecekti.
+          Paramparça olan kalbinin düzelmesi bir çocuğun
+          tatlı kıkırtısında yeniden hayat bulacaktı.❞
+        </em>
+      </strong>
+
+    </blockquote>
+
+    <blockquote class="quote">
+
+      <strong>
+        Bir karanlık, iki kurşun.
+        <br>
+        Binbir acı, iki yetim.
+      </strong>
+
+    </blockquote>
+
+    <blockquote class="quote">
+
+      <strong>
+        <em>
+          Sihirli değneğin ucu müzik kutusunda usul usul dönen
+          balerinin üzerinde durdu. Ardından boksör bebeğin
+          omzuna dokundu. Gözleri acıtan bir ışık ardından
+          soluk renklerin yerine gelmesi bir mucizeydi.
+          Belki de kabul edilen büyü...
+        </em>
+      </strong>
+
+    </blockquote>
+
+    <!-- HİKÂYE METNİ -->
+
+    <div class="story" id="storyContent">
+
+    
 <div class="story" id="storyContent">
 
 <p class="paragraph">Masallar gerçekti, dünyalar apayrıydı. Her masal her dünyada gerçekleşmezdi. Sihirli peri tozları, süpürgesiyle uçan cadılar, özel güce sahip kahramanlar bir hayalden ibaretti. Onlar yalnızca hayal dünyasına aitti. Gerçek olan tek şey hayal kırıklığından başka bir şey değildi.</p>
@@ -607,7 +1255,7 @@ body,.story,.chapter-header,.quote{-webkit-user-select:none;user-select:none}
 
 <p class="paragraph">Gözlerini yavaşça açarak bana baktı. Yüzündeki kanlar iyi dayak yediğini gösteriyordu. Kaşlarını hafifçe çatıp "Cehenneme mi gidiyorum lan ben?" Kendi kendine konuşup bana döndü. Beni görünce cin çarpmış gibi gözleri büyüdü. "Hassiktir! Bu da Azrail! Lan bir de bizim aptal balerinin kılığına girmiş. Kanlı kanlı..."</p>
 
-<p class="paragraph">Yutkunarak bana baktığında "Azrail Lavinia balerini?" diye garip bir cümle kurdu. Yüzüm istemsizce buruşuğunda ona bir oyun oynama isteğiyle tutuştum. Sopa hâlâ çenesinin altındayken "Hı?" diye karşılık verdim ona.</p>
+  <p class="paragraph">Yutkunarak bana baktığında "Azrail Lavinia balerini?" diye garip bir cümle kurdu. Yüzüm istemsizce buruşuğunda ona bir oyun oynama isteğiyle tutuştum. Sopa hâlâ çenesinin altındayken "Hı?" diye karşılık verdim ona.</p>
 
 <p class="paragraph">Sesimi duyduğunda bembeyaz yüzü hâlâ dikkat çekiyordu. Ama benim sesimle yüzünde rahatlama ifadesi oluştu. "Lavina?" Sesi heyecanla çıktığında benim yüzümü izledi. Başını hafifçe sola eğerek hiç beklemediğim bir soru yöneltti. "Ölüm meleğini öpersek çarpılır mıyız?" Sesi mayışmış bir tonda çıkınca gözlerini kırpıştırarak baktı bana. Dudağının köşesi kıvrılmış bir haldeydi, sorusuna cevap bekliyordu.</p>
 
@@ -670,111 +1318,140 @@ body,.story,.chapter-header,.quote{-webkit-user-select:none;user-select:none}
 <p class="paragraph emphasis">İşimiz çok zordu, değil mi?</p>
 
 </div>
-<div class="rating-area">
-  <div class="rating-title">BU BÖLÜMÜ DEĞERLENDİR</div>
-  <div class="rating-stars" id="ratingStars">
-    <button type="button" data-rating="1">★</button>
-    <button type="button" data-rating="2">★</button>
-    <button type="button" data-rating="3">★</button>
-    <button type="button" data-rating="4">★</button>
-    <button type="button" data-rating="5">★</button>
-  </div>
-  <div class="rating-count" id="ratingMessage">Henüz değerlendirme yapmadın.</div>
-</div>
 
-<button class="chapter-comment-button" id="openChapterComments" type="button">
-  <span>▢</span> Bölümün tamamına yorum yap
-  <small id="chapterCommentCount">(0)</small>
-</button>
+    </div>
 
-<div class="share-area">
-  <button type="button" id="copyShare">⧉</button>
-  <button type="button" id="whatsappShare">W</button>
-  <button type="button" id="instagramShare">◎</button>
-  <button type="button" id="tiktokShare">♪</button>
-  <button type="button" id="xShare">X</button>
-</div>
+  </section>
 
-<button class="save-reading" id="saveReading" type="button">
-  ✦ Okuduğum yeri kaydet
-</button>
-
-<div class="saved-notes" id="savedNotes">
-  <h3>İŞARETLEDİĞİM YERLER</h3>
-  <div id="savedNotesList">Henüz işaretlediğin bir yer yok.</div>
-</div>
-
-</section>
 </main>
 
+<!-- OKUMA İLERLEMESİ -->
+
 <div class="reader-progress" id="readerProgress">
+
   <div class="progress-info">
+
     <span>OKUMA İLERLEMESİ</span>
-    <span id="progressPercent">%0</span>
+
+    <strong id="progressPercent">%0</strong>
+
   </div>
-  <input type="range" id="progressSlider" min="0" max="100"
-    value="0" step="0.1">
+
+  <input
+    type="range"
+    id="progressSlider"
+    min="0"
+    max="100"
+    value="0"
+    step="0.1"
+    aria-label="Okuma ilerlemesi"
+  >
+
   <div class="progress-buttons">
-    <button type="button" id="previousChapter" disabled>← Önceki</button>
-    <span id="chapterPosition">Sıfırıncı Bölüm</span>
-    <button type="button" id="nextChapter" disabled>Sonraki →</button>
+
+    <button id="previousChapter" type="button" disabled>
+      ← Önceki
+    </button>
+
+    <span id="chapterPosition">
+      Sıfırıncı Bölüm
+    </span>
+
+    <button id="nextChapter" type="button" disabled>
+      Sonraki →
+    </button>
+
   </div>
+
 </div>
 
 <!-- YORUM PENCERESİ -->
+
 <div class="comment-modal" id="commentModal">
+
   <div class="comment-modal-content">
 
-    <button class="modal-close" id="closeComment" type="button">×</button>
+    <!-- ÜST BAŞLIK -->
 
-    <h3 id="commentHeading">Yorumlar</h3>
+    <div class="modal-header">
 
-    <div id="selectedParagraph"></div>
+      <button
+        class="modal-close"
+        id="closeComment"
+        type="button">
+        ×
+      </button>
 
-    <div class="comment-field">
-      <label for="usernameInput">KULLANICI ADIN</label>
-      <input
-        type="text"
-        id="usernameInput"
-        maxlength="25"
-        placeholder="Kullanıcı adını yaz..."
-        autocomplete="nickname"
-      >
+      <h3>ALACAKAN</h3>
+
     </div>
 
-    <div class="comment-field">
-      <label for="commentInput">YORUMUN</label>
-      <textarea
-        id="commentInput"
-        maxlength="2000"
-        placeholder="Düşüncelerini paylaş..."
-      ></textarea>
+    <!-- YORUM YAPILAN PARAGRAF -->
+
+    <div class="comment-quote" id="selectedParagraph">
     </div>
 
-    <button type="button" id="submitComment">Yorum gönder</button>
+    <!-- YORUMLAR -->
+
+    <div class="comment-list" id="commentList">
+
+      <p style="color:#888;font-size:13px">
+        Yorumlar yükleniyor...
+      </p>
+
+    </div>
+
+    <!-- YORUM YAZMA ALANI -->
+
+    <div class="comment-input-area">
+
+      <div class="comment-input-wrapper">
+
+        <input
+          type="text"
+          id="usernameInput"
+          maxlength="25"
+          placeholder="Kullanıcı adın"
+          autocomplete="nickname"
+        >
+
+        <textarea
+          id="commentInput"
+          maxlength="2000"
+          rows="1"
+          placeholder="hilly olarak yorum yaz..."
+        ></textarea>
+
+      </div>
+
+      <button
+        type="button"
+        id="submitComment"
+        aria-label="Yorum gönder">
+
+        ➤
+
+      </button>
+
+    </div>
 
     <div id="commentStatus"></div>
 
-    <div id="commentList"></div>
-
   </div>
-</div>
 
-<div class="postit-panel" id="postitPanel">
-  <strong>Bu bölümü notlarına ekle</strong>
-  <textarea id="postitInput" placeholder="Bu kısım hakkında kendine bir not bırak..."></textarea>
-  <button type="button" id="savePostit">Notu kaydet</button>
-  <button type="button" id="cancelPostit">Vazgeç</button>
 </div>
 
 <script>
+
+// SUPABASE BAĞLANTISI
+
 const $ = id => document.getElementById(id);
 
-/* SUPABASE BAĞLANTISI */
+const SUPABASE_URL =
+  "https://edgpwcoypywwodgfkkbi.supabase.co";
 
-const SUPABASE_URL = "https://edgpwcoypywwodgfkkbi.supabase.co";
-
-const SUPABASE_KEY = "sb_publishable_9eEl_WjKST_TLNRrzN7jmA_5npT6GPc";
+const SUPABASE_KEY =
+  "sb_publishable_9eEl_WjKST_TLNRrzN7jmA_5npT6GPc";
 
 const supabaseClient = window.supabase.createClient(
   SUPABASE_URL,
@@ -784,16 +1461,17 @@ const supabaseClient = window.supabase.createClient(
 const BOOK_NAME = "Ringteki Son Dans";
 const CHAPTER_NUMBER = 1;
 
+// TEMEL DEĞİŞKENLER
+
 const topbar = $("topbar");
-const menuButton = $("menuButton");
 const chapterMenu = $("chapterMenu");
 const menuShade = $("menuShade");
-const menuClose = $("menuClose");
-const settingsButton = $("settingsButton");
 const settingsPopup = $("settingsPopup");
 const readerProgress = $("readerProgress");
+
 const progressSlider = $("progressSlider");
 const progressPercent = $("progressPercent");
+
 const commentModal = $("commentModal");
 const selectedParagraph = $("selectedParagraph");
 const commentInput = $("commentInput");
@@ -803,15 +1481,17 @@ const commentStatus = $("commentStatus");
 
 let controlsVisible = false;
 let isSeeking = false;
-let activeParagraph = null;
 let activeCommentKey = "";
-let activeCommentType = "paragraph";
 let isSendingComment = false;
+
+// YEREL KAYIT SİSTEMİ
 
 function getData(key, fallback) {
   try {
     const value = localStorage.getItem(key);
+
     return value ? JSON.parse(value) : fallback;
+
   } catch {
     return fallback;
   }
@@ -820,31 +1500,42 @@ function getData(key, fallback) {
 function setData(key, value) {
   try {
     localStorage.setItem(key, JSON.stringify(value));
+
   } catch(error) {
     console.warn("Kayıt yapılamadı:", error);
   }
 }
 
-/* OKUMA KONTROLLERİ */
+// ÜST VE ALT MENÜLER
 
 function showReaderControls() {
   controlsVisible = true;
+
   topbar.classList.add("visible");
   readerProgress.classList.add("visible");
 }
 
 function hideReaderControls() {
   controlsVisible = false;
+
   topbar.classList.remove("visible");
   readerProgress.classList.remove("visible");
+
   settingsPopup.classList.remove("open");
 }
 
 function toggleReaderControls() {
-  controlsVisible ? hideReaderControls() : showReaderControls();
+  if (controlsVisible) {
+    hideReaderControls();
+  } else {
+    showReaderControls();
+  }
 }
 
+// EKRANA DOKUNUNCA KONTROLLER
+
 document.addEventListener("click", event => {
+
   const target = event.target;
 
   if (
@@ -853,722 +1544,698 @@ document.addEventListener("click", event => {
     target.closest("#chapterMenu") ||
     target.closest("#settingsPopup") ||
     target.closest("#menuShade") ||
-    target.closest("#commentModal") ||
-    target.closest(".paragraph") ||
-    target.closest(".postit-panel") ||
-    target.closest(".rating-area") ||
-    target.closest(".share-area") ||
-    target.closest(".chapter-comment-button") ||
-    target.closest(".save-reading") ||
-    target.closest(".saved-notes")
-  ) return;
+    target.closest("#commentModal")
+  ) {
+    return;
+  }
 
   toggleReaderControls();
+
 });
 
-/* MENÜ */
+// BÖLÜM MENÜSÜ
 
 function openMenu() {
+
   chapterMenu.classList.add("open");
   menuShade.classList.add("visible");
+
   settingsPopup.classList.remove("open");
+
   showReaderControls();
+
 }
 
 function closeMenu() {
+
   chapterMenu.classList.remove("open");
   menuShade.classList.remove("visible");
+
 }
 
-menuButton.addEventListener("click", () => {
-  chapterMenu.classList.contains("open") ? closeMenu() : openMenu();
+$("menuButton").addEventListener("click", () => {
+
+  if (chapterMenu.classList.contains("open")) {
+    closeMenu();
+  } else {
+    openMenu();
+  }
+
 });
 
-menuClose.addEventListener("click", closeMenu);
+$("menuClose").addEventListener("click", closeMenu);
+
 menuShade.addEventListener("click", closeMenu);
 
-chapterMenu.querySelectorAll(".chapter-link").forEach(link => {
+// BÖLÜM SEÇİMİ
+
+document.querySelectorAll(".chapter-link").forEach(link => {
+
   link.addEventListener("click", () => {
+
+    document.querySelectorAll(".chapter-link").forEach(item => {
+      item.classList.remove("active");
+    });
+
+    link.classList.add("active");
+
     closeMenu();
 
-    if (link.getAttribute("href") === "#savedNotes") {
-      setTimeout(() => {
-        $("savedNotes").scrollIntoView({behavior:"smooth"});
-      }, 100);
-    }
   });
+
 });
 
-/* YAZI AYARLARI */
+// YAZI AYARLARI
 
-settingsButton.addEventListener("click", () => {
+$("settingsButton").addEventListener("click", () => {
+
   settingsPopup.classList.toggle("open");
+
   showReaderControls();
+
 });
 
-let storyFontSize = Number(getData("rstd_font_size", 19));
-storyFontSize = Math.min(29, Math.max(15, storyFontSize));
+let storyFontSize = Number(
+  getData("rstd_font_size", 19)
+);
+
+storyFontSize = Math.min(
+  29,
+  Math.max(15, storyFontSize)
+);
 
 function updateFontSize() {
+
   document.documentElement.style.setProperty(
     "--story-font-size",
     storyFontSize + "px"
   );
 
   setData("rstd_font_size", storyFontSize);
+
 }
 
 $("fontIncrease").addEventListener("click", () => {
+
   storyFontSize = Math.min(29, storyFontSize + 2);
+
   updateFontSize();
+
 });
 
 $("fontDecrease").addEventListener("click", () => {
+
   storyFontSize = Math.max(15, storyFontSize - 2);
+
   updateFontSize();
+
 });
 
 updateFontSize();
 
-/* SAYFA RENKLERİ */
+// SAYFA RENKLERİ
 
 document.querySelectorAll(".color-swatch").forEach(button => {
+
   button.addEventListener("click", () => {
+
     const bg = button.dataset.bg;
     const text = button.dataset.text;
 
     document.documentElement.style.setProperty("--bg", bg);
+
     document.documentElement.style.setProperty("--text", text);
 
-    document.querySelectorAll(".color-swatch").forEach(s => {
-      s.classList.remove("active");
+    document.querySelectorAll(".color-swatch").forEach(item => {
+      item.classList.remove("active");
     });
 
     button.classList.add("active");
+
     setData("rstd_colors", {bg, text});
+
   });
+
 });
+
+// KAYITLI RENKLERİ YÜKLE
 
 const savedColors = getData("rstd_colors", null);
 
 if (savedColors) {
-  document.documentElement.style.setProperty("--bg", savedColors.bg);
-  document.documentElement.style.setProperty("--text", savedColors.text);
 
-  document.querySelectorAll(".color-swatch").forEach(s => {
-    s.classList.toggle("active", s.dataset.bg === savedColors.bg);
+  document.documentElement.style.setProperty(
+    "--bg",
+    savedColors.bg
+  );
+
+  document.documentElement.style.setProperty(
+    "--text",
+    savedColors.text
+  );
+
+  document.querySelectorAll(".color-swatch").forEach(item => {
+
+    item.classList.toggle(
+      "active",
+      item.dataset.bg === savedColors.bg
+    );
+
   });
+
 }
 
-/* OKUMA İLERLEMESİ */
+// OKUMA İLERLEMESİ
 
 function getScrollLimit() {
+
   return Math.max(
     1,
-    document.documentElement.scrollHeight - window.innerHeight
+    document.documentElement.scrollHeight -
+    window.innerHeight
   );
+
 }
 
 function updateProgress() {
+
   if (isSeeking) return;
 
   const percent = Math.min(
     100,
-    Math.max(0, window.scrollY / getScrollLimit() * 100)
+    Math.max(
+      0,
+      window.scrollY / getScrollLimit() * 100
+    )
   );
 
   progressSlider.value = percent;
-  progressPercent.textContent = "%" + Math.round(percent);
+
+  progressPercent.textContent =
+    "%" + Math.round(percent);
+
 }
 
-window.addEventListener("scroll", updateProgress, {passive:true});
+window.addEventListener(
+  "scroll",
+  updateProgress,
+  {passive:true}
+);
+
 window.addEventListener("resize", updateProgress);
 
+// ÇUBUĞU SÜRÜKLEME
+
 progressSlider.addEventListener("pointerdown", () => {
+
   isSeeking = true;
+
 });
 
 progressSlider.addEventListener("input", () => {
+
   const percent = Number(progressSlider.value);
 
   window.scrollTo({
     top: percent / 100 * getScrollLimit(),
-    behavior:"auto"
+    behavior: "auto"
   });
 
-  progressPercent.textContent = "%" + Math.round(percent);
+  progressPercent.textContent =
+    "%" + Math.round(percent);
+
 });
 
 function finishSeeking() {
+
   isSeeking = false;
+
   updateProgress();
+
 }
 
 progressSlider.addEventListener("change", finishSeeking);
 progressSlider.addEventListener("pointerup", finishSeeking);
 progressSlider.addEventListener("pointercancel", finishSeeking);
 
-/* OKUMA YERİNİ KAYDET */
+// PARAGRAF LİSTESİ
 
-const savedPosition = getData("rstd_reading_position", null);
+const paragraphs = [
+  ...document.querySelectorAll(
+    "#storyContent .paragraph"
+  )
+];
 
-if (savedPosition && savedPosition.chapter === "chapter-0") {
-  const resume = document.createElement("button");
-
-  resume.type = "button";
-  resume.className = "save-reading";
-  resume.textContent = "Kaldığın yerden devam et";
-
-  resume.addEventListener("click", () => {
-    window.scrollTo({
-      top:savedPosition.y,
-      behavior:"smooth"
-    });
-
-    resume.remove();
-  });
-
-  document.querySelector(".chapter-header").after(resume);
-}
-
-$("saveReading").addEventListener("click", () => {
-  setData("rstd_reading_position", {
-    chapter:"chapter-0",
-    y:window.scrollY,
-    savedAt:new Date().toISOString()
-  });
-
-  $("saveReading").textContent = "✓ Okuma yerin kaydedildi";
-});
-  /* PARAGRAF YORUMLARI VE NOTLAR */
-
-const paragraphs = [...document.querySelectorAll(".paragraph")];
+// PARAGRAF YORUM BALONLARI
 
 paragraphs.forEach((paragraph, index) => {
+
   paragraph.dataset.paragraphId = "p-" + index;
 
-  const commentButton = document.createElement("button");
-  commentButton.type = "button";
-  commentButton.className = "paragraph-comment";
-  commentButton.textContent = "▢";
-  commentButton.title = "Bu paragrafı yorumla";
+  const button = document.createElement("button");
 
-  commentButton.addEventListener("click", event => {
+  button.type = "button";
+
+  button.className = "paragraph-comment";
+
+  button.innerHTML = `
+    <span class="comment-symbol">●</span>
+    <span class="comment-number" id="comment-count-${index}">0</span>
+  `;
+
+  button.title = "Bu paragrafın yorumlarını gör";
+
+  button.addEventListener("click", event => {
+
     event.stopPropagation();
 
-    openComments(
-      "paragraph-" + index,
-      "Paragraf yorumları",
-      paragraph.innerText,
-      "paragraph"
-    );
+    openComments(index, paragraph.innerText);
+
   });
 
-  paragraph.appendChild(commentButton);
+  paragraph.appendChild(button);
 
-  const noteButton = document.createElement("button");
-  noteButton.type = "button";
-  noteButton.className = "postit-button";
-  noteButton.textContent = "▤";
-  noteButton.title = "Bu paragrafı işaretle";
-
-  noteButton.addEventListener("click", event => {
-    event.stopPropagation();
-    openPostit(index, paragraph);
-  });
-
-  paragraph.appendChild(noteButton);
-
-  if (getData("rstd_notes", []).some(note => note.id === index)) {
-    noteButton.classList.add("saved");
-  }
 });
 
-/* SUPABASE YORUM SİSTEMİ */
+// YORUM PENCERESİNİ AÇ
 
-function getParagraphNumber() {
-  if (activeCommentType === "chapter") {
-    return "bolum";
-  }
+function openComments(index, quote) {
 
-  return String(Number(activeCommentKey.split("-")[1]));
-}
+  activeCommentKey = String(index);
 
-async function loadComments() {
-  commentList.innerHTML = "<p>Yorumlar yükleniyor...</p>";
-
-  let query = supabaseClient
-    .from("yorumlar")
-    .select("id, isim, yorum, created_at")
-    .eq("kitap", BOOK_NAME)
-    .eq("bolum", CHAPTER_NUMBER);
-
-  if (activeCommentType === "paragraph") {
-    query = query.eq("paragraf", getParagraphNumber());
-  } else {
-    query = query.eq("paragraf", "bolum");
-  }
-
-  const {data, error} = await query.order("created_at", {
-    ascending:false
-  });
-
-  if (error) {
-    console.error("Yorumlar yüklenemedi:", error);
-    commentList.innerHTML =
-      "<p>Yorumlar yüklenirken bir hata oluştu. Lütfen tekrar dene.</p>";
-    return;
-  }
-
-  renderComments(data || []);
-}
-
-function formatCommentDate(date) {
-  if (!date) return "";
-
-  return new Date(date).toLocaleString("tr-TR", {
-    day:"2-digit",
-    month:"2-digit",
-    year:"numeric",
-    hour:"2-digit",
-    minute:"2-digit"
-  });
-}
-
-function renderComments(comments) {
-  commentList.innerHTML = "";
-
-  if (!comments.length) {
-    commentList.innerHTML =
-      "<p>Henüz yorum yok. İlk yorumu sen yaz.</p>";
-    return;
-  }
-
-  comments.forEach(item => {
-    const container = document.createElement("div");
-    container.className = "comment-item";
-
-    const username = document.createElement("div");
-    username.className = "comment-user";
-    username.textContent = item.isim || "Anonim";
-
-    const date = document.createElement("time");
-    date.className = "comment-date";
-    date.textContent = formatCommentDate(item.created_at);
-
-    const message = document.createElement("div");
-    message.className = "comment-text";
-    message.textContent = item.yorum;
-
-    container.append(username, date, message);
-    commentList.appendChild(container);
-  });
-}
-
-/* YORUM PENCERESİ */
-
-function openComments(key, heading, quote, type) {
-  activeCommentKey = key;
-  activeCommentType = type;
-
-  activeParagraph = type === "paragraph"
-    ? paragraphs[Number(key.split("-")[1])]
-    : null;
-
-  $("commentHeading").textContent = heading;
-
-  selectedParagraph.textContent = quote ||
-    "Bu bölüm hakkında yorumunu paylaş.";
+  selectedParagraph.textContent = quote;
 
   commentInput.value = "";
+
   commentStatus.textContent = "";
 
-  usernameInput.value = getData("rstd_username", "");
+  usernameInput.value = getData(
+    "rstd_username",
+    ""
+  );
 
   commentModal.classList.add("open");
 
   loadComments();
+
 }
+
+// YORUM PENCERESİNİ KAPAT
 
 function closeCommentModal() {
+
   commentModal.classList.remove("open");
 
-  document.querySelectorAll(".paragraph.selected").forEach(p => {
-    p.classList.remove("selected");
-  });
-
-  activeParagraph = null;
 }
 
-$("closeComment").addEventListener("click", closeCommentModal);
+$("closeComment").addEventListener(
+  "click",
+  closeCommentModal
+);
 
 commentModal.addEventListener("click", event => {
+
   if (event.target === commentModal) {
     closeCommentModal();
   }
+
 });
 
-/* YORUM GÖNDERME */
+// YORUMLARI SUPABASE'DEN ÇEK
+
+async function loadComments() {
+
+  commentList.innerHTML = `
+    <p style="color:#888;font-size:13px">
+      Yorumlar yükleniyor...
+    </p>
+  `;
+
+  const {data, error} = await supabaseClient
+    .from("yorumlar")
+    .select("id, isim, yorum, created_at")
+    .eq("kitap", BOOK_NAME)
+    .eq("bolum", CHAPTER_NUMBER)
+    .eq("paragraf", activeCommentKey)
+    .order("created_at", {
+      ascending: true
+    });
+
+  if (error) {
+
+    console.error("Yorumlar yüklenemedi:", error);
+
+    commentList.innerHTML = `
+      <p style="color:#aaa">
+        Yorumlar yüklenirken bir hata oluştu.
+      </p>
+    `;
+
+    return;
+
+  }
+
+  renderComments(data || []);
+
+}
+
+// YORUM TARİHİ
+
+function formatCommentDate(date) {
+
+  if (!date) return "";
+
+  return new Date(date).toLocaleString("tr-TR", {
+
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+
+  });
+
+}
+
+// YORUMLARI EKRANA YAZ
+
+function renderComments(comments) {
+
+  commentList.innerHTML = "";
+
+  if (!comments.length) {
+
+    commentList.innerHTML = `
+      <p style="color:#888;font-size:13px">
+        Henüz yorum yok. İlk yorumu sen yaz.
+      </p>
+    `;
+
+    return;
+
+  }
+
+  comments.forEach(item => {
+
+    const container = document.createElement("div");
+
+    container.className = "comment-item";
+
+    const avatar = document.createElement("div");
+
+    avatar.className = "comment-avatar";
+
+    avatar.textContent = (
+      item.isim || "A"
+    ).charAt(0).toUpperCase();
+
+    const body = document.createElement("div");
+
+    body.className = "comment-body";
+
+    const username = document.createElement("div");
+
+    username.className = "comment-user";
+
+    username.textContent = item.isim || "Anonim";
+
+    const message = document.createElement("div");
+
+    message.className = "comment-text";
+
+    message.textContent = item.yorum;
+
+    const meta = document.createElement("div");
+
+    meta.className = "comment-meta";
+
+    const date = document.createElement("span");
+
+    date.textContent = formatCommentDate(
+      item.created_at
+    );
+
+    const reply = document.createElement("span");
+
+    reply.textContent = "Yanıtla";
+
+    meta.append(date, reply);
+
+    body.append(username, message, meta);
+
+    container.append(avatar, body);
+
+    commentList.appendChild(container);
+
+  });
+
+}
+
+// PARAGRAF YORUM SAYILARI
+
+async function updateCommentCounts() {
+
+  const {data, error} = await supabaseClient
+    .from("yorumlar")
+    .select("paragraf")
+    .eq("kitap", BOOK_NAME)
+    .eq("bolum", CHAPTER_NUMBER);
+
+  if (error) {
+
+    console.error("Yorum sayıları alınamadı:", error);
+
+    return;
+
+  }
+
+  const counts = {};
+
+  (data || []).forEach(item => {
+
+    const key = String(item.paragraf);
+
+    counts[key] = (counts[key] || 0) + 1;
+
+  });
+
+  paragraphs.forEach((paragraph, index) => {
+
+    const counter = $(`comment-count-${index}`);
+
+    if (counter) {
+      counter.textContent = counts[String(index)] || 0;
+    }
+
+  });
+
+}
+
+// SAYFA AÇILDIĞINDA YORUM SAYILARINI YÜKLE
+
+updateCommentCounts();
+  
+// YORUM GÖNDERME
 
 $("submitComment").addEventListener("click", async () => {
+
   if (isSendingComment) return;
 
   const username = usernameInput.value.trim();
+
   const message = commentInput.value.trim();
 
   if (!username) {
-    commentStatus.textContent = "Lütfen bir kullanıcı adı yaz.";
+
+    commentStatus.textContent =
+      "Önce kullanıcı adını yazmalısın.";
+
     usernameInput.focus();
+
     return;
+
   }
 
   if (username.length < 2) {
-    commentStatus.textContent = "Kullanıcı adı en az 2 karakter olmalı.";
+
+    commentStatus.textContent =
+      "Kullanıcı adı en az 2 karakter olmalı.";
+
     return;
+
   }
 
   if (!message) {
-    commentStatus.textContent = "Yorum alanı boş bırakılamaz.";
-    commentInput.focus();
-    return;
-  }
 
-  if (message.length > 2000) {
-    commentStatus.textContent = "Yorum en fazla 2000 karakter olabilir.";
+    commentStatus.textContent =
+      "Yorum alanı boş bırakılamaz.";
+
+    commentInput.focus();
+
     return;
+
   }
 
   isSendingComment = true;
 
   const submitButton = $("submitComment");
+
   submitButton.disabled = true;
-  submitButton.textContent = "Gönderiliyor...";
+
+  submitButton.textContent = "…";
+
   commentStatus.textContent = "";
 
   const {error} = await supabaseClient
     .from("yorumlar")
     .insert({
-      isim:username,
-      yorum:message,
-      kitap:BOOK_NAME,
-      bolum:CHAPTER_NUMBER,
-      paragraf:getParagraphNumber()
+
+      isim: username,
+
+      yorum: message,
+
+      kitap: BOOK_NAME,
+
+      bolum: CHAPTER_NUMBER,
+
+      paragraf: activeCommentKey
+
     });
 
   if (error) {
+
     console.error("Yorum gönderme hatası:", error);
 
     commentStatus.textContent =
-      "Yorum gönderilemedi. Lütfen tekrar dene.";
+      "Yorum gönderilemedi. Tekrar deneyebilirsin.";
+
   } else {
+
     setData("rstd_username", username);
 
     commentInput.value = "";
 
-    commentStatus.textContent = "Yorumun başarıyla paylaşıldı.";
+    commentStatus.textContent =
+      "Yorumun paylaşıldı.";
 
     await loadComments();
+
     await updateCommentCounts();
+
   }
 
   isSendingComment = false;
+
   submitButton.disabled = false;
-  submitButton.textContent = "Yorum gönder";
+
+  submitButton.textContent = "➤";
+
 });
 
-/* BÖLÜMÜN TAMAMINA YORUM */
+// OKUMA KONUMUNU OTOMATİK KAYDET
 
-$("openChapterComments").addEventListener("click", () => {
-  openComments(
-    "chapter-0",
-    "Bölüm yorumları",
-    "Ringteki Son Dans — Sıfırıncı Bölüm",
-    "chapter"
-  );
-});
+let lastSavedPosition = 0;
 
-/* YORUM SAYILARI */
+window.addEventListener("scroll", () => {
 
-async function updateCommentCounts() {
-  const {count, error} = await supabaseClient
-    .from("yorumlar")
-    .select("*", {count:"exact", head:true})
-    .eq("kitap", BOOK_NAME)
-    .eq("bolum", CHAPTER_NUMBER);
+  const currentPosition = Math.round(window.scrollY);
 
-  if (error) {
-    console.error("Yorum sayısı alınamadı:", error);
+  if (Math.abs(currentPosition - lastSavedPosition) < 150) {
     return;
   }
 
-  $("totalComments").textContent = count || 0;
+  lastSavedPosition = currentPosition;
 
-  const {count:chapterCount, error:chapterError} =
-    await supabaseClient
-      .from("yorumlar")
-      .select("*", {count:"exact", head:true})
-      .eq("kitap", BOOK_NAME)
-      .eq("bolum", CHAPTER_NUMBER)
-      .eq("paragraf", "bolum");
+  setData("rstd_reading_position", {
 
-  if (!chapterError) {
-    $("chapterCommentCount").textContent =
-      "(" + (chapterCount || 0) + ")";
-  }
-}
+    chapter: "chapter-0",
 
-updateCommentCounts();
+    y: currentPosition,
 
-/* YILDIZ DEĞERLENDİRMESİ */
+    savedAt: new Date().toISOString()
 
-const ratingButtons = [
-  ...document.querySelectorAll("#ratingStars button")
-];
-
-let currentRating = getData("rstd_rating", 0);
-
-function showRating() {
-  ratingButtons.forEach(button => {
-    button.classList.toggle(
-      "active",
-      Number(button.dataset.rating) <= currentRating
-    );
   });
 
-  $("ratingMessage").textContent = currentRating
-    ? "Değerlendirmen: " + currentRating + " / 5"
-    : "Henüz değerlendirme yapmadın.";
-}
+}, {passive:true});
 
-ratingButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    currentRating = Number(button.dataset.rating);
+// KALDIĞIN YERDEN DEVAM ET
 
-    setData("rstd_rating", currentRating);
+const savedPosition = getData(
+  "rstd_reading_position",
+  null
+);
 
-    showRating();
+if (
+  savedPosition &&
+  savedPosition.chapter === "chapter-0" &&
+  savedPosition.y > 100
+) {
 
-    $("totalStars").textContent = currentRating;
-  });
-});
+  const resume = document.createElement("button");
 
-showRating();
-$("totalStars").textContent = currentRating;
+  resume.type = "button";
 
-/* OKUMA NOTLARI */
+  resume.className = "resume-reading";
 
-let activeNoteIndex = null;
-const postitPanel = $("postitPanel");
+  resume.textContent = "Kaldığın yerden devam et";
 
-function openPostit(index, paragraph) {
-  activeNoteIndex = index;
+  resume.style.cssText = `
+    display:block;
+    margin:15px auto;
+    padding:12px 18px;
+    color:#fff;
+    background:#a51b3d;
+    border:0;
+    border-radius:25px;
+    cursor:pointer;
+    font:inherit;
+  `;
 
-  paragraph.insertAdjacentElement("afterend", postitPanel);
+  document.querySelector(".chapter-header")
+    .after(resume);
 
-  postitPanel.classList.add("open");
+  resume.addEventListener("click", () => {
 
-  const notes = getData("rstd_notes", []);
+    window.scrollTo({
 
-  const existing = notes.find(note => note.id === index);
+      top: savedPosition.y,
 
-  $("postitInput").value = existing ? existing.note : "";
+      behavior: "smooth"
 
-  postitPanel.scrollIntoView({
-    behavior:"smooth",
-    block:"nearest"
-  });
-}
-
-$("savePostit").addEventListener("click", () => {
-  if (activeNoteIndex === null) return;
-
-  const value = $("postitInput").value.trim();
-
-  if (!value) return;
-
-  const notes = getData("rstd_notes", []);
-
-  const existing = notes.find(
-    note => note.id === activeNoteIndex
-  );
-
-  if (existing) {
-    existing.note = value;
-  } else {
-    notes.push({
-      id:activeNoteIndex,
-      text:paragraphs[activeNoteIndex].innerText,
-      note:value
-    });
-  }
-
-  setData("rstd_notes", notes);
-
-  paragraphs[activeNoteIndex]
-    .querySelector(".postit-button")
-    .classList.add("saved");
-
-  postitPanel.classList.remove("open");
-
-  renderSavedNotes();
-});
-
-$("cancelPostit").addEventListener("click", () => {
-  postitPanel.classList.remove("open");
-});
-
-function renderSavedNotes() {
-  const container = $("savedNotesList");
-  const notes = getData("rstd_notes", []);
-
-  container.innerHTML = "";
-
-  if (!notes.length) {
-    container.textContent = "Henüz işaretlediğin bir yer yok.";
-    return;
-  }
-
-  notes.forEach(note => {
-    const item = document.createElement("div");
-    item.className = "saved-note";
-
-    const quote = document.createElement("div");
-    quote.textContent = note.text;
-
-    const noteText = document.createElement("p");
-    noteText.textContent = "Notun: " + note.note;
-
-    const goButton = document.createElement("button");
-    goButton.type = "button";
-    goButton.textContent = "Bu yere git";
-
-    goButton.addEventListener("click", () => {
-      paragraphs[note.id].scrollIntoView({
-        behavior:"smooth",
-        block:"center"
-      });
     });
 
-    const deleteButton = document.createElement("button");
-    deleteButton.type = "button";
-    deleteButton.textContent = "Sil";
+    resume.remove();
 
-    deleteButton.addEventListener("click", () => {
-      const updated = getData("rstd_notes", [])
-        .filter(n => n.id !== note.id);
-
-      setData("rstd_notes", updated);
-
-      paragraphs[note.id]
-        .querySelector(".postit-button")
-        .classList.remove("saved");
-
-      renderSavedNotes();
-    });
-
-    item.append(quote, noteText, goButton, deleteButton);
-
-    container.appendChild(item);
   });
+
 }
 
-renderSavedNotes();
-
-/* PAYLAŞIM */
-
-const pageUrl = () => window.location.href;
-
-const shareText = "Ringteki Son Dans — kesmislalih";
-
-async function copyBookLink() {
-  try {
-    await navigator.clipboard.writeText(pageUrl());
-
-    $("copyShare").textContent = "✓";
-
-    setTimeout(() => {
-      $("copyShare").textContent = "⧉";
-    }, 1800);
-
-  } catch {
-    window.prompt("Bağlantıyı kopyala:", pageUrl());
-  }
-}
-
-$("copyShare").addEventListener("click", copyBookLink);
-
-$("whatsappShare").addEventListener("click", () => {
-  const url = "https://wa.me/?text=" +
-    encodeURIComponent(shareText + " " + pageUrl());
-
-  window.open(url, "_blank", "noopener,noreferrer");
-});
-
-async function shareFromDevice() {
-  if (navigator.share) {
-    try {
-      await navigator.share({
-        title:"Ringteki Son Dans",
-        text:shareText,
-        url:pageUrl()
-      });
-    } catch(error) {
-      if (error.name !== "AbortError") {
-        copyBookLink();
-      }
-    }
-  } else {
-    copyBookLink();
-  }
-}
-
-$("instagramShare").addEventListener("click", shareFromDevice);
-$("tiktokShare").addEventListener("click", shareFromDevice);
-
-$("xShare").addEventListener("click", () => {
-  const url = "https://twitter.com/intent/tweet?text=" +
-    encodeURIComponent(shareText) +
-    "&url=" + encodeURIComponent(pageUrl());
-
-  window.open(url, "_blank", "noopener,noreferrer");
-});
-
-/* GÖRÜNTÜLENME SAYACI */
-
-const viewKey = "rstd_viewed_session";
-
-if (!sessionStorage.getItem(viewKey)) {
-  const views = getData("rstd_views", 0) + 1;
-
-  setData("rstd_views", views);
-
-  sessionStorage.setItem(viewKey, "1");
-}
-
-$("viewCount").textContent = getData("rstd_views", 0);
-
-/* BÖLÜM DÜĞMELERİ */
-
-$("previousChapter").disabled = true;
-$("nextChapter").disabled = true;
-
-/* KLAVYE KONTROLLERİ */
+// KLAVYE KONTROLLERİ
 
 document.addEventListener("keydown", event => {
+
   if (event.key === "Escape") {
+
     closeCommentModal();
+
     closeMenu();
 
     settingsPopup.classList.remove("open");
-    postitPanel.classList.remove("open");
 
     hideReaderControls();
+
   }
+
 });
 
-/* SAYFA AÇILIŞI */
+// BÖLÜM KONTROLLERİ
+
+$("previousChapter").disabled = true;
+
+$("nextChapter").disabled = true;
+
+// SAYFA AÇILIŞI
 
 hideReaderControls();
+
 updateProgress();
 
 </script>
