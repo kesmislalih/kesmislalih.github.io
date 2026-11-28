@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Ringteki Son Dans | kesmislalih</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
@@ -19,7 +21,9 @@
   --story-font-size: 19px;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 html {
   scroll-behavior: smooth;
@@ -34,13 +38,23 @@ body {
   transition: background .2s, color .2s;
 }
 
-button, input, textarea { font-family: inherit; }
-button { -webkit-tap-highlight-color: transparent; }
+body.panel-open {
+  overflow: hidden;
+}
+
+button, input, textarea {
+  font-family: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
 
 .page {
   width: min(100%, 760px);
   margin: auto;
-  padding: 30px 24px 150px;
+  padding: 30px 24px 130px;
 }
 
 /* ÜST MENÜ */
@@ -93,11 +107,11 @@ button { -webkit-tap-highlight-color: transparent; }
   text-overflow: ellipsis;
 }
 
-.settings-button, .menu-button {
+.settings-button,
+.menu-button {
   flex-shrink: 0;
   border: 0;
   background: transparent;
-  cursor: pointer;
   color: var(--text);
 }
 
@@ -135,7 +149,7 @@ button { -webkit-tap-highlight-color: transparent; }
   right: 0;
   bottom: 0;
   z-index: 150;
-  width: min(390px, 88vw);
+  width: min(390px,88vw);
   padding: 20px 22px 35px;
   overflow-y: auto;
   background: #111;
@@ -145,7 +159,9 @@ button { -webkit-tap-highlight-color: transparent; }
   transition: transform .25s ease;
 }
 
-.chapter-menu.open { transform: translateX(0); }
+.chapter-menu.open {
+  transform: translateX(0);
+}
 
 .menu-close {
   display: block;
@@ -155,7 +171,6 @@ button { -webkit-tap-highlight-color: transparent; }
   border: 0;
   color: #f2f2f2;
   font-size: 30px;
-  cursor: pointer;
 }
 
 .menu-cover {
@@ -225,7 +240,7 @@ button { -webkit-tap-highlight-color: transparent; }
   top: 75px;
   right: 14px;
   z-index: 160;
-  width: min(390px, calc(100vw - 28px));
+  width: min(390px,calc(100vw - 28px));
   padding: 22px;
   background: #111;
   color: #eee;
@@ -234,9 +249,13 @@ button { -webkit-tap-highlight-color: transparent; }
   box-shadow: 0 12px 35px #0009;
 }
 
-.settings-popup.open { display: block; }
+.settings-popup.open {
+  display: block;
+}
 
-.settings-section + .settings-section { margin-top: 25px; }
+.settings-section + .settings-section {
+  margin-top: 25px;
+}
 
 .settings-section p {
   margin: 0 0 15px;
@@ -254,10 +273,11 @@ button { -webkit-tap-highlight-color: transparent; }
   height: 55px;
   border: 3px solid #292929;
   border-radius: 7px;
-  cursor: pointer;
 }
 
-.color-swatch.active { border-color: var(--accent); }
+.color-swatch.active {
+  border-color: var(--accent);
+}
 
 .font-controls {
   display: grid;
@@ -271,8 +291,7 @@ button { -webkit-tap-highlight-color: transparent; }
   color: #eee;
   border: 1px solid #303030;
   border-radius: 7px;
-  font: 600 19px Montserrat, sans-serif;
-  cursor: pointer;
+  font: 600 19px Montserrat,sans-serif;
 }
 
 /* KİTAP GİRİŞİ */
@@ -331,7 +350,6 @@ button { -webkit-tap-highlight-color: transparent; }
   line-height: 2;
   overflow-wrap: anywhere;
   margin: 20px 0;
-  text-align: center;
 }
 
 .audio-player {
@@ -377,7 +395,7 @@ button { -webkit-tap-highlight-color: transparent; }
   margin-top: 38px;
 }
 
-/* ALINTILAR VE HİKÂYE */
+/* ALINTILAR */
 
 .quote {
   text-align: center;
@@ -387,15 +405,18 @@ button { -webkit-tap-highlight-color: transparent; }
   margin: 55px 0 35px;
 }
 
-.quote strong { font-weight: 800; }
+.quote strong {
+  font-weight: 800;
+}
 
-.story { margin-top: 55px; }
+/* HİKÂYE */
 
-/* PARAGRAFLAR ARASINDA BELİRGİN BOŞLUK */
+.story {
+  margin-top: 55px;
+}
 
 .paragraph-wrap {
   position: relative;
-  margin-bottom: 0;
   padding-bottom: 30px;
 }
 
@@ -428,7 +449,7 @@ button { -webkit-tap-highlight-color: transparent; }
   letter-spacing: 4px;
 }
 
-/* PARAGRAF YORUM SAYISI */
+/* PARAGRAF YORUM BUTONU */
 
 .paragraph-comment {
   position: absolute;
@@ -444,36 +465,17 @@ button { -webkit-tap-highlight-color: transparent; }
   background: transparent;
   color: var(--accent);
   font-size: 14px;
-  cursor: pointer;
 }
 
-.paragraph-comment .comment-symbol { font-size: 20px; }
-.paragraph-comment .comment-number { font-size: 13px; }
-
-/* PARAGRAF ALTINDA AÇILAN YORUMLAR */
-
-.inline-comments {
-  display: none;
-  margin: 15px 0 5px;
-  padding: 18px;
-  background: #111;
-  border: 1px solid #292929;
-  border-radius: 9px;
+.paragraph-comment .comment-symbol {
+  font-size: 20px;
 }
 
-.inline-comments.open { display: block; }
-
-.inline-comments-title {
-  color: #eee;
+.paragraph-comment .comment-number {
   font-size: 13px;
-  font-weight: 700;
-  margin-bottom: 15px;
 }
 
-.inline-comment-list {
-  max-height: 330px;
-  overflow-y: auto;
-}
+/* YORUM KARTLARI */
 
 .comment-item {
   display: flex;
@@ -496,7 +498,10 @@ button { -webkit-tap-highlight-color: transparent; }
   font-weight: 700;
 }
 
-.comment-body { flex: 1; min-width: 0; }
+.comment-body {
+  flex: 1;
+  min-width: 0;
+}
 
 .comment-user {
   font-weight: 800;
@@ -527,17 +532,160 @@ button { -webkit-tap-highlight-color: transparent; }
   background: transparent;
   color: #999;
   font-size: 11px;
-  cursor: pointer;
 }
 
-.comment-action.liked { color: var(--accent); }
+.comment-action.liked {
+  color: var(--accent);
+}
+
+/* YORUM FORMU */
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: 20px;
+}
+
+.comment-form input,
+.comment-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  color: #eee;
+  background: #202020;
+  border: 1px solid #393939;
+  border-radius: 8px;
+  outline: none;
+  font-size: 13px;
+}
+
+.comment-form textarea {
+  min-height: 85px;
+  resize: vertical;
+}
+
+.comment-form button {
+  align-self: flex-end;
+  padding: 11px 20px;
+  border: 0;
+  border-radius: 25px;
+  background: var(--accent);
+  color: white;
+}
+
+.comment-status {
+  color: #aaa;
+  font-size: 11px;
+  min-height: 15px;
+}
+
+/* SAĞDAN AÇILAN YORUM EKRANI */
+
+.panel-shade {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(0,0,0,.75);
+  opacity: 0;
+  visibility: hidden;
+  transition: .25s;
+}
+
+.panel-shade.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.comment-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 310;
+  width: min(650px,100%);
+  background: #101010;
+  color: #eee;
+  border-left: 1px solid #303030;
+  transform: translateX(105%);
+  transition: transform .3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-panel.open {
+  transform: translateX(0);
+}
+
+.panel-header {
+  flex-shrink: 0;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 22px;
+  border-bottom: 1px solid #292929;
+}
+
+.panel-title {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.panel-close {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  color: #eee;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.panel-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.panel-quote {
+  padding: 18px;
+  margin-bottom: 25px;
+  background: rgba(165,27,61,.09);
+  border-left: 3px solid var(--accent);
+  color: #ddd;
+  font-size: 14px;
+  line-height: 1.9;
+  white-space: pre-wrap;
+}
+
+.panel-section-title {
+  font-size: 11px;
+  color: #aaa;
+  letter-spacing: 2px;
+  margin: 25px 0 10px;
+}
+
+.panel-comment-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-empty {
+  color: #888;
+  font-size: 13px;
+  padding: 20px 0;
+}
 
 .reply-box {
   display: none;
   margin-top: 10px;
+  gap: 7px;
 }
 
-.reply-box.open { display: flex; gap: 7px; }
+.reply-box.open {
+  display: flex;
+}
 
 .reply-box input {
   flex: 1;
@@ -554,52 +702,9 @@ button { -webkit-tap-highlight-color: transparent; }
   border: 0;
   background: transparent;
   color: var(--accent);
-  cursor: pointer;
 }
 
-.inline-comment-form {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 15px;
-  padding-top: 14px;
-  border-top: 1px solid #292929;
-}
-
-.inline-comment-form input,
-.inline-comment-form textarea {
-  width: 100%;
-  padding: 10px 13px;
-  color: #eee;
-  background: #202020;
-  border: 1px solid #393939;
-  border-radius: 8px;
-  outline: none;
-  font-size: 13px;
-}
-
-.inline-comment-form textarea {
-  min-height: 65px;
-  resize: vertical;
-}
-
-.inline-comment-form button {
-  align-self: flex-end;
-  padding: 9px 17px;
-  border: 0;
-  border-radius: 20px;
-  background: var(--accent);
-  color: white;
-  cursor: pointer;
-}
-
-.comment-status {
-  color: #aaa;
-  font-size: 11px;
-  min-height: 15px;
-}
-
-/* ALT İŞLEM ÇUBUĞU */
+/* ALT ÇUBUK */
 
 .reader-actions {
   position: fixed;
@@ -610,7 +715,7 @@ button { -webkit-tap-highlight-color: transparent; }
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 11px 12px calc(11px + env(safe-area-inset-bottom));
+  padding: 9px 12px calc(9px + env(safe-area-inset-bottom));
   background: rgba(8,8,8,.98);
   border-top: 1px solid var(--line);
 }
@@ -621,22 +726,45 @@ button { -webkit-tap-highlight-color: transparent; }
   align-items: center;
   justify-content: center;
   gap: 4px;
-  min-width: 55px;
+  min-width: 58px;
+  min-height: 48px;
   padding: 3px 8px;
   border: 0;
   background: transparent;
-  color: #ddd;
-  font-size: 11px;
-  cursor: pointer;
+  color: #bbb;
+  font-size: 10px;
+  transition: color .2s, transform .2s;
+}
+
+.reader-action:active {
+  transform: scale(.92);
 }
 
 .reader-action .action-icon {
-  font-size: 21px;
+  font-size: 26px;
   line-height: 1.2;
   color: var(--accent);
 }
 
-.reader-action.active { color: var(--accent); }
+.reader-action.active {
+  color: var(--accent);
+}
+
+/* OY BUTONU */
+
+.vote-action {
+  min-width: 70px;
+}
+
+.vote-action .action-icon {
+  font-size: 35px;
+}
+
+.vote-action .vote-total {
+  font-size: 11px;
+  color: #ddd;
+  font-weight: 700;
+}
 
 /* OKUMA İLERLEMESİ */
 
@@ -644,7 +772,7 @@ button { -webkit-tap-highlight-color: transparent; }
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 65px;
+  bottom: 75px;
   z-index: 100;
   padding: 12px 20px 15px;
   background: rgba(8,8,8,.97);
@@ -672,7 +800,6 @@ button { -webkit-tap-highlight-color: transparent; }
 
 .progress-info strong {
   color: var(--text);
-  font-weight: 600;
 }
 
 #progressSlider {
@@ -682,7 +809,6 @@ button { -webkit-tap-highlight-color: transparent; }
   margin: 0;
   accent-color: var(--accent);
   cursor: pointer;
-  touch-action: pan-x;
 }
 
 .progress-buttons {
@@ -698,13 +824,11 @@ button { -webkit-tap-highlight-color: transparent; }
   background: transparent;
   color: var(--text);
   font-size: 12px;
-  cursor: pointer;
   padding: 5px;
 }
 
 .progress-buttons button:disabled {
   opacity: .3;
-  cursor: default;
 }
 
 .progress-buttons span {
@@ -712,121 +836,172 @@ button { -webkit-tap-highlight-color: transparent; }
   color: var(--muted);
 }
 
-/* KALDIĞIN YERDEN DEVAM ET */
-
 .resume-reading {
   display: block;
   margin: 15px auto;
   padding: 12px 18px;
   color: #fff;
-  background: #a51b3d;
+  background: var(--accent);
   border: 0;
   border-radius: 25px;
-  cursor: pointer;
-  font: inherit;
 }
 
 /* KOPYALAMA ÖNLEMLERİ */
 
-body, .story, .chapter-header, .quote {
+body,
+.story,
+.chapter-header,
+.quote {
   -webkit-user-select: none;
   user-select: none;
 }
 
-.comment-modal,
-.comment-modal *,
-.inline-comments,
-.inline-comments * {
+.comment-panel,
+.comment-panel *,
+.chapter-panel,
+.chapter-panel * {
   -webkit-user-select: text;
   user-select: text;
 }
 
-/* MOBİL UYUMLULUK */
+/* MOBİL */
 
 @media(max-width:480px) {
-  .page { padding: 24px 22px 150px; }
+  .page {
+    padding: 24px 22px 125px;
+  }
 
   .topbar {
     gap: 10px;
     padding: 0 14px;
   }
 
-  .topbar-title { font-size: 13px; }
+  .topbar-title {
+    font-size: 13px;
+  }
 
-  .paragraph { padding-right: 38px; }
+  .paragraph {
+    padding-right: 38px;
+  }
 
-  .paragraph-wrap { padding-bottom: 27px; }
+  .paragraph-wrap {
+    padding-bottom: 27px;
+  }
 
   .settings-popup {
     top: 68px;
     padding: 20px 17px;
   }
 
-  .color-options { gap: 10px; }
-  .color-swatch { height: 52px; }
+  .color-options {
+    gap: 10px;
+  }
 
-  .chapter-menu { width: min(390px,88vw); }
+  .color-swatch {
+    height: 52px;
+  }
 
   .menu-cover {
     width: 135px;
     height: 190px;
   }
 
-  .reader-progress { bottom: 65px; }
+  .reader-progress {
+    bottom: 75px;
+  }
 
-  .inline-comments { padding: 14px; }
+  .panel-header {
+    min-height: 65px;
+  }
 
-  .reader-action { min-width: 48px; }
+  .panel-content {
+    padding: 18px;
+  }
+
+  .reader-action {
+    min-width: 48px;
+  }
 }
 </style>
 </head>
 <body>
 
-<!-- ÜST MENÜ -->
-
 <nav class="topbar" id="topbar">
   <a href="ringteki-son-dans.html" class="back-link">←</a>
-  <a href="ringteki-son-dans.html" class="topbar-title">RİNGTEKİ SON DANS</a>
 
-  <button class="settings-button" id="settingsButton" type="button">Aa</button>
-  <button class="menu-button" id="menuButton" type="button">☷</button>
+  <a href="ringteki-son-dans.html" class="topbar-title">
+    RİNGTEKİ SON DANS
+  </a>
+
+  <button class="settings-button" id="settingsButton" type="button">
+    Aa
+  </button>
+
+  <button class="menu-button" id="menuButton" type="button">
+    ☷
+  </button>
 </nav>
 
 <div class="menu-shade" id="menuShade"></div>
 
-<!-- KİTAP PROFİLİ VE BÖLÜMLER -->
-
 <nav class="chapter-menu" id="chapterMenu">
+
   <button class="menu-close" id="menuClose" type="button">×</button>
 
-  <img class="menu-cover" src="giris-gorsel.png" alt="Ringteki Son Dans kitap kapağı">
+  <img
+    class="menu-cover"
+    src="giris-gorsel.png"
+    alt="Ringteki Son Dans kitap kapağı"
+  >
 
   <div class="menu-book-title">RİNGTEKİ SON DANS</div>
   <div class="menu-author">kesmislalih</div>
 
   <div class="menu-divider"></div>
+
   <div class="menu-heading">BÖLÜMLER</div>
 
   <div id="chapterList">
-    <a href="#chapter-0" class="chapter-link active">0. BÖLÜM</a>
+    <a href="#chapter-0" class="chapter-link active">
+      0. BÖLÜM
+    </a>
   </div>
+
 </nav>
 
 <!-- YAZI AYARLARI -->
 
 <div class="settings-popup" id="settingsPopup">
+
   <div class="settings-section">
     <p>Sayfa rengi</p>
 
     <div class="color-options">
-      <button class="color-swatch" data-bg="#ffffff" data-text="#222222"
-        style="background:#fff" type="button"></button>
 
-      <button class="color-swatch active" data-bg="#080808" data-text="#f2f2f2"
-        style="background:#080808" type="button"></button>
+      <button
+        class="color-swatch"
+        data-bg="#ffffff"
+        data-text="#222222"
+        style="background:#fff"
+        type="button">
+      </button>
 
-      <button class="color-swatch" data-bg="#f4ead5" data-text="#332b22"
-        style="background:#f4ead5" type="button"></button>
+      <button
+        class="color-swatch active"
+        data-bg="#080808"
+        data-text="#f2f2f2"
+        style="background:#080808"
+        type="button">
+      </button>
+
+      <button
+        class="color-swatch"
+        data-bg="#f4ead5"
+        data-text="#332b22"
+        style="background:#f4ead5"
+        type="button">
+      </button>
+
     </div>
   </div>
 
@@ -838,18 +1013,26 @@ body, .story, .chapter-header, .quote {
       <button id="fontIncrease" type="button">Aa+</button>
     </div>
   </div>
+
 </div>
 
 <!-- ANA SAYFA -->
 
 <main class="page">
 
+  <!-- KİTAP GİRİŞİ -->
+
   <section class="intro">
+
     <p class="dedication">
       Küçükken gözlerini kapayınca oyuncaklarının uyanacağını sananlara...
     </p>
 
-    <img class="intro-image" src="giris-gorsel.png" alt="Ringteki Son Dans">
+    <img
+      class="intro-image"
+      src="giris-gorsel.png"
+      alt="Ringteki Son Dans"
+    >
 
     <div class="book-title">
       <small>RİNGTEKİ</small>
@@ -869,6 +1052,7 @@ body, .story, .chapter-header, .quote {
         title="Spotify müzik oynatıcı">
       </iframe>
     </div>
+
   </section>
 
   <!-- SIFIRINCI BÖLÜM -->
@@ -876,8 +1060,13 @@ body, .story, .chapter-header, .quote {
   <section class="chapter" id="chapter-0">
 
     <header class="chapter-header">
-      <div class="chapter-number">SIFIRINCI BÖLÜM</div>
+
+      <div class="chapter-number">
+        SIFIRINCI BÖLÜM
+      </div>
+
       <h2>RİNGTEKİ SON DANS</h2>
+
     </header>
 
     <blockquote class="quote">
@@ -910,328 +1099,440 @@ body, .story, .chapter-header, .quote {
       </strong>
     </blockquote>
 
-    <!-- HİKÂYE METNİ -->
+    <!-- HİKÂYE METNİ TEK BİR ALANDA -->
 
     <div class="story" id="storyContent">
 
-      <p class="paragraph">Masallar gerçekti, dünyalar apayrıydı. Her masal her dünyada gerçekleşmezdi. Sihirli peri tozları, süpürgesiyle uçan cadılar, özel güce sahip kahramanlar bir hayalden ibaretti. Onlar yalnızca hayal dünyasına aitti. Gerçek olan tek şey hayal kırıklığından başka bir şey değildi.</p>
+      <!--
+      HİKÂYENİN TÜM PARAGRAFLARI BURADA TEK TEK BULUNACAK.
+<div class="story" id="storyContent">
 
-      <p class="paragraph">Aşk vardı bir de. Masalların gerçekleşme imkânıyla aynı masada oturan. O da masallar gibi gerçeklik dışı, hayal kırıklığından oluşan bir boşluktu.</p>
+<p class="paragraph">Masallar gerçekti, dünyalar apayrıydı. Her masal her dünyada gerçekleşmezdi. Sihirli peri tozları, süpürgesiyle uçan cadılar, özel güce sahip kahramanlar bir hayalden ibaretti. Onlar yalnızca hayal dünyasına aitti. Gerçek olan tek şey hayal kırıklığından başka bir şey değildi.</p>
 
-      <p class="paragraph">Ben bu masalın müzik kutusunda sadece etrafında dönmeye mahûm edilmiş baleriniydim. Beni tanımlayan süslü sözcükler, tabirler veya vasıflar yoktu. Yalnızca başkaları tarafından tek bir düğmeyle hayatı şekillendirilen oyuncak bir bebektim.</p>
+<p class="paragraph">Aşk vardı bir de. Masalların gerçekleşme imkânıyla aynı masada oturan. O da masallar gibi gerçeklik dışı, hayal kırıklığından oluşan bir boşluktu.</p>
 
-      <p class="paragraph">Üzerimde bir ağırlık hissediyordum. Yük olarak değil, bedensel bir ağırlık. Göz kapaklarımı bile açmakta zorlanıyordum. Neler oluyordu?</p>
+<p class="paragraph">Ben bu masalın müzik kutusunda sadece etrafında dönmeye mahûm edilmiş baleriniydim. Beni tanımlayan süslü sözcükler, tabirler veya vasıflar yoktu. Yalnızca başkaları tarafından tek bir düğmeyle hayatı şekillendirilen oyuncak bir bebektim.</p>
 
-      <p class="paragraph">İşitme algılarım yavaş yavaş açılmaya başladığında çocuk sesleri duydum. Acıyla bağıran çocuk sesleri...</p>
+<p class="paragraph">Üzerimde bir ağırlık hissediyordum. Yük olarak değil, bedensel bir ağırlık. Göz kapaklarımı bile açmakta zorlanıyordum. Neler oluyordu?</p>
 
-      <p class="paragraph">Yarı yarıya açık gözlerimin görüş açısı pusluydu. Gözlerimi birkaç kez kırpıştırıp düzeltmeye çalıştım.</p>
+<p class="paragraph">İşitme algılarım yavaş yavaş açılmaya başladığında çocuk sesleri duydum. Acıyla bağıran çocuk sesleri...</p>
 
-      <p class="paragraph">Her an kapanabilecek olan yarı açık gözlerim bir çocuk çığlığıyla aniden açıldı. Tavanla birkaç saniyeliğine bakışıp bakışlarımı etrafımda gezdirdim. Depoya benzer bir odada, yerde uzanmış bir vaziyetteydim.</p>
+<p class="paragraph">Yarı yarıya açık gözlerimin görüş açısı pusluydu. Gözlerimi birkaç kez kırpıştırıp düzeltmeye çalıştım.</p>
 
-      <p class="paragraph">İçeriden çocuk sesleri gelmeye devam ederken yattığım yerden kalkmaya çalıştım ama vücudumda feci bir ağrı vardı. Belim mi tutulmuştu?</p>
+<p class="paragraph">Her an kapanabilecek olan yarı açık gözlerim bir çocuk çığlığıyla aniden açıldı. Tavanla birkaç saniyeliğine bakışıp bakışlarımı etrafımda gezdirdim. Depoya benzer bir odada, yerde uzanmış bir vaziyetteydim.</p>
 
-      <p class="paragraph">Uzandığım yere baktığımda bir zeminde yattığımı fark ettim. "İnsan bir yatağın üstüne atardı! Yere mi atılır?!" Kime kızdığımı bile bilmeden laf edip sırtımı yerden hafifçe kaldırarak üzerime baktım. Üzerimdeki beyaz balerin elbisem yerdeki tozlardan kirlenmişti. Rengi griye dönmüştü.</p>
+<p class="paragraph">İçeriden çocuk sesleri gelmeye devam ederken yattığım yerden kalkmaya çalıştım ama vücudumda feci bir ağrı vardı. Belim mi tutulmuştu?</p>
 
-      <p class="paragraph">Başımı yan tarafıma çevirmek gibi bir hata yaptım. Gördüğümle şaşkınlıkla dudaklarım aralandı. Onunla mı gelmiştim? Olamaz...</p>
+<p class="paragraph">Uzandığım yere baktığımda bir zeminde yattığımı fark ettim. "İnsan bir yatağın üstüne atardı! Yere mi atılır?!" Kime kızdığımı bile bilmeden laf edip sırtımı yerden hafifçe kaldırarak üzerime baktım. Üzerimdeki beyaz balerin elbisem yerdeki tozlardan kirlenmişti. Rengi griye dönmüştü.</p>
 
-      <p class="paragraph">Yanımdakini uyandırmamaya çalışarak tam kalkacakken bacağımdan tutuldum.</p>
+<p class="paragraph">Başımı yan tarafıma çevirmek gibi bir hata yaptım. Gördüğümle şaşkınlıkla dudaklarım aralandı. Onunla mı gelmiştim? Olamaz...</p>
 
-      <p class="paragraph">"Nereye aptal balerin?"</p>
+<p class="paragraph">Yanımdakini uyandırmamaya çalışarak tam kalkacakken bacağımdan tutuldum.</p>
 
-      <p class="paragraph">Yakalanmanın siniriyle ona bakarken eline tekme atıp ayak bileğimdeki elini savurdum. "Gezmeye. Gelmek ister misin?"</p>
+<p class="paragraph">"Nereye aptal balerin?"</p>
 
-      <p class="paragraph">"Çok iyi olur da... Burası neresi?" Gevşek gevşek konuştuğunda ağzına bir şamar indirmeyi o kadar istemiştim ki...</p>
+<p class="paragraph">Yakalanmanın siniriyle ona bakarken eline tekme atıp ayak bileğimdeki elini savurdum. "Gezmeye. Gelmek ister misin?"</p>
 
-      <p class="paragraph">"Dünya'ya gelmişiz geri zekalı!" Ağzımdan çıkan kelimelerle gözlerim fal taşı gibi açıldı. Ben konuşmayı nereden biliyordum?</p>
+<p class="paragraph">"Çok iyi olur da... Burası neresi?" Gevşek gevşek konuştuğunda ağzına bir şamar indirmeyi o kadar istemiştim ki...</p>
 
-      <p class="paragraph">O da daha az önceki kelimelerini fark ettiğinde ufak bir şok geçirdi. "Bana elçilerin beni seninle buraya gönderdiğini söyleme sakın!"</p>
+<p class="paragraph">"Dünya'ya gelmişiz geri zekalı!" Ağzımdan çıkan kelimelerle gözlerim fal taşı gibi açıldı. Ben konuşmayı nereden biliyordum?</p>
 
-      <p class="paragraph">Elçiler... Tabii ya! Onlar bizi seçmişti. Gözlerimi ona kenetlediğimde yüzümde ciddi bir ifade vardı. "Yok, ben hologramım. Birazdan gideceğim! Yanına başka biri gelecek."</p>
+<p class="paragraph">O da daha az önceki kelimelerini fark ettiğinde ufak bir şok geçirdi. "Bana elçilerin beni seninle buraya gönderdiğini söyleme sakın!"</p>
 
-      <p class="paragraph">Büyük bir rahatlamayla "Heh, iyi o zaman. Çekilmezdin yoksa. İyi oldu bu." Dedi.</p>
+<p class="paragraph">Elçiler... Tabii ya! Onlar bizi seçmişti. Gözlerimi ona kenetlediğimde yüzümde ciddi bir ifade vardı. "Yok, ben hologramım. Birazdan gideceğim! Yanına başka biri gelecek."</p>
 
-      <p class="paragraph">Bale ayakkabılarıyla kapattığım ayağımı sanki bale yapıyorcasına kaldırıp sertçe karnına geçirdim. "Bunun da ne kadarı hologram, ona sen karar verirsin!"</p>
+<p class="paragraph">Büyük bir rahatlamayla "Heh, iyi o zaman. Çekilmezdin yoksa. İyi oldu bu." Dedi.</p>
 
-      <p class="paragraph">"Lavinia," dedi sinirle soluyarak. "Kaşınma!"</p>
+<p class="paragraph">Bale ayakkabılarıyla kapattığım ayağımı sanki bale yapıyorcasına kaldırıp sertçe karnına geçirdim. "Bunun da ne kadarı hologram, ona sen karar verirsin!"</p>
 
-      <p class="paragraph">Yüzümdeki küçümseme ile ona baktım. Bana hiçbir şey yapamazdı. "Kaşınırsam ne olur?"</p>
+<p class="paragraph">"Lavinia," dedi sinirle soluyarak. "Kaşınma!"</p>
 
-      <p class="paragraph">"Müzik kutuna hapsederim seni!"</p>
+<p class="paragraph">Yüzümdeki küçümseme ile ona baktım. Bana hiçbir şey yapamazdı. "Kaşınırsam ne olur?"</p>
 
-      <p class="paragraph">Verdiği cevaba hiddetlenerek "Denesene!" diye daha da diklendim ona. Hatta yetmedi, üzerine atlayıp kısa saçlarını çekiştirdim. "Oha!" Benden böyle bir atak beklemediği için sinire karışık şaşkınca bana bağırdı. "Bıraksana kızım, acıyor!"</p>
+<p class="paragraph">"Müzik kutuna hapsederim seni!"</p>
 
-      <p class="paragraph">Daha da hırslanarak çekiştirmeye devam ettim saçlarını. "Müzik kutuma hapsedeceksin beni ha? Seni o kum torbana gömerim!"</p>
+<p class="paragraph">Verdiği cevaba hiddetlenerek "Denesene!" diye daha da diklendim ona. Hatta yetmedi, üzerine atlayıp kısa saçlarını çekiştirdim. "Oha!" Benden böyle bir atak beklemediği için sinire karışık şaşkınca bana bağırdı. "Bıraksana kızım, acıyor!"</p>
 
-      <p class="paragraph">Tehdidime karşılık daha az önceki dediklerimi taklit ederek "Denesene!" deyip beni birden altına aldı. Altındayken ona bakakaldım.</p>
+<p class="paragraph">Daha da hırslanarak çekiştirmeye devam ettim saçlarını. "Müzik kutuma hapsedeceksin beni ha? Seni o kum torbana gömerim!"</p>
 
-      <p class="paragraph">Ellerimi çıplak göğsüne koyup "Arel! Çekil üzerimden hayvan! Goril gibisin!" diye çığırdım.</p>
+<p class="paragraph">Tehdidime karşılık daha az önceki dediklerimi taklit ederek "Denesene!" deyip beni birden altına aldı. Altındayken ona bakakaldım.</p>
 
-      <p class="paragraph">Onu her zaman bir gorile benzettiğimden ve bunu hep dile getirdiğimden dolayı alınganlık dahi yapmadı. Hatta "Kaslarımdandır," dedi böbürlenerek.</p>
+<p class="paragraph">Ellerimi çıplak göğsüne koyup "Arel! Çekil üzerimden hayvan! Goril gibisin!" diye çığırdım.</p>
 
-      <p class="paragraph">Yüzümü buruşturdum. "Gazların olmasın da..."</p>
+<p class="paragraph">Onu her zaman bir gorile benzettiğimden ve bunu hep dile getirdiğimden dolayı alınganlık dahi yapmadı. Hatta "Kaslarımdandır," dedi böbürlenerek.</p>
 
-      <p class="paragraph">"Bak, şu durumda bile dır dır ediyor!"</p>
+<p class="paragraph">Yüzümü buruşturdum. "Gazların olmasın da..."</p>
 
-      <p class="paragraph">"Çekil üstümden!" Onu üzerimden itmeye çalıştığımda bir ses ile kaskatı kesildik ikimiz de.</p>
+<p class="paragraph">"Bak, şu durumda bile dır dır ediyor!"</p>
 
-      <p class="paragraph">"Ağlama! Ağlamayın Cihangir'in piçleri!"</p>
+<p class="paragraph">"Çekil üstümden!" Onu üzerimden itmeye çalıştığımda bir ses ile kaskatı kesildik ikimiz de.</p>
 
-      <p class="paragraph">Birinin yüksek sesle azarlayan sesini duyduğumuzda Arel'le göz göze geldik. O sese eşlik eden çocuk ağlama sesleri de vardı.</p>
+<p class="paragraph">"Ağlama! Ağlamayın Cihangir'in piçleri!"</p>
 
-      <p class="paragraph">Arel üstümden çekilmeyi düşünmüyor olmalıydı ki hâlâ üzerimdeydi. Başını yukarı tarafa çevirmiş, yukarıya çıkan merdiven tarafından gelen sesleri anlamaya çalışıyordu.</p>
+<p class="paragraph">Birinin yüksek sesle azarlayan sesini duyduğumuzda Arel'le göz göze geldik. O sese eşlik eden çocuk ağlama sesleri de vardı.</p>
 
-      <p class="paragraph">Ellerim omzunu bulduğunda üzerimden ittim. Bu sefer dikkati dağınık olduğu için kolayca kalktı üstümden.</p>
+<p class="paragraph">Arel üstümden çekilmeyi düşünmüyor olmalıydı ki hâlâ üzerimdeydi. Başını yukarı tarafa çevirmiş, yukarıya çıkan merdiven tarafından gelen sesleri anlamaya çalışıyordu.</p>
 
-      <p class="paragraph">Ben de ayağa kalkıp üstümü çırptım. Bana ağlama sesi gelen yeri işaret ettiğinde başımı olumlu anlamda salladım. Tam önden gideceğim esnada kolundan tutup beni arkasına çekti. Çıplak sırt kaslarıyla göz göze geldiğimde afalladım.</p>
+<p class="paragraph">Ellerim omzunu bulduğunda üzerimden ittim. Bu sefer dikkati dağınık olduğu için kolayca kalktı üstümden.</p>
 
-      <p class="paragraph">"Arkada kal, çok gürültülü yürüyorsun," dedi fısıltıyla.</p>
+<p class="paragraph">Ben de ayağa kalkıp üstümü çırptım. Bana ağlama sesi gelen yeri işaret ettiğinde başımı olumlu anlamda salladım. Tam önden gideceğim esnada kolundan tutup beni arkasına çekti. Çıplak sırt kaslarıyla göz göze geldiğimde afalladım.</p>
 
-      <p class="paragraph">Gözlerimi belerttim. Ben mi gürültülü yürüyordum? Sırtına sert ama sessiz bir yumruk geçirdim. "Balerin olan benim salak! Parmak ucumla yürüyorum. Nasıl sesli olabilirim?" Kısık sesle ona kızdığımda birşeyler homurdandı.</p>
+<p class="paragraph">"Arkada kal, çok gürültülü yürüyorsun," dedi fısıltıyla.</p>
 
-      <p class="paragraph">O önden sessizce yürüyüp merdivenlere çıkmaya başladı. Ben de parmak ucumla yürüyerek arkasında yer aldım. Başını kaldırıp yukarıdan gelen boğuk sesleri anlamaya çalıştı.</p>
+<p class="paragraph">Gözlerimi belerttim. Ben mi gürültülü yürüyordum? Sırtına sert ama sessiz bir yumruk geçirdim. "Balerin olan benim salak! Parmak ucumla yürüyorum. Nasıl sesli olabilirim?" Kısık sesle ona kızdığımda birşeyler homurdandı.</p>
 
-      <p class="paragraph">Sonunda merdivenleri çıkmayı bitirdiğimizde koridora çıktı yolumuz. Karşımızda iki tane oda gördüğümüzde birinin kapısı açık, diğerininki kapalıydı.</p>
+<p class="paragraph">O önden sessizce yürüyüp merdivenlere çıkmaya başladı. Ben de parmak ucumla yürüyerek arkasında yer aldım. Başını kaldırıp yukarıdan gelen boğuk sesleri anlamaya çalıştı.</p>
 
-      <p class="paragraph">Açık olan kapıdan çocuk ve adamların sesi geliyordu fakat ikinci odadan hiçbir ses gelmiyordu. O kapıyı açma isteğiyle tutuşup iyice meraklanmıştım.</p>
+<p class="paragraph">Sonunda merdivenleri çıkmayı bitirdiğimizde koridora çıktı yolumuz. Karşımızda iki tane oda gördüğümüzde birinin kapısı açık, diğerininki kapalıydı.</p>
 
-      <p class="paragraph">"Sakın," Arel'in uyaran sesiyle ona döndüm.</p>
+<p class="paragraph">Açık olan kapıdan çocuk ve adamların sesi geliyordu fakat ikinci odadan hiçbir ses gelmiyordu. O kapıyı açma isteğiyle tutuşup iyice meraklanmıştım.</p>
 
-      <p class="paragraph">"Ne?"</p>
+<p class="paragraph">"Sakın," Arel'in uyaran sesiyle ona döndüm.</p>
 
-      <p class="paragraph">"O odaya girmeye kalkışma bile."</p>
+<p class="paragraph">"Ne?"</p>
 
-      <p class="paragraph">Bu adam her şeyi anlamak zorunda mıydı? Düşmanını iyi tanı lafını sahiplenmiş gibiydi! "Girmeyecektim zaten," diyerek ona yalan söyleyip gözlerimi ondan kaçırdım.</p>
+<p class="paragraph">"O odaya girmeye kalkışma bile."</p>
 
-      <p class="paragraph">"Çok belli girmek istemediğin." dedi imayla.</p>
+<p class="paragraph">Bu adam her şeyi anlamak zorunda mıydı? Düşmanını iyi tanı lafını sahiplenmiş gibiydi! "Girmeyecektim zaten," diyerek ona yalan söyleyip gözlerimi ondan kaçırdım.</p>
 
-      <p class="paragraph">Benimle uğraşmayı bırakıp sessiz ve gizlice açık kapının ardından bakmaya başladı. İçeride her ne gördüyse eli arkaya doğru havalandı, sanki koluyla bana kalkan yapıp beni korumaya çalışır gibi. Bu yaptığıyla daha da meraklanarak başımı uzattım ama cüssesinden pek bir şey göremiyordum.</p>
+<p class="paragraph">"Çok belli girmek istemediğin." dedi imayla.</p>
 
-      <p class="paragraph">"Şu omuzlarını çek," diye sızlandım fısıldayarak. "Hiçbir şey göremiyorum." Gerçekten hiçbir şey göremiyordum!</p>
+<p class="paragraph">Benimle uğraşmayı bırakıp sessiz ve gizlice açık kapının ardından bakmaya başladı. İçeride her ne gördüyse eli arkaya doğru havalandı, sanki koluyla bana kalkan yapıp beni korumaya çalışır gibi. Bu yaptığıyla daha da meraklanarak başımı uzattım ama cüssesinden pek bir şey göremiyordum.</p>
 
-      <p class="paragraph">Kısa bir an bana dönüp çatık kaşların altından baktı. Ne? Dercesine başımı salladığımda parmağını dudağına getirdi. Bu yaptığıyla gözlerimi devirdiğimde önüne döndü. Birkaç dakika daha içeriyi izleyip "Lavinia," diye mırıldandığında "Hı?" diyerek karşılık verdim.</p>
+<p class="paragraph">"Şu omuzlarını çek," diye sızlandım fısıldayarak. "Hiçbir şey göremiyorum." Gerçekten hiçbir şey göremiyordum!</p>
 
-      <p class="paragraph">"İçerde dört tane adam var."</p>
+<p class="paragraph">Kısa bir an bana dönüp çatık kaşların altından baktı. Ne? Dercesine başımı salladığımda parmağını dudağına getirdi. Bu yaptığıyla gözlerimi devirdiğimde önüne döndü. Birkaç dakika daha içeriyi izleyip "Lavinia," diye mırıldandığında "Hı?" diyerek karşılık verdim.</p>
 
-      <p class="paragraph">Anlatmak istediğini anlamayarak kafa karışıklığı ile ona baktım. "Sen boksörsün, hepsini dövebilirsin."</p>
+<p class="paragraph">"İçerde dört tane adam var."</p>
 
-      <p class="paragraph">"Ben döverim zaten ama," dediğinde duraksadı. Bakışlarını gözlerime çıkardı. "Hepsi benim üzerime gelmez. Senin üzerine de gelen olur."</p>
+<p class="paragraph">Anlatmak istediğini anlamayarak kafa karışıklığı ile ona baktım. "Sen boksörsün, hepsini dövebilirsin."</p>
 
-      <p class="paragraph">Tereddütle ona bakıp dudaklarımı araladım. Umarım aklıma geleni söylemezdi. "Ne yapmamı bekliyorsun?"</p>
+<p class="paragraph">"Ben döverim zaten ama," dediğinde duraksadı. Bakışlarını gözlerime çıkardı. "Hepsi benim üzerime gelmez. Senin üzerine de gelen olur."</p>
 
-      <p class="paragraph">Bana koridorun en sonunu gösterip "Orada kal. Hatta bulabilirsen saklanacak yer, oraya saklan." dedi.</p>
+<p class="paragraph">Tereddütle ona bakıp dudaklarımı araladım. Umarım aklıma geleni söylemezdi. "Ne yapmamı bekliyorsun?"</p>
 
-      <p class="paragraph">"Hayatta olmaz!" Koridorun sonu dar ve karanlıktı. En büyük iki korkumun buluştuğu yerde asla bulunamazdım. Ayrıca içeride çocuklar vardı. O, adamlarla boğuşurken adamlardan biri çocuklara bir şey yapabilirdi! Hiddetle bağırdığımda içerden "Kim var lan orada!" diye bir ses yükseldi.</p>
+<p class="paragraph">Bana koridorun en sonunu gösterip "Orada kal. Hatta bulabilirsen saklanacak yer, oraya saklan." dedi.</p>
 
-      <p class="paragraph">Telaşla Arel'e baktığımda beni hemen arkasına aldı. Beni azarlamayı sonraya bırakarak önüme siper oldu. Kapının eşiğinde saklanarak adamların çıkmasını bekliyorduk. "Kim var orada, dedim!"</p>
+<p class="paragraph">"Hayatta olmaz!" Koridorun sonu dar ve karanlıktı. En büyük iki korkumun buluştuğu yerde asla bulunamazdım. Ayrıca içeride çocuklar vardı. O, adamlarla boğuşurken adamlardan biri çocuklara bir şey yapabilirdi! Hiddetle bağırdığımda içerden "Kim var lan orada!" diye bir ses yükseldi.</p>
 
-      <p class="paragraph">Adım sesleri git gide yaklaşırken beni tamamen arkasına aldı. İstemsizce nefesimi tutarken kapının yakınlarında siyah ayakkabılar kadrajımıza girince dizlerimin titrediğini hissettim. Bu refleksimle hareket edeceğimi sanmış olmalı ki "Bekle," diye mırıldandı. Sakinleşmek adına derin ama sessiz nefesler almaya başladım.</p>
+<p class="paragraph">Telaşla Arel'e baktığımda beni hemen arkasına aldı. Beni azarlamayı sonraya bırakarak önüme siper oldu. Kapının eşiğinde saklanarak adamların çıkmasını bekliyorduk. "Kim var orada, dedim!"</p>
 
-      <p class="paragraph">Adam kapıdan dışarı çıktığında etrafını kontrol ettiği an Arel adamın yakasından kavrayıp kendine çekti. Esmer, kahve gözlü adamın ağzını kapatıp boştaki elini kafasına, adamın dudağının üzerindeki elini çenesinin altına getirdi. Çevik hareketlerle ki elini farklı yöne çevirip adamın boynunu kırdı. Adamın dudaklarından ince ama acı bir inleme sesi geldiğinde adamı bıraktı. Adam yere düştüğünde içeriden "Bekir?" Diye bir ses duyuldu.</p>
+<p class="paragraph">Adım sesleri git gide yaklaşırken beni tamamen arkasına aldı. İstemsizce nefesimi tutarken kapının yakınlarında siyah ayakkabılar kadrajımıza girince dizlerimin titrediğini hissettim. Bu refleksimle hareket edeceğimi sanmış olmalı ki "Bekle," diye mırıldandı. Sakinleşmek adına derin ama sessiz nefesler almaya başladım.</p>
 
-      <p class="paragraph">"Kaldı üç." diye mırıldandığında yerde yatan adama korkuyla bakıp yutkundum. Korkunç görünüyordu, ikisi de.</p>
+<p class="paragraph">Adam kapıdan dışarı çıktığında etrafını kontrol ettiği an Arel adamın yakasından kavrayıp kendine çekti. Esmer, kahve gözlü adamın ağzını kapatıp boştaki elini kafasına, adamın dudağının üzerindeki elini çenesinin altına getirdi. Çevik hareketlerle ki elini farklı yöne çevirip adamın boynunu kırdı. Adamın dudaklarından ince ama acı bir inleme sesi geldiğinde adamı bıraktı. Adam yere düştüğünde içeriden "Bekir?" Diye bir ses duyuldu.</p>
 
-      <p class="paragraph">Ona olan değişik bakışlarımı görmüş olmalı ki boğazını temizleyip gözlerini kaçırdı. Nefes hızını ayarlayıp tekrar çevirdi bakışlarını. "Ben içeri gireceğim, sen buradan hiçbir yere ayrılmayacaksın. Hatta benim sesim kesildiğinde veya Lavinia diye bağırdığımda dön arkanı ve kaç."</p>
+<p class="paragraph">"Kaldı üç." diye mırıldandığında yerde yatan adama korkuyla bakıp yutkundum. Korkunç görünüyordu, ikisi de.</p>
 
-      <p class="paragraph">İtiraz istemeyen sesini duyduğumda çenemi dikleştirdim. "Senin burada ölmene göz yumacağımı mı sanıyorsun?" dediğimde güldü. Acı bir gülüştü. "Sanki daha önce öldürmemiş gibi diyor ya bir de," Mırıldanarak söylediklerini duymadığımı sandı. Anlamlandıramadığım bazı şeylerden dolayı "O ne demek?" dedim merakla.</p>
+<p class="paragraph">Ona olan değişik bakışlarımı görmüş olmalı ki boğazını temizleyip gözlerini kaçırdı. Nefes hızını ayarlayıp tekrar çevirdi bakışlarını. "Ben içeri gireceğim, sen buradan hiçbir yere ayrılmayacaksın. Hatta benim sesim kesildiğinde veya Lavinia diye bağırdığımda dön arkanı ve kaç."</p>
 
-      <p class="paragraph">"Boşversene," dedi bu sefer umursamazlıkla. Başını içeri uzatıp girmeye kalkışacakken şortunun lastiğinden tuttum.</p>
+<p class="paragraph">İtiraz istemeyen sesini duyduğumda çenemi dikleştirdim. "Senin burada ölmene göz yumacağımı mı sanıyorsun?" dediğimde güldü. Acı bir gülüştü. "Sanki daha önce öldürmemiş gibi diyor ya bir de," Mırıldanarak söylediklerini duymadığımı sandı. Anlamlandıramadığım bazı şeylerden dolayı "O ne demek?" dedim merakla.</p>
 
-      <p class="paragraph">Üst tarafına hiçbir şey giymemişti. Üzeri çıplaktı. Onu durdurabilmek için şortundan tutmak zorunda kalmıştım.</p>
+<p class="paragraph">"Boşversene," dedi bu sefer umursamazlıkla. Başını içeri uzatıp girmeye kalkışacakken şortunun lastiğinden tuttum.</p>
 
-      <p class="paragraph">"Sen manyak mısın?" Bana baktığında şortunu tutup çekmemin şaşkınlığıyla sormuştu bunu. "Aklındakilere beni alet etme, aptal balerin."</p>
+<p class="paragraph">Üst tarafına hiçbir şey giymemişti. Üzeri çıplaktı. Onu durdurabilmek için şortundan tutmak zorunda kalmıştım.</p>
 
-      <p class="paragraph">Gözlerim yuvarlarından çıkacakmış gibi büyüdü. "Pislik! Öyle şeyler düşünmem bile ben!"</p>
+<p class="paragraph">"Sen manyak mısın?" Bana baktığında şortunu tutup çekmemin şaşkınlığıyla sormuştu bunu. "Aklındakilere beni alet etme, aptal balerin."</p>
 
-      <p class="paragraph">"Peki o zaman, şortumun lastiğini tutup yetmezmiş gibi bir de çekerken ne düşünüyordun ayıptır sorması?"</p>
+<p class="paragraph">Gözlerim yuvarlarından çıkacakmış gibi büyüdü. "Pislik! Öyle şeyler düşünmem bile ben!"</p>
 
-      <p class="paragraph">"Bir soru soracaktım!"</p>
+<p class="paragraph">"Peki o zaman, şortumun lastiğini tutup yetmezmiş gibi bir de çekerken ne düşünüyordun ayıptır sorması?"</p>
 
-      <p class="paragraph">"Sor." dedi aceleyle. İçeri gitmek için can atıyordu. Adamların da sesi gitmiş, çocukların ağlayışları kesilmişti. Bu, merak duygumuzu daha da kamçılıyordu.</p>
+<p class="paragraph">"Bir soru soracaktım!"</p>
 
-      <p class="paragraph">"O içerideki çocuklar... Onlar mı?"</p>
+<p class="paragraph">"Sor." dedi aceleyle. İçeri gitmek için can atıyordu. Adamların da sesi gitmiş, çocukların ağlayışları kesilmişti. Bu, merak duygumuzu daha da kamçılıyordu.</p>
 
-      <p class="paragraph">Hemen anladı neyden bahsettiğimi. "Bilmiyorum, izin verirsen bakacağım."</p>
+<p class="paragraph">"O içerideki çocuklar... Onlar mı?"</p>
 
-      <p class="paragraph">Benim onayıma gerek kalmadan kendi tam girecekken onu tekrar tuttum. Fakat bu sefer kolundan.</p>
+<p class="paragraph">Hemen anladı neyden bahsettiğimi. "Bilmiyorum, izin verirsen bakacağım."</p>
 
-      <p class="paragraph">İçeri girmesi için onu tekrar engellediğim için sinirle bana döndü. "Rahat bıraksana beni bi'!"</p>
+<p class="paragraph">Benim onayıma gerek kalmadan kendi tam girecekken onu tekrar tuttum. Fakat bu sefer kolundan.</p>
 
-      <p class="paragraph">Yükselişiyle başımı kaldırıp ona baktım. Amacı benim ayarlarımı alt-üst etmekse çok yakındı. "Bir daha," dedim uyarırcasına. İşaret parmağımı da sallarken "Bir daha bana o bir şeye benzemeyen sesini yükseltirsen seni buna çok pişman ederim." diye tehdit ettim onu.</p>
+<p class="paragraph">İçeri girmesi için onu tekrar engellediğim için sinirle bana döndü. "Rahat bıraksana beni bi'!"</p>
 
-      <p class="paragraph">"Defol git şimdi nereye gidiyorsan, bana ne!"</p>
+<p class="paragraph">Yükselişiyle başımı kaldırıp ona baktım. Amacı benim ayarlarımı alt-üst etmekse çok yakındı. "Bir daha," dedim uyarırcasına. İşaret parmağımı da sallarken "Bir daha bana o bir şeye benzemeyen sesini yükseltirsen seni buna çok pişman ederim." diye tehdit ettim onu.</p>
 
-      <p class="paragraph">Bana arkasını dönüp bu sefer gerçekten içeri girdiğinde stresten dudaklarımı yemeye başladım. Çünkü ardından kapıyı kapatmıştı. İki adım gerileyerek kulağımı duvara yaslayıp içerideki sesleri dinlemeye çalıştım.</p>
+<p class="paragraph">"Defol git şimdi nereye gidiyorsan, bana ne!"</p>
 
-      <p class="paragraph">Boğuk sesler harici hiçbir şey duymazken kafamı yasladığım duvarın oradan kapısı kapalı o gizemli odayı hatırladım. Odağım o odaya kaydığında engel olamadığım dürtüyle oraya gitme isteği ile tutuştum.</p>
-            <p class="paragraph">Kulağımı usulca duvardan ayırdım. O kapıyla bakışırken içimi yiyip bitiren sorular beni deli ediyordu. Oraya hemen bakıp gelsem bir şey olmazdı değil mi?</p>
+<p class="paragraph">Bana arkasını dönüp bu sefer gerçekten içeri girdiğinde stresten dudaklarımı yemeye başladım. Çünkü ardından kapıyı kapatmıştı. İki adım gerileyerek kulağımı duvara yaslayıp içerideki sesleri dinlemeye çalıştım.</p>
+<p class="paragraph">Boğuk sesler harici hiçbir şey duymazken kafamı yasladığım duvarın oradan kapısı kapalı o gizemli odayı hatırladım. Odağım o odaya kaydığında engel olamadığım dürtüyle oraya gitme isteği ile tutuştum.</p>
 
-      <p class="paragraph">Olmazdı. Kendi vardığım kanıyla o kapıya ilerleyip önünde durdum. Susup yalnızca içeriyi dinlemeye çalıştım. İçeriden yalnızca tekrar eden tik tak sesleri geliyordu. Sanki bir saat vardı ve zaman akıp gittikçe doğuracağı felakete daha da yaklaşıyordu.</p>
+<p class="paragraph">Kulağımı usulca duvardan ayırdım. O kapıyla bakışırken içimi yiyip bitiren sorular beni deli ediyordu. Oraya hemen bakıp gelsem bir şey olmazdı değil mi?</p>
 
-      <p class="paragraph">Can havliyle kapıyı açtım. İçeriden insan sesi duymamıştım. İçeri girdiğim an odayı kaplayan bilgisayar ve sayaçlar görmüştüm. Yutkunarak açık olan her bir ekranda gezindi gözlerim.</p>
+<p class="paragraph">Olmazdı. Kendi vardığım kanıyla o kapıya ilerleyip önünde durdum. Susup yalnızca içeriyi dinlemeye çalıştım. İçeriden yalnızca tekrar eden tik tak sesleri geliyordu. Sanki bir saat vardı ve zaman akıp gittikçe doğuracağı felakete daha da yaklaşıyordu.</p>
 
-      <p class="paragraph">Sayaçların üzerinde 17:42 yazıyordu ve her saniye geçtiği sürede azalıyordu sayaçtaki sayılar. Gözlerim burayı biraz daha tarayınca yerde bir düzenekle karşılaştım. Dinamite benzer şeylerin üzerinde de aynı sayılar yazıyordu ve bu açıkçası benim daha fazla paniklememe neden oluyordu.</p>
+<p class="paragraph">Can havliyle kapıyı açtım. İçeriden insan sesi duymamıştım. İçeri girdiğim an odayı kaplayan bilgisayar ve sayaçlar görmüştüm. Yutkunarak açık olan her bir ekranda gezindi gözlerim.</p>
 
-      <p class="paragraph">Bu süre bittiği an burası patlayacak ve bu yerin içinde kalanları da yok edecekti. Aceleyle kendimi dışarı atıp etrafıma baktım. Çıkış kapısına giden merdivenlere bakarak aklımdan geçen kaçma dürtüsünü Arel'in sinire karışık küfür eden sesi durdurdu. Bağıran sesini duyduğum an aklımdaki önceliklerin hepsini geçerek ilk amacımın onu kurtarmak oldu. Onu burada bırakamazdım, beni soytarı ve kuklacının elinden -her ne kadar istemese de- o kurtarmıştı. Bu iyiliğini karşılıksız bırakamazdım.</p>
+<p class="paragraph">Sayaçların üzerinde 17:42 yazıyordu ve her saniye geçtiği sürede azalıyordu sayaçtaki sayılar. Gözlerim burayı biraz daha tarayınca yerde bir düzenekle karşılaştım. Dinamite benzer şeylerin üzerinde de aynı sayılar yazıyordu ve bu açıkçası benim daha fazla paniklememe neden oluyordu.</p>
 
-      <p class="paragraph">Hızlı düşünmem gerekiyordu. Buraya geldiğimden beri dikkatimi çeken koridorun sonunda bulunan demir sopaya doğru koştum. Sopayı elime aldığım gibi küçücük aralıktaki kapıdan içeri bakmaya başladım.</p>
+<p class="paragraph">Bu süre bittiği an burası patlayacak ve bu yerin içinde kalanları da yok edecekti. Aceleyle kendimi dışarı atıp etrafıma baktım. Çıkış kapısına giden merdivenlere bakarak aklımdan geçen kaçma dürtüsünü Arel'in sinire karışık küfür eden sesi durdurdu. Bağıran sesini duyduğum an aklımdaki önceliklerin hepsini geçerek ilk amacımın onu kurtarmak oldu. Onu burada bırakamazdım, beni soytarı ve kuklacının elinden -her ne kadar istemese de- o kurtarmıştı. Bu iyiliğini karşılıksız bırakamazdım.</p>
 
-      <p class="paragraph">Yerde yüzü tanınmayacak hale gelmiş bir adam görüyordum. Onu büyük ihtimalle Arel bu hale getirmişti. Fakat neredeyse Arel'in cüssesindeki iki adama gücü yetmemişti. Adamlar şu anda Arel'i yerde kan kustura kustura tekmeliyordu. Ona ne kadar kinli de olsam buradan kaçıp canımı kurtarmayı kendime yakıştıramadım. Aramızda bir günlük ateşkesin mahsuru olmazdı.</p>
+<p class="paragraph">Hızlı düşünmem gerekiyordu. Buraya geldiğimden beri dikkatimi çeken koridorun sonunda bulunan demir sopaya doğru koştum. Sopayı elime aldığım gibi küçücük aralıktaki kapıdan içeri bakmaya başladım.</p>
 
-      <p class="paragraph">Kapıyı en sessiz biçimde açmaya başladım. Hafif araklı kapının arasından içeri süzüldüm. Adamların arkası bana dönük olduğundan dolayı benim geldiğimi fark etmemişlerdi. Kumral adama yavaş yavaş yaklaşırken parmak uçlarımla yürümeye özen gösteriyordum.</p>
+<p class="paragraph">Yerde yüzü tanınmayacak hale gelmiş bir adam görüyordum. Onu büyük ihtimalle Arel bu hale getirmişti. Fakat neredeyse Arel'in cüssesindeki iki adama gücü yetmemişti. Adamlar şu anda Arel'i yerde kan kustura kustura tekmeliyordu. Ona ne kadar kinli de olsam buradan kaçıp canımı kurtarmayı kendime yakıştıramadım. Aramızda bir günlük ateşkesin mahsuru olmazdı.</p>
 
-      <p class="paragraph">Adamla aramda yaklaşık bir metreden az bir mesafe kalınca durdum. Demir sopayı bilerek yere hafifçe sürttüm. Eğer ona vurmaya devam ederlerse Dünya'daki işimiz başlamadan sona erecekti.</p>
+<p class="paragraph">Kapıyı en sessiz biçimde açmaya başladım. Hafif araklı kapının arasından içeri süzüldüm. Adamların arkası bana dönük olduğundan dolayı benim geldiğimi fark etmemişlerdi. Kumral adama yavaş yavaş yaklaşırken parmak uçlarımla yürümeye özen gösteriyordum.</p>
 
-      <p class="paragraph">Yere sürttüğüm demirle her ikisinin odağı da Arel'den kayıp bana gelmişti. Kaşları usulca çatılırken diğer adam konuşmaya başladı. "Maskeli balodan mı fırladınız amına koyayım? Bu ne lan!" Bunları ikimizin üzerinde olan kıyafetlerden dolayı söylediğini anlamıştım.</p>
+<p class="paragraph">Adamla aramda yaklaşık bir metreden az bir mesafe kalınca durdum. Demir sopayı bilerek yere hafifçe sürttüm. Eğer ona vurmaya devam ederlerse Dünya'daki işimiz başlamadan sona erecekti.</p>
 
-      <p class="paragraph">Öfkeyle konuşmasının ardından bana doğru ilerlemeye başladı. Yanıma ulaşıp yüzüme doğru bir yumruk savurdu fakat başımı son anda yana çekmemle ıskaladı. Boks veya dövüş bilgim pek yoktu. Ama düşmanımın zayıflıkları benim avantajlarım olabileceğinden azıcık öğrenmiştim. Boksör düşmanın olması bunu gerektirirdi.</p>
+<p class="paragraph">Yere sürttüğüm demirle her ikisinin odağı da Arel'den kayıp bana gelmişti. Kaşları usulca çatılırken diğer adam konuşmaya başladı. "Maskeli balodan mı fırladınız amına koyayım? Bu ne lan!" Bunları ikimizin üzerinde olan kıyafetlerden dolayı söylediğini anlamıştım.</p>
 
-      <p class="paragraph">Fakat ben dövüş yerine dans ederek düşmanımı alt ederdim. Şu an aynen onu yapacaktım. Dudaklarımdan Danella Sandoval'ın Tuesday şarkısı mırıldanarak dökülmeye başladı.</p>
+<p class="paragraph">Öfkeyle konuşmasının ardından bana doğru ilerlemeye başladı. Yanıma ulaşıp yüzüme doğru bir yumruk savurdu fakat başımı son anda yana çekmemle ıskaladı. Boks veya dövüş bilgim pek yoktu. Ama düşmanımın zayıflıkları benim avantajlarım olabileceğinden azıcık öğrenmiştim. Boksör düşmanın olması bunu gerektirirdi.</p>
 
-      <p class="paragraph">Demir sopayı kaldırdığım gibi adamın karnına indirdim. Adam acıyla inleyerek geriye sarsak adımlarla gittiğinde demir sopayı iki elimle alıp yukarı kaldırdım. Bedenimi kıvırırken başımı sola doğru savurunca sarı saçlarım da yoğunlukla sol tarafa toplandı. Bacağımı bale yapıyormuşçasına yukarı kaldırıp arkama sertçe çarptım. Böylelikle arkamdan beni etkisiz hale getirmeyi planlayan adamın planını suya düşürmüş oldum.</p>
+<p class="paragraph">Fakat ben dövüş yerine dans ederek düşmanımı alt ederdim. Şu an aynen onu yapacaktım. Dudaklarımdan Danella Sandoval'ın Tuesday şarkısı mırıldanarak dökülmeye başladı.</p>
 
-      <p class="paragraph">İlgim arakadaki adamda olduğundan karnıma yediğim yumruğu yeni fark ettim. Onu idrak edip toparlamama izin bile vermeden ikinci yumruğu yüzüme savurmak gibi bir hata yaptı. Başımı yana çekerek yanağıma atmasını engelledim. Ama o yumruk kulağıma sert bir darbe olarak ulaştı bana. Kulağım uğuldarken elimde sıkıca tuttuğum demir sopayı kaldırıp yüzüne indirdim.</p>
+<p class="paragraph">Demir sopayı kaldırdığım gibi adamın karnına indirdim. Adam acıyla inleyerek geriye sarsak adımlarla gittiğinde demir sopayı iki elimle alıp yukarı kaldırdım. Bedenimi kıvırırken başımı sola doğru savurunca sarı saçlarım da yoğunlukla sol tarafa toplandı. Bacağımı bale yapıyormuşçasına yukarı kaldırıp arkama sertçe çarptım. Böylelikle arkamdan beni etkisiz hale getirmeyi planlayan adamın planını suya düşürmüş oldum.</p>
 
-      <p class="paragraph">Acıyla inlediğinde yüz kaslarının gerildiğini gördüm. Yüzünde indirdiğim sopanın şimdiden kızarmış dokuyu görebiliyordum. "Kaltak!" diye kanlı tükürükleriyle bağırdığında yüzümü buruşturdum. İğrenç görünüyordu.</p>
+<p class="paragraph">İlgim arakadaki adamda olduğundan karnıma yediğim yumruğu yeni fark ettim. Onu idrak edip toparlamama izin bile vermeden ikinci yumruğu yüzüme savurmak gibi bir hata yaptı. Başımı yana çekerek yanağıma atmasını engelledim. Ama o yumruk kulağıma sert bir darbe olarak ulaştı bana. Kulağım uğuldarken elimde sıkıca tuttuğum demir sopayı kaldırıp yüzüne indirdim.</p>
 
-      <p class="paragraph">Söylediğim şarkıya devam ederek adamın yüzüne bir tane de sert bir tekme indirip onu yarı baygın hale getirdim. Şimdilik ayağıma bağ olmayacaktı. Diğer adama baktığımda elindeki silahın mermisini yeniliyordu. Hızlı bir atakta bulunarak ona ilerledim.</p>
+<p class="paragraph">Acıyla inlediğinde yüz kaslarının gerildiğini gördüm. Yüzünde indirdiğim sopanın şimdiden kızarmış dokuyu görebiliyordum. "Kaltak!" diye kanlı tükürükleriyle bağırdığında yüzümü buruşturdum. İğrenç görünüyordu.</p>
 
-      <p class="paragraph">Adamın elindeki silahı almak için etrafımda dönmeye başladım. Bale yaparken hızla onun etrafında dolandım. Bu hareketim onun başını döndürmüştü. Etrafımda dönmeye devam ederken çevik hareketlerle elindeki silahı ondan alıp ikimize uzak bir yere fırlattım.</p>
+<p class="paragraph">Söylediğim şarkıya devam ederek adamın yüzüne bir tane de sert bir tekme indirip onu yarı baygın hale getirdim. Şimdilik ayağıma bağ olmayacaktı. Diğer adama baktığımda elindeki silahın mermisini yeniliyordu. Hızlı bir atakta bulunarak ona ilerledim.</p>
 
-      <p class="paragraph">Silahı fırlattıktan sonra durdum. Dengemi düzene sokmak için on-on beş saniye hareketsiz durmaya çalıştım. Ama alçak adam bunu fırsat bilerek elimdeki demir sopayı alarak beni rutubetli duvara sertçe çarpıp elindeki demir sopayı göğsüme doğrulttu.</p>
+<p class="paragraph">Adamın elindeki silahı almak için etrafımda dönmeye başladım. Bale yaparken hızla onun etrafında dolandım. Bu hareketim onun başını döndürmüştü. Etrafımda dönmeye devam ederken çevik hareketlerle elindeki silahı ondan alıp ikimize uzak bir yere fırlattım.</p>
 
-      <p class="paragraph">Demir sopayla elbisemin açıkta bıraktığı dekolteme bastırdığından demirin soğunu iliklerime kadar hissediyordum. Karşımda nefeslenirken baş dönmesinin bitmesini bekliyordu.</p>
+<p class="paragraph">Silahı fırlattıktan sonra durdum. Dengemi düzene sokmak için on-on beş saniye hareketsiz durmaya çalıştım. Ama alçak adam bunu fırsat bilerek elimdeki demir sopayı alarak beni rutubetli duvara sertçe çarpıp elindeki demir sopayı göğsüme doğrulttu.</p>
 
-      <p class="paragraph">Nihayetinde kendini toparladığında "Küçücük bir şey için şekilden şekle girdik iki adam." dedi. Bunu kendine söylemişti.</p>
+<p class="paragraph">Demir sopayla elbisemin açıkta bıraktığı dekolteme bastırdığından demirin soğunu iliklerime kadar hissediyordum. Karşımda nefeslenirken baş dönmesinin bitmesini bekliyordu.</p>
 
-      <p class="paragraph">"Yanlış düşünüyorsun." diye ona cevap verdiğimde tek kaşını kaldırdı. Söyleyeceğime devam ettim. "Kelebekler de küçüktür, ama onu yakalayabilmek için şekilden şekle girersin."</p>
+<p class="paragraph">Nihayetinde kendini toparladığında "Küçücük bir şey için şekilden şekle girdik iki adam." dedi. Bunu kendine söylemişti.</p>
 
-      <p class="paragraph">Ölümcül bakışları bana döndüğünde konuşmaya başladı. "Birazdan ölecek olan birine göre çok konuşmuyor musun sence?"</p>
+<p class="paragraph">"Yanlış düşünüyorsun." diye ona cevap verdiğimde tek kaşını kaldırdı. Söyleyeceğime devam ettim. "Kelebekler de küçüktür, ama onu yakalayabilmek için şekilden şekle girersin."</p>
 
-      <p class="paragraph">"Sen de kendinden çok emin gibi konuşuyorsun sanıyorsun sanki?" Ayağım dizinin arkasına dolanıp diz katlanma yerine sert bir baskı uygulayıp onun önümde diz çökmesini sağladım. Ayaklarımı saran zarif balerin ayakkabımın sivri ucunu onun bacağının hassas noktasına sertçe bastırarak acıyla bağırmasını sağladım.</p>
+<p class="paragraph">Ölümcül bakışları bana döndüğünde konuşmaya başladı. "Birazdan ölecek olan birine göre çok konuşmuyor musun sence?"</p>
 
-      <p class="paragraph">Yere düşen demir sopama tekrar kavuştuğumda az önce bana yaptığı gibi göğsüne doğrulttum sopayı. "Ne diyorduk?" dedim. Biraz düşünür gibi yapıp yüzü acıyla kasılan adama döndü gözlerim. "Küçük şeyleri küçümsememeyi öğrenirsin sanırım bundan sonra."</p>
+<p class="paragraph">"Sen de kendinden çok emin gibi konuşuyorsun sanıyorsun sanki?" Ayağım dizinin arkasına dolanıp diz katlanma yerine sert bir baskı uygulayıp onun önümde diz çökmesini sağladım. Ayaklarımı saran zarif balerin ayakkabımın sivri ucunu onun bacağının hassas noktasına sertçe bastırarak acıyla bağırmasını sağladım.</p>
 
-      <p class="paragraph">Sopayla nabzının oraya vurduğumda kısa süreliğine bayılttım onu da. Biz buradan çıktıktan sonra ölmeden çıkabilsinler diye. Demir sopa hala elimdeyken yerde bana baygın numarası yapan baş düşmanıma doğru ilerledim. Egosunu dindirmenin yolunu ne zaman bulacaktım?</p>
+<p class="paragraph">Yere düşen demir sopama tekrar kavuştuğumda az önce bana yaptığı gibi göğsüne doğrulttum sopayı. "Ne diyorduk?" dedim. Biraz düşünür gibi yapıp yüzü acıyla kasılan adama döndü gözlerim. "Küçük şeyleri küçümsememeyi öğrenirsin sanırım bundan sonra."</p>
 
-      <p class="paragraph">Adamları yere serdiğimde yerde baygın numarası yapan Arel'e döndüm. Fark etmediğimi mi sanıyordu? Gözleri hafifçe aralıklıydı. Beni oradan izliyordu. Elimdeki demir sopayı çenesinin altına getirip "Uyan lan!" diye bağırdım çenesine sürterek.</p>
+<p class="paragraph">Sopayla nabzının oraya vurduğumda kısa süreliğine bayılttım onu da. Biz buradan çıktıktan sonra ölmeden çıkabilsinler diye. Demir sopa hala elimdeyken yerde bana baygın numarası yapan baş düşmanıma doğru ilerledim. Egosunu dindirmenin yolunu ne zaman bulacaktım?</p>
 
-      <p class="paragraph">Gözlerini yavaşça açarak bana baktı. Yüzündeki kanlar iyi dayak yediğini gösteriyordu. Kaşlarını hafifçe çatıp "Cehenneme mi gidiyorum lan ben?" Kendi kendine konuşup bana döndü. Beni görünce cin çarpmış gibi gözleri büyüdü. "Hassiktir! Bu da Azrail! Lan bir de bizim aptal balerinin kılığına girmiş. Kanlı kanlı..."</p>
+<p class="paragraph">Adamları yere serdiğimde yerde baygın numarası yapan Arel'e döndüm. Fark etmediğimi mi sanıyordu? Gözleri hafifçe aralıklıydı. Beni oradan izliyordu. Elimdeki demir sopayı çenesinin altına getirip "Uyan lan!" diye bağırdım çenesine sürterek.</p>
+
+<p class="paragraph">Gözlerini yavaşça açarak bana baktı. Yüzündeki kanlar iyi dayak yediğini gösteriyordu. Kaşlarını hafifçe çatıp "Cehenneme mi gidiyorum lan ben?" Kendi kendine konuşup bana döndü. Beni görünce cin çarpmış gibi gözleri büyüdü. "Hassiktir! Bu da Azrail! Lan bir de bizim aptal balerinin kılığına girmiş. Kanlı kanlı..."</p>
 
       <p class="paragraph">Yutkunarak bana baktığında "Azrail Lavinia balerini?" diye garip bir cümle kurdu. Yüzüm istemsizce buruşuğunda ona bir oyun oynama isteğiyle tutuştum. Sopa hâlâ çenesinin altındayken "Hı?" diye karşılık verdim ona.</p>
 
-      <p class="paragraph">Sesimi duyduğunda bembeyaz yüzü hâlâ dikkat çekiyordu. Ama benim sesimle yüzünde rahatlama ifadesi oluştu. "Lavina?" Sesi heyecanla çıktığında benim yüzümü izledi. Başını hafifçe sola eğerek hiç beklemediğim bir soru yöneltti. "Ölüm meleğini öpersek çarpılır mıyız?" Sesi mayışmış bir tonda çıkınca gözlerini kırpıştırarak baktı bana. Dudağının köşesi kıvrılmış bir haldeydi, sorusuna cevap bekliyordu.</p>
+<p class="paragraph">Sesimi duyduğunda bembeyaz yüzü hâlâ dikkat çekiyordu. Ama benim sesimle yüzünde rahatlama ifadesi oluştu. "Lavina?" Sesi heyecanla çıktığında benim yüzümü izledi. Başını hafifçe sola eğerek hiç beklemediğim bir soru yöneltti. "Ölüm meleğini öpersek çarpılır mıyız?" Sesi mayışmış bir tonda çıkınca gözlerini kırpıştırarak baktı bana. Dudağının köşesi kıvrılmış bir haldeydi, sorusuna cevap bekliyordu.</p>
 
-      <p class="paragraph">Çenemi dikleştirip kaşlarımı çattım. "Ne biçim konuşuyorsun sen bir ölüm meleğiyle?"</p>
+<p class="paragraph">Çenemi dikleştirip kaşlarımı çattım. "Ne biçim konuşuyorsun sen bir ölüm meleğiyle?"</p>
 
-      <p class="paragraph">"Yaklaş bi'," dedi. Tereddüt dolu bakışlarım ondaydı. Ne yapmak istiyordu? Sopa hâlâ elimdeyken çenesinin altından çıkarmadım. "Ne?"</p>
+<p class="paragraph">"Yaklaş bi'," dedi. Tereddüt dolu bakışlarım ondaydı. Ne yapmak istiyordu? Sopa hâlâ elimdeyken çenesinin altından çıkarmadım. "Ne?"</p>
 
-      <p class="paragraph">"Lavinia?" diye fısıldadı soru sorar gibi.</p>
+<p class="paragraph">"Lavinia?" diye fısıldadı soru sorar gibi.</p>
 
-      <p class="paragraph">"Arel?" Onun kullandığı tonlamayla ben de ona soru sorar gibi adını fısıldadım.</p>
+<p class="paragraph">"Arel?" Onun kullandığı tonlamayla ben de ona soru sorar gibi adını fısıldadım.</p>
 
-      <p class="paragraph">"Lavinia?" Bu yaptığına devam ederken ben de devam ettim aynı şekilde.</p>
+<p class="paragraph">"Lavinia?" Bu yaptığına devam ederken ben de devam ettim aynı şekilde.</p>
 
-      <p class="paragraph">"Arel?"</p>
+<p class="paragraph">"Arel?"</p>
 
-      <p class="paragraph">"Lavinia?"</p>
+<p class="paragraph">"Lavinia?"</p>
 
-      <p class="paragraph">"Arel?!" Bıkkın bir şekilde ona cevap verdiğimde sabrımın sınırlarındaydım. "Lavin-" diyecekken çenesinin altındaki demir sopayı yukarı kaldırıp susmasını sağladım. Yüzümü ona yaklaştırıp dudaklarımı araladım. "Kalk lan! Salak numarası yapıyor hâlâ!"</p>
+<p class="paragraph">"Arel?!" Bıkkın bir şekilde ona cevap verdiğimde sabrımın sınırlarındaydım. "Lavin-" diyecekken çenesinin altındaki demir sopayı yukarı kaldırıp susmasını sağladım. Yüzümü ona yaklaştırıp dudaklarımı araladım. "Kalk lan! Salak numarası yapıyor hâlâ!"</p>
 
-      <p class="paragraph">Ayaklanıp onun kalkmasını bekledim. Hayvan herif, manipüle etmeye çalışıyordu beni.</p>
+<p class="paragraph">Ayaklanıp onun kalkmasını bekledim. Hayvan herif, manipüle etmeye çalışıyordu beni.</p>
 
-      <p class="paragraph">"Kim yapıyor onu?" Hiçbir şey bilmiyormuş gibi masumca bana baktı.</p>
+<p class="paragraph">"Kim yapıyor onu?" Hiçbir şey bilmiyormuş gibi masumca bana baktı.</p>
 
-      <p class="paragraph">"Kim diyen! Bir de o salak iki erkeklik taslayıp üç tane cüsseli adamın arasına dalarsa tabii belasını sikerler!" Ağzımdan çıkan sözcüklerin ne anlama geldiğini bilmiyordum. Değişik bir içgüdüyle dudağımdan çıkıyordu. Garip bir şekilde anlayabiliyorduk birbirimizi.</p>
+<p class="paragraph">"Kim diyen! Bir de o salak iki erkeklik taslayıp üç tane cüsseli adamın arasına dalarsa tabii belasını sikerler!" Ağzımdan çıkan sözcüklerin ne anlama geldiğini bilmiyordum. Değişik bir içgüdüyle dudağımdan çıkıyordu. Garip bir şekilde anlayabiliyorduk birbirimizi.</p>
 
-      <p class="paragraph">Şaşkınlıkla bana baktı. "Ne biçim konuşuyorsun sen?" Konuyu değiştirmeye çabasına girmeye başlamışken hemen durdurdum onu. "Sana ne? Kalk demedim mi ben sana? Hadi! İşimiz var! Hadi, hadi..."</p>
+<p class="paragraph">Şaşkınlıkla bana baktı. "Ne biçim konuşuyorsun sen?" Konuyu değiştirmeye çabasına girmeye başlamışken hemen durdurdum onu. "Sana ne? Kalk demedim mi ben sana? Hadi! İşimiz var! Hadi, hadi..."</p>
 
-      <p class="paragraph">"Ne işimiz var?" dedi doğrulurken.</p>
+<p class="paragraph">"Ne işimiz var?" dedi doğrulurken.</p>
 
-      <p class="paragraph">"Çocuklar için buradayız ya hani," Ona işimizi hatırlatırken o yerden sırtını ayırıp ayaklanmaya başladı. "Doğru, bir de onlar da vardı değil mi?"</p>
+<p class="paragraph">"Çocuklar için buradayız ya hani," Ona işimizi hatırlatırken o yerden sırtını ayırıp ayaklanmaya başladı. "Doğru, bir de onlar da vardı değil mi?"</p>
 
-      <p class="paragraph">O kalkmadan durdurdum onu. Ellerim omuzlarını tutarak engellediğinde "Evet," dedikten sonra elbisemi ona gösterip "Ayrıca, senin yüzünden bu hâle gelen elbisemin yenisini almazsan buraya yeni birinin kanı da eklenecek."</p>
+<p class="paragraph">O kalkmadan durdurdum onu. Ellerim omuzlarını tutarak engellediğinde "Evet," dedikten sonra elbisemi ona gösterip "Ayrıca, senin yüzünden bu hâle gelen elbisemin yenisini almazsan buraya yeni birinin kanı da eklenecek."</p>
 
-      <p class="paragraph">Beyaz balerin elbisemin üzerindeki kanlara göz gezdirip bana cevap verdi. "Tamam, hallederim birazdan."</p>
+<p class="paragraph">Beyaz balerin elbisemin üzerindeki kanlara göz gezdirip bana cevap verdi. "Tamam, hallederim birazdan."</p>
 
-      <p class="paragraph">Dudağımın köşesinin kıvrıldığını görünce ona istediğimi yaptırmanın zaferini yaşıyordum. Gülüşüme karşılık sinirlendi. "Gülme."</p>
+<p class="paragraph">Dudağımın köşesinin kıvrıldığını görünce ona istediğimi yaptırmanın zaferini yaşıyordum. Gülüşüme karşılık sinirlendi. "Gülme."</p>
 
-      <p class="paragraph">Gülüşüm hâlâ yüzümdeyken "Sus," dedim keyifle. Onun yüzünden bana herhangi bir şey olabilirdi. Beraber bulunduğumuz odanın içinden geçen bir diğer odanın kapısını açtım hızla. Arel'e söylemediğim detay vardı. Her an patlayabilecek olan depo.</p>
+<p class="paragraph">Gülüşüm hâlâ yüzümdeyken "Sus," dedim keyifle. Onun yüzünden bana herhangi bir şey olabilirdi. Beraber bulunduğumuz odanın içinden geçen bir diğer odanın kapısını açtım hızla. Arel'e söylemediğim detay vardı. Her an patlayabilecek olan depo.</p>
 
-      <p class="paragraph">Kapının önündeyken onları sandalyeye bağlayan iplerden yeni çıkmayı başarmış, kaçmayı düşünen ikizleri gördüğümüzde donup kalmıştık. Onlar da öyle. Kız çocuğu dudaklarını aralayarak "Siz... Siz ne yapıyorsunuz burada? Anne!" diye çığlık attı.</p>
+<p class="paragraph">Kapının önündeyken onları sandalyeye bağlayan iplerden yeni çıkmayı başarmış, kaçmayı düşünen ikizleri gördüğümüzde donup kalmıştık. Onlar da öyle. Kız çocuğu dudaklarını aralayarak "Siz... Siz ne yapıyorsunuz burada? Anne!" diye çığlık attı.</p>
 
-      <p class="paragraph">Korkudan ağlamaya başlayınca aceleyle ona doğru yürüdüm. "Defne?" Onun Defne olduğunu anlamak için Defne ismini seslendiğimde yüzü değişik bir şekle girdi. Bu hareketimle daha da ağlayarak Efe'ye döndü. "Efe?" Donakalmış Efe'nin kolundan tutup onu sarsarak "Efe, bir şey de! Bu kadın benim adımı nereden biliyor?!" dedi dehşetle.</p>
+<p class="paragraph">Korkudan ağlamaya başlayınca aceleyle ona doğru yürüdüm. "Defne?" Onun Defne olduğunu anlamak için Defne ismini seslendiğimde yüzü değişik bir şekle girdi. Bu hareketimle daha da ağlayarak Efe'ye döndü. "Efe?" Donakalmış Efe'nin kolundan tutup onu sarsarak "Efe, bir şey de! Bu kadın benim adımı nereden biliyor?!" dedi dehşetle.</p>
 
-      <p class="paragraph">Adımlarım durunca Efe bana bakakaldı. Birkaç adım atıp Defne'yi arkasına aldı. Kaşlarını çatıp "Kimsiniz siz?" dedi korkusuzca. Cesareti takdir edilecek boyuttaydı. Zira ben onların yerinde olsam Defne'nin verdiği tepkinin on katını verirdim muhtemelen.</p>
+<p class="paragraph">Adımlarım durunca Efe bana bakakaldı. Birkaç adım atıp Defne'yi arkasına aldı. Kaşlarını çatıp "Kimsiniz siz?" dedi korkusuzca. Cesareti takdir edilecek boyuttaydı. Zira ben onların yerinde olsam Defne'nin verdiği tepkinin on katını verirdim muhtemelen.</p>
 
-      <p class="paragraph">"Biz..." Efe'ye açıklama yapacakken duraksamayla bana dönüp kısık sesle "Biz kimiz harbiden?" dedi bana.</p>
+<p class="paragraph">"Biz..." Efe'ye açıklama yapacakken duraksamayla bana dönüp kısık sesle "Biz kimiz harbiden?" dedi bana.</p>
 
-      <p class="paragraph">Bana söylediğiyle donakaldım. Ben nereden bilecektim? "Ne bileyim ben?! Elçiler sana birşey söylemedi mi?" Kısık sesle söylediklerimle omzunu kaldırıp indirdi.</p>
+<p class="paragraph">Bana söylediğiyle donakaldım. Ben nereden bilecektim? "Ne bileyim ben?! Elçiler sana birşey söylemedi mi?" Kısık sesle söylediklerimle omzunu kaldırıp indirdi.</p>
 
-      <p class="paragraph">"Yok ama bunların anne ve babası ölmüş herhalde. Bizi de onun için gönderdiler büyük ihtimalle."</p>
+<p class="paragraph">"Yok ama bunların anne ve babası ölmüş herhalde. Bizi de onun için gönderdiler büyük ihtimalle."</p>
 
-      <p class="paragraph">Kafa karışıklığıyla ona baktım. "Niye? Biz iyilik meleği miyiz? Yani... Benden olur da senden pek ümitli değilim açıkçası."</p>
+<p class="paragraph">Kafa karışıklığıyla ona baktım. "Niye? Biz iyilik meleği miyiz? Yani... Benden olur da senden pek ümitli değilim açıkçası."</p>
 
-      <p class="paragraph">"Sen kurban ol bana," dedi kendini beğenmiş edayla.</p>
+<p class="paragraph">"Sen kurban ol bana," dedi kendini beğenmiş edayla.</p>
 
-      <p class="paragraph">"Son korban ol bono." diye onu taklit edip ters bakışlarımı ondan çektim. Gülümseyerek karşımızda titreyen çocuklara döndüm. Onları korkutmamalıydım. "Bizi anne ve babanız gönderdi."</p>
+<p class="paragraph">"Son korban ol bono." diye onu taklit edip ters bakışlarımı ondan çektim. Gülümseyerek karşımızda titreyen çocuklara döndüm. Onları korkutmamalıydım. "Bizi anne ve babanız gönderdi."</p>
 
-      <p class="paragraph">Dediğimle "Yalan söylemeyin!" diye bağırarak bize karşılık verdiklerinde irkildim.</p>
+<p class="paragraph">Dediğimle "Yalan söylemeyin!" diye bağırarak bize karşılık verdiklerinde irkildim.</p>
 
-      <p class="paragraph emphasis">İşimiz çok zordu, değil mi?</p>
-
+<p class="paragraph emphasis">İşimiz çok zordu, değil mi?</p>
+      
     </div>
+
   </section>
+
 </main>
+  <!-- PARAGRAF YORUM PANELİ VE BÖLÜM YORUM PANELİ -->
+
+<div class="panel-shade" id="panelShade"></div>
+
+<!-- SAĞDAN AÇILAN PANEL -->
+
+<aside class="comment-panel" id="commentPanel">
+
+  <header class="panel-header">
+
+    <div class="panel-title" id="panelTitle">
+      PARAGRAF YORUMLARI
+    </div>
+
+    <button
+      class="panel-close"
+      id="panelClose"
+      type="button"
+      aria-label="Paneli kapat">
+      ×
+    </button>
+
+  </header>
+
+  <div class="panel-content">
+
+    <div class="panel-quote" id="panelQuote"></div>
+
+    <div class="panel-section-title" id="panelSectionTitle">
+      YORUMLAR
+    </div>
+
+    <div
+      class="panel-comment-list"
+      id="panelCommentList">
+    </div>
+
+    <form class="comment-form" id="panelCommentForm">
+
+      <input
+        type="text"
+        id="panelUsername"
+        maxlength="25"
+        placeholder="Kullanıcı adın"
+        autocomplete="nickname"
+        required
+      >
+
+      <textarea
+        id="panelMessage"
+        maxlength="2000"
+        placeholder="Yorumunu yaz..."
+        required
+      ></textarea>
+
+      <div class="comment-status" id="panelStatus"></div>
+
+      <button type="submit" id="panelSubmit">
+        Yorum gönder
+      </button>
+
+    </form>
+
+  </div>
+
+</aside>
 
 <!-- OKUMA İLERLEMESİ -->
 
 <div class="reader-progress" id="readerProgress">
+
   <div class="progress-info">
     <span>OKUMA İLERLEMESİ</span>
     <strong id="progressPercent">%0</strong>
   </div>
 
-  <input type="range" id="progressSlider" min="0" max="100"
-    value="0" step="0.1" aria-label="Okuma ilerlemesi">
+  <input
+    type="range"
+    id="progressSlider"
+    min="0"
+    max="100"
+    value="0"
+    step="0.1"
+    aria-label="Okuma ilerlemesi"
+  >
 
   <div class="progress-buttons">
-    <button id="previousChapter" type="button" disabled>← Önceki</button>
-    <span id="chapterPosition">Sıfırıncı Bölüm</span>
-    <button id="nextChapter" type="button" disabled>Sonraki →</button>
+
+    <button id="previousChapter" type="button" disabled>
+      ← Önceki
+    </button>
+
+    <span id="chapterPosition">
+      Sıfırıncı Bölüm
+    </span>
+
+    <button id="nextChapter" type="button" disabled>
+      Sonraki →
+    </button>
+
   </div>
+
 </div>
 
 <!-- ALT İŞLEM ÇUBUĞU -->
 
 <div class="reader-actions">
-  <button class="reader-action" id="voteButton" type="button">
-    <span class="action-icon">☆</span>
-    <span id="voteCount">0</span>
+
+  <button
+    class="reader-action vote-action"
+    id="voteButton"
+    type="button">
+
+    <span class="action-icon" id="voteIcon">☆</span>
+
+    <span class="vote-total" id="voteCount">0</span>
+
   </button>
 
-  <button class="reader-action" id="commentsButton" type="button">
+  <button
+    class="reader-action"
+    id="commentsButton"
+    type="button">
+
     <span class="action-icon">▤</span>
-    <span>Yorum</span>
+    <span>Yorumlar</span>
+
   </button>
 
-  <button class="reader-action" id="shareButton" type="button">
+  <button
+    class="reader-action"
+    id="shareButton"
+    type="button">
+
     <span class="action-icon">↗</span>
     <span>Paylaş</span>
+
   </button>
 
-  <button class="reader-action" id="saveButton" type="button">
+  <button
+    class="reader-action"
+    id="saveButton"
+    type="button">
+
     <span class="action-icon">♡</span>
     <span>Kaydet</span>
-  </button>
-</div>
 
-<!-- KALDIĞIN YERDEN DEVAM ET BUTONU JS İLE EKLENİR -->
-  <script>
+  </button>
+
+</div>
+<script>
 "use strict";
 
-// SUPABASE BAĞLANTISI
-
 const $ = id => document.getElementById(id);
+
+/* SUPABASE */
 
 const SUPABASE_URL =
   "https://edgpwcoypywwodgfkkbi.supabase.co";
@@ -1251,17 +1552,21 @@ const topbar = $("topbar");
 const chapterMenu = $("chapterMenu");
 const menuShade = $("menuShade");
 const settingsPopup = $("settingsPopup");
+
 const readerProgress = $("readerProgress");
 const progressSlider = $("progressSlider");
 const progressPercent = $("progressPercent");
 
+const commentPanel = $("commentPanel");
+const panelShade = $("panelShade");
+
 let controlsVisible = false;
 let isSeeking = false;
-let activeCommentKey = null;
 let isSendingComment = false;
-let openCommentIndex = null;
+let activeParagraph = null;
+let panelMode = "paragraph";
 
-// YEREL KAYIT SİSTEMİ
+/* YEREL KAYIT */
 
 function getData(key, fallback) {
   try {
@@ -1280,31 +1585,26 @@ function setData(key, value) {
   }
 }
 
-// ZİYARETÇİ KİMLİĞİ
-// Bu kimlik aynı tarayıcıda tekrar kullanılır.
-// Farklı cihazlarda aynı kişiyi kesin olarak tanımaz.
+/* ZİYARETÇİ KİMLİĞİ */
 
 function createVisitorId() {
-  let visitorId = getData("rstd_visitor_id", "");
+  let id = getData("rstd_visitor_id", "");
 
-  if (!visitorId) {
-    visitorId = (
-      window.crypto &&
-      typeof window.crypto.randomUUID === "function"
-    )
-      ? window.crypto.randomUUID()
+  if (!id) {
+    id = crypto.randomUUID
+      ? crypto.randomUUID()
       : "visitor-" + Date.now() + "-" +
         Math.random().toString(36).slice(2);
 
-    setData("rstd_visitor_id", visitorId);
+    setData("rstd_visitor_id", id);
   }
 
-  return visitorId;
+  return id;
 }
 
 const VISITOR_ID = createVisitorId();
 
-// ÜST VE ALT MENÜLER
+/* ÜST MENÜ */
 
 function showReaderControls() {
   controlsVisible = true;
@@ -1320,33 +1620,12 @@ function hideReaderControls() {
 }
 
 function toggleReaderControls() {
-  if (controlsVisible) {
-    hideReaderControls();
-  } else {
-    showReaderControls();
-  }
+  controlsVisible
+    ? hideReaderControls()
+    : showReaderControls();
 }
 
-document.addEventListener("click", event => {
-  const target = event.target;
-
-  if (
-    target.closest("#topbar") ||
-    target.closest("#readerProgress") ||
-    target.closest("#chapterMenu") ||
-    target.closest("#settingsPopup") ||
-    target.closest("#menuShade") ||
-    target.closest(".reader-actions") ||
-    target.closest(".inline-comments") ||
-    target.closest(".paragraph-comment")
-  ) {
-    return;
-  }
-
-  toggleReaderControls();
-});
-
-// BÖLÜM MENÜSÜ
+/* BÖLÜM MENÜSÜ */
 
 function openMenu() {
   chapterMenu.classList.add("open");
@@ -1361,17 +1640,13 @@ function closeMenu() {
 }
 
 $("menuButton").addEventListener("click", () => {
-  if (chapterMenu.classList.contains("open")) {
-    closeMenu();
-  } else {
-    openMenu();
-  }
+  chapterMenu.classList.contains("open")
+    ? closeMenu()
+    : openMenu();
 });
 
 $("menuClose").addEventListener("click", closeMenu);
 menuShade.addEventListener("click", closeMenu);
-
-// BÖLÜM SEÇİMİ
 
 document.querySelectorAll(".chapter-link").forEach(link => {
   link.addEventListener("click", () => {
@@ -1384,16 +1659,21 @@ document.querySelectorAll(".chapter-link").forEach(link => {
   });
 });
 
-// YAZI AYARLARI
+/* YAZI AYARLARI */
 
 $("settingsButton").addEventListener("click", () => {
   settingsPopup.classList.toggle("open");
   showReaderControls();
 });
 
-let storyFontSize = Number(getData("rstd_font_size", 19));
+let storyFontSize = Number(
+  getData("rstd_font_size", 19)
+);
 
-storyFontSize = Math.min(29, Math.max(15, storyFontSize));
+storyFontSize = Math.min(
+  29,
+  Math.max(15, storyFontSize)
+);
 
 function updateFontSize() {
   document.documentElement.style.setProperty(
@@ -1416,7 +1696,7 @@ $("fontDecrease").addEventListener("click", () => {
 
 updateFontSize();
 
-// SAYFA RENKLERİ
+/* SAYFA RENKLERİ */
 
 document.querySelectorAll(".color-swatch").forEach(button => {
   button.addEventListener("click", () => {
@@ -1431,17 +1711,23 @@ document.querySelectorAll(".color-swatch").forEach(button => {
     });
 
     button.classList.add("active");
+
     setData("rstd_colors", {bg, text});
   });
 });
 
-// KAYITLI RENKLERİ YÜKLE
-
 const savedColors = getData("rstd_colors", null);
 
 if (savedColors) {
-  document.documentElement.style.setProperty("--bg", savedColors.bg);
-  document.documentElement.style.setProperty("--text", savedColors.text);
+  document.documentElement.style.setProperty(
+    "--bg",
+    savedColors.bg
+  );
+
+  document.documentElement.style.setProperty(
+    "--text",
+    savedColors.text
+  );
 
   document.querySelectorAll(".color-swatch").forEach(item => {
     item.classList.toggle(
@@ -1451,7 +1737,7 @@ if (savedColors) {
   });
 }
 
-// OKUMA İLERLEMESİ
+/* OKUMA İLERLEMESİ */
 
 function getScrollLimit() {
   return Math.max(
@@ -1469,10 +1755,15 @@ function updateProgress() {
   );
 
   progressSlider.value = percent;
-  progressPercent.textContent = "%" + Math.round(percent);
+
+  progressPercent.textContent =
+    "%" + Math.round(percent);
 }
 
-window.addEventListener("scroll", updateProgress, {passive:true});
+window.addEventListener("scroll", updateProgress, {
+  passive: true
+});
+
 window.addEventListener("resize", updateProgress);
 
 progressSlider.addEventListener("pointerdown", () => {
@@ -1487,7 +1778,8 @@ progressSlider.addEventListener("input", () => {
     behavior: "auto"
   });
 
-  progressPercent.textContent = "%" + Math.round(percent);
+  progressPercent.textContent =
+    "%" + Math.round(percent);
 });
 
 function finishSeeking() {
@@ -1500,7 +1792,7 @@ progressSlider.addEventListener("change", finishSeeking);
 progressSlider.addEventListener("pointerup", finishSeeking);
 progressSlider.addEventListener("pointercancel", finishSeeking);
 
-// PARAGRAFLARI HAZIRLA
+/* PARAGRAFLAR */
 
 const paragraphs = [
   ...document.querySelectorAll("#storyContent .paragraph")
@@ -1509,9 +1801,6 @@ const paragraphs = [
 paragraphs.forEach((paragraph, index) => {
   paragraph.dataset.paragraphId = "p-" + index;
 
-  // Paragrafı sarmalayıcıya al.
-  // Böylece yorum düğmesi paragrafın içine eklenmez.
-
   const wrapper = document.createElement("div");
   wrapper.className = "paragraph-wrap";
 
@@ -1519,93 +1808,129 @@ paragraphs.forEach((paragraph, index) => {
   wrapper.appendChild(paragraph);
 
   const button = document.createElement("button");
+
   button.type = "button";
   button.className = "paragraph-comment";
+
   button.innerHTML = `
     <span class="comment-symbol">●</span>
-    <span class="comment-number" id="comment-count-${index}">0</span>
+    <span class="comment-number"
+      id="comment-count-${index}">0</span>
   `;
 
-  button.title = "Bu paragrafın yorumlarını gör";
+  button.title = "Paragraf yorumları";
 
-  button.addEventListener("click", event => {
-    event.stopPropagation();
-    toggleInlineComments(index, wrapper, paragraph.innerText);
+  button.addEventListener("click", () => {
+    openParagraphPanel(index, paragraph.innerText);
   });
 
   wrapper.appendChild(button);
 });
 
-// YORUM ALANINI AÇ / KAPAT
+/* PANEL AÇMA */
 
-function toggleInlineComments(index, wrapper, quote) {
-  const existing = wrapper.querySelector(".inline-comments");
+function openPanel(mode) {
+  panelMode = mode;
 
-  if (existing) {
-    existing.classList.toggle("open");
+  panelShade.classList.add("open");
+  commentPanel.classList.add("open");
 
-    if (existing.classList.contains("open")) {
-      loadComments(index, existing);
-    }
+  document.body.classList.add("panel-open");
 
-    openCommentIndex = existing.classList.contains("open") ? index : null;
+  showReaderControls();
+}
+
+function closePanel() {
+  panelShade.classList.remove("open");
+  commentPanel.classList.remove("open");
+
+  document.body.classList.remove("panel-open");
+
+  activeParagraph = null;
+}
+
+$("panelClose").addEventListener("click", closePanel);
+panelShade.addEventListener("click", closePanel);
+
+/* PARAGRAF YORUMLARI */
+
+async function openParagraphPanel(index, quote) {
+  activeParagraph = index;
+
+  $("panelTitle").textContent = "PARAGRAF YORUMLARI";
+  $("panelSectionTitle").textContent = "BU PARAGRAFA YAPILAN YORUMLAR";
+
+  $("panelQuote").style.display = "block";
+  $("panelQuote").textContent = quote;
+
+  $("panelUsername").value = getData("rstd_username", "");
+  $("panelMessage").value = "";
+  $("panelStatus").textContent = "";
+
+  openPanel("paragraph");
+
+  await loadComments("paragraph", index);
+}
+
+/* BÖLÜM YORUMLARI */
+
+async function openChapterComments() {
+  activeParagraph = null;
+
+  $("panelTitle").textContent = "BÖLÜM YORUMLARI";
+  $("panelSectionTitle").textContent = "SIFIRINCI BÖLÜM";
+
+  $("panelQuote").style.display = "none";
+
+  $("panelUsername").value = getData("rstd_username", "");
+  $("panelMessage").value = "";
+  $("panelStatus").textContent = "";
+
+  openPanel("chapter");
+
+  await loadComments("chapter", null);
+}
+
+/* YORUMLARI YÜKLE */
+
+async function loadComments(mode, index) {
+  const list = $("panelCommentList");
+
+  list.innerHTML = `
+    <p class="panel-empty">Yorumlar yükleniyor...</p>
+  `;
+
+  let query = supabaseClient
+    .from("yorumlar")
+    .select("id, isim, yorum, created_at, parent_id, paragraf")
+    .eq("kitap", BOOK_NAME)
+    .eq("bolum", CHAPTER_NUMBER);
+
+  if (mode === "paragraph") {
+    query = query.eq("paragraf", String(index));
+  }
+
+  const {data, error} = await query.order(
+    "created_at",
+    {ascending: true}
+  );
+
+  if (error) {
+    console.error(error);
+
+    list.innerHTML = `
+      <p class="panel-empty">
+        Yorumlar yüklenirken bir hata oluştu.
+      </p>
+    `;
+
     return;
   }
 
-  // Önce başka bir paragrafta açık olan yorum alanını kapat.
-  document.querySelectorAll(".inline-comments.open").forEach(item => {
-    item.classList.remove("open");
-  });
-
-  const panel = document.createElement("section");
-  panel.className = "inline-comments open";
-  panel.dataset.paragraph = String(index);
-
-  const title = document.createElement("div");
-  title.className = "inline-comments-title";
-  title.textContent = "PARAGRAFA YAPILAN YORUMLAR";
-
-  const quoteBox = document.createElement("div");
-  quoteBox.style.cssText =
-    "color:#999;font-size:12px;line-height:1.7;margin-bottom:14px;";
-  quoteBox.textContent = quote;
-
-  const list = document.createElement("div");
-  list.className = "inline-comment-list";
-  list.id = "inline-comment-list-" + index;
-
-  const form = document.createElement("form");
-  form.className = "inline-comment-form";
-  form.innerHTML = `
-    <input type="text" class="inline-username"
-      maxlength="25" placeholder="Kullanıcı adın"
-      autocomplete="nickname" required>
-
-    <textarea class="inline-message"
-      maxlength="2000" placeholder="Yorumunu yaz..."
-      required></textarea>
-
-    <div class="comment-status"></div>
-
-    <button type="submit">Yorum gönder</button>
-  `;
-
-  const usernameField = form.querySelector(".inline-username");
-  usernameField.value = getData("rstd_username", "");
-
-  form.addEventListener("submit", event => {
-    event.preventDefault();
-    submitComment(index, form, null);
-  });
-
-  panel.append(title, quoteBox, list, form);
-  wrapper.appendChild(panel);
-
-  openCommentIndex = index;
-  loadComments(index, panel);
+  renderComments(data || [], list, mode);
 }
 
-// YORUM TARİHİ
+/* TARİH */
 
 function formatCommentDate(date) {
   if (!date) return "";
@@ -1619,120 +1944,66 @@ function formatCommentDate(date) {
   });
 }
 
-// YORUM SAYISI GÖRÜNÜMÜ
+/* YORUMLARI GÖSTER */
 
-async function updateCommentCounts() {
-  const {data, error} = await supabaseClient
-    .from("yorumlar")
-    .select("paragraf")
-    .eq("kitap", BOOK_NAME)
-    .eq("bolum", CHAPTER_NUMBER);
-
-  if (error) {
-    console.error("Yorum sayıları alınamadı:", error);
-    return;
-  }
-
-  const counts = {};
-
-  (data || []).forEach(item => {
-    const key = String(item.paragraf);
-    counts[key] = (counts[key] || 0) + 1;
-  });
-
-  paragraphs.forEach((paragraph, index) => {
-    const counter = $("comment-count-" + index);
-
-    if (counter) {
-      counter.textContent = counts[String(index)] || 0;
-    }
-  });
-}
-    // YORUMLARI SUPABASE'DEN YÜKLE
-
-async function loadComments(index, panel) {
-  const list = panel.querySelector(".inline-comment-list");
-
-  list.innerHTML = `
-    <p style="color:#888;font-size:12px">Yorumlar yükleniyor...</p>
-  `;
-
-  const {data, error} = await supabaseClient
-    .from("yorumlar")
-    .select("id, isim, yorum, created_at, parent_id")
-    .eq("kitap", BOOK_NAME)
-    .eq("bolum", CHAPTER_NUMBER)
-    .eq("paragraf", String(index))
-    .order("created_at", {ascending:true});
-
-  if (error) {
-    console.error("Yorumlar yüklenemedi:", error);
-    list.innerHTML = `
-      <p style="color:#aaa;font-size:12px">
-        Yorumlar yüklenirken bir hata oluştu.
-      </p>
-    `;
-    return;
-  }
-
-  const comments = data || [];
-
-  // Yorum beğenilerini yükle
-  const commentIds = comments.map(item => item.id);
-  let likes = [];
-
-  if (commentIds.length) {
-    const result = await supabaseClient
-      .from("yorum_begenileri")
-      .select("yorum_id, visitor_id")
-      .in("yorum_id", commentIds);
-
-    if (!result.error) {
-      likes = result.data || [];
-    }
-  }
-
-  renderComments(comments, likes, list, index);
-}
-
-// YORUMLARI EKRANA YAZ
-
-function renderComments(comments, likes, list, index) {
+async function renderComments(comments, list, mode) {
   list.innerHTML = "";
 
   if (!comments.length) {
     list.innerHTML = `
-      <p style="color:#888;font-size:12px">
+      <p class="panel-empty">
         Henüz yorum yok. İlk yorumu sen yaz.
       </p>
     `;
+
     return;
   }
 
   const roots = comments.filter(item => !item.parent_id);
   const replies = comments.filter(item => item.parent_id);
 
+  const ids = comments.map(item => item.id);
+
+  let likes = [];
+
+  if (ids.length) {
+    const result = await supabaseClient
+      .from("yorum_begenileri")
+      .select("yorum_id, visitor_id")
+      .in("yorum_id", ids);
+
+    if (!result.error) {
+      likes = result.data || [];
+    }
+  }
+
   roots.forEach(item => {
-    const container = createCommentElement(
-      item,
-      likes,
-      index,
-      replies.filter(reply => String(reply.parent_id) === String(item.id))
+    const childReplies = replies.filter(
+      reply => String(reply.parent_id) === String(item.id)
     );
 
-    list.appendChild(container);
+    const card = createCommentElement(
+      item,
+      childReplies,
+      likes,
+      mode
+    );
+
+    list.appendChild(card);
   });
 }
 
-// TEK YORUM KARTI
+/* TEK YORUM KARTI */
 
-function createCommentElement(item, likes, index, childReplies = []) {
+function createCommentElement(item, replies, likes, mode) {
   const container = document.createElement("div");
   container.className = "comment-item";
 
   const avatar = document.createElement("div");
   avatar.className = "comment-avatar";
-  avatar.textContent = (item.isim || "A").charAt(0).toUpperCase();
+
+  avatar.textContent =
+    (item.isim || "A").charAt(0).toUpperCase();
 
   const body = document.createElement("div");
   body.className = "comment-body";
@@ -1760,60 +2031,59 @@ function createCommentElement(item, likes, index, childReplies = []) {
   );
 
   const likeButton = document.createElement("button");
+
   likeButton.type = "button";
-  likeButton.className = "comment-action" + (liked ? " liked" : "");
-  likeButton.textContent = "♡ " + commentLikes.length;
+  likeButton.className =
+    "comment-action" + (liked ? " liked" : "");
+
+  likeButton.textContent =
+    "♡ " + commentLikes.length;
 
   likeButton.addEventListener("click", async () => {
     likeButton.disabled = true;
 
     if (liked) {
-      const {error} = await supabaseClient
+      await supabaseClient
         .from("yorum_begenileri")
         .delete()
         .eq("yorum_id", item.id)
         .eq("visitor_id", VISITOR_ID);
-
-      if (error) {
-        console.error(error);
-      }
     } else {
-      const {error} = await supabaseClient
+      await supabaseClient
         .from("yorum_begenileri")
         .insert({
           yorum_id: item.id,
           visitor_id: VISITOR_ID
         });
-
-      if (error) {
-        console.error(error);
-      }
     }
 
-    const panel = document.querySelector(
-      `.inline-comments[data-paragraph="${index}"]`
-    );
-
-    if (panel) {
-      await loadComments(index, panel);
+    if (panelMode === "chapter") {
+      await loadComments("chapter", null);
+    } else {
+      await loadComments("paragraph", activeParagraph);
     }
   });
 
   const replyButton = document.createElement("button");
+
   replyButton.type = "button";
   replyButton.className = "comment-action";
   replyButton.textContent = "Yanıtla";
 
-  meta.append(date, likeButton, replyButton);
-
   const replyBox = document.createElement("form");
   replyBox.className = "reply-box";
 
-  replyBox.innerHTML = `
-    <input type="text" maxlength="2000"
-      placeholder="Yanıtını yaz..." required>
-    <button type="submit">Gönder</button>
-  `;
+  const replyInput = document.createElement("input");
+  replyInput.type = "text";
+  replyInput.maxLength = 2000;
+  replyInput.placeholder = "Yanıtını yaz...";
+  replyInput.required = true;
+
+  const replySubmit = document.createElement("button");
+  replySubmit.type = "submit";
+  replySubmit.textContent = "Gönder";
+
+  replyBox.append(replyInput, replySubmit);
 
   replyButton.addEventListener("click", () => {
     replyBox.classList.toggle("open");
@@ -1822,14 +2092,14 @@ function createCommentElement(item, likes, index, childReplies = []) {
   replyBox.addEventListener("submit", async event => {
     event.preventDefault();
 
-    const input = replyBox.querySelector("input");
-    const username = getData("rstd_username", "").trim();
-    const replyText = input.value.trim();
+    const username = getData("rstd_username", "");
 
     if (!username) {
-      alert("Yanıt yazmadan önce yorum alanına kullanıcı adını girmelisin.");
+      alert("Önce kullanıcı adını girerek bir yorum yapmalısın.");
       return;
     }
+
+    const replyText = replyInput.value.trim();
 
     if (!replyText) return;
 
@@ -1840,39 +2110,40 @@ function createCommentElement(item, likes, index, childReplies = []) {
         yorum: replyText,
         kitap: BOOK_NAME,
         bolum: CHAPTER_NUMBER,
-        paragraf: String(index),
+        paragraf: mode === "paragraph"
+          ? String(activeParagraph)
+          : String(item.paragraf),
         parent_id: item.id
       });
 
     if (error) {
-      console.error(error);
       alert("Yanıt gönderilemedi.");
+      console.error(error);
       return;
     }
 
-    const panel = document.querySelector(
-      `.inline-comments[data-paragraph="${index}"]`
-    );
-
-    if (panel) {
-      await loadComments(index, panel);
+    if (panelMode === "chapter") {
+      await loadComments("chapter", null);
+    } else {
+      await loadComments("paragraph", activeParagraph);
     }
   });
+
+  meta.append(date, likeButton, replyButton);
 
   body.append(username, message, meta, replyBox);
 
   container.append(avatar, body);
 
-  // Yanıtları ana yorumun altında göster
-  childReplies.forEach(reply => {
+  replies.forEach(reply => {
     const replyElement = createCommentElement(
       reply,
+      [],
       likes,
-      index,
-      []
+      mode
     );
 
-    replyElement.style.marginLeft = "28px";
+    replyElement.style.marginLeft = "25px";
     replyElement.style.borderLeft = "2px solid #393939";
     replyElement.style.paddingLeft = "10px";
 
@@ -1882,42 +2153,40 @@ function createCommentElement(item, likes, index, childReplies = []) {
   return container;
 }
 
-// YORUM GÖNDER
+/* YORUM GÖNDER */
 
-async function submitComment(index, form, parentId) {
+$("panelCommentForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
   if (isSendingComment) return;
 
-  const usernameField = form.querySelector(".inline-username");
-  const messageField = form.querySelector(".inline-message");
-  const status = form.querySelector(".comment-status");
+  const username = $("panelUsername").value.trim();
+  const message = $("panelMessage").value.trim();
+  const status = $("panelStatus");
+  const submit = $("panelSubmit");
 
-  const username = usernameField
-    ? usernameField.value.trim()
-    : getData("rstd_username", "");
-
-  const message = messageField
-    ? messageField.value.trim()
-    : "";
-
-  if (!username || username.length < 2) {
-    status.textContent = "Kullanıcı adı en az 2 karakter olmalı.";
-    usernameField?.focus();
+  if (username.length < 2) {
+    status.textContent =
+      "Kullanıcı adı en az 2 karakter olmalı.";
     return;
   }
 
   if (!message) {
-    status.textContent = "Yorum alanı boş bırakılamaz.";
-    messageField?.focus();
+    status.textContent =
+      "Yorum alanı boş bırakılamaz.";
     return;
   }
 
   isSendingComment = true;
 
-  const submitButton = form.querySelector("button[type='submit']");
-  submitButton.disabled = true;
-  submitButton.textContent = "Gönderiliyor...";
-
+  submit.disabled = true;
+  submit.textContent = "Gönderiliyor...";
   status.textContent = "";
+
+  const paragraphIndex =
+    panelMode === "paragraph"
+      ? String(activeParagraph)
+      : "0";
 
   const {error} = await supabaseClient
     .from("yorumlar")
@@ -1926,80 +2195,113 @@ async function submitComment(index, form, parentId) {
       yorum: message,
       kitap: BOOK_NAME,
       bolum: CHAPTER_NUMBER,
-      paragraf: String(index),
-      parent_id: parentId
+      paragraf: paragraphIndex,
+      parent_id: null
     });
 
   if (error) {
-    console.error("Yorum gönderme hatası:", error);
-    status.textContent = "Yorum gönderilemedi. Tekrar deneyebilirsin.";
+    console.error(error);
+    status.textContent =
+      "Yorum gönderilemedi. Tekrar deneyebilirsin.";
   } else {
     setData("rstd_username", username);
 
-    if (messageField) {
-      messageField.value = "";
-    }
+    $("panelMessage").value = "";
 
     status.textContent = "Yorumun paylaşıldı.";
 
-    const panel = document.querySelector(
-      `.inline-comments[data-paragraph="${index}"]`
-    );
-
-    if (panel) {
-      await loadComments(index, panel);
+    if (panelMode === "chapter") {
+      await loadComments("chapter", null);
+    } else {
+      await loadComments("paragraph", activeParagraph);
     }
 
     await updateCommentCounts();
   }
 
   isSendingComment = false;
-  submitButton.disabled = false;
-  submitButton.textContent = "Yorum gönder";
-}
-
-// TÜM YORUMLARA GİT
-
-$("commentsButton").addEventListener("click", () => {
-  const firstParagraph = paragraphs[0];
-
-  if (!firstParagraph) return;
-
-  const wrapper = firstParagraph.closest(".paragraph-wrap");
-
-  toggleInlineComments(0, wrapper, firstParagraph.innerText);
-
-  wrapper.scrollIntoView({
-    behavior: "smooth",
-    block: "center"
-  });
+  submit.disabled = false;
+  submit.textContent = "Yorum gönder";
 });
 
-// SAYFA AÇILINCA YORUM SAYILARINI GÜNCELLE
+/* PARAGRAF YORUM SAYILARI */
+
+async function updateCommentCounts() {
+  const {data, error} = await supabaseClient
+    .from("yorumlar")
+    .select("paragraf")
+    .eq("kitap", BOOK_NAME)
+    .eq("bolum", CHAPTER_NUMBER);
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  const counts = {};
+
+  (data || []).forEach(item => {
+    const key = String(item.paragraf);
+    counts[key] = (counts[key] || 0) + 1;
+  });
+
+  paragraphs.forEach((paragraph, index) => {
+    const counter = $("comment-count-" + index);
+
+    if (counter) {
+      counter.textContent = counts[String(index)] || 0;
+    }
+  });
+}
+
+/* ALT ÇUBUK YORUM BUTONU */
+
+$("commentsButton").addEventListener(
+  "click",
+  openChapterComments
+);
 
 updateCommentCounts();
 
-// GERÇEK OY SİSTEMİ
+/* ESCAPE */
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    closePanel();
+    closeMenu();
+    settingsPopup.classList.remove("open");
+    hideReaderControls();
+  }
+});
+    </script>
+    <script>
+"use strict";
+
+/* OY SİSTEMİ */
 
 async function loadVotes() {
   const {count, error} = await supabaseClient
     .from("kitap_oylari")
-    .select("*", {count:"exact", head:true})
+    .select("*", {
+      count: "exact",
+      head: true
+    })
     .eq("kitap", BOOK_NAME);
 
   if (error) {
-    console.error("Oy sayısı yüklenemedi:", error);
+    console.error("Oy sayısı alınamadı:", error);
     return;
   }
 
   $("voteCount").textContent = count || 0;
 
-  const {data: myVote, error: voteError} = await supabaseClient
-    .from("kitap_oylari")
-    .select("id")
-    .eq("kitap", BOOK_NAME)
-    .eq("visitor_id", VISITOR_ID)
-    .maybeSingle();
+  const {data: myVote, error: voteError} =
+    await supabaseClient
+      .from("kitap_oylari")
+      .select("id")
+      .eq("kitap", BOOK_NAME)
+      .eq("visitor_id", VISITOR_ID)
+      .maybeSingle();
 
   if (voteError) {
     console.error(voteError);
@@ -2007,7 +2309,7 @@ async function loadVotes() {
   }
 
   const button = $("voteButton");
-  const icon = button.querySelector(".action-icon");
+  const icon = $("voteIcon");
 
   if (myVote) {
     button.classList.add("active");
@@ -2017,6 +2319,8 @@ async function loadVotes() {
     icon.textContent = "☆";
   }
 }
+
+/* OY VER / OYU GERİ ÇEK */
 
 $("voteButton").addEventListener("click", async () => {
   const button = $("voteButton");
@@ -2044,6 +2348,7 @@ $("voteButton").addEventListener("click", async () => {
       .eq("id", existingVote.id);
 
     if (error) console.error(error);
+
   } else {
     const {error} = await supabaseClient
       .from("kitap_oylari")
@@ -2059,12 +2364,13 @@ $("voteButton").addEventListener("click", async () => {
   }
 
   await loadVotes();
+
   button.disabled = false;
 });
 
 loadVotes();
 
-// KİTABI KAYDET
+/* KİTABI KAYDET */
 
 const SAVED_BOOKS_KEY = "rstd_saved_books";
 
@@ -2079,10 +2385,13 @@ function isBookSaved() {
 function updateSaveButton() {
   const button = $("saveButton");
   const icon = button.querySelector(".action-icon");
+
   const saved = isBookSaved();
 
   button.classList.toggle("active", saved);
+
   icon.textContent = saved ? "♥" : "♡";
+
   button.querySelector("span:last-child").textContent =
     saved ? "Kaydedildi" : "Kaydet";
 }
@@ -2097,12 +2406,13 @@ $("saveButton").addEventListener("click", () => {
   }
 
   setData(SAVED_BOOKS_KEY, books);
+
   updateSaveButton();
 });
 
 updateSaveButton();
 
-// PAYLAŞ
+/* PAYLAŞ */
 
 $("shareButton").addEventListener("click", async () => {
   const shareData = {
@@ -2119,21 +2429,28 @@ $("shareButton").addEventListener("click", async () => {
         console.error("Paylaşım başarısız:", error);
       }
     }
+
   } else if (navigator.clipboard) {
     try {
-      await navigator.clipboard.writeText(window.location.href);
+      await navigator.clipboard.writeText(
+        window.location.href
+      );
+
       alert("Kitap bağlantısı kopyalandı.");
+
     } catch {
       alert("Bağlantı kopyalanamadı.");
     }
+
   } else {
     alert("Bu tarayıcı paylaşımı desteklemiyor.");
   }
 });
 
-// OKUMA KONUMUNU KAYDET
+/* OKUMA KONUMUNU KAYDET */
 
 const READING_KEY = "rstd_reading_position";
+
 let savePositionTimeout = null;
 
 function saveReadingPosition() {
@@ -2150,7 +2467,10 @@ window.addEventListener("scroll", () => {
   savePositionTimeout = setTimeout(() => {
     saveReadingPosition();
   }, 250);
-}, {passive:true});
+
+}, {
+  passive: true
+});
 
 window.addEventListener("pagehide", saveReadingPosition);
 
@@ -2160,7 +2480,7 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
-// KALDIĞIN YERDEN DEVAM ET
+/* KALDIĞIN YERDEN DEVAM ET */
 
 const savedPosition = getData(READING_KEY, null);
 
@@ -2187,9 +2507,7 @@ if (
   });
 }
 
-// KOPYALAMA ÖNLEMLERİ
-// Bunlar sıradan kopyalama işlemlerini zorlaştırır.
-// Ekran görüntüsü veya farklı yöntemlerle kopyalamayı tamamen engelleyemez.
+/* KOPYALAMA ÖNLEMLERİ */
 
 document.addEventListener("contextmenu", event => {
   if (
@@ -2202,11 +2520,16 @@ document.addEventListener("contextmenu", event => {
 });
 
 document.addEventListener("copy", event => {
+  const selection = window.getSelection();
+
+  const selectedNode =
+    selection?.anchorNode?.parentElement;
+
   if (
     event.target.closest?.(".story") ||
     event.target.closest?.(".chapter-header") ||
     event.target.closest?.(".quote") ||
-    window.getSelection()?.anchorNode?.parentElement?.closest(".story")
+    selectedNode?.closest(".story")
   ) {
     event.preventDefault();
   }
@@ -2219,31 +2542,54 @@ document.addEventListener("keydown", event => {
     (event.ctrlKey || event.metaKey) &&
     ["c", "x", "a", "s", "u"].includes(key)
   ) {
-    const target = event.target;
-
     if (
-      target.closest?.(".inline-comments") ||
-      target.matches?.("input, textarea")
+      event.target.closest?.(".comment-panel") ||
+      event.target.matches?.("input, textarea")
     ) {
       return;
     }
 
     event.preventDefault();
   }
-
-  if (event.key === "Escape") {
-    closeMenu();
-    settingsPopup.classList.remove("open");
-    hideReaderControls();
-  }
 });
 
-// BÖLÜM KONTROLLERİ
+/* BÖLÜM KONTROLLERİ */
 
 $("previousChapter").disabled = true;
 $("nextChapter").disabled = true;
 
-// SAYFA AÇILIŞI
+/* DIŞ ALANA TIKLAYINCA ÜST MENÜ */
+
+document.addEventListener("click", event => {
+  const target = event.target;
+
+  if (
+    target.closest("#topbar") ||
+    target.closest("#readerProgress") ||
+    target.closest("#chapterMenu") ||
+    target.closest("#settingsPopup") ||
+    target.closest("#menuShade") ||
+    target.closest(".reader-actions") ||
+    target.closest(".comment-panel") ||
+    target.closest(".panel-shade") ||
+    target.closest(".paragraph-comment")
+  ) {
+    return;
+  }
+
+  if (
+    chapterMenu.classList.contains("open") ||
+    commentPanel.classList.contains("open")
+  ) {
+    return;
+  }
+
+  controlsVisible
+    ? hideReaderControls()
+    : showReaderControls();
+});
+
+/* SAYFA AÇILIŞI */
 
 hideReaderControls();
 updateProgress();
@@ -2251,4 +2597,4 @@ updateProgress();
 </script>
 
 </body>
-</html>
+    </html>
